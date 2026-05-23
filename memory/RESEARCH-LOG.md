@@ -148,3 +148,62 @@ None for today. Markets closed both Saturday and Monday. Tuesday May 26 pre-mark
 
 ### Decision
 **HOLD today (Saturday, markets closed).** First actionable session is **Tue May 27**. NVDA/ZBRA/XOM shortlisted — confirm price levels at open before placing. Target deploying 60–75% of capital (3 positions × ~$20k each) if entries line up cleanly after the open volatility settles.
+
+---
+
+## 2026-05-23 (Run 2) — Pre-market Research (Saturday — updated with fresh catalysts for Tue May 27)
+
+### Account
+- Equity: $100,000
+- Cash: $100,000
+- Buying power: $200,000
+- Daytrade count: 0/4
+- PDT: false
+- Open positions: 0
+- Open orders: 0
+
+### Market Context
+- **WTI / Brent**: WTI ~$96–97/bbl; intraday range $94.73–$99.43. Volatile on US-Iran peace talks / Strait of Hormuz uncertainty. Down ~8.37% on the week as peace deal hopes fluctuated — binary event risk. Avoid energy sector until resolved.
+- **S&P 500 futures**: ESM26 (Jun contract) closed 7,483.75 on May 22 (+0.24%). Pre-market flat Saturday. Monday CLOSED (Memorial Day).
+- **VIX**: 16.70 at May 22 close (−0.36% from 16.76) — low/complacent, favors longs but complacency = gap risk on surprise events.
+- **KEY NEW CATALYST — Fed Chair**: Kevin Warsh sworn in May 23 replacing Powell. Reform-oriented opening remarks → potential hawkish communication shift. Rate-sensitive sectors (Utilities, REITs) vulnerable.
+- **Treasury yields**: 30-yr yield hit 5.19% (19-yr high) mid-week before pulling back by Friday close. Direction Tuesday matters — if resumes climb, growth/tech multiple compression risk.
+- **Healthcare rotation**: Healthcare had best week in 6 months (XLV +2.50% 1mo). Institutional money rotating in. Broadening of market breadth beyond tech.
+- **AI flows**: Institutional inflows into AI-linked stocks continue. Tech sector dominant (+15.75% 1mo).
+- **Earnings before open**: None (Saturday/Monday closed). Check Tuesday morning pre-open.
+- **Economic calendar**: No releases today. Next key: GDP Q1 2nd Est + Core PCE Thu May 28. CPI not until Jun 10. No FOMC scheduled (new Chair Warsh — watch for unscheduled remarks).
+- **Sector momentum (1mo, yfinance)**:
+
+  | Rank | Sector | ETF | 1mo % | Last Close |
+  |---|---|---|---|---|
+  | 1 | Technology | XLK | **+15.75%** | $180.39 |
+  | 2 | Energy | XLE | +4.41% | $59.49 |
+  | 3 | Healthcare | XLV | +2.50% | $149.89 |
+  | 4 | Consumer Staples | XLP | +1.58% | $84.80 |
+  | 5 | Real Estate | XLRE | +1.36% | $44.56 |
+  | 6 | Consumer Discretionary | XLY | +1.22% | $119.18 |
+  | 7 | Financials | XLF | +0.27% | $51.94 |
+  | 8 | Industrials | XLI | −1.32% | $171.77 |
+  | 9 | Utilities | XLU | −1.61% | $45.35 |
+  | 10 | Communication Services | XLC | −1.64% | $115.46 |
+  | 11 | Materials | XLB | **−2.93%** | $50.29 |
+
+  Avoid: Materials, Comm Services, Utilities, Industrials (all negative 1mo). Energy: avoid until Iran deal resolved.
+
+### Trade Ideas
+*(verify prices at Tue May 27 open — wait first 15 min before entry)*
+
+1. **NVDA** — Tech sector #1 (+15.75% 1mo); AI institutional inflows; data center demand intact. Entry ~$135 (buy pullback to 10-day MA), stop $121.50 (−10%), target $162 (+20%), R:R 2:1. Max $20k (~20% of equity). Risk: 30yr yield resumes climb → watch Tuesday direction first.
+2. **GEHC** — Healthcare best week in 6 months; AI-enabled diagnostics catalyst; sector rotating in. Entry ~$90 (confirm at Tue open), stop $81 (−10%), target $108 (+20%), R:R 2:1. Max $20k. Added over ZBRA due to healthcare sector momentum strengthening.
+3. **ZBRA** — Upgraded 2026 sales guidance; AI automation devices; tech-adjacent. Entry ~$370, stop $333 (−10%), target $444 (+20%), R:R 2:1. Max $20k. Third position only if NVDA + GEHC entries clean.
+
+### Risk Factors
+- **Warsh Fed Chair**: Reform-oriented, hawkish uncertainty → rate-sensitive sectors vulnerable; watch for unscheduled remarks
+- **30yr yield**: Hit 5.19% (19yr high) mid-week; if resumes climb Tuesday → tech multiple compression
+- **3-day weekend / Memorial Day gap**: Wait 15 min at Tue open before any entry — gap risk elevated
+- **US-Iran peace deal**: Binary event → energy sector ~8% weekly draw; avoid XLE/XOM entirely
+- **GDP + PCE May 28**: Mid-week macro risk; size ≤3 positions this week, no additions after Wed
+- **Materials at −2.93%**: Do not enter any Materials names
+
+### Decision
+**HOLD (Saturday, markets closed Mon May 26 Memorial Day).** Primary targets for Tue May 27: **NVDA** (tech/AI) + **GEHC** (healthcare rotation). ZBRA tertiary if first two entries are clean. XOM/XLE dropped from shortlist — Iran deal binary risk too high. Target ~60% deployment (3 × ~$20k) if Tuesday opens cleanly after volatility settles. Monitor 30yr yield direction at open — if resumes climb above 5.10%, reduce size or skip tech entry.
