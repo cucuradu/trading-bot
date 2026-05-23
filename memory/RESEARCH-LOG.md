@@ -92,3 +92,59 @@ None for today. Markets closed both Saturday and Monday. Tuesday May 26 pre-mark
 - ✅ `python scripts/market_data.py sector-momentum` — 11 sectors returned
 - ⚠️ Some Gemini responses truncated by Python parser (cosmetic, full text available in raw stdout)
 - ⏭️ WhatsApp not sent — STEP 5 is "silent unless urgent" and nothing is urgent
+
+---
+
+## 2026-05-23 — Pre-market Research (Saturday — markets closed, ideas for Tue May 27)
+
+### Account
+- Equity: $100,000
+- Cash: $100,000
+- Buying power: $200,000
+- Daytrade count: 0/4
+- PDT: false
+- Open positions: none
+- Open orders: none
+
+### Market Context
+- **WTI crude**: ~$96.60–$97.00/bbl (grounded search, May 23)
+- **S&P 500 futures**: Jun contract (ESM26) closed 7,483.75 on May 22 (+0.24%); pre-market flat Saturday
+- **VIX**: 16.70 at May 22 close (−0.36% — low, complacent — favors longs but gap risk elevated)
+- **Today's catalysts (Mon–Tue week)**: No major pre-market earnings today. ZBRA upgraded 2026 sales guidance (AI/automation devices). BRK-B headwinds: PacifiCorp wildfire liability + DOJ antitrust (Apple stake).
+- **Earnings before open**: none today (Saturday); check Tuesday morning for any Mon-night reporters
+- **Economic calendar**: No major releases today. Next key dates: Consumer Confidence Tue May 26 (Memorial Day — CLOSED), GDP Q1 2nd Est + Core PCE Thu May 28. CPI not until Jun 10. No FOMC scheduled.
+- **US market schedule**: Mon May 26 CLOSED (Memorial Day). **First trading day: Tue May 27.**
+- **Sector momentum (1mo, yfinance)**:
+
+  | Rank | Sector | ETF | 1mo % |
+  |---|---|---|---|
+  | 1 | Technology | XLK | **+15.75%** |
+  | 2 | Energy | XLE | +4.41% |
+  | 3 | Healthcare | XLV | +2.50% |
+  | 4 | Consumer Staples | XLP | +1.58% |
+  | 5 | Real Estate | XLRE | +1.36% |
+  | 6 | Consumer Discretionary | XLY | +1.22% |
+  | 7 | Financials | XLF | +0.27% |
+  | 8 | Industrials | XLI | −1.32% |
+  | 9 | Utilities | XLU | −1.61% |
+  | 10 | Communication Services | XLC | −1.64% |
+  | 11 | Materials | XLB | **−2.93%** |
+
+  Tech dominant; Industrials/Utilities/Comm/Materials negative — avoid those sectors.
+
+### Trade Ideas
+*(verify prices at Tue May 27 open — entries/stops below are approximate)*
+
+1. **NVDA** — AI data center demand; tech sector leading (+15.75% 1mo); next earnings ~late Aug. Entry ~$135 (buy pullback to 10-day MA), stop $121.50 (−10%), target $162 (+20%), R:R 2:1. Max 20% of equity (~$20k).
+2. **ZBRA** — Gemini-flagged upgraded 2026 sales guidance; AI-enabled devices + real-time visibility tools catalyst. Entry ~$370, stop $333 (−10%), target $444 (+20%), R:R 2:1.
+3. **XOM** — Energy sector #2 by momentum (+4.41%); WTI ~$97 supportive of margins; summer driving season tailwind. Entry ~$120, stop $108 (−10%), target $144 (+20%), R:R 2:1.
+
+### Risk Factors
+- 3-day weekend → elevated gap risk Tuesday open; wait for first 15 min before any entry
+- VIX at 16.70 — low/complacent; any surprise event (geopolitical, Fed surprise) could spike fast
+- GDP Q1 2nd estimate + Core PCE on Thu May 28 — macro event risk mid-week; size accordingly
+- Materials sector at −2.93%: do not enter any Materials names
+- XLE energy move partly OPEC-driven — watch for any OPEC+ production news over weekend
+
+### Decision
+**HOLD today (Saturday, markets closed).** First actionable session is **Tue May 27**. NVDA/ZBRA/XOM shortlisted — confirm price levels at open before placing. Target deploying 60–75% of capital (3 positions × ~$20k each) if entries line up cleanly after the open volatility settles.
