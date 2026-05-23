@@ -70,6 +70,33 @@ git pull --rebase origin main && git push origin main
 
 Never force-push. Never skip the proactive pull-rebase.
 
+## Token Optimization (Pro plan budget)
+
+Claude tokens are scarce; Gemini calls are free (~500/day quota, currently using ~30/weekday). Delegate prose generation to Gemini; keep Claude's reasoning for decisions only.
+
+**Claude does**:
+- Trade decisions (TRADE/HOLD, position sizing, rule validation)
+- Risk checks (failsafe handling, buy-gate verification)
+- Strategy adjustments in TRADING-STRATEGY.md
+- Brief routing between tool calls
+
+**Delegate to Gemini** via `bash scripts/gemini.sh "<prompt>"`:
+- Research synthesis: combine raw data into a single market-context paragraph
+- Narrative writing: EOD "why the day went this way" notes, weekly "what worked / didn't work" insights
+- WhatsApp body formatting: give Gemini the structured data + the target template; it returns the formatted message
+
+**Batch Gemini calls**: one call with 5 numbered questions is cheaper for Claude context than 5 separate calls. Combine related research into single prompts:
+```
+bash scripts/gemini.sh "Brief on US market today $DATE:
+1. WTI / Brent oil + 1-line move
+2. S&P 500 futures direction + VIX level
+3. Top earnings before open
+4. Economic calendar (CPI/PPI/FOMC/jobs)
+5. Any news on tickers: NVDA, GEHC, ZBRA"
+```
+
+**Hard limit**: if session reads >40k tokens before final synthesis, skip non-critical bullets and commit. The token budget caps in each routine prompt are floors, not ceilings — go lower when possible.
+
 ## Communication Style
 
 Ultra concise. No preamble. Short bullets. Match existing memory file formats exactly —
