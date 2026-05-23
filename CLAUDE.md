@@ -80,10 +80,19 @@ Claude tokens are scarce; Gemini calls are free (~500/day quota, currently using
 - Strategy adjustments in TRADING-STRATEGY.md
 - Brief routing between tool calls
 
-**Delegate to Gemini** via `bash scripts/gemini.sh "<prompt>"`:
+**Delegate to Gemini** (`bash scripts/gemini.sh "<prompt>"`) for any "easy but token-heavy" task:
 - Research synthesis: combine raw data into a single market-context paragraph
 - Narrative writing: EOD "why the day went this way" notes, weekly "what worked / didn't work" insights
-- WhatsApp body formatting: give Gemini the structured data + the target template; it returns the formatted message
+- WhatsApp body formatting: pipe structured data + the target template; Gemini returns the formatted message
+- Markdown table generation from JSON (positions table, sector momentum table)
+- Restating numbers in a readable form ("$1,420 (+1.42%)")
+- Picking a short label/headline from a longer block of text
+
+**Delegate to plain shell tools** (no LLM, ~zero tokens) when possible:
+- `jq` for JSON parsing — never have Claude read raw Alpaca JSON to extract one field; pipe through `jq -r '.equity'`
+- `date` for date math
+- `grep` / `awk` for finding yesterday's equity in TRADE-LOG.md
+- `bc` or bash arithmetic for P&L calculation
 
 **Batch Gemini calls**: one call with 5 numbered questions is cheaper for Claude context than 5 separate calls. Combine related research into single prompts:
 ```
