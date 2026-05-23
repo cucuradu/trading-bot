@@ -62,5 +62,5 @@ STEP 6 — COMMIT AND PUSH (mandatory). Pull-rebase BEFORE staging:
     git pull --rebase origin main
     git add memory/TRADE-LOG.md
     git commit -m "EOD snapshot $DATE"
-    git push origin main
-On push failure: git pull --rebase origin main && git push origin main. Never force-push.
+    git push origin HEAD:main
+On push failure: git pull --rebase origin main && git push origin HEAD:main. Never force-push.

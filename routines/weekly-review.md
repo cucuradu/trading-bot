@@ -72,6 +72,6 @@ STEP 7 — COMMIT AND PUSH (mandatory). Pull-rebase BEFORE staging:
     git pull --rebase origin main
     git add memory/WEEKLY-REVIEW.md memory/TRADING-STRATEGY.md
     git commit -m "weekly review $DATE"
-    git push origin main
+    git push origin HEAD:main
 If TRADING-STRATEGY.md didn't change, add just WEEKLY-REVIEW.md.
-On push failure: git pull --rebase origin main && git push origin main. Never force-push.
+On push failure: git pull --rebase origin main && git push origin HEAD:main. Never force-push.

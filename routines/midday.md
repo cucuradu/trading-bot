@@ -62,6 +62,6 @@ STEP 8 — COMMIT AND PUSH (if any memory files changed). Pull-rebase BEFORE sta
     git pull --rebase origin main
     git add memory/TRADE-LOG.md memory/RESEARCH-LOG.md
     git commit -m "midday scan $DATE"
-    git push origin main
+    git push origin HEAD:main
 Skip the commit step entirely if no-op.
-On push failure: git pull --rebase origin main && git push origin main. Never force-push.
+On push failure: git pull --rebase origin main && git push origin HEAD:main. Never force-push.

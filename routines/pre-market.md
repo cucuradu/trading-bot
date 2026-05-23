@@ -61,14 +61,24 @@ STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md following the template 
 - Risk factors for the day
 - Decision: TRADE or HOLD (default HOLD — patience > activity)
 
-STEP 5 — Notification: silent unless urgent (held position already < -7% pre-market,
-thesis broken overnight, major geopolitical event):
-    bash scripts/whatsapp.sh "<one-line alert>"
+STEP 5 — ALWAYS send a WhatsApp summary with reasoning (~12-15 lines, single multi-line message).
+Match this exact template, filling in actual values from STEPS 2-4:
+    bash scripts/whatsapp.sh "Pre-market $DATE
+    Account: \$<equity> equity / \$<cash> cash / <N> open positions
+    Macro: <1-line — S&P futures direction, VIX level + meaning, oil/key catalyst>
+    Sectors: top=<sector> +<pct>% | weak=<sector> -<pct>%
+    Ideas (verify @ open):
+      <TICKER> entry \$<X> / stop \$<X> / target \$<X> (R:R <X>:1)
+        why: <one-line catalyst + sector reasoning>
+      <repeat 1-2 more if multiple ideas>
+    Risk: <one line — gap risk, event risk, sector avoid>
+    Decision: <HOLD or TRADE> because <one-line reasoning>"
+If a held position is < -7% pre-market or thesis broke overnight, prepend "ALERT: " to the message.
 
 STEP 6 — COMMIT AND PUSH (mandatory). Pull-rebase BEFORE staging:
     git pull --rebase origin main
     git add memory/RESEARCH-LOG.md
     git commit -m "pre-market research $DATE"
-    git push origin main
-On push failure (rare race): git pull --rebase origin main && git push origin main.
+    git push origin HEAD:main
+On push failure (rare race): git pull --rebase origin main && git push origin HEAD:main.
 Never force-push.

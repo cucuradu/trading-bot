@@ -67,6 +67,6 @@ STEP 8 — COMMIT AND PUSH (mandatory if any trades executed). Pull-rebase BEFOR
     git pull --rebase origin main
     git add memory/TRADE-LOG.md
     git commit -m "market-open trades $DATE"
-    git push origin main
+    git push origin HEAD:main
 Skip the commit step entirely if no trades fired.
-On push failure: git pull --rebase origin main && git push origin main. Never force-push.
+On push failure: git pull --rebase origin main && git push origin HEAD:main. Never force-push.
