@@ -1,0 +1,22 @@
+# Secrets
+.env
+.env.local
+*.key
+*.pem
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Local notification fallback (root only — case-insensitive FS on macOS)
+/DAILY-SUMMARY.md
+
+# IDE
+.vscode/
+.idea/

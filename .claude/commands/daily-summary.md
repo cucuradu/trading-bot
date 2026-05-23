@@ -1,0 +1,45 @@
+---
+description: End-of-day summary — EOD snapshot + WhatsApp recap
+---
+
+Local run of the daily summary. Resolve today's date: `DATE=$(date +%Y-%m-%d)`.
+
+STEP 1 — Read memory for continuity:
+- Tail of `memory/TRADE-LOG.md` (find most recent EOD snapshot → yesterday's equity)
+- Count TRADE-LOG entries dated today (for "Trades today")
+- Count trades Mon–today this week (for the 3/week cap)
+
+STEP 2 — Pull final state of the day:
+```
+bash scripts/alpaca.sh account
+bash scripts/alpaca.sh positions
+bash scripts/alpaca.sh orders
+```
+
+STEP 3 — Compute metrics:
+- Day P&L ($ and %) = today_equity − yesterday_equity
+- Phase cumulative P&L ($ and %) = today_equity − starting_equity ($100,000)
+- Trades today (list or "none")
+- Trades this week (running total)
+
+STEP 4 — Append EOD snapshot to `memory/TRADE-LOG.md`:
+
+```
+### MMM DD — EOD Snapshot (Day N, Weekday)
+**Portfolio:** $X | **Cash:** $X (X%) | **Day P&L:** ±$X (±X%) | **Phase P&L:** ±$X (±X%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+
+**Notes:** one-paragraph plain-english summary.
+```
+
+STEP 5 — Send ONE WhatsApp message (always, even on no-trade days). ≤ 15 lines:
+```
+bash scripts/whatsapp.sh "EOD MMM DD
+Portfolio: \$X (±X% day, ±X% phase)
+Cash: \$X
+Trades today: <list or none>
+Open positions:
+  SYM ±X.X% (stop \$X.XX)
+Tomorrow: <one-line plan>"
+```
