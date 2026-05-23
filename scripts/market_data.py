@@ -27,17 +27,32 @@ SECTOR_ETFS = {
 
 
 def quote(symbol: str) -> dict:
-    t = yf.Ticker(symbol)
-    info = t.fast_info
+    info = yf.Ticker(symbol).fast_info
+
+    def _get(key):
+        try:
+            v = info[key]
+        except (KeyError, AttributeError, IndexError):
+            return None
+        return v
+
+    last_price = _get("lastPrice")
+    prev_close = _get("previousClose")
+    day_high = _get("dayHigh")
+    day_low = _get("dayLow")
+    ten_day_vol = _get("tenDayAverageVolume")
+    year_high = _get("yearHigh")
+    year_low = _get("yearLow")
+
     return {
         "symbol": symbol.upper(),
-        "last_price": float(info["last_price"]) if info.get("last_price") else None,
-        "previous_close": float(info["previous_close"]) if info.get("previous_close") else None,
-        "day_high": float(info["day_high"]) if info.get("day_high") else None,
-        "day_low": float(info["day_low"]) if info.get("day_low") else None,
-        "ten_day_avg_volume": int(info["ten_day_average_volume"]) if info.get("ten_day_average_volume") else None,
-        "year_high": float(info["year_high"]) if info.get("year_high") else None,
-        "year_low": float(info["year_low"]) if info.get("year_low") else None,
+        "last_price": float(last_price) if last_price else None,
+        "previous_close": float(prev_close) if prev_close else None,
+        "day_high": float(day_high) if day_high else None,
+        "day_low": float(day_low) if day_low else None,
+        "ten_day_avg_volume": int(ten_day_vol) if ten_day_vol else None,
+        "year_high": float(year_high) if year_high else None,
+        "year_low": float(year_low) if year_low else None,
     }
 
 

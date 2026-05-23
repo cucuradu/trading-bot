@@ -26,7 +26,7 @@ bash scripts/gemini.sh "Recent news on currently-held tickers: <list from positi
 ```
 If `scripts/gemini.sh` exits 3, fall back to native WebSearch and note the fallback in the log entry.
 
-Also use `python scripts/yfinance.py sector-momentum` for the sector picture (no API quota).
+Also use `python scripts/market_data.py sector-momentum` for the sector picture (no API quota).
 
 STEP 4 — Write a dated entry to `memory/RESEARCH-LOG.md` following the template at the top of that file:
 - Account snapshot

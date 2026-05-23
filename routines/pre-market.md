@@ -52,7 +52,7 @@ STEP 3 — Research market context via Gemini (max 5 calls):
     bash scripts/gemini.sh "US economic calendar today $DATE: CPI PPI FOMC jobs data"
     bash scripts/gemini.sh "Recent news on currently-held tickers: <list from positions>"
 If scripts/gemini.sh exits 3, fall back to native WebSearch and note the fallback in the log entry.
-Also: python scripts/yfinance.py sector-momentum (no API quota).
+Also: python scripts/market_data.py sector-momentum (no API quota).
 
 STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md following the template at the top of that file:
 - Account snapshot (equity, cash, buying power, daytrade count)

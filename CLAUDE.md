@@ -32,7 +32,7 @@ Open these in order before doing anything:
 
 - `bash scripts/alpaca.sh ...` — trading & market data
 - `bash scripts/gemini.sh "<query>"` — research (free `gemini-3.5-flash`)
-- `python scripts/yfinance.py {quote|news|sector-momentum} ...` — free market data backup
+- `python scripts/market_data.py {quote|news|sector-momentum} ...` — free market data backup
 - `bash scripts/whatsapp.sh "<message>"` — notifications via CallMeBot
 
 Never `curl` these APIs directly.

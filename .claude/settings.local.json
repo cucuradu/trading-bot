@@ -12,7 +12,17 @@
       "Bash(git config *)",
       "Bash(git add *)",
       "Bash(git check-ignore *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(gh repo *)",
+      "Bash(bash scripts/alpaca.sh account)",
+      "Bash(python3 -c \"import sys, json; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(f'Account #: {d.get\\(\\\\\"account_number\\\\\"\\)}\\\\nStatus: {d.get\\(\\\\\"status\\\\\"\\)}\\\\nEquity: \\\\${d.get\\(\\\\\"equity\\\\\"\\)}\\\\nCash: \\\\${d.get\\(\\\\\"cash\\\\\"\\)}\\\\nBuying power: \\\\${d.get\\(\\\\\"buying_power\\\\\"\\)}\\\\nPattern day trader: {d.get\\(\\\\\"pattern_day_trader\\\\\"\\)}\\\\nDay trade count: {d.get\\(\\\\\"daytrade_count\\\\\"\\)}'\\)\")",
+      "Bash(bash scripts/gemini.sh \"What is the current price of SPY ETF?\")",
+      "Bash(python3 -c \"import sys, json; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(d['candidates'][0]['content']['parts'][0]['text']\\) if 'candidates' in d else print\\('ERROR:', d\\)\")",
+      "Bash(bash scripts/whatsapp.sh \"Trading bot smoke test from $\\(date '+%H:%M'\\). If you see this, WhatsApp wrapper works.\")",
+      "Bash(bash scripts/gemini.sh \"test\")",
+      "Bash(awk -F= '{val=$2; n=length\\(val\\); if \\(n>8\\) print $1 \"= \\(length \" n \", starts with \" substr\\(val,1,4\\) \"...\\)\"; else if \\(n>0\\) print $1 \"= \\(length \" n \"\\)\"; else print $1 \"= EMPTY\"}')",
+      "Bash(git mv *)",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "/Users/raducucu/Documents/Python/Trading Bot/.claude"

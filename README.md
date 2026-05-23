@@ -29,7 +29,7 @@ Autonomous AI trading bot. **Paper trading only** for the next 10–12 weeks (fo
 
    bash scripts/gemini.sh "WTI oil price today"
    bash scripts/whatsapp.sh "test from trading bot"
-   python scripts/yfinance.py quote SPY
+   python scripts/market_data.py quote SPY
    ```
 
 5. **Run the safety tests**:
