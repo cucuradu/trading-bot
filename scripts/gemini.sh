@@ -33,11 +33,12 @@ payload="$(python3 -c "
 import json, sys
 print(json.dumps({
     'system_instruction': {
-        'parts': [{'text': 'You are a precise financial research assistant. Cite every claim with a source URL. Be concise: 3-5 bullet points max.'}]
+        'parts': [{'text': 'You are a precise financial research assistant. Use Google Search grounding for any current data (prices, news, dates). Cite every claim with a source URL. Be concise: 3-5 bullet points max.'}]
     },
     'contents': [
         {'role': 'user', 'parts': [{'text': sys.argv[1]}]}
     ],
+    'tools': [{'google_search': {}}],
     'generationConfig': {
         'temperature': 0.2,
         'maxOutputTokens': 1024
