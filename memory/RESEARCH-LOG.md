@@ -207,3 +207,196 @@ None for today. Markets closed both Saturday and Monday. Tuesday May 26 pre-mark
 
 ### Decision
 **HOLD (Saturday, markets closed Mon May 26 Memorial Day).** Primary targets for Tue May 27: **NVDA** (tech/AI) + **GEHC** (healthcare rotation). ZBRA tertiary if first two entries are clean. XOM/XLE dropped from shortlist — Iran deal binary risk too high. Target ~60% deployment (3 × ~$20k) if Tuesday opens cleanly after volatility settles. Monitor 30yr yield direction at open — if resumes climb above 5.10%, reduce size or skip tech entry.
+
+---
+
+## 2026-05-25 — Pre-market (DRY RUN, Sunday — first session Tue May 27; new pro-level pipeline)
+
+> This entry exercises the NEW research pipeline (4 free news sources +
+> Gemini synthesis + critique + historical analog + persistent TICKER-NOTES
+> / MACRO-FRAMEWORK). Markets closed Sun and Mon (Memorial Day). No orders.
+
+**Regime:** Neutral (source: rule_fallback — `ml-insights.json not found`, slots: 2, deployment: 75%)
+
+### Account
+- Equity: $100,000 / Cash: $100,000 / Buying power: $197,024 (2× margin)
+- Daytrade count: 0 / PDT: false / Open positions: 0 / Open orders: 0
+- Lock: clear / Daily DD: none / Weekly DD: none / Drawdown lock: ok
+
+### Macro Framework
+Bull-leaning Neutral. **30y yield 5.07%** (−4.6bp WoW, off the 5.19% 19-year high
+hit mid-week — yield-driven multiple compression risk is easing for now).
+**VIX 16.70** — low/complacent, favors longs but limits gap protection.
+**SPY closed 7,473.47** on Fri May 22 — eighth consecutive weekly gain. **WTI**
+declining on Iran/Hormuz peace-deal optimism (binary risk: if deal breaks, XLE
+gaps lower; if deal closes, oil keeps fading). **Sector picture**: 3 sectors
+in Trend (XLK +1.01σ, XLE +0.43σ, XLV +0.34σ), 6 Choppy, 0 Bear — broadening
+beyond tech. **vs Saturday May 23**: yields ↓ ~12bp (good for tech), SPY mostly
+flat, Iran narrative shifted from rising to falling oil prices.
+
+### Sector Picture
+- Leading: XLK (+1.01σ, Trend), XLE (+0.43σ, Trend), XLV (+0.34σ, Trend)
+- Choppy: XLF / XLY / XLP / XLI / XLU / XLC / XLB / XLRE (all small positive)
+- No Bear sectors today — no automatic disqualifications from sector regime
+- Disagreement check: yfinance sector momentum (1mo) corroborates rule-based regime classifier — both put XLK ahead and Materials/Industrials trailing
+
+### Candidates
+
+Shortlist of 2 (capped by `trade_slots=2` from Neutral regime). NVDA (XLK) and
+LLY (XLV) — different sectors so sector cap=2 won't be a constraint.
+
+#### NVDA (XLK, $145ish — verify Tue open)
+
+**Setup:** above 200-SMA, near 50-SMA. ATR-based stop_pct_2_5x clamps to [7, 15]
+in production; verify with `python scripts/market_data.py stop-for-entry NVDA`
+Tuesday morning.
+
+**Sources scanned:** Gemini grounded search + Pass-1 gather (NewsAPI 2 /
+Finnhub 0 due to 401 / EDGAR 15 / Reddit 3 / Google News 10 = 30 records).
+
+**Bull case (cited):**
+- Data center revenue nearly doubled in the most recent earnings report — primary growth engine intact.
+- Forward guidance indicates tangible demand for AI infrastructure persisting into 2H.
+- Considered a top "must-buy" semiconductor name across multiple sell-side notes.
+- Sector tailwind: XLK +1.01σ relative strength; tech remains market leader.
+
+**Bear case (cited):**
+- Stock slid after the strong earnings — reaction was negative despite the beat.
+- Down 1.9% on a recent analyst downgrade.
+- Missed out on the broader market rally Fri May 22.
+- JPMorgan reset (lowered) the price target post-earnings.
+
+**Disconfirming evidence to watch for:**
+- Further analyst downgrades or material PT cuts (more than one major firm this week).
+- Any signal of slowing data-center revenue growth or weakening AI-infra demand.
+- Continued underperformance vs SPY in the first 60 min of Tuesday's session.
+
+**Catalysts ahead (next 14d):**
+- AVGO / MRVL earnings this week (semi sector signal); weakness would pressure NVDA in sympathy.
+- GDP Q1 2nd estimate + Core PCE Thu May 28 (macro).
+- NVDA's own next earnings is well outside the 5-day blackout window.
+
+**Critique (would-be Pass 3 — skipped this run; quota exhausted):**
+- Strongest counter-case: weak post-earnings reaction + Friday rally miss suggests
+  institutional repositioning that the bullish narrative isn't pricing in.
+- Single most-likely invalidator (next 5 trading days): a second major-firm PT cut
+  OR NVDA closing red on Tue while SPY closes green.
+
+**Position-aware (if entered $20k):**
+- XLK exposure post-entry: ~20% of portfolio (currently 0%); sector cap is 2 → 1/2 used.
+- Correlation: N/A (no existing positions).
+
+**R:R math (illustrative — verify Tue open):** entry $145 / stop $130.50 (-10%) /
+target $174 (+20%) / R:R 2.0:1 / max risk $2,000 (2% of equity).
+
+**Decision:** retained for Tue open. Wait first 15 min for gap to settle; skip if
+NVDA opens red while SPY opens green (signal that critique's invalidator is firing).
+
+#### LLY (XLV, verify Tue open)
+
+**Setup:** healthcare sector rotation theme strengthening over last 2 weeks
+(XLV +0.34σ, Trend). LLY itself ~7x over last 5 years; obesity/GLP-1 franchise
+is the durable thesis.
+
+**Sources scanned:** Gemini grounded search + Pass-1 gather (similar distribution).
+
+**Bull case (cited):**
+- Positive Phase 3 retatrutide TRIUMPH-1 trial results announced May 21, 2026 (obesity treatment).
+- Featured in Forbes "10 Best Stocks To Buy Now For June 2026" list.
+- Discussions/opinions in coverage point to GLP-1 drug franchise expansion.
+- Identified as a low-risk-rated stock for 2026 by multiple sell-side notes.
+- Stock observed rising May 23, 2026 — pre-weekend strength.
+- Has compounded ~7x over the past 5 years; trend-following thesis intact.
+
+**Bear case (cited):**
+- No explicit bear case surfaced from the available source records — synthesis flagged this gap.
+- **Implicit risks** (Claude-judged, not Gemini-cited): the absence of a bear case in 30 raw records is itself a yellow flag — usually means we're missing the right sources (Finnhub was offline; insider/analyst-change data missing).
+
+**Disconfirming evidence to watch for:**
+- Regulatory delay or negative readout for retatrutide or pipeline drugs.
+- Competition in GLP-1 (NVO, PFE) gaining share.
+- Adverse events from ongoing clinical trials.
+- Future SEC filings revealing negative guidance.
+
+**Catalysts ahead (next 14d):**
+- No specific dated catalysts surfaced in the 14-day window.
+
+**Critique (would-be Pass 3 — skipped this run; quota exhausted):**
+- Strongest counter-case: stock has already had a big run; entering at a 52-week high
+  area on free-tier news that's biased bullish is exactly when retail sentiment peaks.
+- Single most-likely invalidator: GLP-1 competitor positive trial readout OR
+  guidance cut.
+
+**Position-aware (if entered $20k):**
+- XLV exposure post-entry: ~20% (currently 0%); sector cap is 2 → 1/2 used.
+- Correlation with NVDA (if both entered): low (different sectors, different drivers) —
+  verify with `python scripts/market_data.py max-correlation-with LLY NVDA` Tue AM.
+
+**R:R math (illustrative — verify Tue open):** entry / stop -10% / target +20% /
+R:R 2.0:1 / max risk $2,000.
+
+**Decision:** retained for Tue open with reduced conviction — bear-case sparsity is
+suspicious. If at open both NVDA and LLY pass their gates, LLY gets the smaller
+half of available slots (NVDA first).
+
+### Historical Analog
+
+Closest analog: **October 2023** (VIX ~17.8, 30y yield ~5.0-5.1%, tech leading
++21% MoM, Middle East/Iran geopolitical risk active, Materials/Energy weakening).
+
+What followed after Oct 31 2023: SPY **+4.39% (5d)**, **+7.23% (10d)**,
+**+8.61% (20d)** — strong relief rally as yields eased from peak.
+
+Why this time might differ: today's market regime is broader (68% univ > 50-SMA;
+9 sectors green vs Oct 2023's narrower breadth). Risk skew is short-term
+constructive, long-term cautious — yields drifting down is the supportive
+condition; reversal above 5.20% on the 30y would invalidate.
+
+### Risk Factors (consolidated)
+- **GDP Q1 2nd est + Core PCE Thu May 28** — single biggest macro risk this
+  week. Hot PCE → yields up → tech compresses. Size accordingly.
+- **3-day weekend gap risk** — wait 15 min at Tue open before any entry.
+- **Iran/Hormuz binary** — XOM/XLE intentionally OFF the shortlist for this
+  reason; deal break would create cross-asset spillover (oil up, equity wobble).
+- **NVDA post-ER weakness** — multiple sell-side PT cuts; the bull thesis needs
+  Tuesday strength to be credible.
+- **LLY bear-case sparsity** — flag that the 4-source pipeline returned bullish-only
+  data for LLY; we may be missing the bear case. Re-investigate via `gemini.sh --smart
+  "Strongest bear case for LLY May 25 2026"` before placing the LLY order.
+- **Free-tier Gemini Flash quota** — hit 5 RPM cap during this dry run; in production
+  pre-market needs to space queries (or upgrade to paid tier).
+
+### Decision
+**HOLD (Sunday; markets closed today and Memorial Day Mon May 26).** Plan for
+**Tue May 27 open**:
+1. After 15-min settle: re-quote NVDA + LLY; if both pass buy-gate, enter NVDA
+   first (~$20k, 20% of equity), LLY second (~$20k).
+2. If 30y yield opens above 5.20% → skip NVDA (yield-driven multiple compression).
+3. If LLY's morning news/social surface a bear case (re-run `research.py latest-on LLY 2`
+   Tuesday AM), demote LLY to "watch" and look for an XLE alternative in case
+   Iran deal closes overnight.
+4. Target deployment: 40% (2 × ~$20k); stays well under the 75% deployment ceiling
+   from Neutral regime — leaves dry powder for Wed-Thu adds if PCE is benign.
+
+### Follow-up investigation (STEP 4e-bis triggered)
+
+**Triggers fired during this run:**
+- **LLY bear-case sparsity**: synthesis returned 0 bear bullets — the 4-source
+  pipeline is biased bullish for LLY (likely because Finnhub was offline; no
+  analyst-change or insider-transaction data captured). Action: re-run
+  `research.py synthesize LLY` AND `gemini.sh --smart "Strongest bear case for
+  LLY $DATE — cite a specific risk"` Tuesday morning before placing the order.
+- **Quota exhaustion mid-run**: Free Flash 5-RPM hit when 5 macro queries + 2
+  per-candidate synth ran within 60s. **Production fix shipped**:
+  `scripts/gemini.sh` exponential backoff bumped from [2,4,8] to [5,15,30,60]
+  to ride out the per-minute quota window.
+
+### Quota & source usage (footer)
+- Gemini calls: 5 macro (Flash) + 2 synthesis (Pro→Flash fallback) + 1 historical
+  analog (Pro→Flash fallback) = 8 total. Pro 429 immediately; Flash 429 on the
+  7th call (5/min cap).
+- News sources: NewsAPI 2 calls (worked) / Finnhub 6 calls (401 — auth not yet
+  verified) / EDGAR 6 calls (worked) / Google News 2 calls (worked) / Reddit 6 calls (worked).
+- Source-records assembled: NVDA 30 / LLY similar count.
+- ml-insights.json: NOT present (P0 contract issue per memory/BACKLOG.md #5);
+  regime came from rule_fallback (`scripts/regime.py`).
