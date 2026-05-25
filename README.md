@@ -1,12 +1,13 @@
 # Trading Bot
 
-Autonomous AI trading bot. **Paper trading only** for the next 10–12 weeks (forward-test phase). Built on Claude Code (decisions) + Gemini 3.5 Flash (research, free) + Alpaca paper API + WhatsApp notifications.
+Autonomous AI trading bot. **Paper trading only** for the next 10–12 weeks (forward-test phase). Built on Claude Code (decisions) + Gemini 2.5 Flash/Pro (research, free) + Alpaca paper API + WhatsApp notifications.
 
 ## Quick start (local mode)
 
 1. **Get credentials** (all free):
    - Alpaca paper account → API key + secret: https://alpaca.markets/
-   - Google AI Studio → API key: https://aistudio.google.com/apikey (confirm `gemini-3.5-flash` is in the model list)
+   - Google AI Studio → API key: https://aistudio.google.com/apikey (confirm `gemini-2.5-flash` and `gemini-2.5-pro` are in the model list)
+   - (Optional) NewsAPI.org + Finnhub free keys for the multi-source research pipeline
    - CallMeBot WhatsApp → from your phone, message `+34 621 331 709` with text `I allow callmebot to send me messages`. The bot replies with your API key.
 
 2. **Configure**:
@@ -42,8 +43,8 @@ Autonomous AI trading bot. **Paper trading only** for the next 10–12 weeks (fo
 See [memory/TRADING-STRATEGY.md](memory/TRADING-STRATEGY.md). Hard rules:
 - Stocks only — never options
 - Max 5–6 positions, max 20% per position, max 3 new trades/week
-- 10% trailing stop on every position (real GTC order on Alpaca)
-- Cut losers at −7%; tighten trail to 7% at +15%, 5% at +20%
+- ATR-based trailing stop on every position (real GTC; width clamped to [7%, 15%])
+- Cut losers at R ≤ −1 (close ≤ initial_stop); tighten trail to 7% at +15%, 5% at +20%
 
 ## Safety: the live-trading failsafe
 

@@ -6,7 +6,7 @@
 - Platform: Alpaca (paper endpoint: https://paper-api.alpaca.markets/v2)
 - Duration: 10–12 weeks of forward-testing before any live-trading decision
 - Strategy: Swing trading stocks, no options
-- LLM stack: Claude (decision making, this agent) + Gemini 3.5 Flash (research, free tier)
+- LLM stack: Claude (decisions) + Gemini 2.5 Flash (macro/retrieval, free) + Gemini 2.5 Pro (synthesis/critique, free tier)
 - Notifications: WhatsApp via CallMeBot
 
 ## Rules
