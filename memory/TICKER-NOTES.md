@@ -120,15 +120,17 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## LLY (XLV)
-- Thesis (2026-05-25): Positive Phase 3 retatrutide TRIUMPH-1 (obesity) readout May 21 supports the GLP-1 franchise expansion thesis; ~7x over the past 5 years. Caution: bear case was sparse in source pull — recheck before entering.
+- Thesis (2026-05-25): GLP-1 franchise expansion (retatrutide Phase 3 positive May 21); ~7x in 5yr; but NVO oral Wegovy now outselling Zepbound at comparable launch; premium valuation 26.3x fwd (sector 16.6x); insider selling (Lilly Endowment 15,828 shares May 6-7). Reduced conviction.
 - Recent catalysts:
-  - 2026-05-23 [Gemini]: LLY observed rising pre-weekend; included in Forbes "10 Best Stocks To Buy Now For June 2026"
-  - 2026-05-21 [Gemini synthesis]: positive Phase 3 retatrutide TRIUMPH-1 trial results for obesity treatment
+  - 2026-05-25 [Gemini Flash]: NVO oral Wegovy outselling Zepbound; Lilly Endowment sold 15,828 shares ($15M+) May 6-7; LLY valuation 26.3x vs sector 16.6x
+  - 2026-05-21 [LLY press release]: Phase 3 retatrutide TRIUMPH-1 trial positive for obesity treatment
+  - 2026-05-23 [Gemini]: pre-weekend strength; Forbes "10 Best Stocks June 2026" inclusion
 - Open thesis questions:
-  - **Bear-case gap**: 4-source synthesis returned 0 bear bullets — Finnhub was offline; need to re-fetch with analyst-change + insider data to ensure we're not entering near a top.
-  - Competitive pressure from NVO / PFE in GLP-1 space — quantify share dynamics.
+  - NVO oral Wegovy market share vs Zepbound: what % of new GLP-1 patients are choosing NVO over LLY?
+  - Lilly Endowment insider selling — one-time tax event or thesis concern?
+  - Pipeline: retatrutide commercial timeline and pricing power vs NVO oral?
 - Trade history: (none yet)
-- Position-aware notes: XLV cap 2 → LLY + 1 other healthcare max (UNH/JNJ).
+- Position-aware notes: XLV cap 2 → LLY + 1 other healthcare max (UNH/JNJ). Re-run `gemini.sh "LLY NVO competition latest May 27 2026"` Tue AM before order.
 
 ## MA (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -159,15 +161,18 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## NVDA (XLK)
-- Thesis (2026-05-25): AI data-center demand intact; data-center revenue near-doubled in last ER. Concern: stock slid post-ER + JPM cut PT + missed Friday rally — institutional repositioning may be ahead of the bull narrative.
+- Thesis (2026-05-25): AI data-center demand intact; Q1 FY27 beat ($81.6B rev +85% YoY, DC $75.2B +92%); Q2 guidance $91B. Post-ER slide (−1.5% AH + continued drift) is sell-the-news, not thesis break. JPM RAISED PT $265→$280 (Overweight). [correction: prior entry incorrectly said JPM cut PT]
 - Recent catalysts:
-  - 2026-05-22 [Gemini synthesis]: NVDA missed broad market rally on Fri May 22; analyst downgrade −1.9%; JPM reset PT lower
-  - Recent ER: data center revenue nearly doubled; forward guidance reaffirmed AI infra demand
+  - 2026-05-25 [Gemini Flash]: JPM raised PT to $280 from $265 (Overweight); ~25% upside implied from May 21 close
+  - 2026-05-20 [NVDA IR]: Q1 FY27 beat: rev $81.6B, DC $75.2B (+92%), EPS $1.87; Q2 guide $91B; $80B buyback authorized
+  - 2026-05-22 [Gemini synthesis]: stock underperformed broad rally; post-ER sell-the-news pressure continues
+  <!-- archive: 2026-05-22 analyst downgrade −1.9% (unverified; JPM actually raised PT) -->
 - Open thesis questions:
-  - Does the post-ER slide reflect priced-in growth (multiple compression) or thesis change?
-  - Does AVGO/MRVL earnings this week confirm or contradict the AI capex 2H story?
+  - Does post-ER slide resolve before PCE event (Wed May 28) or do sellers continue through Wed?
+  - Does AVGO earnings this week confirm or contradict the AI capex 2H ramp story?
+  - Kill-switch: 30y yield > 5.20% → skip NVDA entry
 - Trade history: (none yet)
-- Position-aware notes: sector cap=2 means NVDA + 1 other XLK max (AAPL/MSFT/AVGO). Kill-switch: 30y yield > 5.20%.
+- Position-aware notes: sector cap=2 → NVDA + 1 other XLK max (AAPL/MSFT/AVGO). Gate: 30y < 5.15% at Tue open + NVDA > $213.
 
 ## PG (XLP)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.

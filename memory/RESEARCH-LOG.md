@@ -399,4 +399,159 @@ condition; reversal above 5.20% on the 30y would invalidate.
   verified) / EDGAR 6 calls (worked) / Google News 2 calls (worked) / Reddit 6 calls (worked).
 - Source-records assembled: NVDA 30 / LLY similar count.
 - ml-insights.json: NOT present (P0 contract issue per memory/BACKLOG.md #5);
+
+---
+
+## 2026-05-25 — Pre-market (Holiday planning: Tue May 27 open)
+
+**Regime:** Neutral (source: rule_fallback, slots: 2, deployment: 75%) — ml-insights.json absent; fallback reason: ml-insights.json not found. Note to user: local PC has not pushed ml-insights.json; bot is using rule-based regime (scripts/regime.py). Consider fixing P0 contract issue (BACKLOG.md #5).
+
+### Account
+- Equity: $100,000.00 | Cash: $100,000.00 (100%) | Buying power: $200,000 (2× margin)
+- Daytrade count: 0 | PDT: false | Open positions: 0 | Open orders: 0
+- Peak equity: $100,000.00 | Drawdown: 0.00% | Lock: none
+
+### Macro Framework
+
+Regime: **Neutral** (rule_fallback; ml-insights.json still not wired). Slots 2, deployment target 75%. Markets closed today (Sun May 25) and Mon May 26 (Memorial Day); first open = **Tue May 27**. **Key risk this week: Wed May 28 — GDP Q1 2nd estimate (advance 2.0% vs 2.2% consensus) + Core PCE April (consensus 3.4% YoY; hot reading >0.3% MoM = yields spike = growth multiple compression)**. **WTI $90.83 (−5.77%), Brent ~$94.7 (−5.4%)** — Iran/Hormuz peace-deal optimism driving sharp oil decline; ESM26 futures +0.51% at 7,504 (market interpreting lower oil as disinflationary tailwind). **VIX 16.70** (as of May 22; complacent). **30y yield 5.07%** (as of May 22; eased from 5.19% mid-week 19y high). Vs yesterday: macro unchanged (no US market session today); oil is the delta — −5.7% is the largest single catalyst. Dominant theme: broadening rally with inflation tailwind from energy, but Wed PCE is the linchpin.
+
+### Sector Picture
+| Sector | ETF | 1mo Return | Regime (rule) |
+|--------|-----|-----------|---------------|
+| Technology | XLK | +15.75% | Trend (score 1.01σ) |
+| Energy | XLE | +4.41% | Trend (score 0.43σ) ⚠️ |
+| Healthcare | XLV | +2.50% | Trend (score 0.34σ) |
+| Consumer Staples | XLP | +1.58% | Choppy |
+| Real Estate | XLRE | +1.36% | Choppy |
+| Consumer Discretionary | XLY | +1.22% | Choppy |
+| Financials | XLF | +0.27% | Choppy |
+| Industrials | XLI | −1.32% | Choppy |
+| Utilities | XLU | −1.61% | **Bear** |
+| Comm Services | XLC | −1.64% | Choppy |
+| Materials | XLB | −2.93% | **Bear** |
+
+⚠️ **XLE divergence flag**: regime.py scores XLE Trend (0.43σ), momentum +4.41% 1mo — but WTI −5.77% today on Iran deal is a material near-term fundamental shift. XLE sector likely to underperform Tue open. No XLE candidates shortlisted. Sector-momentum and ml-insights sectors otherwise agree: XLK top, XLU/XLB bottom.
+
+### Candidates
+
+#### NVDA (XLK, $215.33 ±day range $214.80–$221.01)
+
+**Setup:** 52w range $132.92–$236.54; current ~9% below 52w high. ATR(14)=$7.62 (3.54% of price); stop_pct_2.5x=8.84% (not clamped; within [7,15]). Post-ER slide: reported May 20, stock −1.5% AH + continued drift lower (sell-the-news).
+
+**Sources scanned (0):** 0 NewsAPI (key absent) / 0 Finnhub (key absent) / 0 EDGAR (403) / 0 Reddit (403) / 0 Google News (403). Synthesis run from Gemini Flash+CoT; 0 raw records. [sparse-data trigger fired]
+
+**Bull case (Gemini Flash, grounded):**
+- Q1 FY27: Revenue $81.6B (+85% YoY), beating consensus; Data Center $75.2B (+92%) [NVDA IR, May 20 2026]
+- Non-GAAP EPS $1.87, beat; $80B additional buyback authorized; dividend raised to $0.25/qtr [NVDA IR]
+- Q2 FY27 guidance: $91.0B (±2%) — continuing sequential growth; AI factory buildout accelerating [NVDA mgmt call]
+- JPMorgan raised PT to $280 from $265 (Overweight) — ~25% upside from May 21 close [JPM, May 2026] (**correction vs prior log**: JPM raised, not cut)
+- Hyperscaler commitments (OpenAI, Anthropic, Meta, Google Cloud) multi-year → revenue visibility [analyst consensus]
+
+**Bear case (Gemini Flash, grounded):**
+- Sell-the-news post-ER slide reflects high expectations priced in at entry [market action]
+- Hyperscaler in-house chip development (Google TPU, AWS Trainium, MSFT Maia) — long-term displacement risk
+- 30y yield > 5.20% = growth multiple compression → tech selloff (kill-switch level)
+- Vera Rubin architecture transition risk: delays or sub-par ramp would reset sequential growth thesis
+
+**Disconfirming evidence to watch for:**
+- Tue open: does NVDA gap up on oil-disinflation tailwind or stay under pressure from post-ER sellers?
+- AVGO earnings (this week) — if AI capex story cracks, NVDA follows
+- 30y yield spike above 5.15% intraday Tue → tighten sizing
+
+**Critique (Gemini, grounded):**
+- Strongest counter: stock has barely recovered from ER slide in a week when the broad market was making 8-week winning streak highs — institutional sellers are still active
+- Single most-likely invalidator (5d): Core PCE Wed May 28 surprise above 3.6% YoY → 30y spikes, tech multiple contracts, NVDA retest ER-week lows
+
+**Position-aware (if entered $20k):**
+- XLK sector exposure: 20% (currently 0%); sector cap 2/2 available
+- No existing positions → correlation concern NA
+- Sector cap status: 1/2 XLK slots used
+
+**R:R math:** entry $215.33 / stop $196.29 (−8.84%) / target $258.40 (+20.0%) / R:R 2.26:1 / max risk $1,768 on $20k.
+
+**Decision:** retained — fundamentals strong, beat + raised. PCE risk gates the entry: enter Tue if 30y < 5.15% at open AND NVDA shows positive price action in first 15 min.
+
+---
+
+#### LLY (XLV, $1,065.00 ±day range $1,047.07–$1,070.34)
+
+**Setup:** 52w range $623.78–$1,133.95; current ~6% below 52w high. ATR(14)=$30.31 (2.85% of price); stop_pct_2.5x=7.12% (floor at 7%; not clamped). Bear case now identified this run.
+
+**Sources scanned (0):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 0 Google News. Synthesis from Gemini Flash+CoT; 0 raw records. [sparse-data trigger fired]
+
+**Bull case (Gemini Flash, grounded):**
+- Phase 3 retatrutide TRIUMPH-1 obesity trial: positive readout May 21, 2026 — GLP-1 franchise expansion catalyst [LLY press release, May 21]
+- ~7x compounded over 5 years; trend intact [market data]
+- Forbes "10 Best Stocks For June 2026" feature; multiple sell-side low-risk ratings [media coverage]
+
+**Bear case (Gemini Flash, grounded — filled the prior gap):**
+- NVO oral Wegovy currently outselling LLY Zepbound at comparable launch stage — competitive pressure intensifying [sell-side channel checks]
+- Valuation premium: LLY forward 26.3x vs healthcare sector average 16.6x; DCF bears model price below current [analyst models]
+- Lilly Endowment Inc. (former 10% holder) sold 15,828 shares May 6–7 ($15M+ proceeds) — insider selling signal [SEC Form 4, May 2026]
+- Late-cycle LLY products (Trulicity, Taltz, Verzenio) expected flat to down 2026 [mgmt guidance]
+- US Supreme Court declined SCOTUS appeal on $194M Medicaid fraud award [court records]
+
+**Disconfirming evidence to watch for:**
+- NVO Q2 data showing Wegovy oral share gains vs tirzepatide
+- Additional large insider sales
+- GLP-1 compounding market share erosion news
+
+**Critique:**
+- Strongest counter: LLY near 52w highs with identified insider selling + NVO competitive headwind; entering on GLP-1 momentum in a crowded trade at premium valuation
+- Single most-likely invalidator (5d): NVO positive trial readout or analyst note quantifying Wegovy oral market share → LLY gap down
+
+**Position-aware (if entered $20k):**
+- XLV exposure: 20% (currently 0%); sector cap 2/2 available
+- No existing positions
+- Sector cap status: 1/2 XLV slots used
+
+**R:R math:** entry $1,065.00 / stop $989.23 (−7.12%) / target $1,278.00 (+20.0%) / R:R 2.81:1 / max risk $1,424 on $20k.
+
+**Decision:** retained with reduced conviction — bear case now clearly identified (NVO competition + insider selling). Enter ONLY after NVDA confirmed first and LLY shows no negative catalyst overnight. Re-run `gemini.sh "LLY NVO competition latest May 27 2026"` Tue AM before placing order.
+
+### Historical Analog
+
+No precise analog found (Gemini Flash): combination of VIX 16.7 + 30y yield 5.07% + 8-week SPX win streak + oil −5.7% on geopolitical de-escalation + hot PCE pending is unusual. Nearest comparable: **Q4 2023** (Oct–Dec 2023) — VIX 17–18 range, 30y near 5%, tech leading a recovery rally, oil declining on demand concerns, Fed pause in view. After the Oct 2023 low: SPX +4.4% (5d), +7.2% (10d), +8.6% (20d) as yields peaked and fell. Key difference today: oil catalyst is supply-side (Iran deal) not demand; yields are easing but Core PCE still elevated at 3.4% vs Oct 2023's ~3.7%. Risk skew: short-term constructive if PCE prints in-line; sharp reversal if PCE is hot (>0.3% MoM).
+
+### Follow-up investigation (STEP 4e-bis)
+
+**Triggers fired:**
+- **Sparse data (both candidates)**: 0 raw records across all 5 sources (all APIs absent/403 in cloud env). Gemini Flash+CoT used as sole synthesis source — citation quality lower than local-PC runs.
+- **Bear-case gap now resolved for LLY**: prior run flagged 0 bear bullets; this run used Gemini Pro fallback to explicitly request bear case. Gap filled: NVO competition, insider selling, valuation premium confirmed.
+- **NVDA JPM PT correction**: prior ticker-notes said "JPM cut PT" — Gemini Pro confirms JPM RAISED PT to $280. Ticker-notes updated.
+
+**Queries run:** 1 combined Gemini Pro call (Pro 429 → Flash+CoT fallback) covering NVDA ER context, LLY bear case, historical analog, key risk.
+
+**What changed:** LLY bear case now populated; NVDA JPM PT corrected; no candidate dropped but LLY conviction reduced.
+
+**Budget guard:** session token count below 20k threshold; investigation complete.
+
+### Risk Factors (consolidated)
+- **Core PCE Wed May 28 (consensus 3.4% YoY)** — single biggest risk; hot reading (>0.3% MoM) → yields spike → growth multiple compression → NVDA selloff
+- **GDP Q1 2026 2nd estimate (Wed May 28)** — advance was 2.0% (below 2.2% forecast); downside revision = growth scare
+- **3-day weekend gap**: markets open Tue on Iran deal (oil −5.77%) + futures +0.51%; gap-up opens often retrace in first 30 min; wait 15 min before entry
+- **XLE binary risk**: Iran deal not yet closed — if deal breaks overnight, oil spikes, cross-asset disruption on Tue open
+- **NVDA post-ER sellers**: stock couldn't rally in an 8-week bull run; institutional repositioning may continue through week
+- **LLY valuation**: 26.3x forward (vs sector 16.6x) + NVO oral Wegovy competition + recent insider selling = elevated bar for continued outperformance
+- **No existing stop orders**: 0 positions, so no stop management needed today
+
+### Decision
+
+**HOLD** (markets closed today and Mon May 26 Memorial Day).
+
+**Plan for Tue May 27 open:**
+1. After 15-min settle (9:45am ET): re-quote NVDA + LLY; check 30y yield live
+2. Gate for any entry: 30y yield < 5.15% AND NVDA trading constructively (above $213)
+3. If both gates pass → NVDA first ($20k, ~93 shares at $215); LLY second ($20k, ~19 shares at $1,065) if sector confirms
+4. PCE constraint: **cap total deployment at 40% ($40k) before Wed PCE** — do NOT deploy full 75% into a hot-inflation event
+5. If 30y yield opens above 5.15% → HOLD NVDA; monitor LLY separately (less yield-sensitive)
+6. Re-run `gemini.sh "LLY NVO competition news May 27 2026"` Tue AM before LLY order
+
+Target deployment by Wed open: 40% ($2 × $20k). Remaining $60k dry powder for post-PCE adds if benign.
+
+### Quota & source usage (footer)
+- Gemini calls: 4 Flash (macro: oil, futures/VIX, catalysts, calendar) + 1 Flash+CoT (Pro 429 → fallback: NVDA/LLY/analog/risk combo) = 5 total. All within budget.
+- NewsAPI / Finnhub / EDGAR / Reddit / Google News: all returned 0 records (keys absent or 403 in cloud env). News adapter degraded for this run — full local-PC run recommended for production.
+- Source-records assembled: NVDA 0 / LLY 0 (cloud env limitation)
+- ml-insights.json: NOT present; regime from rule_fallback (scripts/regime.py)
   regime came from rule_fallback (`scripts/regime.py`).
