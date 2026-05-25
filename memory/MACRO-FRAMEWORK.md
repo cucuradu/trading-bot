@@ -26,3 +26,7 @@ Sector picture: 3 Trend (XLK +1.01σ, XLE +0.43σ, XLV +0.34σ), 6 Choppy,
 rally with oil-driven inflation relief; but **Wed May 28 = Core PCE (3.4% YoY
 consensus) + GDP Q1 2nd estimate** is the week's linchpin. Markets closed today
 (Sun) + Mon May 26 Memorial Day; first open = Tue May 27.
+
+## 2026-05-25 (Holiday refresh — Memorial Day; research for Tue May 27 open)
+
+Regime Neutral (rule_fallback; ml-insights.json absent). Slots 2, deployment 75%. **VIX 16.68** (−0.02 from Fri; complacent). **30y yield 5.06%** (−1bp from 5.07%; −13bp from mid-week peak of 5.19% — yield-driven compression risk easing). **WTI ~$91 / Brent $95.43** — oil extended Friday's decline over the 3-day weekend on Iran/US peace-deal optimism; Brent ~−5.4% since Fri. **S&P 500 ESM26 futures +0.15%** (Tue AM pre-market). Trump: Strait of Hormuz blockade stays until formal Iran deal — binary risk unresolved. SPX 8-week winning streak intact. Sector leadership: XLK +15.75% / XLE +4.41% / XLV +2.50% (1mo, all Trend). Dominant theme: Iran-deal oil relief + yield easing = disinflationary tailwind for equities; but **Wed May 28 = Core PCE (3.4% YoY consensus) + GDP Q1 2nd estimate + durable goods** is the week's binary event. vs May 22: yields −13bp WoW, WTI −5.77%, regime unchanged (Neutral), VIX −0.02. [source: WebSearch fallback; Gemini quota exhausted]

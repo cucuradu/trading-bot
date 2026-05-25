@@ -120,17 +120,19 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## LLY (XLV)
-- Thesis (2026-05-25): GLP-1 franchise expansion (retatrutide Phase 3 positive May 21); ~7x in 5yr; but NVO oral Wegovy now outselling Zepbound at comparable launch; premium valuation 26.3x fwd (sector 16.6x); insider selling (Lilly Endowment 15,828 shares May 6-7). Reduced conviction.
+- Thesis (2026-05-25): GLP-1 franchise expansion (Q1 2026 rev $19.80B +55.5%; Mounjaro $8.66B; raised FY guide $82-85B; retatrutide TRIUMPH-1 positive May 21); ~427% 5-yr return; but NVO oral Wegovy outselling Zepbound at comparable launch; premium valuation 26.3x fwd (sector 16.6x); insider selling (Lilly Endowment 15,828 shares May 6-7). Reduced conviction.
 - Recent catalysts:
+  - 2026-05-25 [WebSearch]: Q1 2026 rev $19.80B (+55.5%), Mounjaro $8.66B, raised FY guide $82-85B confirmed
   - 2026-05-25 [Gemini Flash]: NVO oral Wegovy outselling Zepbound; Lilly Endowment sold 15,828 shares ($15M+) May 6-7; LLY valuation 26.3x vs sector 16.6x
   - 2026-05-21 [LLY press release]: Phase 3 retatrutide TRIUMPH-1 trial positive for obesity treatment
   - 2026-05-23 [Gemini]: pre-weekend strength; Forbes "10 Best Stocks June 2026" inclusion
+  <!-- archive: older entries beyond 5 moved here during next weekly review -->
 - Open thesis questions:
   - NVO oral Wegovy market share vs Zepbound: what % of new GLP-1 patients are choosing NVO over LLY?
   - Lilly Endowment insider selling — one-time tax event or thesis concern?
   - Pipeline: retatrutide commercial timeline and pricing power vs NVO oral?
 - Trade history: (none yet)
-- Position-aware notes: XLV cap 2 → LLY + 1 other healthcare max (UNH/JNJ). Re-run `gemini.sh "LLY NVO competition latest May 27 2026"` Tue AM before order.
+- Position-aware notes: XLV cap 2 → LLY + 1 other healthcare max (UNH/JNJ). Re-run `gemini.sh "LLY NVO competition news May 27 2026"` Tue AM before order (Gemini resets at midnight).
 
 ## MA (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -161,15 +163,17 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## NVDA (XLK)
-- Thesis (2026-05-25): AI data-center demand intact; Q1 FY27 beat ($81.6B rev +85% YoY, DC $75.2B +92%); Q2 guidance $91B. Post-ER slide (−1.5% AH + continued drift) is sell-the-news, not thesis break. JPM RAISED PT $265→$280 (Overweight). [correction: prior entry incorrectly said JPM cut PT]
+- Thesis (2026-05-25): AI data-center demand intact; Q1 FY27 beat ($81.6B rev +85% YoY, DC $75.2B +92%); Q2 guidance $91B; $80B buyback + 25× dividend increase. Post-ER slide is sell-the-news, not thesis break. JPM RAISED PT $265→$280 (Overweight). Chip export scrutiny (AI chip smuggling; China $200B plan regulatory hurdle) is an emerging risk.
 - Recent catalysts:
-  - 2026-05-25 [Gemini Flash]: JPM raised PT to $280 from $265 (Overweight); ~25% upside implied from May 21 close
+  - 2026-05-25 [WebSearch]: $80B buyback + 25× dividend increase confirmed; chip export/AI smuggling scrutiny flagged by CEO
+  - 2026-05-25 [Gemini Flash]: JPM raised PT to $280 from $265 (Overweight); ~30% upside implied from $215 close
   - 2026-05-20 [NVDA IR]: Q1 FY27 beat: rev $81.6B, DC $75.2B (+92%), EPS $1.87; Q2 guide $91B; $80B buyback authorized
   - 2026-05-22 [Gemini synthesis]: stock underperformed broad rally; post-ER sell-the-news pressure continues
   <!-- archive: 2026-05-22 analyst downgrade −1.9% (unverified; JPM actually raised PT) -->
 - Open thesis questions:
   - Does post-ER slide resolve before PCE event (Wed May 28) or do sellers continue through Wed?
   - Does AVGO earnings this week confirm or contradict the AI capex 2H ramp story?
+  - Chip export risk: how material is AI chip smuggling scrutiny to Blackwell demand? [new May 25]
   - Kill-switch: 30y yield > 5.20% → skip NVDA entry
 - Trade history: (none yet)
 - Position-aware notes: sector cap=2 → NVDA + 1 other XLK max (AAPL/MSFT/AVGO). Gate: 30y < 5.15% at Tue open + NVDA > $213.
