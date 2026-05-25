@@ -36,6 +36,7 @@ The ranking engine evaluates 11 SPDR sector ETFs to find the most optimal places
 
 - **Model:** `xgb.XGBRegressor` tuned via Optuna.
 - **Target Variable:** The 5-day forward return of the sector ETF.
+  - **Output Format:** The predicted `ml_score` is output as a raw decimal representing the percentage move (e.g., a score of 0.0039 equates to an expected +0.39% return). It is not a bounded momentum score.
 - **Cross-Validation:** The pipeline strictly uses Walk-Forward `TimeSeriesSplit` (anchored) with a purge window. Standard K-Folds are strictly forbidden as they leak future data.
 - **Regularization:** Financial data is incredibly noisy. To prevent the XGBoost trees from collapsing into a single generic prediction, strict L1 (`reg_alpha`) and L2 (`reg_lambda`) penalties are applied, forcing the tree to grow shallow but diverse branches.
 
@@ -54,3 +55,12 @@ The pipeline employs a **Generalized Autoregressive Conditional Heteroskedastici
 - **Distribution:** Uses a Student's t-distribution to account for the "fat tails" commonly seen in financial returns.
 - **Scaling Mechanics:** Because financial daily returns are incredibly small decimals, the optimizer often fails to converge. The pipeline multiplies all log returns by 100 before fitting the GARCH model. It then generates the variance forecast, square-roots it, annualizes it ($\times \sqrt{252}$), and outputs the raw percentage (e.g., `12.18`).
 - **Term Structure:** The pipeline pulls spot VIX and 3-Month VIX (VIX3M) to calculate the term structure ratio, yielding either `contango` or `backwardation`.
+
+---
+
+## 5. Systemic Fragility (Graph Neural Network)
+
+To understand hidden structural risks, the pipeline models the market as a mathematical graph using a PyTorch Graph Attention Network (GAT).
+* **Graph Topology:** The 11 sectors act as nodes. The edges connecting them are defined by their rolling correlation matrices. To prevent over-smoothing, the graph is kept sparse by stripping out weak correlations and isolating the strongest structural links.
+* **Attention Mechanism:** The GAT learns which sectors are currently driving the market by assigning attention weights. If all sectors begin moving in perfect lockstep (high correlation and uniform attention), the market is essentially acting as a single massive asset.
+* **The Fragility Score:** The pipeline outputs a `systemic_fragility` metric. A low score indicates healthy, independent sector rotation. A high score indicates extreme structural correlation, meaning a shock to one sector (e.g., Tech) will likely cascade and drag down the entire market.
