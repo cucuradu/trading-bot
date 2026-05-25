@@ -4,7 +4,7 @@ This file is the **only** interface between the local ML pipeline (Ubuntu PC,
 RTX 5060 Ti) and the cloud trading loop (this repo). The cloud loop is a
 consumer-only — it never writes this file.
 
-**File location**: repo root (`/ml-insights.json`)
+**File location**: `docs/ml-insights.json` in this repo
 
 **Producer**: separate local repo (HMM/GMM regime classifier + GARCH vol forecaster).
 The local pipeline runs nightly and commits + pushes to this repo's `main` branch
@@ -31,40 +31,49 @@ the local PC has drifted offline.
 ```json
 {
   "generated_at": "2026-05-26T05:30:00Z",
-  "model_version": "hmm-v1.2",
+  "model_version": "hmm-garch-v1.0",
 
   "market": {
     "regime": "Bull",
     "confidence": 0.87,
     "persistence_bars": 5,
+    "breadth_divergence": false,
+    "systemic_fragility": 0.21,
     "deployment_target": 0.85,
     "trade_slots": 3
   },
 
   "volatility": {
-    "garch_1d_forecast_pct": 1.2,
-    "garch_5d_forecast_pct": 2.8,
+    "garch_1d_forecast_pct": 12.18,
+    "garch_5d_forecast_pct": 13.40,
     "vix_implied_term_structure": "contango"
   },
 
   "sectors": {
-    "XLK": {"regime": "Trend",  "score": 0.74},
-    "XLF": {"regime": "Choppy", "score": 0.12},
-    "XLV": {"regime": "Trend",  "score": 0.55},
-    "XLE": {"regime": "Bear",   "score": -0.41},
-    "XLY": {"regime": "Choppy", "score": 0.05},
-    "XLP": {"regime": "Choppy", "score": 0.02},
-    "XLI": {"regime": "Trend",  "score": 0.38},
-    "XLU": {"regime": "Choppy", "score": -0.08},
-    "XLB": {"regime": "Bear",   "score": -0.29},
-    "XLRE": {"regime": "Choppy", "score": -0.11},
-    "XLC": {"regime": "Trend",  "score": 0.61}
+    "XLK": {"regime": "Trend",  "score": 0.0029},
+    "XLF": {"regime": "Choppy", "score": 0.0011},
+    "XLV": {"regime": "Trend",  "score": 0.0017},
+    "XLE": {"regime": "Bear",   "score": -0.0008},
+    "XLY": {"regime": "Choppy", "score": 0.0005},
+    "XLP": {"regime": "Choppy", "score": 0.0002},
+    "XLI": {"regime": "Trend",  "score": 0.0024},
+    "XLU": {"regime": "Choppy", "score": -0.0003},
+    "XLB": {"regime": "Bear",   "score": -0.0011},
+    "XLRE": {"regime": "Choppy", "score": -0.0004},
+    "XLC": {"regime": "Trend",  "score": 0.0021}
   },
 
   "universe_ranking": [
-    {"symbol": "NVDA", "ml_score": 0.91},
-    {"symbol": "META", "ml_score": 0.84}
-  ]
+    {"symbol": "XLK", "ml_score": 0.0029},
+    {"symbol": "XLI", "ml_score": 0.0024},
+    {"symbol": "XLC", "ml_score": 0.0021}
+  ],
+
+  "universe_weights": {
+    "XLK": 0.42,
+    "XLI": 0.33,
+    "XLC": 0.25
+  }
 }
 ```
 
@@ -87,10 +96,13 @@ local model retrain.
 | `persistence_bars` | int ≥ 0 | How many consecutive bars in this regime. Cloud uses this for sanity (must be ≥ 3 to act). |
 | `deployment_target` | float [0,1] | Fraction of equity to deploy. Cloud caps at 0.85 regardless. |
 | `trade_slots` | int [0,3] | Max new entries today. Cloud caps at 3 regardless. |
+| `breadth_divergence` | bool, optional | `true` when SPY/RSP 20d divergence triggers. Producer downgrades `Bull` → `Caution` upstream; cloud surfaces the flag but does not yet act on it. If not a bool, silently dropped (does not fail the payload). |
+| `systemic_fragility` | float [0,1], optional | PCA Absorption Ratio across 11 sectors. Higher = sectors more correlated = more fragile market. Reserved for sizing logic. Outside `[0,1]` rejects the whole payload. |
 
 ### `volatility` (optional, reserved)
 Not consumed by cloud loop in initial implementation. Local PC may populate;
-cloud ignores unknown fields gracefully. Will be wired into sizing logic later.
+cloud ignores unknown fields gracefully. Forecast percentages are **annualized**
+realized vol (e.g. `12.18` = ~12% annualized). Will be wired into sizing logic later.
 
 ### `sectors` (optional, recommended)
 Object keyed by sector ETF symbol. Each entry:
@@ -102,9 +114,17 @@ Object keyed by sector ETF symbol. Each entry:
 If present, cloud uses sector regimes to gate per-sector entries (Bear → blocked).
 If missing, cloud falls back to [scripts/regime.py](../scripts/regime.py) sectors.
 
-### `universe_ranking` (optional, reserved)
-Sorted list of universe symbols by ML score. Not consumed yet. Will be used
-later to bias Claude's research focus.
+### `universe_ranking` (optional, surfaced)
+Sorted list of `{symbol, ml_score}` (descending by score). `ml_score` is the
+raw XGBoost forward-return prediction (e.g. `0.0029` = +0.29% expected 5d
+return), **not** a normalized momentum score. Cloud surfaces the list via
+`resolve()` but does not yet act on it. Reserved for biasing research focus.
+
+### `universe_weights` (optional, surfaced)
+`{symbol: weight}` produced by inverse-volatility weighting on the top
+`trade_slots` sectors. Weights are in `[0,1]` and sum ≈ 1.0. Empty `{}` when
+`trade_slots = 0`. Cloud surfaces this for downstream sizing; entries with
+weights outside `[0,1]` are silently dropped.
 
 ---
 
@@ -117,8 +137,11 @@ The cloud reader ([scripts/ml_insights.py](../scripts/ml_insights.py)) MUST:
 3. Reject if `market.regime` is not one of the 4 valid values → fallback.
 4. Reject if `market.deployment_target` is outside [0, 1] → fallback.
 5. Reject if `market.trade_slots` is outside [0, 3] (cap, not error) — clamp instead.
-6. Accept unknown fields silently (forward-compatibility for future local fields).
-7. Log the fallback reason to `RESEARCH-LOG.md` whenever fallback is used.
+6. Reject if `market.systemic_fragility` is present and outside [0, 1] → fallback.
+7. Silently drop `market.breadth_divergence` if not a bool (do not fail the whole payload over a metadata flag).
+8. Silently drop malformed `universe_ranking` entries (require `symbol: str` + `ml_score: number`); silently drop `universe_weights` entries with weight outside `[0, 1]`.
+9. Accept unknown fields silently (forward-compatibility for future local fields).
+10. Log the fallback reason to `RESEARCH-LOG.md` whenever fallback is used.
 
 ---
 

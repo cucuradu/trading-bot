@@ -40,6 +40,8 @@ def _producer_payload(*, regime: str = "Bull",
             "regime": regime,
             "confidence": 0.8732,
             "persistence_bars": 3,
+            "breadth_divergence": False,
+            "systemic_fragility": 0.21,
             "deployment_target": deployment_target,
             "trade_slots": trade_slots,
         },
@@ -60,6 +62,16 @@ def _producer_payload(*, regime: str = "Bull",
             "XLRE": {"regime": "Choppy", "score": -0.11},
             "XLC": {"regime": "Trend",  "score": 0.61},
         },
+        "universe_ranking": [
+            {"symbol": "XLK", "ml_score": 0.74},
+            {"symbol": "XLC", "ml_score": 0.61},
+            {"symbol": "XLV", "ml_score": 0.55},
+        ],
+        "universe_weights": {
+            "XLK": 0.42,
+            "XLC": 0.33,
+            "XLV": 0.25,
+        },
     }
 
 
@@ -76,6 +88,46 @@ def test_producer_payload_passes_validation():
         "XLK", "XLF", "XLV", "XLE", "XLI", "XLY",
         "XLP", "XLU", "XLB", "XLRE", "XLC",
     }
+
+
+def test_producer_new_fields_are_surfaced():
+    """The three Ubuntu-added fields must reach downstream callers via validate().
+
+    Guards against a refactor that drops the surfacing step and silently
+    severs breadth_divergence / systemic_fragility / universe_ranking /
+    universe_weights from the cloud routines.
+    """
+    r = mi.validate(_producer_payload(), now=NOW)
+    assert r["ok"] is True, f"contract broken: {r['reason']}"
+    f = r["fields"]
+
+    assert f["market"]["breadth_divergence"] is False
+    assert f["market"]["systemic_fragility"] == 0.21
+
+    assert f["universe_ranking"] == [
+        {"symbol": "XLK", "ml_score": 0.74},
+        {"symbol": "XLC", "ml_score": 0.61},
+        {"symbol": "XLV", "ml_score": 0.55},
+    ]
+    assert f["universe_weights"] == {"XLK": 0.42, "XLC": 0.33, "XLV": 0.25}
+
+
+def test_systemic_fragility_outside_range_rejects_payload():
+    """systemic_fragility ∈ [0, 1] is a schema-mandated hard reject (not a clamp)."""
+    payload = _producer_payload()
+    payload["market"]["systemic_fragility"] = 1.5
+    r = mi.validate(payload, now=NOW)
+    assert r["ok"] is False
+    assert "systemic_fragility" in r["reason"]
+
+
+def test_breadth_divergence_non_bool_is_silently_dropped():
+    """A garbage breadth_divergence value must not fail the whole payload."""
+    payload = _producer_payload()
+    payload["market"]["breadth_divergence"] = "yes"  # not a bool
+    r = mi.validate(payload, now=NOW)
+    assert r["ok"] is True
+    assert r["fields"]["market"]["breadth_divergence"] is None
 
 
 # The producer's REGIME_DEPLOYMENT_MAP must stay within the consumer's enforced

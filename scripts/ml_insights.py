@@ -4,7 +4,8 @@
 The local Ubuntu PC (RTX 5060 Ti) writes ml-insights.json overnight per the
 contract in docs/ml-insights-schema.md. This reader is the cloud-side consumer:
 
-  1. Look for ml-insights.json at repo root
+  1. Look for ml-insights.json under docs/ (current publisher target).
+     If absent, fall back to repo root (original contract location).
   2. Validate freshness (generated_at < 24h old, UTC)
   3. Validate schema (required market.* fields + enum values)
   4. Return resolved regime + source ("ml" | "rule_fallback")
@@ -26,7 +27,23 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-ML_FILE = ROOT / "ml-insights.json"
+# Publisher writes to docs/ today. Repo root is the original contract
+# location and is honored as a fallback so a producer can choose either.
+_ML_FILE_DOCS = ROOT / "docs" / "ml-insights.json"
+_ML_FILE_ROOT = ROOT / "ml-insights.json"
+
+
+def _resolve_ml_file() -> Path:
+    """Return the on-disk ml-insights.json path, preferring docs/."""
+    if _ML_FILE_DOCS.exists():
+        return _ML_FILE_DOCS
+    return _ML_FILE_ROOT
+
+
+# Back-compat alias — older callers and tests import ML_FILE directly. This
+# resolves at import-time, but read_and_validate() re-resolves on every call
+# so dynamic changes are honored at runtime.
+ML_FILE = _resolve_ml_file()
 FRESHNESS_HOURS = 24
 
 VALID_MARKET_REGIMES = {"Bull", "Neutral", "Caution", "Defensive"}
@@ -121,6 +138,24 @@ def validate(payload: dict, *, now: datetime | None = None) -> dict:
         return {"ok": False, "reason": "market.trade_slots missing or not numeric", "fields": None}
     trade_slots = max(0, min(3, int(trade_slots_raw)))  # clamp per schema
 
+    breadth_divergence_raw = market.get("breadth_divergence")
+    breadth_divergence = (
+        breadth_divergence_raw if isinstance(breadth_divergence_raw, bool) else None
+    )
+
+    systemic_fragility_raw = market.get("systemic_fragility")
+    if systemic_fragility_raw is None:
+        systemic_fragility = None
+    elif not isinstance(systemic_fragility_raw, (int, float)) or isinstance(systemic_fragility_raw, bool) \
+            or not (0.0 <= float(systemic_fragility_raw) <= 1.0):
+        return {
+            "ok": False,
+            "reason": f"market.systemic_fragility {systemic_fragility_raw!r} not in [0, 1]",
+            "fields": None,
+        }
+    else:
+        systemic_fragility = float(systemic_fragility_raw)
+
     sectors_raw = payload.get("sectors") or {}
     sectors: dict[str, dict] = {}
     if isinstance(sectors_raw, dict):
@@ -133,6 +168,29 @@ def validate(payload: dict, *, now: datetime | None = None) -> dict:
                     "regime": sec_regime,
                     "score": info.get("score"),
                 }
+
+    universe_ranking_raw = payload.get("universe_ranking") or []
+    universe_ranking: list[dict] = []
+    if isinstance(universe_ranking_raw, list):
+        for entry in universe_ranking_raw:
+            if not isinstance(entry, dict):
+                continue
+            sym = entry.get("symbol")
+            score = entry.get("ml_score")
+            if isinstance(sym, str) and isinstance(score, (int, float)) and not isinstance(score, bool):
+                universe_ranking.append({"symbol": sym, "ml_score": float(score)})
+
+    universe_weights_raw = payload.get("universe_weights") or {}
+    universe_weights: dict[str, float] = {}
+    if isinstance(universe_weights_raw, dict):
+        for sym, weight in universe_weights_raw.items():
+            if not isinstance(sym, str):
+                continue
+            if not isinstance(weight, (int, float)) or isinstance(weight, bool):
+                continue
+            w = float(weight)
+            if 0.0 <= w <= 1.0:
+                universe_weights[sym] = w
 
     return {
         "ok": True,
@@ -147,8 +205,12 @@ def validate(payload: dict, *, now: datetime | None = None) -> dict:
                 "trade_slots": trade_slots,
                 "confidence": market.get("confidence"),
                 "persistence_bars": market.get("persistence_bars"),
+                "breadth_divergence": breadth_divergence,
+                "systemic_fragility": systemic_fragility,
             },
             "sectors": sectors,
+            "universe_ranking": universe_ranking,
+            "universe_weights": universe_weights,
         },
     }
 
@@ -194,6 +256,8 @@ def resolve(*, now: datetime | None = None) -> dict:
             "fallback_reason": None,
             "market": fields["market"],
             "sectors": fields["sectors"],
+            "universe_ranking": fields["universe_ranking"],
+            "universe_weights": fields["universe_weights"],
             "ml_metadata": {
                 "generated_at": fields["generated_at"],
                 "model_version": fields["model_version"],
@@ -221,8 +285,12 @@ def resolve(*, now: datetime | None = None) -> dict:
             "trade_slots": market["trade_slots"],
             "persistence_bars": market["persistence_bars"],
             "stable": market["stable"],
+            "breadth_divergence": None,
+            "systemic_fragility": None,
         },
         "sectors": sectors,
+        "universe_ranking": [],
+        "universe_weights": {},
         "ml_metadata": None,
     }
 

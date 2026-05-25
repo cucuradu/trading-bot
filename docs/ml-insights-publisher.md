@@ -24,8 +24,9 @@ for this repo** — implement it in `github.com/cucuradu/ml-pipeline`.
 3. **Schema**: must conform to [ml-insights-schema.md](ml-insights-schema.md).
    The consumer-side test `tests/test_ml_insights_contract.py` guards the
    shape from the cloud side. Producer should optionally run
-   `python ml_insights.validate(payload)` before pushing to catch drift
-   on its side too.
+   `python scripts/ml_insights.py validate path/to/ml-insights.json`
+   against a local clone of trading-bot before pushing — or maintain a
+   mirror validator in the ml-pipeline repo — to catch drift on its side too.
 
 4. **Freshness**: cloud uses the file only if `generated_at` is less than
    24 hours old. Older → cloud treats as missing → rule_fallback.
@@ -59,7 +60,7 @@ succeeds, should:
 2. `git pull --rebase origin main`.
 3. Copy `output/ml-insights.json` and `output/history.jsonl` from the ml-pipeline working dir to
    `docs/` in the trading-bot clone.
-4. If the file actually changed (`git diff --quiet -- ml-insights.json`
+4. If the files actually changed (`git diff --quiet -- docs/ml-insights.json docs/history.jsonl`
    returns non-zero), commit + push.
 5. **Gate the auto-shutdown on a successful push** — if the push fails,
    keep the PC on so you can debug.
