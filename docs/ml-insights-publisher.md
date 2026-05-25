@@ -1,7 +1,7 @@
 # `ml-insights.json` publisher — Ubuntu side (requirements)
 
-The cloud reader (`scripts/ml_insights.py:29`) looks for `ml-insights.json`
-at the trading-bot repo root. Until the producer pushes there, the cloud
+The cloud reader (`scripts/ml_insights.py:29`) looks for `docs/ml-insights.json`
+and `docs/history.jsonl` in the trading-bot repo. Until the producer pushes there, the cloud
 falls back to `scripts/regime.py` and logs `source: "rule_fallback"`.
 
 This document specifies WHAT the Ubuntu-side `ml-pipeline` needs to do so
@@ -12,7 +12,7 @@ for this repo** — implement it in `github.com/cucuradu/ml-pipeline`.
 
 ## Contract requirements
 
-1. **File location**: `ml-insights.json` at the trading-bot repo root,
+1. **File locations**: `docs/ml-insights.json` and `docs/history.jsonl` in the trading-bot repo,
    committed and pushed to `main`.
 
 2. **Distinct git author identity**: the producer's commits MUST use a
@@ -57,8 +57,8 @@ succeeds, should:
 
 1. `cd` into the trading-bot clone.
 2. `git pull --rebase origin main`.
-3. Copy `output/ml-insights.json` from the ml-pipeline working dir to
-   `./ml-insights.json` in the trading-bot clone.
+3. Copy `output/ml-insights.json` and `output/history.jsonl` from the ml-pipeline working dir to
+   `docs/` in the trading-bot clone.
 4. If the file actually changed (`git diff --quiet -- ml-insights.json`
    returns non-zero), commit + push.
 5. **Gate the auto-shutdown on a successful push** — if the push fails,
@@ -73,7 +73,7 @@ On the Mac (trading-bot side), after the next Ubuntu nightly run:
 ```
 cd ~/Documents/Python/Trading\ Bot
 git pull --ff-only
-ls -la ml-insights.json
+ls -la docs/ml-insights.json docs/history.jsonl
 python scripts/ml_insights.py resolve | head -10
 ```
 
@@ -88,4 +88,4 @@ python scripts/ml_insights.py resolve | head -10
 | Cloud still shows `source: rule_fallback` | producer never pushed to trading-bot repo | tail the ml-pipeline logs on Ubuntu |
 | `schema validation failed` (in test_ml_insights_contract.py) | producer added/changed a field | bump `model_version`, update [ml-insights-schema.md](ml-insights-schema.md), sync with cloud |
 | `git push` rejected (auth) | deploy key missing or no write access | re-add the public key in GitHub repo settings with "Allow write access" |
-| `git pull --rebase` conflicts on Ubuntu | someone (Claude or you) edited ml-insights.json on the trading-bot side | resolve manually; never hand-edit the published file |
+| `git pull --rebase` conflicts on Ubuntu | someone (Claude or you) edited ml-insights.json or history.jsonl on the trading-bot side | resolve manually; never hand-edit the published files |
