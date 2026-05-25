@@ -10,7 +10,7 @@ The pipeline runs daily via cron and acts as an assembly line. It executes six d
 2. **Regime Model:** Classifies the current market state (Bull, Caution, Neutral, Defensive).
 3. **Volatility Model:** Forecasts annualized realized volatility via GARCH.
 4. **Ranking Model:** Predicts forward returns for 11 sectors using XGBoost.
-5. **Topology (GNN):** Calculates systemic fragility.
+5. **Systemic Fragility (PCA):** Calculates market structural risk via Absorption Ratio.
 6. **Assembly:** Merges all outputs into the `ml-insights.json` contract.
 
 ### Defensive Mechanics
@@ -58,9 +58,10 @@ The pipeline employs a **Generalized Autoregressive Conditional Heteroskedastici
 
 ---
 
-## 5. Systemic Fragility (Graph Neural Network)
+## 5. Systemic Fragility (PCA Absorption Ratio)
 
-To understand hidden structural risks, the pipeline models the market as a mathematical graph using a PyTorch Graph Attention Network (GAT).
-* **Graph Topology:** The 11 sectors act as nodes. The edges connecting them are defined by their rolling correlation matrices. To prevent over-smoothing, the graph is kept sparse by stripping out weak correlations and isolating the strongest structural links.
-* **Attention Mechanism:** The GAT learns which sectors are currently driving the market by assigning attention weights. If all sectors begin moving in perfect lockstep (high correlation and uniform attention), the market is essentially acting as a single massive asset.
-* **The Fragility Score:** The pipeline outputs a `systemic_fragility` metric. A low score indicates healthy, independent sector rotation. A high score indicates extreme structural correlation, meaning a shock to one sector (e.g., Tech) will likely cascade and drag down the entire market.
+To understand hidden structural risks without falling prey to deep learning artifacts (like over-smoothing on micro-graphs), the pipeline measures systemic interconnectedness using algebraic graph theory / **Principal Component Analysis (PCA)**.
+
+* **Covariance Structure:** The pipeline computes the Pearson correlation matrix across the 30-day log returns of all 11 sectors.
+* **Eigendecomposition:** The pipeline calculates the eigenvalues of the symmetric correlation matrix. The top eigenvalue represents the variance captured by the 1st Principal Component (the primary "market factor").
+* **The Absorption Ratio:** The `systemic_fragility` score is exactly the **PCA Absorption Ratio** (Max Eigenvalue / Sum of all Eigenvalues). A low score indicates healthy, independent sector rotation. A high score (e.g., > 0.80) indicates extreme structural correlation, meaning the market has collapsed into a highly fragile monolith where a shock to one sector will violently cascade across the entire market.
