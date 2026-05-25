@@ -22,7 +22,7 @@ Open these in order before doing anything:
 - Max 3 new trades per week
 - 75–85% capital deployed
 - 10% trailing stop on every position as a real GTC order
-- Cut losers at −7% manually
+- Cut losers at R ≤ −1 manually (close ≤ initial_stop)
 - Tighten trail to 7% at +15%, to 5% at +20%
 - Never within 3% of current price. Never move a stop down
 - Follow sector momentum. Exit a sector after 2 failed trades
@@ -31,11 +31,24 @@ Open these in order before doing anything:
 ## API Wrappers (only way to touch the outside world)
 
 - `bash scripts/alpaca.sh ...` — trading & market data
-- `bash scripts/gemini.sh "<query>"` — research (free `gemini-3.5-flash`)
-- `python scripts/market_data.py {quote|news|sector-momentum} ...` — free market data backup
+- `bash scripts/gemini.sh [--synth] [--smart] [--temperature N] [--no-cache] "<query>"` — research
+  - default: `gemini-2.5-flash`, concise system prompt (3-5 bullets), temp 0.2, cached
+  - `--synth`: drop bullet cap, chain-of-thought scaffold, maxOutputTokens=2048
+  - `--smart`: route to `gemini-2.5-pro` (better reasoning; ~25-100/day free quota); auto-falls back to Flash on 429
+  - cache lives in `cache/gemini/<hash>.json` (gitignored); `--no-cache` to refetch
+- `python scripts/market_data.py {quote|news|sector-momentum|atr|stop-for-entry|correlation|max-correlation-with|earnings} ...` — free market data
+- `python scripts/news_sources.py {gather|newsapi-query|finnhub-news|finnhub-earnings|finnhub-analyst|finnhub-insider|edgar|google-news|reddit} ...` — multi-source news adapters
+- `python scripts/research.py {gather|synthesize|critique|historical-analog|latest-on|ticker-notes|macro|digest} ...` — research orchestrator + retrieval
 - `bash scripts/whatsapp.sh "<message>"` — notifications via CallMeBot
 
 Never `curl` these APIs directly.
+
+### Env vars used by the research pipeline (all optional; adapters skip silently if missing)
+- `NEWS_API_KEY` — newsapi.org free tier (100/day)
+- `FINNHUB_KEY` — finnhub.io free tier (60/min)
+- `EDGAR_USER_AGENT` — recommended for SEC EDGAR fair-use ("Name <email>")
+- `GEMINI_API_KEY` — required for any Gemini research
+- `GEMINI_MODEL` / `GEMINI_SMART_MODEL` — override default models if needed
 
 ## CRITICAL — Live-trading failsafe
 

@@ -21,3 +21,21 @@
 - `memory/TRADE-LOG.md`
 - `memory/RESEARCH-LOG.md`
 - `memory/WEEKLY-REVIEW.md`
+
+## Hybrid ML pipeline (regime + vol)
+
+The ML producer lives in a SEPARATE repo: `github.com/cucuradu/ml-pipeline`
+(Ubuntu PC + RTX 5060 Ti). It runs nightly via cron and, per the contract
+in [docs/ml-insights-schema.md](../docs/ml-insights-schema.md), commits
+`ml-insights.json` to **this repo's root** on `main`.
+
+To keep the git history easy to audit during the weekly review, the local
+pipeline must use a **distinct git author identity** for its push — e.g.,
+`ml-pipeline-bot <bot@cucuradu.local>`. The cloud routines (Claude) commit
+as the user (`cucu.romeo@gmail.com`). Two distinct authors → easy to tell
+"ML data update" from "Claude trading action" in `git log`.
+
+If `ml-insights.json` is missing, stale (> 24h), or schema-invalid, the
+cloud reader (`scripts/ml_insights.py`) automatically falls back to the
+rule-based regime (`scripts/regime.py`) and logs the fallback reason to
+RESEARCH-LOG. No interruption — the trading loop runs either way.
