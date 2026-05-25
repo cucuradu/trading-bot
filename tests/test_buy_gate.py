@@ -117,3 +117,170 @@ def test_third_weekly_trade_at_boundary():
                           weekly_trade_count=2, day_trade_count=0)
     result = check_buy(account, baseline_trade())
     assert result.allowed, result.failures
+
+
+# ---------------- Phase A7: universe filter ----------------
+
+def test_off_universe_ticker_is_rejected():
+    trade = ProposedBuy(symbol="GME", shares=100, ask_price=20.0,
+                       catalyst_documented=True, is_stock=True)
+    result = check_buy(baseline_account(), trade)
+    assert not result.allowed
+    assert any("TRADING_UNIVERSE" in f for f in result.failures)
+
+
+def test_universe_match_is_case_insensitive():
+    trade = ProposedBuy(symbol="aapl", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_sector_etf_is_in_universe():
+    trade = ProposedBuy(symbol="XLK", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+# ---------------- Phase A1: system kill switches ----------------
+
+def test_lock_file_blocks_all_buys():
+    account = AccountState(equity=100_000, cash=80_000, open_position_count=2,
+                          weekly_trade_count=0, day_trade_count=0,
+                          lock_file_present=True)
+    result = check_buy(account, baseline_trade())
+    assert not result.allowed
+    assert any("LOCK file" in f for f in result.failures)
+
+
+def test_daily_dd_freeze_blocks_buys():
+    account = AccountState(equity=100_000, cash=80_000, open_position_count=2,
+                          weekly_trade_count=0, day_trade_count=0,
+                          daily_dd_response="freeze_entries_48h")
+    result = check_buy(account, baseline_trade())
+    assert not result.allowed
+    assert any("daily DD" in f for f in result.failures)
+
+
+def test_daily_dd_tighten_does_not_block_buys():
+    # tighten_trails is a sell-side response — it doesn't freeze entries.
+    account = AccountState(equity=100_000, cash=80_000, open_position_count=2,
+                          weekly_trade_count=0, day_trade_count=0,
+                          daily_dd_response="tighten_trails")
+    result = check_buy(account, baseline_trade())
+    assert result.allowed, result.failures
+
+
+def test_weekly_dd_freeze_blocks_buys():
+    account = AccountState(equity=100_000, cash=80_000, open_position_count=2,
+                          weekly_trade_count=0, day_trade_count=0,
+                          weekly_dd_response="freeze_until_monday")
+    result = check_buy(account, baseline_trade())
+    assert not result.allowed
+    assert any("weekly DD" in f for f in result.failures)
+
+
+# ---------------- Phase A3: correlation cap ----------------
+
+def test_high_correlation_is_rejected():
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       max_correlation_with_existing=0.85)
+    result = check_buy(baseline_account(), trade)
+    assert not result.allowed
+    assert any("correlation" in f for f in result.failures)
+
+
+def test_correlation_at_boundary_is_allowed():
+    # rule is "> 0.70" rejects; 0.70 exactly is OK.
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       max_correlation_with_existing=0.70)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_correlation_missing_skips_check():
+    # None means "not measured" — should not block.
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       max_correlation_with_existing=None)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+# ---------------- Phase A4: earnings blackout ----------------
+
+def test_earnings_within_blackout_window_is_rejected():
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       days_to_earnings=3)
+    result = check_buy(baseline_account(), trade)
+    assert not result.allowed
+    assert any("earnings" in f for f in result.failures)
+
+
+def test_earnings_blackout_overridden_when_catalyst_is_earnings():
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       days_to_earnings=2, catalyst_is_earnings=True)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_earnings_outside_window_is_allowed():
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       days_to_earnings=10)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_earnings_at_boundary_is_allowed():
+    # rule is "< 5" rejects; exactly 5 is OK.
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       days_to_earnings=5)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+# ---------------- Phase C: sector concentration cap ----------------
+
+def test_sector_cap_blocks_third_position_in_same_sector():
+    # Already 2 positions in this sector — adding another should be rejected.
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       open_positions_in_same_sector=2)
+    result = check_buy(baseline_account(), trade)
+    assert not result.allowed
+    assert any("sector" in f for f in result.failures)
+
+
+def test_sector_cap_allows_second_position_in_same_sector():
+    # Cap is 2 → exactly 1 existing in sector means the candidate becomes #2 (allowed).
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       open_positions_in_same_sector=1)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_sector_cap_allows_first_position_in_sector():
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       open_positions_in_same_sector=0)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_sector_cap_missing_skips_check():
+    # None means "not measured" — should not block (production must populate this).
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       open_positions_in_same_sector=None)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+

@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """Free market data backup via yfinance.
 Usage:
-  python scripts/yfinance.py quote SYM
-  python scripts/yfinance.py news SYM
-  python scripts/yfinance.py sector-momentum
+  python scripts/market_data.py quote SYM
+  python scripts/market_data.py news SYM
+  python scripts/market_data.py sector-momentum
+  python scripts/market_data.py atr SYM [period=14]
+  python scripts/market_data.py correlation SYM1 SYM2 [SYM3 ...]
+  python scripts/market_data.py earnings SYM
 """
 import json
 import sys
+from datetime import date, datetime
 
+import numpy as np
+import pandas as pd
 import yfinance as yf
 
 
@@ -71,6 +77,281 @@ def news(symbol: str, limit: int = 5) -> list:
     return out
 
 
+def compute_atr(history: pd.DataFrame, period: int = 14) -> dict:
+    """Pure ATR calculation from an OHLC DataFrame (no network).
+
+    `history` must have columns High, Low, Close and at least `period + 1` rows.
+    Returns the same dict shape as `atr()` minus the network-derived as_of date,
+    which the caller adds.
+    """
+    if history.empty or len(history) < period + 1:
+        raise ValueError(f"insufficient history for ATR({period}): need {period + 1}, got {len(history)}")
+
+    high = history["High"].astype(float)
+    low = history["Low"].astype(float)
+    close = history["Close"].astype(float)
+    prev_close = close.shift(1)
+
+    tr = pd.concat(
+        [(high - low), (high - prev_close).abs(), (low - prev_close).abs()],
+        axis=1,
+    ).max(axis=1)
+    tr = tr.iloc[1:]  # drop first NaN row
+
+    # Wilder's smoothing: RMA = exponential with alpha = 1/period
+    atr_series = tr.ewm(alpha=1 / period, adjust=False, min_periods=period).mean()
+    atr_val = float(atr_series.iloc[-1])
+    last_close = float(close.iloc[-1])
+    atr_pct = (atr_val / last_close) * 100 if last_close > 0 else 0.0
+
+    return {
+        "period": period,
+        "atr": round(atr_val, 4),
+        "last_close": round(last_close, 2),
+        "atr_pct_of_price": round(atr_pct, 3),
+        "stop_pct_2_5x": round(atr_pct * 2.5, 3),
+        "stop_pct_1_75x": round(atr_pct * 1.75, 3),
+        "stop_pct_1_25x": round(atr_pct * 1.25, 3),
+    }
+
+
+def atr(symbol: str, period: int = 14) -> dict:
+    """14-day Average True Range using Wilder's smoothing.
+
+    Returns:
+      {
+        "symbol": "AAPL",
+        "period": 14,
+        "atr": 4.21,                # in dollars
+        "last_close": 182.50,
+        "atr_pct_of_price": 2.31,   # ATR / close * 100
+        "stop_pct_2_5x": 5.77,      # widths the strategy uses
+        "stop_pct_1_75x": 4.04,
+        "stop_pct_1_25x": 2.89,
+        "as_of": "2026-05-23",
+      }
+    """
+    # Pull ~3x the period so Wilder's seed has room to converge.
+    hist = yf.Ticker(symbol).history(period=f"{max(period * 3, 60)}d", auto_adjust=False)
+    result = compute_atr(hist, period)
+    result["symbol"] = symbol.upper()
+    result["as_of"] = hist.index[-1].strftime("%Y-%m-%d")
+    return result
+
+
+def stop_pct_for_entry(symbol: str, period: int = 14) -> dict:
+    """Compute the strategy-recommended initial stop width for an entry.
+
+    Applies the floor (7%) and cap (15%) defined in TRADING-STRATEGY.md.
+    """
+    a = atr(symbol, period)
+    raw = a["stop_pct_2_5x"]
+    clamped = max(7.0, min(15.0, raw))
+    return {
+        "symbol": a["symbol"],
+        "atr": a["atr"],
+        "last_close": a["last_close"],
+        "raw_2_5x_atr_pct": raw,
+        "stop_pct": round(clamped, 2),
+        "stop_price": round(a["last_close"] * (1 - clamped / 100), 2),
+        "clamped": raw != clamped,
+        "as_of": a["as_of"],
+    }
+
+
+def compute_correlation(closes_df: pd.DataFrame, lookback_days: int = 30) -> dict:
+    """Pure correlation calculation from a DataFrame of close prices (no network).
+
+    `closes_df` is keyed by symbol with a DatetimeIndex. Drops rows with NaNs.
+    Caller adds symbols + as_of.
+    """
+    df = closes_df.dropna()
+    if len(df) < lookback_days + 1:
+        raise ValueError(
+            f"insufficient overlapping history for correlation: "
+            f"got {len(df)} rows, need {lookback_days + 1}"
+        )
+
+    returns = df.pct_change().iloc[1:].tail(lookback_days)
+    corr = returns.corr()
+
+    arr = corr.to_numpy().copy()
+    np.fill_diagonal(arr, -np.inf)
+    flat_idx = int(np.argmax(arr))
+    i, j = divmod(flat_idx, arr.shape[1])
+    max_pair = [str(corr.index[i]), str(corr.columns[j])]
+    max_val = float(corr.iat[i, j])
+
+    matrix = {
+        str(row): {str(col): round(float(corr.at[row, col]), 4) for col in corr.columns}
+        for row in corr.index
+    }
+
+    return {
+        "lookback_days": lookback_days,
+        "matrix": matrix,
+        "max_off_diagonal": round(max_val, 4),
+        "max_pair": max_pair,
+    }
+
+
+def correlation(symbols: list[str], lookback_days: int = 30) -> dict:
+    """30-day daily-return correlation matrix for the given symbols.
+
+    Returns:
+      {
+        "symbols": ["AAPL", "MSFT", "NVDA"],
+        "lookback_days": 30,
+        "matrix": {"AAPL": {"AAPL": 1.0, "MSFT": 0.72, ...}, ...},
+        "max_off_diagonal": 0.81,
+        "max_pair": ["MSFT", "NVDA"],
+        "as_of": "2026-05-23",
+      }
+    """
+    if len(symbols) < 2:
+        raise ValueError("correlation requires at least 2 symbols")
+
+    uniq = sorted({s.strip().upper() for s in symbols})
+    # Need ~lookback_days + buffer of trading days; pull 90d to be safe across weekends.
+    data = yf.download(
+        uniq,
+        period=f"{max(lookback_days * 3, 90)}d",
+        auto_adjust=False,
+        progress=False,
+        group_by="ticker",
+    )
+    # Extract Close column for each symbol — yf.download has different shapes
+    # for 1 symbol vs many; normalize to a DataFrame keyed by symbol.
+    closes: dict[str, pd.Series] = {}
+    if isinstance(data.columns, pd.MultiIndex):
+        for sym in uniq:
+            if sym in data.columns.get_level_values(0):
+                closes[sym] = data[sym]["Close"].astype(float)
+    else:
+        closes[uniq[0]] = data["Close"].astype(float)
+
+    df = pd.DataFrame(closes)
+    result = compute_correlation(df, lookback_days)
+    result["symbols"] = uniq
+    result["as_of"] = df.dropna().index[-1].strftime("%Y-%m-%d")
+    return result
+
+
+def max_correlation_with_existing(candidate: str, existing: list[str], lookback_days: int = 30) -> dict:
+    """How correlated is `candidate` with the most-correlated of `existing`?
+
+    Used by the buy-gate to enforce the 0.70 cap (Phase A3).
+    """
+    if not existing:
+        return {
+            "candidate": candidate.upper(),
+            "existing": [],
+            "max_correlation": None,
+            "max_pair_with": None,
+            "as_of": None,
+        }
+    all_syms = [candidate.upper(), *[s.upper() for s in existing]]
+    full = correlation(all_syms, lookback_days)
+    row = full["matrix"][candidate.upper()]
+    # Strip self-correlation
+    pairs = {k: v for k, v in row.items() if k != candidate.upper()}
+    best_sym = max(pairs, key=lambda k: pairs[k])
+    return {
+        "candidate": candidate.upper(),
+        "existing": sorted([s.upper() for s in existing]),
+        "max_correlation": pairs[best_sym],
+        "max_pair_with": best_sym,
+        "as_of": full["as_of"],
+    }
+
+
+def _coerce_date(val) -> date | None:
+    if val is None:
+        return None
+    if isinstance(val, date) and not isinstance(val, datetime):
+        return val
+    if isinstance(val, datetime):
+        return val.date()
+    if isinstance(val, pd.Timestamp):
+        return val.date()
+    if isinstance(val, str):
+        try:
+            return datetime.fromisoformat(val.split()[0]).date()
+        except ValueError:
+            return None
+    return None
+
+
+def earnings(symbol: str) -> dict:
+    """Days until next earnings announcement (calendar days, not trading days).
+
+    Returns:
+      {
+        "symbol": "AAPL",
+        "next_earnings_date": "2026-07-30",
+        "days_until": 68,
+        "in_blackout": false,           # < 5 days
+        "blackout_window_days": 5,
+        "source": "calendar|earnings_dates|unknown"
+      }
+    `days_until` is None if no upcoming earnings date is available.
+    """
+    t = yf.Ticker(symbol)
+    today = date.today()
+    next_date: date | None = None
+    source = "unknown"
+
+    # Preferred: ticker.calendar (recent yfinance)
+    try:
+        cal = t.calendar
+        if isinstance(cal, dict):
+            raw = cal.get("Earnings Date") or cal.get("earningsDate")
+            if isinstance(raw, list) and raw:
+                next_date = _coerce_date(raw[0])
+            else:
+                next_date = _coerce_date(raw)
+            source = "calendar"
+        elif isinstance(cal, pd.DataFrame) and not cal.empty:
+            raw = cal.iloc[0].get("Earnings Date")
+            next_date = _coerce_date(raw)
+            source = "calendar"
+    except Exception:
+        next_date = None
+
+    # Fallback: earnings_dates table (covers more tickers)
+    if next_date is None:
+        try:
+            df = t.get_earnings_dates(limit=8)
+            if df is not None and not df.empty:
+                future = [_coerce_date(idx) for idx in df.index]
+                future = [d for d in future if d and d >= today]
+                if future:
+                    next_date = min(future)
+                    source = "earnings_dates"
+        except Exception:
+            pass
+
+    if next_date is None:
+        return {
+            "symbol": symbol.upper(),
+            "next_earnings_date": None,
+            "days_until": None,
+            "in_blackout": False,
+            "blackout_window_days": 5,
+            "source": source,
+        }
+
+    days_until = (next_date - today).days
+    return {
+        "symbol": symbol.upper(),
+        "next_earnings_date": next_date.isoformat(),
+        "days_until": days_until,
+        "in_blackout": 0 <= days_until < 5,
+        "blackout_window_days": 5,
+        "source": source,
+    }
+
+
 def sector_momentum() -> list:
     rows = []
     for sector, etf in SECTOR_ETFS.items():
@@ -102,6 +383,28 @@ def main() -> int:
         print(json.dumps(news(sym), indent=2))
     elif cmd == "sector-momentum":
         print(json.dumps(sector_momentum(), indent=2))
+    elif cmd == "atr":
+        sym = sys.argv[2]
+        period = int(sys.argv[3]) if len(sys.argv) >= 4 else 14
+        print(json.dumps(atr(sym, period), indent=2))
+    elif cmd == "stop-for-entry":
+        sym = sys.argv[2]
+        period = int(sys.argv[3]) if len(sys.argv) >= 4 else 14
+        print(json.dumps(stop_pct_for_entry(sym, period), indent=2))
+    elif cmd == "correlation":
+        if len(sys.argv) < 4:
+            print("usage: correlation SYM1 SYM2 [SYM3 ...]", file=sys.stderr)
+            return 2
+        print(json.dumps(correlation(sys.argv[2:]), indent=2))
+    elif cmd == "max-correlation-with":
+        # max-correlation-with CANDIDATE EXISTING1 [EXISTING2 ...]
+        if len(sys.argv) < 4:
+            print("usage: max-correlation-with CANDIDATE EXISTING1 [EXISTING2 ...]", file=sys.stderr)
+            return 2
+        print(json.dumps(max_correlation_with_existing(sys.argv[2], sys.argv[3:]), indent=2))
+    elif cmd == "earnings":
+        sym = sys.argv[2]
+        print(json.dumps(earnings(sym), indent=2))
     else:
         print(f"unknown command: {cmd}", file=sys.stderr)
         print(__doc__, file=sys.stderr)

@@ -12,10 +12,24 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ENV_FILE="$ROOT/.env"
 
 if [[ -f "$ENV_FILE" ]]; then
-  set -a
-  # shellcheck disable=SC1090
-  source "$ENV_FILE"
-  set +a
+  # Load .env WITHOUT overriding vars already set in the caller's environment.
+  # Critical for the failsafe: tests/automation that inject ALPACA_ENDPOINT
+  # (e.g., to simulate a live endpoint) must not be silently reverted by .env.
+  while IFS='=' read -r _env_key _env_val || [[ -n "$_env_key" ]]; do
+    # Skip blanks and comments
+    [[ -z "$_env_key" || "$_env_key" =~ ^[[:space:]]*# ]] && continue
+    # Strip optional "export " prefix and surrounding whitespace from the key
+    _env_key="${_env_key#export }"
+    _env_key="${_env_key// /}"
+    [[ -z "$_env_key" ]] && continue
+    # Honor caller's environment: do not override pre-set vars.
+    [[ -n "${!_env_key+x}" ]] && continue
+    # Strip optional surrounding quotes from the value
+    _env_val="${_env_val%\"}"; _env_val="${_env_val#\"}"
+    _env_val="${_env_val%\'}"; _env_val="${_env_val#\'}"
+    export "$_env_key=$_env_val"
+  done < "$ENV_FILE"
+  unset _env_key _env_val
 fi
 
 : "${ALPACA_API_KEY:?ALPACA_API_KEY not set in environment}"
