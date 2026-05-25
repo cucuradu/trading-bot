@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T09:24:04Z",
+  "generated_at": "2026-05-25T09:43:35Z",
   "model_version": "hmm-garch-v1.0",
   "market": {
     "regime": "Caution",
@@ -13,53 +13,51 @@
   "universe_ranking": [
     {
       "symbol": "XLB",
-      "ml_score": 0.0024
-    },
-    {
-      "symbol": "XLF",
-      "ml_score": 0.0022
+      "ml_score": 0.0039
     },
     {
       "symbol": "XLV",
-      "ml_score": 0.0018
-    },
-    {
-      "symbol": "XLRE",
-      "ml_score": 0.0018
-    },
-    {
-      "symbol": "XLY",
       "ml_score": 0.0017
     },
     {
-      "symbol": "XLP",
-      "ml_score": 0.0017
+      "symbol": "XLF",
+      "ml_score": 0.0016
     },
     {
       "symbol": "XLU",
       "ml_score": 0.0015
     },
     {
-      "symbol": "XLI",
+      "symbol": "XLRE",
+      "ml_score": 0.0015
+    },
+    {
+      "symbol": "XLY",
       "ml_score": 0.0014
     },
     {
       "symbol": "XLC",
-      "ml_score": 0.0013
+      "ml_score": 0.0012
+    },
+    {
+      "symbol": "XLP",
+      "ml_score": 0.0012
+    },
+    {
+      "symbol": "XLI",
+      "ml_score": 0.0012
     },
     {
       "symbol": "XLK",
-      "ml_score": 0.001
+      "ml_score": 0.0011
     },
     {
       "symbol": "XLE",
-      "ml_score": 0.0006
+      "ml_score": 0.0005
     }
   ],
   "universe_weights": {
-    "XLB": 0.2413,
-    "XLF": 0.4343,
-    "XLV": 0.3245
+    "XLB": 1.0
   },
   "volatility": {
     "garch_1d_forecast_pct": 12.01,
@@ -69,31 +67,31 @@
   "sectors": {
     "XLK": {
       "regime": "Trend",
-      "score": 0.001
+      "score": 0.0011
     },
     "XLF": {
       "regime": "Choppy",
-      "score": 0.0022
+      "score": 0.0016
     },
     "XLV": {
       "regime": "Trend",
-      "score": 0.0018
+      "score": 0.0017
     },
     "XLE": {
       "regime": "Trend",
-      "score": 0.0006
+      "score": 0.0005
     },
     "XLI": {
       "regime": "Choppy",
-      "score": 0.0014
+      "score": 0.0012
     },
     "XLY": {
       "regime": "Choppy",
-      "score": 0.0017
+      "score": 0.0014
     },
     "XLP": {
       "regime": "Trend",
-      "score": 0.0017
+      "score": 0.0012
     },
     "XLU": {
       "regime": "Choppy",
@@ -101,15 +99,15 @@
     },
     "XLB": {
       "regime": "Choppy",
-      "score": 0.0024
+      "score": 0.0039
     },
     "XLRE": {
-      "regime": "Choppy",
-      "score": 0.0018
+      "regime": "Trend",
+      "score": 0.0015
     },
     "XLC": {
       "regime": "Choppy",
-      "score": 0.0013
+      "score": 0.0012
     }
   }
 }
