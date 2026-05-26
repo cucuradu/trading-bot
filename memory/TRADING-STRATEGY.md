@@ -105,6 +105,17 @@ System-level kill switches (override everything):
 - `memory/LOCK` is NOT present
 - Daily-DD response is NOT `freeze_entries_48h`
 - Weekly-DD response is NOT `freeze_until_monday`
+- **Pre-macro-event deployment cap (Phase E)**: when a known binary macro
+  event releases within the next **2 trading days** (FOMC, CPI, PPI, Core
+  PCE, NFP), cap total cost-basis deployment at 40% of equity (2× $20k
+  for standard sizing). Resume the regime-driven 50/75/85% deployment
+  only AFTER the release prints. Detection:
+  `python scripts/trading_calendar.py pre-macro-event` returns JSON with
+  `cap_active`, `within_24h`, and `event_name`. Surfaced by
+  `risk_gates check` as the `pre_macro_event` field. System-level (like
+  LOCK), not Claude-discretion. Promoted from the 2026-05-25 pre-market's
+  ad-hoc 40% cap before Wed Core PCE — kept the bot from over-extending
+  into a binary release.
 
 Per-trade:
 - Symbol IS in `TRADING_UNIVERSE` (Phase A7)

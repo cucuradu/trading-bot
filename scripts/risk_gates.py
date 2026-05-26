@@ -341,6 +341,18 @@ def check_all(current_equity: float, today: date | None = None) -> dict:
     entries_blocked = any_freeze or drawdown.tripped or lock_exists()
     tighten = daily.response == "tighten_trails"
 
+    # Phase E: cap deployment at 40% if a binary macro event releases within
+    # the next 2 trading days. Caller decides how to enforce — typically by
+    # passing pre_macro_event_cap_pct to sizing.recommend(), or by Claude
+    # skipping the 3rd candidate when cap_active is true.
+    try:
+        import trading_calendar as tcal  # type: ignore
+        macro_check = tcal.pre_macro_event_check(today)
+    except Exception:
+        macro_check = {"cap_active": False, "within_24h": False,
+                       "event_name": None, "event_date": None,
+                       "days_to_event": None}
+
     result = {
         "current_equity": current_equity,
         "peak_equity": peak,
@@ -349,6 +361,7 @@ def check_all(current_equity: float, today: date | None = None) -> dict:
         "lock_file_present": lock_exists(),
         "entries_blocked": entries_blocked,
         "tighten_trails": tighten,
+        "pre_macro_event": macro_check,
         "gates": [daily.as_dict(), weekly.as_dict(), drawdown.as_dict()],
     }
     if lock_auto_recovered is not None:
