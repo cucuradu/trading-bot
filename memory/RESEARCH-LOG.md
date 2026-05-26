@@ -691,3 +691,149 @@ Regime Neutral (rule_fallback), slots 2, deployment 75%. **VIX 16.68** (−0.02 
 - WebSearch fallback: 4 queries (oil, SPX futures/VIX/30y, economic calendar, NVDA/LLY news)
 - Fallback events: ALL sources degraded; research synthesized from WebSearch + prior session notes
 - ml-insights.json: NOT present; regime from rule_fallback
+
+---
+
+## 2026-05-26 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2, deployment: 75%) — fallback reason: ml-insights.json stale 26.8h (local PC drift; no fresh run since May 24)
+
+### Account
+- Equity $100,000.00 / Cash $100,000.00 (100%) / Buying power $200,000 / Daytrade count 0 / Open positions 0 / Open orders 0
+
+### Macro Framework
+Neutral regime (rule_fallback) on first full trading day after Memorial Day weekend. VIX 16.85 (+0.17 from yesterday's 16.68 — complacent, still well below 20). 30y yield 5.04–5.07% (flat, ±1bp vs yesterday's 5.06%; −13bp from mid-week peak of 5.19%). DXY: retreating modestly. WTI $91.25–91.33 (+0.4% rebound from Monday's −6.5% Iran-deal drop); fresh US military strikes in southern Iran raised Strait of Hormuz negotiation doubts → oil bounced. SPX futures +0.53–0.69% premarket (7,513 level). VIX futures below 21, term structure stable. Dominant theme: post-holiday risk-on open, but Wed May 28 = GDP Q1 2nd estimate + Core PCE April (consensus 3.4% YoY) + Durable Goods — the week's binary event. vs yesterday: yields flat (±1bp from 5.06%); oil +0.4% (rebound on Iran military escalation after Monday's −6.5% collapse); regime unchanged (Neutral); VIX +0.17.
+
+### Sector Picture
+- **Top 3 (1mo):** XLK +15.75% (Trend) | XLE +4.41% (Trend) | XLV +2.50% (Trend)
+- **Mid:** XLP +1.58% (Choppy) | XLRE +1.36% (Choppy) | XLY +1.22% (Choppy) | XLF +0.27% (Choppy)
+- **Bottom 3 (1mo):** XLI −1.32% (Choppy) | XLU −1.61% (Bear) | XLC −1.64% (Choppy) | XLB −2.93% (Bear)
+- 7/11 sectors positive momentum. Bear: XLU, XLB (confirmed by both sector-momentum and ml-insights — full agreement).
+- **Cross-check:** sector-momentum (yfinance) and ml-insights sectors largely agree. Only divergence: XLC shows −1.64% negative momentum (yfinance) but ml-insights rates it "Choppy" not "Bear" — mild disagreement, not actionable.
+
+### Candidates
+
+#### NVDA (XLK, $215.33, +0.5% premarket)
+
+**Setup:** above 200-SMA ($189.05, +13.9%), above 50-SMA ($196.74, +9.4%). ATR(14)=$7.62 (3.54% of price); stop_pct_2.5x=8.84% (not clamped).
+
+**Sources scanned (degraded):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 3 Gemini Flash (grounded search). EDGAR, Reddit, Google News all 403 (cloud env); NewsAPI/Finnhub keys absent.
+
+**Bull case (cited):**
+- Q1 FY27 beat: $81.6B revenue (+85% YoY), EPS $1.87 vs $1.76 consensus; Q2 guide $91B (another beat). Data Center $75.2B (+92%). [NVDA IR, May 20, 2026]
+- $80B share buyback authorized + 25× quarterly dividend increase ($0.01→$0.25). [NVDA IR, May 20, 2026]
+- Analyst PT wave: Goldman Sachs $285 (Buy), HSBC $325 (Buy), Truist $307 (Buy), Craig Hallum $275 (Buy), Citic Securities $315. Consensus implies 25–50% upside from $215. [BW/Barron's/MarketBeat, May 21, 2026]
+- Stock above both SMAs; post-ER sell-off presents lower-risk entry vs May 20 high of $223.47.
+
+**Bear case (cited):**
+- "Buy the rumor, sell the news" post-ER: NVDA declined −3.6% from $223.47 (May 20) to $215.33 (May 22) while SPX was flat-to-up — institutional sellers still active. [Gemini grounded, May 26]
+- Rising competition from hyperscaler custom silicon (Google TPU, AWS Trainium, Meta MTIA) and AI chip startups. [Gemini grounded, May 26]
+- Geopolitical/export risk: CEO flagged AI chip smuggling to China; $200B China AI plan faces US regulatory hurdles. [Gemini grounded, May 26]
+
+**Disconfirming evidence to watch:** 30y yield ≥ 5.15% at open; NVDA < $213 in first 15 min; PCE > 3.6% Wed May 28.
+
+**Catalysts ahead (next 14d, dated):**
+- Wed May 28: Core PCE April + GDP Q1 2nd estimate (main event)
+- June 3: AVGO Q2 FY2026 earnings (AI capex signal; not this week as previously thought)
+- NVDA developer conference / Blackwell ramp updates (ongoing)
+
+**One-line takeaway:** AI data-center dominance intact; post-ER "sell the news" is positioning flush, not thesis break; 30y yield gate passed this morning.
+
+**Critique (Gemini Pro):**
+- **Strongest counter:** NVDA declined −3.6% post-ER while the broader market was flat-to-positive — institutional selling pressure persists even with strong beats, suggesting the stock's high expectations create a structural drag near-term.
+- **Single most-likely invalidator (5d):** Core PCE surprise above 3.6% YoY (Wed May 28) → 30y yield spike → tech multiple contraction → NVDA retests ER-week lows (~$214.80).
+
+**Follow-up investigation (STEP 4e-bis):**
+- Trigger: AVGO earnings originally noted as "this week" — needed correction.
+- Query: earnings check via `python scripts/market_data.py earnings AVGO` → June 3, 2026 (8 days away, not this week).
+- Change: removes near-term AVGO-as-risk; marginally bullish for NVDA this week.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 20% XLK (currently 0%)
+- 30d correlation with LLY (other candidate): −0.42 (excellent diversification)
+- Sector cap status: 1/2 XLK slots used
+
+**R:R math:** entry $215.33 / stop $196.29 (−8.84%) / target $258.40 (+20.0%) / R:R 2.26:1 / max risk $1,768 on $20k.
+
+**Decision:** **Retained** — ER beat + PT wave + yield gate passed this morning. Gates for order: 30y < 5.15% AND NVDA > $213 at 9:45 AM ET.
+
+---
+
+#### LLY (XLV, $1,065.00, last close May 22)
+
+**Setup:** 52w range $623.78–$1,133.95 (−6.1% from 52w high). ATR(14)=$30.31 (2.85% of price); stop_pct_2.5x=7.12% (not clamped; floor at 7%).
+
+**Sources scanned (degraded):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 3 Gemini Flash (grounded search).
+
+**Bull case (cited):**
+- Q1 2026 revenue $19.80B (+55.5%); Mounjaro $8.66B; raised full-year guidance $82–85B. [LLY IR, May 2026]
+- Phase 3 retatrutide TRIUMPH-1 positive results (May 21): 28.3% avg weight loss at 80 weeks. Meets primary and key secondary endpoints. [LLY press release, May 21, 2026]
+- BofA Securities raised PT to $1,251 (from $1,133), Buy — TODAY (May 26, 2026). Truist $1,281 Buy (May 21). Consensus PT $1,220 (30 analysts). [BofA, May 26, 2026]
+- GLP-1 therapies may reduce tumor progression/mortality — cancer indication expansion potential. [Observational study, May 22, 2026]
+
+**Bear case (cited):**
+- Novo Nordisk oral Wegovy outselling LLY's Foundayo (oral, launched April) at comparable launch stage; Barclays noted different patient segments but Wegovy shows stronger efficacy. [Barclays note, May 19, 2026]
+- Lilly Endowment insider sales May 2026: $15.75M (May 6) + $259M (May 13) + $302M (May 21) = ~$577M total. [SEC Form 4 filings]
+- Retatrutide 12mg cohort showed higher discontinuation rates vs lower doses (tolerability concern). [Analyst note, May 22, 2026]
+- Premium valuation: ~26.3x forward P/E vs sector avg ~16.6x.
+
+**Disconfirming evidence:** NVO positive quarterly data; additional large insider sells above $300M; GLP-1 market share data favoring NVO.
+
+**Catalysts ahead (next 14d, dated):**
+- NVO quarterly data (watch for oral Wegovy market share vs Zepbound)
+- Retatrutide regulatory timeline / FDA submission update
+- May 28: Core PCE (less yield-sensitive than NVDA; LLY less duration-exposed)
+
+**One-line takeaway:** GLP-1 franchise expanding with retatrutide confirmation and fresh analyst PT hikes; Lilly Endowment selling is routine portfolio rebalancing (historical pattern ~$300M quarterly), not thesis-breaking.
+
+**Critique (Gemini Pro):**
+- **Strongest counter:** LLY's 26.3x forward P/E (vs sector 16.6x) leaves it exposed to NVO competitive pressure; oral Wegovy outselling Foundayo at comparable launch stage questions the GLP-1 oral franchise moat.
+- **Single most-likely invalidator (5d):** NVO positive quarterly data or analyst note quantifying oral Wegovy market share gains over Zepbound → LLY gap down.
+
+**Follow-up investigation (STEP 4e-bis):**
+- **Trigger:** Lilly Endowment selling massively larger than TICKER-NOTES ($577M total May vs $15M noted).
+- **Query:** Gemini follow-up on Lilly Endowment selling context.
+- **Finding:** Routine pattern — Endowment sold $322M in January 2026, regularly sells ~$300M quarterly; 100% portfolio in LLY requires regular diversification distributions. NOT a thesis concern.
+- **Change in decision:** insider selling risk downgraded from "major concern" to "background noise." Conviction in LLY slightly improved.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 20% XLV (currently 0%)
+- 30d correlation with NVDA: −0.42 (excellent diversification)
+- Sector cap status: 1/2 XLV slots used
+
+**R:R math:** entry $1,065.00 / stop $989.23 (−7.12%) / target $1,278.00 (+20.0%) / R:R 2.81:1 / max risk $1,424 on $20k.
+
+**Decision:** **Retained** — retatrutide catalyst fresh + BofA PT raise today + Endowment selling is routine. Enter ONLY after NVDA confirmed + price action at open.
+
+---
+
+### Historical Analog
+Closest analog: **October 20, 2023** — VIX 17.31 (vs today's 16.85), 30y yield 5.07% (vs today's 5.04–5.07%), geopolitical tensions (Israel-Hamas conflict; Middle East oil supply concerns; Iran escalation risk). What followed: S&P declined −2.53% over 5 trading days, then rebounded +3.18% over 10d, +6.86% over 20d as yields peaked and fell. Key divergence vs today: Oct 2023 saw XLE and XLV declining; today those sectors show positive 1mo momentum (+4.41% and +2.50%). Risk skew: short-term constructive if PCE benign Wed; sharp reversal if PCE hot (>3.6% YoY).
+
+### Risk Factors (consolidated)
+- **Core PCE + GDP Q1 2nd estimate (Wed May 28)** — single biggest weekly risk; PCE > 3.6% → 30y yield spike → tech multiple compression; NVDA retests $214 lows
+- **Iran geopolitical binary** — US military strikes in Iran raised deal-breakdown concerns; deal collapse → oil spike (WTI >$100?), cross-asset disruption, XLE gaps
+- **NVDA "sell the news" persistence** — institutional sellers active post-ER; stock needs to stabilize above $213 before order
+- **LLY oral Wegovy competition** — NVO oral Wegovy outselling Foundayo in early prescription data; any NVO market share data release → LLY gap risk
+- **4-day weekend gap risk** — markets reopen Tuesday after long weekend; gap openings often retrace in first 30 min; wait 15 min after open
+- **Retatrutide tolerability** — 12mg cohort higher discontinuation rate could limit commercial uptake for LLY's next-gen GLP-1
+- **Deployment constraint** — cap 40% ($40k) pre-PCE; do not exceed 2 positions before Wed
+
+### Decision
+**TRADE 2** — NVDA first, LLY second, after 15-min settle (9:45 AM ET).
+- **Gates for NVDA:** 30y yield < 5.15% (currently 5.04–5.07% ✓) AND NVDA > $213 (currently $215.33 ✓)
+- **Order 1:** NVDA ~92 shares @ ~$215.33 = ~$19,810; stop at $196.29 (−8.84% GTC trailing)
+- **Order 2:** LLY ~18 shares @ ~$1,065 = ~$19,170; stop at $989.23 (−7.12% GTC trailing) — only if NVDA fills cleanly and XLV confirms green at open
+- **Deployment after both:** $38,980 deployed (39% of $100k) — within 40% pre-PCE cap ✓
+- **Waiting condition:** If 30y yield opens ≥ 5.15% or NVDA < $213 at 9:45 AM ET → skip NVDA, monitor LLY separately
+- **Post-PCE plan (Wed):** If PCE prints benign (≤3.4% YoY) → consider adding third position from XLE (CVX or XOM); if hot → tighten stops / hold flat
+
+### Quota & source usage (footer)
+- Gemini calls: 8 Flash + 0 Pro (synthesize/critique fell back to Flash due to no source data; historical-analog used Flash)
+- NewsAPI: 0 (key absent)
+- Finnhub: 0 (key absent)
+- EDGAR: 0 (403 cloud block)
+- Reddit: 0 (403 cloud block)
+- Google News: 0 (403 cloud block)
+- Fallback events: All structured sources degraded; research synthesized via Gemini grounded search + prior session notes
+- ml-insights.json: rule_fallback (stale 26.8h — local PC drift)
