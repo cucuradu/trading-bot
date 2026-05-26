@@ -28,3 +28,25 @@ No positions yet. Paper-trading bot launches on the next weekday.
 - Ongoing: Iran deal binary — any breakdown → oil spikes, cross-asset disruption.
 
 **Key takeaway:** Iran deal knocked oil >4% in one weekend session — disinflation catalyst is live; watch Wed PCE print as the gate for full deployment.
+
+---
+
+### May 26 — EOD Snapshot (Day 2, Tuesday)
+- EOD 2026-05-26: equity $100,000.00
+**Portfolio:** $100,000.00 | **Cash:** $100,000.00 (100%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** $0.00 (0.00%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| — | — | — | — | — | — | — |
+
+- Regime 2026-05-26: Neutral (source: rule_fallback, slots: 2)
+- Trades today: none
+- Trades this week (Tue): 0
+
+**Why today:** The US stock market on May 26 saw mixed performance, primarily driven by evolving sentiment surrounding a potential US-Iran peace deal. S&P 500 rose 0.4–0.6% (Nasdaq +0.8–1.2%) as tech stocks surged on analyst upgrades (Micron Technology); the Dow slipped 0.2–0.4%. Airlines (United) and leisure (Carnival) gained on hopes of improved oil flow. Treasury 10-year yields retreated to ~4.51% from 4.56% (Friday), pricing cautious optimism on Middle East peace. Brent crude +4.1% to $100.10 on initial deal hopes, but momentum tempered by fresh US military strikes in Iran later in the session. Dollar index steadied above 99 (−0.07% from prior session). Single biggest driver: fluctuating Iran deal sentiment—initial peace optimism later dampened by US escalation, creating whipsaw volatility across oil, yields, and equities. (Sources: post-gazette.com, bnnbloomberg.ca, investing.com, tradingeconomics.com)
+
+**Tomorrow's calendar:**
+- **Wed May 27:** ADP Employment Change Weekly (7:15 AM ET); multiple Fed speakers (Logan, Cook, Jefferson); earnings: Salesforce (PM), Marvell, Bank of Montreal/Nova Scotia, Snowflake, Agilent, Dick's Sporting Goods, Abercrombie & Fitch (7:30 AM ET), PDD Holdings (11:30 AM ET), Synopsys (9:00 PM ET)
+- **Thu May 28 (PRIMARY RISK EVENT):** Durable Goods Orders, GDP Q1 2nd estimate, Jobless Claims, Personal Income (all 8:30 AM ET); earnings: Costco, Royal Bank of Canada, Dell, Autodesk, MongoDB, Kohl's (7:00 AM ET), Best Buy (7:00 AM ET), others. **Note:** Core PCE inflation April expected (consensus 3.4% YoY) — key gate for position deployment per RESEARCH-LOG.
+
+**Key takeaway:** Iran binary dominates near-term; Wed PCE is the week's gate—benign print (≤3.4%) unlocks 3rd position (XLE exposure); hot print (>3.6%) requires stop tightening.
