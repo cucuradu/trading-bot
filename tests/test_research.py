@@ -244,6 +244,36 @@ def test_cmd_synthesize_invokes_news_then_gemini(monkeypatch):
     assert "NVDA" in captured["gemini_prompt"]
 
 
+def test_cmd_synthesize_prefixes_low_conf_when_few_records(monkeypatch):
+    # < LOW_CONFIDENCE_THRESHOLD raw records → output gets the LOW-CONF prefix
+    # so the WhatsApp brief and RESEARCH-LOG header can flag the run.
+    monkeypatch.setattr(
+        research.news_sources, "gather",
+        lambda sym: [{"source": "newsapi", "ticker": sym, "title": "x",
+                       "url": "u", "published": "2026-05-26",
+                       "confidence": "high", "summary": ""}],
+    )
+    monkeypatch.setattr(research, "_run_gemini",
+                        lambda *a, **kw: "**Bull case:** ...")
+    out = research.cmd_synthesize("NVDA")
+    assert out.startswith("[LOW-CONFIDENCE:")
+    assert "only 1 raw records" in out
+    assert "**Bull case:**" in out
+
+
+def test_cmd_synthesize_no_prefix_when_enough_records(monkeypatch):
+    raw = [{"source": "newsapi", "ticker": "NVDA", "title": f"x{i}",
+            "url": f"u{i}", "published": "2026-05-26",
+            "confidence": "high", "summary": ""}
+           for i in range(research.LOW_CONFIDENCE_THRESHOLD + 2)]
+    monkeypatch.setattr(research.news_sources, "gather", lambda sym: raw)
+    monkeypatch.setattr(research, "_run_gemini",
+                        lambda *a, **kw: "**Bull case:** ...")
+    out = research.cmd_synthesize("NVDA")
+    assert not out.startswith("[LOW-CONFIDENCE:")
+    assert out.startswith("**Bull case:**")
+
+
 def test_cmd_critique_reads_prior_synthesis(monkeypatch, tmp_path):
     log = tmp_path / "RESEARCH-LOG.md"
     log.write_text(

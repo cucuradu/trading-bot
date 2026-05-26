@@ -128,6 +128,32 @@ Cite each Bull / Bear bullet with a `[source-domain]` tag (e.g., `[reuters.com]`
 If a Bull or Bear bullet cannot be cited, drop it. Reject anything sourced
 only from Reddit unless it links to a primary article.
 
+**Insider-selling classification rule** (applies to any Form-4 source record):
+- Officer/director sale > 1% of holdings → keep as bear signal.
+- Endowment / family-trust / treasury rebalancing → DROP from bear case;
+  note in footer only (e.g., "Lilly Endowment 15,828 shares = treasury
+  rebalance, NOT fundamental").
+- 10b5-1 scheduled-plan sale → DROP unless the plan was modified mid-term.
+Standard institutional treasury rebalancing at all-time highs is NOT a
+fundamental-weakness signal — do not surface it as bear evidence.
+
+**Forward-looking requirement** (the bear/bull case cannot be only history):
+The Bull case MUST include ≥2 forward catalysts in the next 30 days with
+dates AND a quoted source statement (analyst PT, guidance, buyback
+authorization, regulatory deadline, scheduled product launch). If you
+can't find 2 forward catalysts, output `**Bull case (weak — insufficient
+forward catalysts):**` instead of the normal header — flags the candidate
+for demotion.
+
+**Geopolitical-event tagging** (apply when an entry touches Iran/Hormuz/
+OPEC/Taiwan/Korea/sanctions or any binary deal):
+- Current status (dated, 1 line)
+- Timeline / next decision point (e.g., "60-day negotiation window
+  ending ~July 24")
+- Trigger conditions for escalation (e.g., "stall on uranium transfer
+  → Brent toward March $126 peak")
+Use this 3-field structure instead of a binary deal/no-deal framing.
+
 Output the following sections in markdown, with no preamble:
 
 **Bull case (cited):**
@@ -146,8 +172,19 @@ Output the following sections in markdown, with no preamble:
 **Catalysts ahead (next 14 trading days, dated):**
 - YYYY-MM-DD: ...
 
+**Forward catalysts (next 30 days, dated; ≥2 required):**
+- YYYY-MM-DD: ...
+- YYYY-MM-DD: ...
+
 **One-line takeaway (≤25 words):** ...
 """
+
+_LOW_CONF_PREFIX = (
+    "[LOW-CONFIDENCE: only {n} raw records across all adapters; all facts\n"
+    "below derive from Gemini grounded search alone. Cross-verify before\n"
+    "trading. Likely causes: API keys missing in env, datacenter-IP block\n"
+    "on Reddit/Google News/EDGAR.]\n\n"
+)
 
 
 _CRITIQUE_TEMPLATE = """\
@@ -199,6 +236,9 @@ def cmd_gather(symbols: list[str]) -> str:
     return json.dumps(data, indent=2)
 
 
+LOW_CONFIDENCE_THRESHOLD = 5
+
+
 def cmd_synthesize(symbol: str) -> str:
     raw = news_sources.gather(symbol)
     today = date.today().isoformat()
@@ -214,7 +254,13 @@ def cmd_synthesize(symbol: str) -> str:
         today=today,
         raw_json=json.dumps(raw_sorted, indent=2),
     )
-    return _run_gemini(prompt, smart=True, synth=True, temperature=0.1)
+    body = _run_gemini(prompt, smart=True, synth=True, temperature=0.1)
+    # Flag low-confidence runs so the WhatsApp brief and RESEARCH-LOG header
+    # can degrade gracefully instead of presenting Gemini hallucinations at
+    # full confidence.
+    if len(raw) < LOW_CONFIDENCE_THRESHOLD:
+        return _LOW_CONF_PREFIX.format(n=len(raw)) + body
+    return body
 
 
 def cmd_critique(symbol: str, synthesis: str | None = None) -> str:
