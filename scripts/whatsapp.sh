@@ -24,6 +24,15 @@ fi
 
 if [[ $# -gt 0 ]]; then
   msg="$*"
+  # Defensive: detect that the caller likely passed `bash scripts/whatsapp.sh
+  # "$215.33"` and got bitten by bash positional-arg expansion. If the message
+  # looks like dollar-amounts had their leading digit eaten, warn loudly. Use a
+  # heredoc piped to stdin instead.
+  if printf %s "$msg" | grep -qE '(^|[^0-9.])\.[0-9]+|(^|[^0-9])[0-9]{1,3}\.[0-9]{2}([^0-9]|$)'; then
+    echo "[whatsapp] WARNING: argument-mode invocation detected. If your message" >&2
+    echo "[whatsapp] contains \$<digit>… amounts, bash may have eaten leading digits." >&2
+    echo "[whatsapp] Use heredoc instead: bash scripts/whatsapp.sh << 'WAEOF'..." >&2
+  fi
 else
   msg="$(cat)"
 fi

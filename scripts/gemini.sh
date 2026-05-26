@@ -18,6 +18,7 @@
 #   1  usage error
 #   3  GEMINI_API_KEY unset (caller can fall back to WebSearch)
 #   4  Pro quota exhausted AND Flash fallback also failed
+#   5  Flash daily budget pre-exhausted (cap at 18 calls/day; 2 in reserve)
 #
 # Cache: responses are saved to cache/gemini/<sha256-16>.json keyed by
 # (model, synth-flag, json-flag, temperature, query). Subsequent identical
@@ -123,6 +124,46 @@ fi
 
 mkdir -p "$CACHE_DIR"
 
+# ---------------- daily quota guard ----------------
+# Free tier is roughly 20 Flash RPD / ~25-100 Pro RPD. Hard-cap at 18 Flash
+# and 20 Pro per UTC day so we never hit mid-routine 429s. Counter file
+# resets daily via filename (cloud fresh-clone resets too).
+TODAY_UTC="$(date -u +%Y-%m-%d)"
+FLASH_COUNT_FILE="$CACHE_DIR/_calls_flash_${TODAY_UTC}.txt"
+PRO_COUNT_FILE="$CACHE_DIR/_calls_pro_${TODAY_UTC}.txt"
+RETRY_LOG="$CACHE_DIR/_retries_${TODAY_UTC}.log"
+FLASH_DAILY_CAP=18
+PRO_DAILY_CAP=20
+
+_read_count() {
+  [[ -f "$1" ]] && cat "$1" || echo 0
+}
+_bump_count() {
+  local f="$1"
+  local n
+  n="$(_read_count "$f")"
+  echo $((n + 1)) > "$f"
+}
+_log_retry() {
+  # Demote retry-cycle messages from stderr to a quiet log file so routine
+  # output stays clean; diagnostic is still recoverable.
+  printf '[%s] %s\n' "$(date '+%H:%M:%S')" "$*" >> "$RETRY_LOG"
+}
+
+if [[ "$USE_SMART" -eq 1 ]]; then
+  CURRENT_COUNT="$(_read_count "$PRO_COUNT_FILE")"
+  if [[ "$CURRENT_COUNT" -ge "$PRO_DAILY_CAP" ]]; then
+    echo "[gemini.sh] Flash daily budget pre-exhausted (Pro $CURRENT_COUNT/$PRO_DAILY_CAP)" >&2
+    exit 5
+  fi
+else
+  CURRENT_COUNT="$(_read_count "$FLASH_COUNT_FILE")"
+  if [[ "$CURRENT_COUNT" -ge "$FLASH_DAILY_CAP" ]]; then
+    echo "[gemini.sh] Flash daily budget pre-exhausted ($CURRENT_COUNT/$FLASH_DAILY_CAP)" >&2
+    exit 5
+  fi
+fi
+
 # ---------------- payload + call ----------------
 make_payload() {
   local q="$1" sysp="$2" temp="$3" maxtok="$4" mime="$5"
@@ -165,7 +206,7 @@ rm -f "$ERR_FILE"
 
 # Handle Pro quota exhausted: retry on Flash with --synth (CoT)
 if [[ "$HTTP_CODE" == "429" && "$USE_SMART" -eq 1 ]]; then
-  echo "[gemini.sh] Pro 429; falling back to Flash with synth/CoT prompt" >&2
+  _log_retry "Pro 429; falling back to Flash with synth/CoT prompt"
   FALLBACK_MODEL="$DEFAULT_MODEL"
   # Force --synth on the fallback so reasoning quality is preserved.
   FALLBACK_SYS='You are a precise financial research assistant. Use Google Search grounding. Cite every claim with a source URL and a date. Think step by step before answering: list evidence, then bull case, then bear case, then disconfirming evidence. Only then write the final structured answer.'
@@ -180,7 +221,7 @@ fi
 # minute. Steps: 5s, 15s, 30s, 60s (>= the typical retryDelay returned by Google).
 if [[ "$HTTP_CODE" == "429" ]]; then
   for sleep_s in 5 15 30 60; do
-    echo "[gemini.sh] 429 persisted; sleeping ${sleep_s}s then retrying" >&2
+    _log_retry "429 persisted; sleeping ${sleep_s}s then retrying"
     sleep "$sleep_s"
     ERR_FILE="$(mktemp)"
     BODY="$(call_gemini "$MODEL" "$PAYLOAD" 2>"$ERR_FILE" || true)"
@@ -197,9 +238,15 @@ if [[ "$HTTP_CODE" != "200" ]]; then
   exit 1
 fi
 
-# Success: cache + emit
+# Success: cache + bump counter + emit
 if [[ "$USE_CACHE" -eq 1 ]]; then
   printf '%s' "$BODY" > "$CACHE_FILE"
+fi
+
+if [[ "$USE_SMART" -eq 1 ]]; then
+  _bump_count "$PRO_COUNT_FILE"
+else
+  _bump_count "$FLASH_COUNT_FILE"
 fi
 
 printf '%s\n' "$BODY"
