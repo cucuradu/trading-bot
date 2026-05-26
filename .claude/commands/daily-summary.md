@@ -83,13 +83,15 @@ STEP 4h — **Key takeaway**: write ONE sentence (≤25 words) capturing the day
 
 STEP 5 — Send ONE WhatsApp message (always, even on no-trade days). Now enriched: ≤ 20 lines including the day's takeaway and tomorrow's headline event:
 ```
-bash scripts/whatsapp.sh "EOD MMM DD • <Regime>
-Portfolio: \$X (±X% day, ±X% phase) vs SPY ±X%
-Cash: \$X
+bash scripts/whatsapp.sh << 'WAEOF'
+EOD MMM DD • <Regime>
+Portfolio: $X (±X% day, ±X% phase) vs SPY ±X%
+Cash: $X
 Trades today: <list or none>
 Open positions:
-  SYM ±X.X% (stop \$X.XX, thesis: confirmed|weakened|broken)
+  SYM ±X.X% (stop $X.XX, thesis: confirmed|weakened|broken)
 Why today: <one-line distilled from the Why today paragraph>
 Tomorrow's headline: <earnings/macro release with time>
-Takeaway: <the STEP 4h sentence>"
+Takeaway: <the STEP 4h sentence>
+WAEOF
 ```

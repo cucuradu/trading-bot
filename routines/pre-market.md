@@ -42,6 +42,21 @@ IMPORTANT — TOKEN BUDGET (Pro plan):
 - If session has consumed >30k Claude tokens before STEP 7, drop the third
   candidate's bull/bear citations down to one bullet each and commit.
 
+STEP 0a — **Compute today's calendar in shell** (Gemini hallucinates date math; we resolve it deterministically here):
+```bash
+CAL_JSON=$(python scripts/trading_calendar.py status)
+DATE=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['today'])")
+TODAY_HUMAN=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['today_human'])")
+NEXT_TRADING_DAY=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['next_trading_day_human'])")
+NEXT_TRADING_DAY_ISO=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['next_trading_day'])")
+IS_HOLIDAY=$(echo "$CAL_JSON" | python3 -c "import json,sys;print('yes' if json.load(sys.stdin)['is_us_holiday'] else 'no')")
+echo "Today: $TODAY_HUMAN (US holiday: $IS_HOLIDAY) | Next trading day: $NEXT_TRADING_DAY ($NEXT_TRADING_DAY_ISO)"
+```
+
+Pass `$DATE`, `$TODAY_HUMAN`, `$NEXT_TRADING_DAY` into every Gemini prompt
+that references "today" or "next session". Use the literal values in the
+RESEARCH-LOG header — never let Gemini compute the date itself.
+
 STEP 0 — System kill switches FIRST. Refuse to run pre-market research if a
 lock is active (saves Gemini quota; no point researching if we can't trade).
 ```
@@ -53,6 +68,19 @@ If the `check` JSON includes a `lock_auto_recovered` field (Phase C
 auto-recovery cleared the LOCK on this run), record a one-line note in today's
 RESEARCH-LOG entry (STEP 6) and include it in the WhatsApp brief at STEP 7
 so the user notices the bot resumed trading.
+
+**Phase E — pre-macro-event deployment cap.** If `check` JSON returns
+`pre_macro_event.cap_active == true`, cap total cost-basis deployment for
+today at 40% of equity:
+
+- Reduce the day's trade ideas to MIN(`market.trade_slots`, 2) — never
+  propose 3 candidates when the cap is active.
+- RESEARCH-LOG header MUST include `**Pre-macro:** cap_active (event:
+  <event_name> on <event_date>) → 40% deployment cap`.
+- WhatsApp brief MUST include `Pre-macro: <event> in <N>d → cap 40%`.
+
+This is a hard system gate (like LOCK), not Claude discretion. See
+TRADING-STRATEGY.md "Pre-macro-event deployment cap (Phase E)".
 
 STEP 1 — Resolve today's regime (hybrid ML → rule fallback, Phase B):
 ```
@@ -272,10 +300,32 @@ Length check: if the encoded message body exceeds ~1400 chars, drop each
 candidate's bull/bear to one bullet each (preserves the structure, sheds
 words).
 
-Send:
+**MANDATORY send pattern — use a single-quoted heredoc so dollar amounts pass through bash literally:**
+
+```bash
+# Write the brief to a temp file so we can measure length before send.
+cat > /tmp/wa-pre-market.txt << 'WAEOF'
+<paste the entire formatted brief here, including all $ amounts.
+ The 'WAEOF' single-quote suppresses bash expansion — $215.33,
+ $81.6B, $1,065 etc. all pass through byte-for-byte intact.>
+WAEOF
+
+# Length guard (CallMeBot URL cap ~1500 chars; 1400 leaves URL-encode room).
+WA_LEN=$(wc -c < /tmp/wa-pre-market.txt)
+if [[ $WA_LEN -gt 1400 ]]; then
+    # Trim each candidate's bear/bull bullets to one line each, re-measure.
+    # If still over, drop the 3rd candidate's bullets entirely.
+    # If still over, keep only macro + top-1 candidate + decision.
+    echo "[shrink] original $WA_LEN > 1400; trimming"
+fi
+
+bash scripts/whatsapp.sh < /tmp/wa-pre-market.txt
 ```
-bash scripts/whatsapp.sh "<the message above>"
-```
+
+NEVER pass the brief as a quoted argument (`bash scripts/whatsapp.sh "..."`).
+Bash expands `$2…`, `$8…`, `$1…` as positional parameters and eats the
+leading digit of every dollar amount — that's the bug found in the
+2026-05-25 brief.
 
 If `lock_auto_recovered` fired in STEP 0, prepend a line:
 `LOCK auto-recovered: <reason>`.

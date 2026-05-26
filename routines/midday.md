@@ -94,7 +94,9 @@ STEP 6 — Optional intraday research via `scripts/gemini.sh` if something is mo
 
 STEP 7 — Notification (only if action was taken):
 ```
-bash scripts/whatsapp.sh "<action summary>"
+bash scripts/whatsapp.sh << 'WAEOF'
+<action summary — heredoc so $ amounts pass through bash literally>
+WAEOF
 ```
 
 STEP 8 — COMMIT AND PUSH (if any memory files changed). Pull-rebase BEFORE staging:

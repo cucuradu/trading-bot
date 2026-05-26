@@ -65,6 +65,11 @@ Args: `SYMBOL SHARES SIDE` (buy or sell). If missing, ask.
      `- OPEN YYYY-MM-DD: SYM entry=PRICE initial_stop=STOP_PRICE shares=N regime_entry=REGIME sector=XL? sizing=METHOD thesis="..."`
    - The prose summary (ATR, stop_pct, target, R:R, full thesis paragraph).
    For SELLs of an existing position: write the canonical CLOSED line (look up the matching OPEN line for entry/initial_stop/regime/sector).
-9. `bash scripts/whatsapp.sh "<trade details one-liner>"`.
+9. Send the trade confirmation. Use a heredoc so dollar amounts pass through:
+   ```bash
+   bash scripts/whatsapp.sh << 'WAEOF'
+   <trade details one-liner — heredoc preserves $ amounts byte-for-byte>
+   WAEOF
+   ```
 
 If `scripts/alpaca.sh` exits 42 (failsafe), STOP, send WhatsApp alert, do not retry.

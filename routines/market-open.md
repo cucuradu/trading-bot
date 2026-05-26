@@ -129,7 +129,9 @@ STEP 7 — Append each trade to `memory/TRADE-LOG.md`. Write TWO things:
 
 STEP 8 — Notification (only if a trade was placed):
 ```
-bash scripts/whatsapp.sh "<tickers, shares, fill prices, one-line why>"
+bash scripts/whatsapp.sh << 'WAEOF'
+<tickers, shares, fill prices, one-line why — heredoc so $ amounts pass through>
+WAEOF
 ```
 
 STEP 9 — COMMIT AND PUSH (mandatory if any trades executed). Pull-rebase BEFORE staging:

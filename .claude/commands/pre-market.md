@@ -2,7 +2,22 @@
 description: Pre-market research — pro-level multi-source brief written to RESEARCH-LOG.md + WhatsApp digest
 ---
 
-Local run of the pre-market workflow. Resolve today's date: `DATE=$(date +%Y-%m-%d)`.
+Local run of the pre-market workflow.
+
+STEP 0a — **Compute today's calendar in shell** (Gemini hallucinates date math; we resolve it deterministically here):
+```bash
+CAL_JSON=$(python scripts/trading_calendar.py status)
+DATE=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['today'])")
+TODAY_HUMAN=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['today_human'])")
+NEXT_TRADING_DAY=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['next_trading_day_human'])")
+NEXT_TRADING_DAY_ISO=$(echo "$CAL_JSON" | python3 -c "import json,sys;print(json.load(sys.stdin)['next_trading_day'])")
+IS_HOLIDAY=$(echo "$CAL_JSON" | python3 -c "import json,sys;print('yes' if json.load(sys.stdin)['is_us_holiday'] else 'no')")
+echo "Today: $TODAY_HUMAN (US holiday: $IS_HOLIDAY) | Next trading day: $NEXT_TRADING_DAY ($NEXT_TRADING_DAY_ISO)"
+```
+
+Pass `$DATE`, `$TODAY_HUMAN`, `$NEXT_TRADING_DAY` into every Gemini prompt
+that references "today" or "next session". Use the literal values in the
+RESEARCH-LOG header — never let Gemini compute the date itself.
 
 STEP 0 — System kill switches FIRST. Refuse to run pre-market research if a lock is active (saves Gemini quota; no point researching if we can't trade).
 ```
@@ -11,6 +26,15 @@ python scripts/risk_gates.py check           # parse JSON; remember entries_bloc
 ```
 
 If the `check` JSON includes a `lock_auto_recovered` field (Phase C auto-recovery cleared the LOCK on this run), record a one-line note in today's RESEARCH-LOG entry (STEP 6) and include it in the WhatsApp alert at STEP 7 so the user notices the bot resumed trading.
+
+**Phase E — pre-macro-event deployment cap.** If `check` JSON returns `pre_macro_event.cap_active == true`, cap **total** cost-basis deployment for today at 40% of equity. Two practical effects:
+
+- Reduce the day's trade ideas to MIN(`market.trade_slots`, 2) — never propose 3 candidates when the cap is active.
+- The RESEARCH-LOG header MUST include a line like
+  `**Pre-macro:** cap_active (event: <event_name> on <event_date>) → 40% deployment cap` so audits show the bot saw the event.
+- The WhatsApp brief MUST include a line `Pre-macro: <event> in <N>d → cap 40%`.
+
+This is a hard system gate (like LOCK), not Claude discretion. See TRADING-STRATEGY.md "Pre-macro-event deployment cap (Phase E)".
 
 STEP 1 — Resolve today's regime (hybrid ML → rule fallback, Phase B):
 ```
@@ -200,10 +224,34 @@ RISK: <one-line single most-likely invalidator>
 Decision: TRADE N / HOLD
 ```
 
-Send:
+**MANDATORY send pattern — use a single-quoted heredoc so dollar amounts pass through bash literally:**
+
+```bash
+# Write the brief to a temp file first so we can measure length.
+cat > /tmp/wa-pre-market.txt << 'WAEOF'
+<paste the entire formatted brief here, including all $ amounts.
+ The 'WAEOF' single-quote suppresses bash expansion — $215.33,
+ $81.6B, $1,065 etc. all pass through byte-for-byte intact.>
+WAEOF
+
+# Length guard (CallMeBot's URL cap is ~1500 chars; 1400 leaves room
+# for URL encoding overhead). Auto-shrink if over.
+WA_LEN=$(wc -c < /tmp/wa-pre-market.txt)
+if [[ $WA_LEN -gt 1400 ]]; then
+    # Step 1: trim each candidate's bear/bull bullets to one line each.
+    # If still over: drop the 3rd candidate's bullets entirely.
+    # If still over: keep only the macro + top-1 candidate + decision.
+    # Rewrite /tmp/wa-pre-market.txt and re-measure.
+    echo "[shrink] original $WA_LEN > 1400; trimming"
+fi
+
+bash scripts/whatsapp.sh < /tmp/wa-pre-market.txt
 ```
-bash scripts/whatsapp.sh "<the message above>"
-```
+
+NEVER pass the brief as a quoted argument (`bash scripts/whatsapp.sh "..."`).
+Bash will expand `$2…`, `$8…`, `$1…` etc. as positional parameters and eat
+the leading digit of every dollar amount — that's the bug we found in the
+2026-05-25 brief (NVDA $81.6B → 1.6B, $215.33 → 15.33, LLY $1,065 → 065).
 
 If `lock_auto_recovered` fired in STEP 0, prepend a line: `LOCK auto-recovered: <reason>`.
 

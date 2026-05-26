@@ -105,6 +105,14 @@ For each ticker with a closed trade THIS week:
 - Rewrite the `Thesis (YYYY-MM-DD):` line to reflect what the closed trade taught us (catalyst confirmed / thesis broken / etc.).
 - Archive catalyst rows older than 30 days into the `<!-- archive -->` tail of the section.
 
+STEP 3h — **TICKER-NOTES eager seeding**. Most of the 40 universe sections still say `Thesis (uninitialized)`. Each weekly review picks **3** still-uninitialized tickers (round-robin via the `<!-- SEED-CURSOR: SYM -->` marker at the top of TICKER-NOTES.md) and runs a one-shot baseline synthesis on each:
+
+```bash
+python scripts/research.py synthesize SYM   # full Pro synthesis
+```
+
+For each seeded ticker, write the section's `Thesis (YYYY-MM-DD):` line + 2-3 baseline `Recent catalysts:` from the synthesis output. ~3 extra Pro calls per Friday review — full coverage in ~13 weeks. Move the SEED-CURSOR forward after seeding. If Gemini Pro quota is already tight this run, skip and pick up next week.
+
 STEP 4 — Append a full review section to `memory/WEEKLY-REVIEW.md`:
 - Week stats table
 - **Closed trades table** (include R-multiple per trade)
@@ -127,8 +135,9 @@ STEP 5 — If a rule needs to change (proven out for 2+ weeks, or failed badly),
 
 STEP 6 — Send ONE WhatsApp message. Enriched with themes + regime-call audit + the calibration line, ≤ 22 lines:
 ```
-bash scripts/whatsapp.sh "Week ending MMM DD
-Portfolio: \$X (±X% week, ±X% phase)
+bash scripts/whatsapp.sh << 'WAEOF'
+Week ending MMM DD
+Portfolio: $X (±X% week, ±X% phase)
 vs S&P 500: ±X%
 Trades: N (W:X / L:Y / open:Z)
 Expectancy: Z.ZZ (W=XX% R=Y.YY)
@@ -144,7 +153,8 @@ Regime calls: X/5 correct ({miss reasons})
 Calibration: Bull X/Y paid, Bear X/Y paid
 
 Lesson: <one durable insight, ≤25 words>
-Grade: <letter>"
+Grade: <letter>
+WAEOF
 ```
 
 STEP 7 — COMMIT AND PUSH (mandatory). Pull-rebase BEFORE staging:
