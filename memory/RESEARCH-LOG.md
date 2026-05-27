@@ -970,3 +970,12 @@ Closest analog: **October 20, 2023** — VIX 17.31 (vs today 17.44), 30y yield 5
 - Fallback events: All structured sources degraded; research via Gemini grounded search + prior session ticker-notes (fresh from yesterday)
 - ml-insights.json: rule_fallback (stale 51h — local PC drift, unchanged)
 - Oil query: initial 503, retried successfully
+
+---
+
+### May 27 — Midday addendum
+- **NVDA gate check (9:45am ET):** price $210.75 < gate $213 → **no buy signal**. Buy gate correctly rejected entry.
+- **Current price action:** NVDA flat to slightly down vs. yesterday close; no intraday catalyst triggered sharp move.
+- **Thesis intact:** ASCO May 29 (LLY retatrutide catalyst), Core PCE May 28 (tomorrow — macro gate). LLY >$1,060 at open no longer applies since NVDA didn't fill first.
+- **Status:** No positions open. Portfolio $100,000 cash. Waiting on Core PCE outcome tomorrow to gate 3rd trade slot. NVDA buy gate (>$213) persists EOD.
+- **Next action:** If PCE ≤ 3.4%, reassess NVDA + consider LLY or XLV/XLK sector trade. If PCE > 3.6%, maintain hold.
