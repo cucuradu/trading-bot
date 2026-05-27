@@ -119,6 +119,15 @@ bash scripts/gemini.sh "Top stock market catalysts and earnings before market op
 bash scripts/gemini.sh "US economic calendar today $DATE: CPI PPI FOMC jobs data — cite the release schedule"
 bash scripts/gemini.sh "Recent news on currently-held tickers: <list from positions>"
 ```
+
+**STEP 4-bis — Macro-print reader (event days only).** If `python scripts/risk_gates.py check` returned `pre_macro_event.within_24h=true` OR `pre_macro_event.days_to_event=0`, query the realized print BEFORE candidate selection (the pre-market cron fires shortly after the 8:30 ET release):
+```
+bash scripts/gemini.sh "actual realized print today $DATE for <event_name from pre_macro_event> (consensus expectation, actual number, beat/miss, market reaction first 10 minutes) — cite Bloomberg/Reuters/CNBC."
+```
+Paste the result into the **Macro Framework** section. If the print was hot (above consensus) AND today's regime is Bull/Neutral, downgrade `trade_slots` by 1 for the day (defensive posture). If benign, proceed as planned.
+
+```
+```
 If `scripts/gemini.sh` exits 3, fall back to native WebSearch and note the
 fallback in the log entry.
 
@@ -126,11 +135,42 @@ Also use `python scripts/market_data.py sector-momentum` for the sector
 picture (no API quota). Cross-check against the regime classifier's
 `sectors` block — they should largely agree; if they don't, flag it.
 
-STEP 4b — Build today's shortlist (3 candidates, capped by `trade_slots`):
-1. If `ml-insights.json` provides `universe_ranking`, take the top-ranked names whose sector is not in Bear regime.
-2. Otherwise, take the top-1 momentum ticker in each of the two leading sectors from `sector-momentum`, plus one name surfaced by STEP 4 catalysts.
-3. Filter: must be in `python scripts/universe.py list`; must not be in earnings blackout (`python scripts/market_data.py earnings SYM` returns `in_blackout=false` OR catalyst IS earnings); must not already be open as a position.
-4. Cap at `min(trade_slots, 3)`.
+STEP 4b — Build today's shortlist (Phase F: data-driven multi-factor screener):
+
+1. Resolve candidate ranking via STEP 1's `universe_ranking`:
+   - If `source=ml` → `universe_ranking` is the XGBoost top-N from the local PC.
+   - If `source=rule_fallback` → `universe_ranking` is now populated by the local 7-factor screener (`scripts/screener.py`) scanning the full ~70-ticker universe (Phase F). Read the same field — no branching needed.
+   - If `universe_ranking` is empty (both ML and screener failed), fall back to the old behavior: top-1 momentum ticker in each of two leading sectors from `sector-momentum`, plus one catalyst name.
+
+2. Build the deep-dive shortlist directly from the screener:
+   ```
+   python scripts/screener.py shortlist --slots $TRADE_SLOTS
+   ```
+   Returns ≤6 names already filtered for:
+   - sector not in Bear regime
+   - not already an open position
+   - sector cap (≤2 same-sector existing positions; BROAD ETFs exempt)
+   - max pairwise correlation ≤ 0.70 with each previously-picked candidate
+   - liquidity (avg daily $-volume ≥ $50M), not penny (≥ $5), ATR% ≤ 8%
+
+3. Augment with **at most one** catalyst-driven add from STEP 4 macro queries, ONLY if:
+   - it is in `python scripts/universe.py list`
+   - it survives the screener's sanity gates (run `python scripts/screener.py explain SYM` to check)
+   - its catalyst is dated within the next 14 days
+   - **its sector is NOT already at the 2-position cap** when combined with the screener's existing picks (count screener picks + currently open + catalyst-add per sector; if any sector hits 3, drop the catalyst-add)
+   Otherwise skip — do not force an off-ranking name.
+
+4. Filter: must not be in earnings blackout unless catalyst IS earnings
+   (`python scripts/market_data.py earnings SYM`).
+
+5. Run the STEP 4c–4f deep-dive (gather / synthesize / critique / historical-analog)
+   on the resulting shortlist (5–6 candidates). The final order-execution cap stays
+   `min(trade_slots, 3)` — extras become tomorrow's pre-warmed candidates.
+
+STEP 4b-bis — write a diagnostics line to RESEARCH-LOG so we can audit the screener:
+```
+Screener: source=<ml|local_screener_v1>, ranked N tickers, top 10 = [SYM1(score), SYM2(score), ...]
+```
 
 STEP 4c — Gather multi-source raw research for each shortlisted ticker (Pass 1):
 ```

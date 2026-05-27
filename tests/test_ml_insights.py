@@ -238,7 +238,8 @@ def test_resolve_falls_back_on_stale_file(tmp_path, monkeypatch):
         "XLK": {"symbol": "XLK", "regime": "Trend", "score": 0.5},
     }})
 
-    r = mi.resolve(now=NOW)
+    # Disable the local screener so this test isolates the rule-based fallback.
+    r = mi.resolve(now=NOW, enable_local_screener=False)
     assert r["source"] == "rule_fallback"
     assert "stale" in r["fallback_reason"]
     assert r["market"]["regime"] == "Caution"
@@ -254,9 +255,78 @@ def test_resolve_falls_back_on_missing_file(tmp_path, monkeypatch):
     })
     monkeypatch.setattr(rg, "sector_regimes", lambda: {"sectors": {}})
 
-    r = mi.resolve(now=NOW)
+    # Disable the local screener so this test isolates the rule-based fallback.
+    r = mi.resolve(now=NOW, enable_local_screener=False)
     assert r["source"] == "rule_fallback"
     assert "not found" in r["fallback_reason"]
+
+
+# ---------------- resolve() — local screener fallback path (Phase F) ----------------
+
+def _stub_rule_fallback(monkeypatch):
+    """Common stub: rule-based market + empty sectors. Avoids yfinance."""
+    import regime as rg
+    monkeypatch.setattr(rg, "market_regime", lambda: {
+        "regime": "Neutral", "deployment_target": 0.75, "trade_slots": 2,
+        "persistence_bars": 3, "stable": True,
+    })
+    monkeypatch.setattr(rg, "sector_regimes", lambda: {"sectors": {
+        "XLK": {"symbol": "XLK", "regime": "Trend", "score": 0.5},
+    }})
+
+
+def test_resolve_fallback_calls_local_screener_when_enabled(tmp_path, monkeypatch):
+    """When ML is stale + screener enabled, universe_ranking comes from screener."""
+    monkeypatch.setattr(mi, "ML_FILE", tmp_path / "missing.json")
+    _stub_rule_fallback(monkeypatch)
+
+    fake_ranking = [
+        {"symbol": "AAPL", "ml_score": 1.5, "drop_reason": None,
+         "factor_breakdown": {}, "sector": "XLK", "price": 200.0, "atr_pct": 2.0},
+        {"symbol": "MSFT", "ml_score": 0.7, "drop_reason": None,
+         "factor_breakdown": {}, "sector": "XLK", "price": 400.0, "atr_pct": 1.8},
+        {"symbol": "XOM", "ml_score": None, "drop_reason": "sector_bear",
+         "factor_breakdown": {}, "sector": "XLE", "price": 100.0, "atr_pct": 2.5},
+    ]
+    import screener
+    monkeypatch.setattr(screener, "rank_universe", lambda **kw: fake_ranking)
+
+    r = mi.resolve(now=NOW, enable_local_screener=True)
+    assert r["source"] == "rule_fallback"
+    # Only survivors (drop_reason=None) should pass through, stripped to {symbol, ml_score}
+    assert r["universe_ranking"] == [
+        {"symbol": "AAPL", "ml_score": 1.5},
+        {"symbol": "MSFT", "ml_score": 0.7},
+    ]
+    assert r["ml_metadata"]["source_detail"] == "local_screener_v1"
+
+
+def test_resolve_fallback_with_no_screener_flag_returns_empty_ranking(tmp_path, monkeypatch):
+    """enable_local_screener=False preserves the original empty-ranking behavior."""
+    monkeypatch.setattr(mi, "ML_FILE", tmp_path / "missing.json")
+    _stub_rule_fallback(monkeypatch)
+
+    r = mi.resolve(now=NOW, enable_local_screener=False)
+    assert r["source"] == "rule_fallback"
+    assert r["universe_ranking"] == []
+    assert r["ml_metadata"] is None
+
+
+def test_resolve_does_not_crash_when_screener_raises(tmp_path, monkeypatch):
+    """Screener exceptions must NEVER bubble up — resolve() always returns a regime."""
+    monkeypatch.setattr(mi, "ML_FILE", tmp_path / "missing.json")
+    _stub_rule_fallback(monkeypatch)
+
+    def _boom(**kw):
+        raise RuntimeError("yfinance down")
+
+    import screener
+    monkeypatch.setattr(screener, "rank_universe", _boom)
+
+    r = mi.resolve(now=NOW, enable_local_screener=True)
+    assert r["source"] == "rule_fallback"
+    assert r["universe_ranking"] == []  # screener failed, ranking stays empty
+    assert r["market"]["regime"] == "Neutral"  # rule fallback still works
 
 
 def test_resolve_falls_back_on_malformed_file(tmp_path, monkeypatch):

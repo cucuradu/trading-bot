@@ -11,8 +11,42 @@ if str(_SCRIPTS) not in sys.path:
 import universe as u  # noqa: E402
 
 
-def test_universe_has_40_tickers():
-    assert len(u.TRADING_UNIVERSE) == 40
+def test_universe_has_70_tickers():
+    # Phase F (2026-05-27): expanded 40 → 70 to broaden screener opportunity set.
+    assert len(u.TRADING_UNIVERSE) == 70
+
+
+def test_phase_f_additions_present():
+    # Sanity check that each Phase F group made it into the universe.
+    for sym in ("AMD", "MU", "ORCL", "CRM", "ADBE", "NOW", "INTU"):  # tech
+        assert sym in u.TRADING_UNIVERSE
+    for sym in ("ABBV", "MRK", "TMO", "ABT", "DHR", "AMGN"):  # health
+        assert sym in u.TRADING_UNIVERSE
+    for sym in ("BAC", "GS", "MS", "SPGI", "BLK"):  # financials
+        assert sym in u.TRADING_UNIVERSE
+    for sym in ("GE", "RTX", "LMT", "HON", "UNP", "DE"):  # industrials
+        assert sym in u.TRADING_UNIVERSE
+    for sym in ("NKE", "MCD", "SBUX", "LOW"):  # consumer
+        assert sym in u.TRADING_UNIVERSE
+    for sym in ("SMH", "XBI"):  # thematic
+        assert sym in u.TRADING_UNIVERSE
+
+
+def test_phase_f_sector_mapping():
+    # Tech adds
+    assert u.sector_of("AMD") == "XLK"
+    assert u.sector_of("ORCL") == "XLK"
+    assert u.sector_of("SMH") == "XLK"
+    # Health adds
+    assert u.sector_of("ABBV") == "XLV"
+    assert u.sector_of("XBI") == "XLV"
+    # Financials adds
+    assert u.sector_of("GS") == "XLF"
+    # Industrials adds
+    assert u.sector_of("RTX") == "XLI"
+    # Consumer adds (all four discretionary)
+    assert u.sector_of("MCD") == "XLY"
+    assert u.sector_of("LOW") == "XLY"
 
 
 def test_membership_is_case_insensitive():

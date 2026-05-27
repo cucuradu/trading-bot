@@ -40,6 +40,30 @@ MEGA_CAP_ENERGY_COMMS: frozenset[str] = frozenset({
     "XOM", "CVX", "NFLX", "DIS",
 })
 
+# Phase F (2026-05-27) — universe expansion 40 → 70 to widen the screener's
+# opportunity set. All additions are S&P 500 megacaps with ≥$100M avg daily
+# $-volume. Explicitly excludes high-beta growth names (PLTR/SNOW/CRWD/NET/
+# COIN/MSTR) and sub-$10B mkt caps to remain consistent with the 20%
+# position-sizing cap during paper phase.
+MEGA_CAP_TECH_2: frozenset[str] = frozenset({
+    "AMD", "MU", "ORCL", "CRM", "ADBE", "NOW", "INTU",
+})
+MEGA_CAP_HEALTH_2: frozenset[str] = frozenset({
+    "ABBV", "MRK", "TMO", "ABT", "DHR", "AMGN",
+})
+MEGA_CAP_FIN_2: frozenset[str] = frozenset({
+    "BAC", "GS", "MS", "SPGI", "BLK",
+})
+MEGA_CAP_IND_2: frozenset[str] = frozenset({
+    "GE", "RTX", "LMT", "HON", "UNP", "DE",
+})
+MEGA_CAP_CONS_2: frozenset[str] = frozenset({
+    "NKE", "MCD", "SBUX", "LOW",
+})
+THEMATIC_ETFS: frozenset[str] = frozenset({
+    "SMH", "XBI",
+})
+
 TRADING_UNIVERSE: frozenset[str] = (
     SECTOR_ETFS
     | BROAD_ETFS
@@ -47,6 +71,12 @@ TRADING_UNIVERSE: frozenset[str] = (
     | MEGA_CAP_CONSUMER_FINANCE
     | MEGA_CAP_HEALTH_INDUSTRIAL
     | MEGA_CAP_ENERGY_COMMS
+    | MEGA_CAP_TECH_2
+    | MEGA_CAP_HEALTH_2
+    | MEGA_CAP_FIN_2
+    | MEGA_CAP_IND_2
+    | MEGA_CAP_CONS_2
+    | THEMATIC_ETFS
 )
 
 
@@ -82,6 +112,22 @@ SECTOR_OF: dict[str, str] = {
     "XLP": "XLP", "XLI": "XLI", "XLU": "XLU", "XLB": "XLB", "XLRE": "XLRE", "XLC": "XLC",
     # Broad ETFs intentionally have no sector — they're cross-sector index plays.
     "SPY": "BROAD", "QQQ": "BROAD", "IWM": "BROAD", "DIA": "BROAD",
+    # ---- Phase F expansion (2026-05-27) ----
+    # Tech additions
+    "AMD": "XLK", "MU": "XLK", "ORCL": "XLK", "CRM": "XLK",
+    "ADBE": "XLK", "NOW": "XLK", "INTU": "XLK",
+    # Healthcare additions
+    "ABBV": "XLV", "MRK": "XLV", "TMO": "XLV", "ABT": "XLV",
+    "DHR": "XLV", "AMGN": "XLV",
+    # Financials additions
+    "BAC": "XLF", "GS": "XLF", "MS": "XLF", "SPGI": "XLF", "BLK": "XLF",
+    # Industrials additions
+    "GE": "XLI", "RTX": "XLI", "LMT": "XLI", "HON": "XLI",
+    "UNP": "XLI", "DE": "XLI",
+    # Consumer additions (NKE/LOW = discretionary; MCD/SBUX = discretionary)
+    "NKE": "XLY", "MCD": "XLY", "SBUX": "XLY", "LOW": "XLY",
+    # Thematic ETF proxies
+    "SMH": "XLK", "XBI": "XLV",
 }
 
 

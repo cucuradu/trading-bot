@@ -15,6 +15,7 @@ Cloud loop NEVER writes ml-insights.json. It is committed by the local pipeline.
 
 Usage:
   python scripts/ml_insights.py resolve            # JSON: best-available regime
+  python scripts/ml_insights.py resolve --no-screener  # skip local screener fallback
   python scripts/ml_insights.py read-only          # JSON: file contents if valid, else error
   python scripts/ml_insights.py validate FILE      # JSON: validation report for a specific path
 """
@@ -22,7 +23,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -236,8 +237,13 @@ def read_and_validate(path: Path | None = None, *, now: datetime | None = None) 
     return result
 
 
-def resolve(*, now: datetime | None = None) -> dict:
+def resolve(*, now: datetime | None = None, enable_local_screener: bool = True) -> dict:
     """Best-available regime: ML if fresh + valid, else rule-based fallback.
+
+    When the ML payload is rejected and `enable_local_screener=True`, the
+    rule-based fallback also calls `scripts/screener.py:rank_universe()` to
+    populate `universe_ranking` (drop-in schema-compatible). On any screener
+    failure the ranking stays empty — `resolve()` never raises.
 
     Returns:
       {
@@ -245,6 +251,8 @@ def resolve(*, now: datetime | None = None) -> dict:
         "fallback_reason": "..." or None,
         "market": {regime, deployment_target, trade_slots, ...},
         "sectors": {SYM: {regime, score}, ...},
+        "universe_ranking": [{symbol, ml_score}, ...],
+        "universe_weights": {SYM: weight, ...},
         "ml_metadata": {generated_at, model_version, age_hours} or None,
       }
     """
@@ -276,6 +284,48 @@ def resolve(*, now: datetime | None = None) -> dict:
         for sym, info in sectors_full.items()
         if info.get("regime") is not None
     }
+
+    # Local-screener fallback ranking (informational; not part of the producer
+    # contract — see docs/ml-insights-schema.md appendix). When the publisher
+    # is offline, this prevents `universe_ranking` from being empty, which
+    # otherwise leaves pre-market candidate selection without signal.
+    universe_ranking: list[dict] = []
+    ml_metadata: dict | None = None
+    if enable_local_screener:
+        try:
+            import screener  # noqa: E402
+
+            # Auto-detect binary macro-event days → use defensive weights.
+            macro_event_today = False
+            try:
+                import trading_calendar as tc  # noqa: E402
+                macro_event_today = bool(tc.pre_macro_event_check(date.today()).get("within_24h"))
+            except Exception:
+                # trading_calendar absent or shape changed — default to normal weights
+                pass
+
+            ranked = screener.rank_universe(
+                sector_regimes=sectors,
+                macro_event=macro_event_today,
+                enable_catalyst_fetch=True,
+            )
+            survivors = [r for r in ranked if r.get("drop_reason") is None]
+            universe_ranking = [
+                {"symbol": r["symbol"], "ml_score": r["ml_score"]}
+                for r in survivors
+            ]
+            weights_used = (
+                screener.MACRO_DAY_FACTOR_WEIGHTS if macro_event_today
+                else screener.FACTOR_WEIGHTS
+            )
+            ml_metadata = {
+                "source_detail": "local_screener_v1",
+                "macro_event_weighting": macro_event_today,
+                "factor_weights": weights_used,
+            }
+        except Exception as e:  # never crash resolve() because screener failed
+            print(f"[ml_insights] local screener fallback failed: {e}", file=sys.stderr)
+
     return {
         "source": "rule_fallback",
         "fallback_reason": validated["reason"],
@@ -289,9 +339,9 @@ def resolve(*, now: datetime | None = None) -> dict:
             "systemic_fragility": None,
         },
         "sectors": sectors,
-        "universe_ranking": [],
+        "universe_ranking": universe_ranking,
         "universe_weights": {},
-        "ml_metadata": None,
+        "ml_metadata": ml_metadata,
     }
 
 
@@ -302,7 +352,8 @@ def main() -> int:
 
     cmd = sys.argv[1]
     if cmd == "resolve":
-        print(json.dumps(resolve(), indent=2))
+        enable_screener = "--no-screener" not in sys.argv[2:]
+        print(json.dumps(resolve(enable_local_screener=enable_screener), indent=2))
     elif cmd == "read-only":
         result = read_and_validate()
         print(json.dumps(result, indent=2))

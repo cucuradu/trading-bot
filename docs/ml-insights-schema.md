@@ -153,3 +153,23 @@ to this schema require:
 2. A backwards-compatible window (cloud accepts both shapes for one rotation)
 
 Treat this file like a public API contract.
+
+---
+
+## Cloud-side fallback ranking (informational, not part of the producer contract)
+
+When this file is stale (> 24h) or missing, `scripts/ml_insights.py:resolve()`
+populates `universe_ranking` from a **local 7-factor screener**
+(`scripts/screener.py`, Phase F, 2026-05-27) so the cloud trading loop is not
+starved of signal during publisher outages.
+
+The screener is deterministic, network-cheap (one batched `yf.download`), and
+emits the same `[{symbol, ml_score}, ...]` shape this contract specifies.
+`ml_score` from the screener is a z-scored composite of momentum, relative
+strength, technical setup, and volatility-stability factors — **not directly
+comparable** to the producer's XGBoost forward-return predictions, but
+correctly ordered for ranking purposes.
+
+**Producers should ignore this section.** Your contract is unchanged. When
+the publisher delivers a fresh payload, `resolve()` uses it and the local
+screener output is discarded.
