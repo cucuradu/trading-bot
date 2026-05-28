@@ -73,3 +73,28 @@ No positions yet. Paper-trading bot launches on the next weekday.
 - **Note:** No FOMC meetings May 28; CPI/PPI releases pushed to June 10–11.
 
 **Key takeaway:** AI euphoria + Iran peace tailwind driving equity records; Thu PCE is the critical gate — benign (≤3.4%) → deploy 3rd position; hot (>3.6%) → tighten stops.
+
+---
+
+### May 28 — Manual market-open trade (Day 4, Thursday)
+
+Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale (missing today's RESEARCH-LOG commit 609b1f1 that landed at 12:49 UTC, ~46 min before fire — the sandbox does fresh git clone but on a `claude/keen-gauss-J8mdr` feature branch detached from latest main). Agent correctly halted per "never trade without documented research" rule. Trade placed manually below at 14:26 UTC. Bug acknowledged; prompt fix queued (add `git pull --rebase origin main` BEFORE STEP 1 reads).
+
+- OPEN 2026-05-28: MU entry=922.91 initial_stop=784.47 shares=21 regime_entry=Neutral sector=XLK sizing=flat_20pct thesis="AI/HBM structural demand; UBS PT $1,625 May 26; COMPUTEX Jun 2-5 catalyst; screener #1 ml_score=1.68 (momentum 125d/20d/RS all maxed)"
+
+**MU buy details:**
+- Entry: $922.91 avg (filled at 14:26 UTC)
+- Shares: 21
+- Cost basis: $19,381.05 (19.4% of equity)
+- ATR(14) ≈ $56.78 (6.11% of price); 2.5×ATR → stop_pct_2.5x = 15.29% clamped to 15% cap per strategy
+- Initial stop: $784.47 (entry × 0.85)
+- Live trailing stop (Alpaca): 15% trail, GTC, current stop_price=$781.81 (HWM=$919.78)
+- Target: $1,107.49 (+20%)
+- R:R: 1.33:1 (modest because 15% wide stop; expected for a 6.1%-ATR name)
+- Max risk if stopped: $2,907.16 (2.91% of equity) — within strategy bounds
+- Catalyst: COMPUTEX 2026 Taipei Jun 2-5 (Jensen Huang keynote); fresh UBS PT $1,625 + Melius $1,100 + BofA $950 post-Q3 guidance upgrade. MU was screener #1 today on AI/HBM momentum (all 3 momentum factors z-clipped at +3).
+- Sector exposure post-entry: 19.4% XLK (1/2 slots used)
+
+**AMD skipped today (per pre-market plan):** Conditional entry required AMD ≤ $475; current ask $502.38 (well above gate). AMD carries to tomorrow May 29 as watchlist.
+
+**Trades this week (Thu):** 1 of 3 max.
