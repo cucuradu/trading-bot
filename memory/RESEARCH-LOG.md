@@ -1130,3 +1130,37 @@ Closest analog: **October 26, 2023** — 30y yield 5.03% (exact match to today),
 - Fallback events: All structured sources degraded; full research via Gemini grounded search
 - ml-insights.json: rule_fallback (stale 74.9h — local PC drift, unchanged)
 - Screener: local_screener_v1 (Phase F)
+
+---
+
+## 2026-05-28 — Midday Research Update (Afternoon, post-macro)
+
+### Macro Event Outcome (8:30 AM ET)
+- **Core PCE April**: 3.3% YoY (expected 3.4%, MoM 0.2% vs 0.3% forecast) — *inflation slightly hotter than expected*
+- **GDP Q1 2nd estimate**: 1.6% (advance 2.0%) — *significant downward revision, below expectations*
+
+### Market Reaction (12:30 PM ET midday snapshot)
+- **SPY**: +0.49% on US-Iran peace deal rumors (geopolitical risk-off, oil relief narrative)
+- **Nasdaq**: +0.64% midday (rebounds from initial post-data dip)
+- **VIX**: $16.41, +0.74%, still low (no panic)
+- **Sector rotation**: XLK +0.17% (relative weakness vs broad +0.49%), XLE +0.15% (trade deal benefit), XLF +0.14%
+
+### Position & Thesis Review
+- **MU (21 shares @ $922.91, now $940.29)**:
+  - Unrealized P&L: +$365 (+1.88%)
+  - Status: ✓ Well above initial stop ($784.47), no R ≤ −1 cut needed
+  - Thesis status: ✓ INTACT — COMPUTEX Jun 2–5 catalyst still live, HBM sold-out structural demand confirmed ($1T valuation milestone, capacity already committed to AI buyers)
+  - Risk flag: Insider selling $54M past 3mo, premium P/E (noted; not actionable yet at +1.88%)
+  - XLK sector: Showing relative weakness vs broad market; monitor for sector-rolling signal
+
+### Pre-macro Deployment Cap Status
+- Pre-macro-event cap (40% of equity cost-basis) **still active** per risk_gates output
+- Current cost-basis deployment: 19.4% (MU only)
+- Remaining budget: 20.6% to 40% cap
+- **Decision**: No new entries until macro cap clears (typically post-release + next-day close, but cap_active=true)
+
+### Intraday Thesis Check
+Mixed macro data (hot PCE, weak GDP) didn't derail the Iran-peace-driven rally. Tech sector lagging the broad market (+0.17% vs +0.49%), which is typical on inflation/growth concerns. MU's structural HBM demand thesis overrides macro weakness. Position remains in thesis alignment; no close warranted.
+
+### Decision (Midday scan result)
+**NO ACTION** — MU position healthy, thesis intact, no losers to cut, no tightening triggers yet. Continue monitoring COMPUTEX prep into Jun 2.
