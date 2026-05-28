@@ -19,6 +19,19 @@ Pass `$DATE`, `$TODAY_HUMAN`, `$NEXT_TRADING_DAY` into every Gemini prompt
 that references "today" or "next session". Use the literal values in the
 RESEARCH-LOG header — never let Gemini compute the date itself.
 
+STEP 0a — **Sync to latest main BEFORE any other step.**
+```
+git pull --rebase origin main
+```
+The cloud sandbox starts on a fresh `claude/*` feature branch that may NOT
+include commits other routines pushed since the sandbox snapshot was taken.
+Without this pull, STEP 1's memory reads can see stale RESEARCH-LOG /
+TRADE-LOG. Real incident 2026-05-28: market-open silently halted at STEP 1
+("today's RESEARCH-LOG missing") because pre-market had committed it 46 min
+earlier and the market-open sandbox did not include that commit. Pull is
+idempotent and takes <2s. If it fails (merge conflict — should never happen
+on a fresh sandbox clone), abort with WhatsApp: "ROUTINE git pull failed".
+
 STEP 0 — System kill switches FIRST. Refuse to run pre-market research if a lock is active (saves Gemini quota; no point researching if we can't trade).
 ```
 python scripts/risk_gates.py lock-status     # exit 42 = LOCK present, send WhatsApp and STOP

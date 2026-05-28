@@ -30,6 +30,19 @@ IMPORTANT — TOKEN BUDGET (Pro plan):
 - If session has consumed >40k tokens before STEP 5, drop STEP 4f position thesis
   checks for tickers that didn't change today and commit.
 
+STEP 0a — **Sync to latest main BEFORE any other step.**
+```
+git pull --rebase origin main
+```
+The cloud sandbox starts on a fresh `claude/*` feature branch that may NOT
+include commits other routines pushed since the sandbox snapshot was taken.
+Without this pull, STEP 1's memory reads can see stale RESEARCH-LOG /
+TRADE-LOG. Real incident 2026-05-28: market-open silently halted at STEP 1
+("today's RESEARCH-LOG missing") because pre-market had committed it 46 min
+earlier and the market-open sandbox did not include that commit. Pull is
+idempotent and takes <2s. If it fails (merge conflict — should never happen
+on a fresh sandbox clone), abort with WhatsApp: "ROUTINE git pull failed".
+
 STEP 1 — Read memory for continuity:
 - Tail of `memory/TRADE-LOG.md` (find most recent EOD snapshot → yesterday's equity)
 - Count TRADE-LOG entries dated today (for "Trades today")
