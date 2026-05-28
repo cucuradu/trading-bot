@@ -14,6 +14,30 @@ Conventions:
 
 ---
 
+## MU (XLK)
+- Thesis (2026-05-28): AI/HBM structural demand story — 2026 HBM supply fully sold out, COMPUTEX June 2-5 as next catalyst; re-rating from cyclical to AI infrastructure enabler.
+- Recent catalysts:
+  - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
+  - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
+  - 2026-06-24: Q3 FY2026 earnings report
+- Open thesis questions:
+  - Samsung/SK Hynix capacity expansion → oversupply risk 2027-2028?
+  - Insider selling $54M (3mo) with zero buys — distribution signal near top?
+  - BofA PT $950 = only +2.4% upside from $928; UBS $1,625 = +75% — which is correct?
+
+## AMD (XLK)
+- Thesis (2026-05-28): AI data center ramp (MI300 series) driving structural growth, but RSI overbought (73-74) + no near-term catalyst makes near-term entry timing poor; await pullback to ≤$475.
+- Recent catalysts:
+  - 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B)
+  - 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M potential recovery
+  - 2026-07: "Advancing AI 2026" flagship event (next major catalyst)
+- Open thesis questions:
+  - TSMC CoWoS packaging — can AMD secure enough capacity vs NVIDIA preferential access?
+  - Gaming H2 2026 projected −20%+; does it offset DC growth?
+  - RSI 73-74 overbought; optimal entry price ~$460-480 (post-pullback)
+
+---
+
 ## AAPL (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
 - Recent catalysts: (none yet)

@@ -970,3 +970,154 @@ Closest analog: **October 20, 2023** — VIX 17.31 (vs today 17.44), 30y yield 5
 - Fallback events: All structured sources degraded; research via Gemini grounded search + prior session ticker-notes (fresh from yesterday)
 - ml-insights.json: rule_fallback (stale 51h — local PC drift, unchanged)
 - Oil query: initial 503, retried successfully
+
+---
+
+## 2026-05-28 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2, deployment: 75%) — stale 74.9h; local PC drift unchanged
+
+**Pre-macro:** cap_active (event: Core PCE + GDP Q1 2nd on 2026-05-28) → 40% deployment cap
+
+### Account
+- Equity $100,000 | Cash $100,000 | Buying power $200,000 | Daytrade count 0 | Open positions 0 | Open orders 0
+
+### Macro Framework
+Neutral regime (rule_fallback, 74.9h stale). 30y yield 5.03% (+2bp vs yesterday's 5.01%). VIX 16.73 (−0.71 vs yesterday's 17.44 — risk calming). DXY steady ~99. WTI $90–92 (+2–4%); Brent $96–98 — oil rebounding on renewed US-Iran military hostilities: US forces struck an Iranian military site; IRGC responded by striking a US airbase. Iran peace-deal optimism reversed completely; Strait of Hormuz supply-risk back on the table. **Core PCE April 2026 (8:30 ET): +3.2% YoY (consensus +3.3%, MoM +0.2% vs +0.3% consensus) — BENIGN.** GDP Q1 2026 2nd estimate: +1.6% annualized (consensus +2.0%) — weaker-than-expected growth, supports Fed easing narrative. Personal Income + Durable Goods also released 8:30 ET. SPX futures −0.1–0.3% premarket (7,532) — modest pullback despite benign PCE, likely explained by Iran oil shock and weak GDP. Dominant theme: benign PCE removes the week's primary inflation risk, but Iran re-escalation introduces fresh cross-asset disruption (oil +3%, Iran binary unresolved). vs yesterday: yields +2bp (5.03% vs 5.01%); oil +3% (Iran re-escalation reversal); VIX −0.71; regime unchanged; DXY flat.
+
+### Sector Picture
+| Sector | ETF | 1mo Return | Regime |
+|--------|-----|------------|--------|
+| Technology | XLK | +16.84% | Trend |
+| Consumer Discretionary | XLY | +3.88% | Trend |
+| Healthcare | XLV | +3.44% | Trend |
+| Industrials | XLI | +1.94% | Choppy |
+| Consumer Staples | XLP | +1.81% | Choppy |
+| Real Estate | XLRE | +1.64% | Choppy |
+| Communication Services | XLC | +0.44% | Choppy |
+| Materials | XLB | −0.43% | Choppy |
+| Financials | XLF | −0.83% | Choppy |
+| Energy | XLE | −1.25% | Bear |
+| Utilities | XLU | −2.40% | Bear |
+
+- Top 3: XLK (+16.84%, Trend), XLY (+3.88%, Trend), XLV (+3.44%, Trend)
+- Bottom 3: XLF (−0.83%, Choppy), XLE (−1.25%, Bear), XLU (−2.40%, Bear)
+- Regime agreement: sector-momentum XLE −1.25% and classifier Bear (score −0.1721) — fully consistent today. Yesterday's XLE divergence resolved (oil dropped further then spiked today). XLU Bear in both — agreement.
+- XLK momentum dominant at +16.84% — regime assigns Trend (score 1.1976); consistent.
+
+### Screener
+Screener: source=local_screener_v1, ranked 65 tickers, top 10 = [MU(1.68), AMD(1.55), SMH(0.74), CAT(0.64), MS(0.46), GOOGL(0.46), GS(0.46), UNH(0.46), XLK(0.42), AMZN(0.40)]
+
+Shortlist (4 names, 2 slots): **MU, AMD, CAT, MS**. Both MU and AMD top-ranked; XLI (CAT) and XLF (MS) as diversification alternatives. All 4 pass sector/liquidity/ATR/blackout filters.
+
+### Candidates
+
+#### MU (XLK, $928.41 | 52w high $956.16 today)
+
+**Setup:** All momentum factors maxed (momentum_125d 3.0, momentum_20d 3.0, RS vs sector 3.0). ATR(14)=$56.78 (6.11% of price); stop_pct_2.5x=15.29% (clamped to 15%); stop_pct_1.75x=10.70%. Vol stability −3.0 (high volatility — expected post +19% earnings move). No earnings blackout (next: June 24, 27 days).
+
+**Sources scanned (degraded):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 4 Gemini Flash+Pro.
+
+**Bull case:**
+- 2026 HBM supply fully sold out under fixed-price contracts; HBM market projected to reach $100B by 2028. UBS raised PT to $1,625 (from $535) May 26, citing AI structural reshaping of memory fundamentals. [UBS, May 26, 2026]
+- Q3 FY2026 guidance: $32.8–34.3B revenue (record), far above prior consensus. Hyperscaler AI capex >$600B in 2026 drives irreversible memory demand. Micron re-rating from cyclical commodity to AI infrastructure enabler. [Melius Research PT $1,100; BofA PT $950, May 2026]
+
+**Bear case:**
+- Stock at $928 vs GF Value $352.93 (163% premium); trailing P/E 43.83x vs 5y median — "priced for perfection." Consensus avg still ~$570 (stale pre-upgrade), but even fresh targets: BofA $950 = only +2.4% upside from current. [GuruFocus, May 2026]
+- Samsung + SK Hynix aggressively expanding HBM capacity → potential oversupply risk 2027-2028. Insider selling: $54M sold in 3mo, zero buys — insiders near top. [GuruFocus, May 2026]
+
+**Disconfirming evidence:** Any hyperscaler cutting AI capex guidance; COMPUTEX June 2-5 disappointing on Vera Rubin / HBM4 roadmap; Samsung announcing aggressive HBM price cuts.
+
+**Catalysts ahead (next 14d, dated):**
+- June 2-5: COMPUTEX 2026 Taipei (Jensen Huang keynote June 3/4) — HBM4 + Vera Rubin ecosystem discussion; direct MU catalyst
+- June 24: MU Q3 FY2026 earnings (outside 14d window, 27 days out)
+
+**One-line takeaway:** MU is the screener's #1 name — AI/HBM structural demand + COMPUTEX June 2-5 catalyst make it the highest-conviction candidate despite extreme valuation.
+
+**Critique:**
+- **Strongest counter:** Stock at 163% premium to GF Value; analyst consensus avg $570 is stale but even fresh BofA PT $950 leaves only +2.4% upside; high-vol (ATR 6.1%) + insider selling $54M creates asymmetric risk if AI capex narrative stalls.
+- **Single most-likely invalidator (5d):** Any news/research from a major hyperscaler or industry analyst challenging near-term AI-HBM demand or pricing (no scheduled event; unscheduled risk). COMPUTEX pre-announcement leak is the key watch.
+
+**Follow-up investigation:**
+- **Trigger:** Synthesis/critique disagreed on PT validity ($566-625 consensus vs bull case).
+- **Query:** "MU analyst PT updates post Q3 guidance" → confirmed consensus avg $570 is STALE. Fresh: UBS $1,625, Melius $1,100, BofA $950.
+- **Change:** Bear case materially weakened on PT argument. Closest near-term ceiling is BofA $950 (+2.4%); UBS $1,625 (+75%) is most bullish. Conviction increased.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 19.5% XLK (currently 0%)
+- 30d correlation with AMD (other candidate): 0.44 (low — passes ≤0.70 gate)
+- Sector cap status: 1/2 XLK slots
+
+**R:R math:** entry $928 / stop $835 (−10.0% trailing) / target $1,114 (+20%) / R:R 2.0:1 / max risk ~$1,949 on $19,488 (21 shares).
+
+**Decision:** **Retained** — enter at 9:45am ET if MU holds ≥ $900 (COMPUTEX catalyst June 2, AI momentum dominant, fresh UBS/Melius/BofA PTs support upside).
+
+---
+
+#### AMD (XLK, $495.54 | 52w high $510.21)
+
+**Setup:** momentum_125d 2.62, momentum_20d 3.0, RS vs sector 3.0. ATR(14)=$26.09 (5.26%); stop_pct_2.5x=13.16%. RSI 73-74 (overbought). Up 108.99% YTD. No earnings blackout (next: Aug 4, 68 days). Catalyst: None in next 14 days.
+
+**Sources scanned (degraded):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 2 Gemini Flash.
+
+**Bull case:**
+- Data center revenue +57% YoY in Q1 2026 to $5.78B; server CPU market opportunity projected $120B by 2030 (double prior estimate); server CPU revenue +70% YoY in Q2 2026. MI300 AI accelerators adopted by Meta, OpenAI, Oracle. [AMD IR Q1 2026; Goldman Sachs $450 PT, BofA $450 PT, TD Cowen $500 PT]
+- Q1 2026 record free cash flow $2.6B (3x YoY); $12.3B cash, minimal net debt; 37/50 analysts rate Buy. U.S. cleared AMD to resume MI308 export reviews → potential $800M revenue recovery. [AMD IR, U.S. Commerce Dept, May 2026]
+
+**Bear case:**
+- NVIDIA holds 80% AI GPU market share vs AMD ~5-7%; CUDA ecosystem creates switching-cost moat nearly impossible to break. NVIDIA's dominant CoWoS/HBM sourcing from TSMC could structurally cap AMD Instinct production. [analyst consensus, May 2026]
+- RSI 73-74 (overbought) + up 108% YTD + no catalyst in next 14 days = poor risk-adjusted entry. Gaming H2 2026 projected −20%+ revenue decline due to higher component costs. [AMD IR, May 2026]
+
+**Disconfirming evidence:** Cathie Wood trimming AMD; any TSMC allocation news favoring NVDA further; gaming segment miss.
+
+**Catalysts ahead (next 14d):** None identified within 14 days. AMD "Advancing AI 2026" flagship event is July 2026.
+
+**One-line takeaway:** AMD is structurally well-positioned in AI, but RSI overbought + no near-term catalyst makes this a poor timing entry; better to await a pullback to RSI < 70.
+
+**Critique:**
+- **Strongest counter:** NVIDIA's CUDA + preferential CoWoS/HBM access creates a structural production cap on AMD Instinct GPU volumes regardless of demand — AMD cannot close the market-share gap near-term.
+- **Single most-likely invalidator (5d):** Credible report/analyst downgrade highlighting AMD's inability to secure sufficient CoWoS packaging → profit-taking from overbought condition.
+
+**Position-aware (if entered $20k at $475 gate):**
+- Sector exposure post-entry: 20% XLK (combined with MU: 40% XLK total, at 2/2 cap)
+- 30d correlation with MU: 0.44 (passes ≤0.70 gate)
+- Sector cap status: 2/2 XLK slots (at cap; no further XLK adds after both filled)
+
+**R:R math (conditional entry at $475):** entry $475 / stop $428 (−10%) / target $570 (+20%) / R:R 2.0:1 / max risk ~$1,974 on $19,950 (42 shares).
+
+**Decision:** **Retained — conditional watchlist.** Do NOT enter at open. Enter ONLY if AMD pulls back to ≤ $475 (RSI cooldown toward 70) at or after 9:45am ET. If $475 never hit today, carry to tomorrow.
+
+---
+
+### Historical Analog
+Closest analog: **October 26, 2023** — 30y yield 5.03% (exact match to today), VIX in neutral range, benign Core PCE 3.5% YoY. Sector leadership: XLK, XLY, XLV leading; XLE lagging. Key divergence: GDP Q3 2023 was +4.9% (robust) vs today's Q1 2nd estimate +1.6% (weak) — today's growth backdrop is materially softer, supporting a more muted/selective rally. What followed Oct 26, 2023: S&P +10.2% over 20 trading days (best month of 2023) as yields peaked and began falling. With PCE printing below consensus today and yields already declining from the 5.19% peak, the base case skews toward continued rally, but GDP weakness introduces caution vs the 2023 analog's full recovery pace.
+
+### Risk Factors (consolidated)
+- **Iran re-escalation (oil +3%)** — US-IRGC military exchange today; Strait of Hormuz closure scenario = oil spike + cross-asset disruption; direct threat to both MU and AMD via risk-off
+- **MU extreme valuation** — at 163% premium to intrinsic value; BofA PT $950 = +2.4% upside only; any AI capex slowdown story triggers sharp reversal from $928 extended level
+- **AMD RSI overbought (73-74) + 108% YTD** — poor risk-adjusted entry; if entered, stop at 10% = $446 still within range but overbought stocks can drop fast
+- **XLK concentration** — if both MU and AMD fill, 40% of equity in XLK at 2/2 sector cap; no buffer if tech sector rotates on GDP weakness narrative
+- **GDP Q1 +1.6% (weak)** — below +2.0% consensus; growth slowdown narrative could pressure industrial + cyclical names; weighs on CAT if considered
+- **COMPUTEX June 2-5** — critical MU/AI catalyst; any disappointment on HBM4 delivery or Vera Rubin roadmap → both MU and AI semi names gap down
+- **Insider selling (MU $54M, zero buys)** — insiders distributing at 52w highs; not a trading signal but a caution flag at extended prices
+
+### Decision
+**TRADE 1 (MU) — execute today. AMD — conditional watchlist (not today unless pullback to ≤$475).**
+
+- **Gate for MU:** Price ≥ $900 at 9:45am ET (15-min settle); enter 21 shares ~$19,488; 10% trailing stop GTC
+- **Gate for AMD:** Enter ONLY if AMD ≤ $475 at/after 9:45am (RSI cooldown). If not hit today, carry to Fri May 29.
+- **Deployment after MU only:** $19,488 (19.5% of $100k) — well within 40% Phase E cap
+- **Deployment if both fill:** ~$39,438 (39.4%) — within Phase E cap ✓
+- **Phase E cap note:** With PCE printing benign today, the pre-macro cap logic expires post-open. However, cap remains enforced for today (hard rule). Post-open if both fill, 40% cap is met.
+- **Tomorrow (May 29):** Post-PCE benign print — if MU holds ≥ $900 and PCE positive market reaction confirmed, evaluate AMD entry at better price. Deployment to 60-75% target unlocked (cap lifts tomorrow).
+
+### Quota & source usage (footer)
+- Gemini calls: 8 Flash + 0 Pro (all via Flash grounded search; --smart not used to preserve Pro quota)
+- NewsAPI: 0 (key missing)
+- Finnhub: 0 (key missing)
+- EDGAR: 0 (403 cloud block)
+- Reddit: 0 (403 cloud block)
+- Google News: 1 (403 cloud block)
+- Fallback events: All structured sources degraded; full research via Gemini grounded search
+- ml-insights.json: rule_fallback (stale 74.9h — local PC drift, unchanged)
+- Screener: local_screener_v1 (Phase F)
