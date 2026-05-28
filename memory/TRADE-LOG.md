@@ -98,3 +98,26 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 **AMD skipped today (per pre-market plan):** Conditional entry required AMD ≤ $475; current ask $502.38 (well above gate). AMD carries to tomorrow May 29 as watchlist.
 
 **Trades this week (Thu):** 1 of 3 max.
+
+---
+
+### May 28 — EOD Snapshot (Day 4, Thursday)
+- EOD 2026-05-28: equity $100,104.85
+**Portfolio:** $100,104.85 | **Cash:** $80,618.95 (80.6%) | **Day P&L:** +$104.85 (+0.10%) | **Phase P&L:** +$104.85 (+0.10%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MU | 21 | $922.91 | $927.90 | −$0.51 | +$104.85 (+0.54%) | $807.07 (15% trail) |
+
+- Regime 2026-05-28: Neutral (source: rule_fallback, slots: 2)
+- Trades today: 1 (MU OPEN @ 14:26 UTC)
+- Trades this week (Thu): 1 of 3 max
+
+**Why today:** S&P 500 closed at record high (7,563.63, +0.3% on the day) driven by strong tech earnings resilience (Nasdaq +0.9% to 26,917). Core PCE inflation April came in benign at +3.2% YoY (consensus +3.3%), easing Fed rate-hike concerns and supporting the "disinflation narrative." However, GDP Q1 2nd revision printed weak at +1.6% annualized (vs +2.0% consensus), signaling economic deceleration. Separate geopolitical shock: US-Iran military escalation near Strait of Hormuz reversed the peace-deal optimism from yesterday; oil surged +3% intraday (WTI $91.71, Brent $97.29) before paring gains on ceasefire extension reports. 30y yield eased slightly to 4.99%. Single biggest driver: strong corporate earnings (tech in particular) offsetting soft GDP, with benign PCE removing inflation tail risk. Market structure remains constructive despite oil volatility.
+
+**Tomorrow's calendar (May 29):**
+- 6:30 AM ET: International Trade, Retail/Wholesale Inventories (Advance)
+- 6:30 AM ET: Kansas City Fed President Jeffrey Schmid speaks on "The Local and the Global in Monetary Policy"
+- **Headline:** Light calendar—no major macro surprises expected. Next material event: ASCO conference starts May 29 (cancer drug catalyst for LLY thesis).
+
+**Key takeaway:** MU entry validated AI/HBM thesis; benign PCE gates 3rd position deployment; monitor ASCO May 29–Jun 2 for LLY catalyst confirmation.
