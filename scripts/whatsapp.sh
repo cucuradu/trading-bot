@@ -51,15 +51,57 @@ if [[ -z "${WHATSAPP_APIKEY:-}" || -z "${WHATSAPP_PHONE:-}" ]]; then
   exit 0
 fi
 
-# URL-encode the message (CallMeBot is GET-based)
-encoded="$(python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))" "$msg")"
+# CallMeBot is GET-based, so the encoded message lives inside the URL.
+# Long messages silently truncate around ~2000 chars of URL. We split on
+# newline boundaries and send multiple chunks tagged "(i/N) ".
+MAX_CHARS="${WHATSAPP_MAX_CHARS:-900}"
 
-URL="https://api.callmebot.com/whatsapp.php?phone=${WHATSAPP_PHONE}&text=${encoded}&apikey=${WHATSAPP_APIKEY}"
+mapfile -t URLS < <(python3 - "$msg" "$MAX_CHARS" "$WHATSAPP_PHONE" "$WHATSAPP_APIKEY" <<'PY'
+import sys, urllib.parse
 
-# CallMeBot returns an HTML/text body even on success; -fsS so a non-2xx code fails.
-curl -fsS "$URL" || {
-  echo "[whatsapp] send failed; appending to fallback" >&2
-  printf "\n---\n## %s (send failed, fallback)\n%s\n" "$stamp" "$msg" >> "$FALLBACK"
-  exit 1
-}
-echo
+msg, max_chars, phone, apikey = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.argv[4]
+
+def split_message(text, limit):
+    if len(text) <= limit:
+        return [text]
+    chunks, remaining = [], text
+    while len(remaining) > limit:
+        window = remaining[:limit]
+        for sep in ("\n\n", "\n", " "):
+            idx = window.rfind(sep)
+            if idx > limit // 2:
+                chunks.append(remaining[:idx].rstrip())
+                remaining = remaining[idx + len(sep):]
+                break
+        else:
+            chunks.append(remaining[:limit])
+            remaining = remaining[limit:]
+    if remaining.strip():
+        chunks.append(remaining)
+    return chunks
+
+# Reserve ~8 chars for "(i/N) " prefix when multi-chunk
+chunks = split_message(msg, max_chars - 8)
+n = len(chunks)
+if n > 1:
+    chunks = [f"({i+1}/{n}) {c}" for i, c in enumerate(chunks)]
+
+for c in chunks:
+    encoded = urllib.parse.quote(c)
+    print(f"https://api.callmebot.com/whatsapp.php?phone={phone}&text={encoded}&apikey={apikey}")
+PY
+)
+
+total="${#URLS[@]}"
+for i in "${!URLS[@]}"; do
+  if ! curl -fsS "${URLS[$i]}"; then
+    echo "[whatsapp] send failed on chunk $((i+1))/${total}; appending full message to fallback" >&2
+    printf "\n---\n## %s (send failed on chunk %d/%d, fallback)\n%s\n" "$stamp" "$((i+1))" "$total" "$msg" >> "$FALLBACK"
+    exit 1
+  fi
+  echo
+  # space chunks out a bit so CallMeBot doesn't rate-limit
+  if (( i < total - 1 )); then
+    sleep 1
+  fi
+done
