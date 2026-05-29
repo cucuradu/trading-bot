@@ -96,7 +96,19 @@ If `scripts/gemini.sh` exits 3, fall back to native WebSearch and note the fallb
 
 Also use `python scripts/market_data.py sector-momentum` for the sector picture (no API quota). Cross-check against the regime classifier's `sectors` block — they should largely agree; if they don't, flag it.
 
-STEP 4b — Build today's shortlist (Phase F: data-driven multi-factor screener):
+STEP 4b — Build today's shortlist (Phase F: data-driven multi-factor screener;
+Phase G2: carry-forward watchlist):
+
+0. Read the carry-forward watchlist (Phase G2). Candidates whose limit/stop
+   didn't fill in the last 3 trading days are tracked here:
+   ```
+   python scripts/watchlist.py list
+   ```
+   Empty list is fine. Otherwise each entry's symbol gets a small bonus to its
+   screener `ml_score` (+0.5) when assembling the shortlist. Apply normal
+   filters (sector regime, earnings blackout). Watchlist survivors belong at
+   the top of the shortlist — the thesis was already validated; we're just
+   re-trying the entry.
 
 1. Resolve candidate ranking via STEP 1's `universe_ranking`:
    - If `source=ml` → `universe_ranking` is the XGBoost top-N from the local PC.
@@ -223,6 +235,13 @@ For each shortlisted candidate (cap 3):
 - Sector cap status: X/2 (Phase C rule)
 
 **R:R math:** entry $X / stop $X (-X.X%) / target $X (+X.X%) / R:R X.X:1 / max risk $X.
+
+**Setup type (Phase G1):** PULLBACK | BREAKOUT | MOMENTUM
+- **PULLBACK** — mean-reversion thesis (bounce off MA, dip-buy at support). Market-open places a **buy-limit** at the planned entry.
+- **BREAKOUT** — confirmation above resistance (52w-high break, base break). Market-open places a **buy-stop** at resistance + 0.1–0.2%.
+- **MOMENTUM** — open-with-strength; reserved for binary-event days where the print already triggered. Market-open places a **market order at open**. Justify why a limit wouldn't work.
+
+**Entry plan:** PULLBACK → limit $X.XX (day TIF) | BREAKOUT → buy-stop $X.XX (day TIF) | MOMENTUM → market at open
 
 **Decision:** retained / demoted / dropped — one sentence explaining why.
 

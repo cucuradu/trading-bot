@@ -61,6 +61,48 @@ STEP 3 — Compute metrics:
 - Trades today (list or "none")
 - Trades this week (running total)
 
+STEP 3b — Reconcile PENDING orders (Phase G4). Limit/stop entries placed by
+market-open earlier today may have filled intraday OR may still be open. Walk
+every PENDING line in TRADE-LOG that has no matching OPEN/CLOSED for the same
+`order_id`:
+
+```bash
+PENDINGS=$(python scripts/trade_log.py list-pending)
+TODAY_ORDERS=$(bash scripts/alpaca.sh orders-today)
+```
+
+For each pending order, look up its status in `$TODAY_ORDERS` (match on `id`):
+
+- `status == "filled"` → write the canonical OPEN line below the existing PENDING line, referencing the same order_id. The trailing-stop child armed automatically (OTO order_class) — no separate stop placement needed. Format:
+  ```
+  - OPEN YYYY-MM-DD: SYM order_id=<id> entry=FILL_PRICE initial_stop=STOP shares=N regime_entry=REGIME sector=XL? sizing=METHOD thesis="..." (carries forward from PENDING)
+  ```
+  Use the realized fill price from Alpaca's `filled_avg_price`, NOT the planned entry from PENDING.
+
+- `status == "canceled" or "expired"` (day-TIF limits Alpaca cleans up automatically at EOD; rare for buy-stops) → append a one-line "Watchlist note" under that PENDING line. If the thesis is still intact (no major broken news today, sector not flipped to Bear, no earnings now in blackout), add it to the carry-forward watchlist:
+  ```bash
+  python scripts/watchlist.py add SYM --setup <setup from RESEARCH-LOG> \
+    --entry <planned> --stop <initial_stop> --thesis "<short>"
+  ```
+  Otherwise log "Watchlist: dropped (thesis broken: <reason>)" and skip the add.
+
+- `status in {"new","accepted","held"}` AND order is a buy-stop with `time_in_force=day` → explicitly cancel so it doesn't leak into the next session:
+  ```
+  bash scripts/alpaca.sh cancel <order_id>
+  ```
+  Then treat the same as the "canceled" branch above (watchlist if thesis intact).
+
+- `status in {"new","accepted","held"}` AND order is GTC (rare for entries; should not happen with the OTO+day pattern) → leave it alone; flag in the WhatsApp brief.
+
+After this step, every PENDING line in TRADE-LOG has either been promoted to OPEN, has a "Watchlist" note, or has been explicitly cancelled. STEP 4 onward can assume only OPEN/CLOSED positions exist for accounting purposes.
+
+STEP 3c — Prune the watchlist (Phase G2). Decrement `days_remaining` on every
+entry, drop those that hit 0:
+```
+python scripts/watchlist.py prune
+```
+Include the expired list in the EOD WhatsApp recap (STEP 5).
+
 STEP 4 — Append EOD snapshot to `memory/TRADE-LOG.md`. Include a single-line EOD marker that risk_gates.py can parse for tomorrow's daily-DD check:
 
 ```
@@ -138,8 +180,10 @@ WAEOF
 STEP 6 — COMMIT AND PUSH (mandatory). Pull-rebase BEFORE staging:
 ```
 git pull --rebase origin main
-git add memory/TRADE-LOG.md memory/PEAK-EQUITY.txt memory/TICKER-NOTES.md
+git add memory/TRADE-LOG.md memory/PEAK-EQUITY.txt memory/TICKER-NOTES.md memory/WATCHLIST.md
 git commit -m "EOD snapshot $DATE"
 git push origin HEAD:main
 ```
+`memory/WATCHLIST.md` is added so additions / decrements from STEP 3b/3c persist for tomorrow's pre-market. `git add` of a non-existent file is a no-op — safe if the watchlist is empty today.
+
 On push failure: `git pull --rebase origin main && git push origin HEAD:main`. Never force-push.

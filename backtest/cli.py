@@ -21,7 +21,10 @@ from backtest.benchmarks import (
 )
 from backtest.data import load_universe_bars
 from backtest.engine import BacktestConfig, Engine
-from backtest.entry_simulator import make_top_n_entry_simulator
+from backtest.entry_simulator import (
+    make_top_n_entry_simulator,
+    make_top_n_limit_pullback_simulator,
+)
 from backtest.reports import (
     REPORTS_DIR, exit_reason_breakdown, metrics_for_curve,
     metrics_for_result, regime_breakdown, sector_pnl,
@@ -46,6 +49,14 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
                         help="Lower,upper P&L %% band for time-stop (default -3.0,3.0)")
     common.add_argument("--max-per-sector", type=int, default=2,
                         help="Max simultaneous positions per sector (default 2 = production rule, Phase C)")
+    common.add_argument("--entry-mode", default="market_on_open",
+                        choices=["market_on_open", "limit_pullback"],
+                        help="Entry-order model (Phase G1). market_on_open = current "
+                             "behavior; limit_pullback = buy-limit at close × (1 - pullback_pct).")
+    common.add_argument("--pullback-pct", type=float, default=0.02,
+                        help="Limit-entry pullback fraction (default 0.02 = 2%% below close)")
+    common.add_argument("--ttl-bars", type=int, default=1,
+                        help="Limit-entry day-TIF lifetime in bars (default 1 = day TIF; 3 mimics watchlist carry)")
 
     run = sub.add_parser("run", parents=[common])
     run.add_argument("--exit", dest="exit_strategy", default="atr_2_5x",
@@ -75,11 +86,22 @@ def _build_benchmarks(bars: dict, equity: float, start: date, end: date) -> dict
     }
 
 
+def _make_simulator(entry_mode: str, pullback_pct: float, ttl_bars: int):
+    if entry_mode == "limit_pullback":
+        return make_top_n_limit_pullback_simulator(
+            pullback_pct=pullback_pct, ttl_bars=ttl_bars,
+        )
+    return make_top_n_entry_simulator()
+
+
 def _run_one(bars: dict, exit_strategy: str, start: date, end: date,
              equity: float, *, stress: bool = False, shock_prob: float = 0.015,
              time_stop_days: int = 10,
              time_stop_band: tuple[float, float] = (-3.0, 3.0),
-             max_per_sector: int = 2) -> tuple:
+             max_per_sector: int = 2,
+             entry_mode: str = "market_on_open",
+             pullback_pct: float = 0.02,
+             ttl_bars: int = 1) -> tuple:
     cfg = BacktestConfig(
         start=start, end=end, starting_equity=equity,
         exit_strategy=exit_strategy,
@@ -89,7 +111,10 @@ def _run_one(bars: dict, exit_strategy: str, start: date, end: date,
     )
     if stress:
         cfg = stress_config(cfg, shock_prob=shock_prob)
-    engine = Engine(bars, entry_simulator=make_top_n_entry_simulator())
+    engine = Engine(
+        bars,
+        entry_simulator=_make_simulator(entry_mode, pullback_pct, ttl_bars),
+    )
     result = engine.run(cfg)
     return cfg, result
 
@@ -99,6 +124,9 @@ def _common_kwargs(args: argparse.Namespace) -> dict:
         "time_stop_days": args.time_stop_days,
         "time_stop_band": _parse_time_stop_band(args.time_stop_band),
         "max_per_sector": args.max_per_sector,
+        "entry_mode": args.entry_mode,
+        "pullback_pct": args.pullback_pct,
+        "ttl_bars": args.ttl_bars,
     }
 
 
@@ -112,6 +140,8 @@ def _run_name_suffix(args: argparse.Namespace) -> str:
         bits.append(f"band{clean}")
     if args.max_per_sector != 2:
         bits.append(f"sec{args.max_per_sector}")
+    if args.entry_mode != "market_on_open":
+        bits.append(f"{args.entry_mode}-pb{int(args.pullback_pct*100)}-ttl{args.ttl_bars}")
     return ("-" + "-".join(bits)) if bits else ""
 
 

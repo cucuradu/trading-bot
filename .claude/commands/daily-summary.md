@@ -35,6 +35,31 @@ STEP 3 — Compute metrics:
 - Trades today (list or "none")
 - Trades this week (running total)
 
+STEP 3b — Reconcile PENDING orders (Phase G4). Limit/stop entries placed by
+market-open earlier today may have filled intraday OR may still be open. Walk
+every PENDING line in TRADE-LOG that has no matching OPEN/CLOSED for the same
+`order_id`:
+
+```bash
+PENDINGS=$(python scripts/trade_log.py list-pending)
+TODAY_ORDERS=$(bash scripts/alpaca.sh orders-today)
+```
+
+For each pending order, look up its status in `$TODAY_ORDERS` (match on `id`):
+
+- `status == "filled"` → write the canonical OPEN line below the existing PENDING line, referencing the same order_id. The trailing-stop child armed automatically (OTO order_class). Use the realized `filled_avg_price`, not the planned entry.
+- `status == "canceled" or "expired"` → if thesis still intact, add to carry-forward watchlist:
+  ```
+  python scripts/watchlist.py add SYM --setup <setup from RESEARCH-LOG> \
+    --entry <planned> --stop <initial_stop> --thesis "<short>"
+  ```
+- `status in {"new","accepted","held"}` AND order is buy-stop with day TIF → explicitly cancel (`bash scripts/alpaca.sh cancel <order_id>`), then watchlist if thesis intact.
+
+STEP 3c — Prune watchlist (Phase G2):
+```
+python scripts/watchlist.py prune
+```
+
 STEP 4 — Append EOD snapshot to `memory/TRADE-LOG.md`. Include a single-line EOD marker that risk_gates.py can parse for tomorrow's daily-DD check:
 
 ```

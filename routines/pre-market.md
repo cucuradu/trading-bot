@@ -148,7 +148,20 @@ Also use `python scripts/market_data.py sector-momentum` for the sector
 picture (no API quota). Cross-check against the regime classifier's
 `sectors` block — they should largely agree; if they don't, flag it.
 
-STEP 4b — Build today's shortlist (Phase F: data-driven multi-factor screener):
+STEP 4b — Build today's shortlist (Phase F: data-driven multi-factor screener;
+Phase G2: carry-forward watchlist):
+
+0. Read the carry-forward watchlist (Phase G2). Candidates whose limit/stop
+   didn't fill in the last 3 trading days are tracked here:
+   ```
+   python scripts/watchlist.py list
+   ```
+   Empty list is fine. Otherwise: each entry's symbol gets a small bonus to
+   its screener `ml_score` (+0.5) when assembling the shortlist. Don't blindly
+   re-add a watchlist symbol if its sector flipped to Bear or earnings is now
+   inside the blackout window — the standard filters in step 4 still apply.
+   Watchlist symbols that survive belong **at the top** of the shortlist (the
+   thesis was already validated yesterday; we're just re-trying the entry).
 
 1. Resolve candidate ranking via STEP 1's `universe_ranking`:
    - If `source=ml` → `universe_ranking` is the XGBoost top-N from the local PC.
@@ -294,6 +307,13 @@ For each shortlisted candidate (cap 3):
 - Sector cap status: X/2 (Phase C rule)
 
 **R:R math:** entry $X / stop $X (-X.X%) / target $X (+X.X%) / R:R X.X:1 / max risk $X.
+
+**Setup type (Phase G1):** PULLBACK | BREAKOUT | MOMENTUM
+- **PULLBACK** — thesis is "price needs to come back to my level" (bounce off MA, dip-buy at support). Market-open will place a **buy-limit** at the planned entry — fills only if price comes to you. Best for mean-reversion setups where chasing risks paying up.
+- **BREAKOUT** — thesis is "confirmation above resistance" (52w-high break, base break, gap-and-go continuation). Market-open will place a **buy-stop** at resistance + 0.1–0.2% — fills only on confirmation. Use when the thesis is "I want to see it break before I'm in".
+- **MOMENTUM** — thesis is "open with strength, ride it"; reserved for binary-event days where the print already triggered (earnings beat, FOMC, macro release). Market-open will place a **market order at open**. Document why a limit wouldn't work in the thesis.
+
+**Entry plan:** PULLBACK → limit $X.XX (day TIF) | BREAKOUT → buy-stop $X.XX (day TIF) | MOMENTUM → market at open
 
 **Decision:** retained / demoted / dropped — one sentence explaining why.
 

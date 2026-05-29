@@ -7,6 +7,16 @@ a single canonical CLOSED line per closed trade for machine consumption:
     - CLOSED YYYY-MM-DD: SYM entry=PRICE exit=PRICE initial_stop=PRICE shares=N
       regime_entry=REGIME sector=SECTOR pnl=$X.XX r=R.RR reason="..."
 
+Phase G adds a PENDING line for limit/stop entries that are placed but not
+yet filled (broker-side conditional orders):
+
+    - PENDING YYYY-MM-DD: SYM order_id=ABC type=limit shares=N entry=PRICE
+      initial_stop=PRICE regime_entry=REGIME sector=SECTOR sizing=METHOD
+      thesis="..."
+
+PENDING orders do not count toward the weekly trade cap until they fill and
+are promoted to an OPEN line by daily-summary's reconciliation step.
+
 The same canonical EOD line already exists (parsed by scripts/risk_gates.py):
 
     - EOD YYYY-MM-DD: equity $X,XXX.XX
@@ -17,6 +27,7 @@ This module exposes the closed-trade parser + helpers used by:
 
 Usage:
   python scripts/trade_log.py list-closed              # JSON: all closed trades
+  python scripts/trade_log.py list-pending             # JSON: open PENDING orders
   python scripts/trade_log.py stats                    # JSON: aggregates
   python scripts/trade_log.py stats-since YYYY-MM-DD   # JSON: aggregates from date
   python scripts/trade_log.py count                    # int: N closed trades
@@ -41,6 +52,13 @@ TRADE_LOG = ROOT / "memory" / "TRADE-LOG.md"
 # Be tolerant: keys may appear in any order; the reason field is optional.
 CLOSED_LINE_RE = re.compile(
     r"-\s*CLOSED\s+(?P<date>\d{4}-\d{2}-\d{2}):\s*(?P<sym>[A-Z][A-Z0-9.]*)\s+(?P<kv>.+?)(?:\s+reason=\"[^\"]*\")?\s*$",
+    re.IGNORECASE,
+)
+# Phase G — PENDING lines for limit/stop entries that have been placed but
+# not yet filled. Daily-summary reconciles these against Alpaca and promotes
+# fills to canonical OPEN lines.
+PENDING_LINE_RE = re.compile(
+    r"-\s*PENDING\s+(?P<date>\d{4}-\d{2}-\d{2}):\s*(?P<sym>[A-Z][A-Z0-9.]*)\s+(?P<kv>.+?)(?:\s+thesis=\"[^\"]*\")?\s*$",
     re.IGNORECASE,
 )
 KV_RE = re.compile(r"(\w+)=([^\s\"]+|\"[^\"]*\")")
@@ -139,6 +157,103 @@ def load_closed_trades(path: Path | None = None) -> list[ClosedTrade]:
     if not p.exists():
         return []
     return parse_closed_trades(p.read_text())
+
+
+# ---------- PENDING-line parser (Phase G) ----------
+
+@dataclass(frozen=True)
+class PendingOrder:
+    """A limit/stop entry order placed but not yet filled.
+
+    Daily-summary reconciles these against Alpaca: filled -> promote to OPEN
+    line; canceled/expired -> drop (and optionally add to WATCHLIST.md).
+    """
+    symbol: str
+    placed_date: date
+    order_id: str
+    order_type: str            # "limit" | "stop" | "market" (market for MOMENTUM setup)
+    planned_entry: float
+    initial_stop: float
+    shares: int
+    regime_at_entry: str | None = None
+    sector: str | None = None
+    sizing_method: str | None = None
+    thesis: str | None = None
+
+    def as_jsonable(self) -> dict:
+        d = asdict(self)
+        d["placed_date"] = self.placed_date.isoformat()
+        return d
+
+
+def parse_pending_line(line: str) -> PendingOrder | None:
+    """Parse a single PENDING line. Returns None if it doesn't match.
+
+    Required keys: order_id, type, entry, initial_stop, shares.
+    Optional keys: regime_entry, sector, sizing, thesis.
+    """
+    m = PENDING_LINE_RE.match(line.strip())
+    if not m:
+        return None
+    kv = _parse_kv_segment(m.group("kv"))
+    thesis = None
+    tm = re.search(r'thesis="([^"]*)"', line)
+    if tm:
+        thesis = tm.group(1)
+
+    required = ("order_id", "type", "entry", "initial_stop", "shares")
+    if not all(k in kv for k in required):
+        return None
+
+    try:
+        return PendingOrder(
+            symbol=m.group("sym").upper(),
+            placed_date=date.fromisoformat(m.group("date")),
+            order_id=kv["order_id"],
+            order_type=kv["type"].lower(),
+            planned_entry=_coerce_float(kv["entry"]),
+            initial_stop=_coerce_float(kv["initial_stop"]),
+            shares=int(kv["shares"]),
+            regime_at_entry=kv.get("regime_entry"),
+            sector=kv.get("sector"),
+            sizing_method=kv.get("sizing"),
+            thesis=thesis,
+        )
+    except (ValueError, KeyError):
+        return None
+
+
+def parse_pending_orders(text: str) -> list[PendingOrder]:
+    """Parse all PENDING lines from a TRADE-LOG.md body.
+
+    Returns PENDING orders that have NOT been promoted to OPEN or CLOSED
+    (matched on symbol + order_id). A pending order is considered open until
+    daily-summary writes either an OPEN line referencing the same order_id or
+    explicitly drops it.
+    """
+    pendings: list[PendingOrder] = []
+    promoted_order_ids: set[str] = set()
+    for line in text.splitlines():
+        po = parse_pending_line(line)
+        if po is not None:
+            pendings.append(po)
+            continue
+        # An OPEN line written by reconciliation may reference order_id; if
+        # present, treat the PENDING as superseded. Same for CLOSED.
+        for tag in ("OPEN", "CLOSED"):
+            if line.lstrip().startswith(f"- {tag}"):
+                om = re.search(r"order_id=(\S+)", line)
+                if om:
+                    promoted_order_ids.add(om.group(1))
+                break
+    return [p for p in pendings if p.order_id not in promoted_order_ids]
+
+
+def load_pending_orders(path: Path | None = None) -> list[PendingOrder]:
+    p = path or TRADE_LOG
+    if not p.exists():
+        return []
+    return parse_pending_orders(p.read_text())
 
 
 # ---------- R-multiple math (D1) ----------
@@ -260,6 +375,8 @@ def main() -> int:
 
     if cmd == "list-closed":
         print(json.dumps([t.as_jsonable() for t in trades], indent=2))
+    elif cmd == "list-pending":
+        print(json.dumps([p.as_jsonable() for p in load_pending_orders()], indent=2))
     elif cmd == "stats":
         print(json.dumps(aggregate(trades).as_dict(), indent=2))
     elif cmd == "stats-since":

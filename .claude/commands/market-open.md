@@ -52,12 +52,17 @@ bash scripts/alpaca.sh quote <each planned ticker>
 
 STEP 3 — Hard-check rules BEFORE every order. Skip any trade that fails and log the reason:
 - Symbol is in the trading universe: `python scripts/universe.py is_member SYM` (exit 0 = allowed). Symbols outside the universe are FORBIDDEN — log and skip.
-- Total positions after trade ≤ 6
-- Trades this week ≤ 3
+- Symbol is NOT already an open position AND NOT already a PENDING order (`python scripts/trade_log.py list-pending` to check). Duplicate entries would be unintended pyramiding (Phase H, deferred).
+- Total positions after trade ≤ 6 (PENDING orders do NOT count yet; only filled OPEN positions)
+- Trades this week ≤ 3 (count CLOSED + OPEN lines only — PENDING-not-yet-filled does not consume a slot)
 - Position cost ≤ 20% of equity
 - Catalyst documented in today's RESEARCH-LOG
 - `daytrade_count` leaves room (PDT: 3/5 rolling business days)
 - Entry passes `entries_blocked` check from STEP 0
+- **Gap guard (Phase G3)** — read the planned entry from today's RESEARCH-LOG candidate block (the **R:R math** line). Compare to current ask:
+  - `current > planned × 1.03` (gap up >3% past plan) → SKIP. Append `- SKIPPED YYYY-MM-DD: SYM reason=gap_above_plan current=$X planned=$Y` to TRADE-LOG and add to watchlist for tomorrow:
+    `python scripts/watchlist.py add SYM --setup <setup> --entry <planned> --stop <initial_stop> --thesis "<short>"`
+  - `current < planned × 0.97` (gap down >3% below plan) → PROCEED but recompute `stop_pct` (the gap broadens the realized ATR%) and place the limit at the new lower ask, not the stale planned price.
 - **Earnings blackout (A4)** — `python scripts/market_data.py earnings SYM`. If `in_blackout` is true AND the documented catalyst is NOT earnings, SKIP this trade.
 - **Correlation cap (A3)** — for each candidate SYM, run:
   ```
@@ -86,43 +91,55 @@ Use `size_dollars` from the JSON output to compute shares: `shares = floor(size_
 
 If `method == "half_kelly"` AND this is the first trade after the switchover (yesterday's TRADE-LOG showed `method=flat_20pct`), send a one-off WhatsApp alert: `"Half-Kelly sizing now ACTIVE — W=X.XX, R=Y.YY, expectancy=Z.ZZ"`.
 
-STEP 5 — Execute the buys (market orders, day TIF):
-```
-bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy","type":"market","time_in_force":"day"}'
-```
-Wait for fill confirmation before placing the stop.
+STEP 5 — Place the entry as a single **OTO** order (Phase G1). The entry leg's shape depends on the **Setup type** label in today's RESEARCH-LOG candidate block. Alpaca arms the trailing stop on entry fill — no separate stop placement step needed.
 
-STEP 6 — Immediately place the ATR-based trailing stop GTC for each new position:
+**PULLBACK** — buy-limit at planned entry:
 ```
-bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"<stop_pct from STEP 4>","time_in_force":"gtc"}'
+bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy","type":"limit","limit_price":"<planned_entry>","time_in_force":"day","order_class":"oto","stop_loss":{"trail_percent":"<stop_pct from STEP 4>"}}'
 ```
-If Alpaca rejects with PDT error, fall back to a fixed stop using the `stop_price` from STEP 4:
+
+**BREAKOUT** — buy-stop above resistance:
 ```
-bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"stop","stop_price":"<stop_price from STEP 4>","time_in_force":"gtc"}'
+bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy","type":"stop","stop_price":"<resistance × 1.001>","time_in_force":"day","order_class":"oto","stop_loss":{"trail_percent":"<stop_pct from STEP 4>"}}'
 ```
-If also blocked, queue the stop in TRADE-LOG as "PDT-blocked, set tomorrow AM".
+
+**MOMENTUM** — market at open (reserved for binary-event days):
+```
+bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy","type":"market","time_in_force":"day","order_class":"oto","stop_loss":{"trail_percent":"<stop_pct from STEP 4>"}}'
+```
+
+Capture the returned `id` (parent order_id) for the PENDING line.
+
+PDT-rejection fallback: replace `"trail_percent": "X"` with `"stop_price": "<stop_price from STEP 4>"` (fixed stop child). If also blocked, submit the entry alone (no OTO), record PENDING with `stop=PDT-blocked-set-tomorrow`.
 
 If `scripts/alpaca.sh` exits 42 (failsafe), STOP, send WhatsApp alert, do not retry.
 
-STEP 7 — Append each trade to `memory/TRADE-LOG.md`. Write TWO things:
+STEP 6 — Append to `memory/TRADE-LOG.md`:
 
-1. The canonical OPEN line on its own line (used by exit-side parsing to recover entry + initial_stop + regime + sector):
+1. Canonical **PENDING** line (promoted to OPEN on fill by daily-summary):
    ```
-   - OPEN YYYY-MM-DD: SYM entry=PRICE initial_stop=STOP_PRICE shares=N regime_entry=REGIME sector=XL? sizing=METHOD thesis="..."
+   - PENDING YYYY-MM-DD: SYM order_id=<id from STEP 5> type=<limit|stop|market> entry=PLANNED_PRICE initial_stop=STOP_PRICE shares=N regime_entry=REGIME sector=XL? sizing=METHOD thesis="..."
    ```
    Fields:
-   - `entry` = realized fill price (not the pre-trade quote).
-   - `initial_stop` = the `stop_price` from STEP 4. **Never change this value** — R-multiple computation on close depends on it being the original level.
-   - `regime_entry` = today's resolved market regime from STEP 0 (Bull|Neutral|Caution).
-   - `sector` = `python scripts/universe.py sector SYM` (XLK|XLF|.../BROAD).
-   - `sizing` = `method` from STEP 4b (`flat_20pct` or `half_kelly`).
-   - `thesis` = short quoted free-form string.
+   - `order_id` = parent order id from STEP 5.
+   - `type` = limit (PULLBACK), stop (BREAKOUT), or market (MOMENTUM).
+   - `entry` = planned price (daily-summary overwrites with realized fill).
+   - `initial_stop` = derived from `stop_pct` × planned entry (STEP 4). **Never change this value** — R-multiple math depends on the original level.
+   - `regime_entry` = today's resolved regime.
+   - `sector` = `python scripts/universe.py sector SYM`.
+   - `sizing` = `method` from STEP 4b.
+   - `thesis` = short quoted string.
 
-2. The usual prose summary block for human readability (date, ticker, ATR, stop_pct, target, R:R, full thesis paragraph).
+2. For MOMENTUM market orders that fill immediately, ALSO append the canonical OPEN line right away (so midday and others don't wait):
+   ```
+   - OPEN YYYY-MM-DD: SYM order_id=<id> entry=FILL_PRICE initial_stop=STOP_PRICE shares=N regime_entry=REGIME sector=XL? sizing=METHOD thesis="..." (carries forward from PENDING)
+   ```
 
-STEP 8 — Notification (only if a trade was placed):
+3. The usual prose summary block (Setup type, ATR, stop_pct, target, R:R, full thesis).
+
+STEP 7 — Notification (if an order was placed, even pending):
 ```
 bash scripts/whatsapp.sh << 'WAEOF'
-<tickers, shares, fill prices, one-line why — heredoc so $ amounts pass through>
+<tickers, shares, order type, planned entry, trail %, fill status — heredoc>
 WAEOF
 ```

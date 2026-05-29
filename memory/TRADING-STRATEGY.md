@@ -268,3 +268,71 @@ Claude-discretion item.
 - `market-open`: re-resolves at the bell; flips to conservative if regime changed since pre-market.
 - `daily-summary`: logs `- Regime YYYY-MM-DD: ...` line; flags transitions.
 - `weekly-review`: bucket win rate + R-multiple by regime (Phase D3).
+
+## Entry order types (Phase G — closes the missed-entry gap)
+
+Before Phase G, every entry was a market order at 09:35 ET. If the planned
+zone was missed at that one quote, the candidate was dropped — and the next
+day's screener could re-rank it out. Real evidence (2026-05-27 NVDA / AMD /
+LLY): correct theses, wrong timing, no carry-forward.
+
+Phase G moves the price-timing decision from Claude (one-shot at the bell)
+to the broker (intraday limit / stop conditional fills), and adds a
+3-trading-day watchlist for residual misses.
+
+### Setup-type → order-type mapping
+
+Each pre-market candidate gets a **Setup type** label in its RESEARCH-LOG
+block. Market-open uses the label to choose the order shape:
+
+| Setup     | Thesis shape                              | Market-open order                         |
+|-----------|-------------------------------------------|-------------------------------------------|
+| PULLBACK  | "Price needs to come back to my level"    | Buy-limit at planned entry, day TIF       |
+| BREAKOUT  | "Confirmation above resistance"           | Buy-stop at resistance +0.1–0.2%, day TIF |
+| MOMENTUM  | "Open with strength, ride it" (binary day)| Market order at open, day TIF             |
+
+All three are placed with Alpaca's `order_class=oto` and a child trailing
+stop using the ATR-based `stop_pct` (Phase A2). The child arms automatically
+on entry fill — no unhedged window between fill and stop placement.
+
+### Gap guard (Phase G3)
+
+Market-open STEP 3 compares the current ask to the planned entry from
+RESEARCH-LOG:
+
+- `current > planned × 1.03` → SKIP entry. Log a `- SKIPPED ...` line, push
+  the candidate to the watchlist so tomorrow's pre-market can re-evaluate at
+  the original planned price.
+- `current < planned × 0.97` → PROCEED but place the limit at the new lower
+  ask and recompute stop_pct (the gap widens realized ATR%).
+
+### PENDING line + EOD reconciliation (Phase G4)
+
+Market-open writes a `- PENDING YYYY-MM-DD: SYM order_id=... type=... ...`
+line for every order it places. PENDING orders do NOT count toward the
+weekly trade cap or the open-position cap until they fill.
+
+Daily-summary STEP 3b reconciles each PENDING against Alpaca's `orders-today`:
+
+- Filled → write canonical `- OPEN ...` line referencing the same order_id
+  (realized fill price, not the planned entry).
+- Cancelled / expired → if thesis intact, add to the watchlist (Phase G2).
+- Still open + buy-stop with day TIF → explicitly cancel so it doesn't leak
+  into the next session.
+
+The `initial_stop` on the OPEN line is the value derived from the **planned**
+entry × stop_pct, NOT recomputed from the fill price. R-multiple math depends
+on the original risk level being immutable.
+
+### Watchlist (Phase G2)
+
+`memory/WATCHLIST.md` — hard-capped at 6 entries (≤ open-position cap), each
+with `days_remaining` (default 3 trading days). Pre-market STEP 4b consults
+the watchlist and applies a small `ml_score` bonus (+0.5) to listed symbols
+so they compete fairly with fresh screener picks. Daily-summary STEP 3c
+prunes expired entries.
+
+A watchlist entry is dropped early if the thesis breaks (sector flips to
+Bear, earnings now in blackout, major adverse news). The standard pre-market
+filters still apply on each re-evaluation — the bonus does not override hard
+rules.

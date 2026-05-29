@@ -56,6 +56,7 @@ STEP 1 — Read memory:
 - `memory/TRADING-STRATEGY.md` (exit rules)
 - Tail of `memory/TRADE-LOG.md` (entries, original thesis per position, stops)
 - Today's `memory/RESEARCH-LOG.md` entry
+- PENDING orders placed by market-open (Phase G1): `python scripts/trade_log.py list-pending`. These represent limit/stop entries that have not yet filled — they ARE NOT open positions yet. If a PENDING order's thesis breaks intraday (catalyst invalidated, adverse news), cancel the order proactively (`bash scripts/alpaca.sh cancel <order_id>`) rather than waiting for daily-summary's EOD sweep. Log the cancellation under the PENDING line with the reason. Otherwise leave PENDING orders alone — daily-summary will reconcile them after the close.
 
 STEP 2 — Pull current state:
 ```

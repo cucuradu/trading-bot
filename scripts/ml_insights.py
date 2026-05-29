@@ -326,9 +326,24 @@ def resolve(*, now: datetime | None = None, enable_local_screener: bool = True) 
         except Exception as e:  # never crash resolve() because screener failed
             print(f"[ml_insights] local screener fallback failed: {e}", file=sys.stderr)
 
+    # G5.3 — when the local screener fallback succeeded AND the ML rejection
+    # was just "stale" or "not found", collapse the verbose reason to a stable
+    # terse string. Preserve "malformed JSON" / schema-validation reasons —
+    # those are real signal worth logging. Keeps routines from pasting a noisy
+    # 74h-stale message into every RESEARCH-LOG entry while the local PC
+    # producer is offline.
+    fallback_reason = validated["reason"]
+    if (
+        universe_ranking
+        and ml_metadata is not None
+        and fallback_reason
+        and ("stale" in fallback_reason or "not found" in fallback_reason)
+    ):
+        fallback_reason = "ml unavailable; using local_screener_v1"
+
     return {
         "source": "rule_fallback",
-        "fallback_reason": validated["reason"],
+        "fallback_reason": fallback_reason,
         "market": {
             "regime": market["regime"],
             "deployment_target": market["deployment_target"],

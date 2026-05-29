@@ -21,9 +21,9 @@ Open these in order before doing anything:
 - Max 20% per position
 - Max 3 new trades per week
 - 75–85% capital deployed
-- 10% trailing stop on every position as a real GTC order
+- ATR-based trailing stop on every position (2.5×ATR, clamped to [7%, 15%]) as a real GTC order — see `memory/TRADING-STRATEGY.md` "Stop methodology"
 - Cut losers at R ≤ −1 manually (close ≤ initial_stop)
-- Tighten trail to 7% at +15%, to 5% at +20%
+- Tighten trail at +15% (to max(7%, 1.75×ATR)) and at +20% (to max(5%, 1.25×ATR))
 - Never within 3% of current price. Never move a stop down
 - Follow sector momentum. Exit a sector after 2 failed trades
 - Patience > activity
@@ -39,6 +39,9 @@ Open these in order before doing anything:
 - `python scripts/market_data.py {quote|news|sector-momentum|atr|stop-for-entry|correlation|max-correlation-with|earnings} ...` — free market data
 - `python scripts/news_sources.py {gather|newsapi-query|finnhub-news|finnhub-earnings|finnhub-analyst|finnhub-insider|edgar|google-news|reddit} ...` — multi-source news adapters
 - `python scripts/research.py {gather|synthesize|critique|historical-analog|latest-on|ticker-notes|macro|digest} ...` — research orchestrator + retrieval
+- `python scripts/trade_log.py {list-closed|list-pending|stats|stats-since|count}` — TRADE-LOG parser (Phase G adds `list-pending`)
+- `python scripts/watchlist.py {list|add|prune|drop}` — carry-forward watchlist (Phase G2)
+- `python scripts/gap_guard.py evaluate PLANNED CURRENT` — pre-open gap-guard decision (Phase G3)
 - `bash scripts/whatsapp.sh "<message>"` — notifications via CallMeBot
 
 Never `curl` these APIs directly.

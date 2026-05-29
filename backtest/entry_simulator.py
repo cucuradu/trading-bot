@@ -17,16 +17,40 @@ Selection rule:
 
 A simple correlation filter is applied: candidates must have <= 0.70 30-day
 correlation with already-open positions and with each other.
+
+Phase G adds a parallel `LimitPullbackSimulator` that returns `EntryIntent`s
+(planned price below today's close + TTL) instead of immediate-fill tuples,
+so the engine can simulate day-TIF / multi-day limit-order entries.
 """
 from __future__ import annotations
 
 import sys
+from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from typing import Callable
 
 import numpy as np
 import pandas as pd
+
+
+@dataclass(frozen=True)
+class EntryIntent:
+    """Conditional limit/stop entry order (Phase G).
+
+    The engine holds this in `pending_orders` until it either:
+      - fills (bar's [low, high] window covers the planned price), or
+      - hits ttl_bars=0 and expires.
+
+    setup_type drives fill semantics:
+      - PULLBACK: fill if bar_low <= planned_entry (limit fills at planned).
+      - BREAKOUT: fill if bar_high >= planned_entry (stop fills at planned).
+      - MOMENTUM: fill at bar's open (or close if open unavailable).
+    """
+    symbol: str
+    planned_entry: float
+    setup_type: str            # "PULLBACK" | "BREAKOUT" | "MOMENTUM"
+    ttl_bars: int = 1          # day-TIF default; 3 mimics watchlist carry
 
 _HERE = Path(__file__).resolve().parent
 _SCRIPTS = _HERE.parent / "scripts"
@@ -109,7 +133,11 @@ def _max_correlation(candidate: str, others: list[str],
 
 
 def make_top_n_entry_simulator() -> Callable:
-    """Factory: returns an entry_simulator closure for engine.Engine."""
+    """Factory: returns an entry_simulator closure for engine.Engine.
+
+    Returns immediate-fill tuples `(symbol, entry_price)` — the legacy
+    contract preserved for the baseline A/B comparison.
+    """
 
     def simulator(*, bars: dict[str, pd.DataFrame],
                   current_date: pd.Timestamp,
@@ -154,5 +182,74 @@ def make_top_n_entry_simulator() -> Callable:
             picks.append((sym, px))
             picked_syms.append(sym)
         return picks
+
+    return simulator
+
+
+def make_top_n_limit_pullback_simulator(
+    pullback_pct: float = 0.02,
+    ttl_bars: int = 1,
+) -> Callable:
+    """Phase G1 backtest analog of PULLBACK setups.
+
+    Same momentum/sector/correlation filters as the baseline, but instead of
+    proposing a market-on-bar fill at today's close, the simulator emits an
+    `EntryIntent(planned_entry = close * (1 - pullback_pct), setup="PULLBACK",
+    ttl_bars=N)`. The engine treats this as a buy-limit: fills only if a
+    subsequent bar's low touches the limit. If TTL expires unfilled, the
+    candidate is dropped (mirrors the WATCHLIST 3-day carry).
+
+    Use `ttl_bars=1` for day-TIF behavior; `ttl_bars=3` to simulate the
+    watchlist-carry behavior end-to-end.
+    """
+
+    def simulator(*, bars: dict[str, pd.DataFrame],
+                  current_date: pd.Timestamp,
+                  regime: str,
+                  open_symbols: set[str],
+                  equity: float,
+                  slots: int) -> list[EntryIntent]:
+        if slots <= 0 or regime == "Defensive":
+            return []
+        if not _is_first_trading_day_of_week(bars["SPY"].index, current_date):
+            return []
+
+        ts = current_date
+        candidates: list[tuple[str, float, float]] = []
+        for sym in TRADING_UNIVERSE:
+            if sym in open_symbols:
+                continue
+            df = bars.get(sym)
+            if df is None or ts not in df.index:
+                continue
+            row = df.loc[ts]
+            if pd.isna(row.get("ret_20")):
+                continue
+            sec = sector_of(sym)
+            if sec and sec not in {"BROAD", None}:
+                sec_regime = _classify_sector_on(bars, sec, ts)
+                if sec_regime == "Bear":
+                    continue
+            candidates.append((sym, float(row["ret_20"]), float(row["Close"])))
+
+        candidates.sort(key=lambda x: x[1], reverse=True)
+
+        intents: list[EntryIntent] = []
+        picked_syms: list[str] = list(open_symbols)
+        for sym, _mom, close in candidates:
+            if len(intents) >= slots:
+                break
+            corr = _max_correlation(sym, picked_syms, bars, ts)
+            if corr > CORR_CAP:
+                continue
+            planned = close * (1.0 - pullback_pct)
+            intents.append(EntryIntent(
+                symbol=sym,
+                planned_entry=planned,
+                setup_type="PULLBACK",
+                ttl_bars=ttl_bars,
+            ))
+            picked_syms.append(sym)
+        return intents
 
     return simulator

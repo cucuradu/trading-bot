@@ -75,6 +75,14 @@ case "$cmd" in
     status="${1:-open}"
     curl -fsS -H "$H_KEY" -H "$H_SEC" "$API/orders?status=$status"
     ;;
+  orders-today)
+    # Phase G — return every order (filled, canceled, expired, new, accepted)
+    # placed since 00:00:00 UTC today. Used by daily-summary to reconcile
+    # PENDING lines and cancel unfilled day-TIF buy-stops at EOD.
+    today_utc="$(date -u +%Y-%m-%dT00:00:00Z)"
+    curl -fsS -H "$H_KEY" -H "$H_SEC" \
+      "$API/orders?status=all&limit=500&after=$today_utc&nested=true"
+    ;;
   order)
     body="${1:?usage: order '<json>'}"
     curl -fsS -H "$H_KEY" -H "$H_SEC" -H "Content-Type: application/json" \
@@ -95,7 +103,7 @@ case "$cmd" in
     curl -fsS -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
-    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order|cancel|cancel-all|close|close-all> [args]" >&2
+    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|orders-today|order|cancel|cancel-all|close|close-all> [args]" >&2
     exit 1
     ;;
 esac

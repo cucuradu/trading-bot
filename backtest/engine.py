@@ -32,10 +32,18 @@ import regime as rg  # noqa: E402
 from market_data import compute_atr  # noqa: E402
 from universe import sector_of  # noqa: E402
 
+from entry_simulator import EntryIntent  # noqa: E402
 from exit_engine import (  # noqa: E402
     ExitStrategy, FixedTrail, Position, apply_post_strategy_rules,
     get_strategy, unrealized_pct,
 )
+
+
+@dataclass
+class _PendingOrder:
+    """In-engine bookkeeping for an unfilled EntryIntent (Phase G)."""
+    intent: EntryIntent
+    bars_remaining: int
 
 
 @dataclass
@@ -186,6 +194,8 @@ class Engine:
         prior_equity = equity
         equity_pts: list[tuple[pd.Timestamp, float]] = []
         positions: dict[str, Position] = {}
+        # Phase G: in-flight limit/stop orders awaiting a fill or TTL expiry.
+        pending_orders: dict[str, _PendingOrder] = {}
         result = BacktestResult(config=config, final_equity=equity, peak_equity=peak_equity)
 
         rng = np.random.default_rng(config.stress_seed) if config.apply_stress_shocks else None
@@ -259,6 +269,84 @@ class Engine:
             if config.apply_regime_gating and regime == "Defensive":
                 entries_blocked = True
 
+            # ---- Process PENDING orders from prior bars (Phase G) ----
+            # Walk every pending limit/stop order placed on a prior bar and
+            # try to fill it on today's bar. Day-TIF orders that don't fill
+            # this bar have their TTL decremented; expired ones are dropped.
+            strategy_for_fills = get_strategy(config.exit_strategy)
+            filled_intents: list[tuple[EntryIntent, float]] = []
+            for sym in list(pending_orders.keys()):
+                po = pending_orders[sym]
+                df = self.bars.get(sym)
+                if df is None or ts not in df.index:
+                    po.bars_remaining -= 1
+                    if po.bars_remaining <= 0:
+                        pending_orders.pop(sym, None)
+                    continue
+                row = df.loc[ts]
+                bar_low = float(row["Low"])
+                bar_high = float(row["High"])
+                bar_open = float(row["Open"]) if "Open" in row and not pd.isna(row["Open"]) else float(row["Close"])
+                fill_price: float | None = None
+                if po.intent.setup_type == "PULLBACK":
+                    # Buy-limit: fills if the bar trades down to the limit.
+                    # If the bar opens BELOW the limit (gap-down), we get filled
+                    # at the open — better-than-limit fill, matching reality.
+                    if bar_low <= po.intent.planned_entry:
+                        fill_price = min(bar_open, po.intent.planned_entry)
+                elif po.intent.setup_type == "BREAKOUT":
+                    # Buy-stop: fills if the bar trades up through the stop.
+                    if bar_high >= po.intent.planned_entry:
+                        fill_price = max(bar_open, po.intent.planned_entry)
+                else:  # MOMENTUM
+                    fill_price = bar_open
+
+                if fill_price is not None:
+                    filled_intents.append((po.intent, fill_price))
+                    pending_orders.pop(sym, None)
+                else:
+                    po.bars_remaining -= 1
+                    if po.bars_remaining <= 0:
+                        pending_orders.pop(sym, None)
+
+            # Sector exposure tally (excludes BROAD ETFs from the cap).
+            sector_counts: dict[str, int] = {}
+            for p in positions.values():
+                if p.sector and p.sector != "BROAD":
+                    sector_counts[p.sector] = sector_counts.get(p.sector, 0) + 1
+
+            # Promote filled intents to open positions, respecting caps.
+            for intent, fill_price in filled_intents:
+                if intent.symbol in positions:
+                    continue
+                if len(positions) >= config.max_positions:
+                    break
+                df = self.bars.get(intent.symbol)
+                sec = sector_of(intent.symbol) or "UNKNOWN"
+                if sec != "BROAD" and sector_counts.get(sec, 0) >= config.max_per_sector:
+                    continue
+                atr_at_entry = float(df.at[ts, "atr_14"]) if not pd.isna(df.at[ts, "atr_14"]) else None
+                # Initial_stop is derived from the PLANNED entry, not the realized fill —
+                # mirrors the Phase G rule that the original-risk level is immutable.
+                stop_pct, stop_price = strategy_for_fills.initial_stop(
+                    intent.planned_entry, atr_at_entry
+                )
+                position_dollars = equity * config.max_position_pct
+                shares = int(math.floor(position_dollars / fill_price)) if fill_price > 0 else 0
+                if shares <= 0:
+                    continue
+                realized = fill_price * (1 + config.slippage_pct / 100)
+                positions[intent.symbol] = Position(
+                    symbol=intent.symbol, entry_date=day, entry_price=realized,
+                    initial_stop=stop_price, shares=shares,
+                    sector=sec, regime_at_entry=regime, sizing_method="flat_20pct",
+                    current_stop_pct=stop_pct, current_stop_price=stop_price,
+                    peak_close=realized, bars_held=0,
+                )
+                if sec != "BROAD":
+                    sector_counts[sec] = sector_counts.get(sec, 0) + 1
+                equity -= config.fee_per_trade
+
             # ---- Process new entries via the simulator ----
             if (
                 self.entry_simulator is not None
@@ -269,21 +357,36 @@ class Engine:
                 slots = config.max_positions - len(positions)
                 proposed = self.entry_simulator(
                     bars=self.bars, current_date=ts, regime=regime,
-                    open_symbols=set(positions.keys()),
+                    open_symbols=set(positions.keys()) | set(pending_orders.keys()),
                     equity=equity,
                     slots=slots,
                 )
-                # Sector exposure tally (excludes BROAD ETFs from the cap).
-                sector_counts: dict[str, int] = {}
-                for p in positions.values():
-                    if p.sector and p.sector != "BROAD":
-                        sector_counts[p.sector] = sector_counts.get(p.sector, 0) + 1
 
                 strategy = get_strategy(config.exit_strategy)
                 opened_this_bar = 0
-                for sym, entry_price in proposed:
+                for proposal in proposed:
                     if opened_this_bar >= slots:
                         break
+                    # Phase G: simulator may return an EntryIntent dataclass
+                    # (limit/stop, queued in pending_orders) or the legacy
+                    # (sym, price) tuple (immediate market fill). Duck-type on
+                    # `setup_type` rather than isinstance — Python sees two
+                    # distinct EntryIntent classes when the engine and tests
+                    # import via different module paths (entry_simulator vs.
+                    # backtest.entry_simulator), so isinstance breaks.
+                    if hasattr(proposal, "setup_type"):
+                        if proposal.symbol in positions or proposal.symbol in pending_orders:
+                            continue
+                        sec_check = sector_of(proposal.symbol) or "UNKNOWN"
+                        if sec_check != "BROAD" and sector_counts.get(sec_check, 0) >= config.max_per_sector:
+                            continue
+                        pending_orders[proposal.symbol] = _PendingOrder(
+                            intent=proposal, bars_remaining=proposal.ttl_bars,
+                        )
+                        opened_this_bar += 1
+                        continue
+
+                    sym, entry_price = proposal
                     if sym in positions:
                         continue
                     df = self.bars.get(sym)
