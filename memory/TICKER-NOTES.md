@@ -26,15 +26,18 @@ Conventions:
   - BofA PT $950 = only +2.4% upside from $928; UBS $1,625 = +75% — which is correct?
 
 ## AMD (XLK)
-- Thesis (2026-05-28): AI data center ramp (MI300 series) driving structural growth, but RSI overbought (73-74) + no near-term catalyst makes near-term entry timing poor; await pullback to ≤$475.
+- Thesis (2026-05-29): AI data center ramp (MI300/MI400 Helios rack-scale) driving structural growth; gate ≤$490 required — RSI ~77 overbought at $518 year high ($527.20), CUDA/CoWoS structural cap limits near-term upside; await pullback before June 2 catalysts.
 - Recent catalysts:
   - 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B)
   - 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M potential recovery
-  - 2026-07: "Advancing AI 2026" flagship event (next major catalyst)
+  - 2026-06-02: BofA Global Technology Conference (CFO Jean Hu presenting)
+  - 2026-06-02/03: Microsoft Build (AMD AI integration)
+  - 2026-07: "Advancing AI 2026" flagship event
 - Open thesis questions:
   - TSMC CoWoS packaging — can AMD secure enough capacity vs NVIDIA preferential access?
   - Gaming H2 2026 projected −20%+; does it offset DC growth?
-  - RSI 73-74 overbought; optimal entry price ~$460-480 (post-pullback)
+  - RSI ~77 overbought at year high $527.20; gate set ≤$490 for Mon Jun 1 entry; if no pullback, raise to $510 or skip
+  - Single most-likely invalidator: HBM supply allocation report showing AMD can't scale Instinct production
 
 ---
 

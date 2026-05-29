@@ -1164,3 +1164,112 @@ Mixed macro data (hot PCE, weak GDP) didn't derail the Iran-peace-driven rally. 
 
 ### Decision (Midday scan result)
 **NO ACTION** — MU position healthy, thesis intact, no losers to cut, no tightening triggers yet. Continue monitoring COMPUTEX prep into Jun 2.
+
+---
+
+## 2026-05-29 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, stale 98.9h — local PC drift; slots: 2, deployment: 75%)
+
+### Account
+- Equity: $100,407.04 | Cash: $80,618.95 | BP: $181,025.99 | Daytrades: 0
+- Open positions: 1 (MU — 21 shares @ $922.91, current $942.29, +$407 / +2.1%, HWM $949.49)
+- Open orders: 1 (MU 15% trailing stop GTC, stop_price $807.07)
+- Trades this week: 1 of 3 max (MU opened Thu May 28)
+
+### Macro Framework
+Neutral regime (rule_fallback; ml-insights.json stale 98.9h — local PC drift). VIX 15.74 (−0.99 vs yesterday 16.73 — lowest this week, declining complacency trend). 30y yield 4.97% (−6bp vs 5.03% yesterday; down from 5.19% peak 19y high earlier this month — yield compression continuing). DXY steady ~99. WTI $87.30 (−1.8%); Brent $91.17 (−1.65%) — Iran ceasefire extension hopes pushing oil below $88 intraday; Brent now −17% MTD, WTI −12% MTD — major disinflation tailwind. SPX futures +0.12–0.16% premarket — mild positive. Dell Q4 earnings beat (AI server demand strong) released PM May 28 is sparking an AI hardware rally in premarket tech names. Economic calendar light: Trade Balance Advance + Wholesale Inventories at 8:30 AM ET; Fed speakers (Schmid 6:50, Bowman 9:10, Paulson 9:15 AM ET). No CPI/PPI/jobs/FOMC today. Dominant theme: Iran ceasefire extension → oil declines further → disinflation narrative intact → equity positive, especially tech. vs yesterday: yields −6bp (4.97% vs 5.03%); oil −1.8% (Iran ceasefire extension); VIX −0.99; regime unchanged; Dell AI rally = fresh tech tailwind.
+
+### Sector Picture
+**Top 3 (1mo momentum):**
+1. XLK Technology: +17.4% (Trend) ✓ — screener & regime agree
+2. XLV Healthcare: +5.6% (Trend) ✓
+3. XLY Consumer Discretionary: +4.5% (Trend) ✓
+
+**Bottom 3:**
+9. XLF Financials: −1.25% (Choppy)
+10. XLU Utilities: −2.3% (Bear) ✓
+11. XLE Energy: −3.5% (Bear) ✓
+
+**Screener vs regime cross-check:** Full agreement on Bear sectors (XLE, XLU) and Trend sectors (XLK, XLV, XLY). No divergence to flag.
+
+### Screener Diagnostics
+Screener: source=local_screener_v1 (rule_fallback; ml stale 98.9h), ranked 65 tickers
+Top 10: MU(1.68), AMD(1.66), SMH(0.74), CAT(0.55), MS(0.47), GS(0.46), GOOGL(0.44), LLY(0.43), XLK(0.43), AMZN(0.38)
+Shortlist (after filtering held/Bear/cap): AMD, CAT, MS, GOOGL — 1 available slot
+
+### Candidates
+
+#### AMD (XLK, $518.09, premarket)
+
+**Setup:** RSI ~76.71 (overbought). Year high: $527.20 (at/near year high). Year low: $108.62. ATR(14)=$26.58 (5.13% of price); stop_pct_2.5x=12.83% (within [7,15] range). XLK sector — would fill 2/2 XLK slots at cap.
+
+**Sources scanned (1):** 0 NewsAPI (key missing) / 0 Finnhub (key missing) / 0 EDGAR (403 cloud block) / 0 Reddit (403 cloud block) / 1 Gemini grounded search. *All structured sources 403-blocked in cloud sandbox.*
+
+**Bull case (Gemini grounded):**
+- MI300X fastest-ramping AI GPU product; MI400 (Helios rack-scale platform) targets hyperscalers H2 2026 — expected to double AI compute performance over MI350 (cited: AMD product roadmap, May 2026)
+- BofA Global Technology Conference June 2 + Microsoft Build June 2-3 as immediate catalysts; AMD CFO Jean Hu presenting at BofA Tech Conference (cited: AMD investor events calendar)
+- Dell Q4 AI server demand beat = direct AI hardware tailwind for AMD GPU thesis (cited: Dell earnings PM May 28)
+- Q1 2026 record FCF $2.6B (3×YoY); data center +57% YoY to $5.78B — financial momentum intact (cited: AMD Q1 2026 IR)
+
+**Bear case (Gemini grounded):**
+- NVIDIA CUDA moat: millions of developers, deep software ecosystem; ROCm narrowing the gap but long-term challenge; NVIDIA holds 75–90% AI accelerator market share through 2026 (cited: analyst consensus, May 2026)
+- CoWoS/HBM supply cap: NVIDIA preferential TSMC allocation structurally limits AMD Instinct GPU production volumes regardless of demand (cited: industry analysis, May 2026)
+- RSI 76.71 — overbought; at year high $527.20 with limited near-term upside headroom
+- Gaming segment H2 2026 projected −20%+ revenue decline due to higher component costs (cited: AMD Q1 2026 earnings call)
+
+**Disconfirming evidence to watch:**
+- Any report on AMD losing HBM supply allocation → production cap + profit-taking
+- Gaming revenue guidance revision further below consensus
+
+**Catalysts ahead (next 14d):**
+- June 2: BofA Global Technology Conference (CFO Jean Hu)
+- June 2-3: Microsoft Build (AMD AI integration updates)
+- June 2-5: COMPUTEX Taipei (overlap with MU catalyst — AI ecosystem)
+
+**One-line takeaway:** AMD has strong AI GPU thesis but is at 52-week high with RSI ~77 and the CUDA/CoWoS structural cap limits near-term upside — wait for pullback.
+
+**Critique:**
+- **Strongest counter:** NVIDIA's CUDA moat + preferential CoWoS/HBM TSMC allocation structurally limits AMD Instinct GPU production; NVIDIA projected to maintain 75–90% AI accelerator share through 2026 regardless of AMD demand.
+- **Single most-likely invalidator (5d):** Credible report on AMD's inability to secure sufficient HBM supply → profit-taking from overbought condition at year high.
+
+**Position-aware (if entered $20k at current $518):**
+- Sector exposure post-entry: ~20% XLK (combined with MU: ~40% XLK total, at 2/2 cap)
+- 30d correlation with MU: 0.433 (passes ≤0.70 gate)
+- Sector cap status: 2/2 XLK (at cap after MU)
+
+**R:R math (at current price $518):** entry $518 / stop $452 (−12.83%) / target $621 (+20%) / R:R 1.56:1 / max risk ~$2,772 on $21,756 (42 shares).
+**Original gate R:R (at $475):** entry $475 / stop $414 (−12.83%) / target $570 (+20%) / R:R 1.56:1 / max risk ~$2,562.
+
+**Decision:** **HOLD — gate not met.** AMD at $518 is $43 above yesterday's $475 gate. RSI ~77 = overbought entry at year high violates strategy discipline. BofA Tech Conference June 2 + COMPUTEX June 2-5 could extend the run further OR create a sell-the-news event. AMD carries to Mon Jun 1; gate remains ≤$490 (meaningful pullback from year high required). Do NOT chase.
+
+### Historical Analog
+Closest analog: **October 26, 2023** — 30y yield 5.01% (nearly identical to today's 4.97%). VIX ~17.85 (comparable to current 15.74 — today's VIX is actually lower, more complacent). Macro backdrop Oct 2023: elevated inflation + hawkish Fed. What followed: S&P 500 +4.4% over 5 trading days, +5.8% over 10 days, +10.1% over 20 trading days (October low → November 2023 rally). Key divergence: today has Iran ceasefire oil driver (not present in Oct 2023), GDP softer (+1.6% vs +4.9% in Q3 2023), and XLV/XLY leading while XLU lagging (reversed vs Oct 2023). Dell AI rally adds a fresh tech tailwind not present in the analog. Base case skews continued moderate rally but more selective than Oct 2023's broad recovery.
+
+### Risk Factors (consolidated)
+- **Iran binary (weekend risk):** Ceasefire extension hopes driving oil lower — any breakdown over weekend → oil gap-up Monday, cross-asset disruption, XLK rotation risk
+- **MU at $942 + AMD at $518:** Both at elevated prices near highs; any AI capex story (MSFT/GOOGL capex cut rumor) → sharp tech sector reversal
+- **XLK concentration (if AMD entered):** 40% equity in one sector at 2/2 cap; zero buffer for sector rotation
+- **AMD RSI overbought (~77) at year high:** Poor risk-adjusted entry; chasing overbought momentum on a Friday
+- **Fed speakers (Schmid 6:50, Bowman 9:10, Paulson 9:15):** Any hawkish rhetoric on inflation → yield spike → equity headwind
+- **COMPUTEX June 2-5:** MU catalyst window opens Monday; any disappointment on Jensen/HBM4 roadmap → both MU and AI semi names gap down
+- **ML stale (98.9h):** Regime based on rule_fallback only; local PC hasn't updated ml-insights.json since Tuesday — possible regime shift not yet captured
+
+### Decision
+**HOLD — no new entries today (Friday May 29).**
+
+- **MU:** Hold. Thesis intact (+$407, +2.1%, HWM $949.49). No tightening trigger yet (target +15% = $1,061; not reached). 15% trail GTC active.
+- **AMD:** Primary candidate (ml_score 1.66, screener #1 non-held). Gate ≤$490 NOT met ($518). RSI ~77 overbought at year high — do not chase. Carry to Monday Jun 1.
+- **Reason for HOLD:** Friday + Iran binary weekend risk + AMD gate not met + overbought entry = poor risk/reward. Patience > activity per strategy rule.
+- **Monday Jun 1:** If AMD opens ≤$490 (pullback) with RSI cooling, consider entry before BofA Tech Conference June 2. If AMD gaps further up → raise gate to $510 or skip to next week.
+
+### Quota & source usage (footer)
+- Gemini calls: 7 Flash + 0 Pro
+- NewsAPI: 0 (key missing)
+- Finnhub: 0 (key missing)
+- EDGAR: 0 (403 cloud block)
+- Reddit: 0 (403 cloud block)
+- Google News: 0 (403 cloud block)
+- Fallback events: All structured sources degraded; all research via Gemini grounded search
+- ml-insights.json: rule_fallback (stale 98.9h — local PC drift; regime unchanged Neutral)
+- Screener: local_screener_v1 (Phase F)
