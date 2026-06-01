@@ -121,3 +121,74 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 - **Headline:** Light calendar—no major macro surprises expected. Next material event: ASCO conference starts May 29 (cancer drug catalyst for LLY thesis).
 
 **Key takeaway:** MU entry validated AI/HBM thesis; benign PCE gates 3rd position deployment; monitor ASCO May 29–Jun 2 for LLY catalyst confirmation.
+
+---
+
+### June 1 — Market-open trades (Day 5, Monday)
+
+- OPEN 2026-06-01: AMD entry=$493.80 initial_stop=$431.58 shares=40 regime_entry=Neutral sector=XLK sizing=flat_20pct thesis="COMPUTEX catalyst (Jun 2-5) live; Mizuho PT upgrade $615 Jun 1; BofA Tech Conference CFO Jun 2; AI GPU competition thesis vs NVIDIA CUDA; gained on Radeon RX 9070 GRE launch Jun 2"
+
+**AMD buy details:**
+- Entry: $493.80 avg (filled at market-open 09:30 ET)
+- Shares: 40
+- Cost basis: $19,752.00 (19.3% of equity)
+- ATR(14) ≈ $26.01 (5.27% of price); 2.5×ATR → stop_pct_2.5x = 12.60% within [7%, 15%]
+- Initial stop: $431.58 (entry × 0.875)
+- Trailing stop: 12.60% trail, GTC, active
+- Target: $592.56 (+20%)
+- R:R: 1.59:1
+- Max risk if stopped: ~$2,485 (2.4% of equity)
+- Catalyst: COMPUTEX 2026 Taipei Jun 2-5 (Radeon RX 9070 GRE global launch Jun 2); Mizuho PT raised $515→$615 on Jun 1; BofA Tech Conference CFO Jean Hu Jun 2
+- Sector exposure post-entry: 19.3% XLK (1/2 slots used)
+
+---
+
+- OPEN 2026-06-01: CAT entry=$867.71 initial_stop=$799.16 shares=23 regime_entry=Neutral sector=XLI sizing=flat_20pct thesis="Data center power infrastructure re-rating; record backlog $63B (+79% YoY); 32nd consecutive dividend increase; JPMorgan PT $1,125 vs current; structural AI capex tailwind"
+
+**CAT buy details:**
+- Entry: $867.71 avg (filled at market-open 09:30 ET)
+- Shares: 23
+- Cost basis: $19,957.34 (19.5% of equity)
+- ATR(14) ≈ $27.69 (3.19% of price); 2.5×ATR → stop_pct_2.5x = 7.97% within [7%, 15%] (near floor)
+- Initial stop: $799.16 (entry × 0.921)
+- Trailing stop: 7.97% trail, GTC, active
+- Target: $1,041.25 (+20%)
+- R:R: 2.53:1 (favorable risk/reward)
+- Max risk if stopped: ~$1,573 (1.5% of equity)
+- Catalyst: Data center power generation re-rating (CAT targeting 3× capacity by 2028 for AI data center power demand); record order backlog $63B (+79% YoY from Q1 2026); 32nd consecutive annual dividend increase expected Jun 2026
+- Sector exposure post-entry: 19.5% XLI (1/2 slots used)
+
+**Trades today (Mon):** 2 new entries (AMD, CAT)
+**Trades this week (Mon):** 2 of 3 max
+
+---
+
+### June 1 — EOD Snapshot (Day 5, Monday)
+- EOD 2026-06-01: equity $102,863.53
+**Portfolio:** $102,863.53 | **Cash:** $40,838.01 (39.7%) | **Day P&L:** +$2,758.68 (+2.76%) | **Phase P&L:** +$2,758.68 (+2.76%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 40 | $493.80 | $509.94 | +$16.14 | +$645.60 (+3.27%) | $431.58 (12.60% trail) |
+| CAT | 23 | $867.71 | $865.36 | −$2.35 | −$54.06 (−0.27%) | $799.16 (7.97% trail) |
+| MU | 21 | $922.91 | $1,035.52 | +$112.61 | +$2,364.87 (+12.20%) | $807.07 (15% trail) |
+
+- Regime 2026-06-01: Neutral (source: rule_fallback, slots: 2)
+- Trades today: 2 (AMD + CAT market-open entries)
+- Trades this week (Mon): 2 of 3 max
+
+**Why today:** COMPUTEX Taipei opened Jun 1 with Jensen Huang keynote unveiling NVIDIA N1X chip + Microsoft partnership → tech sector surged intraday. AMD (+3.27%), MU (+12.20%) both benefited from AI infrastructure momentum. CAT's entry slight negative (−0.27%) but thesis intact on data center power re-rating. Iran binary remains elevated (ceasefire fragile) — WTI/Brent oil moved +3.94% / +3.00% on weekend escalation, pushing yields (30y 4.99%) and creating cross-asset volatility. S&P 500 +0.22% premarket opening, tech leadership drove XLK +1.2% intraday. Manufacturing ISM PMI came in softer than expected (48.5 vs 50.0 consensus) — slight cyclical headwind offset by tech strength. Fed speakers (Schmid, Bowman, Paulson) hawkish on inflation concerns; Powell testimony Jun 12 looms. Single biggest driver: COMPUTEX catalyst live + AI infrastructure tailwind offsetting macro uncertainties.
+
+**Risk flags (intraday monitoring):**
+- MU approaching +15% trail tighten trigger ($1,061.35) — only +$26 away
+- CAT stop at $799.16 — watching XLI sector for rotation risk given XLE/XLU bear regime
+- AMD at 97.9% of year high ($527.20) — limited headroom; COMPUTEX June 2-5 could extend or trigger sell-the-news reversal
+- Oil volatility (Iran) — any escalation → XLE spike → flight-to-quality away from leveraged industrials
+
+**Tomorrow's calendar (Tue Jun 2):**
+- 10:00 AM ET: Construction Spending (May); Durable Goods Orders (May advance); ISM PMI followup
+- COMPUTEX keynotes continue (AMD, NVIDIA, Qualcomm)
+- BofA Global Technology Conference: AMD CFO Jean Hu speaking
+- No major macro surprises expected if PMI doesn't misfire again
+
+**Key takeaway:** 3-position portfolio now 62% deployed (targeting 75%); COMPUTEX catalyst window open through Jun 5; MU approaching trail tighten; sector diversification (XLK + XLI) helps hedge Iran oil volatility; 1 slot remaining for next entry if thesis emerges.
