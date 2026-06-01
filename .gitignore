@@ -26,3 +26,6 @@ cache/
 
 # Backtest data cache (regenerable yfinance parquets)
 backtest/data_cache/
+
+# Daily breadth report outputs (regenerable, fetched from public CSVs)
+reports/breadth/

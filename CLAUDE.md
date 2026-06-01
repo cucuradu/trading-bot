@@ -44,6 +44,18 @@ Open these in order before doing anything:
 - `python scripts/gap_guard.py evaluate PLANNED CURRENT` — pre-open gap-guard decision (Phase G3)
 - `bash scripts/whatsapp.sh "<message>"` — notifications via CallMeBot
 
+### Community skills (MIT, vendored under `.claude/skills/` from tradermonty/claude-trading-skills)
+
+Optional advisory inputs. No API key. Public CSVs from tradermonty/uptrend-dashboard.
+NOT a hard gate — current strategy still defers to `scripts/regime.py` / `ml_insights.py`.
+Use when you want depth beyond VIX + SPY 200SMA.
+
+- `python .claude/skills/sector-analyst/scripts/analyze_sector_rotation.py --json`
+  → cyclical vs defensive ratio, risk-on/risk-off score, market cycle phase (early/mid/late/recession).
+- `python .claude/skills/market-breadth-analyzer/scripts/market_breadth_analyzer.py --output-dir reports/breadth`
+  → 6-component breadth composite (0-100), suggested equity exposure band, S&P-vs-breadth divergence flag.
+  Pre-create the output dir; the script does not `mkdir -p`.
+
 Never `curl` these APIs directly.
 
 ### Env vars used by the research pipeline (all optional; adapters skip silently if missing)
