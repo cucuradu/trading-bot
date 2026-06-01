@@ -15,7 +15,7 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-05-28): AI/HBM structural demand story — 2026 HBM supply fully sold out, COMPUTEX June 2-5 as next catalyst; re-rating from cyclical to AI infrastructure enabler.
+- Thesis (2026-06-01): AI/HBM structural demand — 2026 HBM fully committed to hyperscalers; COMPUTEX Jun 2-5 live (MU showcasing HBM); Susquehanna PT $1,750, UBS $1,625; +15% tighten trigger $1,061.35 (approaching — MU at $1,011 premarket).
 - Recent catalysts:
   - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
   - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
@@ -26,18 +26,19 @@ Conventions:
   - BofA PT $950 = only +2.4% upside from $928; UBS $1,625 = +75% — which is correct?
 
 ## AMD (XLK)
-- Thesis (2026-05-29): AI data center ramp (MI300/MI400 Helios rack-scale) driving structural growth; gate ≤$490 required — RSI ~77 overbought at $518 year high ($527.20), CUDA/CoWoS structural cap limits near-term upside; await pullback before June 2 catalysts.
+- Thesis (2026-06-01): Q2 2026 guide $11.2B (+46% YoY) + MI450/Helios hyperscaler ramp + COMPUTEX catalysts (Radeon RX 9070 GRE Jun 2, BofA Tech Conf, Microsoft Build Jun 2-3); Mizuho PT $615; buy-limit $510 on pullback — do not chase near year high $527.
 - Recent catalysts:
   - 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B)
   - 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M potential recovery
-  - 2026-06-02: BofA Global Technology Conference (CFO Jean Hu presenting)
-  - 2026-06-02/03: Microsoft Build (AMD AI integration)
-  - 2026-07: "Advancing AI 2026" flagship event
+  - 2026-06-01: Mizuho PT raised $515→$615, "Outperform" maintained
+  - 2026-06-02: Radeon RX 9070 GRE global launch + BofA Tech Conference (CFO Jean Hu) + Microsoft Build
+  - 2026-06-02/05: COMPUTEX Taipei 2026 (AI ecosystem; AMD participating)
+  <!-- archive: 2026-07: "Advancing AI 2026" flagship event -->
 - Open thesis questions:
   - TSMC CoWoS packaging — can AMD secure enough capacity vs NVIDIA preferential access?
   - Gaming H2 2026 projected −20%+; does it offset DC growth?
-  - RSI ~77 overbought at year high $527.20; gate set ≤$490 for Mon Jun 1 entry; if no pullback, raise to $510 or skip
-  - Single most-likely invalidator: HBM supply allocation report showing AMD can't scale Instinct production
+  - Gate raised $475→$510 (acknowledged); entry requires limit at $510 — chasing $516 not warranted
+  - Single most-likely invalidator: Credible report of MI450 CoWoS constraint below 50% of initial guidance
 
 ---
 
@@ -70,11 +71,16 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
-- Recent catalysts: (none yet)
-- Open thesis questions: (none yet)
-- Trade history: (none yet)
-- Position-aware notes: (none yet)
+- Thesis (2026-06-01): Data center power generation re-rating (3× engine capacity by 2028) + record backlog $63B (+79% YoY) + EPS +30% Q1 2026 beat; buy-limit $868 (day TIF) on pullback to session-low support; R:R 2.53:1.
+- Recent catalysts:
+  - 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance
+  - 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845
+  - 2026-06: Annual dividend increase expected (32nd consecutive)
+- Open thesis questions:
+  - Q1 tariff costs $710M — will US-China escalation compound in Q2?
+  - Resource Industries profit −39% YoY; can data center power fully offset?
+  - XLI sector Choppy (regime score 0.054); sector tailwind absent — thesis is CAT-specific not sector
+  - Single most-likely invalidator: US-China tariff escalation targeting industrial machinery category
 
 ## COST (XLP)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.

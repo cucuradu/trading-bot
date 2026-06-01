@@ -1273,3 +1273,187 @@ Closest analog: **October 26, 2023** — 30y yield 5.01% (nearly identical to to
 - Fallback events: All structured sources degraded; all research via Gemini grounded search
 - ml-insights.json: rule_fallback (stale 98.9h — local PC drift; regime unchanged Neutral)
 - Screener: local_screener_v1 (Phase F)
+
+---
+
+## 2026-06-01 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2, deployment: 75%) — ml unavailable; using local_screener_v1
+
+**ML staleness:** rule_fallback active (ml_insights not available from local PC); regime unchanged Neutral, trade slots unchanged at 2.
+
+**Research degraded:** NEWS_API_KEY, FINNHUB_KEY, EDGAR_USER_AGENT not set in this environment — all structured sources returned []; research via Gemini grounded search only.
+
+### Account
+- Equity: $101,861.71 | Cash: $80,618.95 (79.2%) | Buying Power: $182,480.66 (2x margin)
+- Long market value: $21,242.76 (20.8% deployed vs 75% target — significantly underdeployed)
+- Daytrade count: 0 | Open positions: 1 (MU) | Open orders: 1 (MU 15% trail GTC)
+- Trades this week: 1 of 3 max (MU opened Thu May 28)
+- **MU status:** 21 shares @ $922.91 entry, current $1,011.56 (+$88.65, +9.6% unrealized = $1,861.71). HWM $981, trail stop $833.85. +15% trigger = $1,061.35 ($49.79 away). ATR(14)=$56.05 (5.77%); 1.75×ATR tighten trail = 10.10% → if MU hits $1,061 today (COMPUTEX), tighten GTC trail from 15% → ~10%.
+
+### Macro Framework
+Neutral regime (rule_fallback; ml stale). VIX 15.92 (+0.60 from May 29 close 15.32 — uptick on Iran reversal). 30y yield 4.99% (+2bp from 4.97%) — approaching 5.00%. DXY steady ~99. **Oil REVERSED: WTI $90.80 (+3.94%), Brent $93.85 (+3.00%)** — Iran/Strait of Hormuz escalation reversed weekend ceasefire optimism; peace deal hopes dampened by US-Iran strikes and Israel/Lebanon actions (tradingeconomics.com, Jun 1). SPX futures +0.22% to 7,596.74 (seekingalpha.com) — mildly positive despite oil spike, supported by COMPUTEX catalyst. Jensen Huang keynote at COMPUTEX Taipei unveiled NVDA N1X PC chip + Microsoft partnership → premarket surges in ARM, HPE, IBM; AMD Radeon RX 9070 GRE launches globally June 2; MU presenting HBM solutions at COMPUTEX. Economic calendar: ISM Manufacturing PMI + Construction Spending at 10:00 AM ET (moderate risk). FOMC Jun 16-17; Jobs Jun 5; CPI Jun 10. Earnings before open: SAIC only.
+
+**vs yesterday (May 29):** yields +2bp (4.99% vs 4.97%); oil +4% REVERSAL (Iran ceasefire collapsed → Brent $91→$94); VIX +0.60 (15.32→15.92); regime unchanged; COMPUTEX catalyst live = tech positive offsets Iran oil spike.
+
+### Sector Picture
+- **Top 3 (1mo momentum):**
+  1. XLK Technology: +19.76% — **Trend** (screener & regime agree)
+  2. XLV Healthcare: +2.38% — Choppy (regime: score 0.20; sector-momentum higher suggests mild divergence, not alarming)
+  3. XLY Consumer Discretionary: +2.13% — Choppy
+- **Bottom 3:**
+  - XLP Consumer Staples: −1.66% — **Bear**
+  - XLU Utilities: −5.19% — **Bear**
+  - XLE Energy: −5.63% — **Bear**
+- **Screener vs regime:** Full agreement on Bear (XLE, XLP, XLU) and Trend (XLK). Minor divergence: sector-momentum shows XLV +2.38% (could be Trend entry) but regime scores it Choppy (0.20) — following regime classifier.
+
+**Screener:** source=local_screener_v1 (rule_fallback), ranked 65 tickers, top 10: MU(1.69,held), AMD(1.51), SMH(0.61), MS(0.50), CAT(0.47), GS(0.45), XLK(0.43), UNH(0.36), HON(0.36), MRK(0.35). Shortlist (after held/Bear/cap filters): AMD, MS, CAT, UNH — 1 slot available (XLK fills at AMD, 1 non-XLK slot for MS/CAT/UNH).
+
+### Candidates
+
+#### AMD (XLK, $516.10 ±0.19% from prev close $515.15)
+
+**Setup:** Year high $527.20 (AMD trading at 97.9% of year high — near top). ATR(14)=$26.01 (5.04% of price); stop_pct_2.5x=12.60% (within [7,15]).
+
+**Sources scanned (1):** 0 NewsAPI (key missing) / 0 Finnhub (key missing) / 0 EDGAR (403) / 0 Reddit (403) / 1 Gemini grounded.
+
+**Bull case (cited):**
+- Q1 2026: revenue $10.3B (+38% YoY, beat consensus); Data Center +57% YoY to $5.8B; non-GAAP EPS $1.37 (beat) (AMD Q1 2026 IR)
+- Q2 2026 guide: $11.2B revenue mid-point (+46% YoY), non-GAAP gross margin ~56% — strong momentum (AMD Q1 2026 IR)
+- MI450 + Helios rack-scale platform: leading hyperscaler forecasts exceeding initial expectations; partnerships with Meta and OpenAI expanding visibility (Gemini grounded search, Jun 2026)
+- Mizuho raised PT from $515→$615 on June 1, 2026 maintaining "Outperform" — Street high $625 (Gemini, Jun 1 2026)
+- COMPUTEX June 2-5: Radeon RX 9070 GRE launches globally June 2; AMD at Microsoft Build June 2-3; BofA Tech Conference CFO Jean Hu June 2
+
+**Bear case (cited):**
+- Gaming H2 2026 projected −20%+ sequential decline due to higher memory/component costs (AMD Q1 2026 earnings call)
+- NVIDIA CUDA moat + CoWoS/HBM preferential TSMC allocation limits AMD Instinct production volumes regardless of demand (analyst consensus, May 2026)
+- P/E TTM 169.21x vs 5y median 92.59x — stretched valuation; stock 123% overvalued per GF Value (GuruFocus, May 2026)
+- Near year high $527.20 with limited headroom; RSI elevated from prior research
+
+**Disconfirming evidence to watch:** AMD losing HBM/CoWoS allocation to NVIDIA; any hyperscaler capex cut rumor; gaming segment guidance miss in Q2.
+
+**Catalysts ahead (next 14d):**
+- Jun 2: Radeon RX 9070 GRE launch + BofA Tech Conference (CFO Jean Hu) + Microsoft Build (Jun 2-3)
+- Jun 2-5: COMPUTEX Taipei (AI ecosystem; overlaps with MU)
+- Jun 8: London Tech Week (Diamond Sponsor)
+
+**Critique:**
+
+**Strongest counter to the bull case:** NVIDIA's CUDA moat and preferential TSMC CoWoS/HBM allocation is a structural constraint, not a quarterly variable. Even as AMD's MI450/Helios ships, hyperscalers maintain dual sourcing primarily as pricing leverage over NVIDIA — AMD's actual revenue share in AI accelerators is unlikely to exceed 20-25% through 2026, meaning the +46% Q2 guidance is essentially one good cycle away from a supply-chain hiccup. The 169x TTM P/E means even a modest Q2 miss ($10.8B vs $11.2B guide) triggers a 15-20% multiple compression.
+
+**Weakly-sourced claims:** No EDGAR/Finnhub/NewsAPI data confirmed; all facts from Gemini grounded only — the specific claim that "Meta and OpenAI partnerships are enhancing visibility" lacks a direct citation URL.
+
+**Single most-likely invalidator (next 5 trading days):** Credible report (TSMC supply chain leak or AMD investor day commentary) indicating MI450 volume ramp is constrained to below 50% of initial guidance due to CoWoS packaging bottleneck — would compress the Q2 upside surprise assumption and trigger profit-taking from near year-high levels.
+
+**Position-aware (if entered $20k at $516):**
+- Sector exposure post-entry: ~20% XLK (combined MU: ~40% XLK total → 2/2 XLK sector cap)
+- 30d correlation with MU: 0.44 (passes ≤0.70 gate)
+- Sector cap status: 2/2 XLK (fills cap — no more XLK entries after AMD)
+
+**R:R math:** entry $510 (limit) / stop $445.56 (−12.60%) / target $612 (+20%) / R:R 1.59:1 / max risk ~$2,726 on $21,420 (42 shares).
+
+**Setup type:** PULLBACK — thesis is "COMPUTEX catalyst live but stock already extended; buy the intraday dip back to $510 rather than chasing near year high."
+
+**Entry plan:** Buy-limit $510.00 (day TIF) — AMD traded as low as $503.43 today; $510 is achievable on any tech sector jitter.
+
+**Gate-history audit:** May 28 pre-market gate $475; May 29 pre-market "raise gate to $510 or skip" was already flagged. Gate raised $475→$510 (+7.4%): justified because AMD stock moved from ~$475 range to $516 on COMPUTEX momentum; the absolute entry level tracks the stock's expansion of its range. Not a silent drift — explicitly noted in May 29 RESEARCH-LOG. However, entering at $510 still represents paying $35 above the original thesis entry — risk acknowledged.
+
+**Decision:** Retained. COMPUTEX catalysts June 2-3 are live today; Mizuho PT upgrade to $615 June 1 provides fresh institutional support. Entry only via limit $510 — do not chase above $516 premarket.
+
+---
+
+#### CAT (XLI, $875.87 ±+0.23% from prev close $873.86)
+
+**Setup:** Year high $931.35 (93.9% of year high — some room). ATR(14)=$27.69 (3.16% of price); stop_pct_2.5x=7.90% (just above 7% minimum).
+
+**Sources scanned (1):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 1 Gemini grounded.
+
+**Bull case (cited):**
+- Q1 2026: EPS +30% YoY (beat), sales +22% YoY; record order backlog $63B (+79% YoY) (Gemini/CAT Q1 2026 IR)
+- Data center power generation re-rating: CAT targeting 3× its large-engine/turbine capacity by 2028 to meet AI data center electricity demand — structural demand driver (Gemini grounded, Jun 2026)
+- Management raised outlook; analyst upgrades: JPMorgan PT $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845 (Gemini, May 2026)
+- 32nd consecutive annual dividend increase expected June 2026 — income floor + institutional mandate (Gemini grounded, Jun 2026)
+
+**Bear case (cited):**
+- Q1 2026 tariff costs $710M; Resource Industries profit −39% YoY — compressed margins in traditional segment (CAT Q1 2026 earnings call)
+- Forward P/E 38x vs 3-year average ~18x — steep premium requires flawless execution (Gemini grounded, May 2026)
+- Cyclical construction/mining revenue exposed to China slowdown and commodity cycle turn
+
+**Disconfirming evidence to watch:** US-China tariff escalation (new list expansion) hitting CAT supply chain; Resource Industries Q2 guidance cut; oil spike (today +4%) benefiting energy capex but CAT has limited direct Iran exposure.
+
+**Catalysts ahead (next 14d):**
+- June 2026: Annual dividend increase announcement (typically June board meeting)
+- No earnings until Aug 4 (64 days)
+
+**Critique:**
+
+**Strongest counter to the bull case:** CAT's re-rating from cyclical industrial to "AI infrastructure power" is the market's 2026 narrative — but the company is still 70%+ exposed to traditional construction and mining. Q1 tariff costs of $710M will compound in Q2 if US-China trade tensions persist (trade war escalation is a live risk given Iran/geopolitical backdrop today). The 38x forward P/E leaves zero margin for a Resource Industries miss. If oil spikes from Iran (already +4% today), energy capex benefits CAT miners long-term, but inflation pressure spikes yields → multiple compression.
+
+**Weakly-sourced claims:** The "3× capacity by 2028" claim is from Gemini grounded without a direct earnings transcript URL — plausible but unverified.
+
+**Single most-likely invalidator (next 5 trading days):** US-China tariff escalation announcement (Commerce Dept. expanding tariff list to include additional industrial machinery) → Resource Industries margin already at −39% would face further compression, forcing guidance cut at Q2 preview.
+
+**Position-aware (if entered $20k at $875):**
+- Sector exposure post-entry: ~20% XLI (0 existing XLI positions → 1/2 cap)
+- 30d correlation with existing (MU): 0.386 (passes ≤0.70 gate); with AMD (if held together): 0.386 (passes)
+- Sector cap status: 1/2 XLI (room for one more XLI position later)
+
+**R:R math:** entry $875 (limit at day-low support) / stop $806.81 (−7.90%) / target $1,050 (+20%) / R:R 2.53:1 / max risk ~$2,765 on $21,875 (25 shares).
+
+**Setup type:** PULLBACK — CAT pulled back from session high $890 to low $866 this morning; limit at $868 targets the lower support band.
+
+**Entry plan:** Buy-limit $868.00 (day TIF) — within today's session range $866-$890; buy at support.
+
+**Gate-history audit:** First appearance in RESEARCH-LOG. No prior gate to compare. No silent drift.
+
+**Decision:** Retained. Data center power re-rating + record backlog + dividend growth = durable thesis. Stop 7.90% is the widest per ATR. R:R 2.53:1 is solid. Risk: XLI Choppy sector + tariff exposure requires discipline on exit.
+
+### Candidates dropped (and why)
+- **MS** — Avg analyst PT $205.95 is below current price $208 (stock above consensus); XLF Choppy (regime score 0.08); no strong catalyst today; dropped.
+- **UNH** — XLV Choppy; no strong near-term catalyst; carry to Jun 2 as pre-warmed candidate.
+- **GS** — Second XLF name (sector cap concern alongside MS); screener rank 6th; dropped.
+- **SMH** — XLK sector cap: would add a 3rd XLK name if AMD and MU both held; dropped.
+
+### Historical Analog
+**Analog: November 1, 2023.** Matching conditions: VIX ~15.5 (comparable to today's 15.92); 30y yield 4.98% (virtually identical to today's 4.99%); S&P had just bottomed at October 2023 lows and fresh-month institutional positioning was driving gains; AI/semiconductor theme live (NVDA had just broken out above $450); geopolitical risk (Israel-Gaza) creating oil uncertainty; tech-heavy leadership (XLK dominant).
+
+**What followed:** SPX +4.4% over 5 trading days (Nov 1-7, 2023), +6.1% over 10 days, +9.1% over 20 days through the broad November rally. AMD specifically ran ~18% in 3 weeks from early November 2023 lows (Koyfin historical data, Nov 2023).
+
+**Why this time might differ:** Today's oil spike (+4% from Iran/Hormuz reversal) was absent in Nov 2023's backdrop — elevated oil reintroduces inflation risk that wasn't present then, and could slow the analog's momentum if sustained. Additionally, COMPUTEX is a discrete catalyst event (more volatile/binary than the steady Nov 2023 rally), and yields are 5bp higher than the 4.94% 30y trough of that period.
+
+### Risk Factors (consolidated)
+1. **Iran oil reversal (+4% today):** Ceasefire deal collapsed; WTI $90.80, Brent $93.85. Sustained oil above $95 reintroduces inflation narrative, pressures yields, hits tech multiples.
+2. **MU approaching +15% trail tighten trigger ($1,061.35):** COMPUTEX catalyst could push MU through trigger today; market-open must update GTC trail from 15%→~10% if triggered.
+3. **AMD XLK concentration:** If AMD entered at $510, XLK allocation = 40% equity (MU+AMD). Any AI narrative shift → both positions hit simultaneously.
+4. **ISM Manufacturing PMI (10 AM ET):** Below 50 (contraction) = cyclical headwind for CAT; above 55 = inflation signal. CAT and macro both sensitive.
+5. **AMD near year high ($527):** Limited near-term headroom; any sell-the-news after COMPUTEX keynote → quick reversal from near highs.
+6. **ML insights stale:** Regime based entirely on rule_fallback screener; local PC hasn't updated since before May 26. Possible regime shift not captured.
+7. **Underdeployment risk:** 20.8% deployed vs 75% target — risk of missing the COMPUTEX-driven rally by being too conservative.
+
+### Decision
+**TRADE 2 candidates (with limits, not at market):**
+
+1. **AMD** — Buy-limit $510.00 (day TIF). COMPUTEX live catalyst + Mizuho $615 upgrade + strong Q2 guide. Wait for intraday pullback to $510 (AMD has traded $503-$522 today; $510 is within range). Do NOT chase above $516. Max shares: 42 (approx $21,420). XLK fills 2/2.
+
+2. **CAT** — Buy-limit $868.00 (day TIF). Data center power + record backlog + dividend catalyst. Near session-low support. Max shares: 25 (approx $21,700). Fresh XLI sector.
+
+**Execution order:** Place AMD first (higher screener rank, active COMPUTEX catalyst), then CAT. Both day TIF — if not filled by 3:45 PM ET, cancel. Wait 15 minutes after open (9:45 AM ET) before placing; let COMPUTEX gap stabilize.
+
+**MU management:** Monitor trail tighten trigger at $1,061.35. If MU hits +15% today, update GTC trail from 15%→10% via market-open script.
+
+**If AMD fills but not CAT:** Good — 2 positions (MU+AMD), 40% XLK deployed.
+**If both fill:** 3 positions, ~$62k deployed (61% equity). Within 75% target.
+**If neither fills:** Carry both limits to Tue Jun 2.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite (503 errors) + 7 Flash standard + 0 Pro
+- Flash-Lite failures: 503 rate limit on 3 parallel calls → retried on standard Flash (success)
+- NewsAPI: 0 (key missing)
+- Finnhub: 0 (key missing)
+- EDGAR: 0 (403 cloud block)
+- Reddit: 0 (403 cloud block)
+- Google News: 0 (403 cloud block)
+- Fallback events: All structured sources degraded; research via Gemini grounded search only
+- Egress probe: egress-probe command not available in this version of news_sources.py
+- ml_insights: status=rule_fallback (local_screener_v1), age=N/A (ml file absent)
+- Screener: local_screener_v1 (Phase F), ranked 65 tickers
