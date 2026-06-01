@@ -164,31 +164,26 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 ---
 
 ### June 1 — EOD Snapshot (Day 5, Monday)
-- EOD 2026-06-01: equity $102,863.53
-**Portfolio:** $102,863.53 | **Cash:** $40,838.01 (39.7%) | **Day P&L:** +$2,758.68 (+2.76%) | **Phase P&L:** +$2,758.68 (+2.76%)
+- EOD 2026-06-01: equity $102,893.88
+**Portfolio:** $102,893.88 | **Cash:** $40,838.01 (39.7%) | **Day P&L:** +$2,789.03 (+2.79%) | **Phase P&L:** +$2,893.88 (+2.89%)
 
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
 |--------|--------|-------|-------|---------|----------------|------|
-| AMD | 40 | $493.80 | $509.94 | +$16.14 | +$645.60 (+3.27%) | $431.58 (12.60% trail) |
-| CAT | 23 | $867.71 | $865.36 | −$2.35 | −$54.06 (−0.27%) | $799.16 (7.97% trail) |
-| MU | 21 | $922.91 | $1,035.52 | +$112.61 | +$2,364.87 (+12.20%) | $807.07 (15% trail) |
+| AMD | 40 | $493.80 | $508.71 | +$16.14 | +$596.31 (+3.02%) | $431.58 (12.60% trail) |
+| CAT | 23 | $867.71 | $865.80 | −$2.35 | −$43.99 (−0.22%) | $799.16 (7.97% trail) |
+| MU | 21 | $922.91 | $1,037.82 | +$112.61 | +$2,413.17 (+12.41%) | $807.07 (15% trail) |
 
 - Regime 2026-06-01: Neutral (source: rule_fallback, slots: 2)
 - Trades today: 2 (AMD + CAT market-open entries)
 - Trades this week (Mon): 2 of 3 max
 
-**Why today:** COMPUTEX Taipei opened Jun 1 with Jensen Huang keynote unveiling NVIDIA N1X chip + Microsoft partnership → tech sector surged intraday. AMD (+3.27%), MU (+12.20%) both benefited from AI infrastructure momentum. CAT's entry slight negative (−0.27%) but thesis intact on data center power re-rating. Iran binary remains elevated (ceasefire fragile) — WTI/Brent oil moved +3.94% / +3.00% on weekend escalation, pushing yields (30y 4.99%) and creating cross-asset volatility. S&P 500 +0.22% premarket opening, tech leadership drove XLK +1.2% intraday. Manufacturing ISM PMI came in softer than expected (48.5 vs 50.0 consensus) — slight cyclical headwind offset by tech strength. Fed speakers (Schmid, Bowman, Paulson) hawkish on inflation concerns; Powell testimony Jun 12 looms. Single biggest driver: COMPUTEX catalyst live + AI infrastructure tailwind offsetting macro uncertainties.
-
-**Risk flags (intraday monitoring):**
-- MU approaching +15% trail tighten trigger ($1,061.35) — only +$26 away
-- CAT stop at $799.16 — watching XLI sector for rotation risk given XLE/XLU bear regime
-- AMD at 97.9% of year high ($527.20) — limited headroom; COMPUTEX June 2-5 could extend or trigger sell-the-news reversal
-- Oil volatility (Iran) — any escalation → XLE spike → flight-to-quality away from leveraged industrials
+**Why today:** On June 1, the US equity market delivered strong gains amid a tug-of-war between AI enthusiasm and geopolitical tensions. S&P 500 rose 0.07–0.2% to near record highs, Nasdaq +0.14–0.3%, driven by continued AI optimism from COMPUTEX keynotes (NVIDIA N1X chip unveiling, AMD Radeon RX 9070 GRE launch Jun 2). XLK (tech) gained 1.9% while cyclicals lagged. However, escalating US-Iran military tensions near the Strait of Hormuz reversed peace-deal hopes, sending oil sharply higher: Brent crude +3–6.4% (to $93–96/bbl), WTI +3% (to $90–$94). Yields edged higher (10y 4.475–4.50%, 2y 4.051–4.08%) on geopolitical risk, while the Dollar Index (DXY) strengthened to 99.00–99.3. Single biggest driver: the dual momentum of AI infrastructure optimism + geopolitical premium in crude offsetting soft macro signals (earlier weak ISM PMI).
 
 **Tomorrow's calendar (Tue Jun 2):**
-- 10:00 AM ET: Construction Spending (May); Durable Goods Orders (May advance); ISM PMI followup
-- COMPUTEX keynotes continue (AMD, NVIDIA, Qualcomm)
-- BofA Global Technology Conference: AMD CFO Jean Hu speaking
-- No major macro surprises expected if PMI doesn't misfire again
+- 1:50 AM ET: FOMC Member Neel Kashkari speaks
+- 8:55 AM ET: Redbook (retail sales momentum check)
+- 10:00 AM ET: JOLTS Job Openings (April 2026)
+- 10:10 AM ET: IBD/TIPP Economic Optimism Index
+- **Headline:** Light macro calendar; COMPUTEX keynotes continue (Qualcomm, others). No major surprises expected absent a Fed speaker shocker.
 
-**Key takeaway:** 3-position portfolio now 62% deployed (targeting 75%); COMPUTEX catalyst window open through Jun 5; MU approaching trail tighten; sector diversification (XLK + XLI) helps hedge Iran oil volatility; 1 slot remaining for next entry if thesis emerges.
+**Key takeaway:** COMPUTEX catalyst window live (Jun 2–5) driving AI/infrastructure trades; 3-position portfolio now 60% deployed; MU approaching +15% tighten threshold; oil volatility from Iran geopolitical risk requires close monitoring of XLE/XLI sector correlation.
