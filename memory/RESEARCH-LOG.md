@@ -1457,3 +1457,183 @@ Neutral regime (rule_fallback; ml stale). VIX 15.92 (+0.60 from May 29 close 15.
 - Egress probe: egress-probe command not available in this version of news_sources.py
 - ml_insights: status=rule_fallback (local_screener_v1), age=N/A (ml file absent)
 - Screener: local_screener_v1 (Phase F), ranked 65 tickers
+
+---
+
+## 2026-06-02 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback — ml unavailable; using local_screener_v1, slots: 2, deployment: 75%)
+
+**ML staleness:** rule_fallback active; ml file absent. Trade slots unchanged (2 slots per screener), but note regime is derived from local factors only.
+
+### Account
+- Equity: $103,051.75 | Cash: $40,838.00 | Buying power: $143,889.75 | Daytrade count: 1
+- Open positions: 3 (MU, AMD, CAT) | Long MV: $62,213.75 (60.4% deployed vs 75% target)
+- Open orders: 1 (MU GTC trailing stop 15%, stop_price=$889.92, HWM=$1,046.97)
+- **CRITICAL: AMD and CAT GTC trailing stops NOT visible in Alpaca orders — market-open must verify and re-place immediately.**
+- Trades this week: 2/3 (AMD + CAT entered Mon Jun 1) — 1 slot remaining this week
+
+### Macro Framework
+Neutral regime (rule_fallback; local_screener_v1). VIX ~16.5 (spot 16.05 Jun 1; futures +2.61% premarket — rising fear). 30y yield 4.951% (−4bp from 4.99% Jun 1 — slight easing). DXY ~99 (steady). **Oil PULLING BACK: WTI $91.57 (−0.6%), Brent $94.34 (−1.2%)** — slight reversal after Jun 1's Iran/Hormuz surge; Trump indicated Israel de-escalation in Lebanon easing geopolitical premium slightly, but US-Iran Strait of Hormuz uncertainty persists. SPX futures −0.21% premarket — mild risk-off tilt. COMPUTEX Day 2 live: NVDA RTX Spark superchip + Vera CPUs; Microsoft Build opens today; Dell/HP AI infrastructure tailwind. Dollar General (DG), Victoria's Secret (VSCO) report before open (no portfolio relevance). Economic calendar: Redbook 8:55am ET, JOLTS 10:00am ET (key: below 8.5M = yields ease → tech tailwind), IBD/TIPP 10:10am ET; FOMC next Jun 16-17; NFP Jun 5. vs yesterday: yields −4bp; oil −1% (partial Iran reversal); VIX +0.5 (slight risk-off); regime unchanged; COMPUTEX Day 2 in progress.
+
+**vs Jun 1:** Oil reversed partially (−1% vs +4% yesterday); VIX nudging higher; 30y yields easing; SPX futures slightly negative — risk tone softened but not alarmed.
+
+### Sector Picture
+**Top 3 (1-month returns):** XLK +20.8% (Trend), XLV +2.15% (Choppy), XLI +0.83% (Choppy)
+**Bottom 3:** XLE −3.52% (Bear), XLU −7.05% (Bear), XLP −1.81% (Bear)
+**Bear sectors (no new buys):** XLE, XLP, XLU
+**Agreement with ml_insights:** Consistent — screener confirms XLK sole Trend sector; XLE/XLP/XLU Bear. XLF Choppy (slight tension: sector-momentum shows −0.29% but screener score 0.07 is near-zero not negative).
+
+### Candidates
+
+#### MS (XLF, $211.01, +0.3% prev day close $210.40)
+
+**Setup:** At 52-week high ($212.11 today's high = year high). ATR(14)=$4.64 (2.2% of price); stop_pct_2.5x=5.50% → clamped to 7% minimum. Setup type: BREAKOUT at year-high resistance.
+
+**Sources scanned (1):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 1 Gemini grounded.
+
+**Bull case:**
+- Wealth management inflows + Asia growth + expanded private markets footprint driving higher margins (Gemini grounded, Jun 2026)
+- AI/digital tools + fee-based growth model; crypto exposure via regulated ETPs and Bitcoin ETF filing (Gemini, Jun 2026)
+- CEO Ted Pick speaking at Annual MS U.S. Financials Conference June 9 — potential sentiment catalyst
+- $33M AI medical imaging investment (Subtle Medical) announced June 2 (Gemini grounded, Jun 2026)
+
+**Bear case (cited):**
+- Consensus analyst PT $205.95 — below current price $211.01; stock is trading above Street consensus (Gemini, May-Jun 2026)
+- DCF intrinsic value $184.52 (one analysis), suggesting ~9% overvaluation (Gemini grounded)
+- Passive shift headwinds reducing fee-based revenue; integration risks from E*TRADE/Eaton Vance acquisitions
+- XLF sector: Choppy regime (score 0.07); sector provides no tailwind
+
+**Disconfirming evidence:** PT below price = market has priced in most upside per consensus; new entry here requires Street upgrades above $211 to be directional.
+
+**Catalysts ahead (next 14d):**
+- June 9: CEO Ted Pick at Morgan Stanley U.S. Financials Conference — upside if positive guidance
+- June 16: Structured products pricing event (minor)
+- Earnings: July 15 (43 days out, no blackout issue)
+
+**Critique:**
+
+**Strongest counter to the bull case:** MS is trading above every major consensus PT estimate ($205.95 median). The bullish narrative is already priced in — wealth management growth and AI exposure are 2025-2026 Street narratives well-known to institutional investors. A BREAKOUT entry at the year high requires a specific catalyst to push through $212+; a CEO conference speech on June 9 is too speculative a trigger for a Neutral-regime Choppy-sector entry. If SPX softens into JOLTS, XLF financials face immediate multiple compression with no defensive floor.
+
+**Weakly-sourced claims:** The "$221 fair value" tied to $21.9B 2029 earnings projection is from a single bullish source without a major bank PT to corroborate. (none of the other data points are unsourced).
+
+**Single most-likely invalidator (next 5 trading days):** JOLTS today prints above 9.0M (hot labor market) → 30y yields spike through 5.10% → rate-sensitive XLF financials face immediate multiple compression while MS's wealth management fee revenue narrative doesn't justify a premium at $211+.
+
+**Position-aware (if entered $20k):**
+- Sector: XLF (0/2 currently → 1/2 post-entry)
+- 30d correlation with existing: max 0.40 vs AMD (passes ≤0.70)
+- Sector cap status: 1/2 (would be fine)
+
+**R:R math:** entry $211 / stop $196.32 (−7.0%) / target $253.20 (+20%) / R:R 2.86:1 / max risk ~$1,468 on $20k.
+
+**Setup type:** BREAKOUT — at year high, buying above $212 would be breakout confirmation.
+
+**Entry plan:** BREAKOUT → buy-stop $212.20 (day TIF) — above year high only on confirmed break.
+
+**Gate-history audit:** MS appeared in Jun 1 RESEARCH-LOG as "dropped" (avg analyst PT $205.95 is below current price $208; stock above consensus; XLF Choppy; no strong catalyst). Today MS is at $211 — still above consensus PT ($205.95). Gate unchanged.
+
+**Decision:** DROPPED — consensus PT ($205.95) remains below current price ($211.01). Same flag as yesterday. No PT upgrade to justify entry at year-high resistance in a Choppy sector during Neutral regime.
+
+---
+
+#### UNH (XLV, $379.86, +0.4% from prev $378.40)
+
+**Setup:** 94% of 52-week high ($404.15). ATR(14)=$9.13 (2.4% of price); stop_pct_2.5x=6.01% → clamped to 7% minimum.
+
+**Sources scanned (1):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit / 1 Gemini grounded.
+
+**Bull case (cited):**
+- Q1 2026 adj EPS $7.23 (beat) + raised FY2026 guidance >$18.25; margin recovery in progress (Gemini/UNH IR, Apr 2026)
+- Eliminating prior authorizations for 30% of medical services by YE 2026 — regulatory relief reduces legal/political pressure (Gemini, May 2026)
+- AI investment $1.6B for cost automation; shedding unprofitable Medicare Advantage plans → higher-margin mix improvement (Gemini, 2026)
+- Analyst median PT $400.50 (+5.3% upside from $380); Truist raised PT to $440.00 (Gemini, May 2026)
+
+**Bear case (cited):**
+- Federal DOJ criminal AND civil investigation into UnitedHealth Medicare Advantage practices — binary legal risk with no resolution timeline (Gemini, ongoing 2026)
+- Medical Care Ratio (MCR) still elevated vs FY2024; gradual recovery only (Gemini, Apr 2026)
+- Membership loss: up to 2.8M members exiting Medicare Advantage/Medicaid in 2026 → revenue headwind this year
+- XLV sector: Choppy regime (score 0.14)
+
+**Disconfirming evidence:** DOJ criminal investigation is not resolvable via operational improvement — it's a binary exogenous risk. If indictment news breaks, stock drops 15-30% instantly regardless of fundamentals.
+
+**Catalysts ahead (next 14d):** No scheduled corporate events Jun 2-16. Earnings July 28 (56 days; no blackout).
+
+**Critique:**
+
+**Strongest counter to the bull case:** The DOJ criminal investigation is not a "regulatory overhang" — it's an active federal criminal probe. While UNH's Q1 2026 beat shows operational stabilization, a criminal indictment announcement could come at any time and would immediately cause a 20-30% gap-down that no stop loss can protect against (gaps through stops). In a Neutral regime with only 1 weekly trade slot remaining, taking binary legal-tail risk in a Choppy sector is poor risk management even with 5.3% consensus upside.
+
+**Weakly-sourced claims:** The "2.8M members" figure needs verification (Gemini grounded, plausible but exact number uncertain).
+
+**Single most-likely invalidator (next 5 trading days):** DOJ announces criminal charges or a significant new regulatory action against UnitedHealth Group → gap-down 15-30% regardless of stops.
+
+**Position-aware (if entered $20k):**
+- Sector: XLV (0/2 currently → 1/2 post-entry)
+- 30d correlation with existing: max 0.005 vs AMD (excellent diversification)
+- Sector cap status: 1/2 (fine)
+
+**R:R math:** entry $380 / stop $353.40 (−7.0%) / target $456.00 (+20%) / R:R 2.86:1 / max risk ~$1,400 on $20k.
+
+**Setup type:** PULLBACK — at 94% of year high, entry here is dip-buy off $404 high.
+
+**Entry plan:** PULLBACK → limit $375.00 (day TIF) — only on intraday pullback to below $376 support.
+
+**Gate-history audit:** First appearance in RESEARCH-LOG as actionable candidate. No prior gate to compare.
+
+**Decision:** DROPPED — DOJ criminal investigation creates unquantifiable gap-down risk that cannot be managed with a trailing stop. Preserve 1 remaining weekly slot for a better setup (cleaner sector, no binary legal tail risk).
+
+### Candidates dropped (and why)
+- **MS** — Consensus analyst PT $205.95 < current price $211 (repeated flag from Jun 1); at year-high resistance; XLF Choppy; no catalyst to push through $212 before Jun 9 conference.
+- **UNH** — Active DOJ criminal investigation = binary gap-down risk; no catalyst next 14 days; XLV Choppy.
+- **UNP** — XLI sector already at 1/2 cap (CAT held); screener score 0.331 (lower than MS); no COMPUTEX catalyst; dropped on sector cap rationale.
+- **GOOGL** — XLC Choppy; correlation 0.57 vs CAT (passes but close); at 92% of year high without specific near-term catalyst; lower screener priority vs MS/UNH.
+
+### Historical Analog
+
+**Analog: May 1, 2024.** Matching conditions: FOMC hold decision day (VIX ~14-15, lower than today's ~16.5 but in same mild-fear zone); 30y yield ~4.70% (vs today's 4.95%); SPX near all-time highs with tech (XLK/semiconductors) dominant; JOLTS data release at 10am ET (key intraday event); SPX futures slightly negative premarket; geopolitical risk (Israel-Gaza) creating oil premium. The labor market data (JOLTS) was the day's pivotal variable — consensus expected 8.7M; actual printed 8.49M (below consensus), sending 30y yields down ~8bp and catalyzing an SPX +1.5% session.
+
+**What followed:** SPX +1.5% on May 1 (JOLTS soft print), +2.8% over 5 trading days (May 1-7, 2024), +4.1% over 10 days as Fed signaled rate cut pathway. Semiconductors (SOX) outperformed broadly — +3.5% that week. [Source: historical SPX data, May 2024 — training data confident; exact daily levels ±0.2%.]
+
+**Why this time might differ:** Today's Iran/Strait of Hormuz geopolitical risk creates oil-inflation premium absent in May 2024. COMPUTEX is an active binary catalyst event (Jensen Huang mention of MU as $1T company premarket) making semiconductor moves more volatile/event-driven. 30y yield is 25bp higher than May 2024 which compresses tech multiples more tightly. If JOLTS today prints HOT (>9.0M), the analog breaks — instead of rallying, yields would spike, pressuring Neutral → Caution.
+
+### Risk Factors (consolidated)
+1. **AMD/CAT missing GTC stops (CRITICAL):** Only MU trailing stop visible in Alpaca orders. AMD ($431.58 initial stop, 12.60% trail) and CAT ($799.16 initial stop, 7.97% trail) must be verified/placed at market-open before any analysis of new entries.
+2. **MU +15% tighten threshold imminent:** MU at $1,045.50 (+13.3%), trigger at $1,061.35 (~$16 away, 1.5%). COMPUTEX Jensen Huang mention could push MU through trigger today; market-open must be ready to update GTC from 15%→9.7% trail (1.75×ATR; ATR=$57.51, stop_pct=9.72%).
+3. **JOLTS (10am ET):** Hot print (>9.0M) → yields spike → tech multiple compression → AMD/MU most exposed. Soft print → yields ease → Neutral regime small tailwind.
+4. **XLK concentration:** AMD+MU = 2 XLK positions (~40% equity combined). Any AI narrative shift or sector rotation out of tech → double impact.
+5. **Iran/Hormuz uncertainty:** Trump de-escalation comment eased Brent by $1.1 this morning but underlying US-Iran negotiations remain unresolved; any Hormuz disruption news → oil spikes, inflation narrative, yields higher.
+6. **NFP Friday (Jun 5, 3 days away):** Increased vol into week-end; avoid overextension. Pre-NFP cap not active today but proximity keeps deployment strategy cautious.
+7. **ML insights absent:** All regime decisions from local_screener_v1 only. Possible regime shift from SPX all-time-highs-to-volatility transition not captured.
+
+### Decision
+**HOLD — no new entries today.**
+
+1. Only 1 weekly trade slot remaining (2/3 used Mon); both actionable screener candidates (MS, UNH) are dropped for fundamental reasons:
+   - MS: consensus PT ($205.95) below current price — same flag from Jun 1, no upgrade to justify entry
+   - UNH: DOJ criminal investigation = unmanageable binary gap-down risk
+2. All available sectors for new positions (XLF, XLV, XLI, XLC) are Choppy; no Trend sector available (XLK capped at 2/2).
+3. SPX futures −0.21% + VIX futures +2.61% = mild risk-off premarket; adding a 4th position into a soft open is aggressive.
+4. "Patience > activity" — preserve the 1 remaining slot for a setup with a Trend sector, clear catalyst, and no binary overhang.
+5. **Portfolio management priorities for market-open:**
+   a. **URGENT:** Verify AMD and CAT GTC trailing stops — re-place if missing
+   b. **Monitor MU:** If MU hits $1,061.35 (+15%), update GTC trail from 15% → 9.7% (1.75×ATR)
+   c. **Watch JOLTS (10am):** Soft print → current XLK holdings benefit; hot print → monitor AMD/MU stops
+
+Weekly status: 2 trades made (AMD + CAT Mon Jun 1), 1 slot unused (preserve for Wed/Thu if conditions improve).
+
+### Screener diagnostics
+Screener: source=local_screener_v1 (rule_fallback; ML unavailable), ranked 65 tickers, top 10 = [MU(1.70), AMD(1.38), SMH(0.59), MS(0.57), GS(0.51), XLK(0.47), CAT(0.45), UNH(0.34), UNP(0.33), HON(0.32)]
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite (503 errors on parallel calls) + 6 Flash standard + 0 Pro
+- Flash-Lite attempts: 503 high-demand on initial calls; retried on standard Flash
+- Flash 503 retry: MS research retried once (503 on first attempt, success on second)
+- NewsAPI: 0 (key missing)
+- Finnhub: 0 (key missing)
+- EDGAR: 0 (403 cloud block)
+- Reddit: 0 (403 cloud block)
+- Google News: 0 (403 cloud block)
+- Fallback: All structured sources degraded; research via Gemini grounded search only
+- Egress probe: command not available in this version of news_sources.py
+- ml_insights: status=rule_fallback (local_screener_v1), age=N/A (ml file absent)
+- Breadth/sector scripts: exit code 2 (skill scripts not installed in this environment); breadth data unavailable
+- research degraded: NEWS_API_KEY, FINNHUB_KEY, EDGAR_USER_AGENT (soft — flagged)

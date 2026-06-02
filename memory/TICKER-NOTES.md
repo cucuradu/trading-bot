@@ -15,7 +15,7 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-06-01): AI/HBM structural demand — 2026 HBM fully committed to hyperscalers; COMPUTEX Jun 2-5 live (MU showcasing HBM); Susquehanna PT $1,750, UBS $1,625; +15% tighten trigger $1,061.35 (approaching — MU at $1,011 premarket).
+- Thesis (2026-06-02): AI/HBM structural demand — HBM4 36GB + 256GB SOCAMM2 showcased at COMPUTEX; Jensen Huang (NVDA CEO) called MU "next $1T company" (premarket Jun 2); UBS PT $1,625, Susquehanna PT $1,750; +15% tighten trigger $1,061.35 imminent (current $1,045.50 = 13.3% gain); ATR $57.51 → new trail 9.7% when triggered.
 - Recent catalysts:
   - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
   - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
@@ -183,6 +183,15 @@ Conventions:
 - Trade history: (none yet)
 - Position-aware notes: (none yet)
 
+## MS (XLF)
+- Thesis (2026-06-02): At year-high $212; consensus PT $205.95 < current price → no upside per Street; wealth management growth + AI/crypto exposure priced in; June 9 U.S. Financials Conference (CEO Ted Pick) is next potential catalyst; DROPPED today — sector Choppy, PT below price.
+- Recent catalysts:
+  - 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt
+  - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick speaks)
+- Open thesis questions:
+  - Consensus PT $205.95 < current $211 — needs analyst upgrade above $215 for bullish entry thesis
+  - XLF sector Choppy (score 0.07); sector not providing directional tailwind
+
 ## MSFT (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
 - Recent catalysts: (none yet)
@@ -242,11 +251,15 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## UNH (XLV)
-- Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
-- Recent catalysts: (none yet)
-- Open thesis questions: (none yet)
-- Trade history: (none yet)
-- Position-aware notes: (none yet)
+- Thesis (2026-06-02): Q1 2026 beat + FY guidance raised >$18.25 adj EPS + AI investment $1.6B + margin recovery; but DOJ criminal+civil investigation is unquantifiable binary gap-down risk; analyst median PT $400.50 (+5.3%); no catalyst next 14d; DROPPED — binary risk not manageable with a stop.
+- Recent catalysts:
+  - 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; prior authorization cuts for 30% of services
+  - 2026-05: Truist PT raised to $440; median consensus PT $400.50
+  - Ongoing: DOJ criminal + civil investigation into Medicare Advantage practices (no timeline)
+- Open thesis questions:
+  - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop
+  - MLR still elevated; membership down 2.8M in 2026 (exiting unprofitable MA/Medicaid) — revenue headwind
+  - Earnings Jul 28; next specific catalyst unclear before then
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
