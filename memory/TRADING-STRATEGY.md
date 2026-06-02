@@ -21,7 +21,7 @@ Forward-test this strategy on an Alpaca paper account for 10–12 weeks. Goal: b
 9. Follow sector momentum
 10. Exit a sector after 2 consecutive failed trades
 11. Patience > activity
-12. **Universe filter** — only the 40 tickers in `scripts/universe.py` are allowed (Phase A7). Quoting, researching, or trading outside the universe is forbidden.
+12. **Universe filter** — only the 70 tickers in `scripts/universe.py` are allowed (Phase A7; expanded 40→70 in Phase F). Quoting, researching, or trading outside the universe is forbidden.
 
 ## Trading Universe (Phase A7)
 
@@ -141,9 +141,51 @@ Per-trade:
 - Thesis broken (catalyst invalidated, sector rolling, adverse news) → close even if not at −7%
 - Up ≥ +20% → tighten trailing stop to 5% (or 1.25 × ATR width, whichever is wider)
 - Up ≥ +15% → tighten trailing stop to 7% (or 1.75 × ATR width, whichever is wider)
+- **Partial exit (Phase H1)**: weight > 25% of equity AND unrealized > +10% → trim
+  residual to 18% weight. See "Partial exits" subsection below for mechanics.
 - Position flat (−3% to +3%) for 10 trading days → close (time stop, Phase A5)
 - Sector has 2 consecutive failed trades → exit all positions in that sector
 - Market regime = Defensive (Phase B) → close winners, hold stops, no new entries
+
+## Partial exits (Phase H1)
+
+A winner can grow past the 20% entry cap purely from price appreciation. Left
+alone, a single thesis-break event then costs disproportionately more than
+the position would risk under the entry-time sizing rule. The partial-exit
+rule keeps realized concentration bounded without forcing a full exit on a
+working thesis.
+
+**Trigger** (both must hold):
+- `market_value / equity > 0.25` — weight 5pp above the 20% entry cap.
+- `unrealized_pnl_pct > +10%` — trim only winners; never trim a position that
+  drifted to the cap via account drawdown.
+
+**Action**: sell `shares_to_sell = ceil((market_value − 0.18 × equity) / current_price)`
+so the residual weight lands ≤ 18% (one rung under the entry cap, with room
+to re-run). Order shape: `type=market`, `time_in_force=day`.
+
+**Stop handling**: do NOT touch the trailing stop on the residual shares. The
+original GTC trailing stop covers `shares_remaining`; verify via
+`bash scripts/alpaca.sh orders` that the stop's `qty` field matches the
+remaining position. If it doesn't (broker didn't auto-adjust the OTO child),
+cancel + re-place at the same `trail_percent` for the new qty. The
+`initial_stop` value on the original OPEN line is NEVER edited — R-multiple
+math on the eventual full close must reference the entry-time risk level.
+
+**TRADE-LOG line format**: append a non-CLOSED `- TRIM` line. The original
+OPEN line stays untouched. On eventual full close, the CLOSED line's `pnl`
+field reflects only the FINAL exit's P&L; the trimmed P&L lives on the TRIM
+line. (Trade aggregators that sum P&L must read both prefixes.)
+
+```
+- TRIM YYYY-MM-DD: SYM exit=PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_18pct"
+```
+
+**Where executed**: `/trim` slash command (manual, confirms before placing).
+NOT auto-fired by `midday` — the rule is mechanical but partial exits change
+position economics enough that the user should sign off each time during the
+paper-trading phase. If the rule proves out, promote to `midday` after N≥20
+trims observed without a regret.
 
 ## Position sizing (Phase D4)
 
