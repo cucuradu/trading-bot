@@ -187,3 +187,32 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 - **Headline:** Light macro calendar; COMPUTEX keynotes continue (Qualcomm, others). No major surprises expected absent a Fed speaker shocker.
 
 **Key takeaway:** COMPUTEX catalyst window live (Jun 2–5) driving AI/infrastructure trades; 3-position portfolio now 60% deployed; MU approaching +15% tighten threshold; oil volatility from Iran geopolitical risk requires close monitoring of XLE/XLI sector correlation.
+
+### June 3 — EOD Snapshot (Day 7, Wednesday)
+- EOD 2026-06-03: equity $105,856.96
+**Portfolio:** $105,856.96 | **Cash:** $40,838.00 (38.6%) | **Day P&L:** +$2,964.98 (+2.88%) | **Phase P&L:** +$5,856.96 (+5.86%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 40 | $493.80 | $536.47 | +2.86% | +$1,706.80 (+8.64%) | $456.66 (12.60% trail) |
+| CAT | 23 | $867.71 | $906.92 | −0.32% | +$901.82 (+4.52%) | $839.28 (7.97% trail) |
+| MU | 21 | $922.91 | $1,081.00 | +1.59% | +$3,319.95 (+17.13%) | $915.08 (15% trail) |
+
+- Regime 2026-06-03: Neutral (source: rule_fallback, slots: 2)
+- Trades today: 0
+- Trades this week (Wed): 2 of 3 max
+
+**Why today:** COMPUTEX 2026 continued on Jun 3 with Jensen Huang keynote driving semiconductor strength. MU surged 1.59% toward new highs on AI/HBM momentum, approaching +15% tighten threshold. AMD gained 2.86% on roadmap confidence. CAT slight profit-taking (−0.32%) after recent gains but holding uptrend support. Broader market benefited from easing inflation narrative and continued AI infrastructure tailwind. Geopolitical risk (Iran/Hormuz) stabilized. Single biggest driver: live COMPUTEX announcements sustaining semiconductor momentum.
+
+**Tomorrow's calendar (Thu Jun 4):**
+- 8:30 AM ET: Producer Price Index, Final Demand (May)
+- 10:00 AM ET: NFIB Small Business Optimism Index
+- **Headline:** PPI release key for inflation confirmation; light otherwise. COMPUTEX continues (Qualcomm Jun 4).
+
+**Position thesis updates:**
+- AMD: Confirmed (COMPUTEX day-2 strength validates roadmap thesis)
+- CAT: Unchanged (infrastructure capex thesis intact; sector consolidation normal)
+- MU: Confirmed (approaching tighten zone; prepare 1.75×ATR trail at $1,061.35 break)
+
+**Key takeaway:** Strong COMPUTEX momentum sustains AI/infrastructure thesis; MU approaching +15% tighten trigger; preserve 1 weekly slot for Thu/Fri entries if PPI benign.
+
