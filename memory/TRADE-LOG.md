@@ -189,32 +189,32 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 **Key takeaway:** COMPUTEX catalyst window live (Jun 2–5) driving AI/infrastructure trades; 3-position portfolio now 60% deployed; MU approaching +15% tighten threshold; oil volatility from Iran geopolitical risk requires close monitoring of XLE/XLI sector correlation.
 
 ### June 3 — EOD Snapshot (Day 7, Wednesday)
-- EOD 2026-06-03: equity $105,856.96
-**Portfolio:** $105,856.96 | **Cash:** $40,838.00 (38.6%) | **Day P&L:** +$2,964.98 (+2.88%) | **Phase P&L:** +$5,856.96 (+5.86%)
+- EOD 2026-06-03: equity $105,279.65
+**Portfolio:** $105,279.65 | **Cash:** $40,838.00 (38.8%) | **Day P&L:** +$2,387.67 (+2.32%) | **Phase P&L:** +$5,279.65 (+5.28%)
 
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
 |--------|--------|-------|-------|---------|----------------|------|
-| AMD | 40 | $493.80 | $536.47 | +2.86% | +$1,706.80 (+8.64%) | $456.66 (12.60% trail) |
-| CAT | 23 | $867.71 | $906.92 | −0.32% | +$901.82 (+4.52%) | $839.28 (7.97% trail) |
-| MU | 21 | $922.91 | $1,081.00 | +1.59% | +$3,319.95 (+17.13%) | $915.08 (15% trail) |
+| AMD | 40 | $493.80 | $525.61 | +1.20% | +$1,272.40 (+6.44%) | GTC 12.60% trail |
+| CAT | 23 | $867.71 | $926.50 | +1.83% | +$1,352.16 (+6.78%) | GTC 7.97% trail |
+| MU | 21 | $922.91 | $1,052.75 | −1.07% | +$2,726.70 (+14.07%) | GTC 9.47% trail |
 
 - Regime 2026-06-03: Neutral (source: rule_fallback, slots: 2)
 - Trades today: 0
 - Trades this week (Wed): 2 of 3 max
 
-**Why today:** COMPUTEX 2026 continued on Jun 3 with Jensen Huang keynote driving semiconductor strength. MU surged 1.59% toward new highs on AI/HBM momentum, approaching +15% tighten threshold. AMD gained 2.86% on roadmap confidence. CAT slight profit-taking (−0.32%) after recent gains but holding uptrend support. Broader market benefited from easing inflation narrative and continued AI infrastructure tailwind. Geopolitical risk (Iran/Hormuz) stabilized. Single biggest driver: live COMPUTEX announcements sustaining semiconductor momentum.
+**Why today:** COMPUTEX 2026 semiconductor momentum continued on June 3, supporting AMD (+1.20%) and CAT (+1.83%) despite MU profit-taking (−1.07%). Broad equity market consolidated ahead of Friday's NFP print and tomorrow's PPI release. Tech sector benefited from AI infrastructure tailwind and stable yields (~4.95%), though geopolitical oil risk (Iran/Hormuz) kept energy elevated. AVGO earnings binary tonight (5 PM ET) adds semiconductor sector volatility. Single biggest driver: ongoing semiconductor strength from COMPUTEX, offset by profit-taking in MU ahead of macro events.
 
 **Tomorrow's calendar (Thu Jun 4):**
 - 8:30 AM ET: Producer Price Index, Final Demand (May)
 - 10:00 AM ET: NFIB Small Business Optimism Index
-- **Headline:** PPI release key for inflation confirmation; light otherwise. COMPUTEX continues (Qualcomm Jun 4).
+- **Headline:** PPI release key for inflation confirmation; light otherwise. COMPUTEX closes Jun 4 (last day of event).
 
-**Position thesis updates:**
-- AMD: Confirmed (COMPUTEX day-2 strength validates roadmap thesis)
-- CAT: Unchanged (infrastructure capex thesis intact; sector consolidation normal)
-- MU: Confirmed (approaching tighten zone; prepare 1.75×ATR trail at $1,061.35 break)
+**Position thesis status:**
+- AMD: Confirmed (COMPUTEX strength validates roadmap; catalysts Jun 2–4 playing out)
+- CAT: Unchanged (infrastructure capex thesis intact; minor consolidation expected pre-PPI)
+- MU: Confirmed (approaching secondary tighten at +20% = $1,107.49; prepared trail if breached)
 
-**Key takeaway:** Strong COMPUTEX momentum sustains AI/infrastructure thesis; MU approaching +15% tighten trigger; preserve 1 weekly slot for Thu/Fri entries if PPI benign.
+**Key takeaway:** COMPUTEX validates semiconductor strength through Jun 4 close; MU watch for +20% tighten zone; PPI inflation confirmation tomorrow gates next entry if benign.
 
 ---
 
