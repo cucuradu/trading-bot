@@ -15,29 +15,30 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-06-02): AI/HBM structural demand — HBM4 36GB + 256GB SOCAMM2 showcased at COMPUTEX; Jensen Huang (NVDA CEO) called MU "next $1T company" (premarket Jun 2); UBS PT $1,625, Susquehanna PT $1,750; +15% tighten trigger $1,061.35 imminent (current $1,045.50 = 13.3% gain); ATR $57.51 → new trail 9.7% when triggered.
+- Thesis (2026-06-03): AI/HBM structural demand confirmed — +15% tighten applied (trail 9.47%, stop $985.65, HWM $1,088.71); Morgan Stanley raises target citing 2-3y tight memory supply [MS, Jun 2026]; next tighten at +20% ($1,107.49). AVGO earnings tonight could push MU higher.
 - Recent catalysts:
   - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
   - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
+  - 2026-06-03: Morgan Stanley raises MU + SNDK targets; 2-3 years tight memory supply thesis [MS, Jun 2026]
   - 2026-06-24: Q3 FY2026 earnings report
 - Open thesis questions:
   - Samsung/SK Hynix capacity expansion → oversupply risk 2027-2028?
   - Insider selling $54M (3mo) with zero buys — distribution signal near top?
-  - BofA PT $950 = only +2.4% upside from $928; UBS $1,625 = +75% — which is correct?
+  - AVGO AI revenue ($10.7B tonight) — if miss, does AI capex narrative weaken for HBM demand?
 
 ## AMD (XLK)
-- Thesis (2026-06-01): Q2 2026 guide $11.2B (+46% YoY) + MI450/Helios hyperscaler ramp + COMPUTEX catalysts (Radeon RX 9070 GRE Jun 2, BofA Tech Conf, Microsoft Build Jun 2-3); Mizuho PT $615; buy-limit $510 on pullback — do not chase near year high $527.
+- Thesis (2026-06-03): All-time high ~$540.94 on Jun 3; analyst Strong Buy upgrade + COMPUTEX/MI450 momentum; held at $493.80 (+8.3%); trail 12.6% HWM=$544 stop=$475.46; director sold $5.4M near highs (minor flag). AVGO earnings tonight = binary event for XLK sector.
 - Recent catalysts:
-  - 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B)
-  - 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M potential recovery
   - 2026-06-01: Mizuho PT raised $515→$615, "Outperform" maintained
   - 2026-06-02: Radeon RX 9070 GRE global launch + BofA Tech Conference (CFO Jean Hu) + Microsoft Build
   - 2026-06-02/05: COMPUTEX Taipei 2026 (AI ecosystem; AMD participating)
-  <!-- archive: 2026-07: "Advancing AI 2026" flagship event -->
+  - 2026-06-03: Analyst upgraded to Strong Buy; stock hits all-time high $540.94 [Tradingkey, Jun 2026]; Barclays Overweight + PT raise Jun 1 [Barclays]
+  - 2026-06-03: Director sold $5.4M near all-time highs [CoinCentral, Jun 2026]
+  <!-- archive: 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B) -->
+  <!-- archive: 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M recovery -->
 - Open thesis questions:
   - TSMC CoWoS packaging — can AMD secure enough capacity vs NVIDIA preferential access?
-  - Gaming H2 2026 projected −20%+; does it offset DC growth?
-  - Gate raised $475→$510 (acknowledged); entry requires limit at $510 — chasing $516 not warranted
+  - Director $5.4M sale near ATH — distribution at top signal or tax/rebalancing?
   - Single most-likely invalidator: Credible report of MI450 CoWoS constraint below 50% of initial guidance
 
 ---
