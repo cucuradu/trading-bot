@@ -6,7 +6,7 @@ the expected safety nets fired.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 
 from backtest.engine import BacktestConfig, BacktestResult
@@ -31,21 +31,19 @@ class StressReport:
 def stress_config(base: BacktestConfig, *, shock_prob: float = 0.015,
                   shock_range: tuple[float, float] = (-0.15, -0.10),
                   seed: int = 42) -> BacktestConfig:
-    """Return a copy of `base` with stress-shock fields populated."""
-    return BacktestConfig(
-        start=base.start, end=base.end,
-        starting_equity=base.starting_equity,
-        max_positions=base.max_positions,
-        max_position_pct=base.max_position_pct,
-        exit_strategy=base.exit_strategy,
-        apply_circuit_breakers=base.apply_circuit_breakers,
-        apply_regime_gating=base.apply_regime_gating,
+    """Return a copy of `base` with stress-shock fields populated.
+
+    Uses dataclasses.replace so every other knob carries over. The previous
+    hand-rolled reconstruction silently dropped max_per_sector, time_stop_days
+    and time_stop_band, reverting them to defaults — so a stress run with
+    custom CLI flags secretly ran a different config than the user asked for.
+    """
+    return replace(
+        base,
         apply_stress_shocks=True,
         stress_shock_prob=shock_prob,
         stress_shock_range=shock_range,
         stress_seed=seed,
-        fee_per_trade=base.fee_per_trade,
-        slippage_pct=base.slippage_pct,
     )
 
 

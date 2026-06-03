@@ -68,6 +68,21 @@ class BacktestConfig:
     # Exit-rule overrides (default to TRADING-STRATEGY.md values).
     time_stop_days: int = 10
     time_stop_band: tuple[float, float] = (-3.0, 3.0)
+    # ---- Realism toggles (audit 2026-05-29) ----
+    # All default False → legacy behavior, so existing reports/tests are
+    # unchanged. Turn on to model the live rules the bot actually trades under.
+    enforce_cash_cap: bool = False            # #1: no leverage; deployed cost basis <= cash
+    respect_deployment_target: bool = False   # #1b: also cap at the regime deployment_target
+    enforce_entry_caps: bool = False          # #2: regime trade_slots + N new trades / week
+    max_new_trades_per_week: int = 3
+    enforce_regime_persistence: bool = False  # #3: regime must persist >=3 bars before posture change
+    stop_gap_fill: bool = False               # #4: gap-down stops fill at the open, not the stop price
+    # ---- Remediation knobs (audit 2026-06-03) ----
+    # All default None/off → legacy behavior; existing reports/tests unchanged.
+    risk_cap_pct: float | None = None         # A3: floor share count so per-trade risk <= this fraction of equity
+    max_sector_deployment_pct: float | None = None  # A2: cap total cost basis per sector ETF (BROAD exempt)
+    min_rr_at_entry: float | None = None      # A4: skip entries whose proxy R:R falls below this
+    rr_target_pct: float = 0.20               # A4 proxy target = entry × (1 + rr_target_pct)
 
 
 @dataclass
@@ -166,6 +181,53 @@ def _classify_regime_on(date_idx: pd.Timestamp,
     return rg.classify_market(vix_close, spy_close, spy_sma, spy_20d)
 
 
+# ---------- Remediation sizing/entry helpers (audit 2026-06-03) ----------
+
+def _sized_shares(equity: float, max_position_pct: float, fill_price: float,
+                  entry_basis: float, stop_price: float,
+                  risk_cap_pct: float | None) -> int:
+    """Flat-% share count, optionally floored by a per-trade risk cap (A3).
+
+    Flat sizing risks more on wide-ATR names (MU's 15% stop risked ~2x CAT's 8%
+    stop at the same 20% dollar size). The risk cap equalizes per-trade $ risk:
+    shares = min(20%-dollars / price, risk_cap%·equity / per-share-risk).
+    """
+    if fill_price <= 0:
+        return 0
+    shares = int(math.floor(equity * max_position_pct / fill_price))
+    if risk_cap_pct is not None:
+        per_share_risk = entry_basis - stop_price
+        if per_share_risk > 0:
+            risk_shares = int(math.floor(risk_cap_pct * equity / per_share_risk))
+            shares = min(shares, risk_shares)
+    return shares
+
+
+def _passes_min_rr(entry_basis: float, stop_price: float,
+                   min_rr: float | None, target_pct: float) -> bool:
+    """A4 entry filter. Proxy R:R = (target_pct·entry) / (entry − stop).
+
+    The exit engine has no profit target, so R:R is only testable as an entry
+    gate against a fixed proxy target. True if the gate is disabled or passes.
+    """
+    if min_rr is None:
+        return True
+    per_share_risk = entry_basis - stop_price
+    if per_share_risk <= 0:
+        return False
+    reward = entry_basis * target_pct
+    return (reward / per_share_risk) >= min_rr
+
+
+def _sector_room(sector_deployed: dict[str, float], sec: str, cost: float,
+                 equity: float, cap_pct: float | None) -> bool:
+    """A2 per-sector $-cap. True if adding `cost` keeps the sector within cap
+    (or the cap is disabled / the symbol is a cross-sector BROAD ETF)."""
+    if cap_pct is None or sec == "BROAD":
+        return True
+    return sector_deployed.get(sec, 0.0) + cost <= equity * cap_pct
+
+
 # ---------- Engine ----------
 
 class Engine:
@@ -199,14 +261,42 @@ class Engine:
         result = BacktestResult(config=config, final_equity=equity, peak_equity=peak_equity)
 
         rng = np.random.default_rng(config.stress_seed) if config.apply_stress_shocks else None
-        prior_regime = None
+        raw_regimes: list[str] = []
+        effective_regime: str | None = None
+        # #2 weekly entry-cap tracking.
+        current_week: tuple[int, int] | None = None
+        opens_this_week = 0
 
         for i, ts in enumerate(cal):
             day = ts.date()
-            regime = _classify_regime_on(ts, spy, vix)
+            raw_regime = _classify_regime_on(ts, spy, vix)
+            raw_regimes.append(raw_regime)
+            # #3 anti-whipsaw: only let the posture change once the new regime
+            # has persisted >= PERSISTENCE_BARS_REQUIRED bars. Disabled → the
+            # effective regime tracks the raw bar classification (legacy).
+            if config.enforce_regime_persistence:
+                if effective_regime is None:
+                    effective_regime = raw_regime
+                elif raw_regime != effective_regime:
+                    streak = 0
+                    for r in reversed(raw_regimes):
+                        if r == raw_regime:
+                            streak += 1
+                        else:
+                            break
+                    if streak >= rg.PERSISTENCE_BARS_REQUIRED:
+                        effective_regime = raw_regime
+            else:
+                effective_regime = raw_regime
+            regime = effective_regime
             result.regime_history.append((day, regime))
-            if regime != prior_regime:
-                prior_regime = regime
+
+            # #2 reset the weekly new-trade counter on each new ISO week.
+            iso = ts.isocalendar()
+            wk = (iso.year, iso.week)
+            if wk != current_week:
+                current_week = wk
+                opens_this_week = 0
 
             # ---- Process exits on existing positions ----
             symbols_to_close: list[tuple[str, float, str]] = []
@@ -237,7 +327,19 @@ class Engine:
                     time_stop_band=config.time_stop_band,
                 )
                 if decision.close:
-                    symbols_to_close.append((sym, decision.exit_price, decision.reason))
+                    exit_px = decision.exit_price
+                    # #4 gap realism: a trailing-stop hit assumes a fill exactly
+                    # at the stop, but if the bar OPENED below the stop the real
+                    # fill is the (worse) open, not the stop price.
+                    if config.stop_gap_fill and decision.reason == "trailing_stop":
+                        open_px = (
+                            float(row["Open"])
+                            if "Open" in row and not pd.isna(row["Open"])
+                            else bar_close
+                        )
+                        if open_px < exit_px:
+                            exit_px = open_px
+                    symbols_to_close.append((sym, exit_px, decision.reason))
                 elif decision.new_stop_price is not None:
                     pos.current_stop_pct = decision.new_stop_pct
                     pos.current_stop_price = decision.new_stop_price
@@ -257,12 +359,27 @@ class Engine:
                 ))
 
             # ---- Account-level circuit breakers (Phase A1) ----
+            # Mark-to-market equity at today's close. The realized-only `equity`
+            # excludes open positions' unrealized P&L, so comparing it against
+            # the prior bar's MTM equity produced false daily-DD / drawdown
+            # readings whenever a position carried unrealized gains (e.g. a flat
+            # day on a +4% position read as −3.8% and tripped the freeze). The
+            # gates must compare MTM-to-MTM, the same equity basis used for the
+            # curve and for the live risk_gates EOD comparison.
+            current_unrealized = 0.0
+            for _sym, _pos in positions.items():
+                _df = self.bars.get(_sym)
+                if _df is None or ts not in _df.index:
+                    continue
+                current_unrealized += (float(_df.at[ts, "Close"]) - _pos.entry_price) * _pos.shares
+            mtm_now = equity + current_unrealized
+
             entries_blocked = False
             if config.apply_circuit_breakers:
-                daily_pct = (equity - prior_equity) / prior_equity * 100 if prior_equity > 0 else 0.0
+                daily_pct = (mtm_now - prior_equity) / prior_equity * 100 if prior_equity > 0 else 0.0
                 if daily_pct <= -3.0:
                     entries_blocked = True
-                drawdown_pct = (equity - peak_equity) / peak_equity * 100 if peak_equity > 0 else 0.0
+                drawdown_pct = (mtm_now - peak_equity) / peak_equity * 100 if peak_equity > 0 else 0.0
                 if drawdown_pct <= -10.0:
                     result.lock_triggered = True
                     entries_blocked = True
@@ -310,16 +427,41 @@ class Engine:
                         pending_orders.pop(sym, None)
 
             # Sector exposure tally (excludes BROAD ETFs from the cap).
+            # sector_counts = open positions per sector (Phase C count cap);
+            # sector_deployed = cost basis per sector (A2 $-cap).
             sector_counts: dict[str, int] = {}
+            sector_deployed: dict[str, float] = {}
             for p in positions.values():
                 if p.sector and p.sector != "BROAD":
                     sector_counts[p.sector] = sector_counts.get(p.sector, 0) + 1
+                    sector_deployed[p.sector] = sector_deployed.get(p.sector, 0.0) + p.entry_price * p.shares
+
+            # #1 deployment / leverage cap. `deployed` is cost basis of open
+            # positions; new opens may not push it past `deploy_cap` (cash and/or
+            # the regime deployment target). float('inf') → legacy uncapped.
+            deployed = sum(p.entry_price * p.shares for p in positions.values())
+            _caps: list[float] = []
+            if config.enforce_cash_cap:
+                _caps.append(equity)
+            if config.respect_deployment_target:
+                dep_t = rg.POSTURE.get(regime, {}).get("deployment_target", 1.0)
+                _caps.append(equity * dep_t)
+            deploy_cap = min(_caps) if _caps else float("inf")
+
+            # #2 per-week new-trade cap = min(N/week, regime trade_slots).
+            if config.enforce_entry_caps:
+                regime_slots = rg.POSTURE.get(regime, {}).get("trade_slots", config.max_positions)
+                weekly_cap = min(config.max_new_trades_per_week, regime_slots)
+            else:
+                weekly_cap = config.max_positions  # effectively unlimited vs max_positions
 
             # Promote filled intents to open positions, respecting caps.
             for intent, fill_price in filled_intents:
                 if intent.symbol in positions:
                     continue
                 if len(positions) >= config.max_positions:
+                    break
+                if config.enforce_entry_caps and opens_this_week >= weekly_cap:
                     break
                 df = self.bars.get(intent.symbol)
                 sec = sector_of(intent.symbol) or "UNKNOWN"
@@ -331,11 +473,24 @@ class Engine:
                 stop_pct, stop_price = strategy_for_fills.initial_stop(
                     intent.planned_entry, atr_at_entry
                 )
-                position_dollars = equity * config.max_position_pct
-                shares = int(math.floor(position_dollars / fill_price)) if fill_price > 0 else 0
+                # A4 R:R gate — proxy target vs ATR stop (risk basis = planned entry).
+                if not _passes_min_rr(intent.planned_entry, stop_price,
+                                      config.min_rr_at_entry, config.rr_target_pct):
+                    continue
+                # A3 per-trade risk cap layered on flat-% sizing.
+                shares = _sized_shares(equity, config.max_position_pct, fill_price,
+                                       intent.planned_entry, stop_price, config.risk_cap_pct)
                 if shares <= 0:
                     continue
                 realized = fill_price * (1 + config.slippage_pct / 100)
+                cost = realized * shares
+                # #1 reject the fill if it would breach the deployment / cash cap
+                # (mirrors buy_gate's "cost <= cash" — skip rather than partial-fill).
+                if deployed + cost > deploy_cap:
+                    continue
+                # A2 per-sector $-cap.
+                if not _sector_room(sector_deployed, sec, cost, equity, config.max_sector_deployment_pct):
+                    continue
                 positions[intent.symbol] = Position(
                     symbol=intent.symbol, entry_date=day, entry_price=realized,
                     initial_stop=stop_price, shares=shares,
@@ -343,8 +498,11 @@ class Engine:
                     current_stop_pct=stop_pct, current_stop_price=stop_price,
                     peak_close=realized, bars_held=0,
                 )
+                deployed += cost
+                opens_this_week += 1
                 if sec != "BROAD":
                     sector_counts[sec] = sector_counts.get(sec, 0) + 1
+                    sector_deployed[sec] = sector_deployed.get(sec, 0.0) + cost
                 equity -= config.fee_per_trade
 
             # ---- Process new entries via the simulator ----
@@ -386,6 +544,8 @@ class Engine:
                         opened_this_bar += 1
                         continue
 
+                    if config.enforce_entry_caps and opens_this_week >= weekly_cap:
+                        break
                     sym, entry_price = proposal
                     if sym in positions:
                         continue
@@ -398,11 +558,23 @@ class Engine:
                         continue
                     atr_at_entry = float(df.at[ts, "atr_14"]) if not pd.isna(df.at[ts, "atr_14"]) else None
                     stop_pct, stop_price = strategy.initial_stop(entry_price, atr_at_entry)
-                    position_dollars = equity * config.max_position_pct
-                    shares = int(math.floor(position_dollars / entry_price)) if entry_price > 0 else 0
+                    # A4 R:R gate — proxy target vs ATR stop (risk basis = entry price).
+                    if not _passes_min_rr(entry_price, stop_price,
+                                          config.min_rr_at_entry, config.rr_target_pct):
+                        continue
+                    # A3 per-trade risk cap layered on flat-% sizing.
+                    shares = _sized_shares(equity, config.max_position_pct, entry_price,
+                                           entry_price, stop_price, config.risk_cap_pct)
                     if shares <= 0:
                         continue
                     fill_price = entry_price * (1 + config.slippage_pct / 100)
+                    cost = fill_price * shares
+                    # #1 deployment / cash cap (skip rather than partial-fill).
+                    if deployed + cost > deploy_cap:
+                        continue
+                    # A2 per-sector $-cap.
+                    if not _sector_room(sector_deployed, sec, cost, equity, config.max_sector_deployment_pct):
+                        continue
                     positions[sym] = Position(
                         symbol=sym, entry_date=day, entry_price=fill_price,
                         initial_stop=stop_price, shares=shares,
@@ -410,8 +582,11 @@ class Engine:
                         current_stop_pct=stop_pct, current_stop_price=stop_price,
                         peak_close=fill_price, bars_held=0,
                     )
+                    deployed += cost
+                    opens_this_week += 1
                     if sec != "BROAD":
                         sector_counts[sec] = sector_counts.get(sec, 0) + 1
+                        sector_deployed[sec] = sector_deployed.get(sec, 0.0) + cost
                     opened_this_bar += 1
                     equity -= config.fee_per_trade
 

@@ -284,3 +284,41 @@ def test_sector_cap_missing_skips_check():
     assert result.allowed, result.failures
 
 
+# ---------------- B3: reward-to-risk floor (audit 2026-06-03) ----------------
+
+def test_rr_below_floor_is_rejected():
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       rr_at_entry=1.33)  # the original MU mislabel
+    result = check_buy(baseline_account(), trade)
+    assert not result.allowed
+    assert any("R:R at entry" in f for f in result.failures)
+
+
+def test_rr_at_floor_is_allowed():
+    # rule is "< 2.0" rejects; exactly 2.0 is OK.
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       rr_at_entry=2.0)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_rr_above_floor_is_allowed():
+    # A 15%-stop name still qualifies if cited upside makes R:R >= 2 (e.g. +35% PT).
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       rr_at_entry=2.33)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+
+def test_rr_missing_skips_check():
+    # None means "not measured" — should not block (production must populate this).
+    trade = ProposedBuy(symbol="AAPL", shares=100, ask_price=150.0,
+                       catalyst_documented=True, is_stock=True,
+                       rr_at_entry=None)
+    result = check_buy(baseline_account(), trade)
+    assert result.allowed, result.failures
+
+

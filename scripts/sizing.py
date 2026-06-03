@@ -22,6 +22,8 @@ result floor is 8% (which the gate still rejects since entries_blocked=true).
 Usage:
   python scripts/sizing.py recommend REGIME              # JSON; uses default 100k equity
   python scripts/sizing.py recommend REGIME EQUITY       # JSON: full sizing audit
+  python scripts/sizing.py shares SIZE_DOLLARS ENTRY STOP EQUITY [RISK_CAP_PCT]
+                                                         # B5: risk-capped share count
   python scripts/sizing.py method                        # "flat_20pct" or "half_kelly"
 """
 from __future__ import annotations
@@ -41,6 +43,12 @@ N_THRESHOLD = 30
 FLOOR_PCT = 8.0
 CAP_PCT = 20.0
 KELLY_HALF_FACTOR = 0.5
+# B5 (audit 2026-06-03): per-trade risk cap as % of equity. The 2026-06-03
+# backtest sweep (REMEDIATION-FINDINGS.md, A3) showed 2.0% improves both return
+# and drawdown vs flat-20% in 2024, 2025, combined, and both stress runs. Flat
+# dollar sizing risked 2.9% on MU's 15% stop vs 1.5% on CAT's 8% stop; this
+# equalizes per-trade $ risk by flooring the share count.
+RISK_CAP_PCT = 2.0
 
 REGIME_FACTORS: dict[str, float] = {
     "Bull": 1.0,
@@ -183,6 +191,40 @@ def recommended_size_pct(regime: str, equity: float | None = None,
     return out
 
 
+def risk_capped_shares(size_dollars: float, entry_price: float, stop_price: float,
+                       equity: float, risk_cap_pct: float = RISK_CAP_PCT) -> dict:
+    """B5 — final share count = min(sizing-dollar count, per-trade-risk count).
+
+    The risk count is floor(risk_cap_pct%·equity / (entry − stop)), so a wide-ATR
+    stop shrinks the position to hold per-trade $ risk at the cap. Returns a full
+    audit so the routine can log which bound applied.
+    """
+    if entry_price <= 0:
+        return {"shares": 0, "bound": "invalid_price", "risk_cap_pct": risk_cap_pct}
+    flat_shares = int(size_dollars // entry_price)
+    per_share_risk = entry_price - stop_price
+    risk_cap_shares: int | None = None
+    bound = "size"
+    shares = flat_shares
+    if per_share_risk > 0:
+        risk_cap_shares = int((risk_cap_pct / 100 * equity) // per_share_risk)
+        if risk_cap_shares < flat_shares:
+            shares = risk_cap_shares
+            bound = "risk_cap"
+    shares = max(0, shares)
+    risk_dollars = round(shares * per_share_risk, 2) if per_share_risk > 0 else None
+    return {
+        "shares": shares,
+        "flat_shares": flat_shares,
+        "risk_cap_shares": risk_cap_shares,
+        "per_share_risk": round(per_share_risk, 4),
+        "risk_dollars": risk_dollars,
+        "risk_pct_of_equity": round(100 * risk_dollars / equity, 3) if risk_dollars and equity else None,
+        "risk_cap_pct": risk_cap_pct,
+        "bound": bound,
+    }
+
+
 def _detect_current_method() -> str:
     return "half_kelly" if len(load_closed_trades()) >= N_THRESHOLD else "flat_20pct"
 
@@ -204,6 +246,16 @@ def main() -> int:
         regime = sys.argv[2]
         equity = float(sys.argv[3]) if len(sys.argv) >= 4 else None
         print(json.dumps(recommended_size_pct(regime, equity), indent=2))
+        return 0
+
+    if cmd == "shares":
+        # B5: apply the per-trade risk cap on top of the sizing-dollar count.
+        if len(sys.argv) < 6:
+            print("usage: shares SIZE_DOLLARS ENTRY STOP EQUITY [RISK_CAP_PCT]", file=sys.stderr)
+            return 2
+        size_dollars, entry, stop, equity = (float(sys.argv[i]) for i in range(2, 6))
+        cap = float(sys.argv[6]) if len(sys.argv) >= 7 else RISK_CAP_PCT
+        print(json.dumps(risk_capped_shares(size_dollars, entry, stop, equity, cap), indent=2))
         return 0
 
     print(f"unknown command: {cmd}", file=sys.stderr)

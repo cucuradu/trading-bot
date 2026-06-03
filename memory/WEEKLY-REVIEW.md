@@ -183,3 +183,61 @@ Template for each entry:
 ### Expectancy Guardrail Status
 
 N/A — no closed trades. Guardrail activates when rolling 4-week expectancy < 0.2 for 4 consecutive weeks. First measurement possible week of June 6 (if trades are placed the week of May 27).
+
+---
+
+## Week ending 2026-05-29 (Week 1 — first live week) — BACKFILLED 2026-06-03
+
+> **Backfill note (B8, audit 2026-06-03):** this review was never written on the
+> Friday it was due — a process miss the audit flagged. Written retroactively
+> from TRADE-LOG / RESEARCH-LOG; figures are marked "not recorded" where the
+> source data is genuinely missing (do not treat backfilled numbers as live).
+> The forward fix is in the audit's remediation (see
+> `backtest/reports/REMEDIATION-FINDINGS.md`); this entry is the retrospective.
+
+### Stats
+
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $100,000.00 (Wed May 27 open) |
+| Ending portfolio | **not recorded** — no EOD snapshot exists for Fri May 29 (last recorded EOD May 28 = $100,104.85; next was Mon Jun 1 = $102,893.88) |
+| Week return | indeterminate (missing Fri EOD; ≈+0.1% through Thu May 28) |
+| S&P 500 week | not reliably logged (see SPY/SPX labeling fix, B8) |
+| Trades | 1 (W:0 / L:0 / open:1) — MU opened Thu May 28 |
+| Win rate | N/A (no closes) |
+| Best/Worst trade | N/A |
+
+### Closed Trades
+
+| Ticker | Entry | Exit | R | P&L | Notes |
+|--------|-------|------|---|-----|-------|
+| — | — | — | — | — | No positions closed this week |
+
+### Open Positions at Week End
+
+| Ticker | Entry | Stop | Sizing | Notes |
+|--------|-------|------|--------|-------|
+| MU | $922.91 (May 28) | $784.47 (15% ATR stop) | flat_20pct, 21 sh | screener #1; AI/HBM; COMPUTEX catalyst. **R:R was 1.33:1** on the real 15% stop (logged 2.0 on a 10% placeholder) — exactly the B3 mislabel the audit fixed |
+
+### What Worked
+- Pre-PCE 40% deployment cap correctly enforced (only MU on, 19.4%, before the Wed print).
+- NVDA $213 gate correctly REJECTED entry at $210.75 — the gate logic worked.
+- Pivot to the data-driven momentum screener (Phase F) surfaced MU as #1.
+
+### What Didn't Work (audit findings — see REMEDIATION-FINDINGS.md for fixes)
+- **NVDA missed its gate by $2.25 and was never carried forward** — correct thesis, wrong timing, no watchlist, no postmortem. → B4.
+- **LLY was gated behind NVDA** (unrelated thesis) and auto-skipped when NVDA didn't fill. → B4.
+- **MU entered at R:R 1.33** under a +20% mechanical target on a 15% stop, logged as 2.0:1. → B3 hard 2:1 floor + derived target.
+- **Chronic underdeployment** (~19% vs 75% target) through the rally the theses predicted. → partly B7 (over-tight gates) discipline trade-off, now data-checked.
+- **Citation integrity**: every structured source returned 0 records yet entries cited them as primary. → B2.
+- **Missing Friday EOD snapshot + missing weekly review** (this one). → B8 process hygiene.
+
+### Key Lessons
+- A logged number (stop "active", R:R 2.0, an EOD equity) is worthless if it isn't verified against the broker/source. Half the audit's findings are "the record said X, reality was not-X." The remediation makes verification mandatory (B1 stop coverage, B2 citation honesty, B3 real-stop R:R).
+- Backtests beat priors: the audit's own proposed sector $-cap was rejected by the data (A2) and the R:R floor it expected to hurt was the biggest win (A4). Test, don't assume.
+
+### Adjustments (implemented 2026-06-03 via the audit remediation)
+- Hard 2:1 R:R floor vs a cited target (B3); per-trade risk cap 2.0% (B5); no-chase gate-creep block (B7); stop-coverage verification in all 3 routines (B1); citation + contradiction guards (B2); carry-forward intact theses + decoupled execution (B4).
+
+### Overall Grade: C
+*First live trade placed and the pre-PCE cap held, but the week exposed systemic record-vs-reality gaps (naked-stop risk, R:R mislabel, fabricated citations, no carry-forward) plus a missing EOD and missing review. The infrastructure worked; the discipline and bookkeeping did not. Remediation shipped 2026-06-03.*

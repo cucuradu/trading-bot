@@ -57,6 +57,27 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
                         help="Limit-entry pullback fraction (default 0.02 = 2%% below close)")
     common.add_argument("--ttl-bars", type=int, default=1,
                         help="Limit-entry day-TIF lifetime in bars (default 1 = day TIF; 3 mimics watchlist carry)")
+    # Realism toggles (audit 2026-05-29). Default off = legacy behavior.
+    common.add_argument("--realistic", action="store_true",
+                        help="Enable ALL live-rule realism toggles at once (cash cap, "
+                             "deployment target, entry caps, regime persistence, gap-fill stops)")
+    common.add_argument("--enforce-cash-cap", action="store_true",
+                        help="#1 No leverage: total cost basis may not exceed cash")
+    common.add_argument("--respect-deployment-target", action="store_true",
+                        help="#1b Also cap deployment at the regime target (85/75/50/0%%)")
+    common.add_argument("--enforce-entry-caps", action="store_true",
+                        help="#2 Cap new opens/week at min(3, regime trade_slots)")
+    common.add_argument("--enforce-regime-persistence", action="store_true",
+                        help="#3 Require a regime to persist >=3 bars before the posture changes")
+    common.add_argument("--stop-gap-fill", action="store_true",
+                        help="#4 Trailing-stop fills at the bar open when it gapped below the stop")
+    # Remediation knobs (audit 2026-06-03). Default None = off = legacy behavior.
+    common.add_argument("--risk-cap-pct", type=float, default=None,
+                        help="A3 per-trade risk cap as a fraction of equity (e.g. 0.02 = 2%%). Floors flat-20%% sizing.")
+    common.add_argument("--max-sector-deployment-pct", type=float, default=None,
+                        help="A2 cap on cost basis per sector ETF as a fraction of equity (e.g. 0.30). BROAD exempt.")
+    common.add_argument("--min-rr-at-entry", type=float, default=None,
+                        help="A4 skip entries whose proxy R:R (target +20%% vs ATR stop) falls below this.")
 
     run = sub.add_parser("run", parents=[common])
     run.add_argument("--exit", dest="exit_strategy", default="atr_2_5x",
@@ -101,13 +122,29 @@ def _run_one(bars: dict, exit_strategy: str, start: date, end: date,
              max_per_sector: int = 2,
              entry_mode: str = "market_on_open",
              pullback_pct: float = 0.02,
-             ttl_bars: int = 1) -> tuple:
+             ttl_bars: int = 1,
+             enforce_cash_cap: bool = False,
+             respect_deployment_target: bool = False,
+             enforce_entry_caps: bool = False,
+             enforce_regime_persistence: bool = False,
+             stop_gap_fill: bool = False,
+             risk_cap_pct: float | None = None,
+             max_sector_deployment_pct: float | None = None,
+             min_rr_at_entry: float | None = None) -> tuple:
     cfg = BacktestConfig(
         start=start, end=end, starting_equity=equity,
         exit_strategy=exit_strategy,
         time_stop_days=time_stop_days,
         time_stop_band=time_stop_band,
         max_per_sector=max_per_sector,
+        enforce_cash_cap=enforce_cash_cap,
+        respect_deployment_target=respect_deployment_target,
+        enforce_entry_caps=enforce_entry_caps,
+        enforce_regime_persistence=enforce_regime_persistence,
+        stop_gap_fill=stop_gap_fill,
+        risk_cap_pct=risk_cap_pct,
+        max_sector_deployment_pct=max_sector_deployment_pct,
+        min_rr_at_entry=min_rr_at_entry,
     )
     if stress:
         cfg = stress_config(cfg, shock_prob=shock_prob)
@@ -120,6 +157,7 @@ def _run_one(bars: dict, exit_strategy: str, start: date, end: date,
 
 
 def _common_kwargs(args: argparse.Namespace) -> dict:
+    realistic = getattr(args, "realistic", False)
     return {
         "time_stop_days": args.time_stop_days,
         "time_stop_band": _parse_time_stop_band(args.time_stop_band),
@@ -127,6 +165,14 @@ def _common_kwargs(args: argparse.Namespace) -> dict:
         "entry_mode": args.entry_mode,
         "pullback_pct": args.pullback_pct,
         "ttl_bars": args.ttl_bars,
+        "enforce_cash_cap": realistic or args.enforce_cash_cap,
+        "respect_deployment_target": realistic or args.respect_deployment_target,
+        "enforce_entry_caps": realistic or args.enforce_entry_caps,
+        "enforce_regime_persistence": realistic or args.enforce_regime_persistence,
+        "stop_gap_fill": realistic or args.stop_gap_fill,
+        "risk_cap_pct": args.risk_cap_pct,
+        "max_sector_deployment_pct": args.max_sector_deployment_pct,
+        "min_rr_at_entry": args.min_rr_at_entry,
     }
 
 
@@ -142,6 +188,25 @@ def _run_name_suffix(args: argparse.Namespace) -> str:
         bits.append(f"sec{args.max_per_sector}")
     if args.entry_mode != "market_on_open":
         bits.append(f"{args.entry_mode}-pb{int(args.pullback_pct*100)}-ttl{args.ttl_bars}")
+    if getattr(args, "risk_cap_pct", None) is not None:
+        bits.append(f"riskcap{int(args.risk_cap_pct*1000)}")
+    if getattr(args, "max_sector_deployment_pct", None) is not None:
+        bits.append(f"secdep{int(args.max_sector_deployment_pct*100)}")
+    if getattr(args, "min_rr_at_entry", None) is not None:
+        bits.append(f"minrr{str(args.min_rr_at_entry).replace('.', 'p')}")
+    if getattr(args, "realistic", False):
+        bits.append("realistic")
+    else:
+        flag_tags = [
+            ("enforce_cash_cap", "cash"),
+            ("respect_deployment_target", "deploy"),
+            ("enforce_entry_caps", "entrycap"),
+            ("enforce_regime_persistence", "persist"),
+            ("stop_gap_fill", "gapfill"),
+        ]
+        on = [tag for attr, tag in flag_tags if getattr(args, attr, False)]
+        if on:
+            bits.append("+".join(on))
     return ("-" + "-".join(bits)) if bits else ""
 
 

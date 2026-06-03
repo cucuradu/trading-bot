@@ -83,6 +83,22 @@ Fields:
 - `reason` is a short free-form quoted string.
 Underneath, append the usual prose summary for context.
 
+STEP 3c — **Protective-stop coverage guard (B1).** Before trimming/tightening, verify every *surviving* position carries a live protective stop for its full share count. Placed here (not at the top) so it runs on keepers only — STEP 3 already closed the R≤−1 names and cancelled their stops, so a stop placed earlier would be orphaned. Catches the 2026-06-01 failure mode (OTO child never registered) mid-session, hours before daily-summary would.
+
+```
+python scripts/stop_coverage.py check
+```
+
+If `covered` is true → proceed to STEP 3d. For each `naked` entry:
+
+1. Trail per the strategy ladder (use the position's `unrealized_plpc` from STEP 2): `python scripts/market_data.py stop-for-entry SYM` → base `stop_pct`; up ≥ +20% → `max(5, 1.25×ATR_pct)`, up ≥ +15% → `max(7, 1.75×ATR_pct)`, else `stop_pct`. No existing stop to move down, so the base trail is always an improvement.
+2. Place GTC trailing stop for the `shortfall` qty:
+   ```
+   bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"<shortfall>","side":"sell","type":"trailing_stop","trail_percent":"<trail>","time_in_force":"gtc"}'
+   ```
+   PDT-rejected → `"type":"stop","stop_price":"<stop_price>"`. Exit 42 → STOP, WhatsApp, do not retry.
+3. Re-run `stop_coverage check`; if still not `covered`, WhatsApp `"NAKED POSITION: SYM <shortfall> sh — stop could not be placed"` and include it in STEP 7.
+
 STEP 3d — **Auto-trim overweight winners (Phase H1, auto-fired 2026-06-03).**
 For each open position remaining after STEP 3 (R≤−1 cuts), compute:
 

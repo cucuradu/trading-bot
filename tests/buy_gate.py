@@ -13,6 +13,7 @@ Checks (Phase A):
   - Max correlation with existing (A3)   -> reject if > 0.70
   - Earnings blackout (A4)               -> reject if 0 < days_to_earnings < 5
                                             and catalyst_is_earnings is False
+  - R:R floor (B3, audit 2026-06-03)     -> reject if rr_at_entry < 2.0
   - Existing rules: positions, weekly count, position %, cash, PDT, catalyst, stock
 """
 from __future__ import annotations
@@ -35,6 +36,11 @@ MAX_DAY_TRADE_COUNT = 3  # PDT room on sub-$25k accounts
 MAX_CORRELATION_WITH_EXISTING = 0.70
 EARNINGS_BLACKOUT_DAYS = 5
 MAX_PER_SECTOR = 2  # Phase C finding: sector cap adds +5-6pp return, same trade count
+# B3 (audit 2026-06-03): reward-to-risk floor. The 2026-06-03 backtest sweep
+# (REMEDIATION-FINDINGS.md, A4) showed a hard 2:1 floor is the single most robust
+# improvement — return AND drawdown better in 2024, 2025, combined, and both
+# stress runs. R:R = (target − entry) / (entry − stop), both from cited levels.
+MIN_RR_AT_ENTRY = 2.0
 
 
 @dataclass(frozen=True)
@@ -66,6 +72,10 @@ class ProposedBuy:
     # Caller populates from current Alpaca positions + scripts/universe.py sector_of().
     # None means "not measured"; in production, MUST populate.
     open_positions_in_same_sector: int | None = None
+    # B3 — reward-to-risk at entry = (target − entry) / (entry − stop), both from
+    # cited levels (analyst PT / resistance / measured move), NOT a fixed +20%.
+    # None means "not measured"; in production, MUST populate.
+    rr_at_entry: float | None = None
 
 
 @dataclass(frozen=True)
@@ -92,7 +102,7 @@ def check_buy(account: AccountState, trade: ProposedBuy) -> GateResult:
     # A7 — universe filter
     if sym not in TRADING_UNIVERSE:
         failures.append(
-            f"{sym} is not in TRADING_UNIVERSE (40-ticker whitelist) — see scripts/universe.py"
+            f"{sym} is not in TRADING_UNIVERSE ({len(TRADING_UNIVERSE)}-ticker whitelist) — see scripts/universe.py"
         )
 
     # Original rules
@@ -148,6 +158,15 @@ def check_buy(account: AccountState, trade: ProposedBuy) -> GateResult:
             failures.append(
                 f"already {trade.open_positions_in_same_sector} positions in this sector "
                 f"(cap {MAX_PER_SECTOR})"
+            )
+
+    # B3 — reward-to-risk floor (audit 2026-06-03 backtest: hard 2:1 is the most
+    # robust improvement found). Computed from cited target + ATR stop.
+    if trade.rr_at_entry is not None:
+        if trade.rr_at_entry < MIN_RR_AT_ENTRY:
+            failures.append(
+                f"R:R at entry {trade.rr_at_entry:.2f} < {MIN_RR_AT_ENTRY:.2f} floor "
+                f"(target/stop too thin — derive target from a cited level or demote)"
             )
 
     return GateResult(allowed=len(failures) == 0, failures=tuple(failures))

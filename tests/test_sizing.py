@@ -164,3 +164,39 @@ def test_recommended_size_pct_with_equity_returns_dollars():
 def test_recommended_size_pct_without_equity_omits_dollars():
     out = sz.recommended_size_pct(regime="Bull", equity=None, trades=[])
     assert "size_dollars" not in out
+
+
+# ---------------- B5: per-trade risk cap (audit 2026-06-03) ----------------
+
+def test_risk_cap_binds_on_wide_stop():
+    # MU case: $20k size, $835 entry, 15% stop ($709.75) → per-share risk $125.25.
+    # 2% of $100k = $2,000 cap → floor(2000/125.25) = 15 shares, well below the
+    # flat 23 shares ($20k/$835). The risk cap must bind.
+    out = sz.risk_capped_shares(size_dollars=20_000, entry_price=835.0,
+                                stop_price=709.75, equity=100_000, risk_cap_pct=2.0)
+    assert out["bound"] == "risk_cap"
+    assert out["shares"] == 15
+    assert out["shares"] < out["flat_shares"]
+    assert out["risk_dollars"] <= 2_000.0
+
+
+def test_risk_cap_does_not_bind_on_narrow_stop():
+    # CAT case: 8% stop is narrow enough that flat-20% sizing stays under the cap.
+    out = sz.risk_capped_shares(size_dollars=20_000, entry_price=868.0,
+                                stop_price=798.56, equity=100_000, risk_cap_pct=2.0)
+    assert out["bound"] == "size"
+    assert out["shares"] == out["flat_shares"]
+
+
+def test_risk_cap_default_is_module_constant():
+    out = sz.risk_capped_shares(size_dollars=20_000, entry_price=835.0,
+                                stop_price=709.75, equity=100_000)
+    assert out["risk_cap_pct"] == sz.RISK_CAP_PCT
+
+
+def test_risk_cap_handles_zero_or_inverted_risk():
+    # stop >= entry (should never happen) → no positive per-share risk → size bound.
+    out = sz.risk_capped_shares(size_dollars=20_000, entry_price=100.0,
+                                stop_price=100.0, equity=100_000)
+    assert out["bound"] == "size"
+    assert out["shares"] == out["flat_shares"]

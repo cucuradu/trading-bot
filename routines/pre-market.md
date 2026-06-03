@@ -7,20 +7,29 @@ DATE=$(date +%Y-%m-%d).
 IMPORTANT — ENVIRONMENT VARIABLES:
 - Every API key is ALREADY exported as a process env var:
   ALPACA_API_KEY, ALPACA_SECRET_KEY, ALPACA_ENDPOINT, ALPACA_DATA_ENDPOINT,
-  GEMINI_API_KEY, GEMINI_MODEL, GEMINI_SMART_MODEL,
+  GEMINI_API_KEY, GEMINI_MODEL, GEMINI_SMART_MODEL, GEMINI_LIGHT_MODEL,
   WHATSAPP_PHONE, WHATSAPP_APIKEY,
-  NEWS_API_KEY, FINNHUB_KEY, EDGAR_USER_AGENT.
+  NEWS_API_KEY, FINNHUB_KEY, EDGAR_USER_AGENT,
+  FMP_API_KEY (optional — activates ftd-detector at STEP 0e; skip silently if unset).
 - There is NO .env file. You MUST NOT create, write, or source one.
-  The wrapper scripts read directly from the process env.
+  The wrapper scripts read directly from the process env. These vars are
+  configured in the Claude Code Routine UI (Routines → pre-market → Environment).
+  If you see "MISSING" for NEWS_API_KEY / FINNHUB_KEY / EDGAR_USER_AGENT below,
+  the user has not yet added them to the Routine config — escalate via WhatsApp
+  (it materially degrades research depth; see STEP 0c).
 - If a wrapper prints "KEY not set in environment" → STOP, send one WhatsApp
   alert naming the missing var, exit. Do NOT try to create a .env as a workaround.
 - Verify env vars BEFORE any wrapper call:
     for v in ALPACA_API_KEY ALPACA_SECRET_KEY GEMINI_API_KEY \
-             WHATSAPP_PHONE WHATSAPP_APIKEY NEWS_API_KEY FINNHUB_KEY; do
+             WHATSAPP_PHONE WHATSAPP_APIKEY NEWS_API_KEY FINNHUB_KEY \
+             EDGAR_USER_AGENT; do
       [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
     done
-  NEWS_API_KEY / FINNHUB_KEY missing is tolerable — those adapters will return
-  [] and the research pipeline degrades gracefully. The other five are hard.
+  Hard-required (abort on missing): ALPACA_API_KEY, ALPACA_SECRET_KEY,
+  GEMINI_API_KEY, WHATSAPP_PHONE, WHATSAPP_APIKEY.
+  Soft (tolerable but degrades research; flag in RESEARCH-LOG footer AND
+  send a one-line WhatsApp note "research degraded: <list>"): NEWS_API_KEY,
+  FINNHUB_KEY, EDGAR_USER_AGENT.
 
 IMPORTANT — LIVE-TRADING FAILSAFE:
 - scripts/alpaca.sh refuses order/cancel/close ops if ALPACA_ENDPOINT does not
@@ -82,6 +91,99 @@ auto-recovery cleared the LOCK on this run), record a one-line note in today's
 RESEARCH-LOG entry (STEP 6) and include it in the WhatsApp brief at STEP 7
 so the user notices the bot resumed trading.
 
+**ML insights staleness (parse `check.ml_insights`):**
+- `status: fresh` → proceed normally.
+- `status: stale_warn` (age ≥ 72h) → record `**ML staleness:** age <X>h (warn; rule_fallback only)` in the RESEARCH-LOG header AND include `ML stale <X>h — refresh local PC` in the WhatsApp brief. Trade slots unchanged.
+- `status: stale_degrade` (age ≥ 120h) OR `status in {missing, unparseable, error:*}` → same WhatsApp ping AND **drop `trade_slots` by 1** for today (min 0). This is a hard system gate.
+
+STEP 0c — **Sandbox egress probe** (cloud sandbox sometimes 403-blocks EDGAR/Reddit/Google News even when keys are set; surface degradation BEFORE researching candidates):
+```
+python scripts/news_sources.py egress-probe
+```
+Parse the JSON. For each source `!= "ok"`, add a one-line note to the
+RESEARCH-LOG footer: `Egress: <src> blocked (<http_code>) — research depth reduced`.
+Do NOT abort — research still runs via Gemini grounded search and whatever
+sources remain. Just don't claim the per-candidate "Sources scanned (N)" line
+includes a blocked source.
+
+STEP 0d — **Breadth + sector rotation context (advisory only, no hard gate).**
+Augments the thin VIX/SPY regime with broad-market participation and sector
+cycle phase. Uses vendored community skills (`.claude/skills/`), no API key,
+public CSVs from tradermonty/uptrend-dashboard. Best-effort: on any error
+skip silently and proceed.
+
+```
+mkdir -p reports/breadth
+python .claude/skills/sector-analyst/scripts/analyze_sector_rotation.py --json > /tmp/sector_rotation.json 2>/dev/null
+python .claude/skills/market-breadth-analyzer/scripts/market_breadth_analyzer.py --output-dir reports/breadth 2>/dev/null
+```
+
+Parse `/tmp/sector_rotation.json`:
+- `groups.regime` (risk-on / risk-off / mixed)
+- `groups.score` (0–100)
+- `cycle_phase.phase` (early / mid / late / recession)
+- `groups.divergence_flag` (true means cyclical/defensive disagree internally)
+
+Parse the latest `reports/breadth/market_breadth_*.json`:
+- `composite.score` (0–100)
+- `composite.zone` (Strong / Neutral / Weak / Critical)
+- `components.sp500_vs_breadth_divergence` (look for "bearish divergence")
+
+Include a one-line `**Breadth/Sector:**` row in the RESEARCH-LOG regime
+header (STEP 6 template):
+
+```
+**Breadth/Sector:** breadth=<score>/100 (<zone>) | sector=<regime> score=<score> phase=<phase> | <divergence note or "no divergence">
+```
+
+**Advisory only — NO hard gates here.** These signals do NOT change
+`trade_slots`, do NOT block entries, do NOT modify position sizing. If
+breadth composite < 35 (Weak) OR a clear bearish divergence is flagged
+AND today's regime says Bull, mention the tension in the **Decision**
+section of STEP 6 so the reasoning is auditable, but do not auto-downgrade.
+Strategy-rule promotion of these thresholds is deferred until ≥5 trading
+days of observed behavior.
+
+If the breadth script's history file path doesn't exist on the first run,
+the script errors AFTER printing the analysis — the report files are still
+written, parse them anyway.
+
+STEP 0d-bis — **Sector-format adapter.** Convert the sector-analyst JSON
+to the schema that `exposure-coach` expects (runs at STEP 1b, after regime
+is resolved). Best-effort; on any error skip silently.
+
+```
+python scripts/adapt_sector_for_exposure.py /tmp/sector_rotation.json \
+  > /tmp/sector_adapted.json 2>/dev/null || true
+```
+
+STEP 0e — **FTD detector (offensive bottom-confirmation, optional).**
+Runs only if `FMP_API_KEY` is exported (sign up at financialmodelingprep.com;
+free tier sufficient). Skip silently otherwise — the rest of the routine
+does not depend on this signal.
+
+```
+if [[ -n "${FMP_API_KEY:-}" ]]; then
+    python .claude/skills/ftd-detector/scripts/ftd_detector.py \
+      --json > /tmp/ftd.json 2>/dev/null || true
+fi
+```
+
+If `/tmp/ftd.json` exists and parses, extract `state` (one of:
+`uptrend`, `rally_attempt`, `ftd_confirmed`, `correction`, `post_ftd_health`)
+and any `signal_date`. Append to the RESEARCH-LOG regime header:
+
+```
+**FTD:** state=<value> [signal_date=<YYYY-MM-DD>]
+```
+
+Decision impact (advisory): if today's STEP 1 regime is `Caution` or
+`Defensive` AND FTD reports `ftd_confirmed` within the last 3 trading days,
+note the offensive signal in the **Decision** section but do NOT auto-flip
+to Bull. The XGBoost/rule regime in [scripts/ml_insights.py](../scripts/ml_insights.py)
+remains the hard gate; FTD is a second opinion to mention when humans review
+the log on regime transitions.
+
 **Phase E — pre-macro-event deployment cap.** If `check` JSON returns
 `pre_macro_event.cap_active == true`, cap total cost-basis deployment for
 today at 40% of equity:
@@ -110,6 +212,48 @@ If `market.regime == "Defensive"`, skip generating new trade ideas entirely —
 write only the regime line + a one-paragraph note + decision: HOLD, and skip
 STEP 4b–4f (no need to spend research quota on a no-trade day).
 
+STEP 1b — **Exposure-Coach synthesis (advisory).** Now that regime is
+resolved, run exposure-coach with breadth + sector + regime. Best-effort:
+on any error skip silently and continue.
+
+```
+# Adapt ml_insights regime output to the flat schema exposure-coach expects
+python3 -c "
+import json, sys
+d = json.load(sys.stdin)
+regime = d.get('market', {}).get('regime', 'unknown').lower()
+print(json.dumps({'current_regime': regime}))
+" < <(python scripts/ml_insights.py resolve 2>/dev/null) > /tmp/regime_for_exposure.json 2>/dev/null || true
+
+mkdir -p reports/exposure
+LATEST_BREADTH=$(ls -t reports/breadth/market_breadth_*.json 2>/dev/null | head -1)
+python .claude/skills/exposure-coach/scripts/calculate_exposure.py \
+  --breadth "$LATEST_BREADTH" \
+  --sector /tmp/sector_adapted.json \
+  --regime /tmp/regime_for_exposure.json \
+  --output-dir reports/exposure \
+  --json-only > /tmp/exposure.json 2>/dev/null || true
+```
+
+If `/tmp/exposure.json` parses, extract:
+- `recommendation` (CASH_PRIORITY / REDUCED / NEUTRAL / FULL_DEPLOYMENT)
+- `exposure_ceiling_pct`
+- `bias` (GROWTH / NEUTRAL / DEFENSIVE)
+- `confidence` (LOW / MEDIUM / HIGH)
+
+Append to the RESEARCH-LOG regime header (STEP 6 template):
+
+```
+**Exposure:** ceiling=<X>% | rec=<value> | bias=<value> | conf=<value>
+```
+
+**Advisory only — does NOT override `market.deployment_target` or
+`market.trade_slots` from STEP 1.** Use it to surface tension: if
+`recommendation=CASH_PRIORITY` while STEP 1 says Bull with `trade_slots=3`,
+document the disagreement in the STEP 6 **Decision** section. Rule-level
+promotion of exposure-coach thresholds is deferred until ≥10 trading days
+of observed behavior.
+
 STEP 2 — Read memory for context:
 - `memory/TRADING-STRATEGY.md`
 - Tail (~100 lines) of `memory/TRADE-LOG.md`
@@ -123,8 +267,11 @@ bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 ```
 
-STEP 4 — Macro context via Gemini (default Flash; grounded search). Five
-queries cover the macro picture:
+STEP 4 — Macro context via Gemini (standard Flash, grounded). These 5
+queries need live cited data, so they DO NOT use `--light` (free-tier
+grounded-search quota is separate from per-model RPD; mixing grounding with
+Flash-Lite has been observed to 429 even when RPD is fine — see gemini.sh
+comment). Standard Flash (gemini-3.5-flash) has 20 RPD plus grounding:
 ```
 bash scripts/gemini.sh "WTI / Brent crude oil price right now and major moves today, with one cited source"
 bash scripts/gemini.sh "S&P 500 futures premarket today $DATE plus VIX level and 30-year Treasury yield (current regime: <regime>)"
@@ -132,6 +279,12 @@ bash scripts/gemini.sh "Top stock market catalysts and earnings before market op
 bash scripts/gemini.sh "US economic calendar today $DATE: CPI PPI FOMC jobs data — cite the release schedule"
 bash scripts/gemini.sh "Recent news on currently-held tickers: <list from positions>"
 ```
+Reserve `--light` (gemini-3.1-flash-lite, 500 RPD, NO grounding) for ad-hoc
+ungrounded lookups during follow-up investigation in STEP 4e-bis where the
+model's training-data knowledge is sufficient (e.g., "what does ASCO stand
+for in pharma earnings season"). If standard Flash exits 4 (429 after
+retries) → fall back to native WebSearch and note the fallback in the log
+entry.
 
 **STEP 4-bis — Macro-print reader (event days only).** If `python scripts/risk_gates.py check` returned `pre_macro_event.within_24h=true` OR `pre_macro_event.days_to_event=0`, query the realized print BEFORE candidate selection (the pre-market cron fires shortly after the 8:30 ET release):
 ```
@@ -207,6 +360,20 @@ changes + insider Form 4), SEC EDGAR (8-K / 10-Q / 4 filings), Google News
 RSS, Reddit (sentiment). Missing keys degrade gracefully — that source
 returns `[]` and is noted in the entry footer.
 
+**Citation honesty (B2 — audit 2026-06-03).** A citation must name the source
+that ACTUALLY returned the record. If a source returned `[]` (missing key) or
+was egress-blocked (STEP 0c), you may NOT attribute a fact to it. Real incident
+2026-05-27→06-02: every entry showed NewsAPI/Finnhub/EDGAR/Reddit = 0 records,
+yet bull/bear bullets cited "[SEC Form 4]", "[NVDA IR]", "[Barclays note]" as if
+read from source — the data actually came from Gemini grounded search alone.
+Rules:
+- A fact that came only from Gemini grounded search is tagged `[Gemini grounded
+  — unverified]`, never `[SEC ...]` / `[<company> IR]` / `[<bank> note]`.
+- Reserve `[SEC Form 4]`, `[10-Q]`, `[Finnhub analyst]`, etc. for records that
+  appear in the STEP 4c `gather` output for that ticker.
+- The "Sources scanned (N)" line (STEP 6) counts ONLY sources that returned ≥1
+  record this run; a blocked/empty source contributes 0 and is not cited.
+
 STEP 4d — Synthesize per candidate (Pass 2; Gemini 2.5 Pro, structured output):
 ```
 python scripts/research.py synthesize <SYM>
@@ -216,14 +383,47 @@ evidence to watch for, Catalysts ahead (next 14d, dated), one-line takeaway.
 The synthesis prompt enforces ≥1-citation per Bull/Bear bullet — unsourced
 claims are dropped. Run once per candidate.
 
-STEP 4e — Adversarial critique (Pass 3; Gemini 2.5 Pro at higher temperature):
+STEP 4d-bis — **Data-contradiction guard (B2 — audit 2026-06-03).** Before a
+number changes your conviction, reconcile it against the bot's prior record. For
+each key quantitative claim (valuation P/E, insider $ sold, a macro print, an
+analyst PT), compare to the most recent value in RESEARCH-LOG / TICKER-NOTES
+(`python scripts/research.py latest-on SYM 30`). If a metric differs from the
+prior figure by a large margin (rule of thumb: >25% relative, or any sign flip),
+you MUST resolve which is correct (one more targeted query) BEFORE using it —
+never silently average or pick the convenient one. Real incidents 2026-05-25→27:
+LLY forward P/E logged as 26.3x then 56.5x two days apart; Lilly insider selling
+"$15M" then "$577M" (the unverified larger figure was then used to wave away a
+bear signal); Core PCE "+3.2% benign" at open vs "3.3% hot" at midday. Log the
+reconciliation on a `**Data check:**` line in the candidate block (what
+conflicted, which value you kept, why). A contradiction you can't resolve →
+treat the metric as unknown and do not lean on it.
+
+STEP 4e — Adversarial critique (Pass 3 — **Claude does this directly; do NOT
+call `python scripts/research.py critique`**). The Gemini Pro quota is too
+tight (~5/day) to spend on critique when Claude is in the loop. For each
+shortlisted candidate, given the synthesis you just produced in STEP 4d,
+write a critique block with exactly these three sub-sections:
+
 ```
-python scripts/research.py critique <SYM>
+**Strongest counter to the bull case:** one paragraph (≤80 words). Cite a
+specific source URL + date if you reference data. Be adversarial — your job
+is to find why this trade fails, not to balance both sides.
+
+**Weakly-sourced or unsourced claims:** bullet list of any Bull/Bear items
+from the synthesis that fail the citation rule (URL + publication date). If
+the synthesis is clean, write `(none)`.
+
+**Single most-likely invalidator (next 5 trading days):** one sentence with
+the SPECIFIC trigger level or event that would activate it (e.g., "AMD
+loses HBM allocation in any tier-1 OEM contract" — not "macro deterioration").
 ```
-Returns: strongest counter to the bull case, list of any unsourced claims
-found, the single most-likely invalidator over the next 5 trading days. If
-the critique materially undermines the synthesis (Claude judges), demote or
-drop the candidate.
+
+If your own critique materially undermines the synthesis (you found the
+strongest counter is genuinely stronger than the bull case, or the
+invalidator is highly likely to fire), demote or drop the candidate in
+STEP 6's Decision section. The `python scripts/research.py critique`
+subcommand still exists for ad-hoc use outside the routine; just don't call
+it here.
 
 STEP 4e-bis — **Investigate further when uncertain (do not skip).** The 5
 sources + 3 LLM passes are a FLOOR, not a ceiling. If any of the following
@@ -255,16 +455,34 @@ what changed in the decision.
 Budget guard: stop adding follow-up queries once Claude's input token count
 exceeds ~20k for this session.
 
-STEP 4f — Historical analog (one Gemini 2.5 Pro call per pre-market):
+STEP 4f — Historical analog (**Claude does this directly; do NOT call
+`python scripts/research.py historical-analog`**). Same Pro-quota reason as
+STEP 4e. Using the 4-6 line `$MACRO_SUMMARY` digest you assembled from
+STEP 4 (today's regime + VIX + 30y yield + breadth + sector leadership),
+write the **Historical Analog** section directly. Format with these three
+short paragraphs:
+
 ```
-python scripts/research.py historical-analog <<< "$MACRO_SUMMARY"
+**Analog:** date + matching conditions. Be specific (VIX level, yield, sector
+leadership, macro backdrop). Cite a source URL + date for any data point.
+
+**What followed:** 5d / 10d / 20d outcomes with one cited data point per
+window (e.g., "SPX +4.4% over 5 days [cited]").
+
+**Why this time might differ:** one sentence on the key divergence between
+today and the analog (e.g., "today has Iran ceasefire oil tailwind not
+present in Oct 2023").
 ```
-Where `$MACRO_SUMMARY` is a 4-6 line digest of today's regime + VIX + key
-yield + breadth + sector leadership. The response is the **Historical Analog**
-section of the RESEARCH-LOG entry.
+
+Pull from your training-data knowledge of US equity history (last 5y is the
+sweet spot — recent enough to match modern market structure). If you are
+genuinely uncertain about a specific historical period, do ONE follow-up
+`bash scripts/gemini.sh --light "<targeted historical question>"` to verify
+rather than guessing. The `research.py historical-analog` subcommand stays
+available for ad-hoc use.
 
 STEP 5 — Constrain trade ideas to the universe:
-- Reference `python scripts/universe.py list` for the 40-ticker whitelist. ANY trade idea must be on this list.
+- Reference `python scripts/universe.py list` for the 70-ticker whitelist. ANY trade idea must be on this list.
 - Skip tickers whose sector is `Bear` in STEP 1's regime resolution.
 - Honor today's `trade_slots`: if `trade_slots == 0` (Defensive), write zero trade ideas. If `trade_slots == 1`, write at most 1.
 
@@ -282,6 +500,10 @@ line so audits and the daily summary can grep it:
 
 ### Macro Framework
 [One paragraph capturing: regime, key yield level (30y), USD trend, oil, breadth, VIX term structure, dominant theme. Diff explicitly vs yesterday's MACRO-FRAMEWORK paragraph: "vs yesterday: yields ±Xbp; oil ±X%; regime unchanged/flipped".]
+> **Naming convention (B8):** write **"SPY"** ONLY for the ETF (~$745); write the
+> index level as **"SPX"** or "S&P 500 index" (~7,470). Never label both "SPY" —
+> the 2026 logs used "SPY" for $745.64 AND 7,473.47, which breaks any parser and
+> confuses the diff.
 
 ### Sector Picture
 - Top 3 / bottom 3 sectors by 1mo momentum, with regime tag from STEP 1
@@ -305,8 +527,32 @@ For each shortlisted candidate (cap 3):
 - Sector exposure post-entry: X% (currently Y%)
 - 30d correlation with existing positions: from `python scripts/market_data.py max-correlation-with SYM <existing>`
 - Sector cap status: X/2 (Phase C rule)
+- **Shared-catalyst flag (B6 — soft advisory, audit 2026-06-03):** does this
+  name's PRIMARY catalyst match an existing position's or another candidate's
+  (e.g. MU + AMD both = "AI capex / HBM / GPU demand")? If yes, say so explicitly
+  here and require an acknowledgment in the **Decision** line — two names on one
+  thesis is one factor bet, not two positions; 30d price-correlation (0.44 for
+  MU/AMD) understates it because correlations converge to 1 in the selloff you're
+  hedging against. This is NOT a hard gate: the 2026-06-03 backtest (A2,
+  REMEDIATION-FINDINGS.md) showed a hard sector $-cap costs ~15pp in trend years,
+  so concentration in a leading theme is allowed — but it must be a *conscious*
+  choice, sized accordingly, not a silent doubling.
 
-**R:R math:** entry $X / stop $X (-X.X%) / target $X (+X.X%) / R:R X.X:1 / max risk $X.
+**R:R math (B3 — audit 2026-06-03):** entry $X / stop $X (-X.X%, from the **real
+2.5×ATR `stop_pct`**, not a placeholder) / target $X (+X.X%) / R:R X.X:1 / max risk $X.
+- The **target MUST be derived from a cited level** — an analyst PT, a 52-week-high
+  / prior-resistance level, or a measured move — with the source named on this
+  line. Do NOT default target to entry × 1.20. (2026-05-27: MU was logged R:R 2.0
+  on a 10% stop but entered on the real 15% ATR stop → actual R:R 1.33; the target
+  was mechanical and the stop understated.)
+- **Hard 2:1 floor (`tests/buy_gate.py` MIN_RR_AT_ENTRY=2.0).** If R:R computed
+  from the real ATR stop and the cited target is < 2.0, this candidate is
+  **demoted** — it does NOT get a full-size entry. Either (a) it becomes a
+  watchlist/reduced-conviction name, or (b) if a higher cited target legitimately
+  lifts R:R ≥ 2, use that (with its source). A wide 12–15% ATR stop is fine *iff*
+  the cited upside pays for it (e.g. 15% stop + a PT implying +35% → R:R 2.3 ✓).
+  Backtest basis: REMEDIATION-FINDINGS.md A4 (2:1 floor improved return AND
+  drawdown across 2024, 2025, combined, and both stress runs).
 
 **Setup type (Phase G1):** PULLBACK | BREAKOUT | MOMENTUM
 - **PULLBACK** — thesis is "price needs to come back to my level" (bounce off MA, dip-buy at support). Market-open will place a **buy-limit** at the planned entry — fills only if price comes to you. Best for mean-reversion setups where chasing risks paying up.
@@ -315,7 +561,32 @@ For each shortlisted candidate (cap 3):
 
 **Entry plan:** PULLBACK → limit $X.XX (day TIF) | BREAKOUT → buy-stop $X.XX (day TIF) | MOMENTUM → market at open
 
+**Gate-history audit (B7 — hard block, audit 2026-06-03):** grep
+`memory/RESEARCH-LOG.md` for the last 5 trading days of `#### SYM` entries and
+recover any prior planned entry / gate level for this symbol.
+- If today's planned entry is **above a level you previously refused as
+  too-high** (a prior "do NOT chase" / gate / planned entry that did NOT fill),
+  and the stock has NOT pulled back to today's planned level (current ask ≤ plan),
+  this candidate is **demoted to the watchlist — no chase entry today.** Add it
+  via `watchlist.py add` and state "gate-creep block" in the Decision line.
+  Real incident 2026-05-28→06-01: AMD gate drifted $475 → $490 ("do NOT chase")
+  → $510 limit, paying $35 above the original thesis entry. Backtest basis
+  (REMEDIATION-FINDINGS.md A1): chasing the open returned +5.97%/+10.74% vs
+  +31.74%/+19.11% for waiting for a pullback — chasing roughly quarters the edge.
+- A *downward* revision, or a move justified by genuine same-day price action
+  (the stock actually traded up to the new level), is allowed — cite the reason
+  (e.g. "gate raised $475→$490 because year-high pushed to $527"). No silent gate
+  moves — they are how losing thresholds drift.
+
 **Decision:** retained / demoted / dropped — one sentence explaining why.
+
+### Candidates dropped (and why)
+List EVERY candidate that was researched OR appeared on the screener top-10
+but did NOT make the final cut. One line each: `SYM — <reason>` (e.g.,
+`LLY — sector cap (XLV) already filled by candidate #2`,
+`TSLA — failed correlation gate vs MU at 0.78`). This section is mandatory
+even when empty (`(none)` is acceptable) — silent drops are how thesis
+inconsistencies sneak in.
 
 ### Historical Analog
 [Paste the historical-analog output verbatim.]
@@ -327,9 +598,11 @@ For each shortlisted candidate (cap 3):
 TRADE / HOLD with explicit deployment plan (which N candidates, in what order) and any waiting conditions (e.g., "wait 15 min after open before any entry").
 
 ### Quota & source usage (footer)
-- Gemini calls: N Flash + N Pro
+- Gemini calls: N Flash-Lite + N Flash + N Pro
 - NewsAPI / Finnhub / EDGAR / Reddit request counts
 - Fallback events (sources that returned [] due to missing keys or errors)
+- Egress probe: edgar=<ok|http_X>, google_news=<ok|http_X>, reddit=<ok|http_X>
+- ml_insights: status=<fresh|stale_warn|stale_degrade|...>, age=<X>h
 ```
 
 STEP 6b — Update persistent knowledge files (idempotent updates, not blind appends):

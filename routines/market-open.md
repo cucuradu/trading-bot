@@ -95,6 +95,34 @@ STEP 3 — Hard-check rules BEFORE every order. Skip any trade that fails and lo
   CAND_SECTOR=$(python scripts/universe.py sector SYM)
   ```
   If `count >= 2`, SKIP — backtest sweep showed this single rule adds +5-6pp of return over 2 years by preventing sector concentration. BROAD ETFs (SPY/QQQ/IWM/DIA) are exempt from this cap.
+- **R:R floor (B3 — audit 2026-06-03)** — read the candidate's R:R from today's
+  RESEARCH-LOG **R:R math** line (computed from the real ATR stop + a cited
+  target). If R:R < 2.0, SKIP and demote to watchlist — `tests/buy_gate.py`
+  enforces `MIN_RR_AT_ENTRY = 2.0`. Pre-market should already have demoted such
+  names; this is defense-in-depth in case the gap moved the entry/stop. If the
+  gap-down branch below widened `stop_pct`, RECOMPUTE R:R against the new stop and
+  re-apply the floor before proceeding.
+- **Independent execution (B4 — audit 2026-06-03)** — evaluate each accepted
+  candidate on its OWN merits. Do NOT make one entry conditional on another
+  filling first unless the dependency is genuinely capital- or correlation-driven
+  (e.g. they'd breach the cash cap together). Real incident 2026-05-27: LLY was
+  gated "enter only after NVDA fills"; NVDA missed its gate by $2.25, so LLY
+  auto-skipped even though its thesis (ASCO retatrutide) was completely
+  independent of NVDA's price. Unrelated theses must not share a fill trigger.
+
+**Carry-forward intact theses (B4 — audit 2026-06-03).** Any candidate skipped
+in STEP 3 whose **thesis is still intact** (i.e. skipped for a *transient* reason
+— gap above plan, price didn't reach a buy-stop, daytrade buffer, a same-day
+correlation/sector clash that may clear) MUST be added to the watchlist so it
+re-enters tomorrow's shortlist at the top:
+```
+python scripts/watchlist.py add SYM --setup <setup> --entry <planned> --stop <initial_stop> --thesis "<short>"
+```
+Do NOT carry forward a skip caused by a *broken* thesis (sector flipped Bear,
+catalyst invalidated, now in earnings blackout, R:R floor failed on merit) — log
+those as dropped. Real incident 2026-05-27: NVDA missed its $213 gate by $2.25
+with the AI/COMPUTEX thesis fully intact, then vanished from the next day's
+screener with no carry-forward and no postmortem — exactly what this prevents.
 
 STEP 4 — Compute the **ATR-based stop width** for each accepted candidate (Phase A2):
 ```
@@ -102,12 +130,21 @@ python scripts/market_data.py stop-for-entry SYM
 ```
 Capture the `stop_pct` (clamped to [7, 15]) and the `stop_price`. This replaces the fixed 10% rule.
 
-STEP 4b — Compute the **position size** per Phase D4 (Half-Kelly when N≥30, else flat 20%):
+STEP 4b — Compute the **position size** per Phase D4 (Half-Kelly when N≥30, else flat 20%), then apply the **per-trade risk cap** (B5):
 ```
-python scripts/risk_gates.py check          # capture current_equity
-python scripts/sizing.py recommend <regime> <equity>
+python scripts/risk_gates.py check                       # capture current_equity
+python scripts/sizing.py recommend <regime> <equity>     # → size_dollars, method
+python scripts/sizing.py shares <size_dollars> <ask_price> <stop_price from STEP 4> <equity>
 ```
-Use `size_dollars` from the JSON output to compute shares: `shares = floor(size_dollars / ask_price)`. The output's `method` field will be either `"flat_20pct"` or `"half_kelly"` — log this verbatim into TRADE-LOG.
+Use the `shares` field from the **`shares`** subcommand — do NOT hand-compute
+`floor(size_dollars / ask)`. It returns `min(sizing-dollar count, risk-capped
+count)` where the risk cap = `RISK_CAP_PCT` (2.0%) of equity ÷ per-share risk
+(`ask − stop_price`). When `bound == "risk_cap"`, the position was shrunk because
+its ATR stop is wide — log `sizing=<method>+riskcap` and the `risk_pct_of_equity`
+in TRADE-LOG. Basis: REMEDIATION-FINDINGS.md A3 (2.0% improved return AND drawdown
+in 2024, 2025, combined, and both stress runs; equalizes the flaw where MU's 15%
+stop risked 2.9% vs CAT's 8% stop risked 1.5% at the same flat 20% dollar size).
+The `method` field (`flat_20pct` | `half_kelly`) is still logged verbatim.
 
 If `method == "half_kelly"` AND this is the first trade after the switchover (yesterday's TRADE-LOG showed `method=flat_20pct`), send a one-off WhatsApp alert: `"Half-Kelly sizing now ACTIVE — W=X.XX, R=Y.YY, expectancy=Z.ZZ"`.
 
@@ -164,6 +201,31 @@ If also blocked, place the entry alone (no OTO), record PENDING with `stop=PDT-b
 
 If `scripts/alpaca.sh` exits 42 (failsafe), STOP, send WhatsApp alert, do not retry.
 
+STEP 5b — **Protective-stop coverage guard (B1).** The OTO child can silently fail to register: the 2026-06-01 incident left AMD + CAT open **overnight with no stop visible in Alpaca**, undetected until next pre-market. "Alpaca arms the child automatically" is an assumption, not a verified fact — verify it. This sweep covers *every* open position (today's fills AND positions carried from prior days), not just the ones placed above.
+
+```
+python scripts/stop_coverage.py check
+```
+
+Parse the JSON. If `covered` is true → done, proceed to STEP 6. For each entry in `naked` (a long position whose live protective-sell qty is short of its share count):
+
+1. Compute the trail the position SHOULD carry, per the strategy ladder (use its current unrealized P&L from STEP 2 positions):
+   - `python scripts/market_data.py stop-for-entry SYM` → base `stop_pct` (2.5×ATR, clamped [7,15]).
+   - If position is up ≥ +20% → `trail = max(5, 1.25×ATR_pct)`; elif up ≥ +15% → `trail = max(7, 1.75×ATR_pct)`; else → `trail = stop_pct`.
+   - A naked position has NO stop to move down, so placing the base trail is always an improvement — the "never move a stop down" rule does not apply here. Midday tightening will refine it.
+2. Place a GTC trailing stop for the **shortfall** qty:
+   ```
+   bash scripts/alpaca.sh order '{
+     "symbol":"SYM","qty":"<shortfall>","side":"sell",
+     "type":"trailing_stop","trail_percent":"<trail>","time_in_force":"gtc"
+   }'
+   ```
+   If PDT-rejected, use a fixed `"type":"stop","stop_price":"<stop_price>"` instead.
+3. Re-run `python scripts/stop_coverage.py check`. If still not `covered`, send WhatsApp:
+   `"NAKED POSITION unresolved: SYM <shortfall> sh — manual stop needed"` and continue (do not abort the routine — other positions still need their guard).
+
+Do NOT write a stop as "active" in TRADE-LOG (STEP 6) unless `stop_coverage` confirms the order is live. A logged-but-absent stop is what hid the 2026-06-01 incident.
+
 STEP 6 — Append to `memory/TRADE-LOG.md` once per submitted order:
 
 1. The canonical **PENDING** line (machine-parsed; promoted to OPEN on fill by daily-summary's STEP 3b reconciliation):
@@ -186,7 +248,7 @@ STEP 6 — Append to `memory/TRADE-LOG.md` once per submitted order:
    ```
    PULLBACK/BREAKOUT orders are typically pending at this point — leave the OPEN line for daily-summary to write.
 
-3. The usual prose summary block for human readability (date, ticker, Setup type, ATR, stop_pct, target, R:R, full thesis paragraph).
+3. The usual prose summary block for human readability (date, ticker, Setup type, ATR, stop_pct, target, R:R, full thesis paragraph). When describing the stop, only call it "active"/"GTC, active" if STEP 5b's `stop_coverage` confirmed a live order for that symbol; otherwise write "stop pending fill" or "stop NOT yet armed — see STEP 5b". Never assert an active stop you have not verified in Alpaca.
 
 STEP 7 — Notification (only if an order was placed, even if still pending):
 ```

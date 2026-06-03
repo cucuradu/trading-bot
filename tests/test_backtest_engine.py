@@ -182,3 +182,37 @@ def test_defensive_regime_blocks_new_entries():
     eng_obj = eng.Engine(bars, entry_simulator=sim)
     result = eng_obj.run(cfg)
     assert len(result.trades) == 0
+
+
+# ---------------- Remediation knob helpers (audit 2026-06-03) ----------------
+
+def test_sized_shares_risk_cap_binds_on_wide_stop():
+    # 20% of $100k = $20k → 23 sh @ $835. Risk cap 2% = $2k, per-share risk
+    # $125.25 → 15 sh. min() picks the risk-capped count.
+    s = eng._sized_shares(equity=100_000, max_position_pct=0.20, fill_price=835.0,
+                          entry_basis=835.0, stop_price=709.75, risk_cap_pct=0.02)
+    assert s == 15
+
+
+def test_sized_shares_no_cap_is_flat_pct():
+    s = eng._sized_shares(equity=100_000, max_position_pct=0.20, fill_price=835.0,
+                          entry_basis=835.0, stop_price=709.75, risk_cap_pct=None)
+    assert s == 23  # floor(20000 / 835)
+
+
+def test_passes_min_rr_filters_thin_reward():
+    # +20% target, 15% stop → R:R = 0.20 / 0.15 = 1.33 < 2.0 → fail.
+    assert not eng._passes_min_rr(100.0, 85.0, min_rr=2.0, target_pct=0.20)
+    # +20% target, 8% stop → R:R = 0.20 / 0.08 = 2.5 >= 2.0 → pass.
+    assert eng._passes_min_rr(100.0, 92.0, min_rr=2.0, target_pct=0.20)
+    # disabled → always pass.
+    assert eng._passes_min_rr(100.0, 85.0, min_rr=None, target_pct=0.20)
+
+
+def test_sector_room_caps_dollar_exposure():
+    # 30% cap on $100k = $30k. One $20k position leaves room for $10k, not $20k.
+    assert eng._sector_room({"XLK": 20_000}, "XLK", 10_000, 100_000, 0.30)
+    assert not eng._sector_room({"XLK": 20_000}, "XLK", 20_000, 100_000, 0.30)
+    # BROAD ETFs are exempt; disabled cap always has room.
+    assert eng._sector_room({"BROAD": 50_000}, "BROAD", 50_000, 100_000, 0.30)
+    assert eng._sector_room({"XLK": 90_000}, "XLK", 90_000, 100_000, None)

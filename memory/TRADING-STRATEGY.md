@@ -12,8 +12,8 @@ Forward-test this strategy on an Alpaca paper account for 10–12 weeks. Goal: b
 ## Core Rules
 1. NO OPTIONS — ever
 2. 75–85% deployed
-3. 5–6 positions at a time, max 20% each
-4. Trailing stop on every position as a real GTC order (ATR-based, see "Stop methodology" below; floor 7%, cap 15%)
+3. 5–6 positions at a time, max 20% each, **and per-trade risk ≤ 2.0% of equity** (B5 — the dollar size shrinks below 20% when the ATR stop is wide; see "Position sizing")
+4. Trailing stop on every position as a real GTC order (ATR-based, see "Stop methodology" below; floor 7%, cap 15%). **A logged stop is NOT a real stop until verified in Alpaca — see "Protective-stop coverage" (B1).**
 5. Cut losers at R ≤ −1 manually (close ≤ initial_stop; respects ATR stop width)
 6. Tighten trail: 7% at +15%, 5% at +20% (or equivalent ATR multiplier — see below)
 7. Never within 3% of current price; never move a stop down
@@ -22,6 +22,8 @@ Forward-test this strategy on an Alpaca paper account for 10–12 weeks. Goal: b
 10. Exit a sector after 2 consecutive failed trades
 11. Patience > activity
 12. **Universe filter** — only the 70 tickers in `scripts/universe.py` are allowed (Phase A7; expanded 40→70 in Phase F). Quoting, researching, or trading outside the universe is forbidden.
+13. **R:R ≥ 2:1 hard floor** (B5/B3, audit 2026-06-03) — every entry's reward-to-risk, computed from the **real ATR stop** and a **cited target**, must be ≥ 2.0 or the name is demoted (watchlist / no full-size entry). Enforced in `tests/buy_gate.py`.
+14. **Never chase** (B7) — do not enter above a level you previously refused as too-high unless the stock has actually pulled back to plan. Gate-creep is a demote-to-watchlist, not a discretionary call.
 
 ## Trading Universe (Phase A7)
 
@@ -71,6 +73,22 @@ and the user must delete the file manually.
 | Time stop | 10 trading days flat (−3% ≤ P&L ≤ +3%) | Close, free up capital |
 | Regime override | Defensive market regime | Close winners, hold stops; no new entries |
 
+### Protective-stop coverage (B1 — audit 2026-06-03)
+
+Every open position MUST be covered by a live protective sell order
+(`trailing_stop`/`stop`) for its full share count, AT ALL TIMES. The OTO child
+that arms on entry can silently fail to register — the 2026-06-01 incident left
+AMD + CAT open **overnight with no stop in Alpaca**, undetected ~18h until the
+TRADE-LOG had falsely recorded both stops as "GTC, active". Rules:
+- "Alpaca arms the child automatically" is an assumption, never a verified fact.
+  Verify with `python scripts/stop_coverage.py check` and re-place any shortfall.
+- Run the coverage guard in `market-open` (STEP 5b, after fills), `midday`
+  (STEP 3c, on survivors), and `daily-summary` (STEP 3b-cov, before close).
+- NEVER write a stop as "active" in TRADE-LOG until `stop_coverage` confirms a
+  live order. A logged-but-absent stop is the most dangerous record error.
+- A naked position has no stop to "move down", so re-placing the base ATR trail
+  is always an improvement — the "never move a stop down" rule does not block it.
+
 Concrete commands (Phase A2/A3/A4):
 
 ```
@@ -91,8 +109,10 @@ python scripts/market_data.py max-correlation-with CANDIDATE EXIST1 EXIST2 ...
 - Specific catalyst?
 - Sector in momentum (and sector not in Bear regime)?
 - ATR(14) computed; stop width within [7%, 15%]?
-- Target (min 2:1 R:R)?
-- Correlation with existing positions < 0.70?
+- **Target derived from a CITED level** (analyst PT / 52w-high / measured move), and **R:R ≥ 2.0** computed from the real ATR stop (NOT a placeholder +20% target)? If < 2:1 → demote, no full-size entry (B3, hard floor in `tests/buy_gate.py`).
+- Per-trade risk ≤ 2.0% of equity after sizing (B5)?
+- Not chasing a previously-refused level (B7)?
+- Correlation with existing positions < 0.70? (and if it shares a *primary catalyst* with an existing position, is the concentration a conscious, acknowledged choice? — B6 soft advisory)
 - Earnings not in next 5 trading days (unless catalyst IS earnings)?
 - Symbol in TRADING_UNIVERSE?
 
@@ -133,6 +153,42 @@ Per-trade:
   This rule was added after the Phase C backtest sweep showed it adds
   +5-6pp annualized return over a 2-year window vs. an uncapped baseline,
   with no change in trade count.
+- **R:R floor (B3, audit 2026-06-03)**: R:R at entry ≥ 2.0, computed from the
+  cited target and the real ATR stop (`MIN_RR_AT_ENTRY` in `tests/buy_gate.py`).
+  Backtest A4 (REMEDIATION-FINDINGS.md): a hard 2:1 floor improved return AND
+  drawdown across 2024, 2025, combined, and both stress runs — the single most
+  robust improvement found.
+- **No gate-creep (B7, audit 2026-06-03)**: do NOT enter above a level refused as
+  too-high in the last 5 trading days unless the stock pulled back to plan
+  (current ask ≤ plan). Enforced as a demote-to-watchlist in pre-market's
+  gate-history audit. Backtest A1: chasing the open returned a quarter of the
+  edge of waiting for a pullback.
+
+**Concentration — what is NOT a gate (B6, audit 2026-06-03):** a hard per-sector
+**dollar** cap was tested (A2) and **rejected** — at 20% positions it just forces
+1-per-sector, which cost ~15pp in the 2024 trend year while only helping 2025
+(fails the ≥2-window bar). The sector COUNT cap (≤2) + the 0.70 correlation gate
+stay; shared-catalyst concentration (e.g. MU+AMD both on AI-capex, price-corr
+0.44 but thematic-corr ~1) is handled as a **soft pre-market advisory** requiring
+explicit acknowledgment, NOT a hard gate.
+
+## Research integrity (B2 — audit 2026-06-03)
+
+Decisions are only as good as the data behind them. Two hard rules:
+
+1. **Citation honesty.** A citation must name the source that ACTUALLY returned
+   the record (it appears in `research.py gather` output). Facts that came only
+   from Gemini grounded search are tagged `[Gemini grounded — unverified]`, never
+   `[SEC ...]` / `[<co> IR]` / `[<bank> note]`. A source that returned 0 records
+   or was egress-blocked may NOT be cited. (2026-05-27→06-02: every entry showed
+   NewsAPI/Finnhub/EDGAR/Reddit = 0 yet cited them as primary sources.)
+2. **Contradiction reconciliation.** Before a number changes conviction, compare
+   it to the bot's prior record (`research.py latest-on SYM 30`). A metric that
+   differs >25% (or flips sign) from the last logged value MUST be resolved with
+   one targeted query before use — never silently pick the convenient figure.
+   (2026-05-25→27: LLY P/E 26.3x↔56.5x; insider selling $15M↔$577M; Core PCE
+   3.2%-benign↔3.3%-hot — the unverified bigger insider figure was used to wave
+   away a bear signal.) Log the resolution on a `**Data check:**` line.
 
 ## Sell-side Rules
 - Close ≤ initial_stop (R ≤ −1) → close immediately at market (Phase C: was a flat
@@ -208,6 +264,17 @@ Until N=30 closed trades: flat 20% max per position (current behavior).
 From N=30 onward: **Half-Kelly** sizing kicks in automatically. The switchover
 is data-driven — when `python scripts/trade_log.py count` reaches 30, every
 new entry consults `python scripts/sizing.py recommend <regime> <equity>`.
+
+**Per-trade risk cap (B5 — audit 2026-06-03).** On top of the dollar size above,
+final share count = `min(size_dollars / entry, RISK_CAP_PCT%·equity / (entry −
+stop))` via `python scripts/sizing.py shares <size_dollars> <entry> <stop>
+<equity>`. `RISK_CAP_PCT = 2.0`. This shrinks the position when the ATR stop is
+wide so per-trade $ risk is bounded — flat-20% had risked 2.9% on MU's 15% stop
+vs 1.5% on CAT's 8% stop at the same dollar size. Backtest A3
+(REMEDIATION-FINDINGS.md): 2.0% improved return AND drawdown in 2024, 2025,
+combined, and both stress runs (2025-stress -8.7%→+3.7%). Complementary to the
+R:R floor (B3): the floor filters thin-reward entries, the cap right-sizes the
+wide-stop ones that pass.
 
 Formula:
 - `W = win_rate` over all closed trades in `memory/TRADE-LOG.md`
@@ -392,3 +459,18 @@ A watchlist entry is dropped early if the thesis breaks (sector flips to
 Bear, earnings now in blackout, major adverse news). The standard pre-market
 filters still apply on each re-evaluation — the bonus does not override hard
 rules.
+
+### Independent execution + carry-forward (B4 — audit 2026-06-03)
+
+- **Independent execution.** Each candidate is evaluated and executed on its OWN
+  merits. Do NOT make one entry conditional on another filling first unless the
+  dependency is genuinely capital- or correlation-driven. (2026-05-27: LLY was
+  gated "enter only after NVDA fills"; NVDA missed its gate by $2.25 so LLY
+  auto-skipped, even though its ASCO/retatrutide thesis was independent of NVDA.)
+- **Carry-forward intact theses.** Any candidate skipped at market-open for a
+  *transient* reason (gap above plan, buy-stop not reached, daytrade buffer, a
+  same-day correlation/sector clash) with its thesis still intact MUST be added
+  to the watchlist — not silently dropped. (2026-05-27: NVDA missed $213 by
+  $2.25 with the AI/COMPUTEX thesis intact, then vanished from the next day's
+  screener with no carry-forward.) Broken-thesis skips (sector Bear, catalyst
+  dead, R:R floor failed on merit) are logged as dropped, not carried.

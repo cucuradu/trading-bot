@@ -61,6 +61,12 @@ STEP 3 — Compute metrics:
 - Phase cumulative P&L ($ and %) = today_equity − starting_equity ($100,000)
 - Trades today (list or "none")
 - Trades this week (running total)
+- **daytrade_count reconciliation (B8):** read `daytrade_count` from
+  `alpaca.sh account`. If it incremented today but TRADE-LOG shows no same-day
+  buy+sell round-trip for any symbol, flag it on the EOD `**Notes:**` line
+  (`daytrade_count=N unexplained — no logged round-trip`) so it's not silently
+  ignored. (2026-06-02 showed daytrade_count=1 with no round-trip; harmless at
+  $100k since PDT doesn't bind, but unreconciled counts hide real day-trades.)
 
 STEP 3b — Reconcile PENDING orders (Phase G4). Limit/stop entries placed by
 market-open earlier today may have filled intraday OR may still be open. Walk
@@ -74,7 +80,7 @@ TODAY_ORDERS=$(bash scripts/alpaca.sh orders-today)
 
 For each pending order, look up its status in `$TODAY_ORDERS` (match on `id`):
 
-- `status == "filled"` → write the canonical OPEN line below the existing PENDING line, referencing the same order_id. The trailing-stop child armed automatically (OTO order_class) — no separate stop placement needed. Format:
+- `status == "filled"` → write the canonical OPEN line below the existing PENDING line, referencing the same order_id. The OTO child *should* have armed on fill, but do NOT assume it did — STEP 3b-cov below verifies it for real. Format:
   ```
   - OPEN YYYY-MM-DD: SYM order_id=<id> entry=FILL_PRICE initial_stop=STOP shares=N regime_entry=REGIME sector=XL? sizing=METHOD thesis="..." (carries forward from PENDING)
   ```
@@ -96,6 +102,26 @@ For each pending order, look up its status in `$TODAY_ORDERS` (match on `id`):
 - `status in {"new","accepted","held"}` AND order is GTC (rare for entries; should not happen with the OTO+day pattern) → leave it alone; flag in the WhatsApp brief.
 
 After this step, every PENDING line in TRADE-LOG has either been promoted to OPEN, has a "Watchlist" note, or has been explicitly cancelled. STEP 4 onward can assume only OPEN/CLOSED positions exist for accounting purposes.
+
+STEP 3b-cov — **Protective-stop coverage guard (B1).** Now that fills are reconciled, verify EVERY open position carries a live protective stop for its full share count. This is the last routine of the day — a position left naked here sits unhedged overnight (the exact 2026-06-01 AMD + CAT incident: OTO children never registered, undetected for ~18h).
+
+```
+python scripts/stop_coverage.py check
+```
+
+Parse the JSON. If `covered` is true → proceed to STEP 3c. For each entry in `naked`:
+
+1. Compute the trail per the strategy ladder using the position's unrealized P&L (from STEP 2):
+   - `python scripts/market_data.py stop-for-entry SYM` → base `stop_pct` (2.5×ATR, clamped [7,15]).
+   - up ≥ +20% → `trail = max(5, 1.25×ATR_pct)`; elif up ≥ +15% → `trail = max(7, 1.75×ATR_pct)`; else → `trail = stop_pct`. A naked position has no stop to move down, so the base trail is always an improvement.
+2. Place a GTC trailing stop for the `shortfall` qty:
+   ```
+   bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"<shortfall>","side":"sell","type":"trailing_stop","trail_percent":"<trail>","time_in_force":"gtc"}'
+   ```
+   PDT-rejected → use `"type":"stop","stop_price":"<stop_price>"`.
+3. Re-run `stop_coverage check`. If still not `covered`, WhatsApp: `"NAKED OVERNIGHT: SYM <shortfall> sh — stop could not be placed"`. This alert is high-priority — surface it at the TOP of the STEP 5 recap.
+
+In the EOD snapshot (STEP 4), the "Stop" column must reflect verified coverage: write the live trail % for covered positions, or "NONE — naked" for any that STEP 3b-cov could not fix. Never copy a planned stop into the EOD table as though it were live.
 
 STEP 3c — Prune the watchlist (Phase G2). Decrement `days_remaining` on every
 entry, drop those that hit 0:
