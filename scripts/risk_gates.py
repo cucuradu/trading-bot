@@ -40,6 +40,11 @@ DAILY_FREEZE_THRESHOLD_PCT = -3.0
 WEEKLY_FREEZE_THRESHOLD_PCT = -5.0
 DRAWDOWN_LOCK_THRESHOLD_PCT = -10.0
 
+# ML insights staleness gates. The local PC publishes ml-insights.json overnight;
+# if it stops we want loud signal, not silent rule-fallback drift.
+ML_STALE_WARN_HOURS = 72        # >72h → WhatsApp ping the user
+ML_STALE_DEGRADE_HOURS = 120    # >120h → caller should drop trade_slots by 1
+
 # Auto-recovery (Phase C): the drawdown lock auto-clears when BOTH conditions
 # hold. Keeps the kill-switch from indefinitely silencing a bot whose drawdown
 # has demonstrably healed.
@@ -308,6 +313,47 @@ def check_drawdown_lock(current_equity: float, peak: float | None) -> GateResult
     return GateResult("drawdown", False, "ok", f"drawdown {pct:.2f}%")
 
 
+def _ml_insights_status() -> dict:
+    """Return age + staleness classification for ml-insights.json.
+
+    Cheap: reads the file's `generated_at` field via ml_insights' validator.
+    Never raises — on any error returns status=missing so callers degrade
+    rather than crashing the gate check.
+    """
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import ml_insights as mli  # type: ignore
+        ml_file = mli._resolve_ml_file()
+        if not ml_file.exists():
+            return {"status": "missing", "age_hours": None,
+                    "warn_threshold_h": ML_STALE_WARN_HOURS,
+                    "degrade_threshold_h": ML_STALE_DEGRADE_HOURS}
+        payload = json.loads(ml_file.read_text())
+        gen_raw = payload.get("generated_at")
+        gen_dt = mli._parse_iso_utc(gen_raw) if gen_raw else None
+        if gen_dt is None:
+            return {"status": "unparseable", "age_hours": None,
+                    "warn_threshold_h": ML_STALE_WARN_HOURS,
+                    "degrade_threshold_h": ML_STALE_DEGRADE_HOURS}
+        age_h = (datetime.now(UTC) - gen_dt).total_seconds() / 3600
+        if age_h >= ML_STALE_DEGRADE_HOURS:
+            status = "stale_degrade"
+        elif age_h >= ML_STALE_WARN_HOURS:
+            status = "stale_warn"
+        else:
+            status = "fresh"
+        return {
+            "status": status,
+            "age_hours": round(age_h, 1),
+            "warn_threshold_h": ML_STALE_WARN_HOURS,
+            "degrade_threshold_h": ML_STALE_DEGRADE_HOURS,
+        }
+    except Exception as e:
+        return {"status": f"error:{type(e).__name__}", "age_hours": None,
+                "warn_threshold_h": ML_STALE_WARN_HOURS,
+                "degrade_threshold_h": ML_STALE_DEGRADE_HOURS}
+
+
 def check_all(current_equity: float, today: date | None = None) -> dict:
     today = today or date.today()
     history = parse_eod_equity_history()
@@ -353,6 +399,8 @@ def check_all(current_equity: float, today: date | None = None) -> dict:
                        "event_name": None, "event_date": None,
                        "days_to_event": None}
 
+    ml_status = _ml_insights_status()
+
     result = {
         "current_equity": current_equity,
         "peak_equity": peak,
@@ -362,6 +410,7 @@ def check_all(current_equity: float, today: date | None = None) -> dict:
         "entries_blocked": entries_blocked,
         "tighten_trails": tighten,
         "pre_macro_event": macro_check,
+        "ml_insights": ml_status,
         "gates": [daily.as_dict(), weekly.as_dict(), drawdown.as_dict()],
     }
     if lock_auto_recovered is not None:

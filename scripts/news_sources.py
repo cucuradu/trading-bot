@@ -428,6 +428,35 @@ def gather_many(symbols: list[str]) -> dict[str, list[dict]]:
 # CLI
 # ---------------------------------------------------------------------------
 
+def egress_probe() -> dict:
+    """Cheap reachability check for tier-2 sources that no API key gates.
+
+    The cloud sandbox sometimes blocks outbound to SEC EDGAR, Google News, and
+    Reddit at the network layer (observed 2026-05-29). When that happens the
+    research pipeline silently degrades to Gemini-only — this probe surfaces
+    the degradation up-front so the routine can flag it before researching
+    each candidate.
+
+    Per source: ok | http_<code> | error. No body parsing — just status.
+    """
+    targets = {
+        "edgar": ("https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AAPL&type=8-K&output=atom",
+                  {"User-Agent": os.environ.get("EDGAR_USER_AGENT") or _EDGAR_UA_DEFAULT}),
+        "google_news": ("https://news.google.com/rss/search?q=SPY&hl=en-US&gl=US&ceid=US:en",
+                        {"User-Agent": _REDDIT_UA}),
+        "reddit": ("https://www.reddit.com/r/stocks/.json?limit=1",
+                   {"User-Agent": _REDDIT_UA}),
+    }
+    out: dict[str, str] = {}
+    for name, (url, headers) in targets.items():
+        try:
+            r = requests.get(url, headers=headers, timeout=5)
+            out[name] = "ok" if r.status_code == 200 else f"http_{r.status_code}"
+        except requests.RequestException as e:
+            out[name] = f"error:{type(e).__name__}"
+    return out
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__, file=sys.stderr)
@@ -437,7 +466,9 @@ def main() -> int:
     args = sys.argv[2:]
 
     try:
-        if cmd == "gather":
+        if cmd == "egress-probe":
+            out = egress_probe()
+        elif cmd == "gather":
             if not args:
                 print("usage: gather SYM [SYM ...]", file=sys.stderr)
                 return 2

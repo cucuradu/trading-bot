@@ -8,6 +8,11 @@
 #   --synth                 use the synthesis system prompt (no 3-5 bullets cap,
 #                           chain-of-thought scaffold, maxOutputTokens=2048)
 #   --smart | --model pro   route to gemini-2.5-pro (better reasoning)
+#   --light                 route to GEMINI_LIGHT_MODEL (default
+#                           gemini-2.5-flash-lite) — higher RPM/RPD quota,
+#                           cheaper, good for boilerplate macro lookups.
+#                           Separate daily counter so it doesn't eat the
+#                           standard Flash budget.
 #   --temperature N         override temperature (default 0.2; 0.1 recommended
 #                           for synthesis, 0.4 for critique)
 #   --no-cache              skip the response cache
@@ -18,7 +23,13 @@
 #   1  usage error
 #   3  GEMINI_API_KEY unset (caller can fall back to WebSearch)
 #   4  Pro quota exhausted AND Flash fallback also failed
-#   5  Flash daily budget pre-exhausted (cap at 18 calls/day; 2 in reserve)
+#   5  Daily budget pre-exhausted for the selected tier
+#      (Flash 18/day, Flash-Lite 60/day, Pro 20/day)
+#
+# RPM throttle: Flash free tier is ~10 RPM. Back-to-back calls in the same
+# routine sometimes burst above that and 429. We enforce a per-tier minimum
+# spacing (Flash 6s, Flash-Lite 4s, Pro 12s) using a timestamp file in
+# cache/gemini/. Sleeps only when the prior call was within the window.
 #
 # Cache: responses are saved to cache/gemini/<sha256-16>.json keyed by
 # (model, synth-flag, json-flag, temperature, query). Subsequent identical
@@ -48,6 +59,7 @@ fi
 # ---------------- flag parsing ----------------
 USE_SYNTH=0
 USE_SMART=0
+USE_LIGHT=0
 USE_JSON=0
 USE_CACHE=1
 TEMPERATURE=""
@@ -57,19 +69,25 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --synth)        USE_SYNTH=1; shift ;;
     --smart)        USE_SMART=1; shift ;;
+    --light)        USE_LIGHT=1; shift ;;
     --model)        [[ "${2:-}" == "pro" ]] && USE_SMART=1; shift 2 ;;
     --temperature)  TEMPERATURE="$2"; shift 2 ;;
     --no-cache)     USE_CACHE=0; shift ;;
     --json)         USE_JSON=1; shift ;;
     --)             shift; query="${1:-}"; shift; break ;;
     -h|--help)
-      sed -n '2,30p' "$0"; exit 0 ;;
+      sed -n '2,40p' "$0"; exit 0 ;;
     *)              query="$1"; shift ;;
   esac
 done
 
 if [[ -z "$query" ]]; then
-  echo "usage: bash scripts/gemini.sh [--synth] [--smart] [--temperature N] [--no-cache] [--json] \"<query>\"" >&2
+  echo "usage: bash scripts/gemini.sh [--synth] [--smart|--light] [--temperature N] [--no-cache] [--json] \"<query>\"" >&2
+  exit 1
+fi
+
+if [[ "$USE_SMART" -eq 1 && "$USE_LIGHT" -eq 1 ]]; then
+  echo "[gemini.sh] --smart and --light are mutually exclusive" >&2
   exit 1
 fi
 
@@ -79,13 +97,25 @@ if [[ -z "${GEMINI_API_KEY:-}" ]]; then
 fi
 
 # ---------------- resolve model + prompt ----------------
-DEFAULT_MODEL="${GEMINI_MODEL:-gemini-2.5-flash}"
-SMART_MODEL="${GEMINI_SMART_MODEL:-gemini-2.5-pro}"
+DEFAULT_MODEL="${GEMINI_MODEL:-gemini-3.5-flash}"
+# 2026-06-02 dashboard audit: this account has NO Pro on free tier
+# (gemini-2.5-pro and gemini-3.1-pro both show 0/0/0). --smart now routes to
+# a different Flash variant so it has its own 20 RPD bucket without competing
+# with the standard Flash slot. If a Pro tier is ever provisioned for this
+# account, set GEMINI_SMART_MODEL=gemini-2.5-pro to restore the old behavior.
+SMART_MODEL="${GEMINI_SMART_MODEL:-gemini-3-flash}"
+# gemini-3.1-flash-lite gives 500 RPD on free tier (vs 20 for 2.5-flash-lite).
+LIGHT_MODEL="${GEMINI_LIGHT_MODEL:-gemini-3.1-flash-lite}"
 
 if [[ "$USE_SMART" -eq 1 ]]; then
   MODEL="$SMART_MODEL"
+  TIER="pro"
+elif [[ "$USE_LIGHT" -eq 1 ]]; then
+  MODEL="$LIGHT_MODEL"
+  TIER="light"
 else
   MODEL="$DEFAULT_MODEL"
+  TIER="flash"
 fi
 
 if [[ "$USE_SYNTH" -eq 1 ]]; then
@@ -130,10 +160,27 @@ mkdir -p "$CACHE_DIR"
 # resets daily via filename (cloud fresh-clone resets too).
 TODAY_UTC="$(date -u +%Y-%m-%d)"
 FLASH_COUNT_FILE="$CACHE_DIR/_calls_flash_${TODAY_UTC}.txt"
+LIGHT_COUNT_FILE="$CACHE_DIR/_calls_light_${TODAY_UTC}.txt"
 PRO_COUNT_FILE="$CACHE_DIR/_calls_pro_${TODAY_UTC}.txt"
 RETRY_LOG="$CACHE_DIR/_retries_${TODAY_UTC}.log"
-FLASH_DAILY_CAP=18
-PRO_DAILY_CAP=20
+LAST_CALL_FILE="$CACHE_DIR/_last_call_${TIER}.ts"
+# Actual free-tier per-account limits observed on AI Studio dashboard
+# (2026-05-30 snapshot — Google does not publish these and they differ from
+# every third-party article). Each Flash variant has its own 20-RPD bucket,
+# so splitting calls across --light / standard Flash / --smart gives you
+# 18+18+4 = 40 budget across the day. RPM is 5 for Flash/3.5-Flash/Pro,
+# 10 for Flash-Lite.
+FLASH_DAILY_CAP=18      # gemini-3.5-flash: 20 RPD - 2 reserve
+LIGHT_DAILY_CAP=450     # gemini-3.1-flash-lite: 500 RPD - 50 reserve (effectively unlimited for our usage)
+PRO_DAILY_CAP=18        # gemini-3-flash (smart fallback since no Pro on free tier): 20 RPD - 2 reserve
+
+# RPM spacing per tier (seconds between consecutive calls of the same tier).
+# Use 60/RPM + 1s buffer so we never bunch under the per-minute window.
+case "$TIER" in
+  flash) RPM_MIN_GAP_S=13 ;;  # gemini-3.5-flash:      5 RPM → 12s + 1
+  light) RPM_MIN_GAP_S=5 ;;   # gemini-3.1-flash-lite: 15 RPM → 4s + 1
+  pro)   RPM_MIN_GAP_S=13 ;;  # gemini-3-flash:        5 RPM → 12s + 1
+esac
 
 _read_count() {
   [[ -f "$1" ]] && cat "$1" || echo 0
@@ -149,39 +196,69 @@ _log_retry() {
   # output stays clean; diagnostic is still recoverable.
   printf '[%s] %s\n' "$(date '+%H:%M:%S')" "$*" >> "$RETRY_LOG"
 }
+_throttle() {
+  # Sleep just long enough to keep this tier's call rate below the per-minute
+  # cap. No-op on first call of the day.
+  [[ -f "$LAST_CALL_FILE" ]] || return 0
+  local last now elapsed sleep_for
+  last="$(cat "$LAST_CALL_FILE" 2>/dev/null || echo 0)"
+  now="$(date +%s)"
+  elapsed=$(( now - last ))
+  if (( elapsed < RPM_MIN_GAP_S )); then
+    sleep_for=$(( RPM_MIN_GAP_S - elapsed ))
+    _log_retry "RPM throttle: sleeping ${sleep_for}s before $TIER call"
+    sleep "$sleep_for"
+  fi
+}
 
-if [[ "$USE_SMART" -eq 1 ]]; then
-  CURRENT_COUNT="$(_read_count "$PRO_COUNT_FILE")"
-  if [[ "$CURRENT_COUNT" -ge "$PRO_DAILY_CAP" ]]; then
-    echo "[gemini.sh] Flash daily budget pre-exhausted (Pro $CURRENT_COUNT/$PRO_DAILY_CAP)" >&2
-    exit 5
-  fi
-else
-  CURRENT_COUNT="$(_read_count "$FLASH_COUNT_FILE")"
-  if [[ "$CURRENT_COUNT" -ge "$FLASH_DAILY_CAP" ]]; then
-    echo "[gemini.sh] Flash daily budget pre-exhausted ($CURRENT_COUNT/$FLASH_DAILY_CAP)" >&2
-    exit 5
-  fi
-fi
+case "$TIER" in
+  pro)
+    CURRENT_COUNT="$(_read_count "$PRO_COUNT_FILE")"
+    if [[ "$CURRENT_COUNT" -ge "$PRO_DAILY_CAP" ]]; then
+      echo "[gemini.sh] Pro daily budget pre-exhausted ($CURRENT_COUNT/$PRO_DAILY_CAP)" >&2
+      exit 5
+    fi
+    ;;
+  light)
+    CURRENT_COUNT="$(_read_count "$LIGHT_COUNT_FILE")"
+    if [[ "$CURRENT_COUNT" -ge "$LIGHT_DAILY_CAP" ]]; then
+      echo "[gemini.sh] Flash-Lite daily budget pre-exhausted ($CURRENT_COUNT/$LIGHT_DAILY_CAP)" >&2
+      exit 5
+    fi
+    ;;
+  flash)
+    CURRENT_COUNT="$(_read_count "$FLASH_COUNT_FILE")"
+    if [[ "$CURRENT_COUNT" -ge "$FLASH_DAILY_CAP" ]]; then
+      echo "[gemini.sh] Flash daily budget pre-exhausted ($CURRENT_COUNT/$FLASH_DAILY_CAP)" >&2
+      exit 5
+    fi
+    ;;
+esac
 
 # ---------------- payload + call ----------------
+# Free-tier "google_search" grounding has its OWN daily quota, separate from
+# per-model RPD. When that quota is exhausted, every grounded call fails with
+# a misleading per-model 429. So we omit grounding for --light by default
+# (Flash-Lite is "cheap lookups" anyway). The flash and pro tiers keep
+# grounding because their use cases need cited current data.
 make_payload() {
-  local q="$1" sysp="$2" temp="$3" maxtok="$4" mime="$5"
+  local q="$1" sysp="$2" temp="$3" maxtok="$4" mime="$5" grounded="$6"
   python3 -c "
 import json, sys
 payload = {
   'system_instruction': {'parts': [{'text': sys.argv[1]}]},
   'contents': [{'role': 'user', 'parts': [{'text': sys.argv[2]}]}],
-  'tools': [{'google_search': {}}],
   'generationConfig': {
     'temperature': float(sys.argv[3]),
     'maxOutputTokens': int(sys.argv[4]),
   },
 }
+if sys.argv[6] == '1':
+    payload['tools'] = [{'google_search': {}}]
 if sys.argv[5]:
     payload['generationConfig']['response_mime_type'] = sys.argv[5]
 print(json.dumps(payload))
-" "$sysp" "$q" "$temp" "$maxtok" "$mime"
+" "$sysp" "$q" "$temp" "$maxtok" "$mime" "$grounded"
 }
 
 call_gemini() {
@@ -197,12 +274,16 @@ call_gemini() {
   echo "$http_code" >&2
 }
 
-# First attempt
-PAYLOAD="$(make_payload "$query" "$SYSTEM_PROMPT" "$TEMP" "$MAX_TOKENS" "$MIME")"
+# First attempt — throttle if a same-tier call was very recent.
+_throttle
+# Grounding ON for flash + pro tiers; OFF for light (cheap, ungrounded lookups).
+if [[ "$TIER" == "light" ]]; then GROUNDED=0; else GROUNDED=1; fi
+PAYLOAD="$(make_payload "$query" "$SYSTEM_PROMPT" "$TEMP" "$MAX_TOKENS" "$MIME" "$GROUNDED")"
 ERR_FILE="$(mktemp)"
 BODY="$(call_gemini "$MODEL" "$PAYLOAD" 2>"$ERR_FILE" || true)"
 HTTP_CODE="$(cat "$ERR_FILE" || echo 000)"
 rm -f "$ERR_FILE"
+date +%s > "$LAST_CALL_FILE"
 
 # Handle Pro quota exhausted: retry on Flash with --synth (CoT)
 if [[ "$HTTP_CODE" == "429" && "$USE_SMART" -eq 1 ]]; then
@@ -210,7 +291,7 @@ if [[ "$HTTP_CODE" == "429" && "$USE_SMART" -eq 1 ]]; then
   FALLBACK_MODEL="$DEFAULT_MODEL"
   # Force --synth on the fallback so reasoning quality is preserved.
   FALLBACK_SYS='You are a precise financial research assistant. Use Google Search grounding. Cite every claim with a source URL and a date. Think step by step before answering: list evidence, then bull case, then bear case, then disconfirming evidence. Only then write the final structured answer.'
-  FALLBACK_PAYLOAD="$(make_payload "$query" "$FALLBACK_SYS" "$TEMP" 8192 "$MIME")"
+  FALLBACK_PAYLOAD="$(make_payload "$query" "$FALLBACK_SYS" "$TEMP" 8192 "$MIME" 1)"
   ERR_FILE="$(mktemp)"
   BODY="$(call_gemini "$FALLBACK_MODEL" "$FALLBACK_PAYLOAD" 2>"$ERR_FILE" || true)"
   HTTP_CODE="$(cat "$ERR_FILE" || echo 000)"
@@ -243,10 +324,10 @@ if [[ "$USE_CACHE" -eq 1 ]]; then
   printf '%s' "$BODY" > "$CACHE_FILE"
 fi
 
-if [[ "$USE_SMART" -eq 1 ]]; then
-  _bump_count "$PRO_COUNT_FILE"
-else
-  _bump_count "$FLASH_COUNT_FILE"
-fi
+case "$TIER" in
+  pro)   _bump_count "$PRO_COUNT_FILE" ;;
+  light) _bump_count "$LIGHT_COUNT_FILE" ;;
+  flash) _bump_count "$FLASH_COUNT_FILE" ;;
+esac
 
 printf '%s\n' "$BODY"

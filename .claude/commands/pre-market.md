@@ -40,6 +40,47 @@ python scripts/risk_gates.py check           # parse JSON; remember entries_bloc
 
 If the `check` JSON includes a `lock_auto_recovered` field (Phase C auto-recovery cleared the LOCK on this run), record a one-line note in today's RESEARCH-LOG entry (STEP 6) and include it in the WhatsApp alert at STEP 7 so the user notices the bot resumed trading.
 
+**ML insights staleness (parse `check.ml_insights`):**
+- `status: fresh` → proceed normally.
+- `status: stale_warn` (age ≥ 72h) → add `**ML staleness:** age <X>h (warn; rule_fallback only)` to RESEARCH-LOG header AND include `ML stale <X>h — refresh local PC` in the WhatsApp brief. Trade slots unchanged.
+- `status: stale_degrade` (age ≥ 120h) OR `status in {missing, unparseable, error:*}` → same WhatsApp ping AND **drop `trade_slots` by 1** for today (min 0). Hard system gate.
+
+STEP 0c — **Sandbox egress probe** (the cloud sandbox sometimes 403-blocks EDGAR/Reddit/Google News even when keys are set; locally these should all return `ok`):
+```
+python scripts/news_sources.py egress-probe
+```
+For each source `!= "ok"`, add a one-line note to the RESEARCH-LOG footer: `Egress: <src> blocked (<http_code>) — research depth reduced`. Don't abort; just don't claim a blocked source contributed to the per-candidate "Sources scanned" count.
+
+STEP 0d — **Breadth + sector rotation context (advisory only, no hard gate).**
+Augments the thin VIX/SPY regime with broad-market participation and sector cycle phase. Uses vendored community skills (`.claude/skills/`), no API key. Best-effort: on any error skip silently and proceed.
+
+```
+mkdir -p reports/breadth
+python .claude/skills/sector-analyst/scripts/analyze_sector_rotation.py --json > /tmp/sector_rotation.json 2>/dev/null
+python .claude/skills/market-breadth-analyzer/scripts/market_breadth_analyzer.py --output-dir reports/breadth 2>/dev/null
+```
+
+Parse `/tmp/sector_rotation.json`:
+- `groups.regime` (risk-on / risk-off / mixed)
+- `groups.score` (0–100)
+- `cycle_phase.phase` (early / mid / late / recession)
+- `groups.divergence_flag` (true means cyclical/defensive disagree internally)
+
+Parse the latest `reports/breadth/market_breadth_*.json`:
+- `composite.score` (0–100)
+- `composite.zone` (Strong / Neutral / Weak / Critical)
+- `components.sp500_vs_breadth_divergence` (look for "bearish divergence" wording)
+
+Include a one-line `**Breadth/Sector:**` row in the RESEARCH-LOG regime header (STEP 6 template), format:
+
+```
+**Breadth/Sector:** breadth=<score>/100 (<zone>) | sector=<regime> score=<score> phase=<phase> | <divergence note or "no divergence">
+```
+
+These signals are **advisory inputs to Claude's candidate-selection narrative** — they do NOT change `trade_slots`, do NOT block entries, do NOT modify position sizing. If breadth composite < 35 (Weak) OR a clear bearish divergence is flagged AND today's regime says Bull, mention the tension in the **Decision** section of STEP 6 so the reasoning is auditable, but do not auto-downgrade. Strategy-rule promotion of these thresholds is deferred until ≥5 trading days of observed behavior.
+
+If the breadth script's history file path doesn't exist on the first run, the script errors AFTER printing the analysis — the report files are still written, parse them anyway.
+
 **Phase E — pre-macro-event deployment cap.** If `check` JSON returns `pre_macro_event.cap_active == true`, cap **total** cost-basis deployment for today at 40% of equity. Two practical effects:
 
 - Reduce the day's trade ideas to MIN(`market.trade_slots`, 2) — never propose 3 candidates when the cap is active.
@@ -75,7 +116,7 @@ bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 ```
 
-STEP 4 — Macro context via Gemini (default Flash; grounded search). Five queries cover the macro picture:
+STEP 4 — Macro context via Gemini (standard Flash, grounded). These 5 queries need live cited data and DO NOT use `--light` — free-tier grounded-search quota is separate from per-model RPD, and Flash-Lite + grounding has been observed to 429 (see gemini.sh comment). Standard Flash (gemini-3.5-flash, 20 RPD + grounding) is the right slot:
 ```
 bash scripts/gemini.sh "WTI / Brent crude oil price right now and major moves today, with one cited source"
 bash scripts/gemini.sh "S&P 500 futures premarket today $DATE plus VIX level and 30-year Treasury yield (current regime: <regime>)"
@@ -83,6 +124,7 @@ bash scripts/gemini.sh "Top stock market catalysts and earnings before market op
 bash scripts/gemini.sh "US economic calendar today $DATE: CPI PPI FOMC jobs data — cite the release schedule"
 bash scripts/gemini.sh "Recent news on currently-held tickers: <list from positions>"
 ```
+Reserve `--light` (gemini-3.1-flash-lite, 500 RPD, NO grounding) for ad-hoc ungrounded lookups in STEP 4e-bis where training-data knowledge is enough (e.g., "what does ASCO stand for in pharma earnings season"). If standard Flash exits 4 (429 after retries), fall back to native WebSearch and note it in the log entry.
 
 **STEP 4-bis — Macro-print reader (event days only).** If `python scripts/risk_gates.py check` returned `pre_macro_event.within_24h=true` OR `pre_macro_event.days_to_event=0`, query the realized print BEFORE candidate selection (the pre-market cron fires shortly after the 8:30 ET release):
 ```
@@ -157,11 +199,17 @@ python scripts/research.py synthesize <SYM>
 ```
 Returns markdown with: Bull case (cited), Bear case (cited), Disconfirming evidence to watch for, Catalysts ahead (next 14d, dated), one-line takeaway. The synthesis prompt enforces ≥1-citation per Bull/Bear bullet — unsourced claims are dropped. Run once per candidate.
 
-STEP 4e — Adversarial critique (Pass 3; Gemini 2.5 Pro at higher temperature):
+STEP 4e — Adversarial critique (Pass 3 — **Claude does this directly; do NOT call `python scripts/research.py critique`**). The Gemini Pro quota is ~5/day; reserve it for emergencies. Given the synthesis you just produced in STEP 4d, write a critique block per candidate with exactly:
+
 ```
-python scripts/research.py critique <SYM>
+**Strongest counter to the bull case:** one paragraph (≤80 words). Cite source URL + date for data references. Be adversarial — find why this trade fails, don't balance both sides.
+
+**Weakly-sourced or unsourced claims:** bullet list of Bull/Bear items that fail the citation rule, or `(none)`.
+
+**Single most-likely invalidator (next 5 trading days):** one sentence with a SPECIFIC trigger level or event (e.g., "AMD loses HBM allocation in any tier-1 OEM contract" — not "macro deterioration").
 ```
-Returns: strongest counter to the bull case, list of any unsourced claims found, the single most-likely invalidator over the next 5 trading days. If the critique materially undermines the synthesis (Claude judges), demote or drop the candidate.
+
+If your critique materially undermines the synthesis, demote or drop the candidate in STEP 6's Decision section. `python scripts/research.py critique` is still callable ad-hoc; just not from this routine.
 
 STEP 4e-bis — **Investigate further when uncertain (do not skip).** The 5 sources + 3 LLM passes are a FLOOR, not a ceiling. If any of the following triggers fire, run ad-hoc follow-up queries BEFORE writing the RESEARCH-LOG entry:
 
@@ -187,14 +235,18 @@ Document the follow-up in the RESEARCH-LOG entry under a new heading `### Follow
 
 Budget guard: stop adding follow-up queries once Claude's input token count exceeds ~20k for this session — at that point the marginal value is low. Better to defer to /trade time, where you can re-fetch fresh research on the specific candidate.
 
-STEP 4f — Historical analog (one Gemini 2.5 Pro call per pre-market):
+STEP 4f — Historical analog (**Claude does this directly; do NOT call `python scripts/research.py historical-analog`**). Same Pro-quota reason as STEP 4e. Using the 4-6 line `$MACRO_SUMMARY` digest (today's regime + VIX + 30y yield + breadth + sector leadership), write the **Historical Analog** section with three short paragraphs:
+
 ```
-python scripts/research.py historical-analog <<< "$MACRO_SUMMARY"
+**Analog:** date + matching conditions (VIX level, yield, sector leadership, macro backdrop). Cite source URL + date for any data point.
+**What followed:** 5d / 10d / 20d outcomes with one cited data point per window.
+**Why this time might differ:** one sentence on the key divergence.
 ```
-Where `$MACRO_SUMMARY` is a 4-6 line digest of today's regime + VIX + key yield + breadth + sector leadership. The response is the **Historical Analog** section of the RESEARCH-LOG entry.
+
+Pull from your training-data knowledge of US equity history (last 5y sweet spot). If genuinely uncertain about a specific period, do ONE `bash scripts/gemini.sh --light "<targeted historical question>"` rather than guessing. `research.py historical-analog` is still callable ad-hoc.
 
 STEP 5 — Constrain trade ideas to the universe:
-- Reference `python scripts/universe.py list` for the 40-ticker whitelist. ANY trade idea must be on this list.
+- Reference `python scripts/universe.py list` for the 70-ticker whitelist. ANY trade idea must be on this list.
 - Skip tickers whose sector is `Bear` in STEP 1's regime resolution.
 - Honor today's `trade_slots`: if `trade_slots == 0` (Defensive), write zero trade ideas. If `trade_slots == 1`, write at most 1.
 
@@ -243,7 +295,12 @@ For each shortlisted candidate (cap 3):
 
 **Entry plan:** PULLBACK → limit $X.XX (day TIF) | BREAKOUT → buy-stop $X.XX (day TIF) | MOMENTUM → market at open
 
+**Gate-history audit:** If this symbol appeared in the prior RESEARCH-LOG entry (grep `memory/RESEARCH-LOG.md` for `#### SYM`), compare today's entry/stop/gate to the previous values. If ANY of (planned entry, stop, gate price) moved by ≥3% with no underlying price action to justify it, cite the reason on this line (e.g., "gate raised $475→$490 because year-high pushed to $527 and RSI tightening"). No silent gate moves.
+
 **Decision:** retained / demoted / dropped — one sentence explaining why.
+
+### Candidates dropped (and why)
+List EVERY candidate that was researched OR appeared on the screener top-10 but did NOT make the final cut. One line each: `SYM — <reason>` (e.g., `LLY — sector cap (XLV) filled by candidate #2`, `TSLA — correlation 0.78 vs MU > 0.70 gate`). Mandatory even when empty (`(none)` is acceptable) — silent drops are how thesis inconsistencies sneak in.
 
 ### Historical Analog
 [Paste the historical-analog output verbatim.]
@@ -255,9 +312,11 @@ For each shortlisted candidate (cap 3):
 TRADE / HOLD with explicit deployment plan (which N candidates, in what order) and any waiting conditions (e.g., "wait 15 min after open before any entry").
 
 ### Quota & source usage (footer)
-- Gemini calls: N Flash + N Pro
+- Gemini calls: N Flash-Lite + N Flash + N Pro
 - NewsAPI / Finnhub / EDGAR / Reddit request counts
 - Fallback events (sources that returned [] due to missing keys or errors)
+- Egress probe: edgar=<ok|http_X>, google_news=<ok|http_X>, reddit=<ok|http_X>
+- ml_insights: status=<fresh|stale_warn|stale_degrade|...>, age=<X>h
 ```
 
 STEP 6b — Update persistent knowledge files (idempotent updates, not blind appends):
