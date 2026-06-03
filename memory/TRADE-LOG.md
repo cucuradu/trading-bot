@@ -216,3 +216,45 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 
 **Key takeaway:** Strong COMPUTEX momentum sustains AI/infrastructure thesis; MU approaching +15% tighten trigger; preserve 1 weekly slot for Thu/Fri entries if PPI benign.
 
+---
+
+## 2026-06-03 — Market-open Execution Run
+
+**Workflow:** STEP 0–2 validation (no new orders needed; HOLD decision from pre-market research).
+
+**Account at 09:46 AM ET:**
+- Equity: $106,214.79 (+3.23% from Jun 2 close $102,891.98)
+- Cash: $40,838 | Buying power: $147,052.79
+- PDT count: 1/4 | Day P&L: +$3,322.81 (+3.23%)
+
+**Positions confirmed (all GTC trailing stops active):**
+- **AMD** 40sh @ $540.17 | entry $493.80 | +$1,854.80 (+9.39%) | trail 12.6% HWM=$544 stop=$475.46 ✓
+- **CAT** 23sh @ $925.31 | entry $867.71 | +$1,324.79 (+6.64%) | trail 7.97% HWM=$936.71 stop=$862.05 ✓
+- **MU** 21sh @ $1,071.06 | entry $922.91 | +$3,111.21 (+16.05%) | trail 9.466% HWM=$1,088.71 stop=$985.65 ✓ (tightened at +15%)
+
+**Risk gates (STEP 0):**
+- lock_file_present: false ✓
+- entries_blocked: false ✓
+- tighten_trails: false ✓
+
+**RESEARCH-LOG decision (STEP 1):**
+- **HOLD — no new entries today**
+- Reason: pre-macro NFP deployment cap (current 55.7% deployed > 40% threshold); even 1 remaining weekly slot blocked by macro risk
+- AVGO earnings binary (tonight 5pm ET) adds semiconductor sector risk; existing AMD/MU stops provide downside protection
+- MU watches: $1,107.49 level (+20% = $42.61 away) for secondary tighten to 1.25×ATR
+
+**Actions completed:**
+1. ✓ Synced to latest main (pre-market pull included RESEARCH-LOG + breadth/sector analysis)
+2. ✓ Validated risk gates: all clear
+3. ✓ Confirmed account, positions, GTC stops
+4. ✓ Checked pre-market research: HOLD decision remains firm (pre-macro cap)
+5. ✗ No new orders placed (per research)
+6. ✗ No TRADE-LOG entries added (no new positions)
+7. Notification: sent status summary to WhatsApp
+
+**Monitoring (rest of day):**
+- ADP (8:15 AM ET) / ISM Services (10 AM ET): watch for yield spikes
+- AVGO earnings (5 PM ET): sector reaction watch for Thu (potential HON breakout setup if AVGO beats)
+- MU price watch: $1,107.49 tighten trigger
+- AMD HWM trail: $544 (stop at $475.46) still has 12.6% buffer
+
