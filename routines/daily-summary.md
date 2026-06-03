@@ -7,7 +7,8 @@ DATE=$(date +%Y-%m-%d).
 IMPORTANT — ENVIRONMENT VARIABLES:
 - Every API key is ALREADY exported as a process env var:
   ALPACA_API_KEY, ALPACA_SECRET_KEY, ALPACA_ENDPOINT, ALPACA_DATA_ENDPOINT,
-  GEMINI_API_KEY, GEMINI_MODEL, WHATSAPP_PHONE, WHATSAPP_APIKEY, FINNHUB_KEY.
+  GEMINI_API_KEY, GEMINI_MODEL, WHATSAPP_PHONE, WHATSAPP_APIKEY, FINNHUB_KEY,
+  FMP_API_KEY (optional — activates IBD distribution-day monitor at STEP 4h).
 - There is NO .env file. You MUST NOT create, write, or source one.
 - If a wrapper prints "KEY not set in environment" → STOP, send one WhatsApp
   alert naming the missing var, exit. Do NOT create a .env as a workaround.
@@ -103,6 +104,49 @@ python scripts/watchlist.py prune
 ```
 Include the expired list in the EOD WhatsApp recap (STEP 5).
 
+STEP 3d — **Auto-trim overweight winners (Phase H1, auto-fired 2026-06-03).**
+Catches a late-day runner that crossed the trigger after the midday scan.
+Same mechanics as `midday.md` STEP 3d — duplicated here so EOD always closes
+a clean book on concentration.
+
+```bash
+EQUITY=$(bash scripts/alpaca.sh account | jq -r '.equity')
+# For each open position: V=market_value, S=qty, Pc=current_price, plpc=unrealized_plpc
+```
+
+Trigger (both must hold):
+- `V / EQUITY > 0.30` (weight > 30% of equity)
+- `plpc > 0.20` (unrealized > +20%)
+
+If LOCK is active, skip — full close, not partial, under drawdown lock.
+If the same symbol already had a TRIM line dated today (midday fired it),
+skip — don't double-trim within the same trading day.
+
+```bash
+SHARES_TO_SELL=$(python3 -c "import math; print(math.ceil(($V - 0.22 * $EQUITY) / $Pc))")
+SHARES_REMAINING=$(( $S - $SHARES_TO_SELL ))
+bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"<SHARES_TO_SELL>","side":"sell","type":"market","time_in_force":"day"}'
+```
+
+Note: at post-close run time, the market sell will queue for next-session
+open (Alpaca extended-hours behavior depends on account flags). If the
+order's status comes back `pending_new` / `accepted` rather than `filled`,
+log the order_id under a `- TRIM-PENDING` line and let tomorrow's midday
+promote it to TRIM on confirmed fill. Acceptable — the residual is still
+covered by the existing trailing stop until the trim clears.
+
+After fill (or pending acknowledgment), verify trailing-stop coverage and
+re-place at same `trail_percent` if Alpaca didn't auto-adjust (see
+`midday.md` STEP 3d for the exact shape).
+
+Append the canonical TRIM line to TRADE-LOG (or `TRIM-PENDING` if not yet
+filled):
+```
+- TRIM YYYY-MM-DD: SYM exit=FILL_PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_22pct"
+```
+
+Include each fired trim in the STEP 5 WhatsApp recap as a single line.
+
 STEP 4 — Append EOD snapshot to `memory/TRADE-LOG.md`. Include a single-line EOD marker that risk_gates.py can parse for tomorrow's daily-DD check:
 
 ```
@@ -160,7 +204,34 @@ STEP 4g — **Tomorrow's calendar**:
 - `bash scripts/gemini.sh "US economic calendar tomorrow: CPI/PPI/FOMC/jobs/Fed speakers — list all releases with their scheduled time ET. Cite the source."`
 - Paste both into the EOD snapshot under **Tomorrow's calendar**.
 
-STEP 4h — **Key takeaway**: write ONE sentence (≤25 words) capturing the day's most durable insight (regime change, macro shift, broken thesis, validated pattern). This is what the weekly review will compound on.
+STEP 4h — **IBD distribution day check (advisory, post-market).**
+Runs only if `FMP_API_KEY` is exported. Skip silently otherwise.
+
+```bash
+if [[ -n "${FMP_API_KEY:-}" ]]; then
+    mkdir -p reports/ibd
+    python .claude/skills/ibd-distribution-day-monitor/scripts/ibd_monitor.py \
+      --output-dir reports/ibd > /tmp/ibd_run.txt 2>/dev/null || true
+    LATEST_IBD=$(ls -t reports/ibd/ibd_distribution_monitor_*.json 2>/dev/null | head -1)
+fi
+```
+
+If `$LATEST_IBD` exists, extract `overall_risk_level` and `recommended_action` via `jq`:
+```bash
+IBD_RISK=$(jq -r '.overall_risk_level // "N/A"' "$LATEST_IBD")
+IBD_ACTION=$(jq -r '.portfolio_actions[0].recommended_action // "N/A"' "$LATEST_IBD")
+```
+
+Append one line to the EOD snapshot in TRADE-LOG:
+```
+**IBD:** risk=<NORMAL|CAUTION|HIGH|SEVERE> action=<recommended_action>
+```
+
+This is advisory — it does NOT override today's trade decisions (market is closed). Use it as
+context for tomorrow's pre-market deployment cap (if SEVERE or HIGH, pre-market will see it in
+the TRADE-LOG header and can factor into the exposure ceiling).
+
+STEP 4i — **Key takeaway**: write ONE sentence (≤25 words) capturing the day's most durable insight (regime change, macro shift, broken thesis, validated pattern). This is what the weekly review will compound on.
 
 STEP 5 — Send ONE WhatsApp message (always, even on no-trade days). ≤ 20 lines including the day's takeaway and tomorrow's headline event:
 ```
@@ -173,7 +244,8 @@ Open positions:
   SYM ±X.X% (stop $X.XX, thesis: confirmed|weakened|broken)
 Why today: <one-line distilled from the Why today paragraph>
 Tomorrow's headline: <earnings/macro release with time>
-Takeaway: <the STEP 4h sentence>
+IBD risk: <NORMAL|CAUTION|HIGH|SEVERE — omit line if FMP_API_KEY unset>
+Takeaway: <the STEP 4i sentence>
 WAEOF
 ```
 

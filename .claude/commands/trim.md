@@ -28,14 +28,18 @@ Args: optional `SYMBOL`. If omitted, scan all positions.
    shares `S`, avg entry `P_e`, unrealized P&L %.
 
 3. **Apply the Phase H1 trigger** to each position (or the named SYMBOL):
-   - `V / E > 0.25` (weight > 25% of equity), AND
-   - `unrealized_pnl_pct > +10%`.
+   - `V / E > 0.30` (weight > 30% of equity), AND
+   - `unrealized_pnl_pct > +20%`.
+
+   Thresholds match the auto-fire path in `midday` + `daily-summary` so
+   running `/trim` manually doesn't produce a different residual than the
+   scheduled routines.
 
    If nothing qualifies → print "no trim candidates" and stop.
 
 4. **Compute shares to sell** per qualifying position:
    ```
-   shares_to_sell = ceil((V − 0.18 × E) / P_c)
+   shares_to_sell = ceil((V − 0.22 × E) / P_c)
    shares_remaining = S − shares_to_sell
    pnl_realized_estimate = shares_to_sell × (P_c − P_e)
    ```
@@ -81,7 +85,7 @@ Args: optional `SYMBOL`. If omitted, scan all positions.
 
 10. **Append to `memory/TRADE-LOG.md`** (canonical Phase H1 format):
     ```
-    - TRIM YYYY-MM-DD: SYM exit=FILL_PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_18pct"
+    - TRIM YYYY-MM-DD: SYM exit=FILL_PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_22pct"
     ```
     The original OPEN line stays untouched. Do NOT write a CLOSED line — the
     position is still open.

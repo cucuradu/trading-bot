@@ -141,8 +141,8 @@ Per-trade:
 - Thesis broken (catalyst invalidated, sector rolling, adverse news) → close even if not at −7%
 - Up ≥ +20% → tighten trailing stop to 5% (or 1.25 × ATR width, whichever is wider)
 - Up ≥ +15% → tighten trailing stop to 7% (or 1.75 × ATR width, whichever is wider)
-- **Partial exit (Phase H1)**: weight > 25% of equity AND unrealized > +10% → trim
-  residual to 18% weight. See "Partial exits" subsection below for mechanics.
+- **Partial exit (Phase H1)**: weight > 30% of equity AND unrealized > +20% → trim
+  residual to 22% weight. See "Partial exits" subsection below for mechanics.
 - Position flat (−3% to +3%) for 10 trading days → close (time stop, Phase A5)
 - Sector has 2 consecutive failed trades → exit all positions in that sector
 - Market regime = Defensive (Phase B) → close winners, hold stops, no new entries
@@ -156,13 +156,19 @@ rule keeps realized concentration bounded without forcing a full exit on a
 working thesis.
 
 **Trigger** (both must hold):
-- `market_value / equity > 0.25` — weight 5pp above the 20% entry cap.
-- `unrealized_pnl_pct > +10%` — trim only winners; never trim a position that
-  drifted to the cap via account drawdown.
+- `market_value / equity > 0.30` — weight 10pp above the 20% entry cap.
+  Loosened from the original 0.25 trigger so the rule only fires on truly
+  extreme concentration, not on every winner that crosses the entry cap by
+  5pp. Trades a smaller concentration buffer for less drag on runners.
+- `unrealized_pnl_pct > +20%` — trim only winners that have meaningfully
+  paid off; never trim a position that drifted to the cap via account
+  drawdown, and never cut a winner that has barely cleared the entry-time
+  R-multiple ceiling.
 
-**Action**: sell `shares_to_sell = ceil((market_value − 0.18 × equity) / current_price)`
-so the residual weight lands ≤ 18% (one rung under the entry cap, with room
-to re-run). Order shape: `type=market`, `time_in_force=day`.
+**Action**: sell `shares_to_sell = ceil((market_value − 0.22 × equity) / current_price)`
+so the residual weight lands ≤ 22% (parked just over the entry cap, leaving
+room to re-run without re-tripping the trim trigger on the next tick). Order
+shape: `type=market`, `time_in_force=day`.
 
 **Stop handling**: do NOT touch the trailing stop on the residual shares. The
 original GTC trailing stop covers `shares_remaining`; verify via
@@ -178,14 +184,22 @@ field reflects only the FINAL exit's P&L; the trimmed P&L lives on the TRIM
 line. (Trade aggregators that sum P&L must read both prefixes.)
 
 ```
-- TRIM YYYY-MM-DD: SYM exit=PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_18pct"
+- TRIM YYYY-MM-DD: SYM exit=PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_22pct"
 ```
 
-**Where executed**: `/trim` slash command (manual, confirms before placing).
-NOT auto-fired by `midday` — the rule is mechanical but partial exits change
-position economics enough that the user should sign off each time during the
-paper-trading phase. If the rule proves out, promote to `midday` after N≥20
-trims observed without a regret.
+**Where executed**: **auto-fired by `midday` and `daily-summary`** — both
+routines scan all open positions for the trigger and fire a market sell + log
++ WhatsApp without user confirmation. The `/trim` slash command remains
+available as an ad-hoc manual override (same mechanics; useful for an
+intraday runner that crosses the trigger between scheduled routine runs).
+
+The original strategy required N≥20 observed manual trims before promotion
+to automation — that gate was deliberately overridden 2026-06-03 on user
+direction. Track every auto-trim outcome in the weekly review's "What
+worked / what didn't" section: was the trimmed position's residual cut by
+the trail before recovering (rule was net-positive), or did the position
+keep running and the trim left money on the table (rule was net-negative)?
+After ~20 auto-trims, revisit the trigger thresholds against the data.
 
 ## Position sizing (Phase D4)
 

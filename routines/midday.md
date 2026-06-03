@@ -83,6 +83,61 @@ Fields:
 - `reason` is a short free-form quoted string.
 Underneath, append the usual prose summary for context.
 
+STEP 3d — **Auto-trim overweight winners (Phase H1, auto-fired 2026-06-03).**
+For each open position remaining after STEP 3 (R≤−1 cuts), compute:
+
+```bash
+EQUITY=$(bash scripts/alpaca.sh account | jq -r '.equity')
+# For each position from `bash scripts/alpaca.sh positions`:
+#   V = market_value, S = qty, Pc = current_price, plpc = unrealized_plpc
+#   weight = V / EQUITY
+#   gain   = plpc (already a fraction; 0.20 == +20%)
+```
+
+Trigger (both must hold):
+- `weight > 0.30` (weight > 30% of equity)
+- `gain > 0.20` (unrealized > +20%)
+
+If LOCK was active (STEP 0 `lock_file_present == true`), skip auto-trim
+entirely — under LOCK we close fully if reduction is needed, never partial.
+
+For each qualifying position:
+```bash
+SHARES_TO_SELL=$(python3 -c "import math; print(math.ceil(($V - 0.22 * $EQUITY) / $Pc))")
+SHARES_REMAINING=$(( $S - $SHARES_TO_SELL ))
+# Sanity: don't fire if SHARES_TO_SELL <= 0 or >= S (math edge cases).
+```
+
+Place the partial sell at market — single order, no OTO (the existing
+trailing-stop child on the OPEN order covers the residual; Alpaca
+auto-adjusts the child's qty on partial fills of the parent's filled side):
+```bash
+bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"<SHARES_TO_SELL>","side":"sell","type":"market","time_in_force":"day"}'
+```
+
+If `scripts/alpaca.sh` exits 42 (failsafe), STOP, send WhatsApp, do not retry.
+
+After the fill confirms, verify trailing-stop coverage:
+```bash
+bash scripts/alpaca.sh orders | jq '.[] | select(.symbol=="SYM" and .order_type=="trailing_stop")'
+```
+If the trailing-stop `qty` does NOT match `SHARES_REMAINING` (broker didn't
+auto-adjust the OTO child), cancel + re-place at the SAME `trail_percent`:
+```bash
+bash scripts/alpaca.sh cancel <old_stop_order_id>
+bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"<SHARES_REMAINING>","side":"sell","type":"trailing_stop","trail_percent":"<existing trail %>","time_in_force":"gtc"}'
+```
+
+Append to `memory/TRADE-LOG.md` (canonical Phase H1 format — the original
+OPEN line stays untouched, do NOT write a CLOSED line):
+```
+- TRIM YYYY-MM-DD: SYM exit=FILL_PRICE shares_sold=N remaining_shares=M pnl_realized=$X.XX reason="trim_to_22pct"
+```
+`pnl_realized = shares_sold × (fill_price − entry_price_from_OPEN_line)`.
+
+Include each fired trim in the STEP 7 WhatsApp recap as a single line:
+`TRIM SYM: sold N @ $P → residual M (weight Y%, realized $X.XX).`
+
 STEP 4 — Tighten trailing stops on winners. For each eligible position, cancel the old trailing stop and place a new one. ATR-aware (Phase A2):
 
 ```
