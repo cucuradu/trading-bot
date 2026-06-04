@@ -258,3 +258,14 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 - MU price watch: $1,107.49 tighten trigger
 - AMD HWM trail: $544 (stop at $475.46) still has 12.6% buffer
 
+---
+
+## 2026-06-04 — Midday Scan
+
+**STEP 3 — R ≤ −1 cuts:**
+- **MU trailing stop execution (13:59 UTC):** Position closed automatically at $986 (filled 21 shares). Trailing stop triggered on intraday volatility (day low $971.68 broke through HWM $1,089.29 / 9.466% trail stop $986.18). Realized gain +6.84% from entry, R-value 0.46 (reward-to-risk on original sizing).
+  
+- CLOSED 2026-06-04: MU entry=922.91 exit=986 initial_stop=784.47 shares=21 regime_entry=Neutral sector=XLK pnl=$1324.89 r=0.46 reason="trailing_stop execution (intraday reversal; HWM $1,089.29 → $986 fill at 13:59 UTC)"
+
+**Post-closure portfolio:** 2 open positions (AMD, CAT). Equity $104,105.52 (−2.26% intraday from yesterday's $106,511.91 close). Deployed 40.9% ($42,561.52 market value / $104,105.52 equity).
+
