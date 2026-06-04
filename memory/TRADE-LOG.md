@@ -258,3 +258,29 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 - MU price watch: $1,107.49 tighten trigger
 - AMD HWM trail: $544 (stop at $475.46) still has 12.6% buffer
 
+
+### June 4 — EOD Snapshot (Day 8, Thursday)
+- EOD 2026-06-04: equity $103,961.75
+**Portfolio:** $42,417.75 | **Cash:** $61,544.00 (59.2%) | **Day P&L:** −$1,317.90 (−1.25%) | **Phase P&L:** +$3,961.75 (+3.96%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 40 | $493.80 | $519.80 | −0.42% | +$1,040.00 (+5.27%) | GTC 12.60% trail |
+| CAT | 23 | $867.71 | $940.25 | +1.52% | +$1,668.41 (+8.36%) | GTC 7.97% trail |
+
+- CLOSED 2026-06-04: MU entry=922.91 initial_stop=784.47 exit=986.00 shares=21 regime_entry=Neutral sector=XLK pnl=$1324.89 r=0.45R reason="trailing stop hit (AVGO catalyst break)"
+- Regime 2026-06-04: Neutral (source: ml, slots: 2)
+- Trades today: CLOSED MU (1 of 3 max weekly)
+- Trades this week (Thu): 1 total (MU only)
+
+**Why today:** Broadcom (AVGO) earnings sold off afterhours (−8% to −14%) on infrastructure software miss despite AI revenue beat, dragging semiconductor names (AMD −3.97%, MU −6.39%) premarket. COMPUTEX 2026 final day failed to offset earnings disappointment. Geopolitical risk (Iran/Hormuz military escalation) kept oil flat; SPX futures flipped negative (−0.10%). VIX eased to 16.06, but sector-specific semiconductor weakness outweighed broad momentum. MU hit trailing stop (0.45R realized), confirming thesis break on AVGO catalyst risk.
+
+**Tomorrow's calendar (Fri Jun 5):**
+- 8:30 AM ET: Non-Farm Payrolls (May) — **MAJOR EVENT** — consensus ~115–120K. NFP will dominate market direction; pre-macro cap remains in effect.
+- Earnings after close: FGPR, SENEA (minor).
+
+**Position thesis status:**
+- AMD: Weakened (AVGO earnings miss creates semiconductor risk; COMPUTEX tail-end; holding GTC stop for risk management)
+- CAT: Unchanged (infrastructure capex thesis intact; consolidating into NFP; no change to stop)
+
+**Key takeaway:** AVGO infrastructure software miss broke the AI-driven semiconductor thesis; MU exit at 0.45R validates trailing stop on thesis break. Pre-macro cap (NFP tomorrow) prevents new entry; AMD/CAT stops provide downside protection for remaining duration.
