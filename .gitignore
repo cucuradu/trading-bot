@@ -30,3 +30,4 @@ backtest/data_cache/
 # Daily report outputs (regenerable)
 reports/breadth/
 reports/exposure/
+reports/ibd/
