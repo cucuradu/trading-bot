@@ -1745,3 +1745,142 @@ Secondary: AVGO earnings tonight create semiconductor sector binary risk. AMD's 
 - Sector rotation: risk-on score=79 phase=mid divergence_flag=True; scripts ran successfully
 - Exposure coach: output empty (failed silently, skipped)
 - [degraded: Gemini quota 429 all calls — macro research via native WebSearch only]
+
+---
+
+## 2026-06-04 — Pre-market
+
+**Regime:** Neutral (source: ml, slots: 2, deployment: 75%) confidence=0.61 persistence_bars=33
+
+**Pre-macro:** cap_active (event: NFP on 2026-06-05) → 40% deployment cap. Max 2 trade ideas. Cost basis 56.9% deployed >> 40% cap → **no new entries possible today.**
+
+**Breadth/Sector:** breadth=44.3/100 (Neutral) | sector=risk-on score=74 phase=mid | DIVERGENCE: cyclical/defensive disagree internally (divergence_flag=True); S&P +12.3% vs breadth 8MA −0.046 over 60d (moderate bearish divergence flagged).
+
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=GROWTH | conf=MEDIUM. Tension: STEP 1 regime says Neutral/deploy 75%, exposure-coach says REDUCE_ONLY/37%. Pre-macro cap (40%) and exposure-coach ceiling (37%) are aligned — both point to no new entries today. Pre-macro cap is the binding hard gate.
+
+**FTD:** skipped (FMP_API_KEY not set).
+
+### Account
+- Equity: $103,975.38 | Cash: $40,838.00 (39.3%) | Buying power: $289,626.76
+- Daytrade count: 0 | Open positions: 3 (AMD, CAT, MU) | Open orders: 3 GTC trailing stops
+- AMD 40sh @ $493.80 | current $521.01 (−3.97% intraday) | P&L +$1,088 (+5.51%) | GTC trail 12.6% HWM=$546.37 stop=$477.53
+- CAT 23sh @ $867.71 | current $916.25 (−1.07% intraday) | P&L +$1,116 (+5.59%) | GTC trail 7.97% HWM=$936.71 stop=$862.05
+- MU 21sh @ $922.91 | current $1,010.63 (−6.39% intraday) | P&L +$1,842 (+9.50%) | GTC trail 9.466% HWM=$1,089.29 stop=$986.18 ⚠️ (only $24 / 2.4% above stop)
+- Cost basis deployed: ($19,752 + $19,957 + $19,381) / $103,975 = **56.9%** (above 40% pre-macro cap)
+
+### Macro Framework
+Neutral regime (source: ml, confidence 0.61). AVGO Q2 FY2026 afterhours sell-the-news reaction dominates premarket: revenue $22.19B (+48% YoY, beat consensus $22.11B), AI revenue $10.8B (+143% YoY, Q3 AI guide $16.0B >200% YoY — structurally bullish), but infrastructure software segment missed the Street's higher whisper number → AVGO −8 to −14% afterhours [Gemini grounded — unverified]; dragging AMD −3.97% and MU −6.39% premarket in sympathy. SPX futures −0.10%; VIX 16.06 (+1.84% from yesterday's 17.65 close — note: lower absolute VIX but today opened lower, market slightly anxious). 30y yield ~4.98% (est.; no confirmed daily update yet). Brent $96.97 (−0.86%); WTI $93.6–$96.0 [Gemini grounded — unverified]. DXY ~99.22 (steady). US-Iran military exchange of heavy fire in the Persian Gulf escalated overnight — geopolitical risk premium persisting [Gemini grounded — unverified]. NFP (May payrolls) prints 8:30am ET TOMORROW; consensus ~115–120K (April actual: 115K; May not confirmed). Today's calendar: NFIB Small Business Optimism 10am ET (soft, unlikely to move markets); PPI May 2026 scheduled June 11 (NOT today — prior calendar entry was incorrect). COMPUTEX 2026 final day today — AI semiconductor theme closing out.
+> vs Jun 3: 30y yield ~flat (+0bp); oil ~flat (Brent $96.97 vs $96.89, essentially unchanged); VIX DOWN from 17.65 to 16.06 (−1.59 — less absolute fear but AVGO reaction adds sector-specific risk); SPX futures flipped negative (−0.10% vs +0.32% yesterday); AVGO sell-the-news = new headwind for semiconductor names; regime changed source: rule_fallback → ml (confidence 0.61).
+
+### Sector Picture
+Top 3 (1mo momentum, ML regime tag):
+- XLK +21.09% — **Trend** (AI/semiconductor; concentrated)
+- XLV +1.95% — **Choppy**
+- XLB +1.93% — **Trend** (Materials)
+- XLI +1.80% — **Trend** (Industrials)
+
+Bottom 3:
+- XLC −3.46% — **Bear**
+- XLU −5.74% — **Bear**
+- XLP −1.65% — **Bear**
+Also Bear: XLF (−1.79%), XLE (−1.14% 1mo). Also Choppy: XLY, XLRE, XLV.
+
+Sector-momentum (yfinance) vs ML sectors block: XLK=Trend ✓, XLI=Trend ✓, XLB=Trend ✓ — strong consistency. Bear sectors (XLF, XLE, XLP, XLC, XLU) consistent across both signals. Note: despite risk-on sector score=74, breadth divergence (S&P +12.3% vs breadth 8MA −0.046) persists — rally remains narrow and concentrated in XLK.
+
+### Candidates
+*(Documented for pre-positioning; no entries due to pre-macro deployment cap AND all candidates fail R:R hard floor.)*
+
+**Screener:** source=ml (universe_ranking XGBoost, age 4.83h), ranked 15 tickers, top 10 = [MU(1.45), AMD(1.23), SMH(0.61), AVGO(0.48), XLK(0.39), CAT(0.35), UNP(0.31), UNH(0.30), ORCL(0.29), XLB(0.29)]. MU, AMD, CAT = held positions (filtered). XLK sector cap (2/2: AMD+MU). SMH (XLK cap). AVGO (XLK cap). ORCL (XLK cap). Shortlist: UNP, UNH, XLB, MRK.
+
+---
+
+#### UNP (XLI, $262.13 −1.23% today)
+
+**Setup:** ATR(14)=$6.16 (2.35% of price); stop_pct_2.5x=5.87% → clamped to **7.0%** (at floor). Year high $279.70; current at 93.7% of high. 10d avg volume: 3.62M shares (adequate). No blackout (next earnings Jul 23, 49d).
+
+**Sources scanned (2):** 0 NewsAPI / 0 Finnhub / 0 EDGAR / 0 Reddit (403 blocked) / 2 Google News. [Egress: reddit=http_403 — no Reddit sentiment. Gemini 429 all calls — no synthesis run.]
+
+**Bull case:**
+- XLI Trend regime (ML score highest in non-tech sectors); infrastructure/freight volume thesis intact [Google News headlines — unverified]
+- Q1 FY2026 EPS $2.87 (up from $2.71 Q1 2025), revenue $6.22B (+3.2%) [Gemini grounded — unverified]
+- Analyst consensus: 20 analysts, Buy consensus (30% Strong Buy, 35% Buy, 35% Hold); consensus PT $273.36, Barclays high PT $315 (Apr 24, 2026) [MarketBeat via WebSearch]
+- Norfolk Southern transaction factor in recent PT upgrades [WebSearch]
+
+**Bear case:**
+- Today −1.23% intraday (AVGO contagion risk-off, not fundamental)
+- Freight volumes sensitive to trade policy / tariff uncertainty (US-China still elevated)
+- Trailing stop clamped to 7% floor (low ATR 2.35% means stop is loose relative to signal quality)
+- UNP down from year-high $279.70 (gap = 6.7%) — limited breakout room before resistance
+
+**R:R math (B3):** entry $262.13 / stop $243.78 (−7.0%, 2.5×ATR clamped) / target year-high $279.70 (+6.7%, cited resistance) / **R:R = ($279.70−$262.13)/($262.13−$243.78) = $17.57/$18.35 = 0.96:1 → FAILS 2.0 FLOOR.** Consensus PT $273.36 gives R:R 0.61:1 (even worse). Only Barclays outlier $315 gives R:R 2.88:1 but using a single outlier above the $273 consensus as the target is unjustified. **Demoted on R:R.**
+
+**Gate-history audit (B7):** No prior `#### UNP` entries in RESEARCH-LOG — first appearance. No gate-creep risk. No prior planned entry to compare.
+
+**Setup type:** N/A (demoted).
+
+**Decision:** **DEMOTED — R:R 0.96:1 fails 2.0 hard floor.** Year-high $279.70 is the only defensible cited target and it doesn't pay for the 7% ATR floor stop. Carry forward to watchlist if price retraces toward $250–255 range (would improve R:R to ~1.4:1 with $279 target, still not ideal, but worth monitoring).
+
+---
+
+#### XLB (XLB/Materials ETF, $51.63 −0.39% today)
+
+**Setup:** ATR(14)=$0.82 (1.59% of price); stop_pct_2.5x=3.98% → clamped to **7.0%** (at floor). Year high $54.14; current at 95.4% of high. 30d correlation vs CAT: **0.65** (near 0.70 gate). No blackout (ETF — no earnings).
+
+**R:R math (B3):** entry $51.63 / stop $48.02 (−7.0%) / target year-high $54.14 (+4.9%) / **R:R = $2.51/$3.61 = 0.70:1 → FAILS 2.0 FLOOR hard.** Low ATR creates an extreme mismatch between stop width (7% clamped floor) and available upside (year-high only 4.9% away). **Demoted on R:R + near correlation gate with CAT (0.65 vs 0.70 max).**
+
+**Decision:** **DEMOTED — R:R 0.70:1 (far below 2.0 floor); correlation 0.65 vs CAT (near gate). Low ATR ETF not suited to 7% floor stop.**
+
+---
+
+### Candidates dropped (and why)
+- **UNP** — R:R 0.96:1 fails 2.0 hard floor (year-high $279.70 is the best cited target; consensus PT $273 even worse); pre-macro cap would also block entry
+- **XLB** — R:R 0.70:1 fails 2.0 floor; corr 0.65 vs CAT (near 0.70 gate); pre-macro cap blocks
+- **UNH** — DOJ criminal investigation (unchanged from Jun 2 / Jun 3 drops; unmanageable binary gap risk)
+- **MRK** — R:R 1.30:1 (entry $114.70, stop −7%=$106.67, year-high target $125.14 = only +9.1%); XLV Choppy regime; no catalyst next 14d; pre-macro cap blocks
+- **NOW** — XLK sector cap (AMD + MU = 2/2; ML rank #1 but blocked by concentration rule)
+- **SMH, AVGO, ORCL, XLK** — XLK sector cap (2/2 with AMD+MU)
+- **AMD, CAT, MU** — already held positions
+
+### Historical Analog
+
+**Analog: November 20, 2024.** NVDA Q3 FY2025 earnings beat afterhours Nov 20 (revenue $35.08B, +94% YoY, EPS $0.81 beat $0.75 consensus) — stock fell 2.5–3.5% next session despite blowout, because the beat was "only" 6% above estimates vs the typical 20–30% beats that drove 2024 momentum; investors had front-run the print. AMD fell ~3%, MU −2%, SOX −1.5% on the day after NVDA's reaction. VIX ~16 (close to today's 16.06). Market was pricing in December FOMC (Dec 18, 2024) and November NFP (Dec 6 release) — similar pre-macro nervousness window. SPX finished that week roughly flat. [Training knowledge — NVDA FQ3 2025; levels ±0.3%.]
+
+**What followed (5d/10d/20d from Nov 21, 2024):** SPX flat to −0.5% over 5 days (pre-FOMC consolidation); semiconductor names (AMD, MU) recovered 3–5% within 10 days as the AI thesis reasserted post-FOMC pause. Over 20 days: NVDA +8%, AMD +5%, SOX +4% into year-end rally. Key: semiconductor sell-the-news lasted 1–3 trading days, not a structural reversal. [Training knowledge ±0.5%.]
+
+**Why this time might differ:** AVGO missed software segment whisper (not just a "small beat" — it was a specific segment miss). US-Iran military exchange in the Persian Gulf adds geopolitical premium not present in Nov 2024 (oil risk) — if Iran tensions escalate further, yield spikes could compress tech multiples. NFP tomorrow (Jun 5) is a harder macro event than the Nov 2024 analog window. AI revenue guide was actually strong ($16B Q3, >200% YoY) — so fundamental thesis is intact; the sell-off may be shorter-lived than Nov 2024.
+
+### Risk Factors (consolidated)
+1. **MU stop proximity:** HWM $1,089.29 / stop $986.18 (9.47% trail). Current $1,010.63 — only $24.45 (2.4%) above stop. AVGO-driven semiconductor selloff could breach stop intraday. Trail is already tightened (set at +15%). If MU hits $986, trail sells automatically.
+2. **NFP tomorrow (Jun 5, 8:30am ET):** May payrolls; April was 115K. Hot print >140K → yield spike → XLK multiple compression → AMD/MU further pressure. Cold print <80K → recession fear → broad selloff. Range 100–130K = benign.
+3. **AVGO software miss contagion:** AI hardware thesis structurally intact ($16B Q3 AI, $56B FY2026, $100B FY2027) — but "sell the news" rotation could last 1–3 sessions. AMD HWM $546.37 / stop $477.53 = 12.6% buffer (comfortable). MU is the only position near its stop.
+4. **US-Iran military exchange:** Persian Gulf escalation premarket [WebSearch]; oil not spiking yet (Brent $96.97 −0.86%) but Hormuz closure risk adds energy inflation tail.
+5. **Breadth divergence persisting:** Composite 44.3/100, moderate bearish SPX vs breadth 8MA divergence over 60d. Exposure-coach REDUCE_ONLY ceiling 37%. Rally remains narrow — any rotation out of XLK hits portfolio hard.
+6. **XLK concentration:** AMD+MU = ~$42,064 market value (~40.5% of equity). AVGO-driven contagion risks both simultaneously.
+7. **Weekly slots:** 2 of 3 used (AMD + CAT Jun 1); 1 remaining — but NFP pre-macro cap blocks usage today AND tomorrow morning.
+
+### Decision
+**HOLD — no new entries today.**
+
+**Primary gate:** Pre-macro cap (NFP Jun 5) → 40% deployment cap. Cost basis 56.9% >> 40%. Hard gate.
+
+**Secondary gates:** All shortlisted candidates (UNP, XLB, MRK, UNH) fail independently — UNP R:R 0.96:1, XLB R:R 0.70:1 + near corr gate, MRK R:R 1.30:1 (all fail 2.0 hard floor), UNH DOJ risk. Even without the pre-macro cap, no valid entries exist today.
+
+**Exposure-coach tension:** REDUCE_ONLY recommendation with ceiling=37% aligns with pre-macro cap's 40% limit; both confirm HOLD. This is a unanimous signal system.
+
+**Portfolio management priorities:**
+1. **MU ⚠️ watch:** stop $986.18 / current $1,010.63 / buffer 2.4%. If semiconductor selloff deepens, MU could breach. Trail is set (GTC), no manual action needed — but monitor premarket. Do NOT manually lower the stop.
+2. **Post-NFP window (Fri Jun 5 afternoon, if benign print):** 1 weekly slot remains. UNP would need to retrace to ~$250 for acceptable R:R. Or check if any new catalyst-driven setup emerges post-print.
+3. **AMD HWM $546.37:** Stop $477.53 (12.6% buffer). Not at risk today.
+4. **CAT:** −1.07% today. Stop $862.05 / current $916.25 (5.9% buffer). XLI Trend regime intact; no concern.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash (immediate 429) + 0 Pro
+- Fallback: native WebSearch used for all macro data; local scripts for ATR/quote/screener/correlation
+- NewsAPI: not queried (Gemini down; shortlist researched via Google News only)
+- Finnhub: not queried (all 429)
+- EDGAR: not queried (HOLD day, minimal need)
+- Reddit: not queried (egress 403 blocked)
+- Google News: 4 records (2 UNP + 2 XLB via research.py gather)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=fresh, age=4.83h
+- [degraded: Gemini quota 429 — all macro/synthesis via WebSearch + training knowledge; no Gemini grounded research this session]

@@ -15,25 +15,27 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-06-03): AI/HBM structural demand confirmed — +15% tighten applied (trail 9.47%, stop $985.65, HWM $1,088.71); Morgan Stanley raises target citing 2-3y tight memory supply [MS, Jun 2026]; next tighten at +20% ($1,107.49). AVGO earnings tonight could push MU higher.
+- Thesis (2026-06-04): AI/HBM structural demand intact but under pressure — AVGO sell-the-news (software miss, NOT AI miss) dragged MU −6.39% to $1,010.63; stop $986.18 only $24 away (2.4% buffer); trail already tightened 9.47% at +15% level; second tighten (+20% = $1,107.49) not triggered. Thesis intact: AI revenue structural ($10.8B AVGO Q2, Q3 $16B guide >200%); HBM demand thesis supported.
 - Recent catalysts:
-  - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
-  - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
+  - 2026-06-03: AVGO Q2 FY2026: AI rev $10.8B (+143% YoY), Q3 AI guide $16.0B (>200%) — bullish AI capex; but infra software missed whisper → AVGO −8–14% AH; MU sympathetic selloff [Gemini grounded — unverified]
   - 2026-06-03: Morgan Stanley raises MU + SNDK targets; 2-3 years tight memory supply thesis [MS, Jun 2026]
-  - 2026-06-24: Q3 FY2026 earnings report
+  - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
+  - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
+  <!-- archive: 2026-06-24: Q3 FY2026 earnings report (next) -->
 - Open thesis questions:
   - Samsung/SK Hynix capacity expansion → oversupply risk 2027-2028?
   - Insider selling $54M (3mo) with zero buys — distribution signal near top?
-  - AVGO AI revenue ($10.7B tonight) — if miss, does AI capex narrative weaken for HBM demand?
+  - AVGO software weakness — does it signal broader hyperscaler budget reallocation risk for HBM?
 
 ## AMD (XLK)
-- Thesis (2026-06-03): All-time high ~$540.94 on Jun 3; analyst Strong Buy upgrade + COMPUTEX/MI450 momentum; held at $493.80 (+8.3%); trail 12.6% HWM=$544 stop=$475.46; director sold $5.4M near highs (minor flag). AVGO earnings tonight = binary event for XLK sector.
+- Thesis (2026-06-04): Pullback on AVGO sell-the-news (−3.97% to $521.01 Jun 4); thesis intact — MI450/GPU roadmap strong, COMPUTEX tailwinds confirmed, Mizuho PT $615; trail 12.6% HWM=$546.37 stop=$477.53 (12.6% buffer, comfortable). Director $5.4M sale at ATH = minor flag, not thesis-breaking.
 - Recent catalysts:
+  - 2026-06-04: AVGO sell-the-news contagion; AMD −3.97% sympathetic (not fundamental) [WebSearch]
+  - 2026-06-03: Analyst upgraded to Strong Buy; stock hits all-time high $540.94 [Tradingkey, Jun 2026]
+  - 2026-06-03: Director sold $5.4M near all-time highs [CoinCentral, Jun 2026]
   - 2026-06-01: Mizuho PT raised $515→$615, "Outperform" maintained
   - 2026-06-02: Radeon RX 9070 GRE global launch + BofA Tech Conference (CFO Jean Hu) + Microsoft Build
-  - 2026-06-02/05: COMPUTEX Taipei 2026 (AI ecosystem; AMD participating)
-  - 2026-06-03: Analyst upgraded to Strong Buy; stock hits all-time high $540.94 [Tradingkey, Jun 2026]; Barclays Overweight + PT raise Jun 1 [Barclays]
-  - 2026-06-03: Director sold $5.4M near all-time highs [CoinCentral, Jun 2026]
+  <!-- archive: 2026-06-02/05: COMPUTEX Taipei 2026 (AI ecosystem; AMD participating) -->
   <!-- archive: 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B) -->
   <!-- archive: 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M recovery -->
 - Open thesis questions:
@@ -261,6 +263,15 @@ Conventions:
   - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop
   - MLR still elevated; membership down 2.8M in 2026 (exiting unprofitable MA/Medicaid) — revenue headwind
   - Earnings Jul 28; next specific catalyst unclear before then
+
+## UNP (XLI)
+- Thesis (2026-06-04): XLI Trend regime; Q1 FY2026 EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%); Norfolk Southern integration potential PT uplift; consensus PT $273.36 (26 analysts), Barclays outlier $315 (Apr 24, 2026); current $262.13. DEMOTED — R:R 0.96:1 with year-high $279.70 as target fails 2.0 floor; entry only viable if price retraces to ~$245–250.
+- Recent catalysts:
+  - 2026-Q1: EPS $2.87, revenue $6.22B (+3.2%); analyst PT wave higher
+  - 2026-04-24: Barclays raises PT to $315 [MarketBeat via WebSearch]
+- Open thesis questions:
+  - Norfolk Southern deal progress — updates at Q2 earnings Jul 23?
+  - Freight volume sensitivity to US-China tariff regime?
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
