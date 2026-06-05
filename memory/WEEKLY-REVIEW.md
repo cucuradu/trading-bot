@@ -241,3 +241,159 @@ N/A — no closed trades. Guardrail activates when rolling 4-week expectancy < 0
 
 ### Overall Grade: C
 *First live trade placed and the pre-PCE cap held, but the week exposed systemic record-vs-reality gaps (naked-stop risk, R:R mislabel, fabricated citations, no carry-forward) plus a missing EOD and missing review. The infrastructure worked; the discipline and bookkeeping did not. Remediation shipped 2026-06-03.*
+
+---
+
+## Week ending 2026-06-05 (Week 2 — first full live week)
+
+> **Context:** First full 5-day live trading week. Three positions active simultaneously for the first time. Week structured around COMPUTEX 2026 catalyst window (Jun 2-5), AVGO earnings binary (Jun 4 AH), and May NFP (Jun 5 AM). Pre-macro 40% deployment cap enforced throughout.
+
+### Stats
+
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $101,861.71 (Mon Jun 1 AM pre-market, before AMD/CAT entries) |
+| Ending portfolio | $100,891.64 (Fri Jun 5 EOD, Alpaca) |
+| Week return | −$970.07 (−0.95%) |
+| S&P 500 week | ~−0.82% (SPY Jun 1 ~$758.51 → Jun 5 ~$752.32; Gemini quota exhausted; WebSearch estimate) |
+| Bot vs S&P | ~−0.13% (slight underperform; XLK concentration amplified NFP semiconductor selloff) |
+| Phase P&L | +$891.64 (+0.89% from $100,000 start) |
+| Trades | 2 new (AMD+CAT Jun 1); 1 closed (MU Jun 4); W:1 / L:0 / open:2 |
+| Win rate (closed) | 100% (1/1) — insufficient sample |
+| Best closed trade | MU +$1,324.89 (+6.84% return, +0.45R) |
+| Worst closed trade | N/A (only 1 closed) |
+| Profit factor | N/A (no losses yet) |
+| Sizing | flat_20pct (N=1 cumulative; Half-Kelly at N=30) |
+
+### Closed Trades
+
+| Ticker | Entry | Exit | R | P&L | Notes |
+|--------|-------|------|---|-----|-------|
+| MU | $922.91 (May 28) | $986.00 (Jun 4) | +0.45R | +$1,324.89 | Trailing stop hit on AVGO software miss; HBM thesis intact, catalyst-specific break; exited 9 days held |
+
+### Open Positions at Week End
+
+| Ticker | Entry | Close | Unrealized | Stop | Buffer |
+|--------|-------|-------|-----------|------|--------|
+| AMD | $493.80 (Jun 1) | $465.04 | −$1,150 (−5.82%) | $435.72 (8.82% trail, HWM $546.37) | 6.3% |
+| CAT | $867.71 (Jun 1) | $902.00 | +$789 (+3.95%) | $864.27 (5.58% trail, HWM $946.83) | 4.2% |
+
+### R-Multiple Summary (Phase D1)
+
+| Metric | Week | Phase (all) |
+|--------|------|-------------|
+| avg_R_win | 0.45 | 0.45 |
+| avg_R_loss | N/A | N/A |
+| Payoff ratio | N/A | N/A |
+| Expectancy | N/A | N/A |
+| N (closed) | 1 | 1 |
+
+*Note: avg_R_win 0.45 is below the 2:1 target implied by R:R floors — the trailing stop exited at 0.45R after MU reached a peak of ~+1.25R (HWM $1,088.71). Expectancy and payoff ratio require both wins and losses; deferred.*
+
+### Sector Attribution (Phase D2)
+
+| Sector ETF | Week Closed P&L | Open Unrealized |
+|-----------|----------------|----------------|
+| XLK | +$1,324.89 (MU close) | −$1,150 (AMD open) |
+| XLI | — | +$789 (CAT open) |
+
+*Week closed P&L: only XLK positive (MU). Sector momentum thesis partially validated: XLK was correctly identified as the Trend sector. XLI (CAT) holding is consistent with strategy despite Choppy regime score.*
+
+### Regime-Conditional (Phase D3)
+
+| Regime | Week Closed P&L | Win Rate |
+|--------|----------------|---------|
+| Neutral | +$1,324.89 | 100% (1/1) |
+
+*All 5 trading days called Neutral (rule_fallback Jun 1-2, ml Jun 3-5). Only 1 closed trade; no variance across regimes. Regime-conditional analysis deferred until N ≥ 5 closed trades.*
+
+### Themes This Week
+
+*(Gemini quota exhausted Mon–Fri; synthesized manually from RESEARCH-LOG.md pre-market entries. No --smart --synth call made — document limitation.)*
+
+**1. COMPUTEX catalyst window (Jun 1–4) → exhaustion by Jun 5** *(strengthened Mon–Wed, faded Thu–Fri)*
+- COMPUTEX June 2–5 Taipei was the week's primary catalyst. AMD hit ATH $540.94 on Jun 2–3; NVDA unveiled N1X chip; AMD Radeon RX 9070 GRE launched Jun 2; MU HBM4 featured at keynotes. By Jun 5, the window closed and COMPUTEX momentum was fully consumed.
+- Appeared: Jun 1, Jun 2, Jun 3 RESEARCH-LOG.
+
+**2. Iran/Strait of Hormuz oil volatility** *(persistent Jun 1–5; WTI $90–$95 range)*
+- Iran ceasefire collapsed Jun 1 (+4% WTI spike); partial reversal Jun 2 (−1%); rebuilt to Brent $96.97 by Jun 4. Created inflation-yield anxiety throughout week. Did not break bull market thesis but kept yields elevated.
+- Appeared: all 5 pre-market entries.
+
+**3. AVGO earnings binary → semiconductor-wide catalyst break (Jun 4 AH → Jun 5)** *(emerging Thu, dominant Fri)*
+- AVGO Q2 FY2026: AI revenue +143% YoY (beat), but infrastructure software missed whisper. The software miss triggered sector rotation out of all semiconductors, dragging AMD −10.7% on Jun 5. AVGO AI guide $16B Q3 confirms structural demand but the STN reaction was swift. Appeared: Jun 3 (anticipated), Jun 4 (confirmed), Jun 5 (dominant).
+
+**4. Hot NFP +251K → Fed higher-for-longer re-pricing (Jun 5 only, emerging risk)** *(new theme, week-ending shock)*
+- May NFP +251K vs 85–120K consensus (3σ surprise). 30Y yield likely spiked 8–12bp toward 5.07–5.11%. XLK multiple compression + AVGO contagion = compound shock on Jun 5. Nasdaq −4% (semiconductors); S&P −0.63% (broader resilience via rotation). Theme will persist into next week as rates settle.
+
+**5. Breadth deterioration / concentrated rally** *(strengthened through week)*
+- Composite breadth: 43.4/100 (Jun 3) → 44.3/100 (Jun 4) → 33/100 (Jun 5). S&P +11.7% vs breadth 8MA −0.035 over 60d (bearish divergence). Exposure-coach REDUCE_ONLY ceiling dropped from 37% → 32% by Jun 5. Rally was XLK-concentrated; any rotation out hit portfolio hard (AMD -10.7%).
+
+### Regime-Call Audit
+
+*All 5 regime calls were Neutral. The strict hit/miss framework (Bull/Caution/Defensive) does not apply to Neutral calls; Neutral implies no directional prediction.*
+
+| Day | Regime Called | SPY next-day | Assessment |
+|-----|--------------|-------------|-----------|
+| Jun 1 (Mon) | Neutral | Jun 2 +0.14% ✓ | Appropriate — market constructive |
+| Jun 2 (Tue) | Neutral | Jun 3 −0.70% — | Both outcomes acceptable under Neutral |
+| Jun 3 (Wed) | Neutral | Jun 4 +0.38% ✓ | Appropriate |
+| Jun 4 (Thu) | Neutral | Jun 5 −0.63% — | Both acceptable; the Neutral call correctly avoided a "Bull" label that Jun 5 would have falsified |
+| Jun 5 (Fri) | Neutral (downgraded slots 2→1 post-NFP) | Weekend | N/A |
+
+*Hit rate: N/A (Neutral is not a directional call; framework generates actionable audit only for Bull/Caution/Defensive calls). Neutral was appropriate — the choppy, narrow rally with breadth divergence did not warrant a Bull or Defensive regime. Post-NFP slot downgrade was a correct regime-adjacent response.*
+
+### Calibration Table
+
+*Research logs do not explicitly tag confidence levels; "high confidence" = not flagged weakly-sourced in critique sections.*
+
+| Direction | High-conf claims | Paid out | Hit % |
+|-----------|----------------:|--------:|------:|
+| Bull | 5 | 5 | 100% |
+| Bear | 4 | 4 | 100% |
+
+*Bull paid: (1) COMPUTEX AMD ATH ✓, (2) MU +15% tighten trigger hit ✓, (3) Mizuho $615 AMD sentiment support ✓, (4) AVGO AI revenue beat ✓, (5) CAT data center power thesis held through semiconductor selloff ✓. Bear paid: (1) AMD near year-high limited headroom ✓ reversed from ATH, (2) AVGO software miss hyperscaler risk ✓, (3) breadth divergence bearish signal ✓, (4) hot NFP yield spike AMD compression ✓. N=1 week — calibration scores not yet statistically meaningful.*
+
+### Sizing Method
+
+`flat_20pct` — N=1 cumulative closed trades (Half-Kelly activates at N=30).
+
+### What Worked
+
+- **Pre-macro 40% deployment cap enforced**: prevented overextension into the Jun 5 −3% portfolio day; without the cap, AMD losses would have been amplified by any additional XLK position
+- **MU trailing stop triggered correctly**: AVGO catalyst break on Jun 4 → stop filled $986, locked in +$1,324.89 gain; the 9.47% tightened trail worked as designed
+- **CAT thesis isolation**: XLI/industrials decoupled from semiconductor contagion; CAT held through the entire week including Jun 5 −4.2% (still +3.95% unrealized from entry)
+- **Midday Jun 5 tighten protocol**: −2% DD threshold triggered trail tightening (AMD 12.6% → 8.82%; CAT 7.97% → 5.58%) before close — correct risk management response to blowout NFP
+- **COMPUTEX entry timing**: AMD entered Jun 1 at $493.80 and hit ATH $540.94 (+9.4% peak) confirming COMPUTEX catalyst thesis before reversing
+
+### What Didn't Work
+
+- **AMD XLK concentration**: AMD+MU = 40% equity in one sector; AVGO-triggered semiconductor selloff hit both simultaneously (MU stopped Jun 4, AMD −10.7% Jun 5); single-factor AI infrastructure bet exposed
+- **MU exited at only 0.45R**: trailing stop width (9.47% after tighten) was too wide for the AVGO gap; MU peaked at +1.25R HWM but exited at 0.45R — 65% of potential gain eroded by the gap-down
+- **Gemini quota exhausted entire week**: All Gemini calls returned 429 on Jun 3–5; research degraded to WebSearch only; synthesis quality reduced; no --smart Pro calls possible
+- **AMD thesis now broken**: COMPUTEX momentum exhausted; AVGO contagion; hot NFP yield spike — AMD stop at $435.72 (6.3% buffer) is the only line of defense; new entries blocked until thesis resets
+- **CAT stop buffer thin**: 4.2% to stop after Jun 5 selloff; one more bad macro day could trigger; monitoring required
+
+### Key Lessons
+
+1. **AVGO earnings = semiconductor-sector binary**: future rule — when AVGO/NVDA earnings are ≤7 days ahead, treat existing semiconductor (XLK) positions as binary and consider pre-reducing trail width or partial hedge. AVGO missed software despite AI beat; the market punished all semis.
+2. **Trailing stop 9.47% too wide for a 15%→9.47% tighten on a gap-down**: the tighten rule is correct but the gap from MU HWM $1,088 to stop $986 was $102 — a 9.4% gap that a single bad catalyst can jump. Consider a secondary tighten rule at +18–20% that brings trail to ≤7%.
+3. **Pre-macro cap works**: two macro events (AVGO earnings Jun 4 + NFP Jun 5) both produced adverse price action. The 40% cap prevented catastrophic losses on each. Rule is validated.
+4. **Breadth 33/100 is a hard warning**: when composite breadth drops below 35, the rally is critically narrow; deployment ceiling should effectively not exceed 40% (aligns with what the exposure-coach was already calling). Will track next week to see if this becomes a formal rule.
+5. **Gemini quota management is a systemic risk**: quota exhausted all 3 final days of the week; research ran degraded. Fix: schedule pre-market calls ≤12 Flash/day; batch all ticker queries in one call; no synthesis calls on HOLD days.
+
+### Adjustments for Next Week (Jun 8–12)
+
+- **AMD**: thesis broken. Hold with GTC stop $435.72. No adds. Evaluate formal exit if AMD fails to reclaim $480 by mid-week.
+- **CAT**: thesis intact. Hot NFP = strong labor = data center buildout = CAT fundamental tailwind. Hold with GTC stop $864.27. Watch +15% tighten at $997.76.
+- **New entry criteria**: need Trend sector (not XLK — capped), R:R ≥ 2:1, no binary event ≤14d. XLI (HON?), XLB, XLV candidates if regime recovers.
+- **Yield watch**: 30Y toward 5.07–5.11% post-NFP; tech multiple compression persists until yields stabilize. CPI Jun 10 is next binary — no new XLK entries before then.
+- **Breadth monitoring**: composite was 33/100 on Jun 5 (below 35 warning threshold). If breadth stays <35 at Jun 8 open, treat deployment ceiling as 40% (not 75%) until recovery.
+- **Gemini quota**: cap at 12 Flash calls/day. Zero synthesis on HOLD days. Batch all ticker research in one call.
+
+### Overall Grade: C+
+
+*Portfolio preserved +0.89% phase gain despite first major stress event (AVGO + hot NFP). Risk management (trailing stops, pre-macro cap, midday tightening) functioned correctly. Grade penalty for: AMD thesis now broken at only +5 days held, XLK concentration risk not managed before the semiconductor break, Gemini quota exhaustion all week, MU exit at 0.45R (low capture rate). The system worked; position management needs refinement.*
+
+### Expectancy Guardrail Status
+
+N=1 cumulative closed trade (phase total). Expectancy and payoff ratio require both winning and losing trades — not computable. Guardrail inactive. Rolling 4-week expectancy cannot be assessed until N ≥ 3–4 closed trades with mixed outcomes. Half-Kelly switchover remains deferred (N=1 of 30 required).

@@ -268,7 +268,7 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 | AMD | 40 | $493.80 | $519.80 | −0.42% | +$1,040.00 (+5.27%) | GTC 12.60% trail |
 | CAT | 23 | $867.71 | $940.25 | +1.52% | +$1,668.41 (+8.36%) | GTC 7.97% trail |
 
-- CLOSED 2026-06-04: MU entry=922.91 initial_stop=784.47 exit=986.00 shares=21 regime_entry=Neutral sector=XLK pnl=$1324.89 r=0.45R reason="trailing stop hit (AVGO catalyst break)"
+- CLOSED 2026-06-04: MU entry=922.91 initial_stop=784.47 exit=986.00 shares=21 regime_entry=Neutral sector=XLK pnl=$1324.89 r=0.45 reason="trailing stop hit (AVGO catalyst break)"
 - Regime 2026-06-04: Neutral (source: ml, slots: 2)
 - Trades today: CLOSED MU (1 of 3 max weekly)
 - Trades this week (Thu): 1 total (MU only)

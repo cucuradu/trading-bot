@@ -12,6 +12,8 @@ Conventions:
   to memory/TICKER-NOTES-ARCHIVE.md during the weekly review.
 - Trade-outcome rows mirror the canonical CLOSED-line metadata.
 
+<!-- SEED-CURSOR: AAPL -->
+
 ---
 
 ## MU (XLK)
@@ -24,11 +26,12 @@ Conventions:
   - 2026-06-24: Q4 FY2026 earnings report (next — 19d; key re-entry catalyst)
   <!-- archive: 2026-06-04: AVGO AH infra-software miss; MU trailing stop hit $986.18 at 13:59 ET -->
   <!-- archive: 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote HBM4 + Vera Rubin) -->
+- Trade history:
+  - 2026-06-04: r=0.45, regime=Neutral, reason="trailing stop hit on AVGO software miss contagion; HBM thesis intact, catalyst-specific break; peak was +1.25R (HWM $1,088) but 9.47% trail left too much gap-down room"
 - Open thesis questions:
   - At what price does MU become enterable (R:R 2:1)? Need ~$750–870 for year-high target, or a post-June-24 earnings re-pricing lifting analyst consensus above $1,250.
   - Does hot NFP yield spike (30Y → 5.07–5.11%) break XLK momentum for 1–3 weeks or get absorbed?
   - Analyst consensus PT $751–860 is below current price — when does the Street re-rate?
-- Closed trade: entry $922.91, exit $986.00, 21sh, initial_stop $784.47, realized_r=0.45R, pnl=$1,324.89, reason=trailing_stop (AVGO software_miss), date=2026-06-04
 
 ## AMD (XLK)
 - Thesis (2026-06-05): **HOLD, STOP ACTIVE** — Hot NFP +251K adds second pressure layer after AVGO Jun 4 contagion. AMD −3.4% to $505.33 premarket. Structural thesis (MI450/GPU roadmap; Mizuho $615 PT; COMPUTEX AI ecosystem) intact but sentiment headwind continues. Trail 12.6% HWM=$546.37 stop=$477.53. Buffer only 5.5% from $505 — watching closely. GTC trail active; if AMD drops to $477.53, auto-exit. Do NOT lower stop manually. Key risk: further yield spike from hot NFP compresses XLK multiples this session.
