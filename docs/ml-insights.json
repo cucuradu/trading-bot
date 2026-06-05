@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T07:47:46Z",
+  "generated_at": "2026-06-05T04:33:22Z",
   "model_version": "hmm-garch-v2.0",
   "schema_version": "1.1",
   "market": {
@@ -14,78 +14,78 @@
   "universe_ranking": [
     {
       "symbol": "NOW",
-      "ml_score": 0.090135,
-      "forward_return_pct": 9.0135
+      "ml_score": 0.082517,
+      "forward_return_pct": 8.2517
     },
     {
       "symbol": "AMD",
-      "ml_score": 0.055347,
-      "forward_return_pct": 5.5347
+      "ml_score": 0.059089,
+      "forward_return_pct": 5.9089
     },
     {
       "symbol": "MU",
-      "ml_score": 0.046955,
-      "forward_return_pct": 4.6955
+      "ml_score": 0.049694,
+      "forward_return_pct": 4.9694
     },
     {
       "symbol": "INTU",
-      "ml_score": 0.038609,
-      "forward_return_pct": 3.8609
-    },
-    {
-      "symbol": "ADBE",
-      "ml_score": 0.019689,
-      "forward_return_pct": 1.9689
+      "ml_score": 0.032611,
+      "forward_return_pct": 3.2611
     },
     {
       "symbol": "MSFT",
-      "ml_score": 0.019223,
-      "forward_return_pct": 1.9223
+      "ml_score": 0.019695,
+      "forward_return_pct": 1.9695
+    },
+    {
+      "symbol": "ADBE",
+      "ml_score": 0.018949,
+      "forward_return_pct": 1.8949
     },
     {
       "symbol": "CRM",
-      "ml_score": 0.016934,
-      "forward_return_pct": 1.6934
+      "ml_score": 0.014269,
+      "forward_return_pct": 1.4269
     },
     {
       "symbol": "SMH",
-      "ml_score": 0.013149,
-      "forward_return_pct": 1.3149
-    },
-    {
-      "symbol": "CAT",
-      "ml_score": 0.007747,
-      "forward_return_pct": 0.7747
-    },
-    {
-      "symbol": "AMZN",
-      "ml_score": 0.006753,
-      "forward_return_pct": 0.6753
-    },
-    {
-      "symbol": "ORCL",
-      "ml_score": 0.006238,
-      "forward_return_pct": 0.6238
-    },
-    {
-      "symbol": "GOOGL",
-      "ml_score": 0.006057,
-      "forward_return_pct": 0.6057
+      "ml_score": 0.010529,
+      "forward_return_pct": 1.0529
     },
     {
       "symbol": "AVGO",
-      "ml_score": 0.003807,
-      "forward_return_pct": 0.3807
+      "ml_score": 0.007532,
+      "forward_return_pct": 0.7532
+    },
+    {
+      "symbol": "AMZN",
+      "ml_score": 0.007491,
+      "forward_return_pct": 0.7491
+    },
+    {
+      "symbol": "GOOGL",
+      "ml_score": 0.006895,
+      "forward_return_pct": 0.6895
+    },
+    {
+      "symbol": "CAT",
+      "ml_score": 0.005244,
+      "forward_return_pct": 0.5244
+    },
+    {
+      "symbol": "ORCL",
+      "ml_score": 0.00469,
+      "forward_return_pct": 0.469
     },
     {
       "symbol": "XLK",
-      "ml_score": 0.003598,
-      "forward_return_pct": 0.3598
+      "ml_score": 0.004306,
+      "forward_return_pct": 0.4306
     },
     {
       "symbol": "LOW",
-      "ml_score": 0.003075,
-      "forward_return_pct": 0.3075
+      "ml_score": 0.002708,
+      "forward_return_pct": 0.2708
     }
   ],
   "universe_weights": {
@@ -96,19 +96,19 @@
     "garch_1d_forecast_pct": 10.62,
     "garch_5d_forecast_pct": 10.98,
     "vix_implied_term_structure": "contango",
-    "vix": 16.06,
+    "vix": 15.4,
     "vvix": 89.80000305175781
   },
   "macro": {
     "available": true,
-    "as_of": "2026-06-02",
+    "as_of": "2026-06-03",
     "macro_regime": "Risk-On",
-    "macro_risk": 0.161,
-    "yield_curve_10y_3m": 0.69,
+    "macro_risk": 0.203,
+    "yield_curve_10y_3m": 0.71,
     "curve_inverted": false,
-    "hy_oas": 2.71,
-    "hy_oas_pct": 0.082,
-    "hy_oas_20d_chg": -0.06,
+    "hy_oas": 2.75,
+    "hy_oas_pct": 0.119,
+    "hy_oas_20d_chg": 0.0,
     "nfci": -0.494
   },
   "crash_risk": {
@@ -117,63 +117,63 @@
     "reasons": []
   },
   "ranking_quality": {
-    "oof_rank_ic": 0.0171
+    "oof_rank_ic": 0.0168
   },
   "sectors": {
     "XLK": {
       "regime": "Trend",
-      "score": 0.003598,
-      "forward_return_pct": 0.3598
+      "score": 0.004306,
+      "forward_return_pct": 0.4306
     },
     "XLF": {
       "regime": "Bear",
-      "score": -0.001956,
-      "forward_return_pct": -0.1956
+      "score": -0.001943,
+      "forward_return_pct": -0.1943
     },
     "XLV": {
       "regime": "Choppy",
-      "score": -0.001643,
-      "forward_return_pct": -0.1643
+      "score": -0.002028,
+      "forward_return_pct": -0.2028
     },
     "XLE": {
       "regime": "Bear",
-      "score": -0.00113,
-      "forward_return_pct": -0.113
+      "score": -0.002305,
+      "forward_return_pct": -0.2305
     },
     "XLI": {
       "regime": "Trend",
-      "score": -0.001712,
-      "forward_return_pct": -0.1712
+      "score": -0.001705,
+      "forward_return_pct": -0.1705
     },
     "XLY": {
       "regime": "Choppy",
-      "score": -0.001771,
-      "forward_return_pct": -0.1771
+      "score": -0.00164,
+      "forward_return_pct": -0.164
     },
     "XLP": {
       "regime": "Bear",
-      "score": -0.001784,
-      "forward_return_pct": -0.1784
+      "score": -0.001941,
+      "forward_return_pct": -0.1941
     },
     "XLU": {
       "regime": "Bear",
-      "score": -0.000817,
-      "forward_return_pct": -0.0817
+      "score": -0.000737,
+      "forward_return_pct": -0.0737
     },
     "XLB": {
       "regime": "Trend",
-      "score": -0.001202,
-      "forward_return_pct": -0.1202
+      "score": -0.001434,
+      "forward_return_pct": -0.1434
     },
     "XLRE": {
       "regime": "Choppy",
-      "score": -0.001803,
-      "forward_return_pct": -0.1803
+      "score": -0.001905,
+      "forward_return_pct": -0.1905
     },
     "XLC": {
       "regime": "Bear",
-      "score": -0.001886,
-      "forward_return_pct": -0.1886
+      "score": -0.002077,
+      "forward_return_pct": -0.2077
     }
   }
 }
