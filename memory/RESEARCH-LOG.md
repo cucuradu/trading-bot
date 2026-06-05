@@ -2020,3 +2020,31 @@ Neutral regime (ml, confidence=0.61, persistence 33 bars). NFP May 2026 printed 
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=fresh, age=8.1h
 - [degraded: Gemini quota 429 — all macro synthesis via WebSearch + training knowledge; no Gemini grounded research this session. Same degradation as Jun 4.]
+
+---
+
+### June 5 — MIDDAY SCAN (Morning, before NFP 12 PM ET)
+
+**Market context:** Equity $101,757.91 (−2.12% vs yesterday $103,961.75). Daily gate tripped: `tighten_trails` active (−2% DD response). Pre-macro NFP cap remains binding (40% deployment). COMPUTEX wind-down (AMD weak −8.6% today). 
+
+**Actions taken:**
+1. ✓ Tightened AMD trailing stop: 12.6% → 8.82% (daily 30% reduction; stop now $435.72, hwm $477.87)
+2. ✓ Tightened CAT trailing stop: 7.97% → 5.58% (daily 30% reduction; stop now $864.27, hwm $915.35)
+3. ✓ Validated stop coverage: both positions fully hedged
+4. ✓ No R ≤ −1 cuts (AMD $478.39 > $431.58 stop, CAT $916.37 > $799.16 stop)
+5. ✓ No time stops (both ~4 trading days, not ≥10d flat)
+6. ✓ No thesis breaks (COMPUTEX ongoing for AMD, CAT capex thesis intact)
+
+**No new entries.** Pre-macro cap + deployment at 40.3% lock out any slots.
+
+**Monitoring (next 4 hours):**
+- **12 PM ET:** NFP print (consensus 115–120K). Expect 15–30 min market volatility.
+- **AMD post-NFP:** if yield spike drives risk-off, AMD's 5.5% buffer to $477.53 stop could trigger. Will hold GTC order as-is.
+- **CAT post-NFP:** XLI (industrials) typically holds through macro shocks better than XLK; 6.6% buffer is solid.
+- **Close:** standard daily-summary reconciliation at 4 PM ET.
+
+**Data checks:** None (no new positions, no thesis updates needed).
+
+Status: **HOLD.** All risk gates applied. Poised for NFP reaction.
+
+---
