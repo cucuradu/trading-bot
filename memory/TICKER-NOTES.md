@@ -15,18 +15,23 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (CLOSED 2026-06-04): AI/HBM structural demand thesis broken by AVGO software miss signal; trailing stop hit at $986.00 (0.45R realized; $1,324.89 P&L). Entry thesis was sound (HBM structural, COMPUTEX catalysts), but AVGO infrastructure software miss (despite AI beat) signaled potential hyperscaler capex caution → MU sympathetic selloff −6.39% to $1,010.63 at 13:59 ET. Stop at $986.18 triggered within minutes. Thesis integrity compromised; exit discipline validated.
+- Thesis (2026-06-05): HBM structural demand thesis intact (sold out through 2027, HBM4 shipping for NVDA Vera Rubin) but unentreable at current ~$963 premarket. 15%-clamped ATR stop requires ~30% upside for 2:1 R:R; year-high $1,089 only gives 0.87:1. Viable re-entry zone ~$750–870. June 24 earnings (Q4 FY2026) is the next major catalyst — consider re-entry setup post-NFP stabilization if price pulls to entry-eligible level. Hot NFP +251K adds yield-spike pressure on XLK; demoted Jun 5. [Demoted: R:R fails 2.0 floor. WebSearch Jun 5; MarketBeat Jun 4]
 - Recent catalysts:
-  - 2026-06-04 13:59 ET: AVGO infrastructure software miss contagion → MU trailing stop filled $986.00 (trailing_stop order id df1e219f, created Jun 3 @ 9:46am, tightened to 9.466% at +15%; HWM=$1,089.29). Thesis break confirmed.
-  - 2026-06-03: AVGO Q2 FY2026: AI rev $10.8B (+143% YoY), Q3 AI guide $16.0B (>200%) — bullish AI capex; but infra software missed whisper → AVGO −8–14% AH; MU sympathetic selloff [Gemini grounded — unverified]
-  - 2026-06-03: Morgan Stanley raises MU + SNDK targets; 2-3 years tight memory supply thesis [MS, Jun 2026]
-  - 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote — HBM4 + Vera Rubin ecosystem)
+  - 2026-06-05: Screener #1 (ml 1.36) but demoted — R:R 0.87:1 at year-high target fails 2.0 floor; hot NFP +251K adds yield pressure. Pre-market $963 (−3.4% from $996 Jun 4 close). [Alpaca; WebSearch Jun 5]
+  - 2026-06-04 13:59 ET: AVGO infrastructure software miss contagion → MU trailing stop filled $986.00 (0.45R, pnl=$1,324.89)
+  - 2026-06-03: Morgan Stanley raises MU + SNDK targets; 2–3 years tight memory supply thesis [MS, Jun 2026]
   - 2026-05-27: Q3 FY2026 earnings +19% (HBM sold out through 2027, HBM4 shipping for NVDA Vera Rubin)
-  <!-- archive: 2026-06-24: Q3 FY2026 earnings report (next) -->
-- Closed trade outcome: entry $922.91, exit $986.00, 21sh, initial_stop $784.47, realized_r=0.45R, pnl=$1,324.89, reason=trailing_stop (AVGO software_miss), date=2026-06-04
+  - 2026-06-24: Q4 FY2026 earnings report (next — 19d; key re-entry catalyst)
+  <!-- archive: 2026-06-04: AVGO AH infra-software miss; MU trailing stop hit $986.18 at 13:59 ET -->
+  <!-- archive: 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote HBM4 + Vera Rubin) -->
+- Open thesis questions:
+  - At what price does MU become enterable (R:R 2:1)? Need ~$750–870 for year-high target, or a post-June-24 earnings re-pricing lifting analyst consensus above $1,250.
+  - Does hot NFP yield spike (30Y → 5.07–5.11%) break XLK momentum for 1–3 weeks or get absorbed?
+  - Analyst consensus PT $751–860 is below current price — when does the Street re-rate?
+- Closed trade: entry $922.91, exit $986.00, 21sh, initial_stop $784.47, realized_r=0.45R, pnl=$1,324.89, reason=trailing_stop (AVGO software_miss), date=2026-06-04
 
 ## AMD (XLK)
-- Thesis (2026-06-04): **WEAKENED** — AVGO infrastructure software miss (despite AI beat) signals potential hyperscaler capex caution. AMD −3.97% to $519.80 Jun 4 in sympathy. Original thesis (MI450/GPU roadmap strong; COMPUTEX Vera Rubin ecosystem; Mizuho $615 PT) remains structurally sound, but near-term headwind from sector confidence break evident. Trail 12.6% HWM=$546.37 stop=$477.53 (12.6% buffer). Holding for consolidation into NFP (Jun 5); if stop breaches, thesis invalidated — AVGO software weakness signals broader capex reallocation risk.
+- Thesis (2026-06-05): **HOLD, STOP ACTIVE** — Hot NFP +251K adds second pressure layer after AVGO Jun 4 contagion. AMD −3.4% to $505.33 premarket. Structural thesis (MI450/GPU roadmap; Mizuho $615 PT; COMPUTEX AI ecosystem) intact but sentiment headwind continues. Trail 12.6% HWM=$546.37 stop=$477.53. Buffer only 5.5% from $505 — watching closely. GTC trail active; if AMD drops to $477.53, auto-exit. Do NOT lower stop manually. Key risk: further yield spike from hot NFP compresses XLK multiples this session.
 - Recent catalysts:
   - 2026-06-04: AVGO sell-the-news contagion (infrastructure software miss); AMD −3.97% sympathetic (sector-wide semiconductor pullback, not AMD-specific) [WebSearch, Jun 4]
   - 2026-06-03: Analyst upgraded to Strong Buy; stock hits all-time high $540.94 [Tradingkey, Jun 2026]
@@ -73,7 +78,7 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-04): **UNCHANGED** — Data center power generation re-rating (3× engine capacity by 2028) + record backlog $63B (+79% YoY) + EPS +30% Q1 2026 beat remains intact. Jun 4 sector weakness (AVGO contagion) is semiconductor-specific; CAT decoupled (+1.52% Jun 4, $926.50 → $940.25). Consolidating ahead of NFP (Jun 5); trail 7.97% HWM=$946.83 stop=$871.37 (7.97% buffer, appropriate). CAT-specific thesis (data center power capex) insulated from semiconductor infrastructure software miss.
+- Thesis (2026-06-05): **HOLD, INTACT** — Data center power re-rating thesis fully insulated from NFP + semiconductor pressure. CAT −0.8% to $933 premarket (XLI/industrials resilience vs XLK −3.4%). Trail 7.97% HWM=$946.83 stop=$871.37 (6.6% buffer). Hot NFP +251K is CAT-supportive (strong labor = strong capex spending = data center buildout continues). Stop locks in +$3.66/sh gain (stop $871.37 > entry $867.71). No change to position; thesis intact.
 - Recent catalysts:
   - 2026-06-04: Sector-wide pullback (AVGO contagion) did NOT impact CAT; +1.52% Jun 4 shows thesis isolation; consolidation into NFP [Jun 4]
   - 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance

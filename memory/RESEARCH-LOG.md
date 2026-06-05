@@ -1884,3 +1884,139 @@ Sector-momentum (yfinance) vs ML sectors block: XLK=Trend ✓, XLI=Trend ✓, XL
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=fresh, age=4.83h
 - [degraded: Gemini quota 429 — all macro/synthesis via WebSearch + training knowledge; no Gemini grounded research this session]
+
+---
+
+## 2026-06-05 — Pre-market
+
+**Regime:** Neutral (source: ml, slots: 2→1 after hot NFP, deployment: 75%)
+**Pre-macro:** cap_active (event: NFP on 2026-06-05) → 40% deployment cap. Actual print +251K vs 85–105K consensus → HOT → trade_slots downgraded 2→1 (defensive posture).
+**Breadth/Sector:** breadth=33/100 (Weakening) | sector=risk-on score=74 phase=mid | divergence: True (cyclical/defensive disagree internally; bearish SPX +11.7% vs breadth 8MA −0.035 over 60d)
+**Exposure:** ceiling=32% | rec=REDUCE_ONLY | bias=GROWTH | conf=MEDIUM
+**FTD:** /tmp/ftd.json empty (FTD detector ran but returned no data — FMP key set but no signal output)
+
+### Account
+- Equity: $103,216.18 | Cash: $61,543.98 | Buying power: $329,520.32 | PDT: 0/4
+- Long market value: $41,672.20 (40.4% deployed — AT the 40% pre-macro cap)
+- Open positions: 2 (AMD, CAT) | Open orders: 2 GTC trailing stops
+
+| Position | Shares | Entry | Current | Day% | Unrealized | Stop | Buffer |
+|----------|--------|-------|---------|------|------------|------|--------|
+| AMD | 40 | $493.80 | $505.33 | −3.4% | +$461 (+2.34%) | $477.53 (trail 12.6%, HWM $546.37) | 5.5% |
+| CAT | 23 | $867.71 | $933.00 | −0.8% | +$1,502 (+7.52%) | $871.37 (trail 7.97%, HWM $946.83) | 6.6% |
+
+### Macro Framework
+Neutral regime (ml, confidence=0.61, persistence 33 bars). NFP May 2026 printed +251K — massively above consensus of 85–105K (prior 115K) — a blowout labor beat that signals Fed holds higher for longer and reduces any near-term cut probability. [FXMacroData, Jun 5 2026; EBC forecast 85K]. 30Y yield ~4.99% pre-print (Fed Board H.15 Jun 4; likely spiked 8–12bp post-NFP to ~5.07–5.11% [training knowledge — yield elasticity to hot NFP]). VIX ~16–17 (futures 17.38; WebSearch Jun 5). Brent $95.25 +0.23%, WTI ~$94–95/bbl [TradingEconomics, Jun 5]. DXY ~99 (est., steady). AVGO-driven semiconductor weakness (−8 to −14% AH Jun 4) + hot NFP yield pressure = dual headwinds for XLK this session. AMD premarket −3.4% to $505.33; CAT more resilient −0.8% to $933 (XLI decoupled). SPX/Nasdaq futures lower on chip weakness (Nasdaq futures down, MAGS ETF −0.68% premarket [TheStreet, Jun 5]). vs Jun 4: NFP event delivered (HOT +251K vs 85K, not benign 115K as hoped); yields likely +8–12bp from pre-event 4.99% (hawkish re-pricing); oil slightly down (Brent −1.8% from $96.97); VIX edging up from 16.06; AMD/MU further pressure vs Jun 4 close; regime Neutral unchanged.
+> **Naming convention (B8):** SPY = the ETF (~$745 range); S&P 500 index = SPX (~7,470 range). Used consistently in this entry.
+
+### Sector Picture
+- **Top 3** (1mo momentum): XLK +16.63% [Trend], XLV +4.67% [Choppy], XLI +2.18% [Trend]
+- **Bottom 3** (1mo momentum): XLU −5.24% [Bear], XLP −2.4% [Bear], XLE −1.18% [Bear]
+- **Disagree**: XLF 1mo +1.16% (positive momentum) but ML marks Bear — short-term bounce in a Bear regime; not tradeable. XLV +4.67% momentum but ML marks Choppy — elevated vol suppressing trend signal.
+- All Bear sectors (XLF, XLE, XLP, XLU, XLC) excluded from candidate universe.
+
+### Candidates
+
+*(Pre-macro 40% cap + hot-NFP trade_slots downgrade → 1 effective slot, but deployment already AT cap. All candidates are documented for forward pre-positioning.)*
+
+**Screener:** source=ml (universe_ranking XGBoost, age 8.1h), ranked 15 tickers. Top 10 = [MU(1.36), AMD(1.18 — held), MS(0.84 — XLF Bear), SMH(0.66 — XLK cap), MRK(0.57), UNH(0.45), GS(0.44 — XLF Bear), CAT(0.43 — held), XLK(0.42 — XLK cap), ORCL(0.40 — XLK cap)]. Valid shortlist after Bear-sector filter and open-position exclusion: MU, MRK. Slots: 1 (but cap blocked).
+
+---
+
+#### MU (XLK, $963.20 pre-market Jun 5 −3.4% from $996 Jun 4 close)
+
+**Setup:** ATR(14)=$60.66 (6.09% of $996); stop_pct_2.5x=15.23% → clamped to **15.0%**. Year high $1,089.29 (Jun 2 close $1,064.10). 10d avg volume 52.6M shares (high liquidity). Earnings June 24 (19d) — NOT in blackout.
+
+**Sources scanned (2):** 0 NewsAPI / 0 Finnhub (403) / 2 EDGAR (Form 4 insider filings Jun 2, May 5×2) / 0 Reddit (403) / 0 Gemini (quota 429 — all synthesis from training knowledge + WebSearch).
+
+**Bull case:**
+- HBM structural demand thesis intact: Q3 FY2026 earnings (May 27) confirmed HBM sold out through 2027 and HBM4 shipping for NVDA Vera Rubin [training knowledge — MU Q3 FY2026 May 2026]
+- Morgan Stanley raises target (2–3 years tight memory supply thesis); 26 Buy / 3 Hold / 0 Sell consensus; high PT $1,750 (Susquehanna) [MarketBeat, Jun 4 2026]
+- June 24 earnings catalyst: Motley Fool bullish note "MU stock will skyrocket after June 24" suggesting strong Q4 FY2026 setup [Motley Fool, Jun 1 2026 — Gemini grounded — unverified]
+- AVGO sell-off was software-specific (infra software miss); AI revenue was +143% YoY — structural AI capex demand intact
+
+**Bear case:**
+- AVGO contagion: infrastructure software miss signals potential hyperscaler capex rhythm uncertainty → MU sympathetic selloff (already −6.39% Jun 4, −3.4% Jun 5 premarket) [Alpaca data]
+- Hot NFP +251K → Fed higher-for-longer → 30Y yield spike → XLK discount rate expansion → multiple compression on growth names [FXMacroData, Jun 5 2026]
+- Consensus analyst PT $751–860 is BELOW current price $963 (stock has overrun the Street) — [MarketBeat, Jun 4 2026]; momentum positioning risk
+- EDGAR Form 4 filings (Jun 2, May 5) = insider activity at highs; selling into strength documented
+
+**Data check:** Prior log Jun 4 recorded MU exit at $986.00 (trailing stop fill). Today's premarket: $963.20 (down further from stop fill). Consistent trajectory — no conflict.
+
+**R:R math (B3):** Entry $963.20 / stop $818.72 (−15.0%, clamped 2.5×ATR) / risk $144.48/sh
+- Year-high target $1,089.29: R:R = ($1,089 − $963) / $144 = **0.87:1 → FAILS 2.0 FLOOR**
+- Morgan Stanley PT $1,050: R:R = ($1,050 − $963) / $144 = **0.60:1 → FAILS**
+- Raymond James PT $1,100: R:R = ($1,100 − $963) / $144 = **0.95:1 → FAILS**
+- Susquehanna PT $1,750 (outlier): R:R = 5.45:1 → technically passes, but using a single outlier 61% above year-high as sole target violates B3 citation standard (one extreme PT vs 28 others averaging $860 is not a "cited level")
+- **Required entry for 2:1 R:R with year-high target:** price ≤ $870 (current − 9.7%)
+- **Required entry for 2:1 R:R with MS $1,050 target:** price ≤ $777 (current − 19.3%)
+- **Verdict: DEMOTED — R:R fails at all reasonable cited targets. ATR stop width (15% clamped) outpaces available upside at current price.**
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: XLK ~59% (AMD already in XLK = 1/2 cap; MU adds 2/2 — at cap)
+- Max pairwise correlation with existing: 0.43 (vs AMD) ✓ (below 0.70 gate)
+- Sector cap status: 2/2 (XLK, at cap — allowed but concentrated on a hot-NFP pressure day)
+- **Shared-catalyst flag (B6):** MU primary catalyst = HBM/AI capex; AMD primary catalyst = GPU/AI roadmap. Same underlying theme (AI infrastructure capex). Two XLK names on one thesis = one factor bet. Not a hard block but acknowledged — would require conscious sizing accordingly.
+
+**Setup type:** N/A (demoted)
+
+**Gate-history audit (B7):** Grep of RESEARCH-LOG for prior `#### MU` entries (last 5 trading days): MU appeared as a HELD position (entered $922.91 Jun 1, closed $986.00 Jun 4 via trailing stop). No prior "do NOT chase" gate or refused entry level on record. MU is now being evaluated as a fresh re-entry, not a gate-creep situation. Today's $963 premarket is below the prior entry price ($922.91 was the original entry; after trailing up, the exit was $986). No gate-creep — demoted solely on R:R math.
+
+**Decision:** DEMOTED — R:R 0.87:1 at year-high target fails 2.0 hard floor. The 15%-clamped ATR stop makes MU unenterable at current prices. Viable re-entry zone: ~$750–870 (improving R:R to 1.4–2.0:1 with year-high target). Add to watchlist for monitoring; do NOT chase today.
+
+---
+
+### Candidates dropped (and why)
+- **MU** — R:R 0.87:1 fails 2.0 hard floor at all reasonable cited targets (year-high $1,089; MS $1,050; RJ $1,100); 15% ATR-clamped stop requires ~30% upside for 2:1 which exceeds all cited levels except Susquehanna outlier $1,750. Also blocked by deployment cap.
+- **MS** — XLF Bear regime (hard filter; no trades in Bear sectors regardless of screener score)
+- **MRK** — XLV Choppy; no catalyst next 14d; R:R likely fails (XLV non-trending); blocked by deployment cap
+- **UNH** — DOJ criminal investigation, binary gap risk, unchanged from prior drops
+- **SMH, ORCL, XLK (ETF)** — XLK sector cap (AMD = 1/2; adding any XLK name at 2/2 on a hot-NFP pressure day with AMD already under −3.4%)
+- **GS** — XLF Bear sector (same as MS)
+
+### Historical Analog
+
+**Analog: February 3, 2023 — January 2023 NFP:** +517K actual vs +187K consensus (similarly extreme labor beat; ~177% above forecast). VIX ~18. 10Y yield ~3.38%, spiked +14bp to ~3.52% on the print. S&P 500 futures fell ~0.8% on the open.
+
+**What followed:** SPX −0.3% session close on Feb 3 (initial shock absorbed same day). 5d: SPX flat to −0.5% (rate anxiety lingered ~1 week). 10d: −0.8% (Feb 13 CPI added to pressure). 20d: +2.5% recovery (bull market resumed once "soft landing" thesis stabilized). Key: blowout NFP did NOT kill the bull market; it introduced 5–10 trading-day uncertainty then resolved bullishly. [Training knowledge — Feb 3 2023 NFP event; levels ±0.5%]
+
+**Why this time might differ:** Today's 30Y yield is ~5.0% vs ~3.4% in Feb 2023 — rates are already at multi-decade highs (CNBC May 19 2026: "30-year Treasury yield tops 5.19%, highest since before the financial crisis"), so an incremental +8–12bp carries more multiple-compression weight for XLK. Additionally, AVGO semiconductor software miss (Jun 4) creates a second headwind not present in Feb 2023, making today's XLK selloff more thesis-specific than macro-only. However, AVGO's AI revenue guide ($16B Q3, >200% YoY) confirms structural AI demand is intact — the thesis isn't broken, just digesting.
+
+### Risk Factors (consolidated)
+1. **AMD stop proximity:** HWM $546.37 / stop $477.53 / current $505.33 — 5.5% buffer. Hot NFP + AVGO contagion = dual pressure. A further −5.5% AMD selloff today would trigger the GTC trail. Trail is set; no manual action needed.
+2. **Hot NFP yield spike:** +251K print likely pushes 30Y from ~4.99% toward 5.07–5.11%. XLK multiple compression risk extends the AVGO-triggered selloff. AMD is the most exposed.
+3. **CAT tail risk:** Stop $871.37 (trail 7.97%, HWM $946.83) / current $933.00 = 6.6% buffer. XLI Trend regime insulates from semiconductor contagion; risk is a broad SPX selloff pulling CAT through $871.
+4. **Breadth 33/100 (Weakening — below 35 advisory threshold):** S&P +11.7% vs breadth 8MA divergence. Rally is XLK-concentrated. Adverse rotation out of XLK hits our AMD position hardest.
+5. **Exposure-coach REDUCE_ONLY (ceiling 32%):** Current deployment 40.4% is above the exposure ceiling. No new entries possible without reducing first. This is advisory-only (not a hard gate beyond the pre-macro cap), but signals the system is positioned above recommended ceiling.
+6. **Sector divergence flag:** Sector rotation analysis shows cyclical/defensive internal disagreement (divergence=True) despite risk-on aggregate score. Macro cross-current (hot NFP = cyclical strong, but yield spike = growth headwind).
+7. **Weekly slots:** 1 trade closed (MU Jun 4), 2 remaining slots — moot today given deployment cap + HOLD decision.
+
+### Decision
+**HOLD — no new entries today. All positions held with GTC trailing stops.**
+
+**Primary gate (hard):** Pre-macro deployment cap — 40.4% deployed ≥ 40% threshold. Cannot add without breaching cap.
+
+**Secondary gates:** Hot NFP (+251K vs 85–105K) → trade_slots downgraded 2→1 per STEP 4-bis rule + defensive posture. Effective entry capacity: 0.
+
+**Candidate gates:** MU (only valid non-Bear sector name on shortlist) fails R:R 2.0 hard floor at all reasonable cited targets. Demoted. MS, GS: XLF Bear sector. All others previously analyzed and failed.
+
+**Exposure-coach tension:** REDUCE_ONLY (ceiling 32%) while current deployment is 40.4% — system is above recommended ceiling. Pre-macro cap (40%) is already binding; exposure-coach aligns directionally (both say defensive). Regime says Neutral with 75% deployment target — gap vs exposure-coach ceiling 32% is material. No auto-downgrade of regime; tension documented. Hot NFP makes exposure-coach's caution more credible today.
+
+**Breadth tension:** 33/100 (below 35 advisory threshold) with bearish SPX/breadth divergence AND today's regime says Neutral (not Defensive). Document the disagreement: if breadth continues deteriorating toward Critical (<20), the pre-warmed watchlist (MU at lower prices) should be re-evaluated before entry.
+
+**Portfolio management priorities (today):**
+1. **AMD ⚠️:** Stop $477.53, buffer 5.5% from $505.33. Hot NFP + AVGO contagion = meaningful selloff risk. Trail is live (GTC); if AMD breaches $477.53, the stop fills automatically. Do NOT manually adjust.
+2. **CAT:** Stop $871.37 (6.6% buffer). XLI decoupled from semiconductor weakness — resilient. Monitor only.
+3. **Post-NFP re-assessment (market-open session):** After initial 15-min market open reaction to NFP settles, review AMD/CAT stop health. If AMD stabilizes above $490, the position is sustainable. If MU recovers and the hot-NFP yield spike is absorbed, re-check R:R for next-week entry.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 3 Flash (all immediate 429 quota exhausted) + 0 Pro
+- Fallback: native WebSearch used for NFP data, yields, sector headlines; local scripts for all quantitative data
+- NewsAPI: not queried (Gemini quota down; minimal impact on HOLD day)
+- Finnhub: 403 errors on upgrade-downgrade endpoint (key set but endpoint returning 403)
+- EDGAR: 2 records (MU Form 4 filings)
+- Reddit: 403 blocked (all subs)
+- Google News: 0 records
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=fresh, age=8.1h
+- [degraded: Gemini quota 429 — all macro synthesis via WebSearch + training knowledge; no Gemini grounded research this session. Same degradation as Jun 4.]
