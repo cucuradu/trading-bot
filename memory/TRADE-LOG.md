@@ -284,3 +284,31 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 - CAT: Unchanged (infrastructure capex thesis intact; consolidating into NFP; no change to stop)
 
 **Key takeaway:** AVGO infrastructure software miss broke the AI-driven semiconductor thesis; MU exit at 0.45R validates trailing stop on thesis break. Pre-macro cap (NFP tomorrow) prevents new entry; AMD/CAT stops provide downside protection for remaining duration.
+
+---
+
+### June 5 — EOD Snapshot (Day 9, Friday)
+- EOD 2026-06-05: equity $100,842.98
+**Portfolio:** $39,299.00 | **Cash:** $61,543.98 (61.0%) | **Day P&L:** −$3,118.77 (−3.00%) | **Phase P&L:** +$842.98 (+0.84%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 40 | $493.80 | $464.40 | −11.24% | −$1,176 (−5.95%) | GTC 8.82% trail (buffer 6.4%) |
+| CAT | 23 | $867.71 | $901.00 | −4.20% | +$766 (+3.84%) | GTC 5.58% trail (buffer 4.0%) |
+
+- Regime 2026-06-05: Neutral (source: ml, slots: 1 after hot NFP)
+- Trades today: 0
+- Trades this week (Fri): 0 (1 total: MU closed Jun 4)
+
+**Why today:** Hot NFP (+251K actual vs 85–120K consensus) printed early Friday morning, triggering a yield spike (30Y from ~4.99% toward ~5.08%) and semiconductor sector selloff. AVGO earnings miss headwind (June 4 after-hours: software revenue light despite AI beat) continued to weigh on AMD/MU peers. AMD down −11.24% (COMPUTEX momentum exhausted + yield/sentiment reset); CAT −4.20% (XLI more resilient, industrials benefited from economic surprise). Broad equity decline (SPX down ~0.3–0.5% range premarket into close). Single biggest driver: unexpected blowout labor data crushing growth-stock multiples + compounding sector-specific semiconductor weakness from AVGO guidance caution.
+
+**Tomorrow's calendar (Sat Jun 6):**
+- Market closed (weekend)
+
+**Position thesis status:**
+- AMD: Thesis broken (COMPUTEX rally exhausted; yield spike + AVGO contagion collapse technicals; held for risk management only; GTC stop will trigger if breach $436.33)
+- CAT: Unchanged (infrastructure capex thesis intact; minor consolidation on macro shock; XLI sector fundamentals untouched; held)
+
+**Key takeaway:** NFP-driven yield spike + AVGO semiconductor contagion triggered a −3% phase day; AMD thesis now broken (thesis broken, holding GTC stop); CAT foundation solid (defending stop at $866, still up +3.84% phase). Pre-macro cap prevented overextension; current 40% deployment matches deployment ceiling.
+
+---
