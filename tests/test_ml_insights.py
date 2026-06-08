@@ -361,3 +361,85 @@ def test_resolve_falls_back_on_bad_schema(tmp_path, monkeypatch):
     r = mi.resolve(now=NOW)
     assert r["source"] == "rule_fallback"
     assert "regime" in r["fallback_reason"]
+
+
+# ---------------- format_advisory_signals() / surface() — surface-only fields ----------------
+
+def _rich_payload(**overrides) -> dict:
+    """Fresh payload carrying the v2.0 fields the trading loop does NOT act on."""
+    p = _fresh_payload(**overrides)
+    p["market"]["systemic_fragility"] = 0.46
+    p["volatility"] = {
+        "garch_1d_forecast_pct": 17.1, "vix": 21.5, "vvix": 102.0,
+        "vix_implied_term_structure": "contango",
+    }
+    p["macro"] = {
+        "available": True, "macro_regime": "Risk-On",
+        "hy_oas": 2.74, "nfci": -0.49, "curve_inverted": False,
+    }
+    p["crash_risk"] = {"score": 0.0, "elevated": False, "reasons": []}
+    p["ranking_quality"] = {"oof_rank_ic": 0.015}
+    p["universe_weights"] = {"MU": 0.43, "NOW": 0.57}
+    return p
+
+
+def test_format_advisory_includes_all_blocks():
+    line = mi.format_advisory_signals(_rich_payload())
+    assert "crash=0.00 calm" in line
+    assert "fragility=0.46" in line
+    assert "macro=Risk-On" in line and "NFCI -0.49" in line and "curve normal" in line
+    assert "GARCH1d 17.1%" in line and "VIX 21.5" in line and "contango" in line
+    assert "rankIC(oof)=0.015" in line
+    assert "MU 0.43" in line and "NOW 0.57" in line
+
+
+def test_format_advisory_flags_elevated_crash_with_reasons():
+    p = _rich_payload()
+    p["crash_risk"] = {"score": 0.8, "elevated": True, "reasons": ["vix_spike", "hy_widening"]}
+    line = mi.format_advisory_signals(p)
+    assert "crash=0.80 ELEVATED" in line
+    assert "vix_spike" in line
+
+
+def test_format_advisory_empty_when_no_blocks():
+    # Baseline payload carries none of the advisory blocks.
+    assert mi.format_advisory_signals(_fresh_payload()) == ""
+
+
+def test_format_advisory_tolerates_partial_payload():
+    p = _fresh_payload()
+    p["crash_risk"] = {"score": 0.1, "elevated": False}
+    line = mi.format_advisory_signals(p)
+    assert line.startswith("**ML signals")
+    assert "crash=0.10 calm" in line
+    assert "macro=" not in line and "vol=" not in line
+
+
+def test_format_advisory_skips_macro_when_unavailable():
+    p = _rich_payload()
+    p["macro"]["available"] = False
+    assert "macro=" not in mi.format_advisory_signals(p)
+
+
+def test_surface_returns_na_when_file_missing(tmp_path, monkeypatch):
+    monkeypatch.setattr(mi, "_resolve_ml_file", lambda: tmp_path / "missing.json")
+    out = mi.surface(now=NOW)
+    assert out.startswith("**ML signals:** n/a")
+    assert "not found" in out
+
+
+def test_surface_returns_na_when_stale(tmp_path, monkeypatch):
+    path = tmp_path / "ml-insights.json"
+    path.write_text(json.dumps(_rich_payload(
+        generated_at=(NOW - timedelta(hours=30)).isoformat().replace("+00:00", "Z"))))
+    monkeypatch.setattr(mi, "_resolve_ml_file", lambda: path)
+    out = mi.surface(now=NOW)
+    assert "n/a" in out and "stale" in out
+
+
+def test_surface_formats_when_fresh(tmp_path, monkeypatch):
+    path = tmp_path / "ml-insights.json"
+    path.write_text(json.dumps(_rich_payload()))
+    monkeypatch.setattr(mi, "_resolve_ml_file", lambda: path)
+    out = mi.surface(now=NOW)
+    assert "rankIC(oof)=0.015" in out

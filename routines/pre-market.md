@@ -254,6 +254,21 @@ document the disagreement in the STEP 6 **Decision** section. Rule-level
 promotion of exposure-coach thresholds is deferred until ≥10 trading days
 of observed behavior.
 
+STEP 1c — **Surface advisory ML signals (read-only; forward-test phase).**
+The local pipeline emits richer fields the trading loop does NOT act on this
+phase — crash_risk, systemic_fragility, macro conditions (HY-OAS/NFCI/curve),
+GARCH vol, inverse-vol weights, out-of-sample rank IC. Surface them verbatim so
+the data accrues for a post-phase backtest of whether acting on them adds edge:
+
+```
+python scripts/ml_insights.py surface
+```
+
+Append the returned line to the RESEARCH-LOG regime header (STEP 6 template).
+**Advisory only — changes NO gate, sizing, or slot decision this phase.** On a
+stale/missing file the command returns an `n/a (...)` line; paste it as-is so the
+gap is visible in the log.
+
 STEP 2 — Read memory for context:
 - `memory/TRADING-STRATEGY.md`
 - Tail (~100 lines) of `memory/TRADE-LOG.md`
@@ -359,6 +374,21 @@ Pulls in parallel from: NewsAPI (mainstream), Finnhub (company news + analyst
 changes + insider Form 4), SEC EDGAR (8-K / 10-Q / 4 filings), Google News
 RSS, Reddit (sentiment). Missing keys degrade gracefully — that source
 returns `[]` and is noted in the entry footer.
+
+STEP 4c-bis — Pull analyst consensus + fundamentals (deterministic, free,
+**no quota — never use Gemini/WebSearch for price targets**):
+```
+python scripts/analyst_data.py line SYM --price <live_price_from_alpaca>
+```
+This is the **source of record for the cited target** in the R:R math (B3):
+- Primary cited target = `target_median` (robust to outliers); `target_mean` or
+  the 52w-high / measured-move are acceptable alternatives.
+- A lone `target_high` (single outlier PT) is NEVER a valid sole cited target —
+  the B3 cherry-pick the audit flagged (the MU $1750 / MS $230 / MRK $150 pattern).
+- If `implied_return_median_pct` is **negative**, the name trades above where
+  analysts value it → demote unless a dated catalyst justifies the premium.
+- yfinance has no quota, so analyst targets come from here, NOT grounded search —
+  this never degrades on a Gemini 429.
 
 **Citation honesty (B2 — audit 2026-06-03).** A citation must name the source
 that ACTUALLY returned the record. If a source returned `[]` (missing key) or
@@ -519,6 +549,8 @@ For each shortlisted candidate (cap 3):
 
 **Sources scanned (N):** X NewsAPI / Y Finnhub / Z EDGAR / W Reddit / V Gemini.
 
+**Analyst consensus (yfinance, no-quota):** PT median $X / mean $X (range $X–$X) · implied +X.X% (median) vs live · rating `<key>` [N analysts, mean X.X] · fwd P/E X.X, rev growth X%. *(from `analyst_data.py` — cited target of record for R:R below.)*
+
 [Paste the synthesize output verbatim — Bull case (cited), Bear case (cited), Disconfirming evidence, Catalysts ahead, one-line takeaway.]
 
 **Critique:** [Paste the critique output's "Strongest counter" + "Single most-likely invalidator" lines.]
@@ -540,9 +572,10 @@ For each shortlisted candidate (cap 3):
 
 **R:R math (B3 — audit 2026-06-03):** entry $X / stop $X (-X.X%, from the **real
 2.5×ATR `stop_pct`**, not a placeholder) / target $X (+X.X%) / R:R X.X:1 / max risk $X.
-- The **target MUST be derived from a cited level** — an analyst PT, a 52-week-high
-  / prior-resistance level, or a measured move — with the source named on this
-  line. Do NOT default target to entry × 1.20. (2026-05-27: MU was logged R:R 2.0
+- The **target MUST be derived from a cited level** — the `analyst_data.py`
+  consensus median (NOT a lone outlier PT), a 52-week-high / prior-resistance
+  level, or a measured move — with the source named on this line. Do NOT default
+  target to entry × 1.20. (2026-05-27: MU was logged R:R 2.0
   on a 10% stop but entered on the real 15% ATR stop → actual R:R 1.33; the target
   was mechanical and the stop understated.)
 - **Hard 2:1 floor (`tests/buy_gate.py` MIN_RR_AT_ENTRY=2.0).** If R:R computed

@@ -103,6 +103,12 @@ Parse the JSON. Capture:
 
 If `market.regime == "Defensive"`, skip generating new trade ideas entirely — write only the regime line + a one-paragraph note + decision: HOLD, and skip STEP 4b–4e (no need to spend research quota on a no-trade day).
 
+STEP 1c — **Surface advisory ML signals (read-only; forward-test phase).** The local pipeline emits richer fields the trading loop does NOT act on this phase — crash_risk, systemic_fragility, macro conditions (HY-OAS/NFCI/curve), GARCH vol, inverse-vol weights, out-of-sample rank IC. Surface them verbatim so the data accrues for a post-phase backtest of whether acting on them adds edge:
+```
+python scripts/ml_insights.py surface
+```
+Append the returned line to the RESEARCH-LOG regime header (STEP 6 template). **Advisory only — changes NO gate, sizing, or slot decision this phase.** On a stale/missing file the command returns an `n/a (...)` line; paste it as-is so the gap is visible in the log.
+
 STEP 2 — Read memory for context:
 - `memory/TRADING-STRATEGY.md`
 - Tail (~100 lines) of `memory/TRADE-LOG.md`
@@ -193,6 +199,17 @@ python scripts/research.py gather <SYM1> [<SYM2> ...]
 ```
 Pulls in parallel from: NewsAPI (mainstream), Finnhub (company news + analyst changes + insider Form 4), SEC EDGAR (8-K / 10-Q / 4 filings), Google News RSS, Reddit (sentiment). Missing keys degrade gracefully — that source returns `[]` and is noted in the entry footer.
 
+STEP 4c-bis — Pull analyst consensus + fundamentals (deterministic, free, **no quota — never use Gemini/WebSearch for price targets**):
+```
+python scripts/analyst_data.py line SYM --price <live_price_from_alpaca>   # or `targets SYM` for full JSON
+```
+This is the **source of record for the cited target** in the R:R math (B3). Rules:
+- Primary cited target = `target_median` (robust to outliers); `target_mean` or the 52w-high / measured-move are acceptable alternatives.
+- A lone `target_high` (single outlier PT) is NEVER a valid sole cited target — this is exactly the B3 cherry-pick the audit flagged (the MU $1750 / MS $230 / MRK $150 pattern).
+- If `implied_return_median_pct` is **negative** (consensus sits below price), the name trades above where analysts value it → demote unless a dated catalyst justifies the premium.
+- Record `num_analysts`, `rating_key`, and fwd P/E + revenue growth in the candidate block.
+- yfinance has no quota, so this NEVER degrades on a Gemini 429 — analyst targets must come from here, not from grounded search.
+
 STEP 4d — Synthesize per candidate (Pass 2; Gemini 2.5 Pro, structured output):
 ```
 python scripts/research.py synthesize <SYM>
@@ -277,6 +294,8 @@ For each shortlisted candidate (cap 3):
 
 **Sources scanned (N):** X NewsAPI / Y Finnhub / Z EDGAR / W Reddit / V Gemini.
 
+**Analyst consensus (yfinance, no-quota):** PT median $X / mean $X (range $X–$X) · implied +X.X% (median) vs live · rating `<key>` [N analysts, mean X.X] · fwd P/E X.X, rev growth X%. *(from `analyst_data.py` — this is the cited target of record for R:R below.)*
+
 [Paste the synthesize output verbatim — Bull case (cited), Bear case (cited), Disconfirming evidence, Catalysts ahead, one-line takeaway.]
 
 **Critique:** [Paste the critique output's "Strongest counter" + "Single most-likely invalidator" lines.]
@@ -287,6 +306,7 @@ For each shortlisted candidate (cap 3):
 - Sector cap status: X/2 (Phase C rule)
 
 **R:R math:** entry $X / stop $X (-X.X%) / target $X (+X.X%) / R:R X.X:1 / max risk $X.
+- The **target** is the `analyst_data.py` consensus median (or 52w-high / measured-move) — NOT a lone outlier PT, NOT a Gemini-grounded number. State which it is. If consensus median implies a negative return, R:R is automatically failing — demote.
 
 **Setup type (Phase G1):** PULLBACK | BREAKOUT | MOMENTUM
 - **PULLBACK** — mean-reversion thesis (bounce off MA, dip-buy at support). Market-open places a **buy-limit** at the planned entry.

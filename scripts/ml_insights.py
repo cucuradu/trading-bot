@@ -16,6 +16,7 @@ Cloud loop NEVER writes ml-insights.json. It is committed by the local pipeline.
 Usage:
   python scripts/ml_insights.py resolve            # JSON: best-available regime
   python scripts/ml_insights.py resolve --no-screener  # skip local screener fallback
+  python scripts/ml_insights.py surface            # one-line RESEARCH-LOG advisory of UNUSED fields (read-only)
   python scripts/ml_insights.py read-only          # JSON: file contents if valid, else error
   python scripts/ml_insights.py validate FILE      # JSON: validation report for a specific path
 """
@@ -360,6 +361,109 @@ def resolve(*, now: datetime | None = None, enable_local_screener: bool = True) 
     }
 
 
+def format_advisory_signals(payload: dict) -> str:
+    """One-line, greppable summary of the ML fields the trading loop does NOT
+    act on during the forward-test phase: crash_risk, systemic_fragility, macro
+    conditions, GARCH vol, inverse-vol weights, and out-of-sample rank IC.
+
+    Pure (no IO, no freshness check — the caller gates on validate()). Returns
+    "" when the payload carries none of the advisory blocks. Every field is
+    optional and read defensively: the producer adds these incrementally, so a
+    missing block must drop its segment, never raise.
+    """
+    if not isinstance(payload, dict):
+        return ""
+
+    segs: list[str] = []
+
+    crash = payload.get("crash_risk")
+    if isinstance(crash, dict) and isinstance(crash.get("score"), (int, float)) \
+            and not isinstance(crash.get("score"), bool):
+        elevated = bool(crash.get("elevated"))
+        seg = f"crash={float(crash['score']):.2f} {'ELEVATED' if elevated else 'calm'}"
+        reasons = crash.get("reasons")
+        if elevated and isinstance(reasons, list) and reasons:
+            seg += f" ({', '.join(str(r) for r in reasons[:3])})"
+        segs.append(seg)
+
+    market = payload.get("market")
+    if isinstance(market, dict):
+        frag = market.get("systemic_fragility")
+        if isinstance(frag, (int, float)) and not isinstance(frag, bool):
+            segs.append(f"fragility={float(frag):.2f}")
+
+    macro = payload.get("macro")
+    if isinstance(macro, dict) and macro.get("available"):
+        bits = []
+        if isinstance(macro.get("macro_regime"), str):
+            bits.append(macro["macro_regime"])
+        extra = []
+        if isinstance(macro.get("hy_oas"), (int, float)) and not isinstance(macro.get("hy_oas"), bool):
+            extra.append(f"HY-OAS {float(macro['hy_oas']):.2f}%")
+        if isinstance(macro.get("nfci"), (int, float)) and not isinstance(macro.get("nfci"), bool):
+            extra.append(f"NFCI {float(macro['nfci']):+.2f}")
+        if "curve_inverted" in macro:
+            extra.append("curve INVERTED" if macro.get("curve_inverted") else "curve normal")
+        if extra:
+            bits.append(f"({', '.join(extra)})")
+        if bits:
+            segs.append("macro=" + " ".join(bits))
+
+    vol = payload.get("volatility")
+    if isinstance(vol, dict):
+        bits = []
+        if isinstance(vol.get("garch_1d_forecast_pct"), (int, float)) and not isinstance(vol.get("garch_1d_forecast_pct"), bool):
+            bits.append(f"GARCH1d {float(vol['garch_1d_forecast_pct']):.1f}%")
+        if isinstance(vol.get("vix"), (int, float)) and not isinstance(vol.get("vix"), bool):
+            bits.append(f"VIX {float(vol['vix']):.1f}")
+        if isinstance(vol.get("vvix"), (int, float)) and not isinstance(vol.get("vvix"), bool):
+            bits.append(f"VVIX {float(vol['vvix']):.0f}")
+        if isinstance(vol.get("vix_implied_term_structure"), str):
+            bits.append(str(vol["vix_implied_term_structure"]))
+        if bits:
+            segs.append("vol=" + " ".join(bits))
+
+    rq = payload.get("ranking_quality")
+    if isinstance(rq, dict) and isinstance(rq.get("oof_rank_ic"), (int, float)) \
+            and not isinstance(rq.get("oof_rank_ic"), bool):
+        segs.append(f"rankIC(oof)={float(rq['oof_rank_ic']):.3f}")
+
+    weights = payload.get("universe_weights")
+    if isinstance(weights, dict) and weights:
+        parts = [
+            f"{sym} {float(w):.2f}"
+            for sym, w in weights.items()
+            if isinstance(w, (int, float)) and not isinstance(w, bool)
+        ]
+        if parts:
+            segs.append("wts " + "/".join(parts))
+
+    if not segs:
+        return ""
+    return ("**ML signals (advisory — surfaced for post-phase analysis, "
+            "not acted on):** " + " | ".join(segs))
+
+
+def surface(*, now: datetime | None = None) -> str:
+    """RESEARCH-LOG advisory line for the unused ML fields, gated on freshness.
+
+    Read-only: never influences regime/sizing/gates. Returns an `n/a (<reason>)`
+    line (not an exception) when the file is missing, unreadable, or stale, so
+    the pre-market routine can paste the output deterministically either way.
+    """
+    path = _resolve_ml_file()
+    if not path.exists():
+        return "**ML signals:** n/a (ml-insights.json not found)"
+    try:
+        payload = json.loads(path.read_text())
+    except (json.JSONDecodeError, OSError) as e:
+        return f"**ML signals:** n/a (unreadable: {e})"
+    v = validate(payload, now=now)
+    if not v["ok"]:
+        return f"**ML signals:** n/a ({v['reason']})"
+    return format_advisory_signals(payload) or "**ML signals:** (payload carries no advisory fields)"
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__, file=sys.stderr)
@@ -369,6 +473,8 @@ def main() -> int:
     if cmd == "resolve":
         enable_screener = "--no-screener" not in sys.argv[2:]
         print(json.dumps(resolve(enable_local_screener=enable_screener), indent=2))
+    elif cmd == "surface":
+        print(surface())
     elif cmd == "read-only":
         result = read_and_validate()
         print(json.dumps(result, indent=2))
