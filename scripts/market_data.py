@@ -369,6 +369,80 @@ def sector_momentum() -> list:
     return rows
 
 
+def _wilder(series: pd.Series, period: int) -> pd.Series:
+    """Wilder's smoothing == EMA with alpha = 1/period."""
+    return series.ewm(alpha=1 / period, adjust=False).mean()
+
+
+def technicals(symbol: str) -> dict:
+    """Local price technicals from yfinance OHLCV — RSI / MACD / SMA50-200 /
+    ADX / 52-week range / volume. Deterministic, no API quota: replaces asking
+    an LLM "what do the technicals say". Pulls ~1y so the 200-SMA and 52w range
+    are well defined.
+    """
+    hist = yf.Ticker(symbol).history(period="1y", auto_adjust=False)
+    if hist.empty or len(hist) < 30:
+        raise ValueError(f"insufficient history for technicals: got {len(hist)} rows")
+    close = hist["Close"].astype(float)
+    high = hist["High"].astype(float)
+    low = hist["Low"].astype(float)
+    vol = hist["Volume"].astype(float)
+    last = float(close.iloc[-1])
+    last_vol = float(vol.iloc[-1])
+
+    sma50 = float(close.rolling(50).mean().iloc[-1]) if len(close) >= 50 else None
+    sma200 = float(close.rolling(200).mean().iloc[-1]) if len(close) >= 200 else None
+
+    # RSI(14), Wilder
+    delta = close.diff()
+    rs = _wilder(delta.clip(lower=0), 14) / _wilder(-delta.clip(upper=0), 14).replace(0, float("nan"))
+    rsi_last = rs.iloc[-1]
+    rsi14 = float(100 - 100 / (1 + rsi_last)) if rsi_last == rsi_last else None
+
+    # MACD (12, 26, 9)
+    macd_line = close.ewm(span=12, adjust=False).mean() - close.ewm(span=26, adjust=False).mean()
+    macd_hist = float(macd_line.iloc[-1] - macd_line.ewm(span=9, adjust=False).mean().iloc[-1])
+
+    # ADX(14), Wilder
+    up, down = high.diff(), -low.diff()
+    plus_dm = ((up > down) & (up > 0)) * up
+    minus_dm = ((down > up) & (down > 0)) * down
+    tr = pd.concat([(high - low), (high - close.shift()).abs(), (low - close.shift()).abs()], axis=1).max(axis=1)
+    atr_w = _wilder(tr, 14).replace(0, float("nan"))
+    plus_di = 100 * _wilder(plus_dm, 14) / atr_w
+    minus_di = 100 * _wilder(minus_dm, 14) / atr_w
+    dx = 100 * (plus_di - minus_di).abs() / (plus_di + minus_di).replace(0, float("nan"))
+    adx_series = _wilder(dx, 14).dropna()
+    adx14 = float(adx_series.iloc[-1]) if len(adx_series) else None
+
+    hi_52, lo_52 = float(high.tail(252).max()), float(low.tail(252).min())
+    vol20 = float(vol.tail(20).mean())
+
+    def pct(a, b):
+        return round((a / b - 1) * 100, 2) if b else None
+
+    return {
+        "symbol": symbol.upper(),
+        "as_of": hist.index[-1].strftime("%Y-%m-%d"),
+        "price": round(last, 2),
+        "sma50": round(sma50, 2) if sma50 else None,
+        "sma200": round(sma200, 2) if sma200 else None,
+        "dist_sma50_pct": pct(last, sma50),
+        "dist_sma200_pct": pct(last, sma200),
+        "above_200sma": (last > sma200) if sma200 else None,
+        "rsi14": round(rsi14, 1) if rsi14 is not None else None,
+        "macd_hist": round(macd_hist, 3),
+        "macd_bias": "bullish" if macd_hist > 0 else "bearish",
+        "adx14": round(adx14, 1) if adx14 is not None else None,
+        "trend_strength": (("strong" if adx14 >= 25 else "weak/none") if adx14 is not None else None),
+        "high_52w": round(hi_52, 2),
+        "low_52w": round(lo_52, 2),
+        "dist_52w_high_pct": pct(last, hi_52),
+        "dist_52w_low_pct": pct(last, lo_52),
+        "vol_vs_20d_avg": round(last_vol / vol20, 2) if vol20 else None,
+    }
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__, file=sys.stderr)
@@ -405,6 +479,9 @@ def main() -> int:
     elif cmd == "earnings":
         sym = sys.argv[2]
         print(json.dumps(earnings(sym), indent=2))
+    elif cmd == "technicals":
+        sym = sys.argv[2]
+        print(json.dumps(technicals(sym), indent=2))
     else:
         print(f"unknown command: {cmd}", file=sys.stderr)
         print(__doc__, file=sys.stderr)

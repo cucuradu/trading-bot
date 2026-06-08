@@ -282,8 +282,15 @@ bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 ```
 
-STEP 4 — Macro context via Gemini (standard Flash, grounded). These 5
-queries need live cited data, so they DO NOT use `--light` (free-tier
+STEP 4 — Macro context via Gemini (standard Flash, grounded).
+
+**Skip-on-no-trade (budget).** If STEP 0 returned `entries_blocked=true` OR STEP 1
+regime is Defensive (`trade_slots=0`), SKIP these 5 grounded-Flash calls entirely
+— no trade is possible, so spend zero quota. Build the macro paragraph from the
+STEP 1c ml-surface line + `market_data.py sector-momentum` + at most ONE native
+WebSearch. Reserve grounded Flash for days a trade can happen.
+
+Otherwise, these 5 queries need live cited data, so they DO NOT use `--light` (free-tier
 grounded-search quota is separate from per-model RPD; mixing grounding with
 Flash-Lite has been observed to 429 even when RPD is fine — see gemini.sh
 comment). Standard Flash (gemini-3.5-flash) has 20 RPD plus grounding:
@@ -389,6 +396,12 @@ This is the **source of record for the cited target** in the R:R math (B3):
   analysts value it → demote unless a dated catalyst justifies the premium.
 - yfinance has no quota, so analyst targets come from here, NOT grounded search —
   this never degrades on a Gemini 429.
+
+**Budget pre-screen (saves scarce Gemini quota).** Compute R:R from the consensus
+median NOW, before STEP 4d. If it already fails the 2.0 floor (or
+`implied_return_median_pct` is negative), **DEMOTE here and SKIP the STEP 4d
+synthesize** — never spend a Gemini call on a name that cannot clear the gate.
+Only candidates that pass this cheap, no-quota pre-screen proceed to synthesis.
 
 **Citation honesty (B2 — audit 2026-06-03).** A citation must name the source
 that ACTUALLY returned the record. If a source returned `[]` (missing key) or
@@ -545,11 +558,13 @@ For each shortlisted candidate (cap 3):
 
 #### SYM (SECTOR_ETF, $XXX.XX ±X.X% premarket)
 
-**Setup:** above/below 200-SMA (X.X%), 50-SMA distance (X.X%). ATR(14)=$X.XX (X.X% of price); stop_pct_2_5x=X.X% (clamped to [7, 15]).
+**Setup (from `market_data.py technicals SYM` + `atr SYM` — both no-quota):** vs 200-SMA X.X%, 50-SMA dist X.X%, RSI14 XX, MACD <bull/bear>, ADX XX (<strong/weak>), 52w-high dist X.X%, vol X.Xx 20d-avg. ATR(14)=$X.XX (X.X% of price); stop_pct_2_5x=X.X% (clamped to [7, 15]).
 
 **Sources scanned (N):** X NewsAPI / Y Finnhub / Z EDGAR / W Reddit / V Gemini.
 
 **Analyst consensus (yfinance, no-quota):** PT median $X / mean $X (range $X–$X) · implied +X.X% (median) vs live · rating `<key>` [N analysts, mean X.X] · fwd P/E X.X, rev growth X%. *(from `analyst_data.py` — cited target of record for R:R below.)*
+
+**News sentiment (VADER, no-quota):** <Bullish|Neutral|Bearish> mean X.XX over N headlines (X% pos / X% neg) — from `sentiment.py score SYM`. Advisory: a Bearish tilt on a name you're about to buy is a flag to reconcile, not a hard gate.
 
 [Paste the synthesize output verbatim — Bull case (cited), Bear case (cited), Disconfirming evidence, Catalysts ahead, one-line takeaway.]
 

@@ -122,7 +122,11 @@ bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 ```
 
-STEP 4 — Macro context via Gemini (standard Flash, grounded). These 5 queries need live cited data and DO NOT use `--light` — free-tier grounded-search quota is separate from per-model RPD, and Flash-Lite + grounding has been observed to 429 (see gemini.sh comment). Standard Flash (gemini-3.5-flash, 20 RPD + grounding) is the right slot:
+STEP 4 — Macro context via Gemini (standard Flash, grounded).
+
+**Skip-on-no-trade (budget).** If STEP 0 returned `entries_blocked=true` OR STEP 1 regime is Defensive (`trade_slots=0`), SKIP these 5 grounded-Flash calls entirely — no trade is possible today, so spend zero quota. Build the macro paragraph from the STEP 1c ml-surface line + `python scripts/market_data.py sector-momentum` + at most ONE native WebSearch. Reserve grounded Flash for days a trade can actually happen.
+
+Otherwise, these 5 queries need live cited data and DO NOT use `--light` — free-tier grounded-search quota is separate from per-model RPD, and Flash-Lite + grounding has been observed to 429 (see gemini.sh comment). Standard Flash (gemini-3.5-flash, 20 RPD + grounding) is the right slot:
 ```
 bash scripts/gemini.sh "WTI / Brent crude oil price right now and major moves today, with one cited source"
 bash scripts/gemini.sh "S&P 500 futures premarket today $DATE plus VIX level and 30-year Treasury yield (current regime: <regime>)"
@@ -210,6 +214,8 @@ This is the **source of record for the cited target** in the R:R math (B3). Rule
 - Record `num_analysts`, `rating_key`, and fwd P/E + revenue growth in the candidate block.
 - yfinance has no quota, so this NEVER degrades on a Gemini 429 — analyst targets must come from here, not from grounded search.
 
+**Budget pre-screen (saves the scarce Gemini quota).** Compute the R:R from the consensus median NOW, before STEP 4d. If it already fails the 2.0 floor (or `implied_return_median_pct` is negative), **DEMOTE the candidate here and SKIP its STEP 4d synthesize** — never spend a Gemini Pro/Flash call on a name that cannot clear the gate. Only candidates that pass this cheap, no-quota pre-screen proceed to the (Gemini-backed) synthesis. On a typical Weak-breadth day most of the shortlist demotes here for free.
+
 STEP 4d — Synthesize per candidate (Pass 2; Gemini 2.5 Pro, structured output):
 ```
 python scripts/research.py synthesize <SYM>
@@ -290,11 +296,13 @@ For each shortlisted candidate (cap 3):
 
 #### SYM (SECTOR_ETF, $XXX.XX ±X.X% premarket)
 
-**Setup:** above/below 200-SMA (X.X%), 50-SMA distance (X.X%). ATR(14)=$X.XX (X.X% of price); stop_pct_2_5x=X.X% (clamped to [7, 15]).
+**Setup (from `market_data.py technicals SYM` + `atr SYM` — both no-quota):** vs 200-SMA X.X%, 50-SMA dist X.X%, RSI14 XX, MACD <bull/bear>, ADX XX (<strong/weak>), 52w-high dist X.X%, vol X.Xx 20d-avg. ATR(14)=$X.XX (X.X% of price); stop_pct_2_5x=X.X% (clamped to [7, 15]).
 
 **Sources scanned (N):** X NewsAPI / Y Finnhub / Z EDGAR / W Reddit / V Gemini.
 
 **Analyst consensus (yfinance, no-quota):** PT median $X / mean $X (range $X–$X) · implied +X.X% (median) vs live · rating `<key>` [N analysts, mean X.X] · fwd P/E X.X, rev growth X%. *(from `analyst_data.py` — this is the cited target of record for R:R below.)*
+
+**News sentiment (VADER, no-quota):** <Bullish|Neutral|Bearish> mean X.XX over N headlines (X% pos / X% neg) — from `sentiment.py score SYM`. Advisory: a Bearish tilt on a name you're about to buy is a flag to reconcile, not a hard gate.
 
 [Paste the synthesize output verbatim — Bull case (cited), Bear case (cited), Disconfirming evidence, Catalysts ahead, one-line takeaway.]
 
