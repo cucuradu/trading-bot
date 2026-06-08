@@ -2051,210 +2051,77 @@ Status: **HOLD.** All risk gates applied. Poised for NFP reaction.
 
 ## 2026-06-08 — Pre-market
 
+> **Rerun (analyst_data adapter).** Supersedes the earlier 2026-06-08 entry. Same
+> HOLD outcome, but the cited target for every candidate now comes from
+> `scripts/analyst_data.py` (yfinance consensus — free, no quota) instead of
+> Gemini-grounded / WebSearch numbers. Gemini was 429 all session; with the
+> adapter that no longer affects the buy-gate. Macro/sector context carried from
+> the morning run (unchanged intraday); MACRO-FRAMEWORK + TICKER-NOTES already
+> updated then.
+
 **Regime:** Neutral (source: ml, slots: 2, deployment: 75%)
-
-**Breadth/Sector:** breadth=34.5/100 (Weakening) | sector=balanced score=57 phase=early | divergence_flag=true (cyclical/defensive internally disagree)
-
-**Exposure:** ceiling=30% | rec=REDUCE_ONLY | bias=GROWTH | conf=MEDIUM
-
-**FTD:** state=FTD_CONFIRMED (S&P 500, signal_date=2026-04-08, quality=95/100 "Strong FTD"; signal is 47 sessions old — informational only, not a fresh trigger)
-
-**Pre-macro:** cap_active=false (system: event=CPI on 2026-06-11, days_to_event=3). **Data check:** BLS schedule confirms May CPI actually releases **2026-06-10** (Wed, 8:30 ET) — a 1-day discrepancy vs. the system's 2026-06-11 date [bls.gov schedule, confirmed via WebSearch]. True days-to-event is 2, not 3. cap_active remains the hard-gate value of record (false) per system output — not overridden by Claude — but flagging so the user can check the `pre_macro_event` config; CPI is binary-event risk regardless of the exact date.
+**ML signals (advisory):** crash=0.00 calm | fragility=0.46 | macro=Risk-On (HY-OAS 2.74%, NFCI −0.49, curve normal) | vol=GARCH1d 17.1% VIX 21.5 VVIX 102 contango | rankIC(oof)=0.015
+**Pre-macro:** cap_active=false (system: CPI 2026-06-11, days=3). **Data check (carried):** BLS schedule = CPI **2026-06-10**, so the true gate is 2 trading days out — the system date is a day late; cap should arm tomorrow. Today's deployment (~40%) is at the cap anyway.
+**Breadth/Sector (AM):** breadth=34.5/100 (Weakening) | sector=balanced score=57 phase=early | divergence_flag=true
 
 ### Account
-- Equity: $102,184.98 | Cash: $61,543.98 | Buying power: $359,970.72 | Daytrade count: 0 | Open positions: 2 (AMD, CAT) | Open orders: 2 (AMD fixed stop $464.28, CAT trailing stop 5.58%/$866.16)
-- Deployment: $40,641 / $102,184.98 = 39.8% (cost basis ≈ unchanged from Friday)
+- Equity: $101,746.89 | Cash: $61,543.98 (60.5%) | Daytrade count: 0 | Open positions: 2 | Open orders: 2
+- AMD 40 @ $493.80 | current $484.60 (−1.86%) | **fixed stop $464.28** (3% band; repaired 6/8 after the 6/5 tighten-bug lowered it)
+- CAT 23 @ $867.71 | current $905.17 (+4.32%) | trailing stop $875.59 (5.58%)
+- Deployment ≈ $40,200 / $101,747 = **39.5%**
 
 ### Macro Framework
-Neutral regime (ml, confidence=0.76). Dominant theme: **Israel-Iran direct strike exchange overnight** — most serious escalation since the April 8 ceasefire (Iran fired missiles at Israel; Israel struck back despite Trump's ceasefire push) — sent Brent +4.9% to $97.68 and WTI +3.4% to $93.63 [Bloomberg/Inquirer, 6/8], reigniting inflation/oil-shock fears just 48h ahead of May CPI (6/10). VIX futures ~19.1-19.9 (up from ~16-17 Friday — risk repricing higher); 30Y yield ~5.01% (flat vs Friday, still near cycle highs) [TradingEconomics 6/8, FRED]. S&P futures ~-0.4% premarket but **tech/semis bouncing off Friday's NFP/AVGO-contagion rout** — MU +7.1%, MRVL +8.8% (new S&P 500 addition), IPGP +8.2% premarket [TheStreet 6/8]. Breadth 34.5/100 (Weakening, below the 35 advisory line — deteriorated slightly from Friday's 33 reading but same zone); sector rotation balanced (score 57, early-cycle, but divergence flagged). vs Friday (Jun 5): yields flat (~5.01%); oil +5% (Iran/Israel exchange vs benign Friday levels); VIX +2-3pts (≈19 vs ≈16-17); regime unchanged (Neutral, slots 2); semis bouncing off Friday's lows but on a geopolitical-shock day, not a clean recovery.
+Neutral (ml, conf 0.76). Dominant theme unchanged from the AM read: **Israel-Iran direct strike exchange overnight** (most serious escalation since the Apr 8 ceasefire) → Brent +~5%, VIX repriced to ~21.5 (ml file) from ~16–17 Friday; 30Y ~5.0% (cycle highs). Semis bounced off Friday's NFP/AVGO rout (MU +7% intraday) but on a geopolitical-shock tape, not a clean recovery. CPI lands 6/10 (BLS) — a binary inflation print stacked on an active geopolitical shock. vs Friday: oil +~5%, VIX +~4pts, regime unchanged (Neutral, slots 2).
 
 ### Sector Picture
-| Sector | ETF | 1mo momentum | ML regime |
-|--------|-----|------|------|
-| Technology | XLK | +6.04% | Choppy |
-| Healthcare | XLV | +5.23% | Trend |
-| Energy | XLE | +1.18% | Bear |
-| Materials | XLB | -3.40% | Bear |
-| Consumer Discretionary | XLY | -4.18% | Bear |
-| Communication Services | XLC | -4.84% | Bear |
-
-- Top 3: XLK (+6.04%, Choppy), XLV (+5.23%, Trend), XLE (+1.18%, Bear)
-- Bottom 3: XLB (-3.40%, Bear), XLY (-4.18%, Bear), XLC (-4.84%, Bear)
-- **Disagreement:** yfinance momentum ranks XLE +1.18% (top-3) and XLK +6.04% (#1), but the ML classifier tags XLE **Bear** (oil-driven momentum is a single-day Iran-shock spike, not a structural trend — classifier looks through it) and XLK only **Choppy** (despite leading 1mo momentum, the AVGO-contagion + NFP whipsaw keeps it out of "Trend"). Follow the classifier — no XLE trades; XLK names get extra scrutiny (chasing a Choppy-tagged sector bounce is exactly the AMD/MU pattern that hurt last week).
+- Top 3 (1mo): XLK +6.0% (Choppy), XLV +5.2% (Trend), XLE +1.2% (Bear — oil-spike momentum, classifier looks through it)
+- Bottom 3: XLC −4.8% (Bear), XLY −4.2% (Bear), XLB −3.4% (Bear)
+- Classifier tags XLK only Choppy despite leading momentum (AVGO-contagion + NFP whipsaw) → XLK names get extra scrutiny.
 
 ### Candidates
 
-#### MU (XLK, ~$925 premarket [+7.1% vs Fri close $864.01], $864.01 last close)
+Screener (source=ml): top ranked MU(1.28), AMD(0.96, held), MS(0.84), LLY, MRK. Shortlist after filters: **MU, MS, LLY, MRK**.
 
-**Setup:** 52w range $103.38–$1,089.29 (current ≈79% of 52w high; -20.6% off the high after the AVGO-contagion/hot-NFP selloff). ATR(14)=$65.78 (7.6% of $864 close); stop_pct_2.5x=19.0% → **clamped to 15%** ceiling.
+#### MU (XLK, ~$921)
+**Setup:** ATR(14)=$67.46; stop_pct_2.5x=19% → clamped **15.0%** → stop $785.77. Earnings 2026-06-24 (16d, no blackout). Max corr 0.56 vs AMD.
+**Analyst consensus (yfinance, no-quota):** PT median **$575** / mean $739 (range $249–$1750) · implied **−37.6%** (median) vs $921 · `strong_buy` [40 analysts, mean 1.48] · fwd P/E 8.7.
+**R:R:** target = consensus median $575 → **negative implied return → auto-fail**. Even the 52w-high $1089 gives only (1089−921)/(921−786)=1.21:1. The $1750 high is the lone Susquehanna outlier (not a valid sole target, B3).
+**Decision:** **DEMOTED** — trades 38% above analyst consensus; R:R fails decisively. (The morning run used year-high $1089 and got 1.18/1.74 — the consensus median makes the avoid far clearer.)
 
-**Sources scanned (3):** 1 NewsAPI / 259 Finnhub / 15 EDGAR / 0 Reddit (blocked) / 11 Google News.
+#### MS (XLF, ~$214.94)
+**Setup:** ATR=$5.20; stop_pct 6.2%→**7.0%** floor → stop $200.01. Earnings 7/15 (37d). Max corr 0.43 vs AMD.
+**Analyst consensus:** PT median **$205** / mean $203 (range $165–$230) · implied **−4.6%** (median) · `buy` [21 analysts, mean 2.32] · fwd P/E 16.9.
+**R:R:** consensus below price → negative; even the $230 high gives ~1.0:1. **DEMOTED** — 97% of 52w high with consensus under spot.
 
-**Bull case:**
-- Q3 FY26 guide ($33.5B rev, 81% GM, HBM sold out through 2027) plus fresh PT raises — Morgan Stanley $1,050 (6/3), Susquehanna $1,750 (6/29) — affirm the AI-memory supercycle thesis is structurally intact [TheStreet/MarketBeat via WebSearch, 6/3-6/8].
-- Stock bouncing +7.1% premarket Monday on a SK Hynix-NVDA HBM supply deal headline, suggesting the post-AVGO/NFP selloff (-20% off highs in 3 sessions) may be overdone [Barron's, 6/8].
+#### LLY (XLV, ~$1176.52)
+**Setup:** ATR=$36.78; stop_pct **7.83%** → stop $1082.84 (risk $93.68). Earnings 8/5 (58d). Max corr 0.43 vs CAT.
+**Analyst consensus:** PT median **$1251** / mean $1215 (range $850–$1500) · implied **+6.3%** (median) · `buy` [29 analysts, mean 1.74] · fwd P/E 26.4.
+**R:R:** (1251−1176.52)/93.68 = **0.79:1** → fails 2.0. Only the $1500 high (outlier) would clear it. **DEMOTED** — consensus upside too thin for the ATR stop.
 
-**Bear case:**
-- CEO Sanjay Mehrotra sold ~40,000 sh (~$38M) via a pre-planned 10b5-1 plan during the very month MU surged 84-90% — framed as routine, but it removes an insider-buying tailwind right at elevated levels [Motley Fool, 6/7].
-- Realized volatility remains extreme: -7.3% to -13% single-session drops on 6/4-6/5 (AVGO contagion + hot NFP) before this morning's bounce; ATR is 7.6% of price — the kind of whipsaw that chews through fixed stops [Motley Fool, 6/4; internal ATR calc].
-
-**Disconfirming evidence to watch for:** MU gives back today's premarket gain and closes back below $850 (Friday's intraday-low zone) — confirms the bounce is a dead-cat rally inside a broken short-term trend, not a resumption.
-
-**Catalysts ahead (14d):** MU earnings 2026-06-24 (16 days; "Could Go Parabolic After June 24" — Motley Fool 6/7) — binary event inside the window; CPI 6/10 (sector-wide).
-
-**Critique — Strongest counter to the bull case:** MU is +7.1% in a single premarket session on one day's supplier headline, three trading days after a -20% drawdown driven by a real fundamental shock (AVGO software miss). Chasing this bounce at ~$925 means paying ~7% above Friday's already-discounted close, into a stock whose own ATR (7.6%) says a similar-sized reversal is normal — the entry math gets *worse*, not better, exactly when the setup looks most exciting. [Motley Fool 6/4 + 6/7, dated]
-
-**Weakly-sourced or unsourced claims:** (none — all PT figures and the CEO-sale figure are attributed to named outlets with dates)
-
-**Single most-likely invalidator (5d):** MU closes below $850 on continued AVGO-contagion selling — confirms the premarket pop was a one-day short-squeeze/headline reaction, not a trend resumption.
-
-**Position-aware (if entered $20k):**
-- Sector exposure post-entry: XLK would go from 19.0% (AMD only) to ~38.6% — at the 2/2 sector cap (AMD + MU)
-- 30d correlation with existing positions: 0.52 (vs AMD) — passes the 0.70 gate but is the highest of the four candidates
-- Sector cap status: 2/2 if entered (allowed but concentrated)
-- **Shared-catalyst flag (B6):** MU and AMD both run on the "AI infrastructure capex / HBM / GPU demand" thesis — adding MU here is one factor bet wearing two tickers, same flag raised on this exact pair on 6/4-6/5 (and the AMD/MU pairing was *already* tested last week — MU got stopped out 6/4 on the AVGO break while AMD is currently underwater -1.7%).
-
-**R:R math:** entry ≈$925 (premarket) / stop $786.25 (-15.0%, real 2.5×ATR clamped) / target $1,089.29 (year-high, cited Yahoo/internal data) (+17.7%) / **R:R 1.18:1** / max risk ≈$2,775 on a $20k position.
-- Even at Friday's $864.01 close (no chase), R:R = 26.1% upside ÷ 15% risk = **1.74:1** — still fails the 2.0 floor. The clamped 15% stop structurally requires >30% cited upside; only the Susquehanna $1,750 outlier (+102%) clears that bar, and the prior log already flagged that figure as unreliable.
-- **Verdict: fails 2.0 floor at both the chase price (1.18:1) and the no-chase Friday close (1.74:1).**
-
-**Setup type:** N/A (demoted — fails R:R at any realistic entry today)
-
-**Gate-history audit:** Grep of last 5 sessions' `#### MU` entries: 6/5 demoted at $963 premarket (R:R 0.87:1, "viable re-entry zone ~$750-870"). Today's price ($864 close / $925 premarket) sits right at the *top edge* of that zone — but recomputing with the actual ATR-clamped 15% stop (not the looser assumption implied by the prior $870 threshold), the breakeven entry for 2:1 vs. the year-high target is **≈$838**, not $870. MU has not yet reached a price where the math works; chasing the premarket bounce moves it further away, not closer. No gate-creep — demoted on R:R math, consistent with 6/5.
-
-**Decision:** DEMOTED — fails the 2.0 R:R hard floor at both the current premarket price and Friday's close; the structural issue (15%-clamped ATR stop vs. realistic cited upside) repeats from 6/5. Re-evaluate only if MU pulls back to ≈$830-840 (where year-high target math clears 2:1). Do NOT chase today's bounce.
-
----
-
-#### MS (XLF, $211.93, +0.3% vs Fri close $211.20)
-
-**Setup:** 52w range $128.81–$219.16 (current ≈97% of 52w high — within 3.4% of the high). ATR(14)=$5.28 (2.5% of price); stop_pct_2.5x=6.2% → **clamped to 7%** floor.
-
-**Sources scanned (2):** NewsAPI/Finnhub degraded (0 records returned for MS in this run — see footer); 0 EDGAR / 0 Reddit (blocked) / Gemini grounded unavailable (quota). Figures below sourced via native WebSearch with named outlets + dates.
-
-**Bull case:**
-- Q1 2026 strength underpins a 13-analyst Buy consensus (as of 5/25); KBW's David Konrad carries the single most bullish call at +8.6% upside [S&P Global / Benzinga via WebSearch, 5/25].
-- XLF sits in **Choppy** (not Bear) today — clears the hard sector filter — and MS has the lowest correlation to AMD/CAT of any candidate (0.39 vs CAT), offering genuine factor diversification away from the AI-capex theme.
-
-**Bear case:**
-- MS trades at 97% of its 52-week high while the **average** analyst price target ($203-205) sits *below* the current quote — the consensus actually implies ~7% downside over 12 months, not upside [MarketBeat/S&P Global via WebSearch, 6/8].
-- Even the single most optimistic analyst target ($230, KBW) implies only +5.4% upside — well short of the ~14% needed to clear a 7%-floor stop at 2:1 [MarketBeat via WebSearch].
-
-**Disconfirming evidence to watch for:** MS breaks decisively above $219.16 (its 52w high) on volume with a fresh upward PT revision from a tier-1 desk — would be the only path to a credible >14% target.
-
-**Catalysts ahead (14d):** Next earnings 2026-07-15 (37 days — outside window); no dated near-term catalyst identified.
-
-**Critique — Strongest counter to the bull case:** When the *median* Wall Street price target sits below the live quote, the trade thesis requires MS to out-run its own analyst community from a starting point already at 97% of its 52-week high — that's a pure momentum bet with zero valuation cushion, the opposite of what a 2:1-floor system should be selecting. [MarketBeat/S&P Global, 6/8, dated]
-
-**Weakly-sourced or unsourced claims:** the $230 KBW figure and $203-205 consensus average are WebSearch-sourced (`[Gemini grounded — unverified]`-equivalent native search, not a Finnhub/EDGAR record this session — Finnhub's upgrade-downgrade endpoint returned 403 again).
-
-**Single most-likely invalidator (5d):** MS fails to clear $219.16 (its own 52-week high, now also ≈ the top of any realistic near-term range) on any risk-on day — confirms the stock has run ahead of both its chart and its own analyst community.
-
-**Position-aware (if entered $20k):**
-- Sector exposure post-entry: XLF would go from 0% to ~19.6% (1/2 cap — fresh sector)
-- 30d correlation with existing positions: 0.39 (vs CAT) — comfortably passes the 0.70 gate; best diversification of the four candidates
-- Sector cap status: 1/2 if entered — no concentration concern
-- **Shared-catalyst flag:** none — MS's thesis (capital markets / wealth management recovery) is unrelated to AMD/CAT/MU/MRK theses; would be a genuine 4th factor.
-
-**R:R math:** entry $211.93 / stop $197.10 (-7.0%, ATR-implied 6.2% clamped UP to the 7% floor) / target $230 (KBW high estimate, cited Benzinga/MarketBeat 5/25) (+8.6%) / **R:R 1.23:1** / max risk ≈$1,400 on a $20k position. Using the more credible *consensus average* target ($204) instead of the outlier-high estimate, R:R goes **negative** (target below entry).
-- **Verdict: fails the 2.0 floor by a wide margin under any cited target — the best-case analyst figure barely clears 1:1.**
-
-**Setup type:** N/A (demoted — R:R fails badly)
-
-**Gate-history audit:** No prior `#### MS` planned-entry gate found in the last 5 sessions (MS appeared only in screener top-10 lists, never deep-dived). No gate-creep concern; fresh evaluation, demoted purely on R:R math.
-
-**Decision:** DEMOTED — R:R 1.23:1 at the single most bullish cited target (and negative at the more credible consensus-average target) fails the 2.0 floor by a wide margin. A stock priced 97% of its 52-week high with analyst consensus *below* spot has no business being a long entry in a Weak-breadth tape.
-
----
-
-#### MRK (XLV, $120.79, +0.7% vs Fri close $120.00)
-
-**Setup:** 52w range $76.66–$125.14 (current ≈96.5% of 52w high — within 3.5% of the high). ATR(14)=$3.15 (2.6% of price); stop_pct_2.5x=6.5% → **clamped to 7%** floor.
-
-**Sources scanned (1):** NewsAPI/Finnhub/EDGAR/Reddit returned 0 unique MRK records this run (degraded — see footer); figures sourced via native WebSearch with named outlets + dates (0 Gemini — quota exhausted).
-
-**Bull case:**
-- 29-analyst Buy consensus, avg PT $129.74 (S&P Global) / 12-mo avg $136.50 — implies ~7-13% upside; pipeline catalysts dated within the window: Cidara/CD388 acquisition, positive Winrevair Phase 2 CADENCE topline, and 5-yr ASCO follow-up data for intismeran autogene + Keytruda combo in melanoma [S&P Global / WebSearch synthesis, 6/8].
-- XLV is one of only two non-Bear, non-Choppy ("Trend") sectors in today's regime map — genuine sector-momentum tailwind (+5.23% 1mo, #2 ranked); near-zero correlation (-0.02) with AMD/CAT = true diversification.
-
-**Bear case:**
-- Keytruda patent-cliff / biosimilar competition is a well-known, already-priced overhang — MRK fell -3.19% in a single session as recently as 6/1, showing the stock is not immune to negative idiosyncratic catalysts even in a Trend sector [TradingKey, 6/1].
-- Trading within 3.5% of its 52-week high; the *consensus* PT range ($129.74-$136.50) implies only 7-13% upside — short of the ~14% needed to clear a 7%-floor stop at 2:1. Only the single highest analyst estimate ($150, top of a wide $100-150 range) clears that bar.
-
-**Disconfirming evidence to watch for:** MRK fails to break $125.14 (52w high) within 5 sessions despite the dated pipeline catalysts — would confirm the Keytruda overhang is capping upside regardless of the "Trend" sector tag.
-
-**Catalysts ahead (14d):** Next earnings 2026-08-04 (57 days — outside window); pipeline readouts (Winrevair, intismeran autogene/ASCO follow-through) are ongoing/dated-vague, not single binary dates.
-
-**Critique — Strongest counter to the bull case:** The only way MRK's R:R math clears 2:1 is to select the single most optimistic analyst figure ($150, the extreme top of a $100-150 range) over the $129.74-136.50 consensus that 29 analysts actually converge on — that is precisely the "mechanical/cherry-picked target" error the B3 audit flagged on MU/AMD in late May (REMEDIATION-FINDINGS.md). Using the number the Street actually believes, this trade is sub-2:1. [S&P Global consensus, 6/8, dated]
-
-**Weakly-sourced or unsourced claims:** all PT figures and pipeline catalysts are WebSearch/native-search sourced (no Finnhub/EDGAR records returned for MRK this run — both sources degraded, see footer); none should be cited as `[Finnhub analyst]` or `[SEC ...]`.
-
-**Single most-likely invalidator (5d):** MRK fails to clear its own $125.14 52-week high on the dated ASCO/Winrevair catalyst flow — confirms the Keytruda-cliff overhang is the dominant factor, not the pipeline bull case.
-
-**Position-aware (if entered $20k):**
-- Sector exposure post-entry: XLV would go from 0% to ~19.6% (1/2 cap — fresh sector)
-- 30d correlation with existing positions: -0.02 (vs CAT) — best diversification of the four candidates (near-zero)
-- Sector cap status: 1/2 if entered — no concentration concern
-- **Shared-catalyst flag:** none — pharma/Keytruda-pipeline thesis is independent of AMD/CAT/MU/MS themes.
-
-**R:R math:** entry $120.79 / stop $112.33 (-7.0%, ATR-implied 6.5% clamped UP to the 7% floor) / target $136.50 (12-mo consensus avg, cited S&P Global/MarketBeat 6/8) (+13.0%) / **R:R 1.86:1** / max risk ≈$1,400 on a $20k position. Only the $150 high-end outlier estimate (+24.2% upside) produces R:R ≥ 2.0 (3.46:1).
-- **Verdict: fails the 2.0 floor on the consensus number (1.86:1); only clears it by cherry-picking the outlier high estimate — not a defensible basis per the B3 audit precedent.**
-
-**Setup type:** N/A (demoted — R:R fails on the credible consensus target)
-
-**Gate-history audit:** No prior `#### MRK` planned-entry gate found in last 5 sessions (MRK has appeared in screener top-10 / shortlist multiple times — 6/3 R:R 1.30:1, 6/4 blocked by deployment cap — but never with a live planned-entry gate). No gate-creep; today's demotion is consistent with the 6/3 finding (R:R persistently sub-2.0 for MRK near its highs).
-
-**Decision:** DEMOTED — R:R 1.86:1 on the credible consensus target fails the 2.0 floor (consistent with the 6/3 finding of 1.30:1); clears the bar only via an outlier estimate the B3 audit specifically warns against using.
+#### MRK (XLV, ~$122.00)
+**Setup:** ATR=$3.06; stop_pct **7.0%** floor → stop $113.67 (risk $8.33). Earnings 8/4 (57d). Max corr **−0.035** (best diversifier, near-zero).
+**Analyst consensus:** PT median **$135** / mean $130 (range $100–$150) · implied **+10.7%** (median) · `buy` [27 analysts, mean 1.83] · fwd P/E 12.8.
+**R:R:** (135−122)/8.33 = **1.56:1** → fails 2.0. The best non-correlated, Trend-sector name available, but the math is short of the floor on the consensus target (recurring 6/3, 6/4, 6/8). **DEMOTED**.
 
 ### Candidates dropped (and why)
-- **UNH** — Active DOJ criminal investigation (confirmed still open/unresolved as of this run via WebSearch — no charges yet, third-party review status unclear) = unmanageable binary gap-down risk; unchanged verdict from 6+ prior drops (6/2, 6/3, 6/4, 6/5...) despite a fresh bullish narrative this week (BofA upgrade to Buy, dividend +5%, Q1 beat+raise, "40% rally" headlines). The improving fundamentals do not retire the binary legal-tail risk — a federal criminal indictment can land at any time and gaps through any stop. Hold the drop.
-- **SMH, GS, ORCL, AVGO, XLK (ETF)** — appeared in screener top-10 but excluded: SMH/ORCL/AVGO/XLK all create XLK 3rd-name concentration risk on top of AMD (+MU if MU were viable, which it isn't) — moot since no XLK name passes R:R today anyway; GS — XLF would be 2nd name alongside MS (also demoted), so GS never reached deep-dive.
-- **CAT, AMD** — held positions, excluded by definition.
-
-### Historical Analog
-
-**Analog:** April 13-19, 2024 — Iran's first-ever direct missile/drone attack on Israel (April 13, 2024), in retaliation for the April 1 Damascus consulate strike. VIX spiked from ~13 to ~19 (+46%) around the event; Brent rose roughly +3-4% intraday on the initial headlines; SPX fell about -1.2% the following Monday (April 15) as escalation fears compounded an already-ongoing ~5% pullback from late-March highs, with the 10Y yield near 4.6% (a "higher for longer" Fed repricing layered on top of the geopolitical shock — directly analogous to today's CPI-adjacent setup). [Training-knowledge recall of April 2024 market action; levels approximate ±0.3 VIX pts / ±0.3% SPX]
-
-**What followed:** 5d — roughly flat to -1% (Israel's April 19 retaliatory strike on Iran was deliberately limited/muted, defusing immediate full-war fears; SPX +0.1% that day on the relief). 10d — SPX recovered to roughly flat vs. pre-attack levels (~+0.5-1%) as the conflict did not widen into a regional war. 20d — SPX +2-3% by early May 2024 as macro focus rotated back to Fed/rate-cut expectations and a strong Q1 mega-cap earnings week (AAPL/META beats). Net: the geopolitical shock produced a sharp but short-lived (5-10 session) drawdown that fully reversed within 3-4 weeks once the conflict proved containable.
-
-**Why this time might differ:** Today's setup carries a heavier macro overlay than April 2024 — 30Y yields are already at cycle highs (~5.0% vs. ~4.6% then), a binary CPI print lands in 2 trading days (vs. no major data print in the immediate post-strike week in 2024), and breadth is already Weak (34.5/100, below the 35 advisory line) heading into the shock vs. a comparatively healthier breadth backdrop in spring 2024. Less cushion + a binary inflation event stacked on top of the geopolitical shock means the "contained and reversed within 3 weeks" outcome is less assured this time — the downside tail (a hot CPI landing during active Iran-Israel hostilities) is fatter than the 2024 analog.
+- **AMD, CAT** — held positions.
+- **UNH, SMH, ORCL, GS** — prior drops unchanged (UNH DOJ binary; SMH/ORCL XLK concentration; GS XLF 2nd name behind MS).
 
 ### Risk Factors (consolidated)
-1. **Israel-Iran active exchange (fresh, overnight):** Most serious escalation since the April 8 ceasefire; oil +5%, VIX +2-3pts. Binary — could de-escalate (analog outcome) or widen (regional-war tail risk that no position-level stop protects against via gaps).
-2. **CPI in 2 trading days (6/10, BLS-confirmed — 1 day sooner than the system's 6/11 record):** Hot oil + hot CPI compounding would be the worst-case combination for the Neutral-regime, growth-tilted book; system's `pre_macro_event.cap_active` is currently false but the event is closer than recorded — monitor for the cap to flip true tomorrow.
-3. **AMD buffer:** current $485.30 vs. fixed stop $464.28 = 4.3% buffer (-1.72% unrealized). Thesis already "weakened/broken" per 6/4-6/5 logs; any Iran-driven risk-off + AVGO-contagion combo could test the stop. GTC order live; no manual action.
-4. **CAT buffer:** current $923 vs. trailing stop $866.16 (5.58%) = 6.2% buffer (+6.37% unrealized). XLI in "Trend" regime; comparatively insulated, but a broad SPX selloff (Iran escalation) could still pull it through.
-5. **Breadth 34.5/100 (Weakening, below 35 advisory threshold) + bearish-leaning S&P/breadth divergence:** rally remains narrow; today's tech bounce is a single-session, headline-driven move inside a still-fragile structure.
-6. **Exposure-coach REDUCE_ONLY (ceiling 30%) vs. current 39.8% deployment + regime's 75% target:** the gap (regime says deploy more, exposure-coach says reduce) is now ~10 percentage points of deployment above the advisory ceiling — same tension flagged 6/5, now compounded by a fresh geopolitical shock that makes the cautious read more credible.
-7. **Sector divergence flag (cyclical/defensive disagreement, score 57 "balanced"):** consistent with a market that can't decide between risk-on (oil/cyclical bid from the Iran shock) and risk-off (equity selloff, yield spike) — a genuine cross-current, not a clean signal either way.
+1. Israel-Iran active exchange (oil +~5%, VIX ~21.5) — binary, gaps through stops.
+2. CPI 6/10 (BLS; system has 6/11) — hot oil + hot CPI is the worst combo for a growth-tilted book.
+3. AMD 4.0% buffer to fixed stop $464.28; thesis weakened — held with repaired stop.
+4. CAT 3.3% buffer to trailing $875.59; XLI Trend, more insulated.
+5. Breadth 34.5/100 (below 35 advisory) + bearish divergence — narrow rally.
+6. Every candidate fails R:R 2.0 on the **consensus** target — no forced entries.
 
 ### Decision
-**HOLD — no new entries today. All positions held with GTC stops as-is.**
-
-**Primary gate:** All four screener-shortlisted candidates (MU, MS, MRK, UNH) fail independently:
-- MU: R:R 1.18:1 (chase) / 1.74:1 (no-chase) — fails 2.0 floor either way; structural 15%-clamp issue repeats from 6/5.
-- MS: R:R 1.23:1 at the single most bullish cited target; negative at the credible consensus average.
-- MRK: R:R 1.86:1 at the credible consensus target; only clears 2.0 via a cherry-picked outlier (B3-audit violation).
-- UNH: persistent DOJ binary gap-risk — unchanged verdict despite improving fundamentals/sentiment.
-
-**Secondary context:** Even absent the R:R failures, today layers a fresh geopolitical shock (Israel-Iran direct exchange) onto an already-Weak breadth tape (34.5/100) two trading days before a binary CPI print — exactly the environment where "patience > activity" applies. Exposure-coach's REDUCE_ONLY read (ceiling 30% vs. 39.8% deployed) gets more credible, not less, on a day like this.
-
-**Watch list (no formal watchlist.py add — not an order-miss carry-forward):** MU re-enters the viable zone for a 2:1 R:R (year-high target, 15%-clamped stop) at **≈$830-840** — roughly 4-9% below today's levels. Re-evaluate if it pulls back there cleanly (not on a chase).
-
-**Portfolio priorities (today):**
-1. **AMD:** 4.3% buffer to fixed stop $464.28. Iran-shock + any AVGO-contagion echo could test it. GTC live; no manual action — do not move the stop.
-2. **CAT:** 6.2% buffer to trailing stop $866.16. XLI Trend regime offers some insulation from a tech-led selloff; broad-market Iran-driven risk-off is the main threat. Monitor only.
-3. **CPI Wednesday (6/10):** confirm the system's `pre_macro_event` flips to `cap_active` ahead of the print (BLS date is 6/10, one day sooner than the system's recorded 6/11) — if it doesn't, the cap may fire a day late.
+**HOLD — no new entries.** All four shortlisted names demote on the R:R 2.0 floor using `analyst_data.py` consensus medians (MU −37.6% / MS −4.6% implied → auto-fail; LLY 0.79:1; MRK 1.56:1). Layered on a fresh geopolitical shock + a binary CPI in 2 sessions + Weak breadth → "patience > activity." Watch MU only if it pulls back toward ~$830–840 (where year-high target math clears 2:1); do not chase.
 
 ### Quota & source usage (footer)
-- Gemini calls: 0 Flash-Lite + 1 Flash (immediate 429 — quota exhausted) + 0 Pro (gemini-3-flash returns 404 "model not found"). **[degraded: Gemini quota — all macro/candidate synthesis done by Claude directly via native WebSearch + training knowledge per the exit-4/exit-3 fallback rule; no Gemini grounded research this session.]**
-- NewsAPI: 1 record (MU only; MS/MRK/UNH returned 0)
-- Finnhub: 259 records for MU (insider Form-4 heavy); 0 for MS/MRK/UNH; upgrade-downgrade endpoint still 403 (key set, endpoint access issue persists from 6/5)
-- EDGAR: 15 records (MU only — 8-K/10-Q); 0 for MS/MRK/UNH
-- Reddit: 403 blocked (all subs, all tickers)
-- Google News: 11 records (MU), several (UNH); 0 for MS/MRK
-- Egress probe: edgar=ok, google_news=ok, reddit=http_403
-- ml_insights: status=fresh, age=8.1h
-- FTD detector: ran successfully (FMP_API_KEY present); QQQ endpoint 403'd (legacy-endpoint deprecation) — used S&P 500-only signal, noted in header.
+- Gemini: 0 (429 all session) — **macro/synthesis via WebSearch + training; analyst targets via `analyst_data.py` (yfinance, no quota) — the buy-gate no longer depends on Gemini.**
+- analyst_data.py: 4/4 candidates returned consensus PT + rating + fundamentals.
+- ml_insights: fresh. Screener: source=ml.
+- This is a rerun validating the analyst-data wiring; orders unchanged (HOLD).
 
 ---
