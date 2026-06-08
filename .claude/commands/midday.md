@@ -57,7 +57,7 @@ Fields:
 - `reason` is a short free-form quoted string.
 Underneath, append the usual prose summary for context.
 
-STEP 4 — Tighten trailing stops on winners. For each eligible position, cancel the old trailing stop and place a new one. ATR-aware (Phase A2):
+STEP 4 — Tighten trailing stops on winners. ATR-aware (Phase A2):
 
 ```
 # Optional: recompute ATR-based trail width for the current price
@@ -68,7 +68,22 @@ python scripts/market_data.py atr SYM   # use stop_pct_1_75x at +15%, stop_pct_1
 - Up ≥ +15% → `trail_percent: max(7, stop_pct_1_75x)` (cap at 7% per legacy rule; ATR may widen)
 - If `tighten_trails` was true in STEP 0 (daily DD ≤ −2%), apply an additional 30% tightening to every active trail.
 
-Never tighten within 3% of current price. Never move a stop down.
+**Never move a stop down — and a "tighten" CAN move it down.** Cancelling a live
+trailing stop and placing a fresh one RESETS the high-water mark to the current
+price, so a smaller trail % off a lower HWM often yields an absolute stop BELOW
+the existing one (2026-06-05: AMD 12.6%→8.82% dropped the stop $477.53→$435.72,
+and the weekly review wrongly logged it as risk management "that worked"). Do not
+eyeball this. Before touching any stop, read the existing order's live
+`stop_price` (S_old) from `bash scripts/alpaca.sh orders` and run:
+
+```
+python scripts/trail_tighten.py safe-stop --old-stop S_old --current PRICE --new-pct PCT
+```
+
+Act ONLY on its `action`:
+- `replace_trailing` → cancel + place the new trailing stop at `new_pct` (safe: new stop ≥ S_old and outside the 3% band).
+- `keep_existing` → leave the live order untouched; a fresh trail would lower the stop, so the existing (higher) stop already IS the tighter protection.
+- `repair_to_band` → the position has fallen to/through its trail. **Automatic (user policy 2026-06-08):** cancel the existing stop and place a FIXED stop (`type:stop`, GTC) at `repair_stop`, then HOLD — do not re-place a lower trailing stop, and do not auto-exit. This keeps the tightest compliant protection on a position sitting at its trail. Log the change to TRADE-LOG and notify via WhatsApp. (The next run re-establishes a normal trailing stop once the position recovers above the trail.)
 
 STEP 4b — Time stop (Phase A5). For each open position, parse the entry date from `memory/TRADE-LOG.md`. If the position has been open for **≥ 10 trading days** AND `unrealized_plpc` is between **−3% and +3%** (inclusive), close it. Free up capital that's doing nothing.
 

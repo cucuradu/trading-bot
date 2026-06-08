@@ -31,7 +31,7 @@ python scripts/ml_insights.py resolve
 ```
 Parse the JSON outputs.
 - If `entries_blocked` is true → do not place buys today (but you may still place protective stops if currently missing).
-- If `tighten_trails` is true → reduce every existing trailing stop's trail_percent by 30% (e.g., 10% → 7%).
+- If `tighten_trails` is true → tighten every trailing stop's trail_percent by 30% (e.g., 10% → 7%), but a tighten must NEVER lower the absolute stop. Cancel+replace resets the HWM, so gate each one through `python scripts/trail_tighten.py safe-stop --old-stop S_old --current PRICE --new-pct PCT` and follow its `action` (see midday STEP 4).
 - If `lock_file_present` is true → send WhatsApp "LOCK file present, drawdown lock active" and STOP.
 - If `market.regime == "Defensive"` (from ml_insights resolve) → **skip all new entries today** even if pre-market had ideas. Existing positions stay; only protective sells allowed.
 - Compare the regime resolved here against the one in today's RESEARCH-LOG header. If they differ, log the flip and downgrade the day's `trade_slots` to the minimum of both values (conservative posture).

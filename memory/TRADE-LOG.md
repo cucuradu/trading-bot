@@ -312,3 +312,20 @@ Cloud market-open routine fired at 13:35 UTC but its sandbox checkout was stale 
 **Key takeaway:** NFP-driven yield spike + AVGO semiconductor contagion triggered a −3% phase day; AMD thesis now broken (thesis broken, holding GTC stop); CAT foundation solid (defending stop at $866, still up +3.84% phase). Pre-macro cap prevented overextension; current 40% deployment matches deployment ceiling.
 
 ---
+
+### June 8 — Manual stop repair (AMD) — out-of-band intervention
+
+Audit (2026-06-08) found the Jun 5 midday "tighten trails 30%" had **moved AMD's
+stop DOWN** $477.53 → $435.72 (cancel+replace reset the trailing HWM) — a
+"never move a stop down" violation the weekly review wrongly logged as working.
+Repaired manually:
+- Cancelled AMD trailing stop $436.33 (8.82%, the lowered order).
+- Placed FIXED GTC stop **$464.28** (AMD $478.64 × 0.97, the 3% band; just under
+  Fri's $464.40 low). AMD held per the reclaim-$480 plan (current ~$479).
+- CAT left as-is (its tighten lowered the stop only $7.10; not material; $866.16 GTC).
+
+Prevention shipped same day: `scripts/trail_tighten.py safe-stop` + midday/
+market-open guards now auto-repair (`repair_to_band`) instead of lowering. See
+memory [[stop-tighten-moves-stop-down-bug]].
+
+---
