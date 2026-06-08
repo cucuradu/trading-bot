@@ -1,114 +1,114 @@
 {
-  "generated_at": "2026-06-05T04:33:22Z",
+  "generated_at": "2026-06-08T04:32:09Z",
   "model_version": "hmm-garch-v2.0",
   "schema_version": "1.1",
   "market": {
     "regime": "Neutral",
-    "confidence": 0.6066,
-    "persistence_bars": 33,
+    "confidence": 0.7588,
+    "persistence_bars": 35,
     "breadth_divergence": false,
-    "systemic_fragility": 0.4857,
+    "systemic_fragility": 0.4647,
     "deployment_target": 0.75,
     "trade_slots": 2
   },
   "universe_ranking": [
     {
+      "symbol": "MU",
+      "ml_score": 0.098249,
+      "forward_return_pct": 9.8249
+    },
+    {
       "symbol": "NOW",
-      "ml_score": 0.082517,
-      "forward_return_pct": 8.2517
+      "ml_score": 0.073032,
+      "forward_return_pct": 7.3032
     },
     {
       "symbol": "AMD",
-      "ml_score": 0.059089,
-      "forward_return_pct": 5.9089
-    },
-    {
-      "symbol": "MU",
-      "ml_score": 0.049694,
-      "forward_return_pct": 4.9694
+      "ml_score": 0.055263,
+      "forward_return_pct": 5.5263
     },
     {
       "symbol": "INTU",
-      "ml_score": 0.032611,
-      "forward_return_pct": 3.2611
-    },
-    {
-      "symbol": "MSFT",
-      "ml_score": 0.019695,
-      "forward_return_pct": 1.9695
+      "ml_score": 0.047259,
+      "forward_return_pct": 4.7259
     },
     {
       "symbol": "ADBE",
-      "ml_score": 0.018949,
-      "forward_return_pct": 1.8949
+      "ml_score": 0.018796,
+      "forward_return_pct": 1.8796
     },
     {
       "symbol": "CRM",
-      "ml_score": 0.014269,
-      "forward_return_pct": 1.4269
-    },
-    {
-      "symbol": "SMH",
-      "ml_score": 0.010529,
-      "forward_return_pct": 1.0529
-    },
-    {
-      "symbol": "AVGO",
-      "ml_score": 0.007532,
-      "forward_return_pct": 0.7532
-    },
-    {
-      "symbol": "AMZN",
-      "ml_score": 0.007491,
-      "forward_return_pct": 0.7491
-    },
-    {
-      "symbol": "GOOGL",
-      "ml_score": 0.006895,
-      "forward_return_pct": 0.6895
-    },
-    {
-      "symbol": "CAT",
-      "ml_score": 0.005244,
-      "forward_return_pct": 0.5244
+      "ml_score": 0.015137,
+      "forward_return_pct": 1.5137
     },
     {
       "symbol": "ORCL",
-      "ml_score": 0.00469,
-      "forward_return_pct": 0.469
+      "ml_score": 0.014203,
+      "forward_return_pct": 1.4203
+    },
+    {
+      "symbol": "AVGO",
+      "ml_score": 0.013113,
+      "forward_return_pct": 1.3113
+    },
+    {
+      "symbol": "CAT",
+      "ml_score": 0.008727,
+      "forward_return_pct": 0.8727
+    },
+    {
+      "symbol": "AMZN",
+      "ml_score": 0.008442,
+      "forward_return_pct": 0.8442
+    },
+    {
+      "symbol": "LLY",
+      "ml_score": 0.00752,
+      "forward_return_pct": 0.752
+    },
+    {
+      "symbol": "GOOGL",
+      "ml_score": 0.006937,
+      "forward_return_pct": 0.6937
+    },
+    {
+      "symbol": "GS",
+      "ml_score": 0.005503,
+      "forward_return_pct": 0.5503
     },
     {
       "symbol": "XLK",
-      "ml_score": 0.004306,
-      "forward_return_pct": 0.4306
+      "ml_score": 0.003729,
+      "forward_return_pct": 0.3729
     },
     {
-      "symbol": "LOW",
-      "ml_score": 0.002708,
-      "forward_return_pct": 0.2708
+      "symbol": "NKE",
+      "ml_score": 0.003174,
+      "forward_return_pct": 0.3174
     }
   ],
   "universe_weights": {
-    "NOW": 0.4968,
-    "AMD": 0.5032
+    "MU": 0.4278,
+    "NOW": 0.5722
   },
   "volatility": {
-    "garch_1d_forecast_pct": 10.62,
-    "garch_5d_forecast_pct": 10.98,
+    "garch_1d_forecast_pct": 17.14,
+    "garch_5d_forecast_pct": 17.17,
     "vix_implied_term_structure": "contango",
-    "vix": 15.4,
-    "vvix": 89.80000305175781
+    "vix": 21.51,
+    "vvix": 102.04000091552734
   },
   "macro": {
     "available": true,
-    "as_of": "2026-06-03",
+    "as_of": "2026-06-04",
     "macro_regime": "Risk-On",
-    "macro_risk": 0.203,
-    "yield_curve_10y_3m": 0.71,
+    "macro_risk": 0.221,
+    "yield_curve_10y_3m": 0.69,
     "curve_inverted": false,
-    "hy_oas": 2.75,
-    "hy_oas_pct": 0.119,
-    "hy_oas_20d_chg": 0.0,
+    "hy_oas": 2.74,
+    "hy_oas_pct": 0.111,
+    "hy_oas_20d_chg": -0.05,
     "nfci": -0.494
   },
   "crash_risk": {
@@ -117,63 +117,63 @@
     "reasons": []
   },
   "ranking_quality": {
-    "oof_rank_ic": 0.0168
+    "oof_rank_ic": 0.015
   },
   "sectors": {
     "XLK": {
-      "regime": "Trend",
-      "score": 0.004306,
-      "forward_return_pct": 0.4306
+      "regime": "Choppy",
+      "score": 0.003729,
+      "forward_return_pct": 0.3729
     },
     "XLF": {
-      "regime": "Bear",
-      "score": -0.001943,
-      "forward_return_pct": -0.1943
+      "regime": "Choppy",
+      "score": -0.00118,
+      "forward_return_pct": -0.118
     },
     "XLV": {
-      "regime": "Choppy",
-      "score": -0.002028,
-      "forward_return_pct": -0.2028
+      "regime": "Trend",
+      "score": -0.001661,
+      "forward_return_pct": -0.1661
     },
     "XLE": {
       "regime": "Bear",
-      "score": -0.002305,
-      "forward_return_pct": -0.2305
+      "score": -0.002417,
+      "forward_return_pct": -0.2417
     },
     "XLI": {
       "regime": "Trend",
-      "score": -0.001705,
-      "forward_return_pct": -0.1705
+      "score": -0.002002,
+      "forward_return_pct": -0.2002
     },
     "XLY": {
-      "regime": "Choppy",
-      "score": -0.00164,
-      "forward_return_pct": -0.164
+      "regime": "Bear",
+      "score": -0.001603,
+      "forward_return_pct": -0.1603
     },
     "XLP": {
-      "regime": "Bear",
-      "score": -0.001941,
-      "forward_return_pct": -0.1941
+      "regime": "Choppy",
+      "score": -0.002354,
+      "forward_return_pct": -0.2354
     },
     "XLU": {
       "regime": "Bear",
-      "score": -0.000737,
-      "forward_return_pct": -0.0737
+      "score": -0.001449,
+      "forward_return_pct": -0.1449
     },
     "XLB": {
-      "regime": "Trend",
-      "score": -0.001434,
-      "forward_return_pct": -0.1434
+      "regime": "Bear",
+      "score": -0.00144,
+      "forward_return_pct": -0.144
     },
     "XLRE": {
       "regime": "Choppy",
-      "score": -0.001905,
-      "forward_return_pct": -0.1905
+      "score": -0.001099,
+      "forward_return_pct": -0.1099
     },
     "XLC": {
       "regime": "Bear",
-      "score": -0.002077,
-      "forward_return_pct": -0.2077
+      "score": -0.001864,
+      "forward_return_pct": -0.1864
     }
   }
 }
