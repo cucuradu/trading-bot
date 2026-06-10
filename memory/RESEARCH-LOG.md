@@ -2125,3 +2125,82 @@ Screener (source=ml): top ranked MU(1.28), AMD(0.96, held), MS(0.84), LLY, MRK. 
 - This is a rerun validating the analyst-data wiring; orders unchanged (HOLD).
 
 ---
+
+## 2026-06-10 — Pre-market
+
+**Regime:** Neutral (source: ml, slots: 2, deployment: 75%, confidence: 0.51)
+**ML signals (advisory):** breadth_divergence=false | systemic_fragility=0.46 | persistence=36 bars
+**Pre-macro:** cap_active (event: CPI on 2026-06-11) → 40% deployment cap. **Data check (carried from 6/8):** BLS actually released May CPI **today (6/10)**, one day ahead of the system's recorded date — see Macro Framework. Cap honored as a hard gate per system output regardless; moot today (0% deployed).
+**Breadth/Sector:** breadth=46.2/100 (Neutral) | sector=balanced score=61 phase=early (low confidence) | no bearish divergence (S&P +11.9%/breadth 8MA +2.2% over 60d, "healthy alignment")
+**Exposure:** ceiling=36% | rec=REDUCE_ONLY | bias=NEUTRAL | conf=MEDIUM
+**FTD:** state=ftd_confirmed (signal_date=2026-04-08, quality 95/100 — stale, >3 trading days old; second-opinion only)
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- **Reconciliation note:** AMD (40sh, fixed stop $464.28) and CAT (23sh, trailing stop) both filled on 2026-06-09 — AMD @ $464.05 (entry $493.80, −6.02%, ≈−1R, thesis-break stop), CAT @ $885.50 (entry $867.71, +2.05%). TRADE-LOG.md has not been updated with these closures (last entry is the 6/8 manual stop-repair note) — flag for next EOD/market-open to log both closes. Account is now 100% cash, 0 positions.
+
+### Macro Framework
+Regime Neutral (ml, conf 0.51). Dominant theme: **May CPI printed today at 4.2% YoY — first time above 4% since 2023** (energy +3.9% m/m driving 23.5% YoY energy inflation), but **core CPI +0.2% m/m came in BELOW the 0.3% consensus** (core YoY 2.9%, in line) and core goods −0.1% (muted tariff pass-through) — net reaction was modestly positive: S&P futures pared losses from −0.75% to −0.45% post-print, yields flat. Separately, a **fresh US-Iran military escalation** is underway (new US strikes after an Apache helicopter was downed overnight, per Trump's vow) — Brent fell to a 7-week low before bouncing +0.9% to $92.29, WTI +0.8% to $88.97 on a large crude-stock draw. 10Y yield at a 16-month high (~4.69%, set Tue 6/9). VIX ~19.0–19.4 (flat vs Mon's 18.92 close). vs 6/8: oil **down ~−5.5%** (Brent $97.68→$92.29 — Iran/Israel premium has partly unwound despite the new strikes); VIX roughly flat (~19 vs ~19-20); 30Y/10Y elevated near cycle highs but unmoved by the in-line CPI; regime unchanged (Neutral, slots 2).
+
+### Sector Picture
+- Top 3 (1mo, yfinance): XLV +7.9% (Healthcare, ml=Choppy), XLF +2.92% (Financials, ml=Choppy), XLE +1.73% (Energy, ml=Choppy)
+- Bottom 3: XLY −3.36% (Bear, ml agrees), XLB −3.03% (Bear, ml agrees), XLC −2.74% (Bear, ml agrees)
+- Disagreement: ml tags **XLK as the only Trend sector** (score +0.0028) yet yfinance 1mo momentum ranks XLK only 5th (+1.6%) — news flow corroborates a defensive rotation OUT of tech ("S&P 500 drops 2.64% as investors dump tech for healthcare and consumer staples", 6/8). XLP yfinance +1.71% (4th) but ml tags it Bear — also disagreement. Net read: the ml "Trend" tag on XLK looks backward-looking/lagging vs the live rotation into defensives.
+
+### Candidates
+
+Screener (source=ml): top ranked MU(1.30), AMD(0.91), SMH(0.74, excluded — XLK concentration), LLY(0.70), MS(0.66). Shortlist: **MU, AMD, LLY, MS**.
+
+#### MU (XLK, $917.36, ~−0.24% premarket)
+**Setup:** ATR(14)=$70.29 (7.66% of price); stop_pct_2.5x=19.1% → clamped **15.0%** → stop $780.29 (risk $137.07). Earnings 2026-06-24 (14d, no blackout).
+**Sources scanned (10):** 8 NewsAPI / 0 Finnhub-news (general feed only) / 15 EDGAR / 10 Google News / 0 Reddit (403 blocked).
+- Bull: AI/HBM memory cycle still framed as "mid-innings" (Yahoo Finance 6/9, "Memory Darlings MU, SNDK Surge"); UBS reiterates pricing-driven guidance-beat case (TipRanks 6/9); Zacks (6/10) flags MU "crushing NVDA in 2026" on AI infra. [Gemini grounded — unverified, all via google_news/newsapi titles only]
+- Bear: "Micron erases weeks of 2026 rally in shocking move" (6/8) — the stock round-tripped its post-SK Hynix pop within two sessions; Jim Cramer warned (6/8) AI names face a "50% crash without earnings growth."
+- **Data check:** Analyst consensus median PT $612.50 (40 analysts, `analyst_data.py`, yfinance) vs $1,251 cited on 6/8 — a >2x divergence. The 6/8 entry used the **mean of $1,215** (close to today's stated $1,251 median then); today's pull shows median **$612.5** / mean **$788.7**. This is a large swing in the same data field within 2 days — likely a stale-cache or a data-provider re-basing event (yfinance target aggregates can shift sharply on a single new/dropped estimate from a 40-analyst pool). Treat the median with caution but **even using the 6/8 mean ($1,215.79)**, implied return is (1215.79−917.36)/137.07 = **+2.18:1** — would PASS. However the **current mean ($788.7) and median ($612.5) both imply negative returns** (−14% / −33%). Given the contradiction, do NOT lean on either extreme; fall back to the **52-week high $1,089.29** as the only stable cited level: (1089.29−917.36)/137.07 = **1.25:1** — still fails the 2.0 floor.
+**R:R:** Using the stable 52w-high target ($1,089.29, fails 2:1) — **demoted**. The PT-data instability itself is also disqualifying (B2 data-contradiction guard): a metric that swung >2x in 48h cannot be the basis for a trade.
+**Critique — Strongest counter to bull case:** MU already gave back its entire SK Hynix-deal pop within 48h ("erases weeks of 2026 rally," Yahoo 6/8) — the AI-memory bull thesis is intact structurally but the stock's price action shows it's now **range-bound below its post-pop high**, exactly the kind of chop that burns a 15%-stop position with no edge. Single most-likely invalidator (5d): a close below $850 (Jun 8's pre-pop level) would confirm the SK Hynix catalyst is fully faded.
+**Gate-history audit:** 6/8 set a "do NOT chase" re-entry zone of **$830–840**. Current $917.36 is still **+9–10% above** that zone — gate-creep block applies; not added to watchlist (R:R already fails on its own).
+**Decision:** **Demoted** — R:R 1.25:1 (best stable target) fails 2.0 floor; PT-data instability compounds the gate; price still above the 6/8 "do not chase" zone.
+
+#### AMD (XLK, $468.19, ~−0.81% premarket)
+**Setup:** ATR(14)=$30.72 (6.57% of price); stop_pct_2.5x=16.4% → clamped **15.0%** → stop $397.80 (risk $70.39). Earnings 2026-08-04 (55d, no blackout).
+**Sources scanned (10):** 6 NewsAPI / 0 Finnhub-news (general feed only) / 15 EDGAR / 10 Google News / 0 Reddit (403 blocked).
+- Bull: "AMD Just Hit 2030's Earnings Target Two Years Early" (Yahoo 6/9); Mizuho PT raised to $615 (6/1, carried); Jensen Huang called the AI selloff "a buying opportunity, AI just beginning" (6/9).
+- Bear: "AMD: Inventory Doesn't Lie And Says Downgrade" (Seeking Alpha 6/9); Cathie Wood's ARK **sold AMD, bought NVDA** (The Globe and Mail 6/10); "AMD Still Trades at a Significant Premium to NVDA" (Barchart 6/9).
+**Data check:** consensus PT median **$487.50** / mean $482.69 (48 analysts, `analyst_data.py`) — implied **+4.2%/+3.1%** vs $468.19. This is a sharp drop from the $615 Mizuho outlier carried in TICKER-NOTES; the broad consensus has compressed materially since the 6/4–6/9 AVGO-contagion + inventory-downgrade news flow.
+**R:R:** reward = 487.50−468.19 = $19.31; risk = $70.39 → **0.27:1**. Decisive auto-fail — even the $665 high-target gives only (665−468.19)/70.39 = 2.80:1, but a single outlier can't be the sole target (B3).
+**Critique — Strongest counter to bull case:** AMD was **stopped out yesterday (6/9) at $464.05, a confirmed −1R thesis break** (per 6/5 TICKER-NOTES: "single most-likely invalidator: AVGO weakness compounds; AMD trailing stop breaches; thesis break confirmed" — that is exactly what happened). Re-entering the same name the very next session, against a freshly-compressed analyst consensus and an inventory-downgrade thesis (Seeking Alpha 6/9), would be chasing a name whose own stop just fired. Single most-likely invalidator (5d): AMD fails to reclaim $480 (yesterday's pre-stop level) within 3 sessions, confirming the downgrade thesis.
+**Decision:** **Demoted** — R:R 0.27:1 decisively fails; same-day re-entry into a name that just stopped out on a confirmed thesis break is a process violation independent of the math.
+
+### Candidates dropped (and why)
+- **LLY (XLV, $1,150.00):** ATR=$35.33 (3.07%), stop_pct=7.68% (stop $1,061.67, risk $88.33). Consensus PT median $1,251 (29 analysts) → reward $101 → R:R **1.14:1** — fails 2.0 floor (same conclusion as 6/8, slightly worse: 1.14 vs 1.56 then for MRK).
+- **MS (XLF, $207.65):** ATR=$5.33 (2.57%), stop_pct=7.0% (clamped, stop $193.11). Consensus PT median $205 (21 analysts) is **below current price** → implied return −1.3% → auto-fail (negative target, B3).
+- **SMH:** excluded by screener — XLK sector concentration with MU/AMD already on shortlist.
+
+### Historical Analog
+**Analog:** April 2024 — three consecutive hot CPI prints (Feb–Apr 2024) pushed the 10Y yield to ~4.7% (a multi-month high, comparable to today's 16-month-high ~4.69% set 6/9), repricing Fed-cut expectations from 6+ cuts to 1-2. VIX rose from the mid-13s to ~19-21 over the period. SPX corrected ~5.5% from its late-March peak through mid-April 2024. [Training knowledge — Apr 2024 CPI/yield episode]
+**What followed:** 5d: SPX continued to drift lower (~−1% to −2%) as the market digested the hawkish repricing. 10d: roughly flat to slightly negative, consolidating near the correction low. 20d: SPX recovered +3-4% from the correction low as May 2024 CPI came in cooler and Fed-cut hopes partially revived.
+**Why this time might differ:** Unlike April 2024's run of three consecutive hot prints across headline AND core, today's headline beat (4.2%, first >4% since 2023) is **energy-driven** (oil/Mideast shock) while **core actually undershot** (+0.2% vs +0.3% est.) — a one-off energy spike is more easily looked-through by the Fed than the broad-based core stickiness of spring 2024. The market's muted reaction (yields flat, futures pared losses) is consistent with this read.
+
+### Risk Factors (consolidated)
+1. CPI headline crossed 4% (first since 2023) on an energy spike — narrative risk even though core was benign; FOMC repricing risk into next meeting.
+2. Active US-Iran military escalation (new strikes today) — Strait of Hormuz tail risk; oil already round-tripped a 7-week low intraday, highly reflexive to headlines.
+3. 10Y at a 16-month high (~4.69%) — any further yield spike compresses XLK multiples (both MU and AMD already R:R-disqualified, so limited incremental portfolio risk today).
+4. Exposure-coach REDUCE_ONLY (ceiling 36%) on NARROW participation — tension with regime's Neutral/75% target, but moot at 0% deployed; will matter once we look to redeploy.
+5. Sector rotation OUT of XLK into defensives/healthcare (XLV +7.9% 1mo) — both XLK shortlist names (MU, AMD) are swimming against this tape.
+6. AMD: same-day re-entry into a name that hit its GTC stop yesterday on a confirmed thesis break — process risk, independent of the (also failing) R:R math.
+7. MU analyst-PT data instability (median PT swung from ~$1,251 cited 6/8 to $612.5 today) — data-contradiction guard invoked; do not use either extreme.
+
+### Decision
+**HOLD — 0 of 2 available slots used.** All 4 shortlisted names (MU, AMD, LLY, MS) fail the 2:1 R:R hard floor on the most defensible cited target (MU 1.25:1 on 52w-high; AMD 0.27:1; LLY 1.14:1; MS auto-fail negative). Account is 100% cash (AMD/CAT both stopped out 6/9) — no portfolio-management actions needed today (no open positions, no stops to manage). Pre-macro cap (40%) is moot at 0% deployed. Watchlist: MU only if it pulls back to the $830-840 zone (6/8 gate, still ~9% away); AMD only if consensus PT meaningfully re-rates above ~$540 (would clear 2:1 off the $397.80 stop) — neither close today.
+
+**TRADE-LOG action item (not done here, flagging for EOD):** log AMD close (r≈−1.0, reason="GTC fixed stop $464.28 hit 6/9, thesis break per 6/5 invalidator") and CAT close (r≈+0.2, reason="GTC trailing stop 5.58% hit 6/9 @ $885.50").
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful (2 Flash attempts → HTTP 429 quota exhausted; `research.py synthesize` also failed, Gemini Pro returned HTTP 404 model-not-found). All macro + candidate research via native WebSearch + `analyst_data.py` (yfinance, no quota) + `research.py gather` (NewsAPI/EDGAR/Google News).
+- NewsAPI: 8 (MU) + 6 (AMD) records. EDGAR: 15 + 15 (8-K/10-Q filings, both tickers). Google News: 10 + 10. Finnhub: company-news endpoint timed out / upgrade-downgrade endpoint 403 (key set, API-side issue) — 0 usable records, not cited.
+- Reddit: 403 on all 3 subs (egress probe confirmed reddit=http_403; edgar=ok, google_news=ok).
+- ml_insights: status=fresh, age=9.3h.
+- [degraded: Gemini quota 429 + Pro 404 — no Gemini grounded research or LLM synthesis this session; all candidate writeups are Claude-direct using gathered headlines + analyst_data.py consensus.]
+
+---

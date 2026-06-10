@@ -17,38 +17,42 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-06-08): Still unenterable — recomputed breakeven for 2:1 R:R (year-high $1,089 target, 15%-clamped ATR stop) is ≈$830-840, not the $870 used Jun 5. At Friday's $864 close R:R=1.74:1; chasing today's +7.1% premarket bounce to ~$925 makes it worse (1.18:1). CEO sold ~$38M (10b5-1 plan) during the 84-90% May surge. HBM structural thesis intact (MS PT $1,050 6/3, Susquehanna $1,750 5/29) but the 15%-clamp structurally needs >30% cited upside — only the Susquehanna outlier clears it. Demoted again; do NOT chase. [Demoted: R:R 1.18-1.74:1, both fail 2.0 floor. WebSearch Jun 8; Motley Fool Jun 4/7]
+- Thesis (2026-06-10): Still demoted — at $917.36 (15%-clamped ATR stop $780.29, risk $137.07), the only stable cited target (52w-high $1,089.29) gives R:R 1.25:1, fails the 2.0 floor. Analyst consensus PT data is now unreliable: median swung from ~$1,251 (cited 6/8) to $612.5 today, and mean from ~$1,215 to $788.7 — a >2x divergence in 48h (B2 data-contradiction guard, do not use either extreme). Stock has fully round-tripped its 6/8 SK Hynix pop ("erases weeks of 2026 rally," Yahoo 6/8) and remains ~9-10% above the 6/8 "do not chase" zone ($830-840). HBM structural thesis (mid-innings per Yahoo 6/9) intact but price action is chop, not trend. Do NOT chase.
 - Recent catalysts:
+  - 2026-06-10: Stock round-tripped the 6/8 SK Hynix pop; UBS reiterates pricing-driven guidance-beat case; Zacks frames MU "crushing NVDA in 2026" on AI infra — but price stuck below $940 [google_news/newsapi 6/10]
   - 2026-06-08: +7.1% premarket on SK Hynix-NVDA HBM deal headline; still fails R:R at both chase and no-chase prices [Barron's Jun 8]
   - 2026-06-07: CEO Mehrotra sold ~40,000 sh (~$38M, pre-planned 10b5-1) [Motley Fool Jun 7]
   - 2026-06-05: Screener #1 (ml 1.36) but demoted — R:R 0.87:1 at year-high target fails 2.0 floor; hot NFP +251K adds yield pressure. Pre-market $963 (−3.4% from $996 Jun 4 close). [Alpaca; WebSearch Jun 5]
-  - 2026-06-03: Morgan Stanley raises MU PT to $1,050; Susquehanna to $1,750 (5/29) [WebSearch Jun 8]
-  - 2026-06-24: Q4 FY2026 earnings report (next — 16d; key re-entry catalyst, "could go parabolic" per Motley Fool)
+  - 2026-06-24: Q4 FY2026 earnings report (next — 14d; key re-entry catalyst, "could go parabolic" per Motley Fool)
+  <!-- archive: 2026-06-03: Morgan Stanley raises MU PT to $1,050; Susquehanna to $1,750 (5/29) -->
   <!-- archive: 2026-06-04: AVGO AH infra-software miss; MU trailing stop hit $986.18 at 13:59 ET -->
   <!-- archive: 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote HBM4 + Vera Rubin) -->
 - Trade history:
   - 2026-06-04: r=0.45, regime=Neutral, reason="trailing stop hit on AVGO software miss contagion; HBM thesis intact, catalyst-specific break; peak was +1.25R (HWM $1,088) but 9.47% trail left too much gap-down room"
 - Open thesis questions:
-  - Corrected re-entry zone for 2:1 R:R is ≈$830-840 (year-high target, 15%-clamped stop) — tighter than the $750-870 estimate used Jun 5. Does MU pull back there cleanly (not chase) before June 24 earnings?
-  - Does today's +7% premarket pop hold, or is it a one-day SK Hynix-headline reaction inside a still-broken short-term trend (closed below $850 = invalidation)?
-  - Analyst consensus PT ($1,050 MS) still requires the stock to clear the 15%-clamp math — when does the Street PT or the ATR% normalize enough to make entries viable?
+  - Corrected re-entry zone for 2:1 R:R is ≈$830-840 (52w-high target, 15%-clamped stop) — still ~9-10% away. Does MU pull back there cleanly before June 24 earnings?
+  - Why did the analyst-PT consensus (yfinance, 40 analysts) swing from ~$1,251 median (6/8) to $612.5 (6/10)? If the lower figure persists across sessions, MU may need to be dropped from the screener shortlist entirely (no cited target clears the stop at any reasonable price).
+  - Is the 6/8 SK Hynix pop a dead catalyst now that price has fully round-tripped it (close below $850 = trend invalidation)?
 
 ## AMD (XLK)
-- Thesis (2026-06-05): **HOLD, STOP ACTIVE** — Hot NFP +251K adds second pressure layer after AVGO Jun 4 contagion. AMD −3.4% to $505.33 premarket. Structural thesis (MI450/GPU roadmap; Mizuho $615 PT; COMPUTEX AI ecosystem) intact but sentiment headwind continues. Trail 12.6% HWM=$546.37 stop=$477.53. Buffer only 5.5% from $505 — watching closely. GTC trail active; if AMD drops to $477.53, auto-exit. Do NOT lower stop manually. Key risk: further yield spike from hot NFP compresses XLK multiples this session.
+- Thesis (2026-06-10): **THESIS BROKEN, FLAT.** GTC fixed stop $464.28 hit 6/9 (filled $464.05, entry $493.80, −6.02% / ≈−1R) — confirms the 6/5 invalidator ("AVGO weakness compounds; AMD trailing stop breaches"). Today (6/10, $468.19): consensus PT compressed sharply to median $487.50/mean $482.69 (48 analysts) — only +4.2%/+3.1% implied — vs the $615 Mizuho outlier carried since 6/1. R:R off the 15%-clamped stop ($397.80, risk $70.39) is 0.27:1, decisive auto-fail. Cathie Wood's ARK sold AMD and bought NVDA (6/10); Seeking Alpha (6/9) flags an inventory-based downgrade thesis. Demoted — same-day re-entry into a name whose own stop just fired is also a process violation independent of the math.
 - Recent catalysts:
+  - 2026-06-09/10: GTC stop hit $464.05 (−6.02%, −1R); ARK sold AMD/bought NVDA; Seeking Alpha inventory-downgrade thesis; consensus PT compressed to $487.50 median (48 analysts) [Alpaca; WebSearch/news_sources 6/10]
+  - 2026-06-09: Jensen Huang called AI-stock selloff "a buying opportunity, AI just beginning" — sector-wide, not AMD-specific [WebSearch 6/9]
   - 2026-06-04: AVGO sell-the-news contagion (infrastructure software miss); AMD −3.97% sympathetic (sector-wide semiconductor pullback, not AMD-specific) [WebSearch, Jun 4]
   - 2026-06-03: Analyst upgraded to Strong Buy; stock hits all-time high $540.94 [Tradingkey, Jun 2026]
-  - 2026-06-03: Director sold $5.4M near all-time highs [CoinCentral, Jun 2026]
-  - 2026-06-01: Mizuho PT raised $515→$615, "Outperform" maintained
-  - 2026-06-02: Radeon RX 9070 GRE global launch + BofA Tech Conference (CFO Jean Hu) + Microsoft Build
+  - 2026-06-01: Mizuho PT raised $515→$615, "Outperform" maintained — now stale vs 6/10 consensus median $487.50
+  <!-- archive: 2026-06-03: Director sold $5.4M near all-time highs -->
+  <!-- archive: 2026-06-02: Radeon RX 9070 GRE global launch + BofA Tech Conference (CFO Jean Hu) + Microsoft Build -->
   <!-- archive: 2026-06-02/05: COMPUTEX Taipei 2026 (AI ecosystem; AMD participating) -->
   <!-- archive: 2026-05-05: Q1 2026 earnings (+38% YoY, DC +57% YoY, record FCF $2.6B) -->
   <!-- archive: 2026-05: U.S. Commerce cleared AMD to resume MI308 export reviews → $800M recovery -->
+- Trade history:
+  - 2026-06-09: r≈−1.0, regime=Neutral, reason="GTC fixed stop $464.28 hit (filled $464.05); confirmed AVGO-contagion thesis break per 6/5 invalidator"
 - Open thesis questions:
-  - AVGO infrastructure software miss — does hyperscaler capex rhythm shift away from discrete GPUs toward AI accelerators in-house?
-  - TSMC CoWoS packaging — can AMD secure enough capacity vs NVIDIA preferential access?
-  - Director $5.4M sale near ATH — distribution at top signal or tax/rebalancing?
-  - Single most-likely invalidator: AVGO weakness compounds; AMD trailing stop breaches; thesis break confirmed
+  - Does AMD reclaim $480 (yesterday's pre-stop level) within 3 sessions, or does the inventory-downgrade thesis (Seeking Alpha 6/9) confirm a longer downtrend?
+  - With consensus PT now $487.50 (vs $615 Mizuho), is there ANY entry price where R:R clears 2:1 off a 15% stop? (Breakeven for 2:1: stop_price + (target-stop)/3 ... at PT $487.50, need entry low enough that (487.5-entry)/(entry*0.15) >= 2 -> roughly entry <= $418.)
+  - TSMC CoWoS packaging — can AMD secure enough capacity vs NVIDIA preferential access? (carried, unresolved)
 
 ---
 
