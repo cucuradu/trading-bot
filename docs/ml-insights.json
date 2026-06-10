@@ -1,114 +1,114 @@
 {
-  "generated_at": "2026-06-08T04:32:09Z",
+  "generated_at": "2026-06-10T04:32:12Z",
   "model_version": "hmm-garch-v2.0",
   "schema_version": "1.1",
   "market": {
     "regime": "Neutral",
-    "confidence": 0.7588,
-    "persistence_bars": 35,
+    "confidence": 0.5084,
+    "persistence_bars": 36,
     "breadth_divergence": false,
-    "systemic_fragility": 0.4647,
+    "systemic_fragility": 0.4584,
     "deployment_target": 0.75,
     "trade_slots": 2
   },
   "universe_ranking": [
     {
       "symbol": "MU",
-      "ml_score": 0.098249,
-      "forward_return_pct": 9.8249
+      "ml_score": 0.11112,
+      "forward_return_pct": 11.112
     },
     {
       "symbol": "NOW",
-      "ml_score": 0.073032,
-      "forward_return_pct": 7.3032
-    },
-    {
-      "symbol": "AMD",
-      "ml_score": 0.055263,
-      "forward_return_pct": 5.5263
+      "ml_score": 0.086257,
+      "forward_return_pct": 8.6257
     },
     {
       "symbol": "INTU",
-      "ml_score": 0.047259,
-      "forward_return_pct": 4.7259
+      "ml_score": 0.046667,
+      "forward_return_pct": 4.6667
     },
     {
-      "symbol": "ADBE",
-      "ml_score": 0.018796,
-      "forward_return_pct": 1.8796
-    },
-    {
-      "symbol": "CRM",
-      "ml_score": 0.015137,
-      "forward_return_pct": 1.5137
+      "symbol": "AMD",
+      "ml_score": 0.031869,
+      "forward_return_pct": 3.1869
     },
     {
       "symbol": "ORCL",
-      "ml_score": 0.014203,
-      "forward_return_pct": 1.4203
+      "ml_score": 0.017557,
+      "forward_return_pct": 1.7557
     },
     {
-      "symbol": "AVGO",
-      "ml_score": 0.013113,
-      "forward_return_pct": 1.3113
-    },
-    {
-      "symbol": "CAT",
-      "ml_score": 0.008727,
-      "forward_return_pct": 0.8727
+      "symbol": "ADBE",
+      "ml_score": 0.01717,
+      "forward_return_pct": 1.717
     },
     {
       "symbol": "AMZN",
-      "ml_score": 0.008442,
-      "forward_return_pct": 0.8442
+      "ml_score": 0.009672,
+      "forward_return_pct": 0.9672
     },
     {
       "symbol": "LLY",
-      "ml_score": 0.00752,
-      "forward_return_pct": 0.752
+      "ml_score": 0.008283,
+      "forward_return_pct": 0.8283
+    },
+    {
+      "symbol": "CRM",
+      "ml_score": 0.007926,
+      "forward_return_pct": 0.7926
     },
     {
       "symbol": "GOOGL",
-      "ml_score": 0.006937,
-      "forward_return_pct": 0.6937
+      "ml_score": 0.006529,
+      "forward_return_pct": 0.6529
+    },
+    {
+      "symbol": "CAT",
+      "ml_score": 0.005882,
+      "forward_return_pct": 0.5882
     },
     {
       "symbol": "GS",
-      "ml_score": 0.005503,
-      "forward_return_pct": 0.5503
+      "ml_score": 0.004352,
+      "forward_return_pct": 0.4352
     },
     {
-      "symbol": "XLK",
-      "ml_score": 0.003729,
-      "forward_return_pct": 0.3729
+      "symbol": "BA",
+      "ml_score": 0.004019,
+      "forward_return_pct": 0.4019
     },
     {
       "symbol": "NKE",
-      "ml_score": 0.003174,
-      "forward_return_pct": 0.3174
+      "ml_score": 0.003431,
+      "forward_return_pct": 0.3431
+    },
+    {
+      "symbol": "XLK",
+      "ml_score": 0.00279,
+      "forward_return_pct": 0.279
     }
   ],
   "universe_weights": {
-    "MU": 0.4278,
-    "NOW": 0.5722
+    "MU": 0.42,
+    "NOW": 0.58
   },
   "volatility": {
-    "garch_1d_forecast_pct": 17.14,
-    "garch_5d_forecast_pct": 17.17,
+    "garch_1d_forecast_pct": 16.23,
+    "garch_5d_forecast_pct": 16.3,
     "vix_implied_term_structure": "contango",
-    "vix": 21.51,
-    "vvix": 102.04000091552734
+    "vix": 19.87,
+    "vvix": 92.4000015258789
   },
   "macro": {
     "available": true,
-    "as_of": "2026-06-04",
+    "as_of": "2026-06-08",
     "macro_regime": "Risk-On",
-    "macro_risk": 0.221,
-    "yield_curve_10y_3m": 0.69,
+    "macro_risk": 0.222,
+    "yield_curve_10y_3m": 0.76,
     "curve_inverted": false,
-    "hy_oas": 2.74,
-    "hy_oas_pct": 0.111,
-    "hy_oas_20d_chg": -0.05,
+    "hy_oas": 2.75,
+    "hy_oas_pct": 0.122,
+    "hy_oas_20d_chg": -0.04,
     "nfci": -0.494
   },
   "crash_risk": {
@@ -117,63 +117,63 @@
     "reasons": []
   },
   "ranking_quality": {
-    "oof_rank_ic": 0.015
+    "oof_rank_ic": 0.0112
   },
   "sectors": {
     "XLK": {
-      "regime": "Choppy",
-      "score": 0.003729,
-      "forward_return_pct": 0.3729
+      "regime": "Trend",
+      "score": 0.00279,
+      "forward_return_pct": 0.279
     },
     "XLF": {
       "regime": "Choppy",
-      "score": -0.00118,
-      "forward_return_pct": -0.118
+      "score": -0.001268,
+      "forward_return_pct": -0.1268
     },
     "XLV": {
-      "regime": "Trend",
-      "score": -0.001661,
-      "forward_return_pct": -0.1661
+      "regime": "Choppy",
+      "score": -0.001565,
+      "forward_return_pct": -0.1565
     },
     "XLE": {
-      "regime": "Bear",
-      "score": -0.002417,
-      "forward_return_pct": -0.2417
+      "regime": "Choppy",
+      "score": -0.003317,
+      "forward_return_pct": -0.3317
     },
     "XLI": {
-      "regime": "Trend",
-      "score": -0.002002,
-      "forward_return_pct": -0.2002
+      "regime": "Choppy",
+      "score": -0.001548,
+      "forward_return_pct": -0.1548
     },
     "XLY": {
       "regime": "Bear",
-      "score": -0.001603,
-      "forward_return_pct": -0.1603
+      "score": -0.001127,
+      "forward_return_pct": -0.1127
     },
     "XLP": {
-      "regime": "Choppy",
-      "score": -0.002354,
-      "forward_return_pct": -0.2354
+      "regime": "Bear",
+      "score": -0.001191,
+      "forward_return_pct": -0.1191
     },
     "XLU": {
       "regime": "Bear",
-      "score": -0.001449,
-      "forward_return_pct": -0.1449
+      "score": -0.001739,
+      "forward_return_pct": -0.1739
     },
     "XLB": {
       "regime": "Bear",
-      "score": -0.00144,
-      "forward_return_pct": -0.144
+      "score": -0.001212,
+      "forward_return_pct": -0.1212
     },
     "XLRE": {
       "regime": "Choppy",
-      "score": -0.001099,
-      "forward_return_pct": -0.1099
+      "score": -0.001501,
+      "forward_return_pct": -0.1501
     },
     "XLC": {
       "regime": "Bear",
-      "score": -0.001864,
-      "forward_return_pct": -0.1864
+      "score": -0.001617,
+      "forward_return_pct": -0.1617
     }
   }
 }
