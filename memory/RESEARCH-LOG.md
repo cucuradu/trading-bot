@@ -2125,3 +2125,104 @@ Screener (source=ml): top ranked MU(1.28), AMD(0.96, held), MS(0.84), LLY, MRK. 
 - This is a rerun validating the analyst-data wiring; orders unchanged (HOLD).
 
 ---
+
+## 2026-06-11 — Pre-market
+
+**Regime:** Caution (source: rule_fallback, slots: 1, deployment: 50%) (fallback_reason: ml unavailable; using local_screener_v1)
+**Pre-macro:** cap_active=true (event: CPI, system date 2026-06-11, days_to_event=0) → 40% deployment cap, candidates capped at MIN(slots,2)=1
+**Breadth/Sector:** breadth=46.2/100 (Neutral) | sector=balanced score=58 phase=mid (confidence low) | divergence_flag=true (cyclical/defensive groups disagree internally)
+**Exposure:** ceiling=35% | rec=REDUCE_ONLY | bias=NEUTRAL | conf=MEDIUM
+**FTD:** unavailable (ftd_detector returned empty output despite FMP_API_KEY set — skipped silently)
+**Egress:** edgar=ok, google_news=error:ReadTimeout, reddit=http_403
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- Deployment = 0% (no open positions — both AMD and CAT appear to have been closed/exited since the 2026-06-08 entry; no TRADE-LOG entries for 06-09/06-10 found, gap noted but out of scope for this routine)
+
+### Macro Framework
+**STEP 4-bis (CPI print, days_to_event=0):** May 2026 CPI was actually released **2026-06-10** (system date is 1 day late, same recurring drift noted 06-08). Headline +0.5% MoM / +4.2% YoY — in line with consensus. **Core CPI +0.2% MoM (vs +0.3% consensus, cooler) / +2.9% YoY (in line)** — the monthly core miss is mildly disinflationary. Headline strength driven by a 3.9% energy jump (+23.5% YoY) tied to the active Iran/US oil-shock, not broad-based price pressure [CNBC, Morningstar 2026-06-10]. Print was NOT hot — no additional trade-slot downgrade per STEP 4-bis (today's regime already Caution/slots=1 from the local screener).
+Oil: Brent ~$95.15, WTI fell to $88.05 (−3.56%) intraday after touching ~$90.8 on fresh Trump/Iran escalation comments [Fortune, Investing.com 2026-06-11] — volatile, two-sided. VIX ~19.4 futures (cash closed 19.87 Jun 10) — elevated but off the post-Iran-strike highs. 30Y yield: data unavailable via WebSearch this run (10Y near 4.69%, a 16-month high) — still near cycle highs. vs 06-08: VIX roughly flat (~19.4 vs ~19.1-19.9); oil two-sided/volatile (Iran headline risk persists); regime degraded Neutral→Caution (rule_fallback now active, ml unavailable vs ml-fresh on 06-08); breadth improved 34.5→46.2 (Weakening→Neutral) but divergence flag persists.
+Gemini Flash quota exhausted (HTTP 429) for all STEP 4 macro queries — fell back to native WebSearch per fallback rule; flagged `[degraded: Gemini quota]`.
+
+### Sector Picture
+- Top 3 (1mo): XLV +7.77% (Trend, score 0.336), XLP +2.61% (Choppy), XLE +2.09% (Trend, score 0.169)
+- Bottom 3: XLY −4.44% (Bear), XLC −3.87% (Bear), XLB −3.66% (Bear)
+- Agreement: yfinance momentum and ml-classifier both rank XLV #1 and both flag XLY/XLC/XLB as weak/Bear — consistent today, no disagreement to flag.
+
+### Candidates
+
+Screener (source=local_screener_v1, slots=1): top-10 = LLY(1.07), MS(1.02), UNH(0.90), MRK(0.89), CAT(0.72), CVX(0.50), XLE(0.40), AMGN(0.39), QQQ(0.39), IWM(0.38). Watchlist: empty. Shortlist after filters (slots=1, pre-macro cap→1 candidate): **LLY, MS** (top-2 by score).
+
+#### LLY (XLV, $1,160.80, +2.30% vs prev close $1,134.70)
+
+**Setup:** 1.85% below 52w-high $1,182.73. ATR(14)=$36.93 (3.18% of price); stop_pct_2.5x=7.95% (not clamped) → stop $1,068.48 (risk $92.32). Earnings 2026-08-05 (55d, no blackout).
+
+**Sources scanned (1):** 1 google_news / 0 NewsAPI / 0 Finnhub (503 error) / 0 EDGAR / 0 Reddit (403) / 0 Gemini (429, quota exhausted).
+
+Recent google_news (Jun 8-11): Citi reiterates bullish thesis ("This Is Compelling") [TipRanks, 06-08]; oral GLP-1 pill data beat Novo Nordisk/AstraZeneca in diabetes trials [Yahoo Finance, 06-08]; LLY hit a fresh 52-week high alongside AAPL/OSCR [Yahoo Finance, 06-09]; one piece notes employer GLP-1 coverage pullback risk for 2027 [Seeking Alpha, 06-11]. Bull case: continued GLP-1 franchise momentum + new oral diabetes data + Citi/BofA/Truist bullish notes. Bear case: 41.2x trailing P/E (26.1x fwd) leaves no valuation cushion at a 52w high; employer-coverage pullback is a multi-year tail risk for pricing.
+**Disconfirming evidence to watch:** any FDA/court action narrowing compounded-GLP-1 exclusivity, or a soft readout from the oral diabetes data once full results publish.
+**Catalysts ahead (14d):** none material — next earnings 55d out; ADA Scientific Sessions data flow continues trickling through June.
+**Takeaway:** Strong fundamental momentum but priced near perfection at a 52w high — math below.
+
+**Critique:**
+**Strongest counter to the bull case:** At 41.2x trailing / 26.1x forward earnings and 1.85% off the all-time high, LLY's GLP-1 leadership is fully discounted; the analyst consensus median ($1,251, BofA 05-26 [TipRanks]) implies only +7.7% upside, which an ATR-based 7.95% stop cannot clear at 2:1 — the stock needs a fresh double-digit PT raise just to make the risk/reward work, and none has come since 05-26.
+**Weakly-sourced or unsourced claims:** the "oral GLP-1 pill beats Novo/AZ" headline (Yahoo Finance, 06-08) — no underlying trial name or magnitude given; treat as directional sentiment only.
+**Single most-likely invalidator (next 5 trading days):** a pullback below the 52w-high zone on no negative news (profit-taking after the Citi/52w-high run) would mechanically improve R:R toward the gate — absent that, any negative GLP-1 pricing/coverage headline (e.g., a major employer formally dropping coverage) caps further upside before the math improves.
+
+**Data check:** Consensus PT median $1,251 / mean $1,215.79 (29 analysts, BofA 05-26 raise to $1,251) — unchanged from the 06-08 entry, no contradiction.
+
+**R:R math:** entry $1,160.80 / stop $1,068.48 (−7.95%, real 2.5×ATR, unclamped) / target $1,251 (analyst consensus median, BofA 05-26 [TipRanks]) (+7.7%) / **R:R = 0.98:1** / max risk (20% position ≈ $20,094) ≈ $1,599.
+- **Hard 2:1 floor fails** (0.98 < 2.0). Even the high-end Truist PT $1,281 (05-21) gives (1281-1160.80)/92.32 = 1.30:1 — still fails. **Demoted.**
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Gate-history audit:** prior LLY gates progressed $1,065 (late May) → $1,176 (06-08) → $1,160.80 today — a *downward* move from 06-08, consistent with genuine price action (no chase). Gate-creep concern does not apply since the candidate is demoted on R:R math regardless.
+
+**Decision:** **Demoted** — R:R 0.98:1 fails the 2.0 floor on the cited consensus target; even the highest non-outlier analyst PT (Truist $1,281) only reaches 1.30:1.
+
+#### MS (XLF, $208.30, +0.79% vs prev close $206.66)
+
+**Setup:** 4.96% below 52w-high $219.16. ATR(14)=$5.23 (2.51% of price); raw stop_pct_2.5x=6.27% → clamped to **7.0% floor** → stop $193.72 (risk $14.58). Earnings 2026-07-15 (34d, no blackout).
+
+**Sources scanned (0):** NewsAPI returned only MSNBC/"MS NOW" noise (ticker collision, not company-relevant) / 0 Finnhub (503 error) / 0 EDGAR / 0 Reddit (403) / 0 Gemini (429).
+
+**Data check:** Consensus PT median $205 / mean $203.29 (21 analysts) — both **below** current price $208.30, implying −1.6% / −2.4%. This is essentially unchanged from the 06-08 entry (median $205 vs prior $205, mean $203.29 vs prior $203) — consistent, no contradiction.
+
+**R:R math:** entry $208.30 / stop $193.72 (−7.0%, clamped floor) / target = consensus median $205 → **negative implied return → auto-fail** per B3. Even the high-end PT $230 (KBW, recurring sole-bull case) gives (230-208.30)/14.58 = 1.49:1 — still fails 2.0.
+- **Hard 2:1 floor fails decisively.** **Demoted.**
+
+**Critique:** Skipped — auto-fail on negative consensus-implied return (B3 rule), same outcome as 06-08. **Single most-likely invalidator:** a fresh sell-side upgrade pushing consensus PT above ~$236 (+13% from spot) would be needed to clear 2:1 against the 7% floor stop; none has occurred since 06-08.
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Decision:** **Demoted** — consensus-implied return negative (auto-fail B3); even the lone bull PT ($230) only reaches 1.49:1.
+
+### Candidates dropped (and why)
+- **UNH, MRK, CAT, CVX, XLE, AMGN, QQQ, IWM** — ranked below LLY/MS on the screener; not deep-dived because pre-macro cap (CPI day) restricts today's shortlist to MIN(slots=1, 2)=1 candidate-pair (LLY, MS), both of which already demote on the hard R:R floor — no further candidates needed since the decision is HOLD regardless.
+
+### Historical Analog
+**Analog:** October 2023 — Israel-Hamas war broke out Oct 7 2023, sending Brent from ~$84 to ~$90 within days while VIX rose from ~17 to ~21-23; September 2023 core CPI had printed roughly in line with consensus (+0.3% MoM) days earlier, similar to today's in-line-to-cooler core CPI print landing alongside an active Middle East oil shock.
+**What followed:** SPX initially fell ~-2% to -3% over the following 5-10 trading days as the geopolitical premium and elevated yields (10Y briefly topped 5% in late Oct 2023) weighed on risk assets, before stabilizing once oil retraced from its spike highs over the next 2-3 weeks.
+**Why this time might differ:** today's core CPI miss (cooler than consensus) is more disinflationary than the Sept 2023 print, which is a tailwind for duration-sensitive growth names if the Iran oil shock fades — but the active US-Iran military exchange (vs. Israel-Hamas in 2023, which did not directly involve US forces) raises the tail-risk ceiling for a sharper, faster oil spike.
+
+### Risk Factors (consolidated)
+1. Active US-Iran military escalation — oil two-sided and volatile (WTI swung $86-$91.5 intraday); any further strike escalation gaps risk assets lower.
+2. Regime degraded Neutral→Caution with `source=rule_fallback` (ml unavailable) — local PC drift; trade_slots reduced to 1.
+3. Pre-macro CPI cap active (40% deployment ceiling) — moot today since deployment is already 0%.
+4. Exposure-coach flags REDUCE_ONLY / NEUTRAL bias / 35% ceiling with NARROW participation — corroborates Caution regime; no tension to flag (both say reduce/hold).
+5. Both shortlisted candidates (LLY, MS) fail the hard 2:1 R:R floor — no forced entries.
+6. Gemini Flash quota exhausted all session (`[degraded: Gemini quota]`) — macro context via WebSearch only, less depth than usual.
+7. Google News and Reddit egress degraded (ReadTimeout / 403) — LLY/MS source counts thinner than normal.
+
+### Decision
+**HOLD — no new entries.** Both shortlisted candidates (LLY, MS — the only two survivors after the pre-macro CPI cap restricted today's shortlist to 1) fail the hard 2:1 R:R floor (LLY 0.98:1 on consensus target, MS negative-implied/1.49:1 on lone bull PT). Account is 100% cash (deployment 0%) — Caution regime + REDUCE_ONLY exposure recommendation + active Iran oil-shock argue for patience regardless. No watchlist additions — neither candidate is close enough to the 2:1 gate to warrant a price-alert re-try.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful (3 attempted, all HTTP 429 — quota exhausted; fell back to native WebSearch for oil/VIX/CPI macro queries)
+- NewsAPI: 1 query (MS, returned ticker-collision noise only) / Finnhub: 0 (503 errors both tickers) / EDGAR: 0 / Reddit: 0 (403 both tickers) / Google News: 1 (LLY, 6 results)
+- Fallback events: Gemini 429 (all 3 STEP 4 queries) → WebSearch; Finnhub 503 (company-news, insider-transactions, upgrade-downgrade, both tickers); Reddit 403 (all subreddits, both tickers)
+- Egress probe: edgar=ok, google_news=error:ReadTimeout, reddit=http_403
+- ml_insights: status=fresh, age=35.8h (source=rule_fallback regardless — ml file itself reports `local_screener_v1`)
+- FTD: skipped (empty output despite FMP_API_KEY set)
+
+---

@@ -164,21 +164,20 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## LLY (XLV)
-- Thesis (2026-05-27): GLP-1 franchise + retatrutide TRIUMPH-1 data (28.3% weight loss) positions LLY as long-term obesity market leader; ASCO May 29–June 2 + ADA June = near-term data catalysts. Key risk upgraded: 56.5x fwd P/E (revised from 26.3x) + 13% realized-price erosion in Q1 + compounding GLP-1 legal uncertainty. Endowment selling confirmed routine. Conviction: moderate.
+- Thesis (2026-06-11): At 1.85% off the 52w high ($1,182.73) and 41.2x trailing/26.1x fwd P/E, GLP-1 leadership is fully priced in. Consensus PT median $1,251 (BofA 05-26) implies only +7.7%, vs a real 7.95% ATR stop → R:R 0.98:1, fails 2:1 floor (even Truist's $1,281 only reaches 1.30:1). Continued bullish flow (Citi "compelling" note, oral GLP-1 diabetes data beating Novo/AZ, fresh 52w high) but no valuation cushion. Demoted on math, not thesis. [Demoted: R:R 0.98:1. analyst_data.py + WebSearch Jun 11]
 - Recent catalysts:
-  - 2026-05-27 [ASCO/ADA confirmed]: LLY presenting oncology data (Retevmo + Verzenio) at ASCO May 29–Jun 2; TRIUMPH-1 additional data + cardiometabolic pipeline at ADA Scientific Sessions June
+  - 2026-06-11 [Seeking Alpha]: 1-in-10 employers may drop GLP-1 coverage in 2027 — multi-year pricing tail risk
+  - 2026-06-09 [Yahoo Finance]: LLY hit fresh 52-week high alongside AAPL/OSCR
+  - 2026-06-08 [Yahoo Finance]: Oral GLP-1 pill data beat Novo Nordisk/AstraZeneca diabetes trial readouts
+  - 2026-06-08 [TipRanks/Citi]: Citi reiterates bullish "This Is Compelling" note
   - 2026-05-26 [BofA Securities]: PT raised to $1,251 from $1,133 (Buy); Truist $1,281 Buy (May 21)
-  - 2026-05-22 [Analyst note]: Retatrutide 12mg cohort higher discontinuation rate — tolerability risk at max dose
-  - 2026-05-21 [LLY press release]: Phase 3 retatrutide TRIUMPH-1 positive (28.3% weight loss, 80w, primary+key secondary endpoints met)
-  - 2026-05-19 [Barclays]: NVO oral Wegovy outselling Foundayo; 13% Q1 realized-price decline noted
-  <!-- archive: 2026-05-26 Endowment $577M confirmed routine; 2026-05-25 Q1 rev confirmation -->
+  <!-- archive: 2026-05-27 ASCO/ADA catalyst confirmed; 2026-05-22 retatrutide 12mg tolerability risk; 2026-05-21 TRIUMPH-1 positive; 2026-05-19 Barclays NVO oral Wegovy note; 2026-05-26 Endowment $577M routine -->
 - Open thesis questions:
   - FDA/court ruling on compounded GLP-1 availability — could materially impair pricing and revenue
-  - NVO oral Wegovy market share vs Zepbound: quantify % shift in new patient starts
-  - Retatrutide commercial timeline and FDA submission date?
-  - What did ASCO oncology data show — does LLY oncology pipeline add value?
+  - Employer GLP-1 coverage pullback for 2027 — how material to revenue if it spreads beyond early adopters?
+  - Would need a fresh PT raise above ~$1,260 (vs current $1,251 median) to clear 2:1 against the 7.95% stop — watch for post-ADA analyst updates
 - Trade history: (none yet)
-- Position-aware notes: XLV cap 2 → LLY + 1 other healthcare max (UNH/JNJ). Correlation with NVDA = −0.42. Enter after NVDA fills cleanly; LLY > $1,060 gate.
+- Position-aware notes: 0% XLV exposure (no open positions as of 06-11). LLY > $1,060 gate cleared (now $1,160.80) — gate is no longer the blocker, R:R math is.
 
 ## MA (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -206,14 +205,16 @@ Conventions:
 - Position-aware notes: XLV currently 0% exposure (fresh sector if entered); near-zero correlation with AMD/CAT (-0.02) — best factor diversification of any candidate screened to date.
 
 ## MS (XLF)
-- Thesis (2026-06-08): Unchanged verdict — still ~97% of 52w high ($219.16) with consensus PT ($203-205) BELOW spot (implies ~7% downside) and even the single most bullish desk (KBW $230) only implies +5.4%. R:R 1.23:1 best-case / negative on consensus — fails 2.0 floor by a wide margin. Best diversification of any candidate (corr 0.39 vs CAT, fresh sector) but momentum-only bet with zero valuation cushion. Demoted again. [Demoted: R:R 1.23:1. WebSearch/MarketBeat Jun 8]
+- Thesis (2026-06-11): Still demoted — consensus PT median $205/mean $203.29 (21 analysts) is BELOW spot $208.30 (implies -1.6%/-2.4%, auto-fail B3). Even the lone bull PT $230 (KBW) only gives 1.49:1 against the 7% floor stop ($193.72). 5% off 52w high $219.16. No fresh analyst action since 06-08; data unchanged. [Demoted: consensus-implied negative + 1.49:1 best-case. analyst_data.py Jun 11]
 - Recent catalysts:
+  - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance surfaced yet
   - 2026-06-08: Confirmed still trading above its own consensus PT range; KBW (Konrad) sole bull at $230/+8.6% [Benzinga/MarketBeat via WebSearch]
   - 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt
-  - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick speaks) — watch for guidance that could shift the PT-below-price dynamic
+  <!-- archive: none -->
 - Open thesis questions:
-  - Consensus PT $203-205 < current $211.93 — needs a fresh analyst upgrade above ~$242 (14% above spot) to make the 7%-floor-stop math work at 2:1
+  - Consensus PT $203-205 < current $208.30 — needs a fresh analyst upgrade above ~$236 (+13%) to make the 7%-floor-stop math work at 2:1
   - XLF sector Choppy (not Bear) — clears the hard filter, but provides no directional tailwind to close the PT gap
+  - Did the 06-09 Financials Conference produce any forward guidance that could move sell-side targets? (NewsAPI returned only ticker-collision noise on 06-11)
 
 ## MSFT (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
