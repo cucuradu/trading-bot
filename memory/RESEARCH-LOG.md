@@ -2226,3 +2226,118 @@ Recent google_news (Jun 8-11): Citi reiterates bullish thesis ("This Is Compelli
 - FTD: skipped (empty output despite FMP_API_KEY set)
 
 ---
+
+## 2026-06-12 — Pre-market
+
+**Regime:** Caution (source: rule_fallback, slots: 1, deployment: 50%) (fallback_reason: ml unavailable; using local_screener_v1)
+**Pre-macro:** cap_active=false (event: FOMC on 2026-06-17, days_to_event=5) — no deployment cap today
+**Breadth/Sector:** breadth=46.2/100 (Neutral) | sector=risk-on score=70 phase=early (confidence low) | divergence_flag=true (cyclical/defensive groups disagree internally)
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=GROWTH | conf=MEDIUM
+**FTD:** unavailable (`ftd_detector.py` does not accept `--json`; skipped — script-arg mismatch, not missing key)
+**Egress:** edgar=ok, google_news=ok, reddit=http_403
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- Deployment = 0% (unchanged from 06-11 — fully in cash)
+
+### Macro Framework
+**Major overnight catalyst:** Trump cancelled planned Iran strikes and said a US-Iran peace deal could be reached "as early as this weekend" [Yahoo Finance/247WallSt, 06-11]. Markets rallied sharply Thu 06-11: SPX +1.75%, Dow +1.86%, Nasdaq +3.29% — chips led the rebound. Intel +8%, AMD +8% (~$452.40→$488.40) on BofA's $170B server-CPU TAM call (Vivek Arya, AMD PT $500→$560, "top CPU pick", agentic-AI demand driver) [TipRanks/247WallSt, 06-11]. SpaceX priced the largest IPO in market history ($75B). Oil fell on de-escalation: WTI <$86 (lowest in ~2 months), Brent ~$89.38 (prev close $90.38, −1.1%) [Investing.com/OilPrice, 06-12]. 10Y yield gave back ~10bp Thursday. VIX ~19.44 — essentially flat vs 06-11's ~19.4, i.e. has NOT caught up to the de-escalation rally yet (still pricing residual geopolitical premium). Counter-current: May PPI (released 06-11, system date 1-day-late drift persists) ran hot — headline +1.1% vs +0.7% consensus, fastest pace since late 2022 — an inflationary cross-current the rally has so far shrugged off. Breadth unchanged 46.2/100 (Neutral) with persistent S&P-vs-breadth divergence flag; sector rotation flipped to risk-on (score 70, early-cycle) per the adapter, vs "balanced score=58" on 06-11.
+vs 06-11: VIX flat (~19.4); oil down further (Brent 90.38→89.38, WTI <88→<86); regime unchanged Caution/rule_fallback (slots still 1) **despite** the single-largest one-day equity catalyst this week — the local_screener_v1 regime classifier appears to lag the Iran de-escalation rally (see Decision for the tension this creates with the screener's own top-ranked names).
+
+### Sector Picture
+- Top 3 (1mo): XLV +5.65% (Trend, score 0.331), XLK +4.57% (Choppy, score 0.386), XLF +2.02% (Trend, score 0.235)
+- Bottom 3: XLC −3.23% (Bear, score −0.331), XLU −2.52% (Bear, score −0.205), XLB −1.76% (Choppy, score −0.012)
+- Agreement: XLV/XLC/XLU consistent between yfinance momentum and ml-classifier. XLK disagreement persists (3rd consecutive session) — yfinance ranks it #2 by 1mo momentum but the classifier tags it Choppy not Trend, likely reflecting the post-AVGO whipsaw baked into the trailing window even as today's chip rally accelerates.
+
+### Candidates
+
+Screener (source=local_screener_v1, slots=1): top-10 = MU(1.43), AMD(1.02), SMH(0.79), MS(0.70), CAT(0.64), MRK(0.61), AMGN(0.44), QQQ(0.43), LLY(0.39), XLK(0.37). Watchlist: empty. Shortlist returned by screener: **MU, AMD** (both XLK).
+
+#### MU (XLK, $995.87, prev close $998.70)
+
+**Setup:** 8.6% below 52w-high $1,089.29. ATR(14)=$75.50 (7.58% of price); stop_pct_2.5x=18.95% → clamped to **15.0% ceiling** → stop $846.49 (risk $149.38). Earnings 2026-06-24 (12d, no blackout yet).
+
+**Sources scanned (4):** 256 Finnhub / 10 Google News / 7 NewsAPI / 15 EDGAR / 0 Reddit (403) / 0 Gemini (429, quota exhausted).
+
+Recent news (Jun 11-12): Memory stocks (MU, STX, WDC, SNDK) rallied on Iran peace-deal hopes + ongoing DRAM/NAND price-hike thesis (could triple through 2026) [Finnhub, 06-11/12]. Goldman flagged caution ahead of MU's 06-24 earnings, citing a "high bar" [Finnhub, 06-12]. Insider: CEO Mehrotra sold small lots in late May (~$979/sh); one small insider buy 06-09 (Bjorlin, 63sh — immaterial).
+**Bull case:** HBM/AI memory structural demand intact; DRAM/NAND price-hike cycle; Iran de-escalation removes a tail-risk overhang on the AI-capex trade [Finnhub 06-11/12 — Gemini grounded unverified for "triple through 2026" claim].
+**Bear case:** Goldman "high bar" caution into 06-24 earnings [Finnhub 06-12]; stock already 8.6% off 52w high after a multi-week run; CEO insider selling pattern continues.
+**Disconfirming evidence to watch:** any pre-earnings guide-down or DRAM-pricing data that undercuts the "triple through 2026" thesis before 06-24.
+**Catalysts ahead (14d):** Q4 FY26 earnings 06-24 (12d) — inside the window but not yet in blackout.
+
+**Data check:** Consensus PT median $637.50 / mean $828.73 (40 analysts, `analyst_data.py`, yfinance) — implied return median **−36.0%**, mean **−16.8%**. This is consistent with the recurring 06-03/06-04/06-08/06-11 pattern (MU consensus has stayed in the $575-$640 median range while price ran from ~$865 to ~$996); no new contradiction, same structural mismatch.
+
+**Critique:**
+**Strongest counter to the bull case:** MU is 8.6% off its 52w high after an enormous YTD run, with the analyst consensus median ($637.50, 40 analysts) sitting **36% below** today's price — the Street has not validated this valuation even after the SK Hynix/HBM headlines of early June; Goldman's pre-earnings "high bar" caution (06-12) suggests downside risk into the 06-24 print is asymmetric versus a thesis that is already widely known.
+**Weakly-sourced or unsourced claims:** "DRAM and NAND prices could both triple through end of 2026" [Finnhub 06-11, no named analyst/source in summary] — tag as `[Finnhub headline — unverified primary source]`.
+**Single most-likely invalidator (next 5 trading days):** any pre-earnings (06-24) guidance cut or a Goldman/peer downgrade citing the same "high bar" concern would confirm the bear case before the print.
+
+**R:R math:** entry $995.87 / stop $846.49 (−15.0%, ATR-clamped) / target = year-high $1,089.29 (cited 52w-high, only level above current consensus) (+9.4%) / **R:R = 0.63:1** / max risk (20% position ≈ $20,094) ≈ $3,011.
+- **Hard 2:1 floor fails decisively** (0.63 < 2.0). Consensus median target ($637.50) is *below* price → B3 auto-fail also applies independently. Even the $1,750 high (Susquehanna, outlier, not a valid sole target per B3) gives (1750-995.87)/149.38=5.05:1 but cannot be used alone.
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Gate-history audit:** MU has been demoted on this exact R:R/B3 mismatch on 06-03, 06-04, 06-08, 06-11(implicit via MS/LLY shortlist) — no entry gate was ever set because it never cleared the floor. No gate-creep concern.
+
+**Decision:** **Demoted** — R:R 0.63:1 on the only cited level above consensus (52w high); consensus median implies −36%. Same recurring structural mismatch, 5th consecutive flag.
+
+#### AMD (XLK, $488.45, prev close $491.95 — but note: $488.45 itself is AFTER Thu's +8% close from $452.40)
+
+**Setup:** 10.6% below 52w-high $546.44. ATR(14)=$32.38 (6.63% of price); stop_pct_2.5x=16.57% → clamped to **15.0% ceiling** → stop $415.18 (risk $73.27). Earnings 2026-08-04 (53d, no blackout).
+
+**Sources scanned (4):** 258 Finnhub / 10 Google News / 10 NewsAPI / 15 EDGAR / 0 Reddit (403) / 0 Gemini (429, quota exhausted).
+
+Recent news (Jun 11): AMD +8% to $488.40 on BofA's $170B 2030 server-CPU TAM call — Vivek Arya raised PT $500→$560, reiterated Buy, called AMD "top CPU pick" on agentic-AI-driven CPU orchestration demand [TipRanks/247WallSt, 06-11]. Cathie Wood's ARK trimmed AMD, added NVDA same week [Motley Fool, 06-10]. Insider: continued small SELLs from Denzel Nora (06-02, 05-29) and Norrod Forrest (05-20) — routine, pre-existing pattern.
+**Bull case:** BofA's fresh $560 PT (06-11, dated, named analyst) on a structurally larger server-CPU TAM; Iran de-escalation removes a tail-risk overhang on the AI-capex trade; broad chip-sector rally (Intel +8% same session) confirms group strength, not idiosyncratic.
+**Bear case:** ARK rotation out of AMD into NVDA same week [Motley Fool 06-10]; yfinance consensus (pre-upgrade) median $487.50/mean $483.94 is essentially flat to current price — the Street broadly has NOT caught up to BofA's new $560 yet (single-analyst move).
+**Disconfirming evidence to watch:** if the BofA upgrade doesn't get follow-through from other sell-side desks within a few sessions, treat $560 as an outlier rather than a re-rating.
+**Catalysts ahead (14d):** none material — next earnings 53d out.
+
+**Data check:** yfinance consensus PT median $487.50/mean $483.94 (48 analysts) — implied return median **−0.2%**, mean **−0.9%** — both essentially flat/negative and **NOT yet updated** for BofA's 06-11 $560 raise (yfinance consensus aggregation lags single-analyst moves by days). Used BofA's $560 (most recent, dated, named) as the bull-case target below rather than the stale consensus.
+
+### Follow-up investigation
+**Trigger:** macro divergence (Caution regime + REDUCE_ONLY exposure vs. the largest one-day risk-on catalyst this week) AND source disagreement (AMD's +8% Thu move vs. a yfinance consensus that implies ~flat). Ran one targeted WebSearch: "AMD analyst upgrade price target June 11 2026 Bank of America server CPU" → confirmed BofA/Vivek Arya raised AMD PT $500→$560 (Buy, "top CPU pick") on a $170B 2030 server-CPU TAM thesis [TipRanks/247WallSt, 06-11]. This is the freshest, most-bullish cited target and is used in AMD's R:R math below (still fails).
+
+**Critique:**
+**Strongest counter to the bull case:** even using BofA's brand-new $560 PT (the single most bullish cited number available, not yet reflected in the broader 48-analyst consensus which sits at ~$487), AMD's R:R against its ATR-clamped 15% stop is still under 1.0 — the stock would need a second sell-side desk to validate $560+ (or a pullback toward the low-$440s) before the math works; until then this is a one-bank call riding a single-day +8% pop.
+**Weakly-sourced or unsourced claims:** none flagged — BofA PT, ARK trim, and insider sells are all dated/sourced.
+**Single most-likely invalidator (next 5 trading days):** if no other major sell-side desk follows BofA's $560 within the next week, the +8% Thursday pop is most likely a single-catalyst overshoot that mean-reverts toward the $460-470 pre-pop range.
+
+**R:R math:** entry $488.45 / stop $415.18 (−15.0%, ATR-clamped) / target $560 (BofA, Vivek Arya, 06-11, cited) (+14.7%) / **R:R = 0.98:1** / max risk (20% position ≈ $20,094) ≈ $3,011.
+- **Hard 2:1 floor fails** (0.98 < 2.0), even using the single most-bullish fresh cited target available today. The stale 48-analyst consensus ($487.50 median) implies ~flat → would also auto-fail under B3 independently.
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Gate-history audit:** AMD was a held position (entry $493.80) exited sometime 06-09/06-10 (TRADE-LOG gap, noted 06-11) on a "thesis broken" basis (COMPUTEX exhaustion + NFP yield spike + AVGO contagion). Current price $488.45 is essentially back at the original entry level after a round trip down to ~$452 and the +8% bounce. No "do not chase" gate was ever set for AMD as a *new* entry — this is a fresh screener pick, not a chase of a prior refused level. R:R math demotes it regardless.
+
+**Decision:** **Demoted** — R:R 0.98:1 even on the freshest, most-bullish cited target (BofA $560, 06-11); fails the 2:1 floor by a smaller margin than MU but still fails.
+
+### Candidates dropped (and why)
+- **SMH, MS, CAT, MRK, AMGN, QQQ, LLY, XLK** — ranked below MU/AMD on the screener; not deep-dived because both top-2 candidates already demote on the hard R:R/B3 floor and trade_slots=1 — no further candidates needed since decision is HOLD regardless.
+- **Shared-catalyst note:** MU and AMD are both XLK / "AI-capex, semiconductor demand" thesis — same factor bet. Moot here since both are demoted, but flagged for future reference if either later clears the floor alongside the other.
+
+### Historical Analog
+**Analog:** January 8, 2020 — after the U.S. killed Qassem Soleimani (Jan 3) and Iran retaliated with a missile strike on Iraqi bases that caused no US casualties (Jan 8), markets that had been pricing escalation risk relief-rallied sharply: SPX +0.5% on the day, VIX fell from a ~15 spike back toward ~12.5, and oil fell ~5% as Strait-of-Hormuz fears eased — closely matching today's setup (Trump cancelling planned strikes + "peace deal possible this weekend" → SPX +1.75%, Nasdaq +3.29%, oil down to multi-week lows, VIX still elevated at ~19.4 and not yet reflecting the de-escalation).
+**What followed:** SPX continued grinding higher through January 2020, gaining roughly +3% over the following 3 weeks to fresh all-time highs, before the unrelated COVID-19 shock reversed the move in late February.
+**Why this time might differ:** the 2020 episode occurred in a disinflationary macro backdrop; today's relief rally coincides with a hot May PPI print (+1.1% vs +0.7% consensus, fastest since late 2022) and an FOMC meeting in 5 days — a hawkish inflation surprise layered on a geopolitical relief rally is a less clean setup than 2020's, and could cap the follow-through if the Fed leans hawkish on 06-17.
+
+### Risk Factors (consolidated)
+1. Hot May PPI (+1.1% vs +0.7% consensus) — inflationary cross-current 5 days before FOMC (06-17); could cap the Iran-de-escalation relief rally.
+2. VIX (~19.44) hasn't caught up to Thu's risk-on move — either VIX is sticky/lagging or the equity rally is overextended relative to vol pricing; watch for a VIX catch-down (bullish) vs. equity catch-down (bearish) resolution.
+3. Regime classifier (Caution, rule_fallback, slots=1) lags the Iran de-escalation catalyst — both shortlisted names (MU, AMD) are now in a post-rally, richer-valuation state than the screener's scoring window reflects, which is part of why both still fail R:R despite "risk-on" sector signals.
+4. AMD's bull case rests on a single BofA upgrade (06-11) not yet validated by the broader 48-analyst consensus — a one-bank call.
+5. MU's bear case (Goldman "high bar" into 06-24 earnings) plus a 36%-below-price consensus median — structural overvaluation vs. Street, 5th consecutive session flagging this.
+6. Both shortlisted candidates (MU, AMD) fail the hard 2:1 R:R floor — no forced entries; account remains 100% cash for a 4th consecutive session.
+7. Reddit egress still 403 (degrades sentiment-source depth); Gemini Flash quota exhausted again (3rd consecutive day) — macro via WebSearch fallback `[degraded: Gemini quota]`.
+
+### Decision
+**HOLD — no new entries.** Both screener-ranked candidates (MU, AMD) fail the hard 2:1 R:R floor even using the freshest and most bullish cited targets (MU 0.63:1 on the 52w-high vs. a consensus median 36% below price; AMD 0.98:1 on BofA's brand-new $560 PT). Tension noted: the Caution/rule_fallback regime (slots=1) and REDUCE_ONLY exposure recommendation sit awkwardly against the largest one-day risk-on catalyst of the week (Iran de-escalation, SPX +1.75%/Nasdaq +3.29%) — but the underlying R:R math for the only two names the screener surfaces is the binding constraint, not the regime label, so the HOLD stands regardless of which framing is "right." No watchlist additions — AMD (0.98:1) is the closer of the two; if it pulls back toward the $440s (pre-pop range) while BofA's $560 PT holds, R:R would approach (560-440)/66≈1.8:1, still short of 2.0 but worth a price-alert re-check next session.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful (1 attempted for STEP 4 oil query, HTTP 429 — quota exhausted, 3rd consecutive day) — fell back to native WebSearch for all macro queries.
+- NewsAPI: gather() called for MU+AMD (7+10 records) / Finnhub: 256+258 records / EDGAR: 15+15 records / Google News: 10+10 records / Reddit: 0 (403 both)
+- Fallback events: Gemini 429 (STEP 4) → WebSearch; Reddit 403 (both tickers); FTD detector skipped (`--json` flag not supported by script)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=fresh, age=56.1h (source=rule_fallback regardless — local_screener_v1)
+
+---
