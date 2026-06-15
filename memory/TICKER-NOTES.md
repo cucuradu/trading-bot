@@ -17,13 +17,15 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-06-12): Demoted 5th consecutive session — at $995.87, R:R on the only level above consensus (52w-high $1,089.29) is just 0.63:1 against the 15%-clamped ATR stop; consensus median $637.50 (40 analysts) is 36% below price. Goldman flagged "high bar" caution into 06-24 earnings (12d out). Iran de-escalation (Trump cancelled strikes) is a tailwind removing tail-risk, but doesn't fix the valuation/consensus gap. Do NOT chase. [Demoted: R:R 0.63:1. analyst_data.py + Finnhub Jun 12]
+- Thesis (2026-06-15): Demoted 6th consecutive session — at $981.61, R:R on Wolfe Research's brand-new $1,250 PT (06-11, +127% raise from $550) is 1.82:1 against the 15%-clamped ATR stop ($834.37) — closest MU has come to the 2:1 floor, but still 0.18 short. 40-analyst consensus median $846 (up from $637.50 on 06-12, reconciled — genuine new PT raises) still implies −13.8% from price, independently failing B3. Goldman's "high bar" caution into 06-24 earnings (9d) remains unaddressed. Do NOT chase. [Demoted: R:R 1.82:1. analyst_data.py + WebSearch (Wolfe PT confirmation) Jun 15]
 - Recent catalysts:
+  - 2026-06-15: Iran-relief oil collapse (WTI −5.6%) lifts memory/chip names premarket; "MU leads memory chip rally, DRAM surges 6%" [Finnhub headline — unverified primary source]
+  - 2026-06-11: Wolfe Research raised PT $550→$1,250 (+127%, "Outperform") — DRAM pricing +200% CY26/+17.5% CY27, NAND +216%/+17%, 2027E rev $226.5B/EPS $135, bit-shipment capped by cleanroom space through 2027 [Investing.com/TipRanks/GuruFocus Jun 11]
   - 2026-06-12: Goldman cautious into 06-24 earnings ("high bar"); memory stocks (MU/STX/WDC/SNDK) rallied on Iran peace-deal hopes + DRAM/NAND price-hike thesis [Finnhub Jun 12]
   - 2026-06-09: small insider BUY (Bjorlin, 63sh, immaterial) [Finnhub Jun 12]
-  - 2026-06-08: +7.1% premarket on SK Hynix-NVDA HBM deal headline; still fails R:R at both chase and no-chase prices [Barron's Jun 8]
-  - 2026-06-07: CEO Mehrotra sold ~40,000 sh (~$38M, pre-planned 10b5-1) [Motley Fool Jun 7]
-  - 2026-06-24: Q4 FY2026 earnings report (next — 12d; key re-entry catalyst, "could go parabolic" per Motley Fool)
+  - 2026-06-24: Q4 FY2026 earnings report (next — 9d; key re-entry catalyst, "could go parabolic" per Motley Fool)
+  <!-- archive: 2026-06-08: +7.1% premarket on SK Hynix-NVDA HBM deal headline; still fails R:R at both chase and no-chase prices -->
+  <!-- archive: 2026-06-07: CEO Mehrotra sold ~40,000 sh (~$38M, pre-planned 10b5-1) -->
   <!-- archive: 2026-06-05: Screener #1 (ml 1.36) but demoted — R:R 0.87:1; hot NFP +251K adds yield pressure -->
   <!-- archive: 2026-06-03: Morgan Stanley raises MU PT to $1,050; Susquehanna to $1,750 (5/29) -->
   <!-- archive: 2026-06-04: AVGO AH infra-software miss; MU trailing stop hit $986.18 at 13:59 ET -->
@@ -31,13 +33,14 @@ Conventions:
 - Trade history:
   - 2026-06-04: r=0.45, regime=Neutral, reason="trailing stop hit on AVGO software miss contagion; HBM thesis intact, catalyst-specific break; peak was +1.25R (HWM $1,088) but 9.47% trail left too much gap-down room"
 - Open thesis questions:
-  - Consensus median ($637.50) sits 36% below price — structural mismatch unchanged for 2 weeks. What would move the Street consensus up enough (or price down enough) to clear 2:1?
+  - Wolfe's unprecedented $1,250 PT (06-11) got MU to 1.82:1, closest yet to 2:1 — would a further consensus catch-up (median above $846, e.g. other banks following Wolfe) or a pullback toward ~$900 (R:R≈2.6:1 vs $1,250) be the trigger to clear the floor first?
   - Does 06-24 earnings (Goldman "high bar") become the volatility event that either validates a pullback entry or confirms the bear case?
-  - Iran de-escalation removes a tail-risk overhang — does this matter if the consensus/valuation gate is the binding constraint regardless?
+  - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-06-12): Demoted — R:R 0.98:1 even using BofA's brand-new $560 PT (Vivek Arya, 06-11, "top CPU pick" on $170B 2030 server-CPU TAM), vs ATR-clamped 15% stop ($415.18). AMD +8% Thu (06-11) to $488.45 on the BofA call + broad Iran-de-escalation chip rally; this is the level AMD was trading at before the prior held position's exit (entry was $493.80, exited 06-09/06-10 on thesis-break). Stale 48-analyst consensus ($487.50 median) doesn't yet reflect BofA's raise — single-bank call, not yet broad re-rating. Close but still fails 2:1. [Demoted: R:R 0.98:1. WebSearch + analyst_data.py Jun 12]
+- Thesis (2026-06-15): Demoted — R:R 0.82:1: entry $511.57 / stop $434.83 (−15.0% ATR-clamped) / target $575 (Citi, 06-12, fresh "Buy" upgrade) (+12.4%). Two banks now above the 48-analyst consensus (BofA $560 06-11, Citi $575 06-12; consensus median $490, −4.2% implied) — narrower "single-bank-call" gap than 06-12, but absolute R:R still far below 2:1. Decisively worse than MU (1.82:1) today. [Demoted: R:R 0.82:1. analyst_data.py Jun 15]
 - Recent catalysts:
+  - 2026-06-12: Citi upgraded to Buy, raised PT to $575 — "AMD is no longer just a CPU stock", bigger GPU opportunity [Reuters/Benzinga Jun 12]
   - 2026-06-11: BofA (Vivek Arya) raised PT $500→$560, reiterated Buy, "top CPU pick" on $170B 2030 server-CPU TAM (agentic AI demand) — AMD +8% to $488.40 [TipRanks/247WallSt Jun 11]
   - 2026-06-10: ARK (Cathie Wood) trimmed AMD, added NVDA same week [Motley Fool Jun 10]
   - 2026-06-02: small insider SELLs (Denzel Nora 06-02/05-29, Norrod Forrest 05-20) — routine pattern, not new signal [Finnhub Jun 12]
@@ -49,9 +52,9 @@ Conventions:
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes: COMPUTEX exhaustion + NFP yield spike + AVGO contagion)
 - Open thesis questions:
-  - Will other sell-side desks follow BofA's $560 PT within the next week (validating the re-rating) or does the +8% Thu pop mean-revert toward $460-470?
-  - If AMD pulls back toward the $440s while $560 PT holds, R:R approaches ~1.8:1 — still short of 2.0 but worth a price-alert re-check.
-  - Single most-likely invalidator: no follow-through from other analysts on the BofA upgrade within 5 trading days.
+  - Two banks (BofA $560, Citi $575) now above consensus ($490) — does a third follow within the week, lifting the consensus median itself toward $550+?
+  - AMD now at $511.57 (above both the BofA and pre-Citi entry levels) — if it pulls back toward the $460-470 pre-pop range while $575 PT holds, R:R approaches (575-465)/70≈1.6:1 — still short of 2.0 but worth a price-alert re-check.
+  - Single most-likely invalidator: no follow-through from a third major desk on the BofA/Citi upgrades within 5 trading days, suggesting the re-rating stalls below consensus-moving threshold.
 
 ---
 

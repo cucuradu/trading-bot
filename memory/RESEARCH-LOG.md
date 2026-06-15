@@ -2341,3 +2341,95 @@ Recent news (Jun 11): AMD +8% to $488.40 on BofA's $170B 2030 server-CPU TAM cal
 - ml_insights: status=fresh, age=56.1h (source=rule_fallback regardless — local_screener_v1)
 
 ---
+
+## 2026-06-15 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1, deployment: 75%) (fallback_reason: ml unavailable; using local_screener_v1)
+**ML staleness:** status=stale_degrade, age=128.1h (≥120h threshold) — trade_slots dropped 2→1 for today (hard gate).
+**Pre-macro:** cap_active=true (event: FOMC on 2026-06-17, days_to_event=2) → 40% deployment cap, candidates capped at MIN(slots=1, 2)=1.
+**Breadth/Sector:** breadth=46.8/100 (Neutral) | sector=risk-on score=71 phase=early (confidence low) | divergence_flag=true (cyclical/defensive groups disagree internally)
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+**FTD:** unavailable (`/tmp/ftd.json` empty despite FMP_API_KEY set — skipped)
+**Egress:** edgar=ok, google_news=ok, reddit=http_403
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- Deployment = 0% (7th consecutive cash session since 06-09/06-10 exits)
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ml stale 128h → slots cut 2→1). Dominant overnight catalyst: reports of a preliminary US-Iran understanding (Strait of Hormuz reopening) sent oil sharply lower — WTI $80.14 (−5.6%), Brent down >4% to the low-$80s, Brent's lowest since March [TradingEconomics/SundayGuardian, 06-15]. Equity futures mixed/soft (one source flagged ESM26 −0.41% premarket, though headlines also show "Stocks Rise Pre-Bell as US, Iran Reach Peace Deal" [06-15] — directional disagreement, treat SPX open as uncertain). VIX ~19.2-19.4 (futures), 30Y yield ~4.97% (06-12 close, no fresher print). FOMC meeting begins tomorrow (06-16), decision Wed 06-17 — pre-macro cap active. Today's calendar: May industrial production, prelim June UMich consumer sentiment (10am ET) — both second-tier. Memory/chip names leading premarket on the Iran-relief oil collapse (MU, SNDK, STX). Breadth 46.8/100 (Neutral, +0.6 vs 06-12's 46.2) with persistent S&P-vs-breadth divergence; sector rotation flat risk-on (score 71 vs 70 on 06-12, early-cycle, low confidence).
+vs 06-12: oil down sharply further (Brent 89.38→~$82, WTI <86→$80.14, both new 2026 lows on Iran deal progress vs prior "cancelled strikes" headline); VIX flat (~19.2-19.4 vs ~19.44); yields flat (~4.97%); regime flipped Caution→Neutral (deployment target 50%→75%) but ml staleness caps effective slots at 1, same as 06-12's Caution slots=1 — net effect on today's candidate cap is unchanged.
+
+### Sector Picture
+- Top 3 (1mo): XLV +4.84% (Trend, score 0.356), XLF +4.61% (Trend, score 0.336), XLK +4.50% (Choppy, score 0.336)
+- Bottom 3: XLC −4.38% (Bear, score −0.332), XLY −1.79% (Bear, score −0.195), XLU −0.31% (Bear, score −0.071)
+- Agreement: full agreement between yfinance 1mo momentum and ml-classifier regime tags for both top-3 and bottom-3 today (XLK remains Choppy not Trend despite +4.5% momentum — 4th+ consecutive session of this specific disagreement, but ranking order otherwise matches).
+
+### Candidates
+
+Screener (source=local_screener_v1, slots=1): top-10 = MU(1.33), AMD(1.09), SMH(0.74), MS(0.69), CAT(0.66), MRK(0.51), GS(0.46), AMGN(0.45), IWM(0.35), QQQ(0.34). Watchlist: empty. Shortlist returned by screener: **MU, AMD** (both XLK) — same pair as 06-12, 6th consecutive session for MU.
+
+#### MU (XLK, $981.61, prev close $989.60)
+
+**Setup:** 9.9% below 52w-high $1,089.29. ATR(14)=$73.77 (7.52% of price); stop_pct_2_5x=18.79% → clamped to **15.0% ceiling** → stop $834.37 (risk $147.24/sh). Earnings 2026-06-24 (9d, no blackout yet).
+
+**Sources scanned (4):** 245 Finnhub / 10 Google News / 2 NewsAPI / 15 EDGAR / 0 Reddit (403) / 0 Gemini (429, quota exhausted both STEP4 attempts).
+
+Recent news (06-11→06-15): Memory/chip names leading today's Iran-relief rally — "Micron Stock Leads Memory Chip Rally Amid Iran Relief – DRAM Surges 6%" [Finnhub, 06-15, headline unverified primary source]. Wolfe Research raised PT $550→$1,250 (06-11, "Outperform"), a 127% increase, citing a memory-model update: DRAM pricing +200% (CY26)/+17.5% (CY27), NAND +216%/+17%, 2027 estimates $226.5B revenue / $135 EPS, bit-shipment growth capped by cleanroom space through 2027 [Investing.com/TipRanks/GuruFocus, 06-11 — confirmed via WebSearch follow-up]. Goldman remains cautious into 06-24 earnings ("high bar") [Finnhub, 06-12]. CEO Mehrotra's pre-planned 10b5-1 sales continue (small lots, late May/early June).
+
+**Bull case (cited):** Wolfe's massive PT raise ($550→$1,250, 06-11) reflects a structural DRAM/NAND pricing super-cycle (+200%/+216% CY26) with bit-shipment growth supply-constrained through 2027 — a fundamentally different framing than prior "AI memory demand" narratives [TipRanks/GuruFocus 06-11]. Iran de-escalation (oil −5.6% today) removes a tail-risk overhang on the broader AI-capex trade. MU leading today's memory-sector premarket rally [Finnhub 06-15 — unverified].
+**Bear case (cited):** Goldman's "high bar" caution into the 06-24 print (9 days out) remains unaddressed by Wolfe's note [Finnhub 06-12]. 40-analyst consensus median $846 (yfinance, today) is still 13.8% *below* current price — the broader Street has not caught up to even a fraction of Wolfe's thesis. Stock is already 9.9% off its 52w high after a multi-month run; any earnings disappointment compounds both the valuation gap and the post-Wolfe expectations reset.
+**Disconfirming evidence to watch:** any pre-06-24 guide-down, a DRAM/NAND spot-price print that fails to confirm Wolfe's +200%/+216% assumptions, or a peer downgrade reiterating Goldman's "high bar" framing.
+**Catalysts ahead (14d):** Q4 FY26 earnings 06-24 (9d) — inside window, not yet blacked out.
+
+**Data check:** 40-analyst consensus median moved $637.50 (06-12 log) → $846.00 (today, yfinance) — a +32.7% relative jump, >25% threshold, requires reconciliation. Resolved: this is consistent with genuine new analyst actions, not a data artifact — Wolfe's $550→$1,250 raise (06-11) plus at least one other "Top Bank Doubles Micron Price Target" headline [Finnhub 06-12] are dated, named PT increases in the same window that would mechanically lift the 40-analyst aggregate. Both the 06-12 and today readings point the same direction (consensus catching up, still below price) — kept $846.00 as current value, no further query needed.
+
+**Critique:**
+**Strongest counter to the bull case:** even after Wolfe's unprecedented 127% PT raise (06-11, $550→$1,250, the largest single-analyst revision logged this cycle), the 40-analyst consensus median ($846) only moved to −13.8% below spot — the Street broadly has NOT validated even a partial re-rating toward Wolfe's thesis, and MU is up >1,000% YTD into a 06-24 print Goldman has explicitly flagged as a "high bar" (06-12, unaddressed since). A name this extended, with consensus still double-digit-percent below price even after the most dramatic PT raise of the cycle, is one disappointing data point from a sharp reversal.
+**Weakly-sourced or unsourced claims:** "DRAM Surges 6%" / "MU Stock Leads Memory Chip Rally Amid Iran Relief" [Finnhub headline, 06-15] — tag as `[Finnhub headline — unverified primary source]`, no named exchange/data-provider cited for the 6% DRAM figure.
+**Single most-likely invalidator (next 5 trading days):** any data point between now and 06-24 (DRAM/NAND spot pricing, peer guidance, or a sell-side note) that fails to confirm Wolfe's +200% CY26 DRAM-pricing assumption would reopen the consensus/price gap and likely trigger a sharp pullback given the stock's extended YTD run.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 20% (currently 0%)
+- 30d correlation with existing positions: N/A — 0 open positions (100% cash)
+- Sector cap status: 0/2 (XLK) — no cap constraint
+- **Shared-catalyst flag:** MU and AMD (the only other shortlisted name) are both XLK / "AI-capex, memory & semiconductor demand" — same factor bet as every session since 06-08. Moot here since MU alone is being evaluated (slots=1) and demotes regardless.
+
+**R:R math:** entry $981.61 / stop $834.37 (−15.0%, ATR-clamped) / target $1,250 (Wolfe Research, 06-11, "Outperform", cited) (+27.3%) / **R:R = 1.82:1** / max risk (20% position ≈ $20,094 × 15% ≈ $3,014).
+- **Hard 2:1 floor fails** (1.82 < 2.0) — closest MU has come to clearing the floor in 6 consecutive sessions (prior best was 0.63:1 on 06-12 using the 52w-high), driven entirely by Wolfe's unprecedented PT raise, but still 0.18 short. Consensus median ($846, −13.8% implied) independently fails B3 (consensus implies negative return) — Wolfe's number is the only level that gets MU close, and even that falls short.
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Gate-history audit:** MU has been demoted on the same R:R/B3 mismatch every session 06-03, 06-04 (held, exited via trailing stop), 06-08, 06-11 (implicit), 06-12, and now 06-15 — no entry gate was ever set since it has never cleared the floor. R:R improved materially today (0.63→1.82) but no gate-creep concern; this is a genuine fundamental shift (Wolfe re-rating) still falling short.
+
+**Decision:** **Demoted** — R:R 1.82:1 on Wolfe's brand-new $1,250 PT (06-11, +127% raise), the closest MU has come to the 2:1 floor in 6 sessions, but still 0.18 short; consensus median ($846) still implies −13.8% and independently fails B3.
+
+### Candidates dropped (and why)
+- **AMD** — R:R 0.82:1: entry $511.57 / stop $434.83 (−15.0%, ATR-clamped) / target $575 (Citi, 06-12, fresh "Buy" upgrade, cited) (+12.4%) / max risk ≈ $3,014. Two banks now above the 48-analyst consensus (BofA $560 06-11, Citi $575 06-12; consensus median $490, −4.2% implied) — narrower "single-bank-call" gap than 06-12, but the absolute R:R is still far below the 2:1 floor (+12.4% upside vs −15% stop). Demoted, same conclusion as 06-12 with marginally better analyst breadth.
+- **SMH, MS, CAT, MRK, GS, AMGN, IWM, QQQ** — ranked below MU/AMD on the screener; not deep-dived because slots=1 (pre-macro cap + ml staleness) and both top-2 candidates demote on the hard R:R/B3 floor — no further candidates needed since decision is HOLD regardless.
+
+### Historical Analog
+**Analog:** May 12, 2025 — the US-China "Geneva" tariff-truce announcement (both sides agreeing to a 90-day reduction in reciprocal tariffs from triple-digit levels to ~10-30%) triggered a sharp risk-on rally: SPX +3.3% on the day, Nasdaq +4.4%, with semiconductors and other tariff-exposed cyclicals leading; the announcement landed in the same week as ongoing Fed commentary ahead of the June 2025 FOMC, where the Fed held rates and reiterated a "wait and see" stance on tariff-driven inflation.
+**What followed:** SPX continued grinding higher over the following 10 trading days (+~2% additional), with semiconductors among the best-performing groups, before consolidating into the June FOMC meeting as the Fed's hawkish-leaning patience capped further multiple expansion; 20-day follow-through was modestly positive but choppier than the initial pop.
+**Why this time might differ:** today's Iran de-escalation is paired with an outright oil-price *collapse* (WTI −5.6% to $80.14, a 2026 low) rather than just a tariff-relief signal — a disinflationary input cost shock landing 2 days before FOMC could plausibly read as more dovish-friendly for the Fed than the 2025 tariff-truce backdrop (which carried lingering tariff-inflation risk into the Fed's deliberations).
+
+### Risk Factors (consolidated)
+1. FOMC decision Wed 06-17 (2 days) — pre-macro cap active (40% deployment ceiling, candidates capped at 1); moot today since deployment is 0%.
+2. ml_insights stale_degrade (128.1h, ≥120h threshold) — local PC has not refreshed in >5 days; trade_slots cut 2→1 (hard gate). Flag for user to refresh local PC.
+3. Oil collapse (WTI −5.6% to $80.14, 2026 low) on Iran-deal progress — bullish for broad equities/semis (today's memory-stock leadership) but a fresh headwind for XLE (already Bear regime, bottom-3 momentum not shown today but persistently weak).
+4. MU R:R 1.82:1 (Wolfe's unprecedented $550→$1,250 PT raise, 06-11) — closest to the 2:1 floor in 6 sessions but still fails; consensus median ($846) independently implies −13.8% (B3).
+5. AMD R:R 0.82:1 (Citi $575 PT, 06-12) — fails floor decisively despite a second bank (Citi) now above the stale consensus.
+6. Exposure-coach REDUCE_ONLY/37% ceiling/VALUE bias vs. regime's Neutral/75% deployment target — tension noted but moot at 0% deployment; both MU and AMD demote on R:R regardless of which framing governs.
+7. Reddit egress still 403 (persistent, 4th+ session) — sentiment-source depth degraded; Gemini Flash quota exhausted again (STEP4, both attempts 429) — macro via WebSearch fallback `[degraded: Gemini quota]`.
+
+### Decision
+**HOLD — no new entries.** The single pre-macro-capped candidate slot (MU, screener #1, slots=1 after ml-staleness degrade) demotes at R:R 1.82:1 on Wolfe Research's unprecedented $550→$1,250 PT raise (06-11) — the closest MU has come to the 2:1 floor in 6 consecutive sessions, but still 0.18 short, and consensus median ($846) independently implies −13.8% (B3 fail). AMD (R:R 0.82:1 on Citi's fresh $575 PT) is decisively worse. Account remains 100% cash, 7th consecutive HOLD session. No watchlist additions — MU is the closest-to-clearing name on record; if the 06-24 earnings print or further sell-side PT increases push the consensus median above spot (or MU pulls back toward ~$900 while the $1,250 target holds, which would push R:R toward (1250-900)/135≈2.6:1), re-evaluate immediately as a watchlist candidate.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful (2 attempted at STEP4 — SPX/VIX/yield and oil queries — both HTTP 429 quota exhausted) → fell back to native WebSearch (3 macro queries + 1 follow-up confirming Wolfe's MU PT raise).
+- NewsAPI: gather() MU+AMD (2+10 records) / Finnhub: 245+248 records / EDGAR: 15+15 / Google News: 10+10 / Reddit: 0 (403 both)
+- Fallback events: Gemini 429 (both STEP4 queries) → WebSearch; Reddit 403 (gather, both tickers); Finnhub upgrade-downgrade endpoint 403 (both tickers, beyond egress-probe scope); FTD detector output empty despite FMP_API_KEY set — skipped
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=128.1h, slots cut 2→1
+
+---
