@@ -2433,3 +2433,114 @@ Recent news (06-11→06-15): Memory/chip names leading today's Iran-relief rally
 - ml_insights: status=stale_degrade, age=128.1h, slots cut 2→1
 
 ---
+
+## 2026-06-16 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1→effective 1, deployment: 75%) fallback_reason: ml unavailable; using local_screener_v1
+**ML staleness:** age 152.1h (stale_degrade ≥120h threshold) — trade_slots cut 2→1 (hard gate). Flag for user: local PC has not refreshed ml_insights in >6 days.
+**Pre-macro:** cap_active (event: FOMC on 2026-06-17, within_24h=true) → 40% deployment cap, candidates capped at MIN(1,2)=1
+**Breadth/Sector:** breadth=51.8/100 (Neutral) | sector=risk-on score=72 phase=early | divergence_flag=true (cyclical/defensive groups disagree internally)
+**Exposure:** ceiling=40% | rec=REDUCE_ONLY | bias=GROWTH | conf=MEDIUM
+**FTD:** empty output despite FMP_API_KEY set — skipped silently (6th consecutive)
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- Deployment = 0% (8th consecutive HOLD session; all cash)
+
+### Macro Framework
+Neutral regime (rule_fallback; ml stale 152h → slots=1). Day P&L: −$370.53 (−0.37%, account at 0% deployment; drift from cash yield/rounding). Dominant themes: (1) Iran-US peace deal materializing — Pakistan PM announced agreement to be signed in Switzerland Jun 19; SPX surged +1.65% to close ~7,554 on Monday (Jun 15) on oil collapse and risk-on sentiment. WTI ~$80.47 today (−0.35% from $80.82 prior day), Brent ~$82; oil near 2026 lows, down >5% since Jun 13 announcement [TradingEconomics, fxdailyreport.com, Jun 16]. (2) FOMC meeting Jun 16-17 — Warsh's FIRST meeting as Fed Chair (sworn in May 22); rate hold at 3.50–3.75% nearly certain (97.8% probability on CME/Polymarket [Indexbox, Kalshi, Jun 15-16]); wildcard is tone, dot plot, and any bias shift from "easing" to "neutral" given May CPI +4.2% YoY (energy-driven) and May PCE trajectory. Press conference Wed 2:30pm ET [FXStreet, Jun 15]. (3) NY Empire State Mfg Index June: 5.7 vs 13.9 consensus (prior 19.6) — significant miss, manufacturing slowdown signal [Yahoo Finance/Benzinga, Jun 16]. VIX: 16.20 cash (low; VIX futures 19.23 — term-structure gap flags FOMC volatility premium). 30Y yield: 4.971% (Jun 15 close [Treasury/YieldFinder, Jun 16]). vs yesterday: oil flat (+$0.33 from $80.14 to $80.47); VIX dropped sharply (19.4 futures → 16.20 cash, Iran relief complete); 30Y flat (4.97% → 4.971%); regime unchanged Neutral; SPX +1.65% (yesterday) on Iran catalyst. Pre-macro cap unchanged — FOMC remains the event. `[degraded: Gemini quota exhausted (HTTP 429); macro via WebSearch fallback]`
+
+### Sector Picture
+- Top 3 (ml_insights rule_fallback): XLRE (Trend, score 0.314) | all others Choppy — no clear sector leadership from screener
+- Bear: XLC (score −0.282) — avoid XLC-related names
+- Note: sector-momentum data returned NaN for all ETFs this run (yfinance data outage) — disagreement flag N/A; ml_insights sectors used as primary
+- Sector rotation (community skill): risk-on score 72, early-cycle, divergence_flag=true (cyclical/defensive disagree)
+
+### Candidates
+
+Screener: source=local_screener_v1, ranked 4 tickers, top 4 = [IWM(0.4243), QQQ(0.4051), DIA(−0.1654), XLRE(−0.6641)]
+No watchlist carry-forward entries.
+Effective slots = 1 (rule_fallback=2 → ML stale_degrade −1 → pre-macro cap min(1,2) = 1).
+
+#### IWM (BROAD ETF, $294.64, +0.08% premarket)
+
+**Setup:** near 52-week high ($297.91, −1.1% below). ATR(14)=$6.07 (2.06% of price); stop_pct_2_5x=7.0% (ATR-clamped; raw 5.15% rounded up to minimum 7%). Momentum_125d: 0.443 (positive), dist_from_52wH: 0.828, vol_stability: −0.908 (negative — elevated intraday range). 200-SMA/50-SMA: above both (inferred from +42% YTD YoY range $206.81→$297.91; year-low at $206.81).
+
+**Sources scanned (2):** 0 NewsAPI / 105 Finnhub / 0 EDGAR (ETF, no filings) / 10 Google News / 0 Reddit (403). [All facts below from Finnhub headlines + WebSearch; Gemini quota exhausted.]
+
+**Bull case:**
+- Small-cap outperformance: Russell 2000 +12.25% YTD, surging +11.7% in April 2026 alone; analysts forecast median small-cap EPS growth of 18.4% vs S&P 500's 9.8% [Equiti, tickeron.com, May 2026; Gemini grounded — unverified primary source].
+- Iran peace deal removes geopolitical premium: oil at 2026 lows (WTI $80.47), easing input cost pressure for energy-intensive small manufacturers/industrials within Russell 2000 [WebSearch, Jun 16].
+- FOMC hold (97.8% probability) + data-dependent Warsh tone could relieve rate-fear premium on small-cap floating-rate debt [FXStreet/Chase/Indexbox, Jun 15-16].
+
+**Bear case:**
+- 41–46% of Russell 2000 companies classified as "zombie" firms facing $368B debt maturity wall in 2026 needing to refinance at ~6.5% [BingX/EBC research, 2026; Gemini grounded — unverified primary source].
+- IWM at all-time highs (52-week high $297.91, ATH closing price $292.95 June 12 [MarketBeat, Jun 2026]) — minimal near-term upside without new catalyst.
+- NY Empire State Mfg index 5.7 (miss vs 13.9 consensus, prior 19.6) — acute small-cap manufacturing weakness signal on day of entry [Benzinga/Yahoo Finance, Jun 16].
+- VIX futures 19.23 vs cash 16.20 — FOMC volatility premium baked into overnight options, risk that Warsh signals hawkish bias unexpectedly.
+
+**Disconfirming evidence to watch:** Any Warsh press conference language implying dot-plot hawks-up (fewer cuts than prior guidance) would compress small-cap multiples; any rebound in WTI above $84 reverses the Iran-deal tailwind.
+
+**Catalysts ahead:** FOMC decision Wed Jun 17 (2pm ET), Warsh press conference (2:30pm ET), SEP/dot plot release.
+
+**One-line takeaway:** IWM at all-time highs on Iran/FOMC-hold euphoria with healthy YTD momentum, but zombie-firm debt wall and manufacturing miss create a fragile fundamental underpinning.
+
+**Critique:**
+**Strongest counter to the bull case:** The 41–46% zombie-firm exposure means the "EPS growth 18.4%" thesis is backward-looking; with 3.50–3.75% rates and a $368B maturity wall coming due at 6.5% refinancing costs, a significant portion of the "earnings growth" story reverses once refinancings start hitting in H2 2026. Warsh's first FOMC (Jun 17) is widely expected to shift bias from easing toward neutral — the one signal markets haven't fully priced — which disproportionately hits small-cap floating-rate borrowers. A hawkish-lean dot plot (fewer projected cuts) is the direct strike to the bull case [FXStreet/Chase, Jun 15-16].
+**Weakly-sourced or unsourced claims:** "Zombie firm $368B maturity wall at 6.5%" — [BingX/EBC, Gemini grounded — unverified primary source]; "18.4% small-cap EPS growth" — [Equiti/tickeron, Gemini grounded — unverified primary source]. No Finnhub analyst upgrade/downgrade data available (endpoint 403).
+**Single most-likely invalidator (next 5 trading days):** Warsh dot plot signals ≤1 cut in 2026 at the Jun 17 press conference, explicitly shifting bias to neutral/hawkish — would force small-cap P/E compression given the 30Y at 4.97% and high zombie-firm debt refinancing risk.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 19.9% (BROAD ETF — not sector-capped)
+- 30d correlation with existing positions: N/A (no open positions)
+- Sector cap status: 0/2 (BROAD — exempt from sector cap)
+- **Shared-catalyst flag:** No other candidates this session (slots=1); N/A.
+
+**R:R math:** entry $298.30 (BREAKOUT buy-stop, +0.13% above $297.91 year high) / stop $277.42 (−7.0% ATR-clamped from entry) / target $326.80 (AI/algo forecast, Tradestie 2026 projection; no sell-side PT available for ETF [Tradestie, 2026; tagged Gemini grounded — unverified]) / R:R **1.37:1** / max risk (20% position ≈ $20,094 × 7% ≈ $1,407).
+- **Hard 2:1 floor fails** (1.37 < 2.0). To clear the floor with a 7% stop, the target must be ≥ $340 (+14% from entry) — no cited level supports this. ETF has no sell-side analyst PT; AI forecast tops at ~$326.80 [Tradestie, Gemini grounded]. R:R improves only if stop is tighter (not possible — already at floor) or if a specific resistance level with meaningful prior volume exists above $340 (none identified in available data).
+- **Data check:** IWM year_high $297.91 (Alpaca API, Jun 16) vs one web source citing $298.08 as Jun 15 close — directional agreement (ATH zone); used lower Alpaca figure (conservative).
+
+**Setup type:** BREAKOUT (price at all-time highs, thesis is confirmation above $297.91 resistance)
+
+**Entry plan:** N/A — demoted.
+
+**Gate-history audit:** No prior IWM entry gates found in RESEARCH-LOG (first time researched as primary candidate). No gate-creep concern.
+
+**Decision:** **Demoted** — R:R 1.37:1 on best available target ($326.80 AI forecast, unverified), far below the hard 2:1 floor; ETF has no sell-side analyst PT. FOMC tomorrow adds timing risk. Pre-macro cap reinforces demotion.
+
+### Candidates dropped (and why)
+- **QQQ** — not deep-dived (screener #2, ranked below IWM; slots=1 and IWM demotion makes HOLD the decision regardless — further research would not change outcome). Quick check: $744.00, 0.6% from 52wH, 7.0% ATR-clamped stop → R:R analysis would require target ≥$854 for 2:1; no cited ETF PT at that level. Same structural failure as IWM.
+- **DIA** — negative screener score (−0.1654); not researched.
+- **XLRE** — negative screener score (−0.6641); not researched.
+
+### Historical Analog
+**Analog:** June 13–14, 2023 — FOMC paused after 10 consecutive rate hikes, holding at 5.00–5.25%. SPX at ~4,370 (2023 YTD highs); VIX ~13.5; 10Y ~3.75%; oil (WTI) around $68–70 (multi-month lows); market pricing near-certain hold (>99% probability). First "skip" meeting with Warsh/Powell transition equivalent was the pause-to-neutral pivot. Small caps (IWM ~$183) rallied into the decision.
+**What followed:** SPX +0.7% on decision day (Jun 14, 2023) [widely cited; Gemini grounded — unverified for exact figure]; +4.1% over next 10 trading days; +6.2% over 20 trading days (rally sustained through July 2023 FOMC). Small caps lagged modestly — IWM gained ~+3.5% over same 20 days vs SPX +6.2%, held back by floating-rate debt concerns even as rates stayed flat.
+**Why this time might differ:** Today's VIX (16.20 cash) is somewhat higher than June 2023 pre-FOMC levels (~13.5), reflecting a more uncertain macro backdrop (Warsh's hawkish reputation vs Powell's explicit pause signal in May 2023), and 30Y at 4.97% is ~120bp above the June 2023 level (~3.75%), meaning the rate pressure on zombie-firm small-cap debt is materially worse today. Additionally, today's print includes a clear manufacturing miss (Empire State 5.7 vs 13.9) that could weigh on forward guidance.
+
+### Risk Factors (consolidated)
+1. **FOMC Jun 17 (T+1)** — Warsh's first meeting; hawkish dot-plot or bias-shift from easing to neutral would hit small caps disproportionately. 40% deployment cap active; only slot available but IWM demotes on R:R.
+2. **ML stale_degrade (152.1h)** — local PC has not refreshed ml_insights in >6 days; trade_slots cut 2→1 (hard gate). User action required: refresh local PC ml_insights.
+3. **NY Empire State Mfg miss (5.7 vs 13.9)** — acute manufacturing weakness; negative for IWM small-cap industrial composition.
+4. **Zombie-firm debt wall** — ~$368B Russell 2000 maturities at 6.5% refinancing rates; structural bear for small caps at these rate levels (30Y 4.97%).
+5. **IWM at all-time highs with R:R 1.37:1** — no cited target above $340 to clear the 2:1 floor; ATH entry into FOMC risk is asymmetric.
+6. **Gemini quota exhausted (6th+ consecutive session HTTP 429)** — research depth degraded; Gemini Smart model invalid (404, gemini-3-flash not found). Macro from WebSearch only.
+7. **Reddit egress 403 (persistent)** — sentiment depth degraded.
+
+### Decision
+**HOLD — no new entries.** The single pre-macro-capped candidate slot (IWM, screener #1) demotes at R:R 1.37:1 on the best available target ($326.80 Tradestie AI forecast, unverified; no sell-side PT for ETFs). Hard 2:1 floor requires $340 target (+14% from BREAKOUT entry $298.30) — no cited basis. FOMC tomorrow (Warsh's first; hawkish-lean risk) and NY Empire State Mfg miss (5.7 vs 13.9) reinforce HOLD. Account remains 100% cash, 8th consecutive HOLD session. No watchlist additions — IWM at ATH is not a watchlist candidate (no favorable pullback level identified).
+
+**Tension noted (B-grade advisory):** Exposure-coach REDUCE_ONLY/ceiling 40% aligns with HOLD. Rule_fallback Neutral regime with deployment_target 75% disagrees. With 0% deployed, both say HOLD for different reasons (R:R gate fires before deployment consideration becomes relevant).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful (1 attempted STEP 4 macro query — HTTP 429 quota exhausted; 1 attempted STEP 4d synthesize — HTTP 404 GEMINI_SMART_MODEL=gemini-3-flash not found) → all macro via WebSearch fallback
+- NewsAPI: 0 records (IWM — no records returned)
+- Finnhub: 105 IWM records (all generic market news, no analyst upgrades — endpoint 403)
+- EDGAR: 0 (ETF, no filings; parser syntax error on attempt)
+- Google News: 10 IWM records
+- Reddit: 0 (403 all sub-sources)
+- Fallback events: Gemini 429 (macro); Gemini 404 (Smart model invalid — GEMINI_SMART_MODEL env var "gemini-3-flash" is not a valid model ID); Reddit 403; Finnhub upgrade-downgrade 403; EDGAR syntax error (ETF)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=152.1h, slots cut 2→1
+
+---

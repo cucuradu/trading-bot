@@ -142,11 +142,16 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## IWM (BROAD)
-- Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
-- Recent catalysts: (none yet)
-- Open thesis questions: (none yet)
-- Trade history: (none yet)
-- Position-aware notes: (none yet)
+- Thesis (2026-06-16): At all-time highs ($294.64, −1.1% from 52wH $297.91); BREAKOUT setup thesis fails on R:R 1.37:1 (need $340 target for 2:1 vs 7% ATR-clamped stop; best AI forecast $326.80 [Tradestie]). Zombie-firm debt wall ($368B at 6.5% refinancing) and FOMC/Warsh hawkish risk are the structural bears. Screener top pick on momentum (YTD +12%) but not enterable pre-FOMC at ATH. [Demoted: R:R 1.37:1. WebSearch Jun 16]
+- Recent catalysts:
+  - 2026-06-16: Iran-US peace deal (signing in Switzerland Jun 19) — SPX +1.65%, oil at 2026 lows (WTI $80.47), IWM near ATH on risk-on
+  - 2026-06-17: FOMC decision (Warsh's first meeting as Chair) — rate hold expected; dot-plot/tone is the wildcard
+- Open thesis questions:
+  - Will Warsh's first dot plot shift bias from easing to neutral? (direct hit to small-cap floating-rate debt thesis)
+  - At what IWM pullback level does R:R clear 2:1 vs $326 target? (≈ $294 entry gives 7% stop to $273 → R:R = ($326−$294)/$21 = 1.52:1; still fails)
+  - Is there a cited sell-side level for IWM/Russell 2000 above $340 that would clear the floor?
+- Trade history: (none)
+- Position-aware notes: BROAD ETF — sector cap exempt; no correlation gate with other names
 
 ## JNJ (XLV)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
