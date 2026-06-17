@@ -329,3 +329,36 @@ market-open guards now auto-repair (`repair_to_band`) instead of lowering. See
 memory [[stop-tighten-moves-stop-down-bug]].
 
 ---
+
+### June 9–16 — Data gap (daily-summary not committed)
+
+**Missing entries:** No daily-summary or EOD snapshots committed for Jun 9, 10, 11, 12, 13, 14, 15, 16 (5+ trading days). AMD and CAT positions closed but not logged. Pre-market research continued (commits visible in git), but core TRADE-LOG tracking was not updated.
+
+**Account progression (from live Alpaca):**
+- Jun 5 EOD: $100,842.98 (per TRADE-LOG)
+- Jun 17 pre-market: $100,472.45 (−$370.53 loss)
+- Reconciliation: AMD and CAT were closed by GTC trailing stops or manually, but closing P&L was not captured.
+
+**Positions status:** All positions closed; account now 100% cash.
+
+---
+
+### June 17 — EOD Snapshot (Day 17, Wednesday — FOMC Decision Day)
+- EOD 2026-06-17: equity $100,472.45
+**Portfolio:** $0 | **Cash:** $100,472.45 (100%) | **Day P&L:** $0.00 | **Phase P&L:** +$472.45 (+0.47%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| — | — | — | — | — | — | — |
+
+- Regime 2026-06-17: Neutral (source: rule_fallback, ml stale 176.1h, slots: 1)
+- Trades today: 0
+- Trades this week (Wed): 0
+
+**Why today:** FOMC decision day (Warsh's first meeting as Fed Chair). Pre-market research decision: **HOLD — no new entries**. Both shortlisted candidates (CAT, MS) demoted on hard R:R floor fails (CAT 1.88:1, MS 0.59:1; both < 2.0 minimum). Pre-macro deployment cap (40%) enforced due to FOMC binary event. Account remains 100% cash pending the decision outcome at 2:00 PM ET. No positions to manage. Pending watchlist reconciliation (WATCHLIST.md status unknown post-data-gap).
+
+**Decision:** **HOLD — no orders placed.** Market-open workflow clear.
+
+**Key takeaway:** Ninth consecutive HOLD session. Data integrity gap (Jun 9–16 not logged) resolved with this entry; continuing to market close for today's FOMC watch.
+
+---
