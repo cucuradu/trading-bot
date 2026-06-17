@@ -87,17 +87,18 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-05): **HOLD, INTACT** — Data center power re-rating thesis fully insulated from NFP + semiconductor pressure. CAT −0.8% to $933 premarket (XLI/industrials resilience vs XLK −3.4%). Trail 7.97% HWM=$946.83 stop=$871.37 (6.6% buffer). Hot NFP +251K is CAT-supportive (strong labor = strong capex spending = data center buildout continues). Stop locks in +$3.66/sh gain (stop $871.37 > entry $867.71). No change to position; thesis intact.
+- Thesis (2026-06-17): Demoted — new ATH today ($961.33), pulled back to $945.46. R:R 1.88:1 on Evercore ISI's dated $1,103 target (05-09) against the unclamped 8.88% ATR stop ($861.54) — closest CAT has come to the 2:1 floor this cycle, but still short. Consensus median ($932.50, 19-analyst aggregate) sits below spot — broad Street view is "fully valued," even as named banks keep raising individual targets. FOMC today (Warsh's first) adds timing risk. Do NOT chase above $1,113 (the level that would clear 2:1 from this stop) without a fresh named-bank PT to support it. [Demoted: R:R 1.88:1. WebSearch (Evercore/TickerNerd PT confirmation) Jun 17]
 - Recent catalysts:
-  - 2026-06-04: Sector-wide pullback (AVGO contagion) did NOT impact CAT; +1.52% Jun 4 shows thesis isolation; consolidation into NFP [Jun 4]
+  - 2026-06-17: "$63B AI Backlog" headline reiterates the data-center power thesis already priced in since late May [Finnhub headline, 11:11Z]
+  - 2026-05-09: Evercore ISI raised PT $878→$1,103 [TipRanks/24-7 Wall St]
   - 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance
   - 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845
-  - 2026-06: Annual dividend increase expected (32nd consecutive)
+  <!-- archive: 2026-06-04/05: HOLD, INTACT — thesis insulated from NFP/AVGO contagion at $933, trail stop locking gains -->
 - Open thesis questions:
+  - Consensus median ($932.50) now below spot ($945.46) — does this resolve with a fresh median-moving (not just outlier) upgrade, or is the run overextended?
   - Q1 tariff costs $710M — will US-China escalation compound in Q2?
   - Resource Industries profit −39% YoY; can data center power fully offset?
-  - XLI sector Choppy (regime score 0.054); sector tailwind absent — thesis is CAT-specific not sector
-  - Single most-likely invalidator: US-China tariff escalation targeting industrial machinery category
+  - Single most-likely invalidator: hawkish FOMC dot-plot today triggering broad industrials/cyclicals pullback
 
 ## COST (XLP)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -216,16 +217,17 @@ Conventions:
 - Position-aware notes: XLV currently 0% exposure (fresh sector if entered); near-zero correlation with AMD/CAT (-0.02) — best factor diversification of any candidate screened to date.
 
 ## MS (XLF)
-- Thesis (2026-06-11): Still demoted — consensus PT median $205/mean $203.29 (21 analysts) is BELOW spot $208.30 (implies -1.6%/-2.4%, auto-fail B3). Even the lone bull PT $230 (KBW) only gives 1.49:1 against the 7% floor stop ($193.72). 5% off 52w high $219.16. No fresh analyst action since 06-08; data unchanged. [Demoted: consensus-implied negative + 1.49:1 best-case. analyst_data.py Jun 11]
+- Thesis (2026-06-17): Demoted again (4th consecutive session) — new ATH today ($222.30), now $220.83. R:R 0.59:1 on the highest individual analyst target found ($230, undated, S&P Global poll) against the 7%-floor stop ($205.37) — decisive fail, consensus-implied return still negative. Most recent dated PT (JPMorgan $187, 06-12) is below spot. Gap between consensus and price has only widened as the stock keeps climbing ($208.30→$220.83 since 06-11 while consensus moved $203→$203.29). [Demoted: R:R 0.59:1. WebSearch (S&P Global poll, JPM PT) Jun 17]
 - Recent catalysts:
-  - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance surfaced yet
-  - 2026-06-08: Confirmed still trading above its own consensus PT range; KBW (Konrad) sole bull at $230/+8.6% [Benzinga/MarketBeat via WebSearch]
-  - 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt
-  <!-- archive: none -->
+  - 2026-06-17: "$10 Trillion Wealth + SpaceX Boost" headline — narrative story, no quantified guidance, hasn't moved any published target [Finnhub headline, 01:11Z]
+  - 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot
+  - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance surfaced
+  - 2026-06-08: KBW (Konrad) sole bull at $230/+8.6% [Benzinga/MarketBeat via WebSearch]
+  <!-- archive: 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt -->
 - Open thesis questions:
-  - Consensus PT $203-205 < current $208.30 — needs a fresh analyst upgrade above ~$236 (+13%) to make the 7%-floor-stop math work at 2:1
-  - XLF sector Choppy (not Bear) — clears the hard filter, but provides no directional tailwind to close the PT gap
-  - Did the 06-09 Financials Conference produce any forward guidance that could move sell-side targets? (NewsAPI returned only ticker-collision noise on 06-11)
+  - Consensus ($203.29) vs spot ($220.83) gap now ~8.6% and widening — needs a fresh upgrade above ~$251.75 (+14%) to clear 2:1 against the 7%-floor stop
+  - XLF momentum strong (+5.04% 1mo) but not reflected in analyst targets catching up to price — momentum/valuation disconnect
+  - Did the "$10T wealth + SpaceX" story have any substance beyond a headline? (no detail surfaced this run)
 
 ## MSFT (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
