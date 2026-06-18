@@ -87,18 +87,19 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-17): Demoted — new ATH today ($961.33), pulled back to $945.46. R:R 1.88:1 on Evercore ISI's dated $1,103 target (05-09) against the unclamped 8.88% ATR stop ($861.54) — closest CAT has come to the 2:1 floor this cycle, but still short. Consensus median ($932.50, 19-analyst aggregate) sits below spot — broad Street view is "fully valued," even as named banks keep raising individual targets. FOMC today (Warsh's first) adds timing risk. Do NOT chase above $1,113 (the level that would clear 2:1 from this stop) without a fresh named-bank PT to support it. [Demoted: R:R 1.88:1. WebSearch (Evercore/TickerNerd PT confirmation) Jun 17]
+- Thesis (2026-06-18): Demoted again — near year-high ($955.92), up ~12% in 5 sessions / ~300% YTD. R:R 1.78:1 on Evercore ISI's still-unmoved $1,103 target (05-09) against the unclamped 8.66% ATR stop ($873.09) — worse than every prior session (1.88:1 on 06-17) purely on price drift; no fresh catalyst since the now-stale AI-backlog headline. New bear signal: simplywall.st DCF critique flags CAT as ~69% overvalued (06-16) — first explicit valuation pushback this cycle. Realized hawkish FOMC dot-plot (06-17) is the live invalidator risk for rate-sensitive industrials capex names. Do NOT chase above $1,113 (the level that would clear 2:1 from this stop) without a fresh named-bank PT. [Demoted: R:R 1.78:1. Finnhub/Google News gather + WebSearch, Jun 18]
 - Recent catalysts:
+  - 2026-06-16: simplywall.st DCF model flags CAT ~69% overvalued post AI-backlog re-rating [Google News]
   - 2026-06-17: "$63B AI Backlog" headline reiterates the data-center power thesis already priced in since late May [Finnhub headline, 11:11Z]
   - 2026-05-09: Evercore ISI raised PT $878→$1,103 [TipRanks/24-7 Wall St]
   - 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance
   - 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845
   <!-- archive: 2026-06-04/05: HOLD, INTACT — thesis insulated from NFP/AVGO contagion at $933, trail stop locking gains -->
 - Open thesis questions:
-  - Consensus median ($932.50) now below spot ($945.46) — does this resolve with a fresh median-moving (not just outlier) upgrade, or is the run overextended?
-  - Q1 tariff costs $710M — will US-China escalation compound in Q2?
+  - Evercore target ($1,103) is now ~15.4% above spot ($955.92), the widest the gap has been this cycle — does this resolve with a fresh median-moving upgrade, or is the run overextended into a hawkish-Fed week?
+  - Will the new "69% overvalued" critique gain traction with sell-side desks (a dated downgrade) or stay a single contrarian outlier?
   - Resource Industries profit −39% YoY; can data center power fully offset?
-  - Single most-likely invalidator: hawkish FOMC dot-plot today triggering broad industrials/cyclicals pullback
+  - Single most-likely invalidator: higher-for-longer rate narrative (post-FOMC dot-plot) triggering a broad industrials/cyclicals pullback before any new CAT-specific catalyst
 
 ## COST (XLP)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -217,17 +218,18 @@ Conventions:
 - Position-aware notes: XLV currently 0% exposure (fresh sector if entered); near-zero correlation with AMD/CAT (-0.02) — best factor diversification of any candidate screened to date.
 
 ## MS (XLF)
-- Thesis (2026-06-17): Demoted again (4th consecutive session) — new ATH today ($222.30), now $220.83. R:R 0.59:1 on the highest individual analyst target found ($230, undated, S&P Global poll) against the 7%-floor stop ($205.37) — decisive fail, consensus-implied return still negative. Most recent dated PT (JPMorgan $187, 06-12) is below spot. Gap between consensus and price has only widened as the stock keeps climbing ($208.30→$220.83 since 06-11 while consensus moved $203→$203.29). [Demoted: R:R 0.59:1. WebSearch (S&P Global poll, JPM PT) Jun 17]
+- Thesis (2026-06-18): Demoted again (5th consecutive session, worst reading yet) — near year-high ($224.96), rose through yesterday's broad −1.21% FOMC selloff ("ascends while market falls"). R:R 0.32:1 on the same undated $230 individual target against the 7%-floor stop ($209.21) — decisive fail. Most recent dated PT (JPMorgan $187, 06-12) still below spot; gap has only widened ($208.30→$220.83→$224.96 since 06-11 with no PT movement). [Demoted: R:R 0.32:1. Finnhub/Google News gather + WebSearch, Jun 18]
 - Recent catalysts:
+  - 2026-06-17: MS rose while the broader market fell on the hawkish FOMC dot-plot — relative-strength data point, not a new catalyst [Finnhub]
   - 2026-06-17: "$10 Trillion Wealth + SpaceX Boost" headline — narrative story, no quantified guidance, hasn't moved any published target [Finnhub headline, 01:11Z]
   - 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot
   - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance surfaced
   - 2026-06-08: KBW (Konrad) sole bull at $230/+8.6% [Benzinga/MarketBeat via WebSearch]
   <!-- archive: 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt -->
 - Open thesis questions:
-  - Consensus ($203.29) vs spot ($220.83) gap now ~8.6% and widening — needs a fresh upgrade above ~$251.75 (+14%) to clear 2:1 against the 7%-floor stop
-  - XLF momentum strong (+5.04% 1mo) but not reflected in analyst targets catching up to price — momentum/valuation disconnect
-  - Did the "$10T wealth + SpaceX" story have any substance beyond a headline? (no detail surfaced this run)
+  - Consensus ($203.29) vs spot ($224.96) gap now ~10.7% and still widening — needs a fresh upgrade above ~$237 to clear 2:1 against the 7%-floor stop
+  - Is "rising while the market falls" durable relative strength (rate-sensitive NIM tailwind from the hawkish dot-plot) or just momentum with no fundamental anchor?
+  - Did the "$10T wealth + SpaceX" story have any substance beyond a headline? (no detail surfaced across two runs)
 
 ## MSFT (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
