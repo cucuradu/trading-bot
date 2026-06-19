@@ -2846,3 +2846,21 @@ Screener: source=local_screener_v1 (ml unavailable), ranked 39 tickers, top 10 =
 - FTD: ftd_detector.py ran successfully this run (`--output-dir` flag, not `--json` — the routine doc's `--json` flag does not exist on this script; CLI mismatch noted again, but resolved a workaround this session) — state=ftd_confirmed, signal_date=2026-04-08 (stale, not actionable)
 
 ---
+## 2026-06-19 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2, deployment: 75%) — fallback_reason: ml unavailable; using local_screener_v1 — **markets CLOSED (Juneteenth observed holiday)**
+
+### Account
+- Equity $100,472.45 / Cash $100,472.45 (100% cash) / Buying power $401,889.80 / Daytrade count 0 / Open positions 0 / Open orders 0
+
+### Macro Framework
+Markets closed for Juneteenth (observed). No new trade ideas generated — research budget not spent on a no-trading day. Next trading day: Monday 2026-06-22.
+
+### Decision
+**HOLD — markets closed, no orders.** 11th consecutive no-position session (100% cash since MU close 06-04). ML insights staleness continues to worsen: now 224.1h (9.3 days) since last local-PC refresh, up from 200.1h the prior session — **user action still needed, unresolved for over a week.** Risk gates clean (no LOCK, no gate trips; drawdown -5.09%, weekly P&L -0.37%).
+
+### Quota & source usage (footer)
+- No Gemini/research calls made — holiday, no candidate research run.
+- ml_insights: status=stale_degrade, age=224.1h (worsening, 3rd session flagged)
+
+---
