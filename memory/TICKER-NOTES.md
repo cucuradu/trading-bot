@@ -38,12 +38,16 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-06-15): Demoted — R:R 0.82:1: entry $511.57 / stop $434.83 (−15.0% ATR-clamped) / target $575 (Citi, 06-12, fresh "Buy" upgrade) (+12.4%). Two banks now above the 48-analyst consensus (BofA $560 06-11, Citi $575 06-12; consensus median $490, −4.2% implied) — narrower "single-bank-call" gap than 06-12, but absolute R:R still far below 2:1. Decisively worse than MU (1.82:1) today. [Demoted: R:R 0.82:1. analyst_data.py Jun 15]
+- Thesis (2026-06-22): Demoted — R:R 1.58:1 best case: entry $537.37 / stop $456.76 (−15.0% ATR-clamped) / target $665 (Barclays, street-high, 06-01) (+23.76%); worst case using Citi's more-recent $575 (06-12) is R:R 0.47:1. AI-infra rotation thesis intensifying (OpenAI+Meta committed 6GW of AMD infra, "Helios" deployments H2 2026) but stock has run +10% since the 06-11 BofA upgrade with no fresh idiosyncratic catalyst since 06-12 — same single/dual-bank-call-vs-consensus gap flagged since 06-15, still unresolved 5+ sessions later. [Demoted: R:R 1.58:1. research.py gather + WebSearch, Jun 22]
 - Recent catalysts:
-  - 2026-06-12: Citi upgraded to Buy, raised PT to $575 — "AMD is no longer just a CPU stock", bigger GPU opportunity [Reuters/Benzinga Jun 12]
-  - 2026-06-11: BofA (Vivek Arya) raised PT $500→$560, reiterated Buy, "top CPU pick" on $170B 2030 server-CPU TAM (agentic AI demand) — AMD +8% to $488.40 [TipRanks/247WallSt Jun 11]
-  - 2026-06-10: ARK (Cathie Wood) trimmed AMD, added NVDA same week [Motley Fool Jun 10]
-  - 2026-06-02: small insider SELLs (Denzel Nora 06-02/05-29, Norrod Forrest 05-20) — routine pattern, not new signal [Finnhub Jun 12]
+  - 2026-06-21: "AMD's H2 2026 Inflection Is Bigger Than AI GPUs" — OpenAI + Meta each committed 6GW of AMD infrastructure, Helios deployments beginning H2 2026 [Finnhub]
+  - 2026-06-20: "Cloud Infrastructure Rotation Intensifies as AMD Surges While Microsoft Stumbles" — AMD +20% monthly, capital rotating from cloud platforms into pure-play AI-infra [Finnhub]
+  - 2026-06-19: D.A. Davidson (Gil Luria) flagged valuation contradiction on CNBC — semi ETFs +80% YTD, memory +300%+, multiples disconnecting from fundamentals [Finnhub]
+  - 2026-06-19: dated bear note — attractive R:R only on a macro pullback to ≤$440 [Finnhub]
+  - 2026-06-12: Citi upgraded to Buy, PT $575 — "AMD is no longer just a CPU stock" [Reuters/Benzinga]
+  - 2026-06-01: Barclays street-high PT $665 [WebSearch aggregators]
+  <!-- archive: 2026-06-11: BofA raised PT $500→$560, "top CPU pick" on $170B 2030 server-CPU TAM -->
+  <!-- archive: 2026-06-10: ARK (Cathie Wood) trimmed AMD, added NVDA same week -->
   <!-- archive: 2026-06-04: AVGO sell-the-news contagion; AMD −3.97% sympathetic -->
   <!-- archive: 2026-06-03: Analyst upgraded to Strong Buy; stock hits all-time high $540.94 -->
   <!-- archive: 2026-06-03: Director sold $5.4M near all-time highs -->
@@ -52,9 +56,9 @@ Conventions:
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes: COMPUTEX exhaustion + NFP yield spike + AVGO contagion)
 - Open thesis questions:
-  - Two banks (BofA $560, Citi $575) now above consensus ($490) — does a third follow within the week, lifting the consensus median itself toward $550+?
-  - AMD now at $511.57 (above both the BofA and pre-Citi entry levels) — if it pulls back toward the $460-470 pre-pop range while $575 PT holds, R:R approaches (575-465)/70≈1.6:1 — still short of 2.0 but worth a price-alert re-check.
-  - Single most-likely invalidator: no follow-through from a third major desk on the BofA/Citi upgrades within 5 trading days, suggesting the re-rating stalls below consensus-moving threshold.
+  - No third major desk has confirmed the $575–665 range with a fresh, dated note since 06-12 — does the re-rating broaden, or does AMD round-trip back toward the $490 consensus median?
+  - "6GW Helios" commitment language (06-21) is directional, not quantified guidance — does a follow-up filing/guide turn it into an R:R-moving number?
+  - Single most-likely invalidator: same as 06-15, still unresolved — no third-desk confirmation within 5 trading days of the BofA/Citi/Barclays cluster.
 
 ---
 
@@ -87,19 +91,22 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-18): Demoted again — near year-high ($955.92), up ~12% in 5 sessions / ~300% YTD. R:R 1.78:1 on Evercore ISI's still-unmoved $1,103 target (05-09) against the unclamped 8.66% ATR stop ($873.09) — worse than every prior session (1.88:1 on 06-17) purely on price drift; no fresh catalyst since the now-stale AI-backlog headline. New bear signal: simplywall.st DCF critique flags CAT as ~69% overvalued (06-16) — first explicit valuation pushback this cycle. Realized hawkish FOMC dot-plot (06-17) is the live invalidator risk for rate-sensitive industrials capex names. Do NOT chase above $1,113 (the level that would clear 2:1 from this stop) without a fresh named-bank PT. [Demoted: R:R 1.78:1. Finnhub/Google News gather + WebSearch, Jun 18]
+- Thesis (2026-06-22): Demoted again — R:R 1.66:1, CAT's best reading in 4 sessions but only because today's calc finally used JPMorgan's higher $1,125 PT (previously logged under "2026-05" but never substituted into the live calc — see process note below), not because the setup improved. Entry $985.82 / stop $901.71 (−8.53%, unclamped 2.5×ATR) / target $1,125 (+14.12%). Overvaluation critique escalated from "69%" (06-16) to "309.4% overvalued" (06-20) — bear narrative gaining traction, not losing it. No fresh CAT-specific catalyst since the now-stale backlog headline (4th+ consecutive restatement). Do NOT chase above $1,113 (06-18 gate) — today's $985.82 reference is well clear of it. [Demoted: R:R 1.66:1. research.py gather + WebSearch, Jun 22]
 - Recent catalysts:
+  - 2026-06-20: "Caterpillar (CAT) Stock Could Be 309.4% Overvalued Despite Strong Share Price Momentum" — escalation from the 06-16 "69% overvalued" critique [Finnhub]
+  - 2026-06-22: "The One Stock Now Controlling DIA's Next Move" — restates the data-center power-gen backlog thesis (no new info) [Finnhub]
+  - 2026-06-19: CAT +3.1% surge noted on continued strength [Finnhub]
+  - Process note: JPMorgan $1,125 PT (logged "2026-05", re-surfaced via WebSearch under a "June 2" batch with UBS $900/Oppenheimer $980 — same number, ~1mo date discrepancy, not a magnitude contradiction) was never substituted into the live R:R calc in 06-17/06-18 sessions, which defaulted to the lower/stale Evercore $1,103 figure instead — likely understated CAT's R:R for ≥2 prior sessions. Flagged for weekly review.
   - 2026-06-16: simplywall.st DCF model flags CAT ~69% overvalued post AI-backlog re-rating [Google News]
-  - 2026-06-17: "$63B AI Backlog" headline reiterates the data-center power thesis already priced in since late May [Finnhub headline, 11:11Z]
-  - 2026-05-09: Evercore ISI raised PT $878→$1,103 [TipRanks/24-7 Wall St]
-  - 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance
-  - 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845
+  <!-- archive: 2026-05-09: Evercore ISI raised PT $878→$1,103 -->
+  <!-- archive: 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance -->
+  <!-- archive: 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845 -->
   <!-- archive: 2026-06-04/05: HOLD, INTACT — thesis insulated from NFP/AVGO contagion at $933, trail stop locking gains -->
 - Open thesis questions:
-  - Evercore target ($1,103) is now ~15.4% above spot ($955.92), the widest the gap has been this cycle — does this resolve with a fresh median-moving upgrade, or is the run overextended into a hawkish-Fed week?
-  - Will the new "69% overvalued" critique gain traction with sell-side desks (a dated downgrade) or stay a single contrarian outlier?
-  - Resource Industries profit −39% YoY; can data center power fully offset?
-  - Single most-likely invalidator: higher-for-longer rate narrative (post-FOMC dot-plot) triggering a broad industrials/cyclicals pullback before any new CAT-specific catalyst
+  - Now that JPM's $1,125 is the active target (replacing the stale Evercore $1,103), does a fresh named-bank PT above ~$1,142 (needed for 2:1 from today's stop) ever surface, or does the bull case stay capped by a target the market already knows?
+  - Will the escalating "309% overvalued" critique gain sell-side traction (a dated downgrade) or stay a single-aggregator DCF outlier?
+  - Resource Industries profit −39% YoY (carried question); can data center power fully offset?
+  - Single most-likely invalidator: same as 06-18, still live — a broad industrials/cyclicals pullback on higher-for-longer before any new CAT-specific catalyst.
 
 ## COST (XLP)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -218,18 +225,22 @@ Conventions:
 - Position-aware notes: XLV currently 0% exposure (fresh sector if entered); near-zero correlation with AMD/CAT (-0.02) — best factor diversification of any candidate screened to date.
 
 ## MS (XLF)
-- Thesis (2026-06-18): Demoted again (5th consecutive session, worst reading yet) — near year-high ($224.96), rose through yesterday's broad −1.21% FOMC selloff ("ascends while market falls"). R:R 0.32:1 on the same undated $230 individual target against the 7%-floor stop ($209.21) — decisive fail. Most recent dated PT (JPMorgan $187, 06-12) still below spot; gap has only widened ($208.30→$220.83→$224.96 since 06-11 with no PT movement). [Demoted: R:R 0.32:1. Finnhub/Google News gather + WebSearch, Jun 18]
+- Thesis (2026-06-22): Demoted again (6th consecutive session, identical structural problem) — R:R 0.44:1: entry $223.17 / stop $207.55 (−7.0%, ATR-clamped) / target $230 (highest individual analyst target, undated) (+3.06%). Consensus ($203.29, 25 analysts) still ~9% below spot, same gap flagged for 6 straight sessions. Only dated analyst action on record (JPMorgan $187, 06-12, Neutral) points *below* spot, not above — every bull bullet this run is sector-level (Fed capital-relief narrative) or tangential (crypto/Bitcoin diversification), no MS-specific dated catalyst. [Demoted: R:R 0.44:1. research.py gather + WebSearch, Jun 22]
 - Recent catalysts:
-  - 2026-06-17: MS rose while the broader market fell on the hawkish FOMC dot-plot — relative-strength data point, not a new catalyst [Finnhub]
-  - 2026-06-17: "$10 Trillion Wealth + SpaceX Boost" headline — narrative story, no quantified guidance, hasn't moved any published target [Finnhub headline, 01:11Z]
-  - 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot
-  - 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance surfaced
-  - 2026-06-08: KBW (Konrad) sole bull at $230/+8.6% [Benzinga/MarketBeat via WebSearch]
+  - 2026-06-22: "Soaring Profits in Emerging Markets Build Case for a Raging Bull Market" — MS-desk commentary, broader market thesis not MS-specific [Finnhub]
+  - 2026-06-19: MS quietly added Bitcoin exposure, cut crypto-ETF fee to 0.14% (new category floor) — diversification signal, not core-business catalyst [Finnhub]
+  - 2026-06-19: "MS Stock After 72% One-Year Jump — What Do Valuation Models Suggest Now" — valuation-check headline echoing the AMD/CAT overvaluation-pushback pattern [Finnhub]
+  - 2026-06-18: "The Quiet Revolution at the Fed: U.S. Banking Sector Received a Catalyst More Potent than Rate Cuts" — sector-level regulatory/capital-relief narrative, not MS-specific [Finnhub]
+  - 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot, most recent dated action on record
+  <!-- archive: 2026-06-17: MS rose while the broader market fell on the hawkish FOMC dot-plot — relative-strength data point -->
+  <!-- archive: 2026-06-17: "$10 Trillion Wealth + SpaceX Boost" headline — narrative story, no quantified guidance -->
+  <!-- archive: 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance -->
+  <!-- archive: 2026-06-08: KBW (Konrad) sole bull at $230/+8.6% -->
   <!-- archive: 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt -->
 - Open thesis questions:
-  - Consensus ($203.29) vs spot ($224.96) gap now ~10.7% and still widening — needs a fresh upgrade above ~$237 to clear 2:1 against the 7%-floor stop
-  - Is "rising while the market falls" durable relative strength (rate-sensitive NIM tailwind from the hawkish dot-plot) or just momentum with no fundamental anchor?
-  - Did the "$10T wealth + SpaceX" story have any substance beyond a headline? (no detail surfaced across two runs)
+  - The only dated analyst action (JPM, 06-12) points below spot — does any desk publish a fresh target above ~$237 (needed for 2:1 against the 7%-floor stop), or does the static $230 figure keep getting left behind by price?
+  - Is the rate-sensitive financials/NIM-expansion tailwind (post-FOMC dot-plot) durable, or does it unwind if yields retrace — removing the only thing supporting MS's relative strength?
+  - Single most-likely invalidator: same as 06-18, still live — a reversal in the rate-sensitive financials trade if higher-for-longer cools.
 
 ## MSFT (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.

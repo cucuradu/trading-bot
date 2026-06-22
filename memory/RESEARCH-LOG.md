@@ -2864,3 +2864,182 @@ Markets closed for Juneteenth (observed). No new trade ideas generated — resea
 - ml_insights: status=stale_degrade, age=224.1h (worsening, 3rd session flagged)
 
 ---
+
+## 2026-06-22 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — fallback_reason: ml unavailable; using local_screener_v1
+**ML staleness:** status=stale_degrade, age=296.1h (12.3 days) — trade_slots dropped 2→1 for today (hard gate). **Worsening every session** (200.1h→224.1h→296.1h); no local-PC ml-insights refresh in over 12 days.
+**Breadth/Sector:** breadth=53/100 (Neutral) | sector=risk-on score=73 phase=early (confidence low) | divergence_flag=true (cyclical/defensive groups disagree internally)
+**Exposure:** ceiling=41% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+**FTD:** unavailable — `ftd_detector.py --json` errored (`unrecognized arguments: --json`, exit 2); skipped silently per best-effort instructions. Same CLI/doc mismatch flagged 06-18 (that session found a workaround via `--output-dir`; this session did not retry the workaround — low priority, advisory-only signal).
+**Egress:** edgar=ok, google_news=ok, reddit=http_403
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- Deployment = 0% (12th consecutive no-new-entry session since the MU close on 06-04)
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ml stale 296.1h — now nearly 4x the degrade threshold). Quiet Monday, no major scheduled data — markets digesting last Wednesday's hawkish FOMC dot-plot shock (Warsh's first meeting; median year-end 2026 rate projection 3.4%→3.8%, 9/18 members now project a hike) alongside the ongoing Iran/Hormuz de-escalation (14-point "Islamabad MOU," 60-day ceasefire). WTI $77.54 (+0.27%), drifting back up off Thursday's $74.56 post-MOU low as the initial oil-relief unwinds modestly. S&P 500 e-mini futures (ESU6) 7,556.25, −0.19% premarket; Nasdaq futures −0.24% — rates/inflation positioning outweighing residual peace-deal lift. VIX (cash) 17.46, +4.05% on the day. 30Y yield ~4.9% (no fresher print since 06-18's 4.93%). Week ahead: Micron (MU) earnings Wed 06-24, Fed bank stress-test results Wed 06-24, May PCE + Q1 GDP final Thu 06-25 — PCE is the next live macro risk (3 days out, outside the Phase E 24h pre-macro-cap window today; `risk_gates.py check` confirms `pre_macro_event.cap_active=false`). Breadth 53/100 (Neutral, flat vs 06-18); sector rotation risk-on score=73 (vs 72 on 06-18), early-cycle (low confidence), cyclical/defensive divergence flag persists. Exposure-coach ceiling ticked up 40%→41% but recommendation still REDUCE_ONLY/VALUE bias — tension vs this regime's 75% deployment target, noted below. vs 06-18: oil up (Iran-relief unwind, $74.56→$77.54); VIX measure shifted (cash 17.46 vs Thu's quoted futures 18.28–18.33 — not a clean apples-to-apples comparison, but directionally calmer); yields flat (~4.9%); regime unchanged Neutral; ml staleness worsened sharply (200.1h→296.1h, no refresh across the weekend + Friday's holiday gap either — **still unresolved after 12+ days, longest gap yet**).
+
+### Sector Picture
+- Top 3 (1mo momentum): Technology XLK +10.51%, Industrials XLI +7.21%, Materials XLB +5.65%
+- Bottom 3: Energy XLE −12.27%, Communication XLC −5.52%, Consumer Staples XLP −3.24%
+- **Disagreement flagged:** yfinance momentum ranks XLK #1 (+10.51%), but ml_insights/regime classifier tags XLK only **Choppy** (score 0.5166, actually the highest raw score of any sector) — same momentum/classifier disagreement pattern flagged in prior sessions, now with an even wider momentum lead. XLI agrees directionally (momentum #2, classifier Trend). XLB momentum #3 but classifier Choppy. XLE agrees (Bear both, worst momentum by a wide margin).
+
+### Screener diagnostics
+Screener: source=local_screener_v1 (ml unavailable), ranked 47 tickers, top 10 = [MU(1.41), AMD(1.07), CAT(0.88), MS(0.77), SMH(0.68), GE(0.48), GS(0.46), XBI(0.36), MRK(0.31), JPM(0.29)]. Watchlist: empty (`watchlist.py list` → `[]`).
+
+**MU excluded pre-shortlist:** next earnings 2026-06-24 (2 days out), `in_blackout=true` (5-day window). Not treated as a "catalyst IS earnings" exception — that exception is for riding a print that already happened (MOMENTUM setup), not entering 2 days *before* a binary report with an ATR-based stop that an earnings gap can blow straight through. Dropped pre-shortlist; AMD (next-ranked, no blackout) substituted in.
+
+### Candidates
+
+#### AMD (XLK, $537.37, +0.14% vs prev close $536.62; 3.8% below year-high $558.37)
+
+**Setup:** ATR(14)=$33.05 (6.15% of price); raw stop_pct_2.5x=15.37% → clamped to **15.0% ceiling** → stop $456.76. No earnings blackout (next: 2026-08-04, 43d out).
+
+**Sources scanned (4):** 3 NewsAPI / 219 Finnhub / 15 EDGAR / 0 Reddit (403) / 10 Google News.
+
+**Bull case:**
+- AI-infrastructure rotation accelerating into AMD: "Cloud Infrastructure Rotation Intensifies as AMD Surges While Microsoft Stumbles" — AMD +20% monthly, capital flowing from cloud platforms to pure-play AI-infra names [Finnhub, 2026-06-20].
+- OpenAI and Meta each committed 6 gigawatts of AMD infrastructure; initial "Helios" deployments beginning H2 2026 — a structurally larger demand signal than the GPU-only narrative [Finnhub, "AMD's H2 2026 Inflection Is Bigger Than AI GPUs," 2026-06-21].
+- Two named analyst raises since the 06-11 BofA call: Citigroup PT to $575 (2026-06-12) and Barclays street-high PT $665 (2026-06-01) [WebSearch, multiple aggregators].
+
+**Bear case:**
+- D.A. Davidson's Gil Luria flagged a valuation contradiction on CNBC: semiconductor ETFs +80% YTD, memory names +300%+, multiples disconnecting from fundamentals — names cited alongside AMD as caught in the same re-rating [Finnhub, 2026-06-19].
+- A dated bear note from the same week: "Buy, Hold, or Sell: AMD... at $507, a more attractive risk/reward emerges only on a macro-induced pullback at or below $440" [Finnhub, 2026-06-19] — explicitly argues against chasing at current levels.
+- Stock is up materially since the 06-11 BofA upgrade ($488→$537, +10%) without a fresh idiosyncratic catalyst since 06-12's Citi note — momentum-extension risk into a still-hawkish-Fed week.
+
+**Disconfirming evidence to watch:** a third major sell-side desk validating the $575–665 range with a fresh, dated note — would confirm the re-rating is broadening past a 2-3-bank call.
+
+**Catalysts ahead (14d):** Micron (MU, sector peer) earnings Wed 06-24 — read-through risk/tailwind for AMD's memory/AI-infra narrative, not a direct AMD catalyst.
+
+**Data check:** Two materially different analyst targets in play — Citi $575 (2026-06-12, most recent) vs Barclays $665 (2026-06-01, older but higher, explicitly flagged "street-high"). Difference is 15.6% (below the 25%-relative contradiction threshold), so both are usable; used Barclays' $665 below since the routine allows substituting a higher cited target "if it legitimately lifts R:R" — it doesn't, so the choice doesn't change the outcome either way.
+
+**Critique:**
+**Strongest counter to the bull case:** AMD is now round-tripping the same "single/dual-bank-call-vs-48-analyst-consensus" gap flagged on 06-15 (then: BofA $560/Citi $575 vs ~$490 median) — the broader Street has still not caught up, and the stock has run +5% further since that diagnosis without new confirmation. The OpenAI/Meta "6GW Helios" headline (06-21) is compute-commitment language, not a guidance update — treat as directional, not quantified.
+**Weakly-sourced or unsourced claims:** none flagged this run — all bull/bear bullets carry a named source + date.
+**Single most-likely invalidator (next 5 trading days):** no third major desk (beyond BofA/Citi/Barclays) raises a target above $575 within the week, signaling the current cluster of bullish calls is a 2-3-bank outlier rather than a broadening re-rating — consistent with the same invalidator flagged on 06-15, still unresolved 5 sessions later.
+
+**Position-aware (if entered $20k):** No existing positions — sector exposure post-entry ~19.99% XLK (0/2 cap). 30d correlation with CAT: 0.60; with MS: 0.43 (both ≤0.70, gate passes). **Shared-catalyst flag:** AMD (chip/GPU AI-infra) and CAT (data-center power-gen AI-infra) sit on the same broad "AI capex buildout" macro theme even though the specific value-chain segment differs — moot today since both demote, but flagged for the record.
+
+**R:R math:** entry $537.37 / stop $456.76 (−15.0%, ATR-clamped) / target $665 (Barclays, street-high, 2026-06-01) (+23.76%) / R:R **1.58:1** / max risk on a 20% ($20,094) position ≈ $3,014.
+- **Hard 2:1 floor fails**, even using the single most-bullish dated target on the Street. Re-run with Citi's more-recent $575 (06-12): upside +7.0%, R:R 0.47:1 — fails far worse. Either way, demoted.
+
+**Setup type:** BREAKOUT (continuation thesis near highs; would require a buy-stop above $539+ buffer).
+
+**Entry plan:** N/A — demoted, no order placed.
+
+**Gate-history audit:** No prior "do NOT chase" refusal on record for AMD (06-15 entry demoted on R:R only, no explicit gate level set). Current $537.37 is a fresh screener pick, not a chase of a previously-refused price.
+
+**Decision:** **Demoted** — R:R 1.58:1 (best case, Barclays $665), 0.47:1 (worst case, Citi $575); fails the 2:1 floor under either cited target. Same structural problem flagged on AMD since 06-15: bullish analyst calls outrunning the broader consensus while price keeps climbing.
+
+#### CAT (XLI, $985.82, −0.22% vs prev close $988.00; 0.87% below year-high $994.49)
+
+**Setup:** ATR(14)=$33.64 (3.41% of price); stop_pct_2.5x=8.53% (unclamped, within [7,15]) → stop $901.71. No earnings blackout (next: 2026-08-04, 43d out).
+
+**Sources scanned (4):** 4 NewsAPI / 58 Finnhub / 15 EDGAR / 0 Reddit (403) / 10 Google News.
+
+**Bull case:**
+- Data-center power-generation backlog thesis intact and still the dominant CAT narrative: "The One Stock Now Controlling DIA's Next Move: Why Caterpillar's Power Generation Backlog Matters More Than Apple" [Finnhub, 2026-06-22] — restating the same $63B AI-power-demand backlog story running since late May/early June.
+- CAT +3.1% surge noted 06-19 on continued strength [Finnhub, "Caterpillar (CAT) Surges 3.1%: Is This an Indication of Further Gains?"].
+- A materially higher named target than the Evercore figure used in every prior session: **JPMorgan $1,125** (vs Evercore ISI's $1,103, 05-09) — already logged in `memory/TICKER-NOTES.md` under a "2026-05" batch of upgrades (JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845) that prior sessions never substituted into the live R:R calc, defaulting instead to the lower/older Evercore number every time.
+
+**Bear case:**
+- New, more aggressive overvaluation critique: "Caterpillar (CAT) Stock Could Be 309.4% Overvalued Despite Strong Share Price Momentum" [Finnhub, 2026-06-20] — an escalation from the "69% overvalued" simplywall.st critique flagged 06-16, suggesting the bear-valuation narrative is gaining, not losing, traction.
+- No fresh CAT-specific catalyst since the now-stale backlog headline (restated, not new information, for the 4th+ consecutive session).
+- Industrials/cyclicals remain exposed to the hawkish-dot-plot "higher-for-longer" overhang on capex-sensitive names.
+
+**Disconfirming evidence to watch:** a named-bank PT raise above ~$1,113 (the level needed for 2:1 from today's stop) with a *current* date — not found this run; the best available ($1,125) is an already-stale, previously-unused figure, not a fresh confirmation.
+
+**Catalysts ahead (14d):** None dated; earnings 08-04 outside window.
+
+**Data check:** **Process note, not a magnitude contradiction.** JPMorgan's CAT PT ($1,125) was logged in TICKER-NOTES under "2026-05" weeks ago but every prior session (06-17, 06-18) cited only Evercore's lower $1,103 as "the only citable target above spot" — JPM's figure was on file and simply not used. Today's WebSearch separately surfaced the same $1,125 number attributed to a "June 2" batch of analyst actions (UBS to $900, Oppenheimer to $980, JPM to $1,125) — a ~1-month date discrepancy (May vs June 2) for the identical number, under the 25%-relative threshold so not treated as a hard contradiction. Resolved by using $1,125 today (better-sourced, higher, and consistent across two independent reads) — flagging for the weekly review that the R:R calc has likely been understating CAT's true R:R for at least 2 prior sessions by defaulting to the stale Evercore figure.
+
+**Critique:**
+**Strongest counter to the bull case:** even substituting the higher, previously-overlooked $1,125 target, CAT's R:R is still below the hard floor — the backlog narrative is fully priced and now drawing escalating valuation pushback (69%→309% "overvalued" framing in 4 days) with no fresh catalyst to refresh the thesis. The bull case is running on a story the market has known since late May.
+**Weakly-sourced or unsourced claims:** the "309.4% overvalued" figure is a single-aggregator DCF framing (Finnhub-syndicated, no named analyst) — directionally consistent with the prior 69% claim but not independently verified to the decimal; not used in the R:R calc (only named/dated analyst PTs are).
+**Single most-likely invalidator (next 5 trading days):** a broad industrials/cyclicals pullback if the hawkish dot-plot's "higher-for-longer" narrative gains traction before any new CAT-specific catalyst — same invalidator flagged 06-18, still live.
+
+**Position-aware (if entered $20k):** No existing positions — sector exposure post-entry ~19.99% XLI (0/2 cap). 30d correlation with AMD: 0.60; with MS: 0.42 (both ≤0.70, gate passes). No shared-catalyst overlap with MS.
+
+**R:R math:** entry $985.82 / stop $901.71 (−8.53%, real 2.5×ATR, unclamped) / target $1,125 (JPMorgan, dated 2026-05/06-02 batch — see Data check) (+14.12%) / R:R **1.66:1** / max risk on a 20% position ≈ $1,705.
+- **Hard 2:1 floor fails**, though this is CAT's best reading in the last 4 sessions (1.66 vs 1.78 on 06-18, 1.88 on 06-17) purely because today's R:R uses a previously-overlooked higher target, not because the setup improved.
+
+**Setup type:** BREAKOUT (continuation near year-high; would require a buy-stop above $987+ buffer).
+
+**Entry plan:** N/A — demoted, no order placed.
+
+**Gate-history audit:** TICKER-NOTES carries an explicit gate from 06-18: "Do NOT chase above $1,113... without a fresh named-bank PT." Today's reference price $985.82 is well below $1,113 — no gate-creep violation. No new order would be a chase.
+
+**Decision:** **Demoted** — R:R 1.66:1 even using a higher, previously-unused JPMorgan target; still short of the 2:1 floor. Escalating overvaluation critique (now "309%") reinforces caution on a name with no fresh catalyst in 4+ sessions.
+
+#### MS (XLF, $223.17, −0.34% vs prev close $223.92; 3.17% below year-high $230.47)
+
+**Setup:** ATR(14)=$5.69 (2.55% of price); raw stop_pct_2.5x=6.38% → clamped to **7.0% floor** → stop $207.55. No earnings blackout (next: 2026-07-15, 23d out).
+
+**Sources scanned (3):** 2 NewsAPI / 83 Finnhub / 15 EDGAR / 0 Reddit (403) / 10 Google News.
+
+**Bull case:**
+- "Soaring Profits in Emerging Markets Build Case for a Raging Bull Market" — MS-desk commentary cited in a broader bull-market thesis [Finnhub, 2026-06-22].
+- MS quietly added Bitcoin exposure amid a crypto selloff and cut its crypto-ETF fee to 0.14%, a new floor in the category — diversification/franchise-breadth signal, not a core-business catalyst [Finnhub, 2026-06-19].
+- "The Quiet Revolution at the Fed: U.S. Banking Sector Received a Catalyst More Potent than Rate Cuts" [Finnhub, 2026-06-18] — sector-level regulatory/capital-relief narrative, not MS-specific guidance.
+
+**Bear case:**
+- Consensus ($203.29 avg, 25 analysts) still well below spot ($223.17) — a ~9% gap, same structural pattern flagged for 6 consecutive sessions.
+- JPMorgan's most recent dated action (2026-06-12) raised its PT to only $187 (Neutral rating) — the most recent analyst move on record is *bearish relative to spot*, not bullish.
+- "Morgan Stanley (MS) Stock After 72% One-Year Jump — What Do Valuation Models Suggest Now" [Finnhub, 2026-06-19] — a valuation-check headline appearing the same week the stock keeps grinding to new highs, echoing the AMD/CAT overvaluation-pushback pattern.
+
+**Disconfirming evidence to watch:** a new dated bank upgrade pushing a named target above ~$237 (needed for 2:1 against the 7%-floor stop) — none found, 6th consecutive session.
+
+**Catalysts ahead (14d):** None dated; earnings 07-15 outside window.
+
+**Data check:** No new contradiction. JPMorgan's $187 (06-12) remains the most recent dated figure and continues to sit furthest below spot of any analyst on record — consistent with the pattern flagged every session since 06-08.
+
+**Critique:**
+**Strongest counter to the bull case:** every bull bullet this run is either sector-level (Fed capital-relief narrative) or tangential (crypto/Bitcoin diversification) — there is still no MS-specific, dated, named catalyst that would justify a target above the static $230 high-end figure carried for 6 sessions. The stock's continued grind to new highs is unsupported by any analyst action; if anything, the only action on record (JPM, 06-12) points the other way.
+**Weakly-sourced or unsourced claims:** the $230 "highest individual target" remains undated as a single action (same caveat carried every session) — not the primary R:R driver but the only available upside reference.
+**Single most-likely invalidator (next 5 trading days):** a reversal in the rate-sensitive financials trade if the post-FOMC "higher-for-longer" tailwind cools or yields retrace, removing the NIM-expansion narrative that has been the only thing supporting MS's relative strength.
+
+**Position-aware (if entered $20k):** No existing positions — sector exposure post-entry ~19.99% XLF (0/2 cap). 30d correlation with AMD: 0.43; with CAT: 0.42 (both ≤0.70, gate passes). No shared-catalyst overlap.
+
+**R:R math:** entry $223.17 / stop $207.55 (−7.0%, ATR-clamped) / target $230 (highest individual analyst target, undated) (+3.06%) / R:R **0.44:1** / max risk on a 20% position ≈ $1,406.
+- **Hard 2:1 floor fails decisively** — 6th consecutive session, same structural pattern, no improvement.
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Entry plan:** N/A — demoted, no order placed.
+
+**Gate-history audit:** Consistent with every prior MS session since 06-08 — structural R:R failure, not gate-creep; no order has ever come close to being placed.
+
+**Decision:** **Demoted** — R:R 0.44:1, decisive fail, 6th consecutive session with the identical structural problem (price climbing against a static, undated high-end target while the only dated analyst action points lower than spot).
+
+### Candidates dropped (and why)
+- **MU** — earnings 2026-06-24 (2 days out), in blackout; entering pre-print with an ATR stop is a binary bet the strategy's blackout rule is designed to prevent (catalyst-is-earnings exception requires riding a print already released, not anticipating one).
+- **SMH, GE, GS, XBI, MRK, JPM** — ranked below AMD/CAT/MS on the screener; not deep-dived. All three deep-dived candidates already demote on the hard R:R floor with trade_slots=1, so expanding the pool would not change today's HOLD outcome.
+
+### Historical Analog
+**Analog:** September 20, 2023 FOMC — a hawkish "higher-for-longer" dot-plot shock (no cuts signaled for 2024, fewer than the market expected) delivered into an already-elevated-yield environment, is the closer single-factor comp for the *post-meeting drift* phase we're now 3 trading days into (vs Wednesday's Warsh dot-plot shock). Unlike today, the 2023 episode had no offsetting geopolitical relief valve.
+**What followed:** SPX fell roughly −1% in the week immediately after the Sept 2023 decision, then continued grinding lower into October as 10Y yields kept climbing toward 4.8–5%, finishing down ~−10% peak-to-trough over the following five weeks before bottoming in late October 2023.
+**Why this time might differ:** today's setup pairs the hawkish shock with a structurally larger, simultaneous de-escalation (Strait of Hormuz reopening, not present in the 2023 comp) that has already pushed oil down ~7% from its pre-MOU level and lifted equities off Wednesday's lows — a real offsetting tailwind the 2023 analog lacked, which is why ES futures are only modestly negative today rather than extending Wednesday's −1.21% selloff. The risk is that this is the calm digestion phase *before* the 2023-style grind-lower resumes once the oil-relief tailwind is fully priced in.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, now 296.1h (12.3 days) — worsening every session, longest gap yet** (200.1h→224.1h→296.1h across the last 3 routines spanning the weekend + Friday's holiday). Trade slots cut 2→1 again today. **User action needed: refresh local PC ml_insights — unresolved for 12+ days running.**
+2. **New this session: `GEMINI_SMART_MODEL=gemini-3-flash` returns HTTP 404 "model not found"** — a config/infra bug distinct from the ongoing quota exhaustion (standard Flash also 429'd). `research.py synthesize` returned empty/error output for all three candidates; this entire session's synthesis was done manually (Claude + gathered sources + WebSearch) as a full fallback. **User action: fix `GEMINI_SMART_MODEL` env var to a valid model ID** (e.g. `gemini-2.5-pro` or `gemini-2.0-flash`) — the `--smart` path is completely non-functional, not just quota-limited, until this is corrected.
+3. **Process finding: CAT's R:R has likely been understated for ≥2 prior sessions.** JPMorgan's $1,125 PT was logged in TICKER-NOTES under a "2026-05" batch but never substituted into the live R:R calc — prior sessions defaulted to the lower/older Evercore $1,103 figure every time. Used the higher figure today; worth a weekly-review process check on why the live calc didn't pick up an already-logged, better number.
+4. **All three deep-dived candidates (AMD, CAT, MS) are near year-highs with an emerging, escalating overvaluation narrative** — CAT's bear critique intensified from "69% overvalued" (06-16) to "309% overvalued" (06-20) in 4 days; AMD and MS both drew fresh valuation-check headlines this week. This is a broadening pattern, not isolated to one name.
+5. **12th consecutive no-new-entry session** — account 100% cash since the MU close on 06-04 (2.5+ weeks). Combined with finding #3, this is worth a weekly-review look at whether the screener/universe construction is systematically surfacing only overextended names, or whether the R:R floor is correctly protecting against a genuinely thin opportunity set.
+6. **Hawkish FOMC dot-plot (Wed 06-17) still the dominant macro overhang** for rate-sensitive industrials (CAT) and the broader higher-for-longer narrative; partially offset by the Iran/Hormuz de-escalation, net direction still uncertain per the historical analog above.
+7. **PCE (Thu 06-25) and Micron earnings (Wed 06-24) are the next live macro/sector catalysts** — both outside today's 24h pre-macro-cap window but worth tracking; a hot PCE print would likely cut trade_slots further per the pre-macro framework.
+8. **Reddit egress 403 (persistent, 8th+ session)** — sentiment depth degraded across all candidates; EDGAR and Google News egress both OK today.
+
+### Decision
+**HOLD — no new entries.** All three deep-dived candidates fail the hard 2:1 R:R floor: AMD 1.58:1 (best case, Barclays $665 PT), CAT 1.66:1 (best case, using a previously-overlooked higher JPMorgan target — see Risk Factor #3), MS 0.44:1 (decisive fail, 6th consecutive session). CAT is the closest to clearing the floor it has been in 4 sessions, but that's an artifact of finding a better existing target, not an improved setup. Exposure-coach (REDUCE_ONLY, 41% ceiling) sits in tension with this regime's 75% deployment target — both converge on the same HOLD outcome today regardless of which framing governs, so the tension doesn't change the decision, only the conviction behind it. Account remains 100% cash — 12th consecutive no-new-entry session. No watchlist additions: none of the three candidates have a defined pullback level worth alerting on (all are BREAKOUT-type, near highs, with R:R that degrades on further upside, not one that improves on a dip).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — standard Flash (gemini-3.5-flash) 429 quota-exhausted on first STEP 4 query; `--smart` (GEMINI_SMART_MODEL=gemini-3-flash) returned HTTP 404 model-not-found (config bug, not quota) on `research.py synthesize` for all 3 candidates. All macro queries and all candidate synthesis done via native WebSearch + direct Claude reasoning over the `research.py gather` output.
+- NewsAPI: 9 records across 3 tickers (gather) / Finnhub: 360 records across 3 tickers / EDGAR: 45 records (15 each) / Google News: 30 records (10 each) / Reddit: 0 (403, all subreddits, all tickers)
+- Fallback events: Gemini 429 (STEP 4 macro) → WebSearch; Gemini 404 (STEP 4d synthesize, all 3 candidates) → manual Claude synthesis from gather output + WebSearch; Reddit 403 (all tickers); FTD detector `--json` flag unsupported (exit 2) → skipped
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=296.1h, slots cut 2→1
+
+---
