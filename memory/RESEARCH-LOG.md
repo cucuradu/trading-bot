@@ -3043,3 +3043,154 @@ Screener: source=local_screener_v1 (ml unavailable), ranked 47 tickers, top 10 =
 - ml_insights: status=stale_degrade, age=296.1h, slots cut 2→1
 
 ---
+
+## 2026-06-23 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1 [base 2, −1 ML stale_degrade], deployment: 75%) fallback reason: ml unavailable; using local_screener_v1
+
+**Breadth/Sector:** breadth=53/100 (Neutral) | sector=risk-on score=72 phase=early (low confidence) | divergence_flag=true (cyclical/defensive internal disagreement, not S&P-vs-breadth)
+
+**Exposure:** ceiling=40% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+
+**ML staleness:** age 320.1h (13.3 days; worst yet, 13th consecutive session with no local-PC refresh) — status stale_degrade, trade_slots cut 2→1 (hard system gate).
+
+### Account
+- Equity $100,472.45 / Cash $100,472.45 (100%) / Buying power $401,889.80 / Daytrade count 0 / Open positions 0 / Open orders 0
+
+### Macro Framework
+Neutral regime, 13th consecutive day of stale ML insights (now 320.1h/13.3 days, hard gate cutting slots 2→1). VIX futures ~18.83 (range 18.43-18.83), calm. 30Y yield 4.95%, off the post-FOMC highs (~5.0-5.08% in the days after the 06-17 dot-plot shock), continuing to ease. WTI $73.67 (−0.26%), Brent $76.68 (prev close $77.52, −1.08%) — oil extending its decline on US-Iran progress: Washington granted Iran a 60-day license to sell oil internationally, raising expectations of a quicker global-supply recovery (on top of the Islamabad MOU/Hormuz reopening already priced in). Today's calendar is light (GDP 3rd estimate, Michigan consumer sentiment final) — the real catalysts are ahead: Micron (MU) earnings Wed 06-24 after close (Street expects EPS $20.57 vs $1.91 PY, revenue +282% to $35.56B on HBM demand) and Core PCE Thu 06-25 (pre-macro cap not yet active, 3 days out per risk_gates). vs yesterday (06-22): yields continuing to ease post-FOMC; oil extending its decline on fresh Iran de-escalation news; regime unchanged Neutral; breadth flat (53 vs 53).
+
+### Sector Picture
+- Top 3 (1mo momentum): XLI +4.3%, XLK +3.79%, XLF +3.57%
+- Bottom 3: XLC −7.52%, XLE −6.55%, XLY −3.78%
+- Agreement with ml_insights sectors classifier: good — XLI/XLK/XLF tagged Trend; XLE/XLY/XLC tagged Bear. No disagreement to flag today (contrast with several recent sessions where XLK momentum vs. classifier diverged).
+
+### Candidates
+
+#### CAT (XLI, $1,022.28, −0.55% vs prev close $1,027.95; 0.10% below year-high $1,023.29)
+
+**Setup:** ATR(14)=$33.83 (3.31% of price); stop_pct_2.5x=8.27% (unclamped, within [7,15]) → stop $937.70. No earnings blackout (next: 2026-08-04, 42d out).
+
+**Sources scanned (4):** 3 NewsAPI / 72 Finnhub / 15 EDGAR / 0 Reddit (403) / 10 Google News.
+
+**Bull case:**
+- Fresh, dated catalyst (new since yesterday): Chevron and Microsoft signed a 20-year natural-gas power-purchase agreement for "Project Kilby," a 2.67GW data-center project in West Texas; Caterpillar is named as a turbine/engine supplier alongside GE Vernova [Finnhub, multiple syndications, 2026-06-22/06-23]. CAT stock jumped on the news (+3.05% Jun 22) [TradingKey, 2026-06-22].
+- Continues the established data-center power-generation backlog thesis (record order backlogs tied to AI infrastructure buildouts) [Finnhub, 2026-06-23].
+- Street-high price target: Baird (analyst Mig Dobre) $1,165, raised from $940 — but this action dates to late April/early May 2026, **not** a fresh post-Kilby update [WebSearch, multiple aggregators, dated late-Apr/early-May 2026].
+
+**Bear case:**
+- Trailing P/E stretched past 42x; average analyst target ~$919-946 sits well below spot $1,022 — the stock trades above where the Street collectively thinks it should be [WebSearch/marketbeat, 2026-06].
+- Continuation of the escalating overvaluation critique flagged the last two sessions ("69%" → "309% overvalued" framing) — no fresh rebuttal data this run.
+- No analyst has yet published a dated price-target revision specifically crediting Project Kilby; the bull case is running on a catalyst the market has already priced into the stock price (+3% pop) without analyst targets catching up.
+
+**Disconfirming evidence to watch:** a named-bank PT raise dated after 06-22 (post-Kilby) — none found this run; would directly test whether Street estimates catch up to the catalyst.
+
+**Catalysts ahead (14d):** None dated beyond the already-realized Kilby news; earnings 08-04 outside window.
+
+**Data check:** Baird's $1,165 figure is unchanged from the figure surfacing in recent WebSearch results; confirmed it predates Kilby (late Apr/early May) via a second independent query, so it is not being double-counted as a "fresh" catalyst-driven upgrade — flagged as stale per the routine's citation-honesty rule.
+
+**Critique:**
+**Strongest counter to the bull case:** Project Kilby is real and dated, but it's a backlog-narrative reinforcement, not a new financial datapoint — no analyst has shown new EPS/revenue math from it yet, and the stock already moved +3% pricing it in. Buying now means paying for a catalyst that's already in the price with no fresh target to support further upside.
+**Weakly-sourced or unsourced claims:** the "42x trailing P/E" and "309% overvalued" figures are single-aggregator (Finnhub-syndicated/simplywall.st DCF) framings, not named-analyst, not used in the R:R calc.
+**Single most-likely invalidator (next 5 trading days):** a broad industrials pullback if the post-FOMC "higher-for-longer" narrative reasserts before any dated PT raise materializes from Kilby — same invalidator flagged the last several sessions, still live.
+
+**Position-aware (if entered $20k):** No existing positions — sector exposure post-entry ~19.9% XLI (0/2 cap). No shared-catalyst overlap with MS or UNH.
+
+**R:R math:** entry $1,022.28 / stop $937.70 (−8.27%, real 2.5×ATR, unclamped) / target $1,165 (Baird, Mig Dobre — stale, late-Apr/early-May 2026, Street-high) (+13.96%) / R:R **1.69:1** / max risk on a 20% position ≈ $1,664.
+- **Hard 2:1 floor fails**, even using the Street-high target. Slightly better than yesterday's 1.66:1 (price pulled back modestly from the Kilby pop) but still short.
+
+**Setup type:** BREAKOUT (continuation near all-time high; would require a buy-stop above $1,023+ buffer).
+
+**Entry plan:** N/A — demoted, no order placed.
+
+**Gate-history audit:** TICKER-NOTES/RESEARCH-LOG carry no explicit "do NOT chase above $X" gate for CAT (only the 06-18 R:R floor fail). Today's reference price is at, not above, the recent range — no gate-creep violation.
+
+**Decision:** **Demoted** — R:R 1.69:1, fails the 2:1 floor even on the Street-high (but stale) Baird target. Fresh Project Kilby catalyst strengthens the qualitative bull narrative but has not yet produced a dated analyst PT high enough to clear the floor.
+
+#### MS (XLF, $227.09, −0.43% vs prev close $228.08; 1.48% below year-high $230.47)
+
+**Setup:** ATR(14)=$5.67 (2.50% of price); raw stop_pct_2.5x=6.25% → clamped to **7.0% floor** → stop $211.19. No earnings blackout (next: 2026-07-15, 22d out).
+
+**Sources scanned (4):** 0 NewsAPI / 78 Finnhub / 15 EDGAR / 0 Reddit (403) / 10 Google News.
+
+**Bull case:**
+- Continued sector-level tailwind narrative (Fed capital-relief framing) and diversification headlines (crypto/bond ETF push) [Finnhub/Google News, 2026-06-22/23] — same non-MS-specific bull bullets as prior sessions.
+- Stock remains within 1.5% of its 52-week high ($230.47), still showing relative strength.
+
+**Bear case:**
+- Consensus average PT ($203.67-205.95 across aggregators) remains well below spot — the structural gap flagged for 7 consecutive sessions.
+- Most recent dated analyst action remains JPMorgan's $187 PT (2026-06-12, Neutral) — bearish relative to spot, still the freshest named data point on record.
+- Even the highest individual named target, Barclays $230 (dated 2026-04-16 — over two months stale), now sits **below** today's spot price intraday high ($228.23) and barely above the last close — the static high-end reference has finally been nearly caught by the price itself.
+
+**Disconfirming evidence to watch:** any new dated bank action above ~$237 (needed for 2:1 against the 7%-floor stop) — none found, 7th consecutive session.
+
+**Catalysts ahead (14d):** None dated; earnings 07-15 outside window.
+
+**Data check:** No new contradiction. Barclays $230 (04-16) is the same figure used in prior sessions; confirmed still the highest dated individual target via two independent searches (Wolfe Research's $211 and Wells Fargo's $200 are both newer but lower than spot, can't be used as upside targets).
+
+**Critique:**
+**Strongest counter to the bull case:** the static $230 high-end target that has carried MS's bull case for 7+ sessions is now barely above spot — the stock has effectively caught up to the most bullish number on the Street with zero fresh upside reference left. There is no path to a 2:1 R:R without a genuinely new, higher named target.
+**Weakly-sourced or unsourced claims:** none beyond the already-noted undated "highest individual target" caveat carried every session.
+**Single most-likely invalidator (next 5 trading days):** a reversal in the rate-sensitive financials trade if post-FOMC yields retrace, removing the NIM-expansion narrative — unchanged from prior sessions.
+
+**Position-aware (if entered $20k):** No existing positions — sector exposure post-entry ~19.9% XLF (0/2 cap). No shared-catalyst overlap.
+
+**R:R math:** entry $227.09 / stop $211.19 (−7.0%, ATR-clamped) / target $230 (Barclays, dated 2026-04-16, stale) (+1.28%) / R:R **0.18:1** / max risk on a 20% position ≈ $1,406.
+- **Hard 2:1 floor fails decisively** — 7th consecutive session, worst reading yet (0.44→0.18) as price grinds toward the static target with no new upside reference appearing.
+
+**Setup type:** N/A (demoted, no entry plan).
+
+**Entry plan:** N/A — demoted, no order placed.
+
+**Gate-history audit:** Consistent with every prior MS session since 06-08 — structural R:R failure, not gate-creep.
+
+**Decision:** **Demoted** — R:R 0.18:1, decisive and worsening fail, 7th consecutive session with the identical structural problem now reaching its logical endpoint (price has nearly caught the highest stale target).
+
+#### UNH (XLV, $406.68, +0.08% vs prev close $406.35; 2.24% below year-high $415.98) — researched, then dropped on standing disqualifier
+
+**Setup:** ATR(14)=$9.50 (2.34% of price); raw stop_pct_2.5x=5.84% → clamped to **7.0% floor** → stop $378.21. No earnings blackout (next: 2026-07-16, 23d out).
+
+**Sources scanned (3):** 0 NewsAPI / 43 Finnhub / 15 EDGAR / 0 Reddit (403) / 10 Google News.
+
+**Bull case:** Bernstein raised its PT to $492 (Outperform) on 2026-05-27, the highest active target on the Street, citing a Medicare Advantage EPS recovery (16% adjusted EPS CAGR) [WebSearch, gurufocus/moneycheck, 2026-05-27]. UNH also announced a $3B AI-turnaround investment and is reportedly close to resolving an FTC insulin-pricing dispute [Finnhub, 2026-06-22].
+
+**R:R math (for the record, not actionable):** entry $406.68 / stop $378.21 (−7.0%, clamped) / target $492 (Bernstein, dated 2026-05-27) (+20.98%) / R:R **3.00:1** — would clear the hard 2:1 floor, the first candidate to do so in many sessions on pure R:R math.
+
+**Why dropped anyway — standing disqualifier, unchanged:** UNH carries an **active DOJ criminal investigation** into Medicare Advantage/Optum Rx/physician-reimbursement billing practices — confirmed still open, no charges, no resolution timeline as of this run [WebSearch, multiple legal/healthcare-trade sources, 2026-06]. This is the same binary gap-down risk that has caused UNH to be dropped for 7+ consecutive sessions (06-02 through 06-08) under the explicit framing that "a criminal indictment announcement could come at any time and would immediately cause a 20-30% gap-down that no stop loss can protect against (gaps through stops)." Separately, the UnitedHealthcare-CEO murder trial (Luigi Mangione) remains pending (state trial now set for 2026-09-08, federal 2026-10-13) — an ongoing reputational/headline overhang, secondary to the DOJ risk. **Improving fundamentals and an attractive R:R do not retire a binary, stop-proof legal risk** — applying the same precedent today for consistency. This remains a candidate for a strategy-level rule (a standing "no entry while active criminal probe" filter) rather than re-litigating session by session — flagged again in Risk Factors below.
+
+**Decision:** **Dropped** — DOJ criminal investigation (binary gap risk unmanageable by any stop), unchanged from precedent set 06-02 through 06-08. Best R:R math (3.00:1) of any candidate in recent memory, but the structural risk gate overrides.
+
+### Candidates dropped (and why)
+- **MU** — earnings 2026-06-24 (1 day out), in blackout; top-ranked on screener (ml_score 1.6156) but pre-print entry would be a binary bet against the blackout rule.
+- **AMD** — excluded from the screener's final shortlist by the XLK sector cap (MU + SMH already filled the 2-position cap before AMD's rank); not independently re-added since MU's blackout exclusion doesn't free a sector slot under the screener's own logic (would require manual override, not done — consistent with prior practice of trusting the screener's sector-cap output).
+- **XBI, GE** — ranked below CAT/MS/UNH on the 6-name screener shortlist; not deep-dived. All three deep-dived candidates already fail/get dropped (CAT/MS on R:R floor, UNH on DOJ risk) with trade_slots=1, so expanding the pool would not change today's outcome.
+
+### Historical Analog
+**Analog:** The closest recent comp remains the post-09-20-2023 FOMC hawkish-shock drift, now extended: this is trading-day 4 since the 06-17 Warsh dot-plot shock, and the pattern so far (yields easing back from the spike, oil continuing to fall on a separate Iran de-escalation track) most resembles the **brief Nov-Dec 2023 "Fed pivot" relief rally** that followed the initial Oct 2023 hawkish-shock selloff, rather than the deeper Oct 2023 grind-lower — the difference being that today's relief is being driven by an *independent* oil/geopolitical tailwind (Iran 60-day export license) rather than a genuine dovish Fed repricing.
+
+**What followed (2023 Nov-Dec comp):** SPX rallied roughly +10% over 6 weeks once the "higher-for-longer" peak-rate narrative was perceived as done, with yields falling ~100bp off cycle highs over the same window.
+
+**Why this time might differ:** the Fed (Warsh) explicitly raised its dot-plot 9 days ago — unlike the 2023 comp where the pivot signal came from the Fed itself, today's calm is coming entirely from a geopolitical/oil channel, not a Fed repricing; if oil's tailwind fades before PCE (Thu) or Micron earnings (Wed) deliver a fresh equity catalyst, the underlying hawkish stance is still live and could reassert.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, now 320.1h (13.3 days) — 13th consecutive session, longest gap yet, still worsening.** Trade slots cut 2→1 again today. **User action needed: refresh local PC ml_insights — unresolved for 13+ days running, no improvement since flagged repeatedly.**
+2. **`GEMINI_SMART_MODEL=gemini-3-flash` still returns HTTP 404 "model not found" — 3rd consecutive session, unresolved.** `research.py synthesize` failed for CAT (confirmed today); all synthesis this session done manually via Claude + gather output + WebSearch. **User action: fix `GEMINI_SMART_MODEL` env var** (e.g. to `gemini-2.5-pro`) — flagged 06-22, still broken today.
+3. **Standard Flash quota also 429'd on all STEP 4 macro queries** — macro context built entirely via native WebSearch fallback this session (consistent with recent sessions).
+4. **UNH is the first candidate in many sessions to clear the hard 2:1 R:R floor (3.00:1) yet was dropped on a non-numeric disqualifier (active DOJ criminal investigation).** This is the 8th time this exact override has been applied (06-02 through 06-08, now 06-23) — worth a weekly-review decision on whether to formally codify "no entry during an active criminal/DOJ probe" as a TRADING-STRATEGY.md rule rather than re-deriving it each session it comes up.
+5. **CAT has a genuinely new, dated catalyst (Project Kilby, Chevron/Microsoft 20yr power deal) but stale analyst targets** — bull narrative strengthening qualitatively while R:R math hasn't moved enough; watch for a post-Kilby dated PT raise that could flip CAT over the floor.
+6. **MS's R:R has now decayed to 0.18:1 (7th consecutive fail), with its static $230 high-end target nearly caught by spot price** — the structural setup may be reaching a point where MS should be dropped from the regular shortlist rotation rather than re-deep-dived each session (weekly-review item).
+7. **13th consecutive no-new-entry session — account 100% cash since the MU close on 06-04 (19 calendar days).** Combined with finding #4, worth assessing whether the screener is systematically surfacing overextended/disqualified names.
+8. **Micron (MU) earnings Wed 06-24 after close** is the next live sector catalyst (HBM demand, AI capex read-through for XLK broadly); Core PCE Thu 06-25 is outside today's 24h pre-macro window (3 days out) but the cap could activate tomorrow.
+9. **Reddit egress 403 (persistent, 9th+ session)** — sentiment depth degraded across all candidates; EDGAR and Google News egress both OK today.
+
+### Decision
+**HOLD — no new entries.** CAT demotes at R:R 1.69:1 (Baird's Street-high but stale $1,165 target), MS demotes decisively at R:R 0.18:1 (7th consecutive fail, worst yet), and UNH — the only candidate to numerically clear the 2:1 floor (3.00:1 on Bernstein's $492 PT) — is dropped on the standing DOJ-criminal-investigation disqualifier, applied consistently with precedent from 06-02 through 06-08. Exposure-coach (REDUCE_ONLY, 40% ceiling) remains in tension with the regime's 75% deployment target, but both converge on HOLD today regardless of framing. Account remains 100% cash — 13th consecutive no-new-entry session. No watchlist additions: CAT and MS are both BREAKOUT-type near highs with R:R that doesn't improve on a dip, and UNH's disqualifier isn't price-dependent.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — standard Flash 429 quota-exhausted on all STEP 4 macro queries; `GEMINI_SMART_MODEL` (gemini-3-flash) 404 model-not-found on `research.py synthesize` (CAT). All macro queries and all candidate synthesis done via native WebSearch + direct Claude reasoning over the `research.py gather` output.
+- NewsAPI: 3 records (CAT only) / Finnhub: 193 records across 3 tickers / EDGAR: 45 records (15 each) / Google News: 30 records (10 each) / Reddit: 0 (403, all subreddits, all tickers)
+- Fallback events: Gemini 429 (STEP 4 macro) → WebSearch; Gemini 404 (STEP 4d synthesize, CAT) → manual Claude synthesis; Reddit 403 (all tickers)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=320.1h, slots cut 2→1
+
+---

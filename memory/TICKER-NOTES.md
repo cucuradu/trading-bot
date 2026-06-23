@@ -91,22 +91,25 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-22): Demoted again — R:R 1.66:1, CAT's best reading in 4 sessions but only because today's calc finally used JPMorgan's higher $1,125 PT (previously logged under "2026-05" but never substituted into the live calc — see process note below), not because the setup improved. Entry $985.82 / stop $901.71 (−8.53%, unclamped 2.5×ATR) / target $1,125 (+14.12%). Overvaluation critique escalated from "69%" (06-16) to "309.4% overvalued" (06-20) — bear narrative gaining traction, not losing it. No fresh CAT-specific catalyst since the now-stale backlog headline (4th+ consecutive restatement). Do NOT chase above $1,113 (06-18 gate) — today's $985.82 reference is well clear of it. [Demoted: R:R 1.66:1. research.py gather + WebSearch, Jun 22]
+- Thesis (2026-06-23): Demoted again (3rd consecutive session) — R:R 1.69:1: entry $1,022.28 / stop $937.70 (−8.27%, unclamped 2.5×ATR) / target $1,165 (Baird, highest individual PT, +13.96%). Fresh catalyst today: Chevron/Microsoft signed a 20-year "Project Kilby" natural-gas power deal naming CAT as turbine supplier (CAT +3.05% on the news) — but confirmed no dated analyst PT raise has yet credited it, so Baird's pre-Kilby $1,165 stays the ceiling. Overvaluation critique held flat at "309.4%" (no new restatement today, first session without escalation). Do NOT chase above $1,113 (06-18 gate) — today's $1,022.28 reference stays clear of it. [Demoted: R:R 1.69:1. research.py gather + WebSearch, Jun 23]
 - Recent catalysts:
+  - 2026-06-23: Chevron/Microsoft "Project Kilby" 20-year natural-gas power deal names CAT as turbine supplier; CAT +3.05% same-day — no dated PT raise yet [WebSearch]
   - 2026-06-20: "Caterpillar (CAT) Stock Could Be 309.4% Overvalued Despite Strong Share Price Momentum" — escalation from the 06-16 "69% overvalued" critique [Finnhub]
   - 2026-06-22: "The One Stock Now Controlling DIA's Next Move" — restates the data-center power-gen backlog thesis (no new info) [Finnhub]
-  - 2026-06-19: CAT +3.1% surge noted on continued strength [Finnhub]
-  - Process note: JPMorgan $1,125 PT (logged "2026-05", re-surfaced via WebSearch under a "June 2" batch with UBS $900/Oppenheimer $980 — same number, ~1mo date discrepancy, not a magnitude contradiction) was never substituted into the live R:R calc in 06-17/06-18 sessions, which defaulted to the lower/stale Evercore $1,103 figure instead — likely understated CAT's R:R for ≥2 prior sessions. Flagged for weekly review.
-  - 2026-06-16: simplywall.st DCF model flags CAT ~69% overvalued post AI-backlog re-rating [Google News]
+  - Process note: JPMorgan $1,125 PT (logged "2026-05", re-surfaced via WebSearch under a "June 2" batch with UBS $900/Oppenheimer $980 — same number, ~1mo date discrepancy, not a magnitude contradiction) was never substituted into the live R:R calc in 06-17/06-18 sessions, which defaulted to the lower/stale Evercore $1,103 figure instead — likely understated CAT's R:R for ≥2 prior sessions. Flagged for weekly review, still outstanding.
+  <!-- archive: 2026-06-19: CAT +3.1% surge noted on continued strength -->
+  <!-- archive: 2026-06-16: simplywall.st DCF model flags CAT ~69% overvalued post AI-backlog re-rating -->
   <!-- archive: 2026-05-09: Evercore ISI raised PT $878→$1,103 -->
   <!-- archive: 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance -->
   <!-- archive: 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845 -->
   <!-- archive: 2026-06-04/05: HOLD, INTACT — thesis insulated from NFP/AVGO contagion at $933, trail stop locking gains -->
 - Open thesis questions:
-  - Now that JPM's $1,125 is the active target (replacing the stale Evercore $1,103), does a fresh named-bank PT above ~$1,142 (needed for 2:1 from today's stop) ever surface, or does the bull case stay capped by a target the market already knows?
-  - Will the escalating "309% overvalued" critique gain sell-side traction (a dated downgrade) or stay a single-aggregator DCF outlier?
-  - Resource Industries profit −39% YoY (carried question); can data center power fully offset?
+  - Does a dated analyst PT raise crediting Project Kilby surface (need above ~$1,142 for 2:1 vs today's stop), or does Baird's pre-Kilby $1,165 stay the high-water mark indefinitely?
+  - Will the "309% overvalued" critique escalate further or gain sell-side traction (a dated downgrade), or has it plateaued as of today?
+  - Resource Industries profit −39% YoY (carried question); can data center power fully offset, and does Kilby specifically help that segment?
   - Single most-likely invalidator: same as 06-18, still live — a broad industrials/cyclicals pullback on higher-for-longer before any new CAT-specific catalyst.
+- Trade history: (none yet)
+- Position-aware notes: 0/2 XLI sector cap (no open XLI positions); no other XLI candidate in today's shortlist to correlation-check against.
 
 ## COST (XLP)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -225,22 +228,25 @@ Conventions:
 - Position-aware notes: XLV currently 0% exposure (fresh sector if entered); near-zero correlation with AMD/CAT (-0.02) — best factor diversification of any candidate screened to date.
 
 ## MS (XLF)
-- Thesis (2026-06-22): Demoted again (6th consecutive session, identical structural problem) — R:R 0.44:1: entry $223.17 / stop $207.55 (−7.0%, ATR-clamped) / target $230 (highest individual analyst target, undated) (+3.06%). Consensus ($203.29, 25 analysts) still ~9% below spot, same gap flagged for 6 straight sessions. Only dated analyst action on record (JPMorgan $187, 06-12, Neutral) points *below* spot, not above — every bull bullet this run is sector-level (Fed capital-relief narrative) or tangential (crypto/Bitcoin diversification), no MS-specific dated catalyst. [Demoted: R:R 0.44:1. research.py gather + WebSearch, Jun 22]
+- Thesis (2026-06-23): Demoted again (7th consecutive session, worst reading yet) — R:R 0.18:1: entry $227.09 / stop $211.19 (−7.0%, ATR-clamped) / target $230 (highest individual analyst target, still undated) (+1.28%). Spot has now drifted to within 1.28% of the static $230 ceiling that's been the bull case's only target for weeks — the gap that sustained MS's already-weak case is nearly closed. No new MS-specific dated catalyst surfaced today; recommend dropping from active rotation (see Risk Factors). [Demoted: R:R 0.18:1, decisive fail. research.py gather + WebSearch, Jun 23]
 - Recent catalysts:
+  - 2026-06-23: No new MS-specific dated catalyst found; Barclays $230 confirmed still the highest dated individual target (dated 2026-04-16) [research.py gather]
   - 2026-06-22: "Soaring Profits in Emerging Markets Build Case for a Raging Bull Market" — MS-desk commentary, broader market thesis not MS-specific [Finnhub]
   - 2026-06-19: MS quietly added Bitcoin exposure, cut crypto-ETF fee to 0.14% (new category floor) — diversification signal, not core-business catalyst [Finnhub]
-  - 2026-06-19: "MS Stock After 72% One-Year Jump — What Do Valuation Models Suggest Now" — valuation-check headline echoing the AMD/CAT overvaluation-pushback pattern [Finnhub]
   - 2026-06-18: "The Quiet Revolution at the Fed: U.S. Banking Sector Received a Catalyst More Potent than Rate Cuts" — sector-level regulatory/capital-relief narrative, not MS-specific [Finnhub]
   - 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot, most recent dated action on record
+  <!-- archive: 2026-06-19: "MS Stock After 72% One-Year Jump — What Do Valuation Models Suggest Now" -->
   <!-- archive: 2026-06-17: MS rose while the broader market fell on the hawkish FOMC dot-plot — relative-strength data point -->
   <!-- archive: 2026-06-17: "$10 Trillion Wealth + SpaceX Boost" headline — narrative story, no quantified guidance -->
   <!-- archive: 2026-06-09: Annual U.S. Financials Conference (CEO Ted Pick spoke) — no PT-moving guidance -->
   <!-- archive: 2026-06-08: KBW (Konrad) sole bull at $230/+8.6% -->
   <!-- archive: 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt -->
 - Open thesis questions:
-  - The only dated analyst action (JPM, 06-12) points below spot — does any desk publish a fresh target above ~$237 (needed for 2:1 against the 7%-floor stop), or does the static $230 figure keep getting left behind by price?
+  - Spot is now only 1.28% below the static $230 target — once price crosses it, is there any remaining bull case, or does MS need an entirely fresh dated PT above spot to stay in rotation at all?
   - Is the rate-sensitive financials/NIM-expansion tailwind (post-FOMC dot-plot) durable, or does it unwind if yields retrace — removing the only thing supporting MS's relative strength?
-  - Single most-likely invalidator: same as 06-18, still live — a reversal in the rate-sensitive financials trade if higher-for-longer cools.
+  - Given 7 consecutive demotions and R:R now below 0.2:1, should MS be dropped from the active candidate rotation until a fresh dated catalyst resets the math? (weekly-review item)
+- Trade history: (none yet)
+- Position-aware notes: 0/2 XLF sector cap (no open XLF positions); no other XLF candidate in today's shortlist to correlation-check against.
 
 ## MSFT (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -301,16 +307,19 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## UNH (XLV)
-- Thesis (2026-06-08): Sentiment has flipped sharply bullish (BofA upgrade to Buy, dividend +5%, Q1 beat+raise, "40% rally" headlines, stock now $399.47 — near its $404 52w high) — but the active DOJ criminal investigation into Medicare billing remains OPEN/UNRESOLVED per fresh confirmation (no charges yet, no announced resolution timeline). Improving fundamentals do not retire a binary federal-indictment gap-risk that no stop protects against. 7th consecutive drop on the same DOJ basis (6/2 through 6/8). [Dropped — DOJ binary risk unchanged. WebSearch Jun 8; healthcaredive/fiercehealthcare]
+- Thesis (2026-06-23): Researched then dropped on the standing disqualifier (8th consecutive occurrence, 06-02 through 06-23) — DOJ criminal investigation into Medicare Advantage/Optum Rx/physician-reimbursement billing confirmed still open, no charges, no resolution timeline. Notably, UNH is the first candidate in many sessions to actually clear the 2:1 R:R floor on pure math: entry $406.68 / stop $378.21 (−7.0%, ATR-clamped) / target $492 (Bernstein, dated 2026-05-27) (+20.98%) → R:R 3.00:1. The math says enter; the binary DOJ gap-risk says don't — no trailing stop protects against an indictment gap-down. Mangione murder trial remains a secondary reputational overhang (state trial 2026-09-08, federal 2026-10-13). [Dropped — DOJ binary risk unchanged, despite R:R 3.00:1 clearing the floor. research.py gather + WebSearch, Jun 23]
 - Recent catalysts:
+  - 2026-06-23: Bernstein $492 PT (dated 2026-05-27) confirmed still the highest dated target; $3B AI turnaround narrative; FTC insulin-dispute progress noted [research.py gather + WebSearch]
   - 2026-06-08: BofA Securities upgrade to "Buy" + 5% dividend raise drove a fresh pop; stock near 52w high $404.15, up ~40% from recent lows [Barchart/TIKR via WebSearch Jun 8]
-  - Ongoing (confirmed still active 6/8): DOJ criminal + civil investigation into Medicare Advantage/Optum Rx/physician-reimbursement billing practices — no charges, no resolution timeline [healthcaredive.com, fiercehealthcare.com via WebSearch Jun 8]
+  - Ongoing (confirmed still active 06-23): DOJ criminal + civil investigation into Medicare Advantage/Optum Rx/physician-reimbursement billing practices — no charges, no resolution timeline [healthcaredive.com, fiercehealthcare.com / WebSearch]
   - 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; prior authorization cuts for 30% of services
   <!-- archive: 2026-05: Truist PT raised to $440; median consensus PT $400.50 -->
 - Open thesis questions:
-  - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop. Does the bullish sentiment wave (BofA upgrade, dividend hike) eventually outweigh this in the bot's framework, or does the binary-risk gate hold indefinitely until the investigation formally resolves?
-  - At what point does a 7-session string of identical DOJ-based drops warrant a strategy-level rule (e.g., a standing "no entry while active criminal probe" filter) vs. re-litigating it daily?
+  - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop. Now that R:R has actually cleared 2:1 for the first time (3.00:1), does the bot's framework need a formal codified rule for this override, or does it stay a daily re-litigation? (flagged for weekly review, 06-22 and again today)
+  - At what point does an 8-session string of identical DOJ-based drops warrant a strategy-level rule (e.g., a standing "no entry while active criminal probe" filter) vs. re-litigating it daily?
   - MLR still elevated; membership down 2.8M in 2026 — does the rally reflect real operational improvement or short-covering/legal-resolution optimism getting ahead of facts?
+- Trade history: (none yet)
+- Position-aware notes: 0% XLV exposure; standing disqualifier blocks entry regardless of sector-cap availability.
 
 ## UNP (XLI)
 - Thesis (2026-06-04): XLI Trend regime; Q1 FY2026 EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%); Norfolk Southern integration potential PT uplift; consensus PT $273.36 (26 analysts), Barclays outlier $315 (Apr 24, 2026); current $262.13. DEMOTED — R:R 0.96:1 with year-high $279.70 as target fails 2.0 floor; entry only viable if price retraces to ~$245–250.
