@@ -16,6 +16,9 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+from _yf_compat import patch as _patch_yf, get_session as _yf_session
+_patch_yf()
+
 
 SECTOR_ETFS = {
     "Technology": "XLK",
@@ -219,6 +222,7 @@ def correlation(symbols: list[str], lookback_days: int = 30) -> dict:
         auto_adjust=False,
         progress=False,
         group_by="ticker",
+        session=_yf_session(),
     )
     # Extract Close column for each symbol — yf.download has different shapes
     # for 1 symbol vs many; normalize to a DataFrame keyed by symbol.

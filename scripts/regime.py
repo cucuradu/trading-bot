@@ -19,6 +19,9 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+from _yf_compat import patch as _patch_yf
+_patch_yf()
+
 
 # ---- Market regime constants (mirror memory/TRADING-STRATEGY.md) ----
 

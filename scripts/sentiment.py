@@ -22,6 +22,8 @@ _ANALYZER = SentimentIntensityAnalyzer()
 
 def _headlines_from_yf(symbol: str) -> list[str]:
     import yfinance as yf
+    from _yf_compat import patch as _patch_yf
+    _patch_yf()
     out: list[str] = []
     for item in (yf.Ticker(symbol).news or []):
         # yfinance has shifted schema across versions: flat {title} or {content:{title}}.

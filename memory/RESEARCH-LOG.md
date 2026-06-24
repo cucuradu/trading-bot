@@ -3194,3 +3194,101 @@ Neutral regime, 13th consecutive day of stale ML insights (now 320.1h/13.3 days,
 - ml_insights: status=stale_degrade, age=320.1h, slots cut 2→1
 
 ---
+
+## 2026-06-24 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, trade_slots base=2, deployment: 75%) — fallback_reason: ml unavailable; using local_screener_v1
+**Pre-macro:** cap_active=true (event: Core PCE, event_date 2026-06-26, days_to_event=2, within_24h=false) → caps shortlist to MIN(slots,2). No-op today since ML staleness already drives slots to 1.
+**ML staleness:** status=stale_degrade, age=344.5h (14.4 days) — trade_slots cut 2→1, hard gate. **Worsening every session** (296.1h→320.1h→344.5h); 14th consecutive session with no local-PC ml-insights refresh. **Effective trade_slots today = 1.**
+**Breadth/Sector:** breadth=53/100 (Neutral, flat vs 06-23) — market-breadth-analyzer only; `analyze_sector_rotation.py --json` failed (`http.client.IncompleteRead`, network) — sector-rotation score/phase unavailable today, gap noted.
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=NEUTRAL | conf=MEDIUM (composite 41.1; inputs_missing: top_risk, uptrend, institutional, sector, theme, ftd — confidence capped on missing inputs)
+**FTD:** unavailable — `ftd_detector.py --json` unsupported (exit 2), same known CLI/doc mismatch since 06-12; skipped silently, advisory-only.
+**Egress:** edgar=ok, google_news=ok, reddit=http_403, sector-rotation=network_fail
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+- Deployment = 0% (14th consecutive no-new-entry session). Equity unchanged vs yesterday's close ($100,472.45 → $100,472.45, $0.00 day P&L).
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ml stale 344.5h — worst yet, 14 days with no refresh, requires user action). Dominant theme: a sharp, 2-session AI/semiconductor selloff spreading from Asia — South Korea's KOSPI plunged 10% Tuesday, tripping a circuit breaker (SK Hynix/Samsung −12%+, ~half of KOSPI's market cap), on doubts about the sustainability of the AI-capex rally compounded by rate-hike fears tied to Iran/Strait-of-Hormuz-driven inflation risk. US contagion: Nasdaq −2.21%, S&P −1.44% Tuesday; Philadelphia Semiconductor Index −7.9% (MU, MRVL, ON each more than doubled YTD and led the decline). Selloff continuing into a second session this morning per Finnhub headlines ("Chip Selloff Deepens as AI Doubts Bleed Into a Second Session," 06-24). VIX 19.49 (cash, +~2pt vs 06-23's calm ~18.8 futures range) — vol re-pricing the selloff. 10Y yield hit a 16-month high of 4.69% Tuesday. WTI/Brent: no fresh print found this session (Iran/Hormuz strike-response risk still the standing wildcard per recent sessions; oil vol elevated — WTI 1-month implied vol spiked to 68% last week before easing to ~51%). Calendar: **Micron (MU) reports after today's close** — the single largest live catalyst for the whole semiconductor complex (consensus ~$19.95-20.76 EPS / ~$34.7-35.75B revenue, +268-987% YoY on easy comps; options pricing a ~14% move; MU's own guide is for record 81% gross margins) — a beat-and-raise is now priced as the bar, given MU topped both lines in each of its last 8 quarters. Core PCE prints Thu 06-26 (2 days out; pre-macro cap active per risk_gates.py but a no-op given slots already =1 from ML staleness). Breadth 53/100 (Neutral, flat); sector-rotation unavailable (network failure, gap noted). Exposure-coach ceiling ticked down 41%→37%, REDUCE_ONLY held, bias flipped VALUE→NEUTRAL — confidence capped MEDIUM on missing inputs. vs 06-23: VIX up sharply (~18.8→19.49, chip-selloff vol); 10Y yield up to a 16-month high (4.69%); regime unchanged Neutral; ml staleness worse again (320.1h→344.5h); breadth flat (53→53); dominant narrative flipped from oil-driven Iran de-escalation calm to an AI/semiconductor-specific risk-off shock.
+
+### Sector Picture
+Sector-rotation (cyclical/defensive ratio, risk-on score, market-cycle phase) unavailable today — `analyze_sector_rotation.py --json` failed with a network read error (`IncompleteRead`), distinct from the FTD/Reddit issues; not retried (best-effort, skip-silently policy). No yfinance 1mo-momentum table substitute run today since the screener (below) already captures relative ranking for the universe. Today's qualitative read from headlines: chip/AI-infra names (AMD, MU, NVDA-adjacent) under acute 2-day selling pressure; industrials/data-center-power names (CAT, GE) continuing a separate AI-capex-driven rally largely uncorrelated to the chip-specific selloff so far.
+
+### Screener diagnostics
+Screener: source=local_screener_v1 (ml unavailable), top 10 = [AMD(1.41), CAT(1.13), SMH(0.88), MS(0.79), UNH(0.71), XBI(0.70), GE(0.63), GS(0.58), JPM(0.45), BAC(0.42)]. Watchlist: empty (`watchlist.py list` → `[]`).
+`scripts/screener.py shortlist --slots 1` → **[AMD, CAT]** (top-2 returned for deep-dive redundancy even at slots=1, consistent with recent-session pattern). MU (screener-eligible by score but not in this universe run's top tickers after AMD/CAT) carries no blackout today (next earnings 2026-08-04 confirmed via `market_data.py earnings` for both AMD and CAT — neither in blackout).
+
+### Candidates
+
+#### AMD (XLK, $519.85, −0.45% vs prev close $522.20; 7.7% below year-high $562.99)
+
+**Setup:** ATR(14)=$33.49 (6.44% of price); raw stop_pct_2.5x=16.11% → clamped to **15.0% ceiling** → stop $441.87 (risk $77.98/sh). No earnings blackout (next: 2026-08-04, 41d out).
+
+**Sources scanned:** Finnhub + Google News (NewsAPI/EDGAR returned no fresh AMD-specific items in the lookback window; Reddit 403 as usual).
+
+**Bull case:**
+- UBS raised PT to $670 today (06-24, freshest dated target found), citing server-CPU share gains [Google News/Investing.com].
+- Dan Ives (Wedbush) and Morgan Stanley's Slimmon publicly downplayed the 2-day chip selloff as "healthy," not thesis-breaking [Finnhub, 06-23].
+- AI-infra rotation thesis (OpenAI/Meta 6GW commitments, Helios H2 2026 deployments) carried forward unchanged from 06-21/06-22 — no new confirming or disconfirming data point today.
+
+**Bear case:**
+- AMD is in the middle of an active, 2-session-and-counting sector selloff: AMD/Intel −5%, NVIDIA −3% Tuesday on the Korea-led chip rout; Finnhub's own 06-24 headline says the selloff is "deepening into a second session." Buying into the teeth of an unresolved, accelerating sector drawdown is the opposite of "follow sector momentum."
+- **Consensus contradiction:** every multi-analyst aggregator found today places AMD's *consensus* target below the current price — S&P Global (51 analysts) $487.9, TipRanks (35 analysts, 3mo) $491.27, Benzinga (33 analysts) $430.76, MarketBeat (44 analysts) $430.68 — vs. spot $519.85. AMD is trading **above every broad-consensus figure found**, even after a 2-day, ~4% pullback. Only single-bank outlier calls (UBS $670 today, Barclays $665 06-01, Citi $575 06-12) produce any positive reward at all — the same "single/dual-bank-call-vs-consensus gap" flagged every session since 06-15, still unresolved 9 sessions later.
+- **Shared-catalyst flag (new, material):** Micron reports after today's close — the defining near-term catalyst for the entire semiconductor/AI-infra complex AMD trades inside. A miss or guide-down would almost certainly extend the 2-day selloff into AMD overnight/tomorrow via sympathy, with gap risk an ATR stop cannot protect against intraday. This is a same-day, binary, sector-wide catalyst risk distinct from (and in addition to) the Core PCE pre-macro cap.
+
+**R:R math:** entry $519.85 / stop $441.87 (−15.0%, ATR-clamped) / target $670 (UBS, 06-24, freshest cited) (+28.9%) / **R:R = $150.15/$77.98 = 1.93:1 → fails the 2.0 floor** even on today's single freshest, most-bullish dated target. Using the 51-analyst S&P Global consensus ($487.9, below spot) the trade has **negative expected reward** — there is no credible non-outlier target that clears the floor.
+
+**Gate-history audit:** No explicit "do NOT chase above $X" gate on record for AMD — every session since 06-15 has been a fresh R:R-floor fail, not a gate-creep violation, but the underlying pattern (bullish single-bank PTs chasing a price that keeps climbing, broad consensus left behind) is unchanged and now in its 9th consecutive flagged session (06-15, 06-16, 06-22, 06-24 explicitly demoted on R:R; intervening sessions screened AMD out via MU's earnings blackout or pre-macro caps).
+
+**Decision: Demoted** — R:R 1.93:1 (best case, freshest UBS target), fails the 2:1 floor; consensus-implied case is negative. Compounded today by the active sector selloff and the same-day MU earnings shared-catalyst risk.
+
+#### CAT (XLI, $984.24, −0.32% vs prev close $987.39; 3.8% below 52w-high $1,023.29)
+
+**Setup:** ATR(14)=$35.245 (3.58% of price); raw stop_pct_2.5x=8.95% (unclamped, within [7%,15%]) → stop $896.13 (risk $88.11/sh). No earnings blackout (next: 2026-08-04, 41d out).
+
+**Sources scanned:** Finnhub + Google News (EDGAR 8-K/10-Q/Form-4 filings from the 06-23 gather carried forward, nothing newer; Reddit 403, NewsAPI thin).
+
+**Bull case:**
+- Wells Fargo raised PT to $1,155 today (06-24, freshest dated target found) [Google News/TradingView].
+- Stock has soared 184% over the trailing 12 months on the data-center/AI-infra power-generation backlog thesis (Project Kilby turbine-supply deal, 06-23); dividend hiked +8% (06-11), a fundamentals-positive signal independent of the AI narrative.
+- "Wall Street Analysts Are Bullish on Top Industrial Goods Picks" (06-24) — CAT named among top sector picks today.
+
+**Bear case:**
+- **Fresh bear catalyst today:** "Caterpillar's Margin Problem: Is the Core Business Losing Steam?" (Trefis, 06-23/06-24) — directly engages the standing Resource Industries profit −39% YoY question carried in TICKER-NOTES; first dedicated margin-deterioration piece found this cycle, separate from the recurring valuation critique.
+- **Consensus contradiction, same pattern as AMD:** median analyst target across aggregators found today is **$932.50–$949.68** (19-analyst median $932.50, range $575-$1,165; other aggregators $939.86, $946, $949.68) — all **below** spot $984.24. CAT is trading above its own broad consensus, same as AMD; only Wells Fargo's brand-new $1,155 (and Baird's stale pre-Kilby $1,165) clear any reward.
+- Standing "~309% overvalued" critique (escalated 06-20, flat since) unresolved; no sell-side downgrade yet, but no resolution either.
+
+**R:R math:** entry $984.24 / stop $896.13 (−8.95%, unclamped) / target $1,155 (Wells Fargo, 06-24, freshest cited) (+17.35%) / **R:R = $170.76/$88.11 = 1.94:1 → fails the 2.0 floor**, narrowly, same as AMD. Using the ~19-analyst median ($932.50, below spot) the trade has **negative expected reward**.
+
+**Gate-history audit:** No prior chase-gate was set above today's reference ($984.24 is below the 06-18 $1,113 "do NOT chase" level and below 06-23's $1,022.28 entry). This is CAT's **5th consecutive demoted session** (06-17 1.88:1, 06-18 1.78:1, 06-22 1.66:1, 06-23 1.69:1, 06-24 1.94:1) — today's reading is nominally CAT's best yet, but exclusively because Wells Fargo's fresh $1,155 replaces Baird's stale $1,165 as the cited ceiling, not because the underlying setup improved; the broad-consensus contradiction is unchanged from every prior session.
+
+**Decision: Demoted** — R:R 1.94:1 (best case, freshest Wells Fargo target), fails the 2:1 floor by a hair; consensus-implied case is negative. Closest-yet reading, still a fail.
+
+- **SMH, MS, UNH, XBI, GE, GS, JPM, BAC** — ranked below AMD/CAT on the screener; not deep-dived. Both top-2 candidates already demote on the hard R:R floor with trade_slots=1 — expanding the pool would not change today's HOLD outcome.
+- **Shared-catalyst note:** AMD (chip/GPU AI-infra) and CAT (data-center power-gen AI-infra) sit on the same broad "AI capex buildout" macro theme even though the current sub-theme diverges sharply — chips are selling off while power-gen/industrials are still rallying. Moot today since both demote regardless.
+- **Candidates dropped pre-shortlist:** none — MU (next earnings today, 2026-06-24, `in_blackout=true`) was already excluded from this universe run's screener output by score, not by the blackout rule specifically, but the blackout would have excluded it regardless had it ranked in the top 2.
+
+### Historical Analog
+Today's 2-session chip/AI selloff (Korea KOSPI −10% circuit-breaker, Philly Semi Index −7.9%) most closely resembles the 06-19 "valuation contradiction" warning (D.A. Davidson's Gil Luria: semi ETFs +80% YTD, memory +300%+, multiples disconnecting from fundamentals) finally manifesting as a realized drawdown 5 sessions later, rather than a new, independent shock — consistent with this log's repeated observation that AMD's bullish single-bank PTs have been outrunning broad consensus since 06-15. The pattern argues for continued patience on AMD specifically until either (a) the selloff resolves and a third major desk confirms the $575-670 range, or (b) AMD pulls back toward the $440s where the BofA/Citi range would mechanically clear 2:1 — tonight's MU print is the next likely catalyst for either outcome.
+
+### Risk Factors
+1. **Infra fix (material, this session):** `yfinance`'s default `curl_cffi` transport fails TLS handshake against this sandbox's egress-proxy re-termination (`OPENSSL_internal:invalid library (0)`) on every yfinance-backed call, which would have hard-blocked STEP 1's regime resolution entirely. Diagnosed and fixed by patching `YfData`'s singleton session to plain `requests` (new `scripts/_yf_compat.py`, wired into `market_data.py`, `regime.py`, `analyst_data.py`, `sentiment.py`, `screener.py`) — verified clean across quote/correlation/screener/ml_insights-resolve. Committed alongside today's memory updates; flagging for the record since it changes routine reliability going forward, not just today's run.
+2. ML staleness now 344.5h/14.4 days, worst yet, 14 consecutive sessions with no local-PC refresh — requires user action.
+3. Sector-rotation script (`analyze_sector_rotation.py`) failed on a network read error today — distinct failure mode from the FTD `--json` and Reddit 403 issues; today's Sector Picture section is breadth-only, no cyclical/defensive ratio or market-cycle phase.
+4. Gemini fully exhausted both tiers (Pro+Flash, exit code 4, `RESOURCE_EXHAUSTED`) for the 2nd time in 3 sessions — all synthesis/critique/historical-analog work done manually via Claude + WebSearch.
+5. `vaderSentiment` module missing from the environment — `sentiment.py score` fails on import (`ModuleNotFoundError`); skipped silently today (advisory-only signal, not a hard gate). New issue, not previously logged.
+6. AMD and CAT both trade **above** every broad multi-analyst consensus figure found today (AMD spot $519.85 vs consensus $430-488; CAT spot $984.24 vs consensus $932-950) — only single-bank outlier targets dated today produce a positive R:R for either name, and even those narrowly miss the 2:1 floor. This is the same structural pattern flagged every session since 06-15 (AMD) and across CAT's last 5 sessions, now arguably worse given the active chip-sector selloff.
+7. Exposure-coach (REDUCE_ONLY, 37% ceiling, NEUTRAL bias, confidence capped MEDIUM on 6 missing inputs) sits in tension with the regime's 75% deployment target — moot at 0% deployment and with both candidates failing the R:R floor independently.
+
+### Decision
+**HOLD — no new entries.** Both screener-ranked candidates fail the hard 2:1 R:R floor even on today's freshest, most-bullish dated targets: AMD 1.93:1 (UBS $670, 06-24) and CAT 1.94:1 (Wells Fargo $1,155, 06-24) — both also show a *negative* expected-reward case against their respective broad-analyst consensus, which sits below spot for both names. Compounding factors: AMD sits inside an active, deepening 2-session chip-sector selloff with Micron's earnings (the defining catalyst for the whole semiconductor complex) landing after today's close; CAT has a fresh margin-deterioration bear note today. Account remains 100% cash — 14th consecutive no-new-entry session. No watchlist additions: neither candidate has a pullback level worth alerting on (both are near-highs with R:R that doesn't improve on further upside); AMD's existing pullback note (toward the $440s) from 06-22 stands unchanged.
+
+### Quota & source usage
+- Gemini: exhausted both tiers (exit 4, `RESOURCE_EXHAUSTED`) on the first macro batch query; no further calls attempted this session.
+- Fallback events: Gemini 429/4 (STEP 4 macro + all synthesis) → WebSearch + manual Claude synthesis; sector-rotation network failure → breadth-only Sector Picture; `sentiment.py` import failure → skipped (new issue, logged in Risk Factors)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403, sector-rotation=network_fail
+- ml_insights: status=stale_degrade, age=344.5h, slots cut 2→1
+- `[degraded: Gemini quota fully exhausted (exit 4); macro + all candidate synthesis via WebSearch + manual Claude reasoning]`
+
+---

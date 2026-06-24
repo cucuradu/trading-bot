@@ -21,6 +21,9 @@ import sys
 
 import yfinance as yf
 
+from _yf_compat import patch as _patch_yf
+_patch_yf()
+
 
 def _num(x):
     try:

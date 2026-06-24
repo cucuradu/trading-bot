@@ -42,6 +42,8 @@ _HERE = Path(__file__).resolve().parent
 if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))
 
+from _yf_compat import patch as _patch_yf, get_session as _yf_session  # noqa: E402
+_patch_yf()
 import regime as rg  # noqa: E402
 from universe import TRADING_UNIVERSE, sector_of  # noqa: E402
 
@@ -121,6 +123,7 @@ def fetch_universe_bars(
         progress=False,
         group_by="ticker",
         threads=True,
+        session=_yf_session(),
     )
 
     out: dict[str, pd.DataFrame] = {}
