@@ -16,6 +16,8 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+import _yf_session_patch  # noqa: F401  (must run before any yf.Ticker call)
+
 
 SECTOR_ETFS = {
     "Technology": "XLK",

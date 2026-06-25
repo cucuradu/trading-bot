@@ -38,6 +38,8 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+import _yf_session_patch  # noqa: F401  (must run before any yf.Ticker call)
+
 _HERE = Path(__file__).resolve().parent
 if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))

@@ -19,6 +19,8 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+import _yf_session_patch  # noqa: F401  (must run before any yf.Ticker call)
+
 
 # ---- Market regime constants (mirror memory/TRADING-STRATEGY.md) ----
 

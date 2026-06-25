@@ -38,14 +38,15 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-06-22): Demoted — R:R 1.58:1 best case: entry $537.37 / stop $456.76 (−15.0% ATR-clamped) / target $665 (Barclays, street-high, 06-01) (+23.76%); worst case using Citi's more-recent $575 (06-12) is R:R 0.47:1. AI-infra rotation thesis intensifying (OpenAI+Meta committed 6GW of AMD infra, "Helios" deployments H2 2026) but stock has run +10% since the 06-11 BofA upgrade with no fresh idiosyncratic catalyst since 06-12 — same single/dual-bank-call-vs-consensus gap flagged since 06-15, still unresolved 5+ sessions later. [Demoted: R:R 1.58:1. research.py gather + WebSearch, Jun 22]
+- Thesis (2026-06-25): Demoted via judgment override — R:R numerically clears the floor for the first time (2.01:1: entry $510.80 / stop $434.18 (−15.0% ATR-clamped) / target $665 Barclays, unchanged since 06-22) but the 48-analyst consensus mean/median ($487.90/$490.00) flipped **below spot** this session — the clearance is a single 3-day-old outlier against a newly-negative consensus, not a strengthening bull case. Treated as a fail-in-substance, not traded. AMD pulled back ~5% over the 3 sessions into Micron's 06-24 beat, then attempted a rebound today on the AI-trade reignition. [Demoted (override): R:R 2.01:1 on outlier only. market_data.py/analyst_data.py + Finnhub, Jun 25]
 - Recent catalysts:
-  - 2026-06-21: "AMD's H2 2026 Inflection Is Bigger Than AI GPUs" — OpenAI + Meta each committed 6GW of AMD infrastructure, Helios deployments beginning H2 2026 [Finnhub]
-  - 2026-06-20: "Cloud Infrastructure Rotation Intensifies as AMD Surges While Microsoft Stumbles" — AMD +20% monthly, capital rotating from cloud platforms into pure-play AI-infra [Finnhub]
-  - 2026-06-19: D.A. Davidson (Gil Luria) flagged valuation contradiction on CNBC — semi ETFs +80% YTD, memory +300%+, multiples disconnecting from fundamentals [Finnhub]
-  - 2026-06-19: dated bear note — attractive R:R only on a macro pullback to ≤$440 [Finnhub]
-  - 2026-06-12: Citi upgraded to Buy, PT $575 — "AMD is no longer just a CPU stock" [Reuters/Benzinga]
-  - 2026-06-01: Barclays street-high PT $665 [WebSearch aggregators]
+  - 2026-06-25: Micron's 06-24 after-close beat reignited AI/semis sentiment broadly (Nasdaq futures +2.2% pre-open); AMD-specific read-through, not an idiosyncratic catalyst [Finnhub]
+  - 2026-06-25: Consensus `target_mean`/`target_median` ($487.90/$490.00) dropped below spot for the first time — 47 of 48 analysts now at or below a level price has already fallen through [analyst_data.py]
+  <!-- archive: 2026-06-21: "AMD's H2 2026 Inflection Is Bigger Than AI GPUs" — OpenAI + Meta each committed 6GW of AMD infrastructure, Helios deployments beginning H2 2026 -->
+  <!-- archive: 2026-06-20: "Cloud Infrastructure Rotation Intensifies as AMD Surges While Microsoft Stumbles" -->
+  <!-- archive: 2026-06-19: D.A. Davidson valuation-contradiction note; bear case needs pullback to ≤$440 -->
+  <!-- archive: 2026-06-12: Citi upgraded to Buy, PT $575 -->
+  <!-- archive: 2026-06-01: Barclays street-high PT $665 -->
   <!-- archive: 2026-06-11: BofA raised PT $500→$560, "top CPU pick" on $170B 2030 server-CPU TAM -->
   <!-- archive: 2026-06-10: ARK (Cathie Wood) trimmed AMD, added NVDA same week -->
   <!-- archive: 2026-06-04: AVGO sell-the-news contagion; AMD −3.97% sympathetic -->
@@ -56,9 +57,9 @@ Conventions:
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes: COMPUTEX exhaustion + NFP yield spike + AVGO contagion)
 - Open thesis questions:
-  - No third major desk has confirmed the $575–665 range with a fresh, dated note since 06-12 — does the re-rating broaden, or does AMD round-trip back toward the $490 consensus median?
-  - "6GW Helios" commitment language (06-21) is directional, not quantified guidance — does a follow-up filing/guide turn it into an R:R-moving number?
-  - Single most-likely invalidator: same as 06-15, still unresolved — no third-desk confirmation within 5 trading days of the BofA/Citi/Barclays cluster.
+  - Should the R:R floor be checked against `target_median`/`target_mean` instead of `target_high` going forward, to stop a single stale outlier from numerically clearing the gate while the broader consensus disagrees? (weekly-review item, raised 06-25)
+  - Does the Micron-driven rebound broaden into a fresh, dated AMD-specific PT raise, or fade as a single-day sentiment bounce?
+  - Single most-likely invalidator: a third major desk reaffirming sub-$500 fair value would confirm the consensus de-rating rather than the $665 outlier.
 
 ---
 
@@ -91,23 +92,25 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-23): Demoted again (3rd consecutive session) — R:R 1.69:1: entry $1,022.28 / stop $937.70 (−8.27%, unclamped 2.5×ATR) / target $1,165 (Baird, highest individual PT, +13.96%). Fresh catalyst today: Chevron/Microsoft signed a 20-year "Project Kilby" natural-gas power deal naming CAT as turbine supplier (CAT +3.05% on the news) — but confirmed no dated analyst PT raise has yet credited it, so Baird's pre-Kilby $1,165 stays the ceiling. Overvaluation critique held flat at "309.4%" (no new restatement today, first session without escalation). Do NOT chase above $1,113 (06-18 gate) — today's $1,022.28 reference stays clear of it. [Demoted: R:R 1.69:1. research.py gather + WebSearch, Jun 23]
+- Thesis (2026-06-25): Demoted again (4th consecutive session) — R:R 1.83:1: entry $994.18 (Alpaca bid-ask midpoint, validated against yfinance last_price $994.45) / stop $937.70 (clamped, unchanged) / target $1,155 (Wells Fargo, fresh PT raise, +16.18%). Wells Fargo's raise replaces Baird's stale $1,165 as the new ceiling but the lower entry (vs. 06-23's $1,022.28) widens R:R only modestly — still fails the 2:1 floor. First session where consensus mean/median has drifted to flat-to-below spot rather than comfortably above it (degraded breadth of bull case, not just ceiling math). Overvaluation critique ("309.4%") not restated today — second session without escalation. Do NOT chase above $1,113 (06-18 gate, still live) — today's $994.18 reference stays clear. [Demoted: R:R 1.83:1. market_data.py/analyst_data.py (yfinance, post TLS-proxy fix) + Finnhub, Jun 25]
 - Recent catalysts:
-  - 2026-06-23: Chevron/Microsoft "Project Kilby" 20-year natural-gas power deal names CAT as turbine supplier; CAT +3.05% same-day — no dated PT raise yet [WebSearch]
-  - 2026-06-20: "Caterpillar (CAT) Stock Could Be 309.4% Overvalued Despite Strong Share Price Momentum" — escalation from the 06-16 "69% overvalued" critique [Finnhub]
-  - 2026-06-22: "The One Stock Now Controlling DIA's Next Move" — restates the data-center power-gen backlog thesis (no new info) [Finnhub]
-  - Process note: JPMorgan $1,125 PT (logged "2026-05", re-surfaced via WebSearch under a "June 2" batch with UBS $900/Oppenheimer $980 — same number, ~1mo date discrepancy, not a magnitude contradiction) was never substituted into the live R:R calc in 06-17/06-18 sessions, which defaulted to the lower/stale Evercore $1,103 figure instead — likely understated CAT's R:R for ≥2 prior sessions. Flagged for weekly review, still outstanding.
+  - 2026-06-25: Wells Fargo raises CAT PT to $1,155 (surfaced via Finnhub news headline, not the analyst-ratings endpoint — that endpoint returned 403 on the free tier today) [Finnhub]
+  - 2026-06-25: Consensus mean/median now flat-to-below spot for the first time tracked — bull case narrowing to PT-ceiling math rather than broad analyst agreement [market_data.py/analyst_data.py]
+  <!-- archive: 2026-06-23: Chevron/Microsoft "Project Kilby" 20-year natural-gas power deal names CAT as turbine supplier; CAT +3.05% same-day — no dated PT raise yet -->
+  <!-- archive: 2026-06-20: "Caterpillar (CAT) Stock Could Be 309.4% Overvalued Despite Strong Share Price Momentum" -->
+  <!-- archive: 2026-06-22: "The One Stock Now Controlling DIA's Next Move" — restates backlog thesis, no new info -->
   <!-- archive: 2026-06-19: CAT +3.1% surge noted on continued strength -->
   <!-- archive: 2026-06-16: simplywall.st DCF model flags CAT ~69% overvalued post AI-backlog re-rating -->
   <!-- archive: 2026-05-09: Evercore ISI raised PT $878→$1,103 -->
   <!-- archive: 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance -->
   <!-- archive: 2026-05: Analyst upgrades — JPM $1,125, Argus $990, Morgan Stanley $915, DA Davidson $845 -->
   <!-- archive: 2026-06-04/05: HOLD, INTACT — thesis insulated from NFP/AVGO contagion at $933, trail stop locking gains -->
+  - Process note (still outstanding): JPMorgan $1,125 PT date discrepancy flagged 06-17/06-18 never resolved at weekly review — carry forward.
 - Open thesis questions:
-  - Does a dated analyst PT raise crediting Project Kilby surface (need above ~$1,142 for 2:1 vs today's stop), or does Baird's pre-Kilby $1,165 stay the high-water mark indefinitely?
-  - Will the "309% overvalued" critique escalate further or gain sell-side traction (a dated downgrade), or has it plateaued as of today?
-  - Resource Industries profit −39% YoY (carried question); can data center power fully offset, and does Kilby specifically help that segment?
-  - Single most-likely invalidator: same as 06-18, still live — a broad industrials/cyclicals pullback on higher-for-longer before any new CAT-specific catalyst.
+  - Wells Fargo's $1,155 raise narrows the gap to 2:1 but doesn't close it — does a further raise above ~$1,142-equivalent-on-today's-stop surface, or does the bull case stall here?
+  - Consensus mean/median flipping flat-to-below spot today (same pattern flagged on AMD) — is this a sector-wide analyst-target staleness issue worth a weekly-review check across all XLI/XLK candidates?
+  - Will the "309% overvalued" critique resurface, or has it genuinely plateaued (2 sessions without escalation)?
+  - Single most-likely invalidator: unchanged — a broad industrials/cyclicals pullback on higher-for-longer before any new CAT-specific catalyst.
 - Trade history: (none yet)
 - Position-aware notes: 0/2 XLI sector cap (no open XLI positions); no other XLI candidate in today's shortlist to correlation-check against.
 
@@ -228,13 +231,15 @@ Conventions:
 - Position-aware notes: XLV currently 0% exposure (fresh sector if entered); near-zero correlation with AMD/CAT (-0.02) — best factor diversification of any candidate screened to date.
 
 ## MS (XLF)
-- Thesis (2026-06-23): Demoted again (7th consecutive session, worst reading yet) — R:R 0.18:1: entry $227.09 / stop $211.19 (−7.0%, ATR-clamped) / target $230 (highest individual analyst target, still undated) (+1.28%). Spot has now drifted to within 1.28% of the static $230 ceiling that's been the bull case's only target for weeks — the gap that sustained MS's already-weak case is nearly closed. No new MS-specific dated catalyst surfaced today; recommend dropping from active rotation (see Risk Factors). [Demoted: R:R 0.18:1, decisive fail. research.py gather + WebSearch, Jun 23]
+- Thesis (2026-06-25): Demoted again (8th consecutive session) — R:R 0.56:1: entry/stop/target math now decisively failing, spot has run further past the static $230 ceiling that's anchored the (already weak) bull case for weeks. Only fresh catalyst is non-PT-moving: dividend raise + buyback reauthorization. No dated analyst PT raise above spot has surfaced. Recommend continuing to treat as de-prioritized in active rotation (carried weekly-review item, still unresolved). [Demoted: R:R 0.56:1, decisive fail (8th consecutive). market_data.py/analyst_data.py (yfinance, post TLS-proxy fix) + Finnhub, Jun 25]
 - Recent catalysts:
-  - 2026-06-23: No new MS-specific dated catalyst found; Barclays $230 confirmed still the highest dated individual target (dated 2026-04-16) [research.py gather]
-  - 2026-06-22: "Soaring Profits in Emerging Markets Build Case for a Raging Bull Market" — MS-desk commentary, broader market thesis not MS-specific [Finnhub]
-  - 2026-06-19: MS quietly added Bitcoin exposure, cut crypto-ETF fee to 0.14% (new category floor) — diversification signal, not core-business catalyst [Finnhub]
-  - 2026-06-18: "The Quiet Revolution at the Fed: U.S. Banking Sector Received a Catalyst More Potent than Rate Cuts" — sector-level regulatory/capital-relief narrative, not MS-specific [Finnhub]
-  - 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot, most recent dated action on record
+  - 2026-06-25: MS announces dividend raise + buyback reauthorization — capital-return signal, not PT-moving; no dated analyst target reaction yet [Finnhub]
+  - 2026-06-25: No dated analyst PT raise above spot found; Barclays $230 (dated 2026-04-16) remains stale high-water mark [market_data.py/analyst_data.py]
+  <!-- archive: 2026-06-23: No new MS-specific dated catalyst found; Barclays $230 confirmed still the highest dated individual target (dated 2026-04-16) -->
+  <!-- archive: 2026-06-22: "Soaring Profits in Emerging Markets Build Case for a Raging Bull Market" — MS-desk commentary, broader market thesis not MS-specific -->
+  <!-- archive: 2026-06-19: MS quietly added Bitcoin exposure, cut crypto-ETF fee to 0.14% -->
+  <!-- archive: 2026-06-18: "The Quiet Revolution at the Fed: U.S. Banking Sector Received a Catalyst More Potent than Rate Cuts" -->
+  <!-- archive: 2026-06-12: JPMorgan PT raised to $187 from $179 — still below spot -->
   <!-- archive: 2026-06-19: "MS Stock After 72% One-Year Jump — What Do Valuation Models Suggest Now" -->
   <!-- archive: 2026-06-17: MS rose while the broader market fell on the hawkish FOMC dot-plot — relative-strength data point -->
   <!-- archive: 2026-06-17: "$10 Trillion Wealth + SpaceX Boost" headline — narrative story, no quantified guidance -->
@@ -242,9 +247,9 @@ Conventions:
   <!-- archive: 2026-06-08: KBW (Konrad) sole bull at $230/+8.6% -->
   <!-- archive: 2026-06-02: $33M Subtle Medical (AI medical imaging) investment led by MS Investment Mgmt -->
 - Open thesis questions:
-  - Spot is now only 1.28% below the static $230 target — once price crosses it, is there any remaining bull case, or does MS need an entirely fresh dated PT above spot to stay in rotation at all?
-  - Is the rate-sensitive financials/NIM-expansion tailwind (post-FOMC dot-plot) durable, or does it unwind if yields retrace — removing the only thing supporting MS's relative strength?
-  - Given 7 consecutive demotions and R:R now below 0.2:1, should MS be dropped from the active candidate rotation until a fresh dated catalyst resets the math? (weekly-review item)
+  - Dividend/buyback announcement is capital-return strength, not undervaluation — does it ever translate into a dated PT raise above spot, or does the bull case stay capped at $230 indefinitely?
+  - Is the rate-sensitive financials/NIM-expansion tailwind durable, or does it unwind if yields retrace — removing the only thing supporting MS's relative strength?
+  - Given 8 consecutive demotions and R:R now at 0.56:1, should MS be formally dropped from active candidate rotation until a fresh dated catalyst resets the math? (weekly-review item, carried 2nd week)
 - Trade history: (none yet)
 - Position-aware notes: 0/2 XLF sector cap (no open XLF positions); no other XLF candidate in today's shortlist to correlation-check against.
 

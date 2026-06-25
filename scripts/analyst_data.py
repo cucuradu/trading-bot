@@ -21,6 +21,8 @@ import sys
 
 import yfinance as yf
 
+import _yf_session_patch  # noqa: F401  (must run before any yf.Ticker call)
+
 
 def _num(x):
     try:

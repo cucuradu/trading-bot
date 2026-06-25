@@ -3194,3 +3194,109 @@ Neutral regime, 13th consecutive day of stale ML insights (now 320.1h/13.3 days,
 - ml_insights: status=stale_degrade, age=320.1h, slots cut 2→1
 
 ---
+
+## 2026-06-25 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1 [base 2, −1 ML stale_degrade], deployment target: 75%, pre-macro cap: 40% deployment ceiling active) fallback reason: stale: generated_at is 368.2h old (> 24h)
+
+**Breadth/Sector:** breadth=52.8/100 (Neutral zone, 60-75% exposure guidance) | sector-rotation: **unavailable** (`analyze_sector_rotation.py --json` failed with `http.client.IncompleteRead`, skipped per best-effort policy — no fresh risk-on/risk-off score today, last known reading 06-23 was 72/early-cycle) | FTD detector: combined_state=CORRECTION, quality score 0/100 (No FTD), exposure_range guidance 0-25%, S&P swing low 06-24 $7,358.21 (−3.31% from the 06-02 high $7,609.77), NASDAQ leg unavailable (FMP 403 on QQQ)
+
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=NEUTRAL (was VALUE on 06-23) | conf=MEDIUM | composite=40.8 (inputs missing: top_risk, uptrend, institutional, sector, theme, ftd — confidence reduced)
+
+**ML staleness:** age 368.6h (15.4 days; worst yet, surpassing 06-23's 320.1h) — status stale_degrade, trade_slots cut 2→1 (hard system gate, unresolved for 15+ days).
+
+### Account
+- Equity $100,472.45 / Cash $100,472.45 (100%) / Buying power $401,889.80 / Daytrade count 0 / Open positions 0 / Open orders 0
+- Drawdown −5.09% vs peak equity $105,856.96 — daily/weekly/drawdown gates all clear (none tripped), no lock file.
+
+### Macro Framework
+Neutral regime (rule-fallback rebuilt live today via the fixed local screener — see Risk Factors #1 for the infra fix). SPY $733.24 vs 200SMA $689.72 (+6.31%), 20d return −2.31%; cash VIX 17.83 (06-24 close) — both from the deterministic `regime.py` pull, slightly calmer than WebSearch's pre-open VIX-futures read (~18.6-19.0). Dominant overnight catalyst: **Micron (MU) beat on its 06-24 after-close print**, reigniting AI-trade enthusiasm after three consecutive Nasdaq down-days — Nasdaq futures +2.2% pre-open, broad tech/memory rebound led by MU/SNDK [Finnhub, 2026-06-25]. WebSearch (Gemini quota exhausted, used as documented fallback) put WTI $69.42 (−1.31%) and Brent $73.43, continuing the multi-week Iran-de-escalation oil decline (Brent 76.68→73.43 since 06-23), and 10Y yield ~4.69%. **Flagging two WebSearch data-quality concerns rather than presenting them at face value:** (1) the 4.69% 10Y figure is identical to the one logged on 06-11, two weeks ago — likely a stale/recycled search result, not independently re-verified; (2) WebSearch suggested Core PCE may have already printed **today** (06-25) at 3.4% YoY in-line, directly conflicting with `scripts/trading_calendar.py`'s deterministic computation that Core PCE is **tomorrow** (06-26, `days_to_event: 1`). Per established practice, the deterministic local script is treated as authoritative over WebSearch in this forward-dated environment — the 40% pre-macro deployment cap is applied today on that basis, but this discrepancy should be sanity-checked against a real calendar. vs 06-23: regime unchanged Neutral; oil continuing its multi-week decline; breadth flat (52.8 vs 53); ml staleness worse again (320.1h→368.6h); AMD/semis sold off ~5% over the past 3 sessions into the Micron print then attempting a rebound today — context for AMD's R:R move below.
+
+### Sector Picture
+- Top 3 (1mo momentum): XLF +3.61%, XLI +3.39%, XLV +3.26%
+- Bottom 3: XLE −7.4% (lowest), XLY −3.67%, XLK −1.13%
+- ml_insights sector classifier: XLF/XLI/XLU tagged **Trend**; XLE/XLY/XLC tagged **Bear**; XLK/XLV/XLP/XLRE/XLB tagged **Choppy**. Partial disagreement: XLI is top-2 on momentum (+3.39%) and Trend-tagged (good agreement), but XLK's −1.13% momentum/Choppy tag sits awkwardly against this morning's Micron-driven tech rebound — a same-day timing mismatch (classifier built on 06-24 close, before the after-close beat), not a real disagreement.
+
+### Candidates
+
+#### CAT (XLI, $994.18, −1.31% vs prev close $1,007.65; 2.84% below year-high $1,023.29)
+
+**Setup:** ATR(14)=$35.25 (3.55% of price); stop_pct_2.5x=8.86% (unclamped, within [7,15]) → stop $906.10. No earnings blackout (next: 2026-08-04, 40d out).
+
+**Sources scanned:** Finnhub + EDGAR + Google News (Reddit 403, persistent).
+
+**Bull case:** Wells Fargo raised its PT to **$1,155** (from $1,050) on 2026-06-23 — Overweight reiterated, citing data-center/oil-and-gas demand checks [Finnhub, 2026-06-25]. This is the freshest dated PT on record for CAT (2 days old), more credible than the technical yfinance `target_high` of $1,165, which is still Baird's stale late-April figure. Project Kilby (Chevron/Microsoft 20yr power deal naming CAT as turbine supplier, flagged 06-23) remains a live qualitative tailwind.
+
+**Bear case:** Consensus has now flipped — yfinance `target_mean` $949.68 (−4.5%) and `target_median` $957.98 (−3.6%) both sit **below spot for the first time** in this ticker's tracked history. 26 analysts: 1 strongBuy / 14 buy / 11 hold / 2 sell, rating_mean 2.11 (still "buy" bucket but not as lopsided as before).
+
+**R:R math:** entry $994.18 / stop $906.10 (−8.86%, unclamped) / target **$1,155** (Wells Fargo, dated 2026-06-23 — freshest available, used in place of the stale Baird high) (+16.18%) / R:R **1.83:1** / max risk on a 20% position ≈ $1,765.
+- **Hard 2:1 floor fails** even on the freshest, most credible PT. For reference, the stale Baird $1,165 figure would give 1.94:1 — still short.
+
+**Setup type:** N/A (demoted, no entry plan). **Gate-history audit:** consistent with 9 consecutive prior CAT sessions failing the R:R floor — no gate-creep.
+
+**Decision:** **Demoted** — R:R 1.83:1 on the freshest dated PT (Wells Fargo, 06-23), still short of 2:1. First session where CAT's consensus mean/median have dropped below spot.
+
+#### AMD (XLK, $510.80, ATR-implied; intraday range $503.50–$524.96 today, AMD pulled back ~5% over the past 3 sessions before today's Micron-driven rebound attempt)
+
+**Setup:** ATR(14)=$32.54 (6.26% of price) — high vol; raw stop_pct_2.5x=15.65% → clamped to **15.0% ceiling** → stop $434.18. No earnings blackout (next: 2026-08-04, 40d out).
+
+**Bull case:** Barclays' $665 PT (cited 06-22, unchanged) is the single highest individual target among 48 covering analysts (5 strongBuy / 37 buy / 9 hold, rating_mean 1.45 — strong_buy bucket, the most bullish rating distribution on the shortlist). Today's Micron beat is a genuine sector tailwind for AMD specifically (AI/HBM read-through).
+
+**Bear case:** `target_mean` $487.90 (−4.5%) and `target_median` $490.00 (−4.1%) are **also below spot for the first time** — 47 of 48 analysts sit at or below a level the stock has already fallen through. The $665 figure is unchanged since 06-22 (3 sessions old); AMD's price decline toward it is a function of the broader chip sell-off, not a fresh bullish catalyst.
+
+**R:R math (on Barclays $665):** entry $510.80 / stop $434.18 (−15.0%, clamped) / target $665 (+30.2%) / R:R **2.01:1** — **numerically clears the hard 2:1 floor for the first time in this ticker's tracked history.**
+
+**Why this is not being traded despite the numeric pass:** the clearance is driven entirely by a single 3-day-old outlier target against a backdrop where the consensus mean/median have *also* just flipped negative — the opposite of a strengthening bull case. `analyst_data.py` exists specifically to replace "a cherry-picked outlier" with "a real, citeable consensus target" (see its own docstring); leaning on the single highest of 48 targets while the other 47 average below spot reproduces the exact failure mode the tool was built to avoid. Applying the same standard used for UNH's DOJ override in the other direction: a numeric pass that fails the spirit of the rule does not get traded. **Treating AMD as a fail in substance.**
+
+**Setup type:** N/A (demoted on judgment override, no entry plan). **Gate-history audit:** consistent with prior AMD sessions failing on R:R/consensus grounds (06-12, 06-15, 06-22) — this session adds a new, explicit override rationale rather than a clean numeric fail; flagged in Risk Factors for a possible weekly-review codification (e.g., require R:R ≥ 2:1 against `target_median`, not `target_high`).
+
+**Decision:** **Demoted (judgment override on outlier-driven R:R)** — first numeric floor-clearance for AMD, but on a stale single-analyst high vs. a consensus that has turned negative; not treated as a real signal.
+
+#### MS (XLF, $221.36, −2.51% vs Wed close $220.35 intraday context; 3.97% below year-high $230.47)
+
+**Setup:** ATR(14)=$5.77 (2.63% of price); raw stop_pct_2.5x=6.56% → clamped to **7.0% floor** → stop $205.87. No earnings blackout (next: 2026-07-15, 20d out).
+
+**Bull case:** MS raised its quarterly dividend 15¢ to $1.15/share and reauthorized a $20B multi-year buyback (2026-06-24) — a positive capital-return signal, not a price-target driver [Finnhub, 2026-06-24].
+
+**Bear case:** `target_high` remains the same static $230 figure carried for 8+ consecutive sessions; `target_mean` $204.90 (−7.4%) / `target_median` $207.00 (−6.5%) both well below spot. 21 analysts: 2 strongBuy / 8 buy / 14 hold / 1 sell, rating_mean 2.32 — the weakest rating distribution of the three deep-dived names.
+
+**R:R math:** entry $221.36 / stop $205.87 (−7.0%, clamped) / target $230 (static, 8+ sessions stale) (+3.94%) / R:R **0.56:1** / max risk on a 20% position ≈ $1,396.
+- **Hard 2:1 floor fails decisively** — 8th consecutive session. R:R improved off 06-23's 0.18:1 only because price pulled back, not because the target moved.
+
+**Decision:** **Demoted** — R:R 0.56:1, decisive fail, 8th consecutive session with the same structural problem (static high-end target nearly fully priced in).
+
+#### XBI (XLV) — dropped without deep dive
+
+XBI is a biotech sector ETF; `yfinance` returns no `targetMeanPrice`/`targetHighPrice`/analyst-rating fields for ETFs (confirmed via `analyst_data.py targets XBI` — all fields null). There is no citeable, individually-sourced price target to run the hard 2:1 R:R math against, and no index-level methodology has been built for this case. **Decision:** **Dropped** — no actionable R:R reference; consistent with the rule that the bot trades against real, citeable analyst consensus, not a synthetic estimate.
+
+### Candidates dropped (and why)
+- **SMH, GE, UNH, MRK, GS, BAC** — ranked below CAT/AMD/MS/XBI on the screener's top-10 (ml_scores 0.83 down to 0.42); not deep-dived. UNH in particular carries the same standing DOJ-criminal-investigation disqualifier applied on 06-02 through 06-23 (9th occurrence would apply if re-examined) — not re-litigated today given budget constraints and that trade_slots=1 is already exhausted by the four deep-dived names all failing/being overridden.
+
+### Historical Analog
+**Analog:** Today's Micron-led tech rebound after three Nasdaq down-days most resembles a **dead-cat-bounce-within-a-range** pattern rather than a trend reversal — single-stock earnings beats reigniting sentiment without a macro catalyst (rates, Fed) actually shifting. The closest precedent remains the Nov-Dec 2023 "Fed pivot" relief-rally framing carried in recent entries, now further extended (trading-day ~6 since the 06-17 FOMC shock) with breadth still stuck at 52.8 (Neutral, flat for 3 sessions) — a real trend reversal would show breadth breaking decisively above 60, which hasn't happened.
+
+**What this means for today:** a one-day, single-name-driven bounce doesn't change the structural R:R picture for CAT/AMD/MS — all three are failing or only passing on stale/outlier-driven targets, not on a broadening of analyst conviction.
+
+### Risk Factors (consolidated)
+1. **Infra bug found and fixed this session: yfinance's `curl_cffi` HTTP backend cannot complete TLS through this sandbox's egress proxy** (`curl: (35) ... OPENSSL_internal invalid library`), which was silently crashing `scripts/ml_insights.py resolve` → `scripts/regime.py` → every `yf.Ticker()`/`yf.download()` call site (`market_data.py`, `analyst_data.py`, `screener.py`). Given ML insights have been stale for 368.6h (15.4 days), **the entire local rule-fallback/screener pipeline may not have run successfully in over two weeks** until this fix. Patched via a new `scripts/_yf_session_patch.py` (forces yfinance's internal `_http.new_session()` to always build a plain-`requests` session instead of attempting `curl_cffi`'s browser-TLS impersonation) imported at the top of the four affected scripts. Verified end-to-end (`screener.py shortlist`, `ml_insights.py resolve` both exit 0). Being committed alongside today's research — **no strategy/trading logic changed, only the HTTP transport.**
+2. **ML stale_degrade, now 368.6h (15.4 days) — worse again, no local-PC refresh in over two weeks.** Trade slots cut 2→1. **User action still needed: refresh local ml_insights** — flagged repeatedly since at least 06-22, unresolved.
+3. **Gemini quota exhausted on all STEP 4 macro queries (5th+ consecutive session)** — macro context built via native WebSearch fallback. Two WebSearch outputs flagged as unreliable this session (see Macro Framework): a 10Y yield figure identical to one logged two weeks ago, and a Core-PCE timing claim that conflicts with the deterministic local calendar script. Treating the local script as authoritative.
+4. **AMD numerically clears the hard 2:1 R:R floor (2.01:1) for the first time, but only on a single 3-day-old outlier target while the 47-analyst consensus mean/median have simultaneously turned negative** — judgment override applied (see AMD section). Recommend a weekly-review decision on whether to formally require R:R math against `target_median` (not `target_high`) to prevent this ambiguity recurring.
+5. **CAT and AMD's consensus mean/median targets are both below spot for the first time in tracked history** — a broader-than-single-name signal that the Street's own numbers no longer support further upside on this session's top screener picks, independent of any one name's story.
+6. **Sector-rotation script failed (`IncompleteRead`)** — no fresh risk-on/risk-off score or cycle-phase reading today; relying on last known 06-23 reading (72, early-cycle) as context only, not a current signal.
+7. **Exposure-coach (ceiling 37%, REDUCE_ONLY, NEUTRAL) and FTD detector (0/100, No FTD, 0-25% exposure guidance) both point toward materially less deployment than the regime's 75% target** — both are explicitly advisory and do not override the hard regime/slots gate, but the convergence of three independent advisory signals (exposure-coach, FTD, breadth at 52.8 Neutral) all pointing the same cautious direction is a stronger-than-usual qualitative tailwind for today's HOLD.
+8. **Reddit egress 403 (persistent, 10th+ session)** — sentiment depth degraded across all candidates; Finnhub/EDGAR/Google News egress all OK today. Finnhub's `/stock/upgrade-downgrade` endpoint also 403'd (likely a paid-tier-only endpoint on the current free key) — no fresh upgrade/downgrade feed available, relying on Finnhub's news endpoint for PT-raise mentions instead.
+9. **Account 100% cash since the MU close on 06-04 (21 calendar days).** 13th logged HOLD research session was 06-23; no session was logged 06-24 (account unchanged in the interim). Combined with finding #5, worth assessing at the next weekly review whether the screener is systematically surfacing names the Street itself no longer rates as undervalued.
+
+### Decision
+**HOLD — no new entries.** CAT demotes at R:R 1.83:1 (Wells Fargo's freshest dated PT, $1,155, still short of 2:1), MS demotes decisively at R:R 0.56:1 (8th consecutive fail), AMD numerically clears the floor (2.01:1) but only via a stale single-analyst outlier against a consensus that has simultaneously turned negative — treated as a fail-in-substance via judgment override, documented above. XBI dropped pre-deep-dive (no citeable analyst target; ETF). Exposure-coach (REDUCE_ONLY/37%) and the FTD detector (No FTD/0-25% guidance) both reinforce caution independent of the R:R math. Account remains 100% cash. No watchlist additions: all three priced names are failing on stale/outlier-driven targets that don't improve materially on a near-term dip.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — standard Flash 429 quota-exhausted on all macro queries (5th+ consecutive session). All macro context built via native WebSearch + direct Claude reasoning over Finnhub/EDGAR/Google News `gather` output.
+- Finnhub: news + earnings endpoints OK; `/stock/upgrade-downgrade` 403 (premium-only on current key) / EDGAR: OK / Google News: OK (noisy on ticker "MS", many false positives) / Reddit: 403, all subreddits, all tickers (10th+ consecutive session)
+- Fallback events: Gemini 429 (macro) → WebSearch; Reddit 403 (all tickers, persistent); sector-rotation script `IncompleteRead` → skipped, last-known reading used as context only
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=368.6h, slots cut 2→1
+- **Infra fix shipped this session:** `scripts/_yf_session_patch.py` (new) + import added to `scripts/regime.py`, `scripts/market_data.py`, `scripts/analyst_data.py`, `scripts/screener.py` — see Risk Factors #1.
+
+---
