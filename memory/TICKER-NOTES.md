@@ -38,8 +38,11 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-06-25): Demoted via judgment override — R:R numerically clears the floor for the first time (2.01:1: entry $510.80 / stop $434.18 (−15.0% ATR-clamped) / target $665 Barclays, unchanged since 06-22) but the 48-analyst consensus mean/median ($487.90/$490.00) flipped **below spot** this session — the clearance is a single 3-day-old outlier against a newly-negative consensus, not a strengthening bull case. Treated as a fail-in-substance, not traded. AMD pulled back ~5% over the 3 sessions into Micron's 06-24 beat, then attempted a rebound today on the AI-trade reignition. [Demoted (override): R:R 2.01:1 on outlier only. market_data.py/analyst_data.py + Finnhub, Jun 25]
+- Thesis (2026-06-29): Demoted — R:R 1.92:1 (entry $519.98 Alpaca mid / stop $441.98 (−15.0% ATR-clamped) / target $670 UBS, dated 06-24, supersedes the now-stale Barclays $665) — narrowly short of the 2:1 floor, but a clean numeric fail on a fresh target, unlike 06-25's outlier-driven numeric pass. Consensus mean/median ($500.40/$500.00) still below spot for a 2nd consecutive session, though the gap is narrowing and the sell-rating count dropped to zero (48 analysts: 5 strongBuy/37 buy/9 hold/0 sell) — the most constructive setup yet without numerically qualifying. AMD led Friday's (06-26) chip-sector selloff alongside NVDA/MU on the OpenAI-IPO-delay report. [Demoted: R:R 1.92:1, clean fail. market_data.py/analyst_data.py + Finnhub, Jun 29]
 - Recent catalysts:
+  - 2026-06-29: UBS raised PT $455→$670 (06-24, analyst Timothy Arcuri, Buy maintained) on standalone-CPU/agentic-AI-infrastructure demand — now the freshest, highest dated target [Finnhub]
+  - 2026-06-29: AMD committed £2B over 5yrs to the UK, building two AI supercomputers at Cambridge; MEXT (AI memory-optimization) acquisition integration ongoing — incremental positives, not yet PT drivers [Finnhub]
+  - 2026-06-26: AMD led Friday's chip-sector selloff with NVDA/MU on reports OpenAI may delay its IPO to 2027 — sentiment-driven, not company-specific [Finnhub]
   - 2026-06-25: Micron's 06-24 after-close beat reignited AI/semis sentiment broadly (Nasdaq futures +2.2% pre-open); AMD-specific read-through, not an idiosyncratic catalyst [Finnhub]
   - 2026-06-25: Consensus `target_mean`/`target_median` ($487.90/$490.00) dropped below spot for the first time — 47 of 48 analysts now at or below a level price has already fallen through [analyst_data.py]
   <!-- archive: 2026-06-21: "AMD's H2 2026 Inflection Is Bigger Than AI GPUs" — OpenAI + Meta each committed 6GW of AMD infrastructure, Helios deployments beginning H2 2026 -->
@@ -58,8 +61,9 @@ Conventions:
   - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes: COMPUTEX exhaustion + NFP yield spike + AVGO contagion)
 - Open thesis questions:
   - Should the R:R floor be checked against `target_median`/`target_mean` instead of `target_high` going forward, to stop a single stale outlier from numerically clearing the gate while the broader consensus disagrees? (weekly-review item, raised 06-25)
-  - Does the Micron-driven rebound broaden into a fresh, dated AMD-specific PT raise, or fade as a single-day sentiment bounce?
-  - Single most-likely invalidator: a third major desk reaffirming sub-$500 fair value would confirm the consensus de-rating rather than the $665 outlier.
+  - UBS's $670 (06-24) is fresher than Barclays' $665 but still an outlier vs. the ~$500 consensus mean — does a second desk follow with a comparable raise, or does this stay a lone high mark?
+  - Does the OpenAI-IPO-delay selloff fade as a single-headline event, or does it mark the start of a deeper AI-trade de-rating?
+  - Single most-likely invalidator: a third major desk reaffirming sub-$500 fair value would confirm the consensus de-rating rather than the $665-$670 outlier zone.
 
 ---
 
@@ -92,8 +96,10 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-25): Demoted again (4th consecutive session) — R:R 1.83:1: entry $994.18 (Alpaca bid-ask midpoint, validated against yfinance last_price $994.45) / stop $937.70 (clamped, unchanged) / target $1,155 (Wells Fargo, fresh PT raise, +16.18%). Wells Fargo's raise replaces Baird's stale $1,165 as the new ceiling but the lower entry (vs. 06-23's $1,022.28) widens R:R only modestly — still fails the 2:1 floor. First session where consensus mean/median has drifted to flat-to-below spot rather than comfortably above it (degraded breadth of bull case, not just ceiling math). Overvaluation critique ("309.4%") not restated today — second session without escalation. Do NOT chase above $1,113 (06-18 gate, still live) — today's $994.18 reference stays clear. [Demoted: R:R 1.83:1. market_data.py/analyst_data.py (yfinance, post TLS-proxy fix) + Finnhub, Jun 25]
+- Thesis (2026-06-29): Demoted again (5th consecutive session) — R:R 1.61:1: entry $997.47 (yfinance `last_price` — Alpaca's own quote flagged unreliable today, stale timestamp/~17% spread, see RESEARCH-LOG 06-29 Risk Factors) / stop $899.40 (−9.83%, unclamped, ATR widened vs. 06-25) / target $1,155 (Wells Fargo, same 06-23 PT, now 6 days old — no fresher note found despite a targeted search). R:R worsened vs. 06-25's 1.83:1 on the identical target, purely on a wider ATR-based stop. Consensus mean/median remain flat-to-below spot for a 2nd consecutive session; GuruFocus's "Still Overvalued" (GF Score 83/100, 06-26) resurfaces the overvaluation critique after 2 sessions of dormancy. Do NOT chase above $1,113 (06-18 gate, still live) — today's $997.47 reference stays clear. [Demoted: R:R 1.61:1. market_data.py/analyst_data.py + Finnhub, Jun 29]
 - Recent catalysts:
+  - 2026-06-29: CAT's own Alpaca quote unreliable today (stale Fri 06-26 timestamp, ~17% bid/ask spread, doesn't reconcile with yfinance) — treated as unknown, yfinance used as entry reference instead [Alpaca/yfinance cross-check]
+  - 2026-06-26: GuruFocus: "CAT Down 5.6% but Still Overvalued" (GF Score 83/100) — overvaluation critique resurfaces in new form after 06-20's "309% overvalued" [Google News]
   - 2026-06-25: Wells Fargo raises CAT PT to $1,155 (surfaced via Finnhub news headline, not the analyst-ratings endpoint — that endpoint returned 403 on the free tier today) [Finnhub]
   - 2026-06-25: Consensus mean/median now flat-to-below spot for the first time tracked — bull case narrowing to PT-ceiling math rather than broad analyst agreement [market_data.py/analyst_data.py]
   <!-- archive: 2026-06-23: Chevron/Microsoft "Project Kilby" 20-year natural-gas power deal names CAT as turbine supplier; CAT +3.05% same-day — no dated PT raise yet -->
@@ -107,9 +113,9 @@ Conventions:
   <!-- archive: 2026-06-04/05: HOLD, INTACT — thesis insulated from NFP/AVGO contagion at $933, trail stop locking gains -->
   - Process note (still outstanding): JPMorgan $1,125 PT date discrepancy flagged 06-17/06-18 never resolved at weekly review — carry forward.
 - Open thesis questions:
-  - Wells Fargo's $1,155 raise narrows the gap to 2:1 but doesn't close it — does a further raise above ~$1,142-equivalent-on-today's-stop surface, or does the bull case stall here?
-  - Consensus mean/median flipping flat-to-below spot today (same pattern flagged on AMD) — is this a sector-wide analyst-target staleness issue worth a weekly-review check across all XLI/XLK candidates?
-  - Will the "309% overvalued" critique resurface, or has it genuinely plateaued (2 sessions without escalation)?
+  - Wells Fargo's $1,155 target is now 6 days old with no follow-on raise — is the bull case stalling at this ceiling, or is a fresher note simply not yet surfaced by the free-tier feeds?
+  - Consensus mean/median flat-to-below spot for 2 consecutive sessions — is this a sector-wide analyst-target staleness issue worth a weekly-review check across all XLI/XLK candidates? (carried from 06-25)
+  - The GuruFocus overvaluation critique resurfaced in a new form (GF Score) after 2 sessions of dormancy — is this a recurring noise pattern or a genuine signal building?
   - Single most-likely invalidator: unchanged — a broad industrials/cyclicals pullback on higher-for-longer before any new CAT-specific catalyst.
 - Trade history: (none yet)
 - Position-aware notes: 0/2 XLI sector cap (no open XLI positions); no other XLI candidate in today's shortlist to correlation-check against.

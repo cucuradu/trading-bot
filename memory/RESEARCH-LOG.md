@@ -3300,3 +3300,97 @@ XBI is a biotech sector ETF; `yfinance` returns no `targetMeanPrice`/`targetHigh
 - **Infra fix shipped this session:** `scripts/_yf_session_patch.py` (new) + import added to `scripts/regime.py`, `scripts/market_data.py`, `scripts/analyst_data.py`, `scripts/screener.py` — see Risk Factors #1.
 
 ---
+
+## 2026-06-29 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1 [base 2, −1 ML stale_degrade], deployment target: 75%, pre-macro cap: not active — NFP 07-02 is 3 days out, outside the 24h trigger window) fallback reason: ml unavailable; using local_screener_v1
+
+**Breadth/Sector:** breadth=52.8/100 (Neutral zone, 60-75% exposure guidance; same composite as 06-25, confirmed via the analyzer's own `data_freshness` metadata as a legitimate upstream data-lag, not a bug) | sector-rotation: **unavailable** (`analyze_sector_rotation.py --json` failed with `http.client.IncompleteRead` again — 2nd consecutive session, skipped per best-effort policy; last known reading 06-23 was 72/early-cycle) | FTD detector: combined_state=CORRECTION, quality score 0/100 (No FTD), exposure_range guidance 0-25%, S&P swing low 06-26 $7,354.02 (−3.36% from the 06-02 high $7,609.77, 11 down days), NASDAQ leg unavailable (FMP 403 on QQQ, persistent)
+
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=NEUTRAL | conf=MEDIUM | composite=40.8 (inputs missing: top_risk, uptrend, institutional, sector, theme, ftd — confidence reduced)
+
+**ML staleness:** age 464.4h (19.35 days; worst yet, surpassing 06-25's 368.6h) — status stale_degrade, trade_slots cut 2→1 (hard system gate, unresolved for 19+ days — no local-PC refresh logged in nearly 3 weeks).
+
+### Account
+- Equity $100,472.45 / Cash $100,472.45 (100%) / Buying power $401,889.80 / Daytrade count 0 / Open positions 0 / Open orders 0
+- Drawdown −5.09% vs peak equity $105,856.96 — daily/weekly/drawdown gates all clear (none tripped), no lock file.
+
+### Macro Framework
+Neutral regime (rule-fallback, local_screener_v1). SPX futures +0.6% pre-open Monday (implied SPX ~7,359, consistent with the FTD detector's $7,354.02 swing-low reading), signaling an early stabilization attempt after last week's tech-led selloff. Cash VIX 18.41 (06-28 close), VIX futures 19.06 — calmer than the elevated levels implied mid-selloff but still above the 06-25 reading (17.83). **Dominant catalyst: reports that OpenAI is weighing delaying its IPO to 2027** (pushing for a $1T valuation, advisers reportedly spooked by SpaceX's IPO round-trip — up ~60% post-listing, now giving back nearly all those gains) triggered a broad AI-trade selloff Friday 06-26: Nvidia, Micron, and AMD led chip-sector declines, the Nasdaq Composite closed its 5th consecutive losing session (25,297.62, −0.24%) — this is the proximate driver of the FTD detector's CORRECTION reading. Oil: Brent $72.01 (+0.03%, flat) / WTI $69.23–70.79 range — both still well off their pre-Iran-de-escalation highs but pausing rather than extending the multi-week decline today. 10Y yield ~4.38% (06-26 close) — a genuine fresh decline versus the ~4.69-4.97% range logged in recent sessions (independently re-verified this time via WebSearch, not a stale repeat). vs 06-25: regime unchanged Neutral; breadth flat (52.8 vs 52.8, confirmed legitimate data-lag); VIX up slightly (17.83→18.41) on the OpenAI-IPO-delay-driven correction; oil roughly flat (continuing its plateau off the Iran-de-escalation lows); 10Y down notably (~4.69%→4.38%); ml staleness worse again (368.6h→464.4h, crossing 19 days with no refresh — a new escalation worth flagging at the next weekly review).
+
+### Sector Picture
+- Top 3 (1mo momentum): XLV +7.76% (new leadership, up sharply), XLF +4.18%, XLI +3.96%
+- Bottom 3: XLC −8.67% (lowest), XLY −5.91%, XLE −5.53%
+- ml_insights sector classifier: XLV/XLI/XLU tagged **Trend**; XLE/XLY/XLC tagged **Bear**; XLK/XLF/XLP/XLB/XLRE tagged **Choppy**. Good agreement today between momentum and classifier across the board — no XLK momentum/classifier mismatch this session (XLK momentum −1.8%, classifier score 0.0865, both roughly neutral, reflecting the AI-trade selloff's drag on tech specifically).
+
+### Candidates
+
+#### CAT (XLI, $997.47 — yfinance last_price; Alpaca's quote is unreliable today, see Risk Factors #4)
+
+**Setup:** prev close $999.60, day range $989.64–$1,031.85 (Fri 06-26 session), year high $1,057.07. ATR(14)=$39.226 (3.93% of price); stop_pct_2.5x=9.831% (unclamped, within [7,15]) → stop $899.40. No earnings blackout (next: 2026-08-04, 36d out).
+
+**Sources scanned:** Finnhub + EDGAR + Google News + NewsAPI (1 record, excluded — see Risk Factors #8) (Reddit 403, persistent).
+
+**Bull case:** Wells Fargo's $1,155 PT (06-23, Overweight, citing data-center/oil-and-gas demand checks) remains the freshest dated target on record — now 6 days old; no newer analyst note surfaced this session despite a targeted search. Project Kilby (Chevron/Microsoft 20yr power deal naming CAT as turbine supplier) continues generating bullish retail coverage — Trefis ("Doubles Again To Reach $2,000") and TIKR ("Still a Buy at All-Time Highs"), both 06-26.
+
+**Bear case:** `target_mean` $951.03 (−4.7%) and `target_median` $957.98 (−4.0%) remain below spot for a 2nd consecutive session (first flagged 06-25) — confirms this is a sustained shift, not a one-day blip. GuruFocus flagged CAT "Down 5.6% but Still Overvalued" (GF Score 83/100, 06-26) — the recurring overvaluation critique (previously "309% overvalued" 06-20) resurfaces in a new form after 2 sessions of dormancy. 26 analysts: 1 strongBuy / 14 buy / 11 hold / 2 sell, rating_mean 2.11 — unchanged distribution from 06-25.
+
+**R:R math:** entry $997.47 / stop $899.40 (−9.83%, unclamped) / target $1,155 (Wells Fargo, dated 2026-06-23 — still the freshest available, now 6 days old) (+15.79%) / R:R **1.61:1** / max risk on a 20% position ≈ $1,962.
+- **Hard 2:1 floor fails** — worse than 06-25's 1.83:1 on the same Wells Fargo target; entry has drifted up modestly while ATR widened (9.83% vs 8.86% stop_pct), eroding R:R further.
+
+**Setup type:** N/A (demoted, no entry plan). **Gate-history audit:** consistent with 10 consecutive prior CAT sessions failing the R:R floor (06-15 through 06-25) — no gate-creep; the "do NOT chase above $1,113" gate (06-18) remains unviolated, today's reference price sits well below it.
+
+**Decision:** **Demoted** — R:R 1.61:1, worse than 06-25's 1.83:1 on the same stale Wells Fargo target. Consensus mean/median remain below spot for a 2nd consecutive session; overvaluation critique resurfaces in a new form (GuruFocus).
+
+#### AMD (XLK, $519.98 — Alpaca bid-ask midpoint: bp $493.76 / ap $546.19, validated against yfinance last_price $521.58, 0.31% diff)
+
+**Setup:** ATR(14)=$33.218 (6.37% of price) — high vol; raw stop_pct_2.5x=15.92% → clamped to **15.0% ceiling** → stop $441.98. No earnings blackout (next: 2026-08-04, 36d out).
+
+**Sources scanned:** Finnhub (233 records) + EDGAR + Google News + NewsAPI (Reddit 403, persistent).
+
+**Bull case:** **UBS raised its PT to $670 (from $455) on 2026-06-24** — analyst Timothy Arcuri, Buy maintained, citing increasing bullish conviction on standalone-CPU demand for agentic AI infrastructure [Finnhub, 2026-06-29]. This is now the single highest, most current dated target, superseding Barclays' $665 (unchanged since 06-22, now stale). AMD also committed £2B over 5 years to the UK (announced 06-08, still generating coverage 06-29) to help build two AI supercomputers at Cambridge, and continues integrating its MEXT acquisition (AI memory-optimization startup, deal 06-15, ongoing analyst coverage through 06-28) — both incremental positives, neither yet a PT driver. Citi refreshed its AI-compute semiconductor rankings today (06-29) — directionally relevant, no AMD-specific number cited in the available summary.
+
+**Bear case:** `target_mean` $500.40 (−3.8%) / `target_median` $500.00 (−3.8%) remain below spot for a 2nd consecutive session (first flagged 06-25), though the gap has narrowed slightly (was −4.5%/−4.1% on 06-25). 48 analysts: 5 strongBuy / 37 buy / 9 hold / **0 sell** — the most bullish rating distribution on record for this ticker (sell count dropped to zero). AMD led Friday's (06-26) chip-sector selloff alongside NVDA/MU on the OpenAI-IPO-delay news — a sentiment-driven pullback, not company-specific weakness.
+
+**R:R math:** entry $519.98 / stop $441.98 (−15.0%, clamped) / target $670 (UBS, dated 2026-06-24 — supersedes the now-stale Barclays $665) (+28.85%) / R:R **1.92:1** / max risk on a 20% position ≈ $2,340.
+- **Hard 2:1 floor fails** — the closest clean numeric approach yet for AMD. Unlike 06-25 (2.01:1 numeric pass on a stale single-analyst outlier, treated as fail-in-substance via judgment override), today's UBS target is itself fresh (2 days old) and still falls short — a clean fail, no override judgment required.
+
+**Setup type:** N/A (demoted, no entry plan). **Gate-history audit:** consistent with prior AMD sessions failing on R:R grounds; today's target is faithfully updated to the freshest available source (UBS $670 explicitly supersedes Barclays' stale $665, not reused past its relevance).
+
+**Decision:** **Demoted** — R:R 1.92:1 on the freshest available target (UBS, $670, dated 06-24), narrowly short of the 2:1 floor. Consensus mean/median still below spot but the gap is narrowing and the sell-rating count has dropped to zero — the most constructive AMD setup yet without numerically qualifying.
+
+#### HON (XLI) — dropped pre-deep-dive, data integrity
+
+Carried over from earlier this session: yfinance reports HON `last_price` $464.42, but Finnhub news (dated 2026-06-24) states HON closed at $227.42, and Alpaca's live quote confirms bp=$221.47 — a ~2x mismatch traced to same-day confusion from the Honeywell Aerospace (HONA) spin-off completing around this date (yfinance attempting to resolve `HONA` itself returns a 404). Per the data-contradiction guard, treated as unknown and **dropped entirely** rather than averaged or cherry-picked; AMD (next-ranked, independently verified clean — no correlation/blackout/price-discrepancy issues) substituted to keep the deep-dive pool at 2 names.
+
+### Candidates dropped (and why)
+- **UNH, SMH, XBI, GE, ABBV, LLY, JNJ** — ranked below CAT/AMD on today's screener top-10 (ml_scores 0.6897 down to 0.3651); not deep-dived, trade_slots=1 already exhausted by the two deep-dived names. UNH still carries the standing DOJ-criminal-investigation disqualifier (would be the 9th+ occurrence if re-examined) — not re-litigated today given budget constraints.
+
+### Historical Analog
+**Analog:** Today's setup — the broad market attempting to stabilize Monday after a single-catalyst-driven (OpenAI IPO-delay report) 5-day Nasdaq losing streak that pushed the S&P into a technical CORRECTION (FTD detector, swing low 06-26, −3.36%) — most resembles a **"Day 1 bounce attempt after a sentiment-driven fade"** rather than a confirmed reversal. The FTD detector's quality score remains 0/100 (No FTD) precisely because no actual Follow-Through Day has printed yet; a real reversal would require a strong-volume up day on day 4+ of a rally attempt, which hasn't begun. This extends the "dead-cat-bounce" framing carried from 06-25, now with a fresh trigger (OpenAI/SpaceX-driven AI-trade jitters replacing Micron's beat as the catalyst of the week) — the structural lesson is unchanged: single-headline catalysts in either direction haven't yet been confirmed by breadth or a real FTD signal.
+
+**What this means for today:** a one-day stabilization attempt doesn't change the structural R:R picture for CAT/AMD — both are failing the floor on faithfully-updated, non-stale targets, not on a broadening of analyst conviction.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, now 464.4h (19.35 days) — worst yet, crossed the 19-day mark with no local-PC refresh.** Trade slots cut 2→1. **User action still needed: refresh local ml_insights** — flagged repeatedly since at least 06-22, unresolved for nearly 3 weeks.
+2. **Gemini quota exhausted on the STEP 4 macro query (6th+ consecutive session)** — macro context built via native WebSearch fallback. All WebSearch figures this session were independently re-verified as fresh (10Y yield ~4.38% is a genuine decline, not a repeated stale figure as flagged in some prior sessions).
+3. **HON dropped pre-deep-dive on a data-integrity discrepancy** — yfinance mispricing HON ~2x vs. its real post-HONA-spin-off price (confirmed via Alpaca live quote + Finnhub news); treated as unknown per the data-contradiction guard rather than forcing a number. See dedicated HON note above.
+4. **NEW today: CAT's own Alpaca quote is unreliable** — bid/ask ($953.62/$1,150, ~17% spread) carries a stale Friday 06-26 20:00 UTC timestamp (unchanged on retry) and doesn't reconcile with yfinance's internally-consistent price action (last $997.47, prev close $999.60, day range $989.64-$1,031.85). Treated Alpaca's CAT quote as unusable today and used yfinance's `last_price` as the entry reference instead, deviating from the usual Alpaca-bid-ask-midpoint convention — flagged here for traceability, not a trading-decision risk since CAT failed R:R either way.
+5. **CAT and AMD both fail the hard 2:1 R:R floor on clean numeric math today** (1.61:1 and 1.92:1) — no judgment-override required, unlike 06-25's AMD outlier-driven numeric pass. UBS's fresh $670 PT (AMD, dated 06-24, named analyst) properly supersedes Barclays' stale $665.
+6. **Sector-rotation script failed again (`IncompleteRead`)** — 2nd consecutive session without a fresh risk-on/risk-off score; relying on the 06-23 reading (72, early-cycle) as context only.
+7. **Reddit egress 403 (persistent, 12th+ session)** — sentiment depth degraded across all candidates; Finnhub/EDGAR/Google News egress all OK today. Finnhub's `/stock/upgrade-downgrade` endpoint still 403 (premium-tier gate on the current free key).
+8. **NewsAPI returned an irrelevant false-positive on ticker "CAT"** ("REVEALED: The secret meeting between Max Mosley... and Himmler's daughter" — a spurious keyword match on the literal word "cat" or similar) — excluded from any citation per the citation-honesty rule.
+9. **Exposure-coach (REDUCE_ONLY/37% ceiling) and the FTD detector (0/100, No FTD, 0-25% exposure guidance) both independently reinforce caution**, converging with the OpenAI-IPO-delay-driven correction context — consistent with the pattern from recent sessions.
+10. **Account 100% cash since the MU close on 06-04 (25 calendar days). 15th consecutive no-new-entry research session.**
+
+### Decision
+**HOLD — no new entries.** CAT demotes at R:R 1.61:1 (Wells Fargo's 6-day-old $1,155 PT, still the freshest available, worse than 06-25's 1.83:1 on the same target due to a wider ATR-based stop), AMD demotes at R:R 1.92:1 (UBS's fresh $670 PT, dated 06-24, properly supersedes Barclays' stale $665 — narrowly short of 2:1, but a clean numeric fail unlike 06-25's outlier-driven pass). HON dropped pre-deep-dive on the HONA spin-off price discrepancy; CAT's own Alpaca quote also flagged unreliable today (see Risk Factors #4). Exposure-coach (REDUCE_ONLY/37%) and the FTD detector (No FTD/0-25% guidance) both reinforce caution independent of the R:R math. Account remains 100% cash — 15th consecutive no-new-entry research session. No watchlist additions: both priced names are failing on faithfully-updated, non-stale targets that don't numerically clear the floor.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — standard Flash 429 quota-exhausted on the STEP 4 macro query (6th+ consecutive session). All macro context built via native WebSearch + direct Claude reasoning over Finnhub/EDGAR/Google News `gather` output.
+- NewsAPI: 7 records (1 CAT, excluded as false-positive; 6 AMD) / Finnhub: 243 records (10 CAT, 233 AMD) / EDGAR: 30 records (15 each) / Google News: 20 records (10 each) / Reddit: 0 (403, all subreddits, all tickers, 12th+ consecutive session)
+- Fallback events: Gemini 429 (macro) → WebSearch; Reddit 403 (all tickers, persistent); sector-rotation script `IncompleteRead` → skipped, last-known reading used as context only; HON dropped on yfinance/Alpaca/Finnhub price discrepancy (HONA spin-off); CAT's Alpaca quote also flagged unreliable, yfinance used as entry reference instead.
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=464.4h, slots cut 2→1
+
+---
