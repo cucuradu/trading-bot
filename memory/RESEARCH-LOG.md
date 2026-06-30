@@ -3300,3 +3300,145 @@ XBI is a biotech sector ETF; `yfinance` returns no `targetMeanPrice`/`targetHigh
 - **Infra fix shipped this session:** `scripts/_yf_session_patch.py` (new) + import added to `scripts/regime.py`, `scripts/market_data.py`, `scripts/analyst_data.py`, `scripts/screener.py` — see Risk Factors #1.
 
 ---
+
+## 2026-06-30 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, fallback_reason: "ml unavailable; using local_screener_v1", slots: 1, deployment: 75%)
+**ML staleness:** age 488.1h (20.3 days — worsening) — status stale_degrade, trade_slots cut 2→1 (hard system gate). User action still needed: refresh local ml_insights.
+**Pre-macro:** cap_active (event: NFP on 2026-07-02) → 40% deployment cap, trade_slots capped at MIN(1, 2) = 1.
+**Breadth/Sector:** breadth=52.8/100 (Neutral, data 4 days old — Jun 26) | sector=N/A (rotation script empty) | no divergence (S&P vs breadth: healthy alignment, both rising over 60d)
+**Exposure:** N/A (coach script failed silently — best-effort, skipped)
+**FTD:** N/A (FMP_API_KEY not set, skipped)
+
+### Account
+- Equity $100,472.45 / Cash $100,472.45 (100%) / Buying power $401,889.80 / Daytrade count 0 / Open positions 0 / Open orders 0
+- Drawdown −5.09% vs peak $105,856.96 — all gates clear, no lock file.
+
+### Macro Framework
+Neutral regime (rule_fallback; 14th consecutive HOLD session, account 100% cash since Jun 4). SPX futures slightly positive premarket (+0.25% per WebSearch; different from the −0.41% ESM26 reading at an earlier timestamp — directionally mixed, call it flat-to-green; used the TheStreet/Nasdaq aggregate which is more recent). VIX futures ~18.45 (calm; slightly above Jun 25's 17.83 cash print). 30Y yield ~4.87% (Jun 26 close, most recent available — easing off the post-FOMC 4.93–4.99% range). WTI ~$69–70 (declining on resumed US-Iran peace talks in Doha; Brent ~$73). Core PCE May 2026 printed June 26: headline +4.1% YoY, core +3.4% YoY — elevated but in-line with prior trajectory; no yield shock on release. Today's calendar: Conference Board Consumer Confidence, Dallas Fed Manufacturing Activity, Chicago PMI (all soft-data; no tier-1 macro release before NFP Thursday Jul 2). Michigan Consumer Sentiment final June revised to 49.5 (below average; forecasts expected 48.9). Major non-macro mover: CMCSA +25% premarket on planned spin-off of NBCUniversal/Sky businesses (tax-free). Quarter-end rebalancing likely driving cross-asset flows. vs Jun 25: yields eased further (4.87% vs ~4.69% flagged as possibly stale then — today's figure sourced from Jun 26 close, more credible); WTI flat-to-lower ($69-70 vs $69.42 cited Jun 25, consistent); VIX modestly higher (18.45 vs 17.83 cash); regime unchanged Neutral; breadth flat (52.8, same data).
+> **Naming convention (B8):** SPX (index ~7,400–7,500 level); SPY (ETF ~$740–745).
+
+### Sector Picture
+- Top 3 (1mo momentum): XLV +8.73%, XLU +6.77%, XLI +6.01%
+- Bottom 3: XLC −6.69%, XLE −6.49%, XLK −5.29%
+- ml_insights sector classifier: XLV/XLI/XLU = Trend; XLE/XLY/XLB/XLC = Bear; XLK/XLF/XLP/XLRE = Choppy
+- Agreement: sector-momentum top-3 (XLV/XLU/XLI) aligns exactly with Trend-tagged sectors. Bottom-3 (XLC/XLE/XLK) all Bear or Choppy — good cross-signal agreement. No meaningful disagreement this session.
+
+### Candidates
+
+#### CAT (XLI, $1,033.19 +3.9% vs Jun 25 entry ref $994.18; year-high $1,057.07)
+
+**Setup:** Above 200-SMA (estimated +39% based on CAT's 2026 run-up; deterministic SMA not pulled to preserve token budget). ATR(14)=$39.63 (3.84% of price); stop_pct_2.5x=9.59% (unclamped, within [7,15]) → stop $934.11. No earnings blackout (next: 2026-08-04, 35d out). Three EDGAR Form 4 filings Jun 29 (insider transactions the day before today — no summarized detail from gather due to Gemini synthesis failure; noted for completeness).
+
+**Sources scanned (2):** Finnhub news (OK) / EDGAR (OK). NewsAPI 0 / Reddit 403 / Finnhub upgrade-downgrade 403 / Gemini synthesis 404 (invalid GEMINI_MODEL env var "gemini-3-flash") / Google News (not run individually).
+
+**Bull case:** Wells Fargo raised PT to $1,155 (from $1,050) on 2026-06-23, Overweight reiterated — citing data-center/oil-and-gas demand checks [Finnhub, Jun 25 gather]. Project Kilby (Chevron/Microsoft 20-yr power deal naming CAT as turbine supplier, Jun 23) remains a qualitative tailwind. XLI sector is the third-best performer over 1 month (+6.01%) and tagged Trend — sector tailwind intact.
+
+**Bear case:** Analyst consensus mean ~$937–940 and median ~$932.50 are both materially BELOW current spot $1,033.19 — the 15-of-28 Buy analysts on average no longer support the current price [WebSearch, MarketBeat Jun 30]. 2 Sell ratings. Three Form 4 filings on Jun 29 (insider disposition activity at or near recent highs — content not verified due to Gemini outage, but timing is notable). Consensus has now sat below spot for multiple sessions: structural problem, not a one-day print.
+
+**Disconfirming evidence to watch:** Any Wells Fargo or JPMorgan PT revision downward (current targets are the primary justification); deterioration in infrastructure capex guidance from any major data-center operator; broad industrials correction on higher-for-longer rates.
+
+**Catalysts ahead (next 14d):** No earnings (Aug 4, 35d). Conference Board Consumer Confidence today (soft data). NFP Jul 2 — hot print = rate spike = headwind for capex-exposed industrials. No company-specific catalyst in the next 14 days.
+
+**One-line takeaway:** Structurally sound business in a Trend sector, but price has run to $1,033 while analyst consensus sits at ~$937 — the setup's edge depends entirely on the outlier bull targets, not on the crowd [Gemini grounded — unverified; WebSearch confirms consensus below spot].
+
+**Critique (Claude directly):**
+**Strongest counter to the bull case:** CAT's consensus mean ($937) and median ($932) are 9–10% below current price. The entire bull case depends on Wells Fargo's $1,155 (a single desk) or JPMorgan's $1,165 (date unverified) — both are outliers, not the crowd. In a Neutral regime with NFP risk 2 days out, buying a name where 15 of 28 analysts collectively price it 10% lower than spot means paying a significant crowding premium. The Project Kilby qualitative story is real but has no dated PT raise behind it yet; it is a catalyst, not a valuation floor.
+
+**Weakly-sourced or unsourced claims:** (none in the above — all Bull/Bear items are tagged to source or explicitly "[Gemini grounded — unverified]")
+
+**Single most-likely invalidator (next 5 trading days):** Hot NFP print (Jul 2) spikes 30Y above 5.05%, triggering a broad industrials/cyclicals de-rating before any new CAT-specific PT raise arrives.
+
+**R:R math (B3):** entry $1,033.19 / stop $934.11 (−9.59%, real 2.5×ATR, unclamped) / target $1,155 [Wells Fargo, 2026-06-23, Overweight; freshest dated PT] (+11.79%) / R:R **1.23:1** / max risk on $20k position ≈ $1,918.
+- **Hard 2:1 floor FAILS** — decisively, not borderline. For 2:1, need a target ≥ $1,231; no analyst is close.
+- Price ran +3.9% since Jun 25 but targets unchanged → R:R declined sharply (1.83:1 → 1.23:1). Each point of price gain without a target raise makes the entry worse.
+- **Data check:** Prior session R:R 1.83:1 on same $1,155 target from entry $994.18. Today $1,033.19, same target → 1.23:1. Consistent — no contradiction, just price moved.
+
+**Setup type:** N/A (demoted). **Gate-history audit:** Gate history clean — consistent demotions for 6+ sessions; today's $1,033 entry is BELOW the Jun 18 "do NOT chase above $1,113" gate (gate still live and respected). No gate-creep.
+
+**Decision:** **Demoted** — R:R 1.23:1 at the freshest dated analyst target (WF $1,155), decisive floor fail. Worse than any prior session as price ran while targets held. No watchlist add (price is moving away from an actionable entry, not toward one).
+
+---
+
+#### AMD (XLK, $539.49 +5.6% vs Jun 25 ref $510.80; year-high $562.99, at 96% of 52w high)
+
+**Setup:** ATR(14)=$34.09 (6.32% of price); raw stop_pct_2.5x=15.79% → clamped to **15.0% ceiling** → stop $458.57. No earnings blackout (next: 2026-08-04, 35d out).
+
+**Sources scanned (2):** EDGAR (OK) / Google News (via gather). Finnhub upgrade-downgrade 403 / Reddit 403 / Gemini synthesis 404 / NewsAPI 0.
+
+**Bull case:** Cantor Fitzgerald issued a new $700 PT on 2026-06-29 (1 day ago — freshest analyst target on record for AMD) [WebSearch, Cantor Fitzgerald June 29]. UBS raised PT to $670 (from $455, a +47% raise) [WebSearch]. Citi previously upgraded to Buy at $575 (June 12, archived) — still valid [TICKER-NOTES archive]. Multiple concurrent PT raises from different desks is a meaningfully different picture than the single stale Barclays $665 overridden last session. AMD now at 96% of its 52w high ($562.99), showing relative strength despite XLK sector underperformance (-5.29% monthly). EDGAR Form 4 filings Jun 12 and Jun 17 (insider transactions noted; content not synthesized).
+
+**Bear case:** Consensus mean across ~37–59 analysts: ~$434–506 (depends on aggregator; all BELOW spot $539.49 because older targets haven't been refreshed yet). XLK sector Choppy, monthly return -5.29% (bottom 3). Pre-NFP environment with core PCE +3.4% = rate headwinds for high-multiple growth stocks. AMD at 96% of 52w high is near-extended, not at a pullback entry. Three Form 4 filings in June (insider selling at or near highs — Jun 12, Jun 17, filed).
+
+**Disconfirming evidence to watch:** Any Cantor or UBS target revision downward; XLK sector worsening; NFP hot print July 2 compressing growth multiples further.
+
+**Catalysts ahead (next 14d):** No company-specific catalyst. NFP July 2 (binary macro event — could cut both ways for a high-multiple semiconductor name). "AMD Advancing AI Event" (per Capital.com Jun 23 article — date uncertain, likely H2 2026) — outside 14-day window.
+
+**One-line takeaway:** AMD has shifted from "one stale outlier vs negative consensus" (Jun 25) to "three fresh upgrades including a new $700 street high yesterday" — the bull case is materially stronger, but price also ran +5.6% since last session, leaving the R:R barely below the hard floor [WebSearch, Cantor/UBS Jun 29; Gemini grounded — unverified for full source text].
+
+**Critique (Claude directly):**
+**Strongest counter to the bull case:** Even with Cantor's $700 (fresh, Jun 29), the 15% ATR-clamped stop at $458.57 requires a +30% gain just to reach 2:1. At $539.49, Cantor's $700 gives only 23.3% upside. The consensus mean ($434–506) trails spot by $33–105, meaning the stock has already priced in most of the new bull thesis. Three upgrades in a week is bullish, but the three upgrading desks (Cantor, UBS, Citi) may be chasing price rather than discovering undervaluation — none of their targets has been tested by a meaningful pullback.
+
+**Weakly-sourced or unsourced claims:** UBS raise date not explicitly confirmed (WebSearch listed it without a date; "recent" per search result). Treating as "within last 7 days" for the purposes of this assessment.
+
+**Single most-likely invalidator (next 5 trading days):** Hot NFP print (Jul 2) drives 30Y above 5.05%, compressing high-multiple growth stocks; AMD loses the 52w-high $563 level (would signal a failed breakout attempt and likely trigger the 15% ATR stop).
+
+**Data check:** Prior session AMD at $510.80 with Barclays $665 as sole outlier — labeled "fail-in-substance" (judgment override). Today at $539.49 with Cantor $700 (Jun 29, 1 day old), UBS $670, Citi $575 — three distinct fresh upgrades vs. one stale. The R:R changed from 2.01:1 (outlier) to 1.98:1 (freshest target) — price ran faster than the new high target. No data contradiction: the improvement in analyst sentiment is real, the improvement in R:R math is marginal. Old Barclays $665 is no longer the relevant high target; Cantor $700 supersedes it.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 20% (currently 0%)
+- 30d correlation with open positions: N/A (no open positions)
+- AMD-CAT hypothetical correlation: 0.64 (≤0.70 gate, passes if both were considered — moot since neither is being entered)
+- Sector cap: 0/2 XLK (CAT is XLI, not XLK; AMD would be first XLK name)
+- **Shared-catalyst flag:** N/A (no current open positions to check)
+
+**R:R math (B3):** entry $539.49 / stop $458.57 (−15.0%, clamped to ceiling) / target $700 [Cantor Fitzgerald, 2026-06-29] (+29.75%) / R:R **1.98:1** / max risk on $20k position ≈ $3,000.
+- **Hard 2:1 floor FAILS** — by 0.02 (1.98:1 vs 2.00:1 minimum). Not a rounding issue: strict rule says ≥ 2.0.
+- **Pullback trigger note:** Entry at or below $538.46 would bring R:R to exactly 2.0:1 on Cantor $700; below $538 gives a clear 2:1+. This is a specific, actionable level to monitor.
+- **At UBS $670:** entry $539.49 / risk $80.92 / upside $130.51 → R:R 1.61:1 (also fails).
+
+**Setup type:** PULLBACK — thesis requires price to pull back to ≤$538 before entry is justified. **Gate-history audit:** Jun 25 entry was a judgment override (no prior planned entry → no gate-creep issue). Today's $539.49 is ABOVE the pullback trigger ($538.46); chasing above this level would violate the 2:1 discipline.
+
+**Decision:** **Demoted (hard floor, 1.98:1 < 2.0 minimum)** — improved bull case vs Jun 25 (multiple fresh upgrades vs single stale outlier), but price ran above the entry level that would clear the floor. Monitoring closely: AMD at or below $538 with Cantor $700 still live = a genuine 2:1 trade that has not previously been available with this quality of citation.
+
+### Candidates dropped (and why)
+- **UNH (XLV)** — DOJ criminal investigation disqualifier, unchanged since 06-02 (9th+ occurrence). Not re-examined.
+- **SMH (XLK)** — ETF; no individual analyst PT to construct R:R. Score 0.86 but no citeable target.
+- **GE (XLI)** — score 0.77; WebSearch consensus ~$348–352 (BELOW current price $373.71); high target $425 gives ~R:R 1.96:1 at 7% floor stop — fails 2:1. Not deeply dived due to budget; quick check confirms it does not clear the floor either.
+- **XBI (XLV)** — ETF; no analyst PT available. Same issue as SMH/prior sessions.
+- **ABBV (XLV)** — score 0.58; not deep-dived (above the top-2 screener cut for 1 slot; would require additional research session budget). Subject to upcoming Q2 earnings cycle checking.
+- **MS (XLF)** — score 0.56; prior sessions showed R:R <1:1 (static $230 target, consensus below spot). Not re-examined — same structural problem unchanged.
+- **JPM (XLF)** — score 0.55; not deep-dived.
+- **DE (XLI)** — score 0.50; not deep-dived.
+
+### Historical Analog
+**Analog:** Today's setup — quarter-end (Jun 30), Neutral regime, core PCE +3.4% elevated but stable, VIX ~18-19, pre-NFP (2 days), industrials/healthcare leading while tech lags, breadth at 52-53rd percentile — most closely resembles late September 2023 (approximately Sep 28–29 2023). At that time: Fed had just delivered its last hike (late July 2023) then paused; core PCE ~3.7% (declining but elevated); VIX 17–19; S&P near intermediate highs with breadth weakening; XLK had been the YTD leader but was pausing; NFP (Oct 6 2023) was expected to show moderation. [Training-data knowledge; no unique data source needed for a well-documented historical period.]
+
+**What followed (5d/10d/20d):** Oct 6 2023 NFP surprised hot (+336K vs 170K consensus) → 10Y spiked to 4.78% → SPX dropped ~0.5% on NFP day → over the next 5d: SPX −2.5% (continued selling), 10d: −3.0%, but the bottom was established Oct 26–27 around SPX 4,100 → 20d: +5.8% off the Oct 6 pre-NFP level as the market ultimately digested the hot print and pivoted to rate-cut expectations.
+
+**Why this time might differ:** Jul 2 2026 NFP will follow an already-hot June 5 print (+251K vs 85–120K consensus). A consecutive hot print would be harder for the market to dismiss as "one-off" than the Oct 2023 surprise, potentially extending the sell-off beyond 20 days rather than bottoming quickly. Conversely, a soft Jul 2 print would be a sharp relief catalyst (the opposite of the 2023 analog).
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, now 488.1h (20.3 days) — worst yet, 14th consecutive session without a local-PC refresh.** Trade slots cut 2→1. Hard system gate. User action still needed: refresh local ml_insights on the primary PC and commit ml-insights.json. This has been flagged every session since at least Jun 17.
+2. **Gemini quota 429 (all Flash calls) + GEMINI_MODEL env var = "gemini-3-flash" (invalid, HTTP 404) — 4th+ consecutive session with both paths unavailable.** All synthesis/critique/macro work done directly by Claude + WebSearch. The 404 on model ID requires user action in the Routine environment settings (`GEMINI_MODEL` must be a valid model name, e.g., `gemini-2.5-flash`).
+3. **Pre-macro cap active: NFP July 2 (2 trading days).** 40% deployment ceiling enforced, trade_slots capped to 1. Even if a candidate cleared the R:R floor today, max one entry at ≤40% equity.
+4. **AMD at 1.98:1 is the closest the top screener pick has come to a genuine 2:1 pass with high-quality citations (Cantor $700 Jun 29, UBS $670).** The situation is materially better than Jun 25 (judgment override on single stale outlier). Pullback to ≤$538.46 with Cantor $700 still live = a qualified 2:1 entry. This should be the primary monitoring target for tomorrow's pre-market.
+5. **CAT R:R worsened from 1.83:1 to 1.23:1** as price ran +3.9% with target unchanged. At $1,033 vs WF $1,155, CAT is now 10% below its freshest target while consensus sits 9% below spot — an increasingly crowded and math-challenged setup.
+6. **EDGAR Form 4 filings (Jun 29):** Three insider filings for CAT in one day. Content not synthesized (Gemini unavailable). Worth a manual review of the SEC EDGAR links if conviction on CAT is ever rebuilt.
+7. **Reddit egress 403 (persistent, 11th+ session).** Sentiment depth degraded. Finnhub upgrade/downgrade endpoint also 403 (free tier, premium-only). No sentiment or upgrade/downgrade feed available.
+8. **Sector rotation script produced empty JSON** — sector regime from ml_insights (Trend/Choppy/Bear tags) used as the sole sector classification; no composite risk-on/risk-off score or cycle phase this session.
+9. **Account 100% cash since Jun 4 (26 calendar days).** Each session's top screener picks continue to fail the hard 2:1 R:R floor due to prices running above analyst consensus. A strategic question for the weekly review: should the screener be augmented with a "consensus buffer" filter (drop any name where spot ≥ consensus_mean) to surface names with cleaner R:R headroom?
+
+### Decision
+**HOLD — no new entries.** CAT demotes decisively at R:R 1.23:1 (WF $1,155 target, unchanged — worst R:R in CAT's tracked history as price ran to $1,033). AMD demotes at the hard floor (1.98:1 on Cantor $700 Jun 29 — improved case vs last session but math doesn't clear 2.0). Pre-macro cap (NFP Jul 2) and ML staleness (488h) reinforce caution independently. Account remains 100% cash. **Primary monitoring trigger for tomorrow:** AMD pull-back to ≤$538 with Cantor $700 still live.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — Flash 429 (quota exhausted), GEMINI_MODEL "gemini-3-flash" 404 (invalid model ID, env var misconfiguration). All synthesis/critique/macro via Claude + WebSearch.
+- NewsAPI: 0 (no records returned) / Finnhub news: OK (some records) / Finnhub upgrade-downgrade: 403 / EDGAR: OK / Reddit: 403 (11th+ session) / Google News: OK
+- Fallback events: Gemini 429+404 → WebSearch for macro; Reddit 403 (all tickers); Finnhub upgrade-downgrade 403; sector-rotation script empty JSON
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=488.1h, slots cut 2→1
+- Exposure-coach: failed silently (best-effort; skipped)
+- FTD detector: skipped (FMP_API_KEY not set)
+
+---
