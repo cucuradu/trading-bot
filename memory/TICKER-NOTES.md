@@ -38,23 +38,21 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-06-30): Demoted (hard floor, 1.98:1 < 2.0) — entry $539.49 / stop $458.57 (−15.0% clamped) / target $700 [Cantor Fitzgerald, Jun 29] → R:R 1.98:1 (0.02 below floor). Materially improved vs Jun 25 judgment-override (3 fresh upgrades: Cantor $700, UBS $670, Citi $575 — not a single stale outlier). Price ran +5.6% since Jun 25 ($510.80→$539.49), closing the margin. **Pullback trigger: AMD at or below $538.46 with Cantor $700 still live = 2.0:1 qualified entry.** At 96% of 52w high $562.99. XLK sector Choppy, monthly -5.29%. [Demoted hard floor: R:R 1.98:1 on Cantor $700 Jun 29. WebSearch, Jun 30]
+- Thesis (2026-07-01): Demoted (hard floor, R:R 1.37:1) — entry ref $580.91 (52w high $584.73 today) / stop $493.77 (−15.0% clamped, ATR 6.0%) / target $700 [Cantor Fitzgerald, 2026-06-29, street high] → R:R 1.37:1. Decisively fails 2.0 floor. AMD +170% YTD; WF Aaron Rakers raised to $615 (Jun 30, Overweight) — triggered +8% Jun 30 rally. AMD now trading ABOVE WF $615 on intraday basis ($580.91 < $615 but within day's range). Consensus mean ~$504-506 (51-59 analysts) = 15% BELOW spot. No path to 2:1 exists at any known analyst target. **New pullback trigger: ≤$513.86 (−11.6% from today) restores 2:1 vs Cantor $700 (stop at $436.78 = 15% below $513.86; upside $186.14). If NFP hot (Jul 2) → remove from active monitoring.** [Demoted: R:R 1.37:1. WebSearch / yfinance, Jul 1]
 - Recent catalysts:
-  - 2026-06-29: Cantor Fitzgerald issues new $700 PT — new street high, 1 day old [WebSearch, Jun 30]
-  - 2026-06-29: UBS raises PT to $670 (from $455, +47%) — significant revision [WebSearch, Jun 30]
+  - 2026-06-30: Wells Fargo Aaron Rakers raised PT to $615 (Overweight) — AI inference ramp + EPYC Venice production ahead of schedule; AMD +8% on that day [WebSearch, Invezz/TipRanks, 2026-06-30]
+  - 2026-06-29: Cantor Fitzgerald new $700 PT (from $500) — street high [WebSearch, Jun 30]
+  <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455, +47%) — significant revision -->
   <!-- archive: 2026-06-25: Micron's 06-24 after-close beat reignited AI/semis sentiment broadly -->
-  <!-- archive: 2026-06-25: Consensus target_mean/target_median ($487.90/$490.00) dropped below spot -->
   <!-- archive: 2026-06-21: AMD's H2 2026 Inflection Is Bigger Than AI GPUs — OpenAI + Meta 6GW commitments -->
   <!-- archive: 2026-06-12: Citi upgraded to Buy, PT $575 -->
   <!-- archive: 2026-06-11: BofA raised PT $500→$560 -->
-  <!-- archive: 2026-06-01: Barclays PT $665 -->
-  <!-- archive: 2026-06-01: Mizuho PT $515→$615 -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes: COMPUTEX exhaustion + NFP yield spike + AVGO contagion)
 - Open thesis questions:
-  - **Primary monitoring trigger:** pullback to ≤$538.46 with Cantor $700 still live = qualified 2.0:1 entry; flag for next pre-market.
-  - Should the R:R floor be checked against `target_median`/`target_mean` instead of `target_high`? (weekly-review item, raised 06-25, unresolved)
-  - Single most-likely invalidator: hot NFP Jul 2 spikes 30Y >5.05%, compressing high-multiple growth stocks; AMD loses 52w-high $563 (failed breakout signal).
+  - **Primary monitoring trigger (updated Jul 1):** pullback to ≤$513.86 (−11.6%) with Cantor $700 still live = 2.0:1 qualified entry. If NFP Jul 2 hot (>110K) AND AMD loses year-high $563 → REMOVE from active monitoring, re-screen.
+  - Should the R:R floor be checked against `target_median`/`target_mean` instead of `target_high`? (weekly-review item, raised 06-25, unresolved — now more urgent: consensus is 15% below spot)
+  - Single most-likely invalidator: hot NFP Jul 2 >110K spikes 30Y >5.00%, compressing growth multiples; AMD loses year-high $563 on failed breakout signal.
 
 ---
 
@@ -87,16 +85,15 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-06-30): Demoted (R:R 1.23:1 — worst in tracked history) — entry $1,033.19 / stop $934.11 (−9.59%, unclamped) / target $1,155 [Wells Fargo, Jun 23] (+11.79%). Price ran +3.9% since Jun 25 ($994.18→$1,033.19) while target unchanged → R:R declined sharply (1.83:1→1.23:1). Analyst consensus mean ~$937–940 is now 9% BELOW spot. For 2:1, need a target ≥$1,231 — no analyst close to that level. Do NOT chase above $1,113 (Jun 18 gate, still live; price $1,033 is below this gate, so no gate-creep, but note how close the run is getting). [Demoted: R:R 1.23:1. WebSearch/yfinance, Jun 30]
+- Thesis (2026-07-01): Demoted (R:R 0.91:1 — LESS than 1:1, new worst on record) — entry ref $1,064.90 (52w high $1,073.46 today) / stop $965.66 (−9.31%, ATR 3.72%) / target $1,155 [Wells Fargo, Jun 23, Overweight — freshest high target] (+8.46%) → R:R 0.91:1. Consensus median $932.50 (19 analysts) is 12% BELOW spot; consensus mean ~$937-940 also below spot. All named analyst targets except WF $1,155 are BELOW current price (WF $960, Truist $920, Citi $905, MS $915 all < $1,064.90). For 2:1, need target ≥$1,263 — no analyst within $108 of that. CAT thesis structurally broken. Do NOT chase above $1,113 (Jun 18 gate; price $1,064.90 still below this gate; approaching). [Demoted: R:R 0.91:1. WebSearch / yfinance, Jul 1]
 - Recent catalysts:
-  - 2026-06-29: Three EDGAR Form 4 filings (insider transactions — content not synthesized; Gemini unavailable; noted for monitoring) [SEC EDGAR, Jun 29]
-  - 2026-06-30: CAT price $1,033.19 — consensus mean ~$937 now 9% below spot; setup R:R deteriorating as price runs without corresponding target raises [WebSearch, Jun 30]
+  - 2026-07-01: CAT new 52w high $1,073.46 today; R:R now 0.91:1 — all named upgrade targets now below spot except WF $1,155 outlier [yfinance, Jul 1]
+  - 2026-06-29: Two EDGAR Form 4 insider filings (content not synthesized; monitoring ongoing) [SEC EDGAR, Jun 29]
+  <!-- archive: 2026-06-29: Three EDGAR Form 4 filings (content not synthesized; Gemini unavailable) -->
   <!-- archive: 2026-06-25: Wells Fargo raised CAT PT to $1,155 [Finnhub, Jun 25] -->
-  <!-- archive: 2026-06-25: Consensus mean/median first dropped below spot -->
   <!-- archive: 2026-06-23: Chevron/Microsoft "Project Kilby" names CAT as turbine supplier; CAT +3.05% -->
   <!-- archive: 2026-06-20: "309.4% overvalued" critique -->
   <!-- archive: 2026-05-09: Evercore ISI PT $878→$1,103 -->
-  <!-- archive: 2026-Q1: Record backlog $63B (+79% YoY); EPS +30% YoY; raised guidance -->
   - Process note (still outstanding): JPMorgan $1,125/$1,165 PT date discrepancy never resolved — carry forward.
 - Open thesis questions:
   - At $1,033, need a dated analyst target ≥$1,231 for 2:1 — unrealistic near-term. Thesis is structurally broken unless price meaningfully retraces or a new street-high PT emerges.
