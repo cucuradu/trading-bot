@@ -362,3 +362,30 @@ memory [[stop-tighten-moves-stop-down-bug]].
 **Key takeaway:** Ninth consecutive HOLD session. Data integrity gap (Jun 9–16 not logged) resolved with this entry; continuing to market close for today's FOMC watch.
 
 ---
+
+---
+
+## 2026-07-01 — Market-open (no orders)
+
+**Account status:** $100,472.45 equity, 100% cash (no open positions). 
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Wed):** 0 / 3.
+
+**Market conditions:** SPY $746.77 (+0.06%), QQQ $736.40 (+0.01%), both near year highs. NFP tomorrow (July 2, 110K consensus vs 139K prior). VIX ~18.5–19 (pre-NFP). Regime Neutral (rule_fallback; ML stale 512.1h). Pre-macro cap active: 40% deployment, 1 trade slot.
+
+**Pre-market plan:** HOLD — top screener picks (AMD, CAT) both fail hard R:R ≥2.0 floor.
+- AMD: R:R 1.37:1 at $580.91 (Cantor $700 target) — demoted.
+- CAT: R:R 0.91:1 at $1,064.90 (WF $1,155 target) — demoted.
+
+**Intraday update (market-open STEP 2):**
+- AMD pulled back to $555.05 (−$25.86 from open). R:R improved to ~1.74:1. **Still fails 2.0 floor.**
+- CAT pulled back to $1,014.13 (−$50.77 from open). R:R improved to ~1.50:1. **Still fails 2.0 floor.**
+
+**Decision:** **HOLD — no new entries placed.** Both candidates fail the non-negotiable R:R ≥2.0 hard gate per TRADING-STRATEGY.md B3. Intraday pullbacks have not restored the floor.
+
+**Primary monitoring trigger for next session (post-NFP):** 
+- Soft NFP (≤110K) → AMD pullback to ≤$538 → re-evaluate with 2:1 potential.
+- Hot NFP (>110K) → AMD fails $563 level invalidator; thesis invalidated.
+
+**No WhatsApp alert needed.** Routine executed, no orders fired.
+
