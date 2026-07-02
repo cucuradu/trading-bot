@@ -38,21 +38,25 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-01): Demoted (hard floor, R:R 1.37:1) — entry ref $580.91 (52w high $584.73 today) / stop $493.77 (−15.0% clamped, ATR 6.0%) / target $700 [Cantor Fitzgerald, 2026-06-29, street high] → R:R 1.37:1. Decisively fails 2.0 floor. AMD +170% YTD; WF Aaron Rakers raised to $615 (Jun 30, Overweight) — triggered +8% Jun 30 rally. AMD now trading ABOVE WF $615 on intraday basis ($580.91 < $615 but within day's range). Consensus mean ~$504-506 (51-59 analysts) = 15% BELOW spot. No path to 2:1 exists at any known analyst target. **New pullback trigger: ≤$513.86 (−11.6% from today) restores 2:1 vs Cantor $700 (stop at $436.78 = 15% below $513.86; upside $186.14). If NFP hot (Jul 2) → remove from active monitoring.** [Demoted: R:R 1.37:1. WebSearch / yfinance, Jul 1]
+- Thesis (2026-07-02): Watchlist — PULLBACK limit $538.46 (day TIF). Meta cloud announcement (Jul 1) caused AMD −7.5% from $584.73→$540.88. AMD-Meta $60B/6GW Instinct GPU partnership (Feb 24, 2026) INTACT and committed. Cantor $700 (Jun 29, post-AMD-Meta partnership — still operative). ATR(14)=$35.45 (6.55%); stop=15% clamped→$459.75. At $540.88: R:R 1.96:1 (fails 2:1 by $0.04/$). At $538.46: R:R 2.00:1 exactly — watchlist limit. Day low Jul 2 was $538.74 (within $0.28 of threshold). Jul 3 holiday; reassess Mon Jul 7. [Watchlist add at $538.46. WebSearch + yfinance + Finnhub, Jul 2]
 - Recent catalysts:
-  - 2026-06-30: Wells Fargo Aaron Rakers raised PT to $615 (Overweight) — AI inference ramp + EPYC Venice production ahead of schedule; AMD +8% on that day [WebSearch, Invezz/TipRanks, 2026-06-30]
-  - 2026-06-29: Cantor Fitzgerald new $700 PT (from $500) — street high [WebSearch, Jun 30]
-  <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455, +47%) — significant revision -->
-  <!-- archive: 2026-06-25: Micron's 06-24 after-close beat reignited AI/semis sentiment broadly -->
-  <!-- archive: 2026-06-21: AMD's H2 2026 Inflection Is Bigger Than AI GPUs — OpenAI + Meta 6GW commitments -->
+  - 2026-07-02: Meta cloud business announcement (Jul 1) triggers AI-hardware selloff; AMD −7.5% ($584.73→$540.88). AMD-Meta $60B/6GW partnership (Feb 24) intact and separate [beincrypto.com / seekingalpha, 2026-07-01].
+  - 2026-07-02: Versal Premium Gen 2 launch — AMD expanding into AI/networking/aerospace SoCs [Finnhub, 2026-07-02].
+  - 2026-06-30: Wells Fargo Aaron Rakers raised PT to $615 (Overweight) [WebSearch, 2026-06-30]
+  - 2026-06-29: Cantor Fitzgerald new $700 PT (from $500) — street high [WebSearch, 2026-06-29]
+  <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455, +47%) -->
+  <!-- archive: 2026-06-25: Micron 06-24 beat reignited AI/semis sentiment -->
+  <!-- archive: 2026-06-21: AMD H2 2026 Inflection — OpenAI + Meta 6GW commitments -->
   <!-- archive: 2026-06-12: Citi upgraded to Buy, PT $575 -->
   <!-- archive: 2026-06-11: BofA raised PT $500→$560 -->
 - Trade history:
-  - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes: COMPUTEX exhaustion + NFP yield spike + AVGO contagion)
+  - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes)
 - Open thesis questions:
-  - **Primary monitoring trigger (updated Jul 1):** pullback to ≤$513.86 (−11.6%) with Cantor $700 still live = 2.0:1 qualified entry. If NFP Jul 2 hot (>110K) AND AMD loses year-high $563 → REMOVE from active monitoring, re-screen.
-  - Should the R:R floor be checked against `target_median`/`target_mean` instead of `target_high`? (weekly-review item, raised 06-25, unresolved — now more urgent: consensus is 15% below spot)
-  - Single most-likely invalidator: hot NFP Jul 2 >110K spikes 30Y >5.00%, compressing growth multiples; AMD loses year-high $563 on failed breakout signal.
+  - **Primary monitoring trigger (updated Jul 2):** PULLBACK limit $538.46 (day TIF) = 2.00:1 R:R with Cantor $700 / 15% stop. Jul 3 holiday; if no fill, reassess Mon Jul 7 with fresh ATR.
+  - **Does Meta-excess thesis break Cantor $700?** Cantor set $700 Jun 29 (post AMD-Meta Feb deal) — they knew the partnership. Meta-cloud is a NEW development; verify if Cantor has revised since Jul 1. If affirmed, target valid; if cut, R:R changes.
+  - AMD earnings Aug 4 (33 days) — "high-stakes" framing per Finnhub; time ceiling on any position entered now.
+  - Should R:R floor be checked against `target_median`/`target_mean` vs `target_high`? (unresolved from Jun 25; still urgent).
+  - Single most-likely invalidator (5d): AMD fails to reclaim $563 (prior year-high) by Mon Jul 7, confirming Meta-driven trend reversal.
 
 ---
 
@@ -85,20 +89,21 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## CAT (XLI)
-- Thesis (2026-07-01): Demoted (R:R 0.91:1 — LESS than 1:1, new worst on record) — entry ref $1,064.90 (52w high $1,073.46 today) / stop $965.66 (−9.31%, ATR 3.72%) / target $1,155 [Wells Fargo, Jun 23, Overweight — freshest high target] (+8.46%) → R:R 0.91:1. Consensus median $932.50 (19 analysts) is 12% BELOW spot; consensus mean ~$937-940 also below spot. All named analyst targets except WF $1,155 are BELOW current price (WF $960, Truist $920, Citi $905, MS $915 all < $1,064.90). For 2:1, need target ≥$1,263 — no analyst within $108 of that. CAT thesis structurally broken. Do NOT chase above $1,113 (Jun 18 gate; price $1,064.90 still below this gate; approaching). [Demoted: R:R 0.91:1. WebSearch / yfinance, Jul 1]
+- Thesis (2026-07-02): Dropped — R:R 1.52:1 at $991.41 (fails 2:1 hard floor) + Michael Burry opened SHORT (Jul 1-2; first-ever short on CAT, reversing longtime bull stance; cites "extreme valuation + overexposure to AI/infra theme"). Meta cloud selloff pulled CAT from $1,073.46 (Jul 1 high) to $991.41 (Jul 2; −7.5%). Stop 10.83% unclamped = $884.04. Target $1,155 [WF, Jun 23]. For 2:1: need entry ≤$949.43. NOT watchlist-eligible at current price. Re-evaluate only below $949. [Dropped. Finnhub + yfinance, Jul 2]
 - Recent catalysts:
-  - 2026-07-01: CAT new 52w high $1,073.46 today; R:R now 0.91:1 — all named upgrade targets now below spot except WF $1,155 outlier [yfinance, Jul 1]
-  - 2026-06-29: Two EDGAR Form 4 insider filings (content not synthesized; monitoring ongoing) [SEC EDGAR, Jun 29]
-  <!-- archive: 2026-06-29: Three EDGAR Form 4 filings (content not synthesized; Gemini unavailable) -->
+  - 2026-07-02: Michael Burry opened short on CAT — first-ever short, reversing longstanding bull stance; cites extreme valuation + AI-infra overexposure [Finnhub, 2026-07-01/07-02].
+  - 2026-07-02: CAT added to Russell Top 50 Index (forced institutional buying from rebalancing) [Finnhub, 2026-07-02].
+  - 2026-07-01: CAT 52w high $1,073.46; then sold off to $991.41 by Jul 2 on Meta cloud rotation [yfinance, Jul 1-2].
+  <!-- archive: 2026-06-29: Two EDGAR Form 4 insider filings -->
   <!-- archive: 2026-06-25: Wells Fargo raised CAT PT to $1,155 [Finnhub, Jun 25] -->
   <!-- archive: 2026-06-23: Chevron/Microsoft "Project Kilby" names CAT as turbine supplier; CAT +3.05% -->
   <!-- archive: 2026-06-20: "309.4% overvalued" critique -->
   <!-- archive: 2026-05-09: Evercore ISI PT $878→$1,103 -->
-  - Process note (still outstanding): JPMorgan $1,125/$1,165 PT date discrepancy never resolved — carry forward.
 - Open thesis questions:
-  - At $1,033, need a dated analyst target ≥$1,231 for 2:1 — unrealistic near-term. Thesis is structurally broken unless price meaningfully retraces or a new street-high PT emerges.
-  - Three Form 4 insider filings Jun 29 — worth reviewing SEC EDGAR links if re-engaging with CAT.
-  - Single most-likely invalidator: hot NFP Jul 2 spikes 30Y >5.05%, broad industrials/cyclicals de-rating; consensus already below spot makes downside asymmetric.
+  - 2:1 R:R threshold: entry ≤$949.43 needed (CAT at $991.41; must fall $42 more).
+  - Does Burry's short indicate institutional sentiment flip? Burry is typically right long-horizon. Monitor for price approaching $949 with Burry thesis vs WF $1,155 thesis.
+  - Form 4 filings Jun 29 unreviewed — still outstanding.
+  - Process note: JPMorgan $1,125/$1,165 PT date discrepancy unresolved — carry forward.
 - Trade history: (none yet)
 - Position-aware notes: 0/2 XLI sector cap (no open positions).
 

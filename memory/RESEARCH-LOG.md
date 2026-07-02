@@ -3596,3 +3596,166 @@ Neutral regime (rule_fallback, 21.3 days ML stale). Today is the first trading d
 - Exposure-coach: failed silently (best-effort)
 - FTD detector: skipped (FMP_API_KEY not set)
 
+
+---
+
+## 2026-07-02 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — ML unavailable; using local_screener_v1. Fallback reason: ml_insights stale 536h (stale_degrade; 16th+ consecutive session). ML stale_degrade → trade_slots reduced 2→1 (hard gate). Pre-macro NFP (today, event_date 2026-07-02, days_to_event=0) → 40% deployment cap (~$40,189 max). Effective slots: 1.
+
+**Pre-macro:** cap_active (event: NFP on 2026-07-02) → 40% deployment cap
+
+**ML staleness:** age 536h (stale_degrade; rule_fallback only) — user action required: refresh ml_insights.json on local PC and commit.
+
+**Breadth/Sector:** breadth=52.8/100 (Neutral) | sector=unavailable (script exit 1) | no divergence data
+
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=NEUTRAL | conf=MEDIUM — advisory tension: exposure coach below pre-macro 40% cap; regime says Neutral. Using pre-macro 40% as operative cap.
+
+**FTD:** Not run (FMP_API_KEY not set)
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $401,889.80 | Daytrade count: 0 | Open positions: 0 | Open orders: 0
+
+### Macro Framework
+Neutral regime (rule_fallback, 536h ML stale — 16th+ consecutive session). Dominant catalyst: Meta Platforms announced it will sell excess AI compute capacity as a cloud business (Jul 1), causing a broad chip/AI-infra selloff (SOX down, AMD −7.5% from $584→$540, Micron −10%, CoreWeave −14%, SK Hynix −9% in Asia). Meta shares +9%. Key rotation: hyperscaler hardware → software and cloud services. NFP (June 2026) released 8:30 ET today; consensus 110K. SPY $745.76 (+0.11% intraday) — market reaction benign, suggesting NFP was near consensus or soft. WTI $67.75 (lowest since late February; US-Iran Doha talks progressing — Hormuz shipments rising). 30Y yield: ~4.86-4.90% (estimated; FRED July 2 data not yet searchable). VIX 18.12 (slightly elevated; Meta uncertainty + chip sector volatility). vs Jul 1: AMD −7.5% (Meta cloud announcement); CAT −7.5% ($1,073→$991; Burry opened short today); SPY −0.14%; WTI −$2.25 (−3.2%); oil now below $68 for first time since late February. Breadth 52.8/100 (Neutral, unchanged). Sector leaders: XLV +8.98%, XLF +6.45%, XLI +5.26% (1-month). Sector laggards: XLE −8.89%, XLK −6.35%, XLC −3.37%. [degraded: Gemini 429 (16th+ session); macro via WebSearch + yfinance]
+
+> **Naming convention (B8):** SPY used for ETF (~$745), SPX for index level (~7,470+). Both terms reflect different instruments below.
+
+### Sector Picture
+- **Top 3 (1mo):** Healthcare XLV +8.98% (regime: Trend ✓), Financials XLF +6.45% (regime: Choppy), Industrials XLI +5.26% (regime: Choppy)
+- **Bottom 3 (1mo):** Energy XLE −8.89% (regime: Bear ✓), Technology XLK −6.35% (regime: Choppy), Communication Services XLC −3.37% (regime: Bear ✓)
+- **Agreement:** XLV Trend and XLE Bear are consistent between sector-momentum and ml_insights. XLK −6.35% 1-month is consistent with Choppy (not yet Bear by the screener, but momentum deteriorating sharply).
+- **Note:** Sector rotation script exited 1 (failed silently). No sector cycle phase data.
+
+### Candidates
+
+#### AMD (XLK, $540.88 | day range $538.74–$564.09 | prev close $544.10 | yr high $584.73)
+
+**Setup:** Below 52-week high by 7.5% ($584.73 → $540.88). Meta cloud announcement (Jul 1) triggered broad AI-hardware selloff extending into today. AMD-Meta $60B/6GW Instinct GPU partnership (Feb 24, 2026) is separate and intact. ATR(14)=$35.45 (6.55% of price); stop_pct_2.5x=16.39% → clamped to 15.0%. 15% stop from $540.88 = $459.75.
+
+**Sources scanned (2):** Finnhub (7 articles, Jul 1–2) / WebSearch (analyst PTs, Meta partnership, sector context). NewsAPI: 0 records. EDGAR: timeout. Reddit: 403. Sector rotation: error.
+
+**Bull case:**
+- AMD-Meta $60B, 6GW multi-year Instinct GPU deal (announced Feb 24, 2026) is LOCKED IN; Meta selling excess compute capacity uses AMD chips — AMD remains Meta's GPU supplier regardless of Meta's cloud strategy [AMD newsroom / Meta about.fb.com, 2026-02-24].
+- Cantor Fitzgerald $700 PT (Jun 29, 2026) — street high — was issued AFTER the Feb AMD-Meta partnership announcement; Cantor was aware of the $60B deal when setting this target [WebSearch, Jun 29-30].
+- Goldman Sachs upgraded AMD to Buy at $450 on "structural agentic AI tailwinds" [WebSearch, post-Meta announcement date; Gemini grounded — unverified specific date].
+- Lisa Su $36M equity award (Jul 2 filing) aligns management with long-term stock performance [Finnhub, 2026-07-02].
+- Versal Premium Gen 2 launch (Jul 2): AMD extending reach into AI, networking, aerospace — diversified revenue beyond GPU [Finnhub, 2026-07-02].
+
+**Bear case:**
+- Meta's cloud announcement reveals AI compute EXCESS across hyperscalers — directly breaks the "AI capex scarcity" premise that drove AMD to $584. Even if AMD benefits from Meta's GPU procurement, the sector multiple compression is real [beincrypto.com / seeking alpha, 2026-07-01].
+- Chip stocks selloff extended into Thursday premarket "as lofty valuations and heavy AI spending by tech companies weigh on investor sentiment" — both AMD AND Broadcom face "high-stakes earnings reports that could reinforce or challenge sector leadership" [Finnhub/Investing.com, 2026-07-02].
+- XLK −6.35% (1-month) = worst sector in momentum table; Choppy regime = no sector tailwind.
+- AMD correlation with QQQ: 0.89 — AMD is effectively high-beta QQQ; entering AMD in a Choppy-XLK environment requires specific stock catalyst, not broad momentum.
+
+**Disconfirming evidence:** AMD earnings Aug 4 (33 days) — any guidance disappointment on data center GPU revenue would compound the Meta-excess narrative; earnings are NOT a near-term catalyst (outside 14-day window) but create tail risk on the holding period.
+
+**Catalysts ahead:** No company-specific event within 14 days. Earnings Aug 4 (33 days, outside window).
+
+**One-line takeaway:** AMD pulled back 7.5% on Meta compute-excess selloff; the AMD-Meta 6GW deal is structurally intact, but 1.96:1 R:R at current price barely misses the 2:1 hard floor by $0.04/$ risk.
+
+**Critique:**
+**Strongest counter to the bull case:** Meta's cloud announcement signals that hyperscaler demand for external GPU compute has already been met by Meta's own build-out — a company with $60B+ AMD/NVDA contracts now SELLING spare capacity is the clearest possible signal that the AI capex upcycle has reached excess in at least one major buyer. Even if the AMD-Meta deal is locked in, the next increment of AI capex from other hyperscalers (AWS, Azure, Google) will be competed away by Meta's cheap excess supply. AMD's forward multiple has been compressed, and the Cantor $700 target (Jun 29) doesn't yet reflect this structural shift.
+
+**Weakly-sourced claims:** Goldman "upgraded to Buy at $450" — specific date/note not confirmed with a URL+date [Gemini grounded — unverified]. "Analysts raised AMD PT by $7" — no firm or date attributable [Gemini grounded — unverified].
+
+**Single most-likely invalidator (next 5 trading days):** AMD fails to reclaim the $563 prior year-high level by Monday July 7 (first full post-holiday session), confirming the Meta selloff as a trend reversal rather than a buyable dip; VIX remains elevated above 18 into the holiday weekend, keeping risk appetite suppressed.
+
+**Data check (B3 / STEP 4d-bis):** Jul 1 TICKER-NOTES noted "new pullback trigger ≤$513.86 (−11.6%) restores 2:1." That threshold was calculated from Jul 1's stop at $493.77 (= $580.91 × 0.85). Today's ATR-based stop recalculates from the NEW entry price: stop = entry × 0.85, making the 2:1 threshold = $700/1.30 = **$538.46** (not $513.86). This is NOT a data contradiction — the threshold moves with price because the ATR stop is relative. Updating TICKER-NOTES to reflect the correct $538.46 threshold.
+
+**Position-aware (if entered $20k at $538.46):**
+- Sector exposure post-entry: 19.9% XLK (first XLK position; sector cap 0/2 ✓)
+- 30d correlation with existing positions: N/A (no open positions); AMD-QQQ correlation 0.89 noted
+- Sector cap: 0/2 XLK (no cap issue)
+- **Shared-catalyst flag (B6):** No open positions. No other candidates with same catalyst.
+
+**R:R math (B3):** entry $540.88 / stop $459.75 (−15.0%, clamped) / target $700 [Cantor Fitzgerald, 2026-06-29, street high] (+29.4%) / R:R **1.96:1** / max risk on $20k ≈ $3,001.
+- **Hard 2:1 floor FAILS at $540.88.** Threshold: $538.46 (2:1 exactly). Day low was $538.74 — within $0.28 of threshold.
+- At $538.46: stop $457.69 (−15%), risk $80.77/sh, reward $161.54, R:R 2.00:1 ✓
+- 37 shares × $538.46 = $19,923 (fits $20k limit, within 40% deployment cap).
+
+**Setup type:** PULLBACK — thesis is "Meta-driven selloff is overdone for AMD specifically given $60B partnership; price needs to come back to $538.46 entry level." Limit order approach.
+
+**Entry plan:** PULLBACK → limit $538.46 (day TIF, to be placed by market-open routine if AMD pre-market confirms setup)
+
+**Gate-history audit (B7):** Prior AMD entries in RESEARCH-LOG: Jun 25 judgment override at $510.80 (actual fill); Jun 30 price $580.91 (demoted R:R); Jul 1 price $584.73 (demoted R:R). No "do not chase above" gate was ever set for AMD — demotions were for R:R fails, not arbitrary price ceilings. Today's proposed limit $538.46 is ABOVE the Jun 25 actual entry ($510.80), so this is a higher-priced entry than the prior fill. However: AMD has traded between $510.80 (Jun 25 entry) and $584.73 (Jul 1 high) — $538.46 is within the established range, not a new high. No gate-creep; no silent upward drift from a refused gate.
+
+**Decision:** **Demoted — watchlist add at $538.46 PULLBACK limit.** R:R 1.96:1 at current $540.88 FAILS the hard 2:1 floor by $0.04/$. Day low $538.74 came within $0.28 of the actionable threshold. Adding to watchlist at $538.46; market-open routine should place a day-limit at $538.46 IF the pre-open context (yields, VIX, Meta follow-through) remains benign. The Meta-excess bear case is real but AMD's $60B partnership insulates the revenue thesis; whether the multiple compression is durable or temporary is the open question.
+
+---
+
+#### CAT (XLI, $991.41 | day range $985.05–$1,041.26 | prev close $993.74 | yr high $1,073.46)
+
+**Setup:** −7.5% from year high ($1,073.46, Jul 1) to $991.41 (today). Meta cloud selloff triggered broad AI-infrastructure rotation away from hardware plays including industrials tied to AI data center capex (turbines, cooling, power). ATR(14)=$42.95 (4.33% of price); stop_pct_2.5x=10.83% (unclamped). Stop: $884.04.
+
+**Sources scanned (2):** Finnhub (5 articles, Jul 1–2) / WebSearch. EDGAR: not gathered. Reddit: 403. Gemini: 429.
+
+**Bull case:**
+- CAT added to Russell Top 50 Index — forced institutional buying from index rebalancing [Finnhub, 2026-07-02].
+- Data center / "Project Kilby" infrastructure capex thesis intact (power generation demand for AI cooling/turbines).
+
+**Bear case:**
+- **Michael Burry has opened a short position in CAT** (Jul 1–2), reversing his previous bullish stance. Burry cites "extreme valuation and overexposure to the AI and infrastructure theme despite record company performance" [Finnhub, 2026-07-01].
+- Consensus median $932.50 (19 analysts) = still 6.2% below $991.41. WF $1,155 (best dated target) delivers only 1.52:1 R:R at current price.
+- Meta cloud selloff rotation: "Wall Street rotated into software" — AI infrastructure plays including CAT sold off as hardware capex narrative weakened [Finnhub/CAT, 2026-07-02].
+- For 2:1 R:R at today's stop (10.83%), need entry ≤$949.43. CAT must fall another $42 before the floor passes.
+
+**Critique:**
+**Strongest counter:** Burry's short is qualitatively different from the standard bear case — this is the man who shorted subprime mortgages in 2006 and was right. He is flagging "extreme valuation" at CAT's current level; the AI infrastructure narrative that drove CAT +173% from year low is now being challenged by Meta's excess compute announcement (the same catalyst that is causing today's selloff). Burry's short removes a key bullish voice and adds a visible, well-covered bearish anchor. WF $1,155 target delivers 1.52:1 — less than the 2:1 minimum; the only thing keeping CAT alive as a concept is the hope that no analyst has raised to a high enough target. **Single most-likely invalidator:** CAT breaks below $984.47 (prior support / July 2 day low area), confirming Burry's thesis and triggering stop-based selling by institutional longs who entered above $1,000.
+
+**R:R math (B3):** entry $991.41 / stop $884.04 (−10.83%) / target $1,155 [WF, Jun 23, 2026] (+16.5%) / R:R **1.52:1** / max risk on $20k ≈ $2,165.
+- **Hard 2:1 floor FAILS.** For 2:1, need entry ≤$949.43 — CAT must fall $42 more from current level.
+
+**Setup type:** N/A — demoted.
+
+**Gate-history audit (B7):** Prior gate: "Do NOT chase above $1,113 (Jun 18 gate)" — today at $991.41 is below that gate; no gate-creep. CAT has pulled back from $1,073 (Jul 1) to $991 — that's the correct direction, but still fails R:R.
+
+**Decision:** **Dropped** — R:R 1.52:1 + Burry short adds material bearish signal. Not watchlist-eligible (needs $949.43 for 2:1 — substantial further decline required). Re-evaluate only if price reaches ≤$949.
+
+### Candidates dropped (and why)
+- **UNH (XLV)** — DOJ criminal investigation disqualifier; unchanged, 11th+ session.
+- **GE (XLI)** — Score 0.84; prior sessions confirmed consensus (~$348-352) below spot (~$373). Not re-examined on budget.
+- **SMH (XLK)** — ETF; no analyst PT for R:R construction. Score 0.74.
+- **XBI (XLV)** — ETF; no analyst PT. Score 0.70.
+- **JPM (XLF)** — Score 0.68; XLF = Choppy; not deep-dived (AMD/CAT analysis consumed research budget).
+- **ABBV (XLV)** — Score 0.62; prior sessions confirmed R:R fail (JPM $260 target → 0.51:1). Not re-examined.
+- **DE (XLI)** — Score 0.50; would be potential 2nd XLI pick; not researched.
+- **IWM (BROAD)** — Score 0.38; ETF; no analyst PT.
+- **CAT (XLI)** — Score 1.23 (top screener); R:R 1.52:1 + Burry short → Dropped (see above).
+
+**Screener diagnostics:** source=local_screener_v1, ranked 52 tickers, top 10 = [CAT(1.23), AMD(1.10), UNH(0.96), GE(0.84), SMH(0.74), XBI(0.70), JPM(0.68), ABBV(0.62), DE(0.50), IWM(0.38)]
+
+### Historical Analog
+**Analog:** Today's configuration — Neutral regime, SPY $745.76 (near year high $760), broad chip/AI-hardware selloff (−7% to −10% moves) triggered by a single hyperscaler narrative shift (Meta compute excess), NFP day with benign market reaction (SPY +0.11%), oil at multi-month lows ($67.75), VIX 18, XLV/XLF leading, XLK/XLC lagging — most closely resembles **June 5, 2023**. At that time: AI semiconductor stocks (NVDA) had just surged +25% on May 25 earnings; sentiment peaked; the following 3 weeks saw a SOX consolidation as "AI capex uncertain" narratives emerged (not a single event, but a rolling concern), before the next leg higher in July. Regime then: Bull (SPX trend intact). VIX ~15 (calmer than today). [Training-data knowledge; well-documented period.]
+
+**What followed (5d/10d/20d from Jun 5, 2023):** Semiconductor sector: 5d −4%, 10d −2%, 20d +8% (SOX recovered and made new highs by late June 2023, then extended further into July). SPX: relatively flat to slightly positive over same period. The "AI capex overhang" narrative did NOT derail the upcycle — Q2 earnings confirmed spending.
+
+**Why this time might differ:** In June 2023, the concern was UNCERTAINTY about AI capex; today the concern is confirmed EXCESS (Meta explicitly saying "we have too much compute and will sell it"). That's structurally more bearish. Additionally, AMD faces its own earnings Aug 4 with "high-stakes" framing, and multiple AI hardware plays face the same test. The 2023 analog recovered because earnings validated demand; this cycle's validation event is still 33 days out.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, 536h (22.3 days).** Trade slots 2→1. 16th+ consecutive session. User action: refresh ml_insights.json on local PC and commit. Escalating urgency — each session adds structural signal degradation.
+2. **Meta compute-excess announcement (Jul 1).** Paradigm shift from AI-capex-scarcity to AI-capex-excess narrative; structural headwind for ALL semiconductor/AI-hardware names.
+3. **Michael Burry short on CAT.** High-profile contrarian signal on the #1 screener pick. Removes CAT as an actionable candidate.
+4. **NFP (today, Jun 2026 data).** Print not confirmed from search; market reaction (+0.11% SPY) suggests benign. No downgrade to trade_slots per STEP 4-bis (benign assumed).
+5. **Account 100% cash for 28 calendar days** (since Jun 4 MU exit). 40% deployment cap AND 1 trade slot today mean maximum $20k can be deployed even if AMD watchlist entry fires.
+6. **Gemini 429 — 16th+ consecutive session.** All synthesis via Claude + WebSearch. Research depth degraded.
+7. **Reddit 403 persistent.** Sector rotation script erroring. Finnhub insider-transactions 429. Multiple data sources degraded.
+8. **Semiconductor earnings season beginning.** Finnhub headline: "AMD and Broadcom face high-stakes reports." Aug 4 earnings creates a time ceiling on AMD holding period thesis.
+
+### Decision
+**HOLD — watchlist add AMD at $538.46 (limit, day TIF).**
+- AMD at $540.88 fails 2:1 floor (1.96:1) by $0.04/$. Day low $538.74 came within $0.28 of actionable level. Recommend market-open routine monitor AMD pre-open; if AMD shows $538.46 or below at open, a day-limit at $538.46 may be placed.
+- CAT dropped: R:R 1.52:1 + Burry short.
+- Pre-macro NFP cap (40%), 1 effective trade slot, ML stale_degrade all reinforce caution.
+- **NOTE — Jul 3 NYSE holiday:** Markets closed Thursday Jul 3 (Independence Day observed). Next full session is Mon Jul 7 (post-holiday). If AMD limit does NOT fill today, it expires (day TIF) — market-open routine must reassess Monday with fresh ATR/price data.
+- **Monitoring trigger for Mon Jul 7:** Did AMD reclaim $563+ (prior year-high) over the holiday weekend in after-hours/premarket? If yes, trend intact; recalculate 2:1 threshold. If AMD remains below $563, Meta-excess narrative is holding; patience required.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — Flash 429 (16th+ consecutive session). All synthesis/critique/macro via Claude + WebSearch.
+- NewsAPI: 0 / Finnhub news: OK (12 articles across AMD+CAT) / Finnhub insider-transactions: 429 / Finnhub upgrade-downgrade: 403 / EDGAR: timeout (AMD), not run (CAT) / Reddit: 403 / Google News: not run
+- WebSearch calls: ~10 (NFP, Meta AI, AMD analyst PTs, AMD-Meta partnership, SPY/VIX, 30Y yields, oil, CAT news, sector rotation context)
+- Fallback events: Gemini 429→WebSearch; Reddit 403 (all); Finnhub insider-transactions 429; EDGAR timeout on AMD; sector-rotation script exit 1
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=536h, slots 2→1 (hard gate)
+- Exposure-coach: ceiling=37%, REDUCE_ONLY (advisory tension with pre-macro 40% cap; pre-macro cap operative)
+- FTD detector: skipped (FMP_API_KEY not set)
