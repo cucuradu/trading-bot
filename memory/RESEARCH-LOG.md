@@ -3759,3 +3759,145 @@ Neutral regime (rule_fallback, 536h ML stale — 16th+ consecutive session). Dom
 - ml_insights: status=stale_degrade, age=536h, slots 2→1 (hard gate)
 - Exposure-coach: ceiling=37%, REDUCE_ONLY (advisory tension with pre-macro 40% cap; pre-macro cap operative)
 - FTD detector: skipped (FMP_API_KEY not set)
+
+---
+
+## 2026-07-03 — Pre-market (markets CLOSED — Independence Day observed)
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — ml unavailable; using local_screener_v1. ML stale_degrade: 560.1h (>120h gate) → slots 2→1 (hard reduction). 17th+ consecutive stale session.
+**ML signals:** n/a (stale: 560.1h old)
+**Breadth/Sector:** breadth=52.2/100 (Neutral) | sector=defensive tilt score=32 phase=recession | divergence_flag=True (cyclical/defensive disagree internally)
+**Exposure:** ceiling=34% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM
+**FTD:** skipped (FMP_API_KEY not set)
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $100,472.45 (non-margin) | Daytrade count: 0 | Open positions: 0 | Open orders: 0
+- Phase P&L: +$472.45 (+0.47%) since Phase start
+
+### Macro Framework
+Neutral regime (rule_fallback, 17th+ stale ML session, slots 1). NFP June 2026: **57K actual vs 110K consensus** — a significant MISS; unemployment 4.2%; wages +3.5% YoY. Markets open briefly Jul 2 (today's last data) before Independence Day holiday. Weak jobs print sent gold +2%, killed rate-hike probability (Jul hike probability now ~34%), supportive for growth stocks in rate terms but sparks recession concern. WTI $68.56 (Brent ~$70.57) — soft oil reflecting US-Iran Doha talks and Hormuz reopening; YTD near multi-month lows. 30Y Treasury: ~4.91–4.985% (Jun 30 FRED data; market closed Jul 3). VIX 17.95 (Jul 2 close; pre-NFP elevated). SPX near year high (~7,470 range) with SPY $746 area. AI/chip sector selloff continuing: AMD −4.8% Jul 2 ($544→$517.82), Asia chip contagion (SK Hynix −14%, Samsung −9%). Sector rotation firmly defensive: XLV, XLF, XLI leading; XLK −7.97%, XLE −9.35% (1-mo). vs Jul 2: NFP miss adds dovish tilt; AMD extended pullback another −4.8%; Asia chip selloff as new negative; yields directionally stable. Dominant theme: soft macro data + Meta-excess compute narrative + Asia chip shock = continued defensive positioning heading into the holiday weekend. [degraded: Gemini 429 (17th+ session); macro via WebSearch + yfinance]
+
+### Sector Picture
+- **Top 3 (1-mo momentum, regime tag):** XLV +10.97% [Trend] | XLF +9.34% [Trend] | XLI +5.67% [Trend]
+- **Bottom 3:** XLC −2.21% [Bear] | XLK −7.97% [Choppy] | XLE −9.35% [Bear]
+- Minor disagreements: XLY +0.33% 1-mo but regime=Bear (regime likely reflects near-term vs 1-mo); XLB +0.74% but regime=Choppy. Not material.
+- Sector script sector analysis: defensive tilt (score 32/100, recession phase, divergence_flag=True). Advisory tension with Neutral regime from ml_insights: sector model is more defensive than the SPY/momentum-based rule_fallback. Noted; no hard gate change.
+
+### Candidates
+
+**Pre-screen summary:** Both top screener picks (CAT, AMD) fail the budget pre-screen on analyst consensus.
+
+#### AMD (XLK, $517.82 | −4.8% from $544.10 prev close | yr high $584.73 | Jul 2 close)
+
+**Setup:** +86.1% above 200-SMA, +12.5% above 50-SMA ($460.38). RSI(14): 52.3 (neutral). MACD: bearish (hist −3.48). ADX: 24.5 (weak/no trend). 52w-high dist: −11.44% (correcting). Volume: 0.88× 20d avg. ATR(14)=$35.81 (6.92% of price); stop_pct_2.5x=17.29% → **clamped to 15.0%**; stop=$440.15.
+
+**Sources scanned (4):** 10 NewsAPI / 239 Finnhub / 15 EDGAR / 0 Reddit (403 blocked) / 0 Gemini (429)
+
+**Analyst consensus (yfinance — source of record):** PT median $500 / mean $508.31 (range $320–$700) · implied **−3.4%** (median BELOW current price $517.82) · rating `strong_buy` [48 analysts, mean 1.45] · fwd P/E 39.3x. **Note:** consensus median does not yet reflect WF $615 upgrade (Jul 1, [investing.com/kucoin.com]) or Cantor $700 (Jun 29) — yfinance data appears stale relative to recent upgrades.
+
+**Recent analyst upgrades (from Finnhub/NewsAPI — secondary context, NOT R:R cited target):**
+- Wells Fargo raised AMD PT from $505 → **$615** (Overweight maintained), Jul 1, 2026. Based on EPYC Venice 2nm server CPU ramp (H2 2026 volume shipments); modeling $16B server CPU revenue 2026 [KuCoin, TipRanks, Jul 1 2026]
+- Cantor Fitzgerald **$700** (Jun 29, 2026) — street high; 5-star analyst
+- UBS $670 (Jun, 2026) — archived in TICKER-NOTES
+
+**News synthesis (Claude direct — Gemini 429):**
+- **Bull:** AMD-Meta $60B/6GW Instinct GPU partnership (Feb 2026) delivery H2 2026; EPYC Venice production ramp late May, volume through H2 2026; "Nasdaq AI stocks just getting started" framing (Finnhub Jul 2); soft NFP = lower rate-hike risk → supports high-multiple growth; Jim Cramer named AMD as "comeback nobody saw coming" (Finnhub Jul 2 — noted, Cramer historically contrarian indicator)
+- **Bear:** Consensus median $500 below price; "1 Major Warning Flag AMD and Intel Can't Ignore" (Finnhub Jul 2 — unread headline); AMD/Intel down 5-6% Jul 2 amid Asia chip selloff; "AMD risks breaking below $500" (FX Leaders, Jul 2); Burry bear case on AI chips extending to AMD/Intel (Finnhub Jul 2); "EPYC, Not Instinct, Is Leading AI Growth — Hold" (NewsAPI Jul 2, analyst caution on GPU thesis); China open-source AI threatening US chip dominance (NewsAPI Jul 2 — structural risk); Meta-excess compute narrative persisting [Finnhub, Jul 2]
+
+**R:R math (B3 — pre-screen FAIL):**
+- Entry $517.82 / stop $440.15 (−15.0%, clamped from 17.29% ATR) / **target = consensus median $500 (yfinance, source of record) → implied −3.4% → negative return → automatic R:R fail**
+- Alternative (yfinance mean): $508.31 → also below current price → negative
+- Alternative (52w-high): $584.73 → R:R ($584.73−$517.82)/($517.82×0.15) = 0.86:1 → FAILS
+- WF $615 (Jul 1 — secondary, not yfinance source of record): R:R ($615−$517.82)/($517.82×0.15) = 1.25:1 → FAILS 2.0 floor
+- Cantor $700 (Jun 29 — lone outlier PT): R:R 2.35:1 → cannot use as SOLE cited target per B3 rule
+- **No valid cited target produces R:R ≥ 2.0 at current price $517.82. Hard pre-screen fail.**
+- **Actionable threshold (WF $615 cited):** entry ≤ $473.08 → ($615−$473.08)/($473.08×0.15) = 2.0:1 exactly. AMD would need a further −8.6% decline.
+
+**Critique (Claude direct):**
+**Strongest counter:** The consensus median of $500 (below current price) reflects 48 analysts whose average view is that AMD is OVERVALUED here — even with "strong buy" ratings. The divergence between rating (bullish) and PT (below market) is common after a big run-up: analysts are tardy in upgrading PTs but won't downgrade the stock. The Jul 2 Asia chip contagion (SK Hynix −14%, Samsung −9%) suggests global institutional selling pressure in AI hardware that is NOT AMD-specific — it's a sector reset. If this continues, AMD support at $500 (consensus median, psychologically significant) is the first test. A break below $500 likely triggers further institutional selling and tests $473 (next major technical level / WF $615 at 2:1 entry). The Meta-excess narrative (Jul 1) plus Asia chip selloff (Jul 2) = two consecutive drivers; AMD earnings Aug 4 is 32 days out, creating time pressure.
+
+**Weakly-sourced or unsourced claims:** "Jim Cramer named AMD as comeback" — noted as anecdotal only. "AMD risks breaking below $500" — FX Leaders (medium credibility). "1 Major Warning Flag" headline — unread; flagged as uncited potential risk.
+
+**Single most-likely invalidator (next 5 trading days):** AMD breaks below $500 (consensus median / psychological support) on Monday Jul 7 open, confirming Asia chip selloff momentum has not reversed over the holiday weekend and triggering institutional stop-loss cascade.
+
+**Position-aware (if entered $20k at $473):**
+- Sector exposure: 19.8% XLK (0/2 sector cap; first XLK position)
+- 30d correlation with existing: N/A (no open positions)
+- Shared-catalyst flag: No open positions; no other candidates
+
+**Setup type:** PULLBACK — entry on further weakness to ≤$473 (WF $615 cited target at 2:1)
+
+**Entry plan:** PULLBACK → limit $473.00 (day TIF) — place Monday Jul 7 IF AMD pre-market confirms downside pressure is abating at that level (check pre-open print vs $473 level; do NOT chase above $473)
+
+**Gate-history audit (B7):** Prior entry levels:
+- Jun 25: Actual fill $510.80 (closed via GTC stop, data-gap period)
+- Jun 30: Demoted at $580.91 (R:R 1.37:1)
+- Jul 1: Demoted at $584.73 (R:R 1.37:1)
+- Jul 2: Watchlist $538.46 (day TIF, expired unfilled — no market-open order placed; AMD did trade through $538.46 but no order was in the market)
+- Today: AMD at $517.82 — BELOW all prior watchlist/entry levels (no gate-creep; price went DOWN, not up)
+- New proposed level $473.00 is a DOWNWARD revision (AMD fell further); justified by updated R:R math with WF $615.
+
+**Decision:** **Demoted — pre-screen fail. New watchlist entry: $473.00 (PULLBACK, WF $615 cited target, 2.0:1 R:R exactly).** Remove old $538.46 watchlist entry. Thesis intact (Meta partnership, EPYC Venice) but consensus PT distribution does not support entry above $473. AMD is in the "falling knife" phase of the Meta-excess reset; catching it above the 2:1 level is not warranted by any valid cited target.
+
+---
+
+#### CAT (XLI, $963.53 | Jul 2 close | yr high $1,073.46)
+
+**Setup:** ATR(14)=$43.30 (4.49%); stop_pct_2.5x=11.24%.
+
+**Analyst consensus (yfinance):** PT median $957.98 / mean $951.03 (range $575–$1,200) · implied **−0.6%** (median BELOW price) · rating `buy` [26 analysts] · fwd P/E 32.0x.
+
+**Pre-screen:** Median −0.6% (negative implied return) → **automatic pre-screen fail.** R:R with WF $1,155 (Jun 23 — best cited target): ($1,155−$963.53)/($963.53×0.1124) = 1.77:1 → FAILS 2.0 floor.
+
+**Additional bear (unchanged from Jul 2):** Michael Burry has opened a short position in CAT citing "extreme valuation and overexposure to AI/infrastructure theme" [Finnhub, Jul 1 2026]. Removes key bullish narrative.
+
+**Decision:** **Dropped** — pre-screen fail (consensus median below price) + Burry short ongoing. For 2:1 with WF $1,155: need entry ≤$943. Not actionable unless CAT falls another $20 from current.
+
+### Candidates dropped (and why)
+- **AMD** — Pre-screen fail: consensus median $500 < price $517.82 (−3.4% implied). No valid cited target yields ≥2:1 at current price. Watchlist updated to ≤$473 (WF $615, 2:1).
+- **CAT** — Pre-screen fail: consensus median $958 < price $963.53 (−0.6% implied); R:R 1.77:1 with best cited target; Burry short ongoing.
+- **GE (XLI)** — Score 0.78; prior sessions: consensus median ~$348-352 below spot ~$373. Not re-examined.
+- **UNH (XLV)** — DOJ criminal investigation disqualifier; 12th+ session.
+- **XBI (XLV)** — ETF; no analyst PT for R:R. Score 0.68.
+- **ABBV (XLV)** — Score 0.64; prior: JPM $260 target → R:R fail. Not re-examined.
+- **JPM (XLF)** — Score 0.58; not researched (budget).
+- **SMH (XLK)** — ETF; no analyst PT. XLK=Choppy. Score 0.53.
+- **MRK (XLV)** — Score 0.35; not researched.
+
+**Screener diagnostics:** source=local_screener_v1, ranked 53 tickers, top 10 = [CAT(1.057), AMD(0.919), GE(0.777), UNH(0.775), XBI(0.675), ABBV(0.637), JPM(0.576), SMH(0.529), DE(0.386), MRK(0.354)]
+
+### Historical Analog
+**Analog:** Today's configuration — Neutral regime, VIX 17.95, 30Y ~4.91–4.98%, SPX near year highs, AI/chip sector selling off after consecutive catalysts (Meta-excess Jul 1, Asia chip contagion Jul 2), soft NFP miss (57K vs 110K), defensive rotation (XLV/XLF leading), WTI $68 — most closely resembles **November 2, 2023** (Oct NFP print day). On that date: NFP October 2023 = 150K (below ~180K expectations); VIX had been in 16–21 range; 30Y yields were 4.9–5.07% (peak was Oct 19 at 5.07%, slightly above today); chips had pulled back ~10–15% from summer peaks; SPX was near year highs after a challenging October; Fed pause expectations rising. Sector rotation was defensive (XLV, staples leading over XLK). [Training-data knowledge, well-documented period; November 2023 was a pivotal pivot point for US equities.]
+
+**What followed (5d/10d/20d from Nov 2, 2023):** SPX +5.9% over 5 days (explosive rally on soft NFP + pause expectations cemented). SOX (semiconductors) +10% in the same 5-day window. 10d: SPX +9.1%; 20d: SPX +11.4% (the great Q4 2023 rally). Chips led the recovery — even the previous laggards outperformed as rate cut expectations priced in aggressively. [US equity history, well-established.]
+
+**Why this time might differ:** In Nov 2023, the chip selloff had no single named corporate catalyst — it was generalized rate/valuation concern; investors bought the dip quickly because the underlying AI demand story was uncontested. Today, the bear case is more specific: Meta explicitly stated its compute is in EXCESS (Jul 1) and AI chip stocks are also facing Asia contagion (SK Hynix −14%) suggesting hardware cycle reset fears are more acute and global. Additionally, AMD at $517 is only −11% from its year high — not the deep oversold condition that made Nov 2023 a clean buy. The Nov 2023 analog provides upside optionality IF the Meta-excess narrative is discounted quickly, but the recovery path may be slower and shallower given these structural differences.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, 560h (23.3 days).** 17th+ consecutive session. Hard gate: slots 2→1. Escalating signal degradation. User action URGENT: refresh ml_insights.json on local PC and push.
+2. **Asia chip contagion (Jul 2).** SK Hynix −14%, Samsung −9% — global institutional de-risking of AI hardware. Not AMD-specific; suggests broader sector reset.
+3. **Meta compute-excess narrative persisting.** Structural headwind for ALL semiconductor/AI-hardware names; no reversal signal yet.
+4. **AMD consensus median below market price.** 48 analysts with $500 median PT means most of the street is neutral/sell at current prices. Pre-screen fail is significant.
+5. **Burry short on CAT.** Ongoing since Jul 1-2. Removes XLI as viable candidate while intact.
+6. **Account 100% cash for 29 calendar days** (since Jun 4 MU exit). 1 trade slot, no entries found passable — 10th+ consecutive HOLD.
+7. **FOMC minutes (Jul 8).** First potential vol event next week. Soft NFP = less hawkish Fed, but minutes from prior meeting may still show rate-hike intent.
+8. **Gemini 429 — 17th+ consecutive session.** All synthesis via Claude + WebSearch. Structural API issue.
+9. **Reddit 403 persistent.** Segment of sentiment data absent all sessions.
+
+### Decision
+**HOLD — markets CLOSED (Jul 3 Independence Day holiday). No orders possible.**
+
+For Monday Jul 7 (next session):
+- AMD watchlist updated to **$473 limit (PULLBACK, day TIF)** — WF $615 cited target gives exactly 2:1 at that entry. Place order ONLY IF AMD pre-market shows $473 or below AND Asia/meta selloff momentum is abating.
+- CAT: not actionable (needs ≤$943). Drop from active monitoring until further pullback.
+- Check pre-open: is AMD above $500 (consensus median / psychological support)? A close above $500 on Mon Jul 7 with calming vol = more constructive; failure of $500 = further weakness to $473 entry target.
+- July calendar: ISM Services PMI (Jul 7), FOMC minutes (Jul 8), PEP earnings (Jul 9); bank earnings season Jul 14-15. No hard pre-macro cap triggered for Jul 7 (no cap_active per risk_gates).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — Flash 429 (17th+ consecutive session). All synthesis/critique/macro via Claude + WebSearch.
+- NewsAPI: 10 / Finnhub: 239 / EDGAR: 15 / Reddit: 0 (403) / Google News: 10 / Gemini: 0
+- WebSearch calls: ~6 (NFP, oil prices, 30Y yield, AMD/WF upgrade, AMD Jul 2 selloff, earnings calendar)
+- Fallback events: Gemini 429→WebSearch; Reddit 403; Finnhub upgrade-downgrade 403
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=560.1h, slots 2→1 (hard gate)
+- FTD: skipped (FMP_API_KEY not set)

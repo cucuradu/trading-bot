@@ -38,25 +38,25 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-02): Watchlist — PULLBACK limit $538.46 (day TIF). Meta cloud announcement (Jul 1) caused AMD −7.5% from $584.73→$540.88. AMD-Meta $60B/6GW Instinct GPU partnership (Feb 24, 2026) INTACT and committed. Cantor $700 (Jun 29, post-AMD-Meta partnership — still operative). ATR(14)=$35.45 (6.55%); stop=15% clamped→$459.75. At $540.88: R:R 1.96:1 (fails 2:1 by $0.04/$). At $538.46: R:R 2.00:1 exactly — watchlist limit. Day low Jul 2 was $538.74 (within $0.28 of threshold). Jul 3 holiday; reassess Mon Jul 7. [Watchlist add at $538.46. WebSearch + yfinance + Finnhub, Jul 2]
+- Thesis (2026-07-03): WATCHLIST — PULLBACK. AMD at $517.82 (Jul 2 close), −11.4% from year high $584.73. Asia chip contagion (SK Hynix −14%, Samsung −9%) extended the Meta-excess selloff; AMD now below yfinance consensus median $500 threshold is the next key test. AMD-Meta $60B/6GW partnership (Feb 24, 2026) intact; EPYC Venice 2nm server CPU production ramping H2 2026 (WF bull case). Actionable entry: **≤$473** (WF $615 cited target via analyst_data.py mean; 2.0:1 R:R with 15% clamped stop). Prior $538.46 watchlist (Jul 2 day TIF) expired unfilled (no order placed by market-open routine); AMD traded through that level but position not opened. Old watchlist entry superseded. [WebSearch + Finnhub + yfinance, Jul 3]
 - Recent catalysts:
-  - 2026-07-02: Meta cloud business announcement (Jul 1) triggers AI-hardware selloff; AMD −7.5% ($584.73→$540.88). AMD-Meta $60B/6GW partnership (Feb 24) intact and separate [beincrypto.com / seekingalpha, 2026-07-01].
-  - 2026-07-02: Versal Premium Gen 2 launch — AMD expanding into AI/networking/aerospace SoCs [Finnhub, 2026-07-02].
-  - 2026-06-30: Wells Fargo Aaron Rakers raised PT to $615 (Overweight) [WebSearch, 2026-06-30]
-  - 2026-06-29: Cantor Fitzgerald new $700 PT (from $500) — street high [WebSearch, 2026-06-29]
+  - 2026-07-02: Asia chip contagion (SK Hynix −14%, Samsung −9%) → AMD −4.8% ($544→$517.82); "AMD risks breaking below $500" [FX Leaders, Jul 2]. Adds global institutional pressure beyond Meta narrative.
+  - 2026-07-02: NFP June 57K miss vs 110K consensus → soft; rate hike probability to Jul drops; supportive for growth stocks rate-wise but recession concern [FXStreet/BLS, Jul 2].
+  - 2026-07-02: Meta cloud excess compute narrative persisting (Jul 1 catalyst); AI chip selloff continues 2nd day.
+  - 2026-07-01: WF Aaron Rakers raised AMD PT $505→**$615** (Overweight; EPYC Venice; 5-star analyst, #8 of 12,338) [KuCoin/TipRanks, Jul 1 2026]
+  <!-- archive: 2026-07-02: Meta cloud business announcement (Jul 1) triggers AI-hardware selloff; AMD −7.5% ($584.73→$540.88). -->
+  <!-- archive: 2026-07-02: Versal Premium Gen 2 launch — AMD expanding into AI/networking/aerospace SoCs [Finnhub, 2026-07-02]. -->
+  <!-- archive: 2026-06-29: Cantor Fitzgerald new $700 PT (from $500) — street high [WebSearch, 2026-06-29] -->
   <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455, +47%) -->
   <!-- archive: 2026-06-25: Micron 06-24 beat reignited AI/semis sentiment -->
-  <!-- archive: 2026-06-21: AMD H2 2026 Inflection — OpenAI + Meta 6GW commitments -->
-  <!-- archive: 2026-06-12: Citi upgraded to Buy, PT $575 -->
-  <!-- archive: 2026-06-11: BofA raised PT $500→$560 -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap, no entry recorded — thesis-break per 06-08 notes)
 - Open thesis questions:
-  - **Primary monitoring trigger (updated Jul 2):** PULLBACK limit $538.46 (day TIF) = 2.00:1 R:R with Cantor $700 / 15% stop. Jul 3 holiday; if no fill, reassess Mon Jul 7 with fresh ATR.
-  - **Does Meta-excess thesis break Cantor $700?** Cantor set $700 Jun 29 (post AMD-Meta Feb deal) — they knew the partnership. Meta-cloud is a NEW development; verify if Cantor has revised since Jul 1. If affirmed, target valid; if cut, R:R changes.
-  - AMD earnings Aug 4 (33 days) — "high-stakes" framing per Finnhub; time ceiling on any position entered now.
-  - Should R:R floor be checked against `target_median`/`target_mean` vs `target_high`? (unresolved from Jun 25; still urgent).
-  - Single most-likely invalidator (5d): AMD fails to reclaim $563 (prior year-high) by Mon Jul 7, confirming Meta-driven trend reversal.
+  - **Revised actionable level (Jul 3):** ≤$473 limit for 2.0:1 R:R using WF $615 as cited target (most recent dated upgrade, Jul 1). ATR(14) $35.81 (6.92%); stop=15% (clamped from 17.29%) → stop at $402.05 from $473 entry. DO NOT USE Cantor $700 as sole cited target (lone outlier rule B3).
+  - **Consensus median $500 below current price ($517.82).** Pre-screen fail at current levels. yfinance median stale (doesn't reflect WF $615, Cantor $700, UBS $670). If fresh consensus data shows median ≥$550, revisit entry above $473.
+  - **Asia chip contagion as new risk (Jul 2).** Is global institutional selling pressure broader than Meta-specific? SK Hynix/Samsung −14%/−9% suggests hardware cycle reset concern beyond a single hyperscaler announcement.
+  - **AMD earnings Aug 4 (32 days).** Time ceiling; any position must be risk-managed before that date.
+  - **Single most-likely invalidator (5d from Jul 7):** AMD breaks below $500 (consensus median / psychological support) on Mon Jul 7 open.
 
 ---
 
