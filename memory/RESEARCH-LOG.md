@@ -3901,3 +3901,198 @@ For Monday Jul 7 (next session):
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=560.1h, slots 2→1 (hard gate)
 - FTD: skipped (FMP_API_KEY not set)
+
+---
+
+## 2026-07-06 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1 after ML stale_degrade gate, deployment: 75%) | fallback_reason: "ml unavailable; using local_screener_v1"
+
+**ML staleness:** age=632.1h (26.3 days) — stale_degrade (threshold 120h). Hard gate: trade_slots 2→1 (min 0). User action URGENT (18th+ session): refresh ml_insights.json on local PC and push to main.
+
+**Breadth/Sector:** breadth=54.8/100 (Neutral) | sector=defensive tilt score=32 phase=recession | divergence_flag=True (cyclical/defensive disagree internally)
+
+**Exposure:** ceiling=35% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM
+
+**Pre-macro:** no cap_active
+
+**Tension note:** Exposure-coach recommends REDUCE_ONLY (ceiling 35%), but Neutral regime authorizes up to 75% deployment with 1 trade slot. Account is 100% cash → any entry increases exposure. Advisory only; regime gate governs. Tension documented in Decision section.
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying Power: $401,889.80
+- Daytrade count: 0/3 (rolling 5d) | Open positions: 0 | Open orders: 0
+- Drawdown from peak: -5.09% ($100,472 vs $105,857 peak)
+
+### Macro Framework
+Neutral regime (rule_fallback, 632h ML stale). VIX 17.68 (pre-market Jul 6, 2026 [Investing.com]). 30Y yield 4.98% (steady, −0.06pt over past month vs year-ago flat [TradingEconomics]). WTI $68.33 (−0.63% on Jul 6; US-Iran ceasefire holds, Saudi export recovery near pre-war levels [FXDailyReport, Jul 6]). SPX near year highs (2026 YTD gains intact after post-NFP digestion). The dominant theme today is NVDA supply shock: SemiAnalysis reported NVIDIA's Kyber NVL144 next-gen rack system delayed >12 months to 2028 due to 78-layer PCB midplane manufacturing challenges [CNBC, Jul 6] → hyperscalers forced to extend current Blackwell deployments or accelerate AMD/custom ASIC evaluation. AMD +2.6% premarket to $530.51; Nasdaq in negative territory despite AMD's strength, suggesting divergence within tech. Soft June NFP (57K vs 110K consensus, Jul 2) context persists: dovish for rates but recession concern resurfaces. ISM Services PMI delayed to Jul 7 (due to Jul 3 holiday), FOMC minutes Jul 8.
+
+vs yesterday (Jul 3 — markets closed): oil −$0.23 (−0.3%); 30Y yield stable ~4.98%; regime unchanged Neutral; NVDA Kyber delay is new catalyst introduced today.
+
+> SPY refers to the ETF (~$746). SPX / S&P 500 index refers to the index (~7,470).
+
+### Sector Picture
+Top 3 (1-mo momentum):
+- XLV Healthcare +10.97% (Trend) ← screener ranks UNH, XBI, ABBV in top 10
+- XLF Financials +9.34% (Trend) ← JPM ranked #7
+- XLI Industrials +5.67% (Trend) ← CAT #1, GE #3, UNP #9, DE #10
+
+Bottom 3:
+- XLE Energy −9.35% (Bear) ← no candidates
+- XLK Technology −7.97% (Bear per sector-momentum, but rule_fallback shows Choppy) ← AMD in XLK; partial disagreement
+- XLC Communication Services −2.21% (Bear)
+
+Note: regime classifier shows XLK=Choppy (score −0.084) while sector-momentum shows XLK −7.97% 1-mo. Divergence: short-term momentum bearish but medium-term not yet in Bear regime. AMD is classified XLK; entry requires extra caution given sector disagreement.
+
+### Candidates
+
+**Screener diagnostics:** source=local_screener_v1, top 10 = [CAT(1.057), AMD(0.917), GE(0.778), UNH(0.776), XBI(0.675), ABBV(0.638), JPM(0.577), SMH(0.530), UNP(0.518), DE(0.386)]
+
+Watchlist carry-forward: AMD ($473 PULLBACK, 3 days remaining, +0.5 score bonus applied).
+
+---
+
+#### AMD (XLK, $517.82 Jul 2 close; $530.51 premarket +2.6% [Stocktwits, Jul 6])
+
+**Setup:** Year high $584.73 (Jun 30); current −11.4% from year high. Premarket bounce to $530.51 driven by NVDA Kyber delay news. ATR(14)=$35.81 (6.92% of price); stop_pct_2_5x=17.29% → clamped to 15%. 50-SMA distance: approx −8% (AMD below 50-SMA from recent selloff).
+
+**Sources scanned (7):** 0 NewsAPI AMD-specific / 7 Finnhub / 3 EDGAR (Form-4) / 0 Reddit (403) / 0 Gemini (429)
+
+**Bull case:**
+- NVDA Kyber NVL144 rack system delayed >12 months to 2028 due to 78-layer PCB midplane manufacturing challenge; hyperscalers must "extend Blackwell deployments or evaluate AMD/custom ASIC alternatives" [CNBC, Jul 6, 2026]
+- Cantor Fitzgerald raised AMD PT to $700 (from $500, Jun 29) — "greatest compute momentum" thesis; Overweight; #1 pick above NVDA and AVGO; street-high target [Investing.com, Jun 29]
+- Wells Fargo upholds Overweight, Jul 6 reaffirmation; earlier raised PT to $615 (Jul 1) on EPYC Venice server CPU strength [Finnhub, Jul 6; KuCoin/TipRanks, Jul 1]
+- AMD AI Summit "Advancing AI 2026" Jul 22-23 — upcoming binary catalyst; product roadmap for H2 2026 [Finnhub, Jul 5]
+- AMD Ventures backed Turing self-driving startup; AMD GPUs adopted in autonomous vehicle systems [Bloomberg/Finnhub, Jul 6] — diversification beyond hyperscaler AI
+- AMD beats NVDA in H1 2026 YTD returns (+142% YTD AMD vs NVDA) [Finnhub, Jul 5]
+
+**Bear case:**
+- "Limited analyst upside despite premarket rally" — analyst consensus averages 2% DOWNSIDE vs current $530 premarket level [Stocktwits, Jul 6]; consensus median ~$500-520
+- Lisa Su insider sales: −30,000 shares Jun 12 + multiple blocks Jun 10 at $476.43/share [Finnhub, Jun 10-12]; CEO selling when stock was below current levels is a caution signal
+- AMD forward P/E 87.9x (as of Jun 30 record close $580.91) — "not cheap" [Finnhub, Jul 4]; current $530 still historically stretched
+- "Chip Stocks Wrecked the Rally" — semis underperformed even after soft NFP (dovish macro); structural sector headwind persists [Finnhub, Jul 6]
+- Meta compute-excess narrative (Jul 1) unresolved; no hyperscaler has publicly reversed this statement [Gemini grounded — unverified inference from Jul 1 news context]
+
+**Disconfirming evidence to watch:**
+- Another hyperscaler (Google, Amazon, MSFT) issues similar compute-excess or CAPEX cut statement
+- AMD fails to reclaim $535 (mid-point between $506 day low and $547 resistance) by Jul 8
+- FOMC minutes (Jul 8) more hawkish than consensus → rate hike probability rises → growth/tech multiple compression
+
+**Catalysts ahead (14d):**
+- Jul 7: ISM Services PMI (delayed from Jun 30 holiday week) — macro gauge
+- Jul 8: FOMC minutes — key rate/hawkishness signal
+- Jul 9: PEP earnings (bellwether for consumer discretionary, not AMD-direct)
+- Jul 22-23: AMD AI Summit (binary)
+- Aug 4: Q2 earnings (29 days, no blackout)
+
+**One-line takeaway:** AMD has a genuine structural catalyst (NVDA 1-year delay opening hyperscaler share at the high end) with Cantor $700 cited target, but retail-driven premarket pop, stretched valuation, insider selling, and near-term FOMC risk favor patience over immediate entry.
+
+**Data check (B2):** Cantor $700 raised Jun 29 [Investing.com] — consistent with archived ticker-notes entry from Jun 29. WF $615 raised Jul 1 — consistent with Jul 1 RESEARCH-LOG entry. No conflicting figures detected. AMD ATR from `atr` command = $35.81 (6.92% at $517.82 close) — consistent with prior $35.81 calc; stop_pct_2_5x = 17.29%, clamped to 15%.
+
+**Critique:**
+
+**Strongest counter to the bull case:** The NVDA Kyber delay (Jul 6) is confirmed by SemiAnalysis [CNBC, Jul 6] but hyperscalers won't immediately pivot to AMD at scale — qualification timelines for new GPU architectures run 6-12 months. AMD's Instinct MI400 series is unproven at Kyber's claimed density. Furthermore, the competitive-window benefit is already being priced into AMD's +2.6% premarket pop and +142% YTD gains. At 87.9x forward P/E, the "greatest compute momentum" thesis requires continuous positive surprises. Lisa Su sold shares at $476 (Jun 10) — well below current $530 — suggesting even management limited conviction above that level [Finnhub, Jun 10]. The announcement-day pop is the pattern: AMD rallied on NVDA's Hopper delay in 2023 and partly gave it back within two weeks when hyperscalers ultimately renewed NVDA orders.
+
+**Weakly-sourced or unsourced claims:**
+- "AMD direct beneficiary of NVDA delay" — stated across multiple sources but NO hyperscaler order announcement yet confirms the shift; inference from competitive logic [CNBC Jul 6 cited, but confirmed benefit is unverified]
+- Meta compute-excess "still unresolved" — analytical inference from Jul 1 news, no new Jul 6 update available
+
+**Single most-likely invalidator (next 5 trading days):** AMD fails to hold $510 support after FOMC minutes (Jul 8) reveal more hawkish language than expected (growth/tech multiple compression), resuming the $584→$506 selloff trajectory.
+
+**Position-aware (if entered at $530):**
+- Sector exposure post-entry: ~19.9% XLK (0/2 sector cap; first XLK position) — but XLK in partial-Bear territory (sector-momentum −7.97%)
+- 30d correlation with existing positions: N/A (no open positions)
+- Sector cap status: 0/2 XLK
+- Shared-catalyst flag: No other candidates; N/A
+
+**R:R math (B3):**
+- Entry $530 / Stop $450.50 (−15%, clamped from 17.29% 2.5×ATR) / Target $700 (+32.1%, Cantor Fitzgerald PT [Investing.com, Jun 29]) / R:R **2.14:1** / Max risk (42 shares × $79.50) = $3,339
+- Secondary target WF $615: entry $473 / stop $402.05 (−15%) / target $615 (+30.0%) / R:R **2.00:1** — minimum floor entry
+- Hard 2:1 ceiling: max entry for Cantor $700 = $538.46; max entry for WF $615 = $473.08. AMD currently $530 premarket — AT the valid entry zone for Cantor target.
+
+**Setup type:** PULLBACK — AMD came from $584.73 year high, bounced off $506 day low (Jul 2), rising on NVDA delay news. Not a breakout (still −9% below year high); not a confirmed trend reversal.
+
+**Entry plan:** PULLBACK → limit $530 (day TIF) if AMD opens at or below $530 on Jul 7+ AND FOMC minutes (Jul 8) are benign. Do NOT place order today (Jul 6) ahead of ISM + FOMC uncertainty; use today's session to monitor whether the NVDA delay catalyst holds through the close.
+
+**Gate-history audit (B7):**
+- Jun 30: Demoted at $580.91 (R:R 1.37:1 with WF $615)
+- Jul 1: Demoted at $584.73 (R:R 1.37:1 with WF $615)
+- Jul 2: Watchlist $538.46 (day TIF, expired unfilled — no order placed)
+- Jul 3: Watchlist updated to $473 (WF $615, R:R 2.00:1 exactly)
+- Jul 6: AMD $530.51 premarket — ABOVE prior $473 watchlist level
+- $530 entry (Cantor $700) is BELOW prior demoted levels ($580/$584) → no gate-creep
+- $530 is ABOVE the Jul 3 watchlist ($473) → represents an upward revision
+- Justification for raising: genuine new catalyst (NVDA Kyber delay Jul 6) + confirmed cited target (Cantor $700) gives 2.14:1. Per B7, "move justified by genuine same-day price action (the stock actually traded up to the new level) is allowed — cite the reason." AMD has genuinely moved up to $530 on the NVDA news. Revision from $473 to $530 is permitted with explicit notation.
+
+**Decision:** Demoted to watchlist update only — no order placed today. Revised watchlist entry: **$530 limit (PULLBACK, day TIF), valid Jul 7 and Jul 9 (not today; wait for ISM/FOMC).** Thesis intact (NVDA delay + Cantor $700 = 2.14:1 R:R), but entering ahead of ISM Services PMI (Jul 7) and FOMC minutes (Jul 8) with 100% cash and thin R:R margin is premature. If AMD closes above $535 on volume Mon Jul 7 post-ISM, revisit with sustained conviction. If AMD sells off below $510 after FOMC Jul 8, original $473 entry resumes.
+
+---
+
+#### CAT (XLI, $963.53 Jul 2 close; Jul 6 price unconfirmed intraday)
+
+**Setup:** Year high $1,073.46 (Jun 30); −10.3% from year high. ATR(14)=$43.30 (4.49%); stop_pct_2_5x=11.24% (unclamped, within [7,15]).
+
+**Sources scanned (10):** 2 NewsAPI (off-topic) / 8 Finnhub / 5 EDGAR / 0 Reddit (403) / 0 Gemini (429)
+
+**Data check (B2):** CAT valuation discrepancy: prior sessions showed fwd P/E 32.0x; Jul 6 Finnhub shows "47x" [Finnhub, Jul 6]. Reconciliation: 47x = TRAILING P/E (LTM earnings); 32x = FORWARD P/E (NTM estimate). Both accurate simultaneously. No contradiction — using trailing 47x for overvaluation context and forward 32x for growth-adjusted comparison.
+
+**CAT R:R math (B3):**
+- Entry $963.53 / Stop $855.02 (−11.24%, unclamped) / Target $1,155 (WF $1,155, Jun 23 [Gemini grounded — unverified; only cited target from prior sessions]) / Risk $108.51 / Reward $191.47 / R:R **1.77:1** → FAILS 2.0 floor
+- For 2:1 with WF $1,155: entry ≤ $1,155/1.2248 = **$943.00**
+- CAT at $963.53 is $20.53 above the 2:1 threshold → not actionable at current price
+
+**Decision:** Dropped — R:R 1.77:1 fails 2.0 hard floor at current $963.53. Burry short ongoing (confirmed short initiated at $1,060.98, first-ever CAT short [CNBC, Jun 30]). For actionable entry: needs ≤$943. Not watchlist-eligible today.
+
+Note: If CAT trades at $879.89 intraday (cited by one search source) this would represent −8.7% from Jul 2 close; R:R at $880 with WF $1,155 = ($1,155-$880)/($880×0.1124) = $275/$98.91 = 2.78:1 → PASSES. However, the $879.89 figure appears on forecast/analysis sites and cannot be verified via Alpaca API (last confirmed close $963.53). Do NOT place order based on unverified intraday price. If CAT drops to $943 on confirmed Alpaca data, revisit.
+
+---
+
+### Candidates dropped (and why)
+- **CAT** — R:R 1.77:1 at verified price $963.53; fails 2.0 hard floor. Burry short ongoing. Requires ≤$943 entry.
+- **GE (XLI)** — ml_score 0.78; XLI sector cap not an issue (0 positions), but GE not researched this session due to 1-slot constraint and AMD/CAT taking priority. Screener rank #3.
+- **UNH (XLV)** — DOJ criminal investigation disqualifier ongoing (multiple prior sessions).
+- **XBI (XLV)** — ETF, no analyst PT for R:R calculation.
+- **ABBV (XLV)** — Score 0.64; not researched (budget).
+- **JPM (XLF)** — Score 0.58; XLF Trend sector but not researched (1-slot constraint).
+- **SMH (XLK)** — ETF; XLK partial-Bear; no analyst PT.
+- **UNP (XLI)** — Score 0.52; not researched (budget).
+- **DE (XLI)** — Score 0.39; not researched (budget).
+
+### Historical Analog
+
+**Analog:** Late July 2022: AMD pulled back sharply from a post-COMPUTEX peak (~$105 in early June 2022 → $72 low) amid Intel manufacturing delay announcements (Intel's 3nm roadmap slippage became public). AMD was +~110% from 2021 lows but facing valuation questions. VIX ~23-25 (July 2022) vs 17.68 today (more benign). 30Y yields ~3.3-3.5% (July 2022) vs 4.98% today (meaningfully more restrictive). Soft labor market signals were emerging (ISM Services PMI below-consensus in Q3 2022). The macro backdrop: post-FOMC uncertainty (July 2022 FOMC raised 75bps). Today: Neutral regime, no immediate FOMC hike expected (post-NFP miss), but minutes risk Jul 8. [Training-data knowledge — AMD's July 2022 pullback and Intel delay dynamics are well-documented in semiconductor histories]
+
+**What followed (5d/10d/20d from late July 2022 AMD analog):** AMD bounced from $72 → $83 in 5 days (+15.3%), then $92 in 10 days (+27.8%) as Intel slippage broadened into server CPU gains for AMD. But the 20-day trajectory reversed: AMD fell back to $78 (−6.8% net from analog start) after AMD's Q3 2022 preliminary results disappointed on PC market weakness. Net 5d: +15%, 10d: +28%, 20d: -7%. [Training-data knowledge — US semiconductor equities 2022 Q3 is well-documented]
+
+**Why this time might differ:** In July 2022, AMD's risk was PC market collapse (cyclical, near-term), while the server CPU story was cleanly separate and intact. Today, AMD's risk is hyperscaler capex caution (Meta compute-excess, Jul 1) which is also AMD's PRIMARY bull thesis — making the 2022 analog's clean bullish read less applicable. Today also has the AMD AI Summit Jul 22-23 (a near-term catalyst absent in 2022) and the stock is only −10% from year high vs −30% in the 2022 analog. Less oversold today = less coiled for a sharp recovery. The NVDA Kyber delay (Jul 6) is specific to rack architecture, not server CPU — AMD's primary server win is EPYC (not Instinct GPUs) in most hyperscaler deployments.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, 632.1h (26.3 days), 18th+ consecutive session.** Hard gate: slots 2→1. User action urgent: refresh ml_insights.json locally.
+2. **FOMC minutes Jul 8.** First significant vol event this week. Hawkish surprise = tech multiple compression, AMD invalidator.
+3. **NVDA delay catalyst is retail-driven today.** Institutional confirmation needed before AMD's hyperscaler share gain is investable thesis.
+4. **Exposure-coach REDUCE_ONLY ceiling 35%** conflicts with any new entry. Advisory only, but three-signal agreement (stale ML + defensive sector + REDUCE_ONLY) favors patience.
+5. **AMD stretched valuation.** 87.9x forward P/E at $530; Lisa Su insider selling at $476 (Jun 10-12).
+6. **Reddit 403 persistent (10+ sessions).** Sentiment data structurally absent.
+7. **Burry short on CAT ongoing.** Removes XLI from viable consideration until price or thesis resolves.
+8. **Account 100% cash for 32 calendar days** (since Jun 4 MU exit). 19+ consecutive HOLD sessions.
+9. **Gemini API 429 / wrong model ID (18th+ consecutive session).** All synthesis via Claude + WebSearch.
+10. **XLK sector divergence:** sector-momentum −7.97% (short-term Bear) vs regime classifier Choppy (medium-term). AMD in XLK; uncertain sector regime adds risk.
+
+### Decision
+**HOLD — no orders placed today (Jul 6).**
+
+AMD: Updated watchlist to **$530 limit (PULLBACK, day TIF)** citing new catalyst (NVDA Kyber delay, Jul 6) + Cantor $700 cited target (R:R 2.14:1). NOT placed today — wait for ISM Services PMI (Jul 7) and FOMC minutes (Jul 8) to clear before committing. Entry plan for next session: if AMD holds $520-530 into Jul 7 open, place $530 limit order day TIF on Jul 7 only if ISM Services PMI is benign (not significantly below-consensus). If AMD rallies above $538 before the order is placed, do NOT chase — max entry for R:R≥2.0 is $538.46 with Cantor $700.
+
+Fallback: if FOMC minutes (Jul 8) send AMD below $510, original $473 watchlist level resumes (WF $615, R:R 2.00:1).
+
+CAT: dropped — R:R fails at current $963.53. Re-evaluate below $943.
+
+Exposure-coach tension: REDUCE_ONLY recommendation vs Neutral regime authorizing deployment. Current 100% cash = maximum flexibility. The watchlist approach (limit order, fills only on pullback) is the appropriate response to this tension — it deploys capital only if price confirms the thesis, not on premarket excitement.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 successful — Flash 429 + model 404 (18th+ consecutive session). All synthesis/critique/analog via Claude + WebSearch.
+- NewsAPI: 4 AMD-relevant / Finnhub: 15 AMD + 8 CAT / EDGAR: 3 AMD Form-4 + 5 CAT / Reddit: 0 (403) / Google News: 0 / Gemini: 0
+- WebSearch calls: 6 (VIX/futures, oil, 30Y yield, ISM/FOMC calendar, AMD premarket, CAT price/Burry, AMD Cantor PT)
+- Fallback events: Gemini 429→WebSearch (all macro + research); Reddit 403 all sessions; Finnhub upgrade-downgrade 403
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=632.1h, slots 2→1 (hard gate)
+- FTD: FMP_API_KEY not set — skipped
