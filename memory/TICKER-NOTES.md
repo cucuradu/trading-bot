@@ -427,3 +427,14 @@ Conventions:
 - Trade history: (none yet)
 - Position-aware notes: (none yet)
 
+
+---
+
+## XBI — SPDR S&P Biotech ETF
+
+- Sector: XLV (Healthcare)
+- Thesis (2026-07-07): Screener #1 (ml_score 1.167) on XLV Trend regime; biotech ETF breaking above 52w-high ($161.56→$163.93) on broad risk-on. No analyst PT available (ETF) — R:R cannot be computed to pass 2.0 hard floor. Not actionable as buy candidate until a cited upside target appears (e.g., historical measured-move or post-consolidation base breakout with defined risk).
+- Recent catalysts: Biotech sector benefiting from XLV Trend regime; broader market risk-on (ISM Services 54.0, benign); 2026-07-07 breakout above 52w-high.
+- Open thesis questions: What is the next resistance level above $163.93? Can a measured-move target be constructed from the prior consolidation base (Nov 2025–Mar 2026) to clear 2.0 R:R floor? ETF analyst coverage path (none via yfinance).
+- Trade history: (none — demoted pre-synthesis on R:R; not entered)
+- Position-aware notes: No analyst PT → permanent R:R computation challenge; consider using XLV ETF as sector proxy instead of XBI for simpler target derivation.

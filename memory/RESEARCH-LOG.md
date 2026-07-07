@@ -4096,3 +4096,111 @@ Exposure-coach tension: REDUCE_ONLY recommendation vs Neutral regime authorizing
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=632.1h, slots 2→1 (hard gate)
 - FTD: FMP_API_KEY not set — skipped
+
+---
+
+## 2026-07-07 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1 [2 base → −1 stale_degrade 659.7h], deployment: 75%)
+- Fallback reason: "ml unavailable; using local_screener_v1" — ML stale 659.7h (27.5 days, 20th+ consecutive session). **Hard gate: slots 2→1.** User action urgent: refresh ml_insights.json on local PC.
+- **ML staleness:** stale_degrade, age=659.7h — rule_fallback only, trade_slots −1 hard gate
+- **Breadth/Sector:** breadth=55/100 (Neutral) | sector=balanced score=45 phase=recession | divergence_flag=True (cyclical/defensive internal disagreement); S&P500 vs breadth = healthy alignment (both rising, no bearish divergence)
+- **Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM
+- **FTD:** no data (FMP key set but detector returned empty output — skipped)
+- **ML signals:** n/a (stale: generated_at is 659.7h old)
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $401,889.80 | Daytrade count: 0/3 | Open positions: 0 | Open orders: 0
+
+### Macro Framework
+
+Neutral regime (rule_fallback, 659.7h ML stale — 20th+ consecutive session). ISM Services PMI for June 2026 released today at 54.0 (down from 54.5 May, matching consensus; benign print — no trade slot reduction). SPX closed at 7,537 (+0.72%) on broad risk-on tone; VIX compressed sharply to 15.57 (from ~17.68 yesterday) — notable vol contraction. 30Y yield 4.993% (+0.1bp vs yesterday's 4.98%, stable). WTI $69.07 (+0.64%; recovering from $68.33 on OPEC+ supply expectations). AMD continuing rally: closed Jul 6 +8.20% at $517.82 on NVDA Kyber delay news; premarket Jul 7 showing ~$530 on new catalyst (Turing autonomous driving partnership + Goldman Sachs PT raised to $640). FOMC minutes tomorrow Jul 8 — overnight binary risk. [WebSearch, TradingEconomics, FXDailyReport] vs yesterday: yields +0.1bp (stable); oil +$0.74 (+1.1%); VIX −2.11 (sharp compression); SPX +0.72%; regime Neutral unchanged; AMD adding another leg on Turing/GS catalyst. New today: ISM Services 54.0 benign; Gemini 429 (20th+ consecutive session). **Exposure-coach tension:** REDUCE_ONLY ceiling=37% vs Neutral deployment target=75% — advisory only; with 100% cash we are already below the ceiling. No net conflict for a HOLD day.
+
+> **Naming note (B8):** SPY ETF ~$751; SPX index ~7,537. Using SPX throughout for index references.
+
+### Sector Picture
+- **Top 3 (1mo momentum):** XLF +8.1% (Trend ✓), XLV +7.78% (Trend ✓), XLU +5.38% (Trend ✓)
+- **Middle:** XLI +4.47% (Choppy), XLB +2.99% (Choppy), XLP +2.18% (Trend), XLRE +2.10% (Trend)
+- **Bottom 3 (1mo momentum):** XLY +1.76% (Bear ✗ — despite positive momentum, regime classifier shows Bear at score +0.106), XLC +0.09% (Bear ✗), XLK −2.39% (Bear ✗), XLE −7.71% (Bear ✗)
+- **Cross-check (sector-momentum vs ml-insights):** Broad agreement on XLF/XLV leading and XLK/XLE lagging. One divergence: XLY shows +1.76% 1mo momentum but ml-insights classifies Bear (score 0.106 — on the threshold). Conservative: treat XLY as Bear per regime classifier. XLI has +4.47% momentum but Choppy regime — consistent (recovering but no clear trend).
+- **Screener top 10:** XBI(1.167/XLV), UNH(1.10/XLV), CAT(0.83/XLI), UNP(0.62/XLI), GE(0.62/XLI), MS(0.46/XLF), JPM(0.46/XLF), LLY(0.45/XLV), JNJ(0.43/XLV), XLRE(0.36/XLRE)
+
+Screener: source=local_screener_v1, ranked 41 tickers, top 10 = [XBI(1.167), UNH(1.10), CAT(0.83), UNP(0.62), GE(0.62), MS(0.46), JPM(0.46), LLY(0.45), JNJ(0.43), XLRE(0.36)]
+
+### Watchlist carry-forward
+- **AMD (XLK):** watchlist entry (Jul 6, $530 limit) DROPPED today. Reason: XLK sector flipped to Bear (ml_insights score −0.316) — per protocol "do not carry forward watchlist symbol if sector flipped to Bear." Thesis remains intact (NVDA Kyber delay, Cantor $700, Turing/GS catalyst) but sector gate is a hard block. Revisit when XLK returns to Choppy/Trend.
+
+### Candidates — Budget Pre-Screen (STEP 4c-bis)
+
+All candidates demoted at the R:R pre-screen stage. No synthesis calls made (zero Gemini Pro quota spent).
+
+#### XBI (XLV, $163.93 +1.76% vs prior close)
+
+**Setup:** Above 52w-high (52wH=$161.56 → current $163.93 = BREAKOUT +1.5% above year-high). ATR(14)=$4.03 (2.46% of price); stop_pct_2_5x=6.16% → clamped to 7.0%. Stop at $152.46.
+
+**Analyst consensus (yfinance):** PT median=null / mean=null / range=null (ETF — no analyst coverage). No valid cited target.
+
+**R:R pre-screen:** Entry $163.93 / Stop $152.46 (−7.0%, clamped) / Risk per share $11.47. Best historical cited target: XBI 2021 ATH ~$174 [training-data knowledge; biotech sector history]. Reward: $174−$163.93=$10.07. R:R = $10.07/$11.47 = **0.88:1 → FAILS 2.0 floor.** For 2:1 with 7% stop: need target $186.88 — above all-time high; no cited evidence supports this level.
+
+**Decision:** DEMOTED — no analyst PT (ETF); best historical target ($174 ATH) gives R:R 0.88:1, fails 2.0 hard floor. SKIP synthesis.
+
+---
+
+### Candidates Dropped (and why)
+
+- **XBI** — screener #1 (ml_score 1.167, XLV Trend), DEMOTED. ETF, no analyst PT; best historical target ($174 2021 ATH) → R:R 0.88:1 < 2.0 floor. BREAKOUT setup noted for future reference when price consolidates and a wider target appears.
+- **UNH (XLV)** — screener #2 (ml_score 1.10). DOJ criminal investigation disqualifier ongoing (20+ consecutive sessions). Hard block.
+- **CAT (XLI)** — screener #3 (ml_score 0.83). Price $921.35, down −5.1% today. Analyst consensus median $957.975 (+4.0% implied only). Stop: 11.778% → $812.78. R:R = ($957.975−$921.35)/($108.57) = **0.34:1 → fails 2.0 floor.** Burry short ongoing (confirmed). Note: CAT has finally dropped below the $943 level needed for 2:1 vs WF $1,155, but WF target is "[Gemini grounded — unverified]"; authoritative analyst_data.py consensus is only $957.975 and cannot be used to claim 2:1. Demoted.
+- **GE (XLI)** — screener #5 (ml_score 0.62). Price $367.95. Analyst consensus median $360.0 (implied −2.2% — BELOW current price). Auto-demoted: consensus sits below market price; rule says demote unless a dated catalyst justifies the premium.
+- **LLY (XLV)** — screener #8 (ml_score 0.45). Price $1,232.53. Consensus median $1,250.5 (+1.5% implied). ATR 3.21% → stop 8.02%. R:R = ($1,250.5−$1,232.53)/($98.82) = **0.18:1 → fails 2.0 floor.**
+- **MS (XLF)** — screener #6 (ml_score 0.46). Price $222.07. Consensus median $210.0 (implied −5.4% — trading above consensus). Auto-demoted.
+- **JPM (XLF)** — screener #7 (ml_score 0.46). Price $338.06. Consensus median $345.0 (+2.0% implied). Stop: 7% (clamped). R:R = ($6.94)/($23.66) = **0.29:1 → fails 2.0 floor.**
+- **AMD (XLK)** — watchlist carry-forward. DROPPED. XLK Bear sector gate fired today (ml_insights score −0.316). Thesis intact but sector is a hard block per strategy rules.
+- **UNP, JNJ, XLRE** — not researched; below position in ranked list; 1-slot constraint + all higher-ranked names already demoted.
+
+### Historical Analog
+
+**Analog:** Late September 2024 (Sep 30–Oct 4): SPX made new all-time highs near 5,762 on October 4, 2024, following the Fed's first cycle-start 50bp cut. VIX compressed from its August 5 spike peak (~38) back to 13–15, very similar to today's 15.57 reading. ISM Services PMI for September 2024 printed 54.9 (released Oct 3, 2024), close to today's 54.0 reading. WTI oil was ~$70–73, close to today's $69. 10Y yield was 3.74% (30Y ~4.1%) — lower than today's ~5%, but both were elevated relative to Fed expectations. Breadth was broadly positive with S&P advancing after a summer correction. [Training-data knowledge; US equity September–October 2024 dynamics well-documented]
+
+**What followed:** 5d: SPX +1.2% (new ATH continuation); 10d: SPX +2.8% (Q3 earnings season opened strong — JPMorgan beat on Oct 11 2024 kicked off season); 20d: SPX −3.5% net (late October 2024 pullback on election jitters and tech rotation). Mag-7 outperformed in 5–10d window; defensives lagged as risk appetite dominated. [Training-data knowledge]
+
+**Why this time might differ:** The 2024 analog had the tailwind of an initial rate-cut cycle (rates falling = P/E expansion). Today the 30Y sits at 5.0% — approximately 90bp above the 4.1% in the analog — compressing PE multiples and limiting the upside runway for growth names, especially with XLK already in Bear regime. Additionally, sector leadership is reversed: 2024 saw tech (XLK) leading, whereas today XLF+XLV+XLU lead and XLK lags. This makes the 2024 analog's growth-name upside less applicable. The FOMC minutes tomorrow (Jul 8) introduce an overnight binary risk absent in the Oct 2024 window. If minutes are hawkish, today's VIX compression could unwind sharply.
+
+### Risk Factors (consolidated)
+1. **ML stale_degrade, 659.7h (27.5 days), 20th+ consecutive session.** Hard gate: slots 2→1. User action: refresh ml_insights.json on local PC.
+2. **FOMC minutes Jul 8 (tomorrow).** Hawkish surprise = yield spike, multiple compression. Primary overnight risk — reason to stay in cash.
+3. **Sector leadership defensive (XLF/XLV/XLU top 3).** In a Bull regime this would be a warning sign; in Neutral it's a signal that the market is rotating away from growth. XLK Bear means most high-momentum tech names are off the table.
+4. **All screener candidates fail R:R ≥ 2.0 floor.** 20th+ consecutive HOLD. Account 100% cash for 34 calendar days. Patience protocol is correct per strategy, but the screening universe may need a macro shift (vol spike → lower prices) before entries appear.
+5. **Exposure-coach REDUCE_ONLY ceiling=37% (advisory).** Three-signal convergence (stale ML + recession cycle phase + REDUCE_ONLY): environment favors patience. With 100% cash already below the ceiling, no conflict — but no new entries advisable.
+6. **Reddit 403 persistent (20+ sessions).** Sentiment signal structurally absent.
+7. **Gemini API 429 (20th+ consecutive session).** All macro via WebSearch + native tools. No synthesis or critique calls possible via LLM subprocesses.
+8. **Sector divergence_flag=True (breadth):** cyclical/defensive internal disagreement. Breadth still Neutral (55/100) and healthy alignment vs SPX — not yet a warning, but watching.
+9. **CAT Burry short ongoing.** Removes XLI conviction from this session despite screener ranking.
+10. **AMD XLK Bear gate.** Best near-term catalyst (Turing partnership, GS $640 PT) cannot be captured while sector is in Bear regime. Re-entry watchlist will restart when XLK returns to Choppy.
+
+### Decision
+**HOLD — no orders placed today (Jul 7).**
+
+All screener candidates fail the R:R ≥ 2.0 hard floor:
+- XBI #1: no analyst PT (ETF); 0.88:1 to historical ATH target
+- UNH #2: DOJ disqualifier
+- CAT #3: 0.34:1 (consensus $958 vs 11.78% stop)
+- GE: −2.2% implied (below consensus)
+- LLY: 0.18:1
+- MS: above consensus (−5.4% implied)
+- JPM: 0.29:1
+
+Exposure-coach (advisory): REDUCE_ONLY, DEFENSIVE, ceiling 37% — consistent with HOLD decision. No tension since we're already at 100% cash.
+
+AMD watchlist dropped (XLK Bear gate). Will rebuild AMD watchlist when XLK regime improves. Next trigger to watch: FOMC minutes Jul 8 — if hawkish tone keeps yield elevated, Neutral regime may degrade to Caution, further reducing trade_slots. If minutes are benign and SPX holds 7,500+, reassess candidates for Jul 9.
+
+**Deployment plan:** $0 deployed today. Total basis: $0 (100% cash).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash (attempt only, exit 429) + 0 Pro — 20th+ consecutive 429 session
+- WebSearch calls: 5 (oil, futures/VIX/yield, ISM PMI, AMD price/catalyst, market catalysts/earnings)
+- NewsAPI / Finnhub / EDGAR / Reddit: 0 (no gather calls made — all candidates demoted at pre-screen stage)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=659.7h, slots 2→1 (hard gate)
+- FTD: FMP_API_KEY set but detector returned empty output — skipped
+- Analyst data: analyst_data.py (yfinance, no-quota) — XBI(null), CAT($957.975), GE($360), LLY($1,250.5), MS($210), JPM($345), GE($360)
