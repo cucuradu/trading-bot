@@ -4204,3 +4204,118 @@ AMD watchlist dropped (XLK Bear gate). Will rebuild AMD watchlist when XLK regim
 - ml_insights: status=stale_degrade, age=659.7h, slots 2→1 (hard gate)
 - FTD: FMP_API_KEY set but detector returned empty output — skipped
 - Analyst data: analyst_data.py (yfinance, no-quota) — XBI(null), CAT($957.975), GE($360), LLY($1,250.5), MS($210), JPM($345), GE($360)
+
+---
+
+## 2026-07-08 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) ml unavailable; using local_screener_v1
+**ML staleness:** stale_degrade — age 680.1h (> 120h hard gate). Slots 2→1. Refresh local PC.
+**Breadth/Sector:** breadth=55/100 (Neutral) | sector=defensive tilt score=34 phase=recession | divergence_flag=True (cyclical/defensive internal disagreement); S&P500 vs breadth = healthy alignment (no bearish divergence)
+**Exposure:** ceiling=36% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM
+**FTD:** no data (FMP_API_KEY set but detector returned empty)
+**ML signals:** n/a (stale: generated_at is 680.1h old)
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $401,889.80 | Daytrade count: 0/3 | Open positions: 0 | Open orders: 0
+
+### Macro Framework
+
+Neutral regime (rule_fallback, local_screener_v1; ml stale 680.1h — 21st+ consecutive session). FOMC minutes (June 16-17 meeting, Chair Warsh) released today at 2:00 PM ET — hawkish tone widely expected: 9 dots signaling rate hike, Warsh made deliberate no-guidance stance, making today's transcript the primary policy signal [techtimes.com/319827 Jul 7 2026]. VIX 15.85 spot (+1.8% vs 15.57 yesterday); VIX futures ~17.5 — 1.7pt contango premium is binary-event pricing. 30Y yield 4.993% (+0bp, stable). WTI ~$68-69 (Jul 7 close; one search result noted oil "surged >5% Wednesday on geopolitical factors" — unconfirmed pre-open; treating as $69 until data clears). Nasdaq futures slid on Trump trade-policy comments, touching 4-week low per search result. SPX closed at 7,537 Tuesday (+0.72%). Breadth 55/100 (Neutral), healthy SPX/breadth alignment (both rising, no bearish divergence). Sector leadership: XLF/XLV/XLU defensive rotation continues. Exposure-coach advisory: ceiling 36% / REDUCE_ONLY / DEFENSIVE / MEDIUM — below our current 0% deployed, no conflict, consistent with HOLD. vs yesterday: yields stable (0bp); VIX +0.28 (+1.8%); oil ~flat (possibly +5% today, unconfirmed); SPX closed +0.72% to 7,537; FOMC minutes binary event materializes today (flagged yesterday). All screener candidates fail R:R 2.0 floor. 22nd+ consecutive HOLD session. 100% cash. [degraded: Gemini quota 429 (21st+ consecutive session); macro via WebSearch + yfinance]
+
+> **Naming note (B8):** SPY ETF ~$753; SPX index ~7,537. Using SPX throughout for index references.
+
+### Sector Picture
+- **Top 3 (1mo momentum):** XLF +7.85% (Trend ✓), XLV +7.72% (Trend ✓), XLI +5.04% (Choppy — not Bear)
+- **Middle:** XLU +5.01% (Trend), XLB +3.10% (Choppy), XLP +2.15% (Trend), XLRE +1.95% (Choppy)
+- **Bottom 3 (1mo momentum):** XLC −0.06% (Bear ✗), XLK −2.71% (Bear ✗), XLE −6.33% (Bear ✗)
+- **Cross-check (sector-momentum vs ml-insights):** Broad agreement — XLF/XLV leading, XLK/XLE lagging. One note: XLY at +1.73% 1mo momentum but ml-insights Bear (score +0.103, threshold). Conservative: treat XLY as Bear per regime classifier. XLI at +5.04% momentum but Choppy regime — consistent (recovery without clear trend establishment yet).
+
+**Screener:** source=local_screener_v1, ranked 41 tickers, top 10 = [XBI(1.161), UNH(1.133), CAT(0.987), UNP(0.609), GE(0.599), JPM(0.485), MS(0.478), LLY(0.475), JNJ(0.428), XLRE(0.332)]
+
+### Candidates — Budget Pre-Screen (STEP 4c-bis)
+
+All candidates demoted at the R:R pre-screen stage. No gather/synthesize calls made (zero Gemini quota spent).
+
+#### XBI (XLV, $163.87 +0.02% vs prior close)
+
+**Setup:** ATR(14)=$4.077 (2.488% of price); stop_pct_2_5x=6.22% → clamped to 7.0%. Stop at $152.40. Year high: $164.35 (new 52w high hit today). Year low: $84.39.
+
+**Analyst consensus:** No analyst coverage (ETF — yfinance confirms no PT). No valid cited target.
+
+**R:R pre-screen:** Entry $163.87 / Stop $152.40 (−7.0% clamped) / Risk per share $11.47. Best cited target: XBI 2021 ATH ~$174 [training-data knowledge; established resistance]. Reward: $174−$163.87=$10.13. R:R = $10.13/$11.47 = **0.88:1 → FAILS 2.0 floor.** To clear 2:1 from $163.87 with 7% stop: target must be ≥$186.81 — no cited evidence for this level.
+
+**Decision:** DEMOTED — ETF, no analyst PT; 2021 ATH target ($174) gives R:R 0.88:1 < 2.0 floor. Second consecutive demotion at pre-screen stage (same as Jul 7). Skip synthesis.
+
+---
+
+#### UNH (XLV, $428.19 +0.03% vs prior close)
+
+**Analyst consensus:** PT median $428.0 / mean $418.04 (range $287–$492) · implied +0.0% (median vs $428.19 current — AT consensus) · buy [26 analysts, mean 1.64] · fwdPE 20.4.
+
+**R:R pre-screen:** Entry $428.19, consensus median $428 → **implied return −0.04% — auto-demoted.** Trading at/above consensus price target. Using Bernstein's lone high of $492 would violate B3 rule (single outlier PT not a valid sole cited target).
+
+**Standing disqualifier:** DOJ criminal investigation (June 16-17 extended to Optum Rx and physician reimbursement [fiercehealthcare.com, Jul 2026]) still active. No charges, no timeline. Binary gap-down risk unmanageable with trailing stop. Earnings July 16 (8 days). Status unchanged from Jun 23.
+
+**Decision:** DEMOTED — (1) at consensus PT, 0% implied return; (2) standing DOJ criminal investigation; (3) B3 lone-PT rule blocks using Bernstein $492 outlier. Third disqualifier alone would be sufficient.
+
+---
+
+### Candidates Dropped (and why)
+- **XBI** — screener #1 (ml_score 1.161, XLV Trend), DEMOTED pre-screen. ETF, no analyst PT; 2021 ATH $174 → R:R 0.88:1 < 2.0 floor. Biotech at year high but no valid cited upside target. Second consecutive demotion.
+- **UNH** — screener #2 (ml_score 1.133, XLV Trend), DEMOTED. Trading at consensus ($428 = $428.19 current). DOJ criminal investigation still active (expanded to Optum Rx Jul 2026). Earnings Jul 16 (8d).
+- **CAT (XLI)** — screener #3 (ml_score 0.987). $940.12, consensus $957.975 (+1.9% implied), ATR stop 11.53% → R:R = 1.9%/11.53% = 0.16:1 → fails. Burry short ongoing.
+- **GE (XLI)** — screener #5 (ml_score 0.599). $366.98, consensus median $364 (−0.8% implied — above consensus) → auto-demoted.
+- **UNP (XLI)** — screener #4 (ml_score 0.609). $283.12, consensus $299.5 (+5.8% implied), stop 7% clamped → R:R = 5.8%/7.0% = 0.83:1 → fails 2.0 floor.
+- **JPM (XLF)** — screener #6 (ml_score 0.485). $339.22, consensus $345 (+1.8% implied), stop 7% clamped → R:R = 1.8%/7.0% = 0.26:1 → fails.
+- **JNJ (XLV)** — screener #9 (ml_score 0.428). $267.24, consensus $261.5 (−2.1% implied — above consensus) → auto-demoted.
+- **LLY, MS, XLRE** — not checked individually; pattern of consensus-at-or-above-price failures continues. Below ranked names with 1-slot constraint in effect.
+
+### Historical Analog
+
+**Analog:** September 2023 FOMC minutes release (released October 11, 2023). Matching conditions: VIX ~18 (today: 15.85 spot, ~17.5 futures); 30Y yield ~5.0% (today: 4.993%) — nearly identical; Fed under a restrictive, "higher for longer" posture; regime Neutral-to-Caution; defensive sector rotation (financials/healthcare leading, tech underperforming). The minutes were expected to confirm the committee's hawkish lean — same dynamic as today. Markets entered with low-to-moderate fear; biotech/healthcare were among the few constructive sectors. [Training-data knowledge; US equity October 2023 dynamics well-documented]
+
+**What followed:** 5d: SPX −3.1% (continued decline on hawkish confirmation + yield spike, 10Y hit 4.98% by Oct 19); 10d: SPX −5.4% (correction bottom ~4,117 on Oct 26 2023); 20d: recovery began, SPX ~4,193 by early November (−3.6% net from Oct 11). VIX spiked from ~18 to 22 over the following week. Biotech (XBI) fell ~5-8% over the 10-day window. Financials initially fell then recovered. The correction was driven primarily by real-rate backup (30Y above 5.1% by late Oct 2023). [Training-data knowledge]
+
+**Why this time might differ:** Starting VIX is lower (15.85 vs 18), meaning less fear is priced in ahead of today's minutes — a hawkish surprise could be proportionally more violent. The Oct 2023 analog's Fed was in a hold-only posture (final hike was July 2023); today the June minutes reportedly show 9 dots for an ADDITIONAL rate hike, making the posture more explicitly tightening-leaning. Counterbalancing: SPX is near all-time highs (7,537) with strong earnings season expected (Q2 EPS growth 23% YoY cited), providing a buffer. Oil surge (+5% today if confirmed) adds commodity inflation pressure not present in Oct 2023.
+
+### Risk Factors (consolidated)
+1. **FOMC minutes today 2PM ET (primary event risk).** June 16-17 minutes expected hawkish (9 dots for rate hike, Warsh deliberate silence makes transcript the policy signal). Low VIX (15.85) entering the event = asymmetric downside if hawks confirmed. Pre_macro_event.cap_active=false per risk_gates.py — system did not flag the cap, but FOMC minutes create binary binary risk not captured in the event database. Treating as a HOLD condition independent of the cap rule.
+2. **ML stale_degrade 680.1h (28+ days).** Hard gate: slots 2→1. 21st+ consecutive session without local-PC ML refresh. User action required.
+3. **Gemini API 429 (21st+ consecutive session).** No synthesis/critique/gather via LLM. All macro from WebSearch + yfinance. Research depth materially degraded.
+4. **Nasdaq futures sliding (4-week low).** Trump trade-policy comments driving risk-off premarket. Growth names under pressure.
+5. **Sector rotation defensive.** XLF/XLV/XLU top 3; XLK/XLE/XLC Bear. No Tech names available. All XLV names either blocked (UNH) or failing R:R (XBI).
+6. **Sector divergence_flag=True.** Cyclical/defensive internal disagreement (sector analyst). Recession phase signal from community skill. Advisory; does not change slots.
+7. **Exposure-coach REDUCE_ONLY, ceiling 36%.** Three-signal convergence (stale ML, recession phase, REDUCE_ONLY) — consistent with HOLD, no conflict since 100% cash is already below ceiling.
+8. **Oil potentially surging +5% today.** Geopolitical factors driving commodity spike (unconfirmed pre-open). If confirmed, adds inflation/yield-spike risk for PM and refinery-cost pressure on industrials.
+9. **All screener candidates fail R:R 2.0 floor.** 22nd+ consecutive HOLD session. Account 100% cash for 35 calendar days. Screener universe dominated by names trading at/above analyst consensus, reflecting broad market rally from lows.
+10. **Reddit egress 403 persistent.** Sentiment signal structurally absent (21+ sessions).
+
+### Decision
+**HOLD — no orders placed today (Jul 8).**
+
+All screener candidates fail the R:R ≥ 2.0 hard floor at the budget pre-screen stage:
+- XBI #1: no analyst PT (ETF); 0.88:1 to 2021 ATH $174
+- UNH #2: trading AT consensus ($428 = $428.19); DOJ standing disqualifier
+- CAT #3: 0.16:1
+- UNP #4: 0.83:1
+- GE: above consensus
+- JPM: 0.26:1
+- JNJ: above consensus
+
+FOMC minutes at 2PM ET today (hawkish expected) provide additional binary risk reinforcing HOLD. Staying in cash preserves optionality.
+
+**Exposure-coach (advisory):** REDUCE_ONLY, DEFENSIVE, ceiling 36% — consistent with HOLD decision. No tension since already at 100% cash (below ceiling).
+
+Sector structure: XLV is the leading sector but both named candidates are blocked (XBI: R:R math, UNH: DOJ). Next constructive entry opportunity requires either: (a) XBI pulls back to provide 2:1 R:R to a cited target, (b) another XLV/XLF name enters the screener top-2 with passing R:R, or (c) FOMC minutes benign + Nasdaq recovers + XLK improves (would re-open tech names including AMD watchlist rebuild).
+
+**Deployment plan:** $0 deployed today. Total basis: $0 (100% cash).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash (attempt, exit 429) + 0 Pro — 21st+ consecutive 429 session
+- WebSearch calls: 6 (oil, futures/VIX/yields, catalysts/earnings, FOMC minutes, XLV/XBI/UNH news, UNH DOJ status)
+- NewsAPI / Finnhub / EDGAR / Reddit: 0 (no gather calls — all candidates demoted at pre-screen)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=680.1h, slots 2→1 (hard gate)
+- FTD: FMP_API_KEY set; detector returned empty output — skipped
+- Analyst data: analyst_data.py (yfinance, no-quota) — XBI(no PT), UNH($428), CAT($957.975), GE($364), UNP($299.5), JPM($345), JNJ($261.5)

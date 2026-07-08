@@ -306,12 +306,13 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## UNH (XLV)
-- Thesis (2026-06-23): Researched then dropped on the standing disqualifier (8th consecutive occurrence, 06-02 through 06-23) — DOJ criminal investigation into Medicare Advantage/Optum Rx/physician-reimbursement billing confirmed still open, no charges, no resolution timeline. Notably, UNH is the first candidate in many sessions to actually clear the 2:1 R:R floor on pure math: entry $406.68 / stop $378.21 (−7.0%, ATR-clamped) / target $492 (Bernstein, dated 2026-05-27) (+20.98%) → R:R 3.00:1. The math says enter; the binary DOJ gap-risk says don't — no trailing stop protects against an indictment gap-down. Mangione murder trial remains a secondary reputational overhang (state trial 2026-09-08, federal 2026-10-13). [Dropped — DOJ binary risk unchanged, despite R:R 3.00:1 clearing the floor. research.py gather + WebSearch, Jun 23]
+- Thesis (2026-07-08): Demoted — at $428.19 the stock is AT the consensus median PT ($428), yielding 0% implied return (auto-demoted by B3). DOJ criminal investigation confirmed expanded to Optum Rx and physician reimbursement [fiercehealthcare.com Jul 2026], still active, no charges, no timeline. Earnings Jul 16 (8d). Three independent disqualifiers in force simultaneously.
 - Recent catalysts:
-  - 2026-06-23: Bernstein $492 PT (dated 2026-05-27) confirmed still the highest dated target; $3B AI turnaround narrative; FTC insulin-dispute progress noted [research.py gather + WebSearch]
-  - 2026-06-08: BofA Securities upgrade to "Buy" + 5% dividend raise drove a fresh pop; stock near 52w high $404.15, up ~40% from recent lows [Barchart/TIKR via WebSearch Jun 8]
-  - Ongoing (confirmed still active 06-23): DOJ criminal + civil investigation into Medicare Advantage/Optum Rx/physician-reimbursement billing practices — no charges, no resolution timeline [healthcaredive.com, fiercehealthcare.com / WebSearch]
-  - 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; prior authorization cuts for 30% of services
+  - 2026-07-08: DOJ probe confirmed expanded to Optum Rx + physician reimbursement [fiercehealthcare.com Jul 2026]; stock at $428 = consensus median PT; earnings Jul 16
+  - 2026-07-16: Q2 2026 earnings (upcoming — key catalyst; if DOJ resolved by then, re-evaluate)
+  - 2026-06-23: Bernstein $492 PT (dated 2026-05-27) confirmed; DOJ still blocking entry despite R:R 3.00:1 math at $406
+  - 2026-06-08: BofA "Buy" upgrade + 5% dividend raise; stock +40% from lows [Barchart/TIKR WebSearch Jun 8]
+  <!-- archive: 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; DOJ criminal + civil opened into Medicare Advantage/Optum Rx/physician-reimbursement billing [healthcaredive.com] -->
   <!-- archive: 2026-05: Truist PT raised to $440; median consensus PT $400.50 -->
 - Open thesis questions:
   - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop. Now that R:R has actually cleared 2:1 for the first time (3.00:1), does the bot's framework need a formal codified rule for this override, or does it stay a daily re-litigation? (flagged for weekly review, 06-22 and again today)
@@ -433,8 +434,11 @@ Conventions:
 ## XBI — SPDR S&P Biotech ETF
 
 - Sector: XLV (Healthcare)
-- Thesis (2026-07-07): Screener #1 (ml_score 1.167) on XLV Trend regime; biotech ETF breaking above 52w-high ($161.56→$163.93) on broad risk-on. No analyst PT available (ETF) — R:R cannot be computed to pass 2.0 hard floor. Not actionable as buy candidate until a cited upside target appears (e.g., historical measured-move or post-consolidation base breakout with defined risk).
-- Recent catalysts: Biotech sector benefiting from XLV Trend regime; broader market risk-on (ISM Services 54.0, benign); 2026-07-07 breakout above 52w-high.
-- Open thesis questions: What is the next resistance level above $163.93? Can a measured-move target be constructed from the prior consolidation base (Nov 2025–Mar 2026) to clear 2.0 R:R floor? ETF analyst coverage path (none via yfinance).
+- Thesis (2026-07-08): Screener #1 (ml_score 1.161) XLV Trend; biotech ETF at new 52w high ($164.35 intraday). No analyst PT (ETF) → R:R cannot clear 2.0 floor regardless of entry. Not actionable as buy candidate until a valid cited upside target emerges (historical 2021 ATH $174 gives only 0.88:1 from current levels). Second consecutive demotion at pre-screen stage.
+- Recent catalysts:
+  - 2026-07-08: New 52w high $164.35 — XBI continues BREAKOUT above prior resistance; XLV Trend regime driving sector-wide strength
+  - 2026-07-07: Broke above 52w-high ($161.56→$163.93) on broad risk-on (ISM Services 54.0, benign)
+  <!-- archive: Biotech sector benefiting from XLV Trend regime; broader market risk-on (ISM Services 54.0, benign); 2026-07-07 breakout above 52w-high -->
+- Open thesis questions: What is the next meaningful resistance level above $164? Can a measured-move target from the Nov 2025–Mar 2026 consolidation base exceed $182 (the 2:1 floor target from current price with 7% stop)? ETF has no analyst PT — this is a structural R:R problem, not a timing problem.
 - Trade history: (none — demoted pre-synthesis on R:R; not entered)
 - Position-aware notes: No analyst PT → permanent R:R computation challenge; consider using XLV ETF as sector proxy instead of XBI for simpler target derivation.
