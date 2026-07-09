@@ -389,3 +389,30 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **No WhatsApp alert needed.** Routine executed, no orders fired.
 
+---
+
+## 2026-07-09 — Market-open (gap skip, watchlist carry-forward)
+
+**Account status:** $100,472.45 equity, 100% cash (no open positions).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Wed):** 0 / 3.
+
+**Market conditions:** SPY near record highs. AMD bid $533.44 / ask $547.97 (+$30 from pre-market $517 plan). Iran-US escalation (US strikes, waiver revoked); FOMC hawkish minutes released Jul 8 (9-8 hike split); VIX 16.88; 10Y $4.58% (4-week high). Pre-macro cap NOT active (event already released). Regime Neutral (rule_fallback; ML stale 704.1h, slots: 1). XLK improved Bear→Choppy.
+
+**Pre-market plan:** TRADE — AMD PULLBACK limit $515, 38 shares, R:R 2.39:1, stop $437.75 GTC.
+
+**STEP 3 Gap Guard (Phase G3):**
+- Planned entry: $515
+- Current ask: $547.97
+- Gap: $547.97 / $515 = 1.064 = **6.4% above plan** (threshold: 3% max)
+- **SKIPPED.** Reason: gap_above_plan. Current $547.97 vs planned $515.
+
+**Carry-forward:**
+- Thesis intact: NVDA Kyber delay (CNBC Jul 6 confirmed), Cantor Fitzgerald $700 PT (street-high, Jun 29), AMD AI Summit Jul 22-23 (13 days, within catalyst window), XLK regime improvement confirms sector gate re-opened.
+- Watchlist added (Jul 9): setup=PULLBACK, entry=$515, stop=$437.75, thesis documented.
+- Re-entry trigger: AMD pulls back to ≤$515 on >3× avg volume; revisit if below $500.
+
+**Decision:** **HOLD — no orders placed.** AMD gapped above plan. Thesis carries to next session per strategy protocol (B4). Market-open workflow clear.
+
+**Key takeaway:** 36th+ consecutive HOLD session since May 23 pre-market test. Watchlist management active; no new equity deployed. Account remains opportunistically positioned in cash with 1 trade slot available.
+
