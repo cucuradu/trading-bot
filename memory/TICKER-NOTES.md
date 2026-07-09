@@ -38,26 +38,26 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-06): WATCHLIST — PULLBACK. AMD $530.51 premarket +2.6% on NVDA Kyber NVL144 delay (>12mo to 2028, PCB mfg snag [CNBC Jul 6]). Hyperscalers forced to extend Blackwell OR evaluate AMD/ASIC. AMD AI Summit Jul 22-23 upcoming. Revised entry: **$530 limit (PULLBACK, day TIF, valid Jul 7+)** using Cantor $700 (Jun 29 [Investing.com]) = R:R 2.14:1 with 15% stop. Fallback: if AMD pulls back below $510 post-FOMC (Jul 8), revert to $473 entry (WF $615 = R:R 2.00:1). [Finnhub + WebSearch + CNBC, Jul 6]
+- Thesis (2026-07-09): TRADE — PULLBACK entry. AMD $517.41 (−11.5% from $584.73 year high). XLK improved Bear→Choppy (sector gate re-opened). FOMC minutes (Jul 8) digested — hawkish 9-8 split, contained reaction. AMD AI Summit Jul 22-23 (13 days, within 14d catalyst window). Entry: **$515 limit day TIF**, stop $437.75 GTC (15% ATR-clamped), target $700 (Cantor $700, Jun 29 [Investing.com]). R:R 2.39:1 ✓. Max risk ~$2,935 (38 shares × $77.25). [NewsAPI + EDGAR + WebSearch, Jul 9]
 - Recent catalysts:
-  - 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB snag) → hyperscalers evaluate AMD alternatives; AMD +2.6% premarket to $530.51 [CNBC, Jul 6]
-  - 2026-07-06: Wells Fargo upholds Overweight; Cantor Fitzgerald top pick (above NVDA/AVGO) [Finnhub, Jul 6]
-  - 2026-07-06: AMD Ventures backs Turing self-driving startup; AMD GPUs adopted for AV systems [Bloomberg/Finnhub, Jul 6]
-  - 2026-07-02: Asia chip contagion (SK Hynix −14%, Samsung −9%) → AMD −4.8% ($544→$517.82) [FX Leaders, Jul 2]
-  - 2026-07-01: WF Aaron Rakers raised AMD PT $505→$615 (Overweight; EPYC Venice) [KuCoin/TipRanks, Jul 1]
-  <!-- archive: 2026-07-02: Meta cloud excess compute narrative; AMD selloff 2nd day -->
-  <!-- archive: 2026-07-02: NFP June 57K miss vs 110K consensus; soft labor -->
+  - 2026-07-09: XLK regime improved Bear→Choppy — AMD entry gate re-opened [ml_insights, Jul 9]
+  - 2026-07-09: FOMC minutes (Jun 16-17) hawkish 9-8 split digested; 10Y at 4.58% (4-week high); AMD tested $498 intraday [CNBC, Jul 8]
+  - 2026-07-08: Goldman Sachs raised AMD PT $450→$640 (Buy, Jul 5) citing agentic AI CPU demand [TheStreet, Jul 5]
+  - 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB snag) → hyperscalers evaluate AMD alternatives [CNBC, Jul 6]
+  - 2026-07-06: AMD Ventures backs Turing self-driving startup; diversification beyond hyperscaler AI [Bloomberg/Finnhub, Jul 6]
+  <!-- archive: 2026-07-06: Wells Fargo upholds Overweight; Cantor Fitzgerald top pick (above NVDA/AVGO) -->
+  <!-- archive: 2026-07-02: Asia chip contagion (SK Hynix −14%, Samsung −9%) → AMD −4.8% -->
+  <!-- archive: 2026-07-01: WF Aaron Rakers raised AMD PT $505→$615 (Overweight; EPYC Venice) -->
   <!-- archive: 2026-06-29: Cantor Fitzgerald $700 PT (from $500) — street high -->
   <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455) -->
-  <!-- archive: 2026-06-25: Micron beat reignited AI/semis sentiment -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap; thesis-break per 06-08 notes)
 - Open thesis questions:
-  - **Primary entry (Jul 6):** $530 limit (PULLBACK, day TIF). Max entry for R:R≥2.0 with Cantor $700 = $538.46. Do NOT place on Jul 6; wait for ISM Services (Jul 7) + FOMC minutes (Jul 8).
-  - **Fallback entry:** $473 (WF $615 cited target) if AMD breaks below $510 post-FOMC.
-  - **Invalidator (next 5d):** AMD fails $510 support after FOMC minutes (Jul 8) or another hyperscaler issues compute-excess statement.
-  - **AMD AI Summit Jul 22-23:** binary catalyst; monitor for hyperscaler partnership announcements.
-  - **Insider selling (Lisa Su Jun 10-12):** multiple blocks at $476.43; caution flag.
+  - **Active entry Jul 9:** $515 limit (PULLBACK, day TIF). Max entry for R:R≥2.0 with Cantor $700 = $538.46. Cancel if AMD closes below $498 on volume before fill.
+  - **Stop (GTC, upon fill):** $437.75 (15% ATR-clamped). Tighten to 1.75×ATR at +15% gain, to 1.25×ATR at +20%.
+  - **AMD AI Summit Jul 22-23:** binary catalyst; monitor for hyperscaler partnership announcements. Consider tightening stop before this binary event.
+  - **Insider selling above entry:** Papermaster at $536 (Jun 15, EDGAR); Su at $471-476 (Jun 10, EDGAR). Management distribution cap visible ~$536.
+  - **Invalidator trigger:** AMD closes below $498 on high volume → cancel order, revert to watchlist; thesis reassessment needed.
 
 ---
 

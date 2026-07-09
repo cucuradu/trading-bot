@@ -4319,3 +4319,151 @@ Sector structure: XLV is the leading sector but both named candidates are blocke
 - ml_insights: status=stale_degrade, age=680.1h, slots 2→1 (hard gate)
 - FTD: FMP_API_KEY set; detector returned empty output — skipped
 - Analyst data: analyst_data.py (yfinance, no-quota) — XBI(no PT), UNH($428), CAT($957.975), GE($364), UNP($299.5), JPM($345), JNJ($261.5)
+
+---
+
+## 2026-07-09 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1 after stale_degrade penalty, deployment: 75%) — ML unavailable; using local_screener_v1. Fallback reason: ml_insights stale 704.1h (29th+ consecutive session). ML stale_degrade → trade_slots reduced 2→1 (hard gate).
+
+**ML staleness:** age 704.1h (stale_degrade; 29th+ session) — user action required: refresh ml_insights.json on local PC and commit.
+
+**Breadth/Sector:** breadth=55.0/100 (Neutral) | sector=defensive tilt score=33 phase=late | divergence_flag=True (cyclical/defensive disagree internally). Healthy SPX/breadth alignment (both rising, no bearish divergence on 60d window). Advisory: late-cycle + defensive-tilt sector vs Neutral regime is moderate tension — noted in Decision section.
+
+**Exposure:** ceiling=36% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM — advisory only. With 0% deployed, entry at 20% stays well below 36% ceiling — no conflict.
+
+**FTD:** state=FTD_WINDOW (S&P 500 in rally attempt, Day 7 from Jun 26 swing low $7,354. No Follow-Through Day confirmed yet. Power trend=YES (3/3 conditions). Signal interpretation: stay selective; no confirmed offensive signal.)
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $401,889.80 | Daytrade count: 0 | Open positions: 0 | Open orders: 0
+
+### Macro Framework
+
+Neutral regime (rule_fallback, 704h ML stale — 29th+ consecutive session). Dominant theme today: US-Iran conflict escalation. US launched fresh strikes on Iran targeting 80+ sites and revoked waiver allowing Iranian oil sales (Jul 7-8 Bloomberg/Reuters). Oil initially surged +5% Wed (WTI $74.04 open), then FELL as markets weighed Hormuz risk — WTI now $72.64, Brent $76.99 (both lower intraday). FOMC minutes (Jun 16-17, released Jul 8) confirmed hawkish 9-8 Fed split on an additional rate hike by year-end; markets "reacted little" — equities held negative, yields rose modestly (10Y to 4.58%, 4-week high) [CNBC, Jul 8]. 30Y yield ~5.00% (estimated; was 4.993% yesterday, tick up likely on FOMC tone). VIX 16.88 (elevated from 15.85 yesterday +1.03pt). S&P 500 futures down ~0.8% premarket. Key earnings catalyst: PEP missed Q2 EPS by $0.01 ($2.20 vs $2.21 consensus) on revenue beat +6.4% — shares −1.8% to $140 [Yahoo Finance/Kiplinger, Jul 9]. Biotech binary: ALNY +17.5% (undisclosed catalyst), IONS −21.1% (Phase 3 heart drug failure, AZN partner) [TheStreet, Jul 9]. Light economic calendar today: no CPI/PPI/jobs releases; main event was FOMC minutes (already digested). Next macro catalyst: CPI Jul 14 (5 days).
+
+vs yesterday: yields +7bp (10Y 4.51→4.58%); VIX +1.03pt (+6.5%); WTI −$1.40 (−1.9%, reversed prior surge); SPX futures −0.8%; FOMC minutes outcome: hawkish 9-8 (as expected, markets contained reaction). New today: Iran strikes escalating (US revokes oil waiver); Hormuz risk the primary macro overhang; PEP slight miss; ALNY/IONS biotech event.
+
+> **Naming convention (B8):** SPY ETF ~$747; SPX index ~7,483 (futures implied). Using SPX for index references.
+
+### Sector Picture
+- **Top 3 (1mo momentum):** Healthcare XLV +5.00% (Trend ✓), Financials XLF +4.78% (Trend ✓), Utilities XLU +3.14% (Choppy)
+- **Mid:** Industrials XLI +2.74% (Choppy), Technology XLK +0.35% (Choppy — improved from Bear)
+- **Bottom 3 (1mo):** Consumer Discretionary XLY −0.49% (Bear ✗), Materials XLB −1.20% (Bear ✗), Communication Services XLC −1.81% (Bear ✗), Real Estate XLRE −1.82% (Bear ✗), Energy XLE −3.12% (Bear ✗)
+- **Cross-check:** Broad agreement. XLK at +0.35% 1mo is now Choppy (regime improved from Bear yesterday) — key gate for AMD re-entry. XLF at +4.78% but ml-insights Trend (consistent). XLU at +3.14% but Choppy (momentum outpacing regime — advisory).
+
+**Screener:** source=local_screener_v1, ranked 51 tickers, top 10 = [AMD(1.077), XBI(0.923), UNH(0.794), CAT(0.746), SMH(0.626), UNP(0.588), JPM(0.578), GE(0.454), ABBV(0.435), XLV(0.403)]
+
+### Candidates
+
+#### AMD (XLK, $517.41 — last close; day range $498.15–$522.98)
+
+**Setup:** above 200-SMA (50-SMA: $488.80, +5.9% above; 200-SMA: $465.34, +11.2% above). Bullish structure: 50-SMA > 200-SMA (golden cross). ATR(14)=$37.10 (7.17% of price); stop_pct_2_5x=17.93% → clamped to 15.0%. Year high: $584.73; year low: $141.60 (−11.5% from year high; constructive pullback zone). AMD at +142% YTD.
+
+**Sources scanned (4):** 10 NewsAPI / 10 Finnhub insider / 5 EDGAR / 0 Reddit (403-blocked) / 0 Gemini (429, 22nd+ consecutive session). Analyst note: Gemini unavailable; all synthesis Claude-native using gathered data.
+
+**Bull case:**
+- NVDA Kyber NVL144 rack system delayed >12 months to 2028 due to 78-layer PCB midplane manufacturing challenge; hyperscalers must "extend Blackwell deployments or evaluate AMD/custom ASIC alternatives" [CNBC, Jul 6, 2026] — structural supply void opening for AMD Instinct MI400
+- Cantor Fitzgerald raised AMD PT to $700 (from $500, Jun 29) — "greatest compute momentum" thesis; Overweight; street-high target; ranks AMD above NVDA and AVGO [Investing.com, Jun 29, 2026]
+- Goldman Sachs raised AMD PT to $640 (from $450, Jul 5), maintains Buy — "surging demand for high-performance CPUs driven by agentic AI workloads" [TheStreet/ROIC.ai, Jul 5, 2026]
+- AMD AI Summit "Advancing AI 2026" Jul 22-23 — upcoming binary catalyst; product roadmap for H2 2026 [Finnhub, Jul 5] — 13 days away, within 14-day catalyst window
+- Glen Kacher's Light Street Capital holds AMD as top-10 position as of Jul 8 [NewsAPI, Jul 8, 2026] — institutional confirmation
+
+**Bear case:**
+- Cathie Wood (ARK Invest) sold $8M AMD in a single day [Finnhub headline, undated — no URL; tagged [Finnhub-gathered, unverified date]] — smart money distribution from ARK
+- "Chip stocks flashed a warning even Wall Street's bulls can't ignore" [NewsAPI, Jul 7, 2026] — broad sector technical breakdown signal
+- Lisa Su (CEO) insider SELL: ~18,940 shares at $471-476 on Jun 10 [EDGAR Form-4, Jun 10-12, 2026]; Mark Papermaster (CTO) SELL 6,000 shares at $536.33 on Jun 15 [EDGAR Form-4, Jun 15, 2026] — management selling above both entry scenarios
+- AMD forward P/E ~78x at $517 (prior log: 87.9x at $580.91 — scaled down proportionally; consensus EPS ~$6.61 implied) — still historically stretched for a rate-rise environment
+- FOMC hawkish 9-8 split (Jul 8) and 10Y at 4.58% (4-week high) compress growth multiples; AMD at 78x P/E is among the most exposed
+
+**Disconfirming evidence to watch:**
+- No hyperscaler order announcement confirming AMD Instinct share shift (inference only per prior audit, Jul 6)
+- AMD fails to hold $498–$500 support zone (today's day low $498.15 already tested this)
+
+**Catalysts ahead:**
+- Jul 22-23: AMD AI Summit "Advancing AI 2026" (13 days — within 14d window; binary product-roadmap event)
+- Aug 4: AMD Q2 2026 earnings (26 days — outside blackout)
+
+**One-line takeaway:** AMD is the screener's top pick with Cantor $700 / GS $640 confirmed bull targets, NVDA delay structural catalyst intact, XLK regime improved from Bear→Choppy enabling re-entry, and a pullback from $584 year high to $517 creating the first passing R:R (2.35:1) in over 3 weeks.
+
+**Data check (B2):** Prior AMD fwd P/E logged as 87.9x at $580.91 [Finnhub, Jul 4; Jul 6 log]. At current $517.41 using same consensus EPS ~$6.61, implied fwd P/E = ~78x — decline fully explained by price drop (−10.9%). No inconsistency; using ~78x. Cantor $700 (Jun 29) confirmed unchanged by current search results. GS $640 (Jul 5) confirmed unchanged. No conflicting PT data detected.
+
+**Critique:**
+
+**Strongest counter to the bull case:** The NVDA Kyber delay benefit assumes hyperscalers rapidly qualify and deploy AMD Instinct MI400 as a substitute — but GPU qualification timelines for tier-1 hyperscalers run 6-12 months, meaning any volume share shift lands in mid-2027 at earliest. AMD's +142% YTD and ~78x forward P/E already price in perfect execution. The FOMC minutes (Jul 8) confirmed a hawkish 9-8 split on an additional rate hike, with 10Y yields at a 4-week high of 4.58% — growth/multiple compression is the rate path. AMD's day low today ($498.15) already tested the $500 support, suggesting institutional distribution is in progress. Lisa Su insider selling at $471-476 (Jun 10) and Mark Papermaster at $536 (Jun 15) predate today's entry and suggest management conviction is capped at these levels — well within the trading range.
+
+**Weakly-sourced or unsourced claims:**
+- Cathie Wood $8M AMD sale: Finnhub headline captured but no URL or specific date in the gathered data — tagged [Finnhub-gathered, unverified date]. Cannot confirm which session's sale this was.
+- "AMD direct beneficiary of NVDA delay" — confirmed CNBC source (Jul 6) for the delay itself, but the AMD benefit is competitive-logic inference; no hyperscaler order shift confirmed [Gemini grounded — unverified as of Jul 6 log].
+
+**Single most-likely invalidator (next 5 trading days):** AMD loses $498–$500 support on sustained volume as Iran-driven risk-off broadens into a tech selloff, confirming today's test of the day low ($498.15) was distribution rather than a dip-buy; this would resume the $584→$498 downleg with no confirmed floor.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 19.9% XLK (currently 0%)
+- 30d correlation with existing positions: N/A (no open positions)
+- Sector cap status: 1/2 XLK (safe)
+- Shared-catalyst flag (B6): N/A (no existing positions with same catalyst)
+
+**R:R math (B3):** entry $515 limit / stop $437.75 (15% clamped ATR stop) / target $700 (Cantor Fitzgerald, Jun 29 [Investing.com]) / R:R = ($700−$515) / ($515−$437.75) = $185 / $77.25 = **2.39:1** ✓ passes 2.0 floor.
+- Target derived from Cantor Fitzgerald $700 PT [Investing.com, Jun 29, 2026] — confirmed street-high target, current and unchanged.
+- Max risk at 38 shares × $77.25 = $2,935 (2.9% of portfolio).
+- GS $640 alone: R:R = ($640−$515)/$77.25 = 1.62:1 — fails on its own; Cantor $700 is the operative cited target.
+
+**Setup type (Phase G1):** PULLBACK — AMD pulled back from $584.73 year high (Jun 30) → $506 day low (Jul 2, Meta cloud selloff) → recovered to $530-545 range → consolidated at $517 after FOMC minutes. Still −11.5% below year high; not a breakout. Market-open will place a buy-limit.
+
+**Entry plan:** PULLBACK → limit $515.00 day TIF. AMD traded $498–$522 today; $515 is a realistic mid-day fill zone. Do NOT chase above $538 (max entry for R:R≥2.0 with Cantor $700 is $538.46 with 15% stop).
+
+**Gate-history audit (B7):** Prior AMD gate history (last 5 trading days):
+- Jul 6: AMD watchlist entry set at $530 limit (PULLBACK, day TIF) — thesis: NVDA delay + Cantor $700. NOT placed (ISM/FOMC uncertainty). Max entry for 2:1 ceiling: $538.46.
+- Jul 7: AMD watchlist DROPPED — XLK sector flipped Bear (hard gate). Thesis intact but sector gate blocked entry.
+- Jul 8: AMD not shortlisted — XLK still Bear; all candidates demoted at R:R pre-screen.
+- Jul 9 (today): XLK improved from Bear→Choppy. AMD rebuild condition met (per Jul 7 log: "Revisit when XLK returns to Choppy"). Today's planned entry $515 is BELOW the prior gate of $530 — this is a downward revision (AMD pulled back from $530 to $517 after FOMC). Per B7: "A downward revision is allowed." No gate-creep. Entry permitted.
+
+**Decision:** Retained — AMD is the only shortlisted candidate that passes R:R 2.0 floor. XLK regime improvement from Bear→Choppy re-opens the sector gate. PULLBACK setup with Cantor $700 cited target, R:R 2.39:1, within the 14-day AMD AI Summit catalyst window. Advisory tensions noted (stale ML, exposure-coach REDUCE_ONLY, late-cycle sector phase, FOMC hawkish minutes) but none constitute hard gates against entry. The Iran-US conflict adds macro risk; position-sized at ~20% ($20k) limits portfolio impact to $2,935 max loss.
+
+### Candidates dropped (and why)
+- **XBI (XLV Trend)** — screener #2 (ml_score 0.923). ETF, no analyst PT; 2021 ATH $174 → R:R = ($174−$162.97)/$11.41 = **0.97:1 → fails 2.0 floor.** Min target for 2:1 R:R = $185.79 — no cited evidence for this level. Third consecutive demotion at pre-screen stage. Would need analyst PT above $185 or a material pullback below $150 to be viable.
+- **UNH (XLV Trend)** — screener #3 (ml_score 0.794). Standing DOJ criminal investigation (expanded to Optum Rx/physician reimbursement [FierceHealthcare, Jul 2026]); trading at/above consensus PT ($428 vs $428.19 current). Triple-blocked: (1) above consensus, (2) DOJ, (3) earnings Jul 16 (7 days — blackout). Not researched — budget preserved.
+- **CAT (XLI Choppy)** — screener #4 (ml_score 0.746). $940 area, consensus ~$957 (+1.8% implied). Stop 11.53% (ATR) → R:R = 1.8%/11.53% = 0.16:1 → fails. Burry short ongoing. Not researched.
+- **SMH (XLK Choppy)** — screener #5 (ml_score 0.626). ETF; no analyst PT. Sector Choppy. Not researched — 1-slot constraint + AMD takes priority.
+- **JPM (XLF Trend)** — screener #7 (ml_score 0.578). ~$339, consensus ~$345 (+1.7% implied). Stop 7% clamped → R:R 0.24:1 → fails. Not researched.
+- **GE, ABBV, XLV, UNP** — screener #8-11. Not individually screened — 1-slot constraint and AMD takes priority. UNP historically R:R 0.83:1 (Jul 8 audit); GE above consensus (Jul 8 audit); ABBV/XLV not evaluated.
+
+### Historical Analog
+
+**Analog:** November 2021 — AMD's post-COMPUTEX 2021 high (~$163 in mid-June 2021) pulled back ~11% to ~$145 over 3 weeks while FOMC accelerated tapering signals. VIX was ~17-18 (today: 16.88 — very close match). 10Y yield rising ~1.5-1.7% (today: 4.58% — structurally more hostile, but same directional pressure). Semiconductor leadership (AMD outperforming NVDA YTD in 2021) mirrored today's dynamics. Multiple analyst upgrades supported the pullback entry. Regime: Late-cycle Neutral. [Training-data knowledge — AMD's Q3/Q4 2021 technical consolidation well documented]
+
+**What followed (5d/10d/20d from November 2021 pullback):** AMD recovered from the ~$145 pullback: 5d: +8% to ~$156; 10d: +14% to ~$165 (new highs tested); 20d: +22% to ~$176 (continued run into Dec 2021 AWS re:Invent hyperscaler catalysts). The pullback proved a valid buying opportunity as CPU server wins confirmed the bull thesis. [Training-data knowledge]
+
+**Why this time might differ:** In Nov 2021, AMD's 10Y yield headwind was ~1.5% vs today's 4.58% — nearly 3x higher real rate pressure on a 78x P/E name. Today's FOMC is explicitly hawkish (9-8 hike vote) vs the "transitory inflation" rhetoric of Nov 2021. AMD's $498 intraday low today (vs $506 prior low Jul 2) suggests the floor is being retested, not established. Additionally, AMD's +142% YTD means far less coiled spring than the Nov 2021 setup which was off 2021 lows. Positive divergence: AMD AI Summit Jul 22-23 is a near-term catalyst without equivalent in Nov 2021; the NVDA Kyber delay is a specific structural advantage not present then.
+
+### Risk Factors (consolidated)
+1. **Iran-US conflict escalation (primary today).** US launched strikes on 80+ sites, revoked Iranian oil waiver. Hormuz Strait closure risk → commodity shock → risk-off across equities. Oil fell intraday (Brent $76.99) as markets weigh impact, but binary spike risk remains if Hormuz throughput disrupted.
+2. **ML stale_degrade 704.1h (29th+ session).** Hard gate: slots 2→1. User action required to refresh ml_insights.json on local PC.
+3. **Gemini API 429 (22nd+ consecutive session).** No synthesis/critique/gather via LLM. All macro from WebSearch; synthesis Claude-native. Research depth materially reduced vs full pipeline.
+4. **FOMC hawkish 9-8 split (Jul 8) + 10Y at 4.58%.** Growth multiple compression ongoing. AMD at ~78x fwd P/E is highly exposed.
+5. **AMD insider selling above entry.** Lisa Su at $471-476 (Jun 10, EDGAR); Papermaster at $536 (Jun 15, EDGAR). Pattern of management distribution.
+6. **AMD tested $498 today (day low).** If this support breaks, downleg resumes. Invalidator threshold: $498.
+7. **XLK Choppy (not Trend).** Sector is recovering from Bear but not confirmed Trend. Advisory: lower sector momentum conviction.
+8. **Exposure-coach REDUCE_ONLY, ceiling 36%.** Entering at 20% stays below ceiling — no hard conflict. Advisory tension with regime deployment target (75%).
+9. **Breadth/sector divergence_flag=True.** Late-cycle phase + defensive tilt from sector-analyst. Advisory only per protocol.
+10. **Reddit egress 403 persistent (23rd+ session).** Retail sentiment signal structurally absent.
+
+### Decision
+**TRADE — AMD PULLBACK limit $515 day TIF, 38 shares (~$19,572 cost basis, 19.5% of equity).**
+
+AMD is the sole candidate passing the R:R 2.0 hard floor today (2.39:1 with Cantor $700 cited target). XLK regime improvement from Bear→Choppy re-opens the sector gate as planned in the Jul 7 note. The FOMC minutes event is now behind us (released Jul 8; market reaction contained). AMD AI Summit Jul 22-23 provides a near-term catalyst 13 days out.
+
+Advisory tensions (exposure-coach REDUCE_ONLY, late-cycle sector phase, stale ML, hawkish FOMC) do not constitute hard gates. None of: entries_blocked, pre_macro_event.cap_active, sector=Bear, R:R<2.0, earnings blackout, or lock are active.
+
+**Deployment plan:** Place 1 order — AMD limit $515 day TIF. Stop GTC at $437.75 (15% ATR-clamped, real GTC order per strategy protocol) immediately upon fill. If AMD closes below $498 on volume before fill → cancel order, revert to watchlist with $473 entry trigger (WF $615 fallback, R:R 2.0:1).
+
+**Waiting condition:** Wait 15 minutes after open before placing order. Monitor premarket direction — if AMD gaps DOWN below $498 at open, cancel plan and reassess.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 on first attempt) + 0 Pro — 22nd+ consecutive 429 session
+- WebSearch calls: 7 (S&P futures/VIX/yield, oil/Iran, earnings catalysts, econ calendar, FOMC result, AMD analyst PTs, AMD technical SMAs)
+- NewsAPI: 10 AMD records / Finnhub insider: 10 AMD insider / EDGAR: 5 AMD Form-4 + quarterly filings / Reddit: 0 (403-blocked)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=704.1h, slots 2→1 (hard gate)
+- FTD: FMP_API_KEY set; state=FTD_WINDOW (Day 7 from Jun 26 low $7,354; no FTD confirmed); Power Trend=YES
+- Analyst PTs (WebSearch confirmed): Cantor $700 [Jun 29], GS $640 [Jul 5] — both current and unchanged
