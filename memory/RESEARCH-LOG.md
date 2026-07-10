@@ -4467,3 +4467,192 @@ Advisory tensions (exposure-coach REDUCE_ONLY, late-cycle sector phase, stale ML
 - ml_insights: status=stale_degrade, age=704.1h, slots 2→1 (hard gate)
 - FTD: FMP_API_KEY set; state=FTD_WINDOW (Day 7 from Jun 26 low $7,354; no FTD confirmed); Power Trend=YES
 - Analyst PTs (WebSearch confirmed): Cantor $700 [Jun 29], GS $640 [Jul 5] — both current and unchanged
+
+---
+
+## 2026-07-10 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — ML stale_degrade 728.1h (30th+ consecutive session); hard gate: trade_slots 2→1. fallback_reason: ml unavailable; using local_screener_v1
+
+**Breadth/Sector:** breadth=55/100 (Neutral) | sector=defensive tilt score=44 phase=late | divergence_flag=True (cyclical/defensive disagree internally)
+
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM
+
+**ML staleness:** age 728.1h (stale_degrade; rule_fallback only) — refresh ml_insights.json on local PC
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $401,889.80
+- Daytrade count: 0/3 | Open positions: 0 | Open orders: 0
+- Phase P&L: +$472.45 (+0.47%)
+
+### Macro Framework
+Neutral regime (rule_fallback, ml stale 728.1h — 30th+ consecutive session). VIX 15.94 (↓ from 16.88 yesterday — improvement). SPY futures +0.2% (light risk-on tone). 10Y yield ~4.60% (flat vs yesterday's 4.58%). 30Y ~5.00% (stable). WTI $72-74 / Brent $76.80 (little changed; Iran geopolitical risk priced in without fresh escalation). Bernstein raised AMD PT $525→$600 [Watcher.guru, Jul 10] citing agentic AI server CPU opportunity — this drove AMD +5.8% today. DAL (Delta) beat Q2 consensus, affirmed 2026 guidance — a positive Q2 earnings season opener [CNBC, Jul 10]. PepsiCo EPS miss ($2.20 vs $2.21) already priced in from Jul 9. No major economic data today — CPI next Tuesday Jul 14 (4 days). Dominant theme: Q2 earnings season kickoff (airlines beat, consumer staples soft) + AI chip demand (AMD, Bernstein catalyst). Breadth 55/100 (Neutral), SPX/breadth healthy alignment (both rising over 60d). Sector: XLI +6.75% / XLF +6.34% / XLV +6.10% top 1mo; XLP −2.68% / XLE −5.89% bottom. vs yesterday: VIX −0.94pt (improved), WTI flat, futures +0.2% vs −0.8% yesterday, AMD +5.8% on analyst catalyst, DAL confirms summer strength.
+> **Naming convention:** SPY ETF (~$745); SPX index level (~7,450). Not used interchangeably.
+
+[degraded: Gemini 429 (23rd+ consecutive session); macro via WebSearch + yfinance]
+
+### Sector Picture
+| Sector | ETF | 1mo Return | Regime |
+|--------|-----|-----------|--------|
+| Industrials | XLI | +6.75% | Choppy |
+| Financials | XLF | +6.34% | Trend ✓ |
+| Healthcare | XLV | +6.10% | Trend ✓ |
+| Technology | XLK | +4.94% | Choppy |
+| Cons. Discretionary | XLY | +2.96% | Bear ✗ |
+| Utilities | XLU | +2.57% | Choppy |
+| Materials | XLB | +1.33% | Bear ✗ |
+| Comm. Services | XLC | −0.45% | Bear ✗ |
+| Real Estate | XLRE | −1.69% | Bear ✗ |
+| Cons. Staples | XLP | −2.68% | Bear ✗ |
+| Energy | XLE | −5.89% | Bear ✗ |
+
+Note: Sector-momentum (yfinance, 1mo) shows XLI/XLF/XLV leading — consistent with ml_insights sectors (XLF Trend, XLV Trend). Disagreement: XLI is Choppy in ml_insights but leads on 1mo momentum (+6.75%). Sector-analyst shows "defensive tilt" with divergence_flag=True — cyclicals (XLI) outperforming on price but regime classifier reading defensive.
+
+### Candidates
+
+**Screener diagnostics:** source=local_screener_v1 (rule_fallback), ranked 47 tickers. Top 10: AMD(1.26), XBI(0.84), UNH(0.76), SMH(0.69), JPM(0.66), CAT(0.65), UNP(0.62), ABBV(0.43), GE(0.40), XLV(0.40). Trade_slots=1 after stale_degrade deduction.
+
+**Watchlist carry-forward:** AMD ($515 PULLBACK, added Jul 9, days_remaining=2). AMD's thesis validated. Screener +0.5 bonus applied. Gap guard to be evaluated below.
+
+#### AMD (XLK, $546.72 +5.8% today)
+
+**Setup:** 52w range $141.60–$584.73; current $546.72 (−6.5% from 52w high). Well above 200-SMA (estimated ~$350 given year-low $141.60). ATR(14)=$37.42 (6.85% of price); stop_pct_2_5x=17.1% → clamped to 15% max. Day range today: $535.20–$559.50.
+
+**Sources scanned (2):** 0 NewsAPI / 10 Finnhub (insider) / 5 EDGAR (Form-4) / 0 Reddit (403-blocked) / 0 Gemini (quota) / WebSearch (2 queries, today's catalyst and PT data).
+
+**Catalyst (new today):** Bernstein (Stacy Rasgon) raised AMD PT $525→$600, Buy, citing agentic AI server CPU demand — 2030 server CPU market estimate raised to $223B from $137B [Watcher.guru/Bernstein, Jul 10 2026]. AMD +5.8% on this note.
+
+**Bull case:** AMD AI Summit Jul 22-23 San Francisco (12 days) — Lisa Su keynote, potential hyperscaler partnership announcements including possible Anthropic contract [Motley Fool/TipRanks, Jul 5 2026; AMD.com event page]. NVDA Kyber delay structural gap remains unfilled (confirmed CNBC Jul 6). Cantor $700 street-high PT unchanged. AMD +143% YTD, strong momentum_125d + rs_vs_sector_60d (both 3.0 factor scores). [WebSearch, Jul 10]
+
+**Bear case:** AMD now $8.26 above max viable R:R entry ceiling ($538.46 with Cantor $700, 15% stop). Bernstein $600 max entry = $461.54 — even more restrictive. Insider selling: Papermaster at $536 Jun 15 (EDGAR, confirmed), Su at $471-476 Jun 10 (EDGAR) — AMD now trading ABOVE Papermaster's sell level ($546 > $536), activating the insider distribution resistance zone. vol_stability factor score −3.0 (maximum negative — highly volatile). [EDGAR, Finnhub]
+
+**Data check:** Bernstein PT $600 [Jul 10 WebSearch] vs GS $640 [Jul 5 prior log] — no conflict; both current and consistent trend of raises. Cantor $700 (Jun 29) still street-high, unchanged. No contradiction.
+
+**Critique (Claude-native):**
+**Strongest counter to the bull case:** AMD's +5.8% move today on the Bernstein raise pushes the stock $8.26 above the last defensible entry ceiling ($538.46 with Cantor $700, 15% stop). This is not just a gap guard issue — it's a structural R:R failure at current prices. The Bernstein $600 target actually RESTRICTS the max entry to $461.54 (35% below current price), meaning even the NEW bullish case makes the stock less buyable, not more. AMD crossed insider selling resistance ($536 Papermaster) on today's rally, with no fresh insider buying to offset. The AI Summit Jul 22 is 12 days out — this binary event could pull the stock higher before materializing, preventing any pullback entry, or disappoint at the event itself.
+
+**Weakly-sourced claims:** AMD +5.8% today and "bullish analyst reports" confirmed by WebSearch but specific intraday trigger (was it premarket or open? exact citation?) unclear — tagged [WebSearch, Jul 10, unverified intraday timing].
+
+**Single most-likely invalidator (next 5 trading days):** AMD fails to pull back to ≤$538.46 before CPI on Jul 14, and CPI comes in hot (above 3.0% consensus) triggering a growth/multiple compression selloff that reopens the entry window only below $461 — at which point the Bernstein thesis ($600) gives only 1:1 R:R from the new bottom.
+
+**Position-aware:** N/A — no open positions; AMD not entereable at current price.
+
+**R:R math (B3):**
+- Watchlist plan: entry $515 limit / stop $437.75 (15% clamped) / target $700 (Cantor, Jun 29 [Investing.com]) / R:R = $185/$77.25 = **2.39:1** ✓ — BUT gap guard fires at current $546.72 (6.2% above $515 plan, >3% threshold)
+- At current price $546.72: stop $464.71 (15%) / target $700 / R:R = ($700-$546.72)/($546.72-$464.71) = $153.28/$82.01 = **1.87:1** ✗ fails 2.0 floor
+- Max entry for 2.0 R:R with Cantor $700 and 15% stop = $538.46. AMD is $8.26 above this ceiling.
+- **No entry available at any price today that achieves R:R ≥ 2.0 with any analyst PT.**
+
+**Setup type:** PULLBACK (carry-forward from Jul 9 watchlist; $515 limit plan)
+
+**Entry plan:** N/A — gap guard fires. AMD on watchlist with $515 limit. Days_remaining = 2 (Jul 13 Mon + Jul 14 Tue CPI day). If AMD does NOT pull back to ≤$538.46 by Jul 14, watchlist expires. CPI on Jul 14 makes a fill that day high-risk (binary event). Effective window: Jul 13 only.
+
+**Gate-history audit (B7):**
+- Jul 6: $530 (not placed — ISM/FOMC uncertainty)
+- Jul 7: dropped — XLK sector Bear
+- Jul 8: not shortlisted — XLK still Bear
+- Jul 9: $515 plan → GAP GUARD (price $547.97, 6.4% above plan)
+- Jul 10 (today): $515 plan → GAP GUARD (price $546.72, 6.2% above plan). AMD has rallied further on Bernstein raise. TODAY: AMD also above max entry ceiling $538.46. No valid entry exists.
+- No gate-creep (plan unchanged at $515 since Jul 9 watchlist entry).
+
+**Decision:** Watchlist carry-forward — no entry today. AMD gap guard fires (6.2% above $515 plan). Moreover, AMD at $546.72 is $8.26 above the max viable entry for 2:1 R:R even with Cantor $700. Zero entries possible at current price. Watchlist days_remaining = 2. Thesis intact for Jul 13 if AMD pulls back.
+
+---
+
+#### XBI (XLV, $164.28, new 52w high $165.71 today)
+
+**Setup:** 52w range $84.39–$165.71 (today's high = new 52w high). ATR(14)=$4.02 (2.45% of price); stop_pct_2_5x=6.12% → clamped to 7% (below 7% floor). Stop 7% below entry. technical_setup factor score: 0.994/1.0 (near perfect — at 52w high). vol_stability: +0.436 (positive — stable ETF).
+
+**Sources scanned (1):** 0 NewsAPI / 0 Finnhub / 0 EDGAR (ETF) / 0 Reddit (403) / 0 Gemini / WebSearch (1 query, XBI analyst target + 2026 outlook).
+
+**Bull case:** XBI at new 52w highs in XLV Trend sector. Biotech M&A wave: $140-160B deal volume forecast 2026 driven by Big Pharma patent cliff ($275B revenue at risk) — structural tailwind for all biotechs [Blockonomi/sector search, Jul 10 2026]. TipRanks shows aggregate analyst consensus target $214.59 (12-month, from 146 analyst ratings on underlying holdings) [TipRanks, tipranks.com/etf/xbi, Jul 10 2026]. Strong Buy rating. XLV Trend regime confirms sector momentum. Momentum_20d factor score: 2.94/3.0 (high short-term momentum).
+
+**Bear case:** ETF with no direct analyst PT coverage. TipRanks target is weighted aggregate of underlying stock targets, NOT a direct XBI analyst price target — validity for trading timeframe (weeks) is ambiguous. Near-term resistance: 2021 ATH ~$174 (training data knowledge). At $174 from breakout entry $165.80: R:R = ($174-$165.80)/($165.80×0.07) = $8.20/$11.61 = **0.71:1** — fails. CPI in 4 days creates macro risk for biotech names.
+
+**Data check (B3 contradiction):** Two possible targets for R:R:
+- $174 (2021 ATH, near-term resistance, 12-month validity for near-term trades) → R:R 0.71:1 ✗
+- $214.59 (TipRanks aggregate consensus, 12-month time horizon) → R:R 4.20:1 ✓
+- These are in direct conflict for the R:R calculation. Per B3: "A contradiction you can't resolve → treat the metric as unknown and do not lean on it." The $174 is the defensible NEAR-TERM target; the $214.59 is a 12-month horizon aggregate.
+
+**Critique (Claude-native):**
+**Strongest counter:** The R:R thesis collapses without the TipRanks aggregate target. The 2021 ATH at $174 — the only concrete resistance level near-term — gives R:R 0.71:1. Even a "measured move" from a consolidation base would require a base range >$23 (from an entry of $165.80, needing target ≥$189 for 2:1). The year_low was $84.39 (deep pandemic-recovery trough); the more relevant recent base is likely $130-145 in late 2025, implying a $30-35 base range → measured-move target $175-180. Even at $180: R:R = ($180-$165.80)/$11.61 = 1.22:1 — still fails. Without a specific analyst PT or a more precise measured-move target above $189, R:R is structurally broken.
+
+**Weakly-sourced claims:** TipRanks $214.59 [WebSearch, Jul 10] — tagged as ETF aggregate, not direct analyst coverage. The "146 analysts" referenced are analysts covering underlying component stocks, not ETF analysts.
+
+**Single most-likely invalidator:** Any hot CPI print Jul 14 triggers risk-off rotation out of healthcare/biotech (XLV historically −2–4% on CPI beats), confirming the $165.71 new high as a bull trap before the release.
+
+**Position-aware (if entered $20k):**
+- Entry at breakout $165.80 / stop $154.19 (7%) / size 120 shares / max risk $1,393 (1.4% portfolio)
+- Sector exposure: 19.9% XLV (currently 0%, cap 2/2 — would use 1st slot)
+- No correlation concerns (no open positions)
+- Shared-catalyst flag: None (M&A is sector-wide, not shared with AMD which is AI infra)
+
+**R:R math (B3):**
+- Entry $165.80 (buy-stop, BREAKOUT) / stop $154.19 (7% clamped) / risk = $11.61/share
+- With $174 target (2021 ATH): R:R = **0.71:1** ✗ FAILS 2.0 hard floor
+- With $214.59 [TipRanks ETF aggregate, 12-mo]: R:R = **4.20:1** ✓ but ambiguous for trading timeframe
+- Decision: treat R:R as UNKNOWN due to target ambiguity. Cannot enter.
+
+**Setup type:** BREAKOUT (if R:R were resolvable)
+
+**Entry plan:** Not applicable — R:R fails with defensible near-term target.
+
+**Gate-history audit:** Third consecutive session at pre-screen stage for XBI. First appearance with TipRanks aggregate target identified (resolves the "what is the target" open thesis question partially). Prior demotions: Jul 8 (no PT), Jul 9 (no PT, R:R fails). No gate-creep — was never planned for entry.
+
+**Decision:** Demoted — R:R fails with defensible near-term target ($174, R:R 0.71:1). TipRanks $214.59 aggregate noted but ambiguous for near-term trading timeframe. Add to follow-up: if XBI sustains above $165.71 through Jul 14 post-CPI and a specific analyst PT ≥ $189 is identified, re-evaluate for next session. Do not add to watchlist (gap guard not the issue; R:R is structurally broken until a higher near-term target is confirmed).
+
+---
+
+### Candidates dropped (and why)
+- **UNH (XLV Trend)** — DOJ criminal investigation ongoing; above consensus PT ($428); earnings Jul 16 (6 days — blackout). Triple-blocked. Not researched.
+- **SMH (XLK Choppy)** — ETF, no analyst PT; 52w high $671.83, current $607.73 (−9.5% below high); R:R = ($671.83−$607.73)/($607.73×0.1236) = 0.86:1 → fails. Not researched deeply.
+- **JPM (XLF Trend)** — ~$345 current; consensus ~$345-350 (1-2% implied upside); stop 7-8% ATR-clamped → R:R <0.25:1. Pre-screened out.
+- **CAT (XLI Choppy)** — ~$940, consensus ~$957 (+1.8%); ATR stop ~11-12% → R:R ~0.15:1. Pre-screened out.
+- **UNP (XLI Choppy)** — historically R:R <1:1 (Jul 8 audit). Pre-screened out.
+- **ABBV, GE, XLV ETF** — 1-slot constraint; AMD + XBI take priority. Not evaluated.
+
+### Historical Analog
+
+**Analog:** July 7, 2023 — SPX near YTD highs (~4,400), VIX 13–15 (today: 15.94 — slightly more elevated), 10Y ~4.0% (today: 4.60% — more hostile). Pre-CPI Friday (2023 CPI released Jul 12 at 3.0% headline, just below 3.1% consensus). Q2 2023 earnings season starting with mixed signals (similar to today's PEP miss / DAL beat dynamic). Fed was hawkish but market in "bad news is ok, good news is great" mode — Neutral regime. [Training data, US equity July 2023 well-documented]
+
+**What followed (Jul 7, 2023 analog):**
+- 5d (+1 CPI): SPX +3.5% (CPI inline → market relief; financials kicked off earnings season with JPM beat)
+- 10d: SPX +4.5% (earnings beats accumulated; Powell semi-annual testimony "more hikes" priced in already)
+- 20d: SPX +5% into late-July Fed meeting (hike priced, no surprise) before Aug 2023 pullback began
+
+**Why this time might differ:** 2023 VIX was ~13 vs today's 15.94 (more uncertainty). 2023 10Y was ~4.0% vs today's 4.6% (meaningfully more rate pressure). 2023 FOMC was in "transitory" → "resolved" pivot narrative; today's FOMC is explicitly hawkish with a 9-8 hike vote. The AMD +143% YTD context means the AI trade is already extended, unlike July 2023 when the AI rally was 3-4 months old (less mature). If CPI on Jul 14 comes in inline or better, the analog plays out positively; a hot print (~3.3-3.5%) diverges sharply from the 2023 benign outcome.
+
+### Risk Factors (consolidated)
+1. **CPI Tuesday Jul 14 (4 days).** Primary near-term risk. Consensus ~3.0%. Hot print → growth selloff → AMD thesis survives only at lower price. Benign → AMD may rally further away from $515 entry.
+2. **ML stale_degrade 728.1h (30th+ session).** Hard gate: slots 2→1. Regime signal is rule-based only; sector calls less reliable.
+3. **AMD above max entry ceiling.** AMD at $546.72 is $8.26 above the Cantor $700 max entry for 2:1 R:R. No entry price available today.
+4. **AMD watchlist expires Jul 14.** 2 trading days remain (Jul 13, Jul 14). If AMD doesn't pull back by CPI day, the $515 plan expires. Would need fresh evaluation post-CPI.
+5. **Exposure-coach REDUCE_ONLY, ceiling 37%.** Advisory tension with Neutral regime. Consistent with HOLD recommendation.
+6. **Insider selling resistance.** Papermaster sold AMD at $536 Jun 15 (EDGAR). AMD now at $546.72 (above resistance level). Su sold at $471-476 Jun 10.
+7. **Gemini 429 (23rd+ consecutive session).** Research depth materially reduced vs full pipeline. All macro from WebSearch.
+8. **Reddit egress 403 (persistent).** Retail sentiment signal absent.
+9. **Late cycle + divergence_flag.** Sector-analyst: defensive tilt, divergence between cyclical/defensive subfactors.
+10. **PepsiCo consumer signal.** EPS miss + revenue beat → volumes under pressure. Consumer discretionary (XLY = Bear) confirmed weak.
+
+### Decision
+**HOLD — no orders placed today.**
+
+Two reasons:
+1. **AMD gap guard fires** (6.2% above $515 plan) AND AMD at $546.72 is above the max viable R:R entry ceiling ($538.46 with Cantor $700 + 15% stop). No valid entry price exists. Watchlist carries forward to Jul 13 with 2 days remaining.
+2. **XBI R:R fails** with the defensible near-term target ($174 2021 ATH → R:R 0.71:1). TipRanks 12-month aggregate ($214.59) exists as a citation but is ambiguous for a swing trading timeframe.
+
+No hard gates were active (entries_blocked=false, sector gates clear for candidates, no lock, no pre-macro cap). The HOLD is purely the R:R hard floor + gap guard mechanics operating as designed.
+
+**AMD re-entry trigger for Jul 13 Mon:** AMD must pull back to ≤$538.46 (max R:R ceiling) before the Jul 14 CPI. If AMD remains ≥$539 through Jul 13 close, the watchlist entry expires without fill.
+
+**Waiting for CPI (Jul 14):** If CPI comes in inline/below → market may open risk-on and AMD could overshoot further, OR it could consolidate and provide entry window. If hot → AMD may sell off creating the pullback entry. Post-CPI environment may reset the entry thesis.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 on first attempt) + 0 Pro — 23rd+ consecutive 429 session
+- WebSearch: 7 calls (oil, S&P/VIX/yields, earnings catalysts, economic calendar, AMD price/PT, DAL earnings, Bernstein AMD PT)
+- NewsAPI: 0 / Finnhub: 10 (AMD insider) / EDGAR: 5 (AMD Form-4) / Reddit: 0 (403)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=728.1h, slots 2→1 (hard gate)
+- FTD: FMP_API_KEY set but ftd.json empty/failed to parse — no FTD state available today
+- Pre-macro: cap_active=false, CPI=Jul 14 (4 days), days_to_event=4 — no deployment cap
+
