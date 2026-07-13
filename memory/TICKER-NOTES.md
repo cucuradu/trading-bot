@@ -38,15 +38,16 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-10): WATCHLIST — PULLBACK thesis intact but AMD gapped further (+5.8%, $546.72 on Bernstein $600 raise). Gap guard fires (6.2% above $515 plan). AMD also above max R:R ceiling ($538.46 with Cantor $700). No entry available at any price today. Watchlist days_remaining=2 (Jul 13 + Jul 14 CPI). AI Summit Jul 22-23 still 12 days away. Max entry ceiling = $538.46 (Cantor $700, 15% stop). [WebSearch Jul 10]
+- Thesis (2026-07-13): WATCHLIST — HOLD. Gap guard fires 8.33% ($515→$557.89). R:R fails even at Cantor $700 street-high (1.70:1 < 2.0 floor). Max entry ceiling $538.46. AMD must pull back to ≤$538.46 before CPI (Jul 14) or after benign CPI print. AI Summit Jul 22-23 (10 trading days) is key upcoming catalyst. Citi: AMD "legitimate second source" in GPU market — new qualitative catalyst. [WebSearch, Jul 13 2026]
 - Recent catalysts:
+  - 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 citing AMD as "legitimate second source" in GPU market [WebSearch, Jul 13]
+  - 2026-07-13: AMD $557.89 (−0.33%), 4.6% below 52w high $584.73; above all max viable entry ceilings
   - 2026-07-10: Bernstein raised AMD PT $525→$600 (Buy, Stacy Rasgon) — agentic AI server CPU demand; 2030 server CPU market est. raised to $223B from $137B [Watcher.guru/Bernstein, Jul 10]
-  - 2026-07-10: AMD +5.8% intraday; trading $535–$559 range; above insider resistance $536 (Papermaster Jun 15, EDGAR)
-  - 2026-07-09: XLK regime improved Bear→Choppy — AMD entry gate re-opened [ml_insights, Jul 9]
   - 2026-07-08: Goldman Sachs raised AMD PT $450→$640 (Buy, Jul 5) citing agentic AI CPU demand [TheStreet, Jul 5]
   - 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB snag) → hyperscalers evaluate AMD alternatives [CNBC, Jul 6]
+  <!-- archive: 2026-07-10: AMD +5.8% intraday; trading $535–$559 range; above insider resistance $536 -->
+  <!-- archive: 2026-07-09: XLK regime improved Bear→Choppy — AMD entry gate re-opened -->
   <!-- archive: 2026-07-06: Wells Fargo upholds Overweight; Cantor Fitzgerald top pick (above NVDA/AVGO) -->
-  <!-- archive: 2026-07-02: Asia chip contagion (SK Hynix −14%, Samsung −9%) → AMD −4.8% -->
   <!-- archive: 2026-07-01: WF Aaron Rakers raised AMD PT $505→$615 (Overweight; EPYC Venice) -->
   <!-- archive: 2026-06-29: Cantor Fitzgerald $700 PT (from $500) — street high -->
   <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455) -->
@@ -435,15 +436,16 @@ Conventions:
 ## XBI — SPDR S&P Biotech ETF
 
 - Sector: XLV (Healthcare)
-- Thesis (2026-07-10): Screener #2 (ml_score 0.84) XLV Trend; new 52w high $165.71 today. TipRanks shows aggregate analyst consensus $214.59 (12-mo, 146 analysts on underlying holdings) [TipRanks, Jul 10]. R:R with near-term target $174 (2021 ATH) = 0.71:1 → fails. R:R with TipRanks aggregate = 4.20:1 but target ambiguous for trading timeframe. Third consecutive demotion — R:R structurally broken until higher near-term cited target confirmed.
+- Thesis (2026-07-13): Screener #2 (ml_score 0.76) XLV Trend; pulled back from 52w high $165.71 to $159.03 (−4.0%). R:R with $174 2021 ATH target = 1.34:1 → fails. Base case $180 = 1.88:1 → fails. TipRanks $214.59 (12-mo aggregate) not usable for swing timeframe. Fourth consecutive demotion; R:R structurally broken. Key: post-CPI (Jul 14), if benign AND XBI reclaims $165.71, fresh BREAKOUT setup warrants re-evaluation with higher cited target. [WebSearch, Jul 13 2026]
 - Recent catalysts:
-  - 2026-07-10: New 52w high $165.71 (intraday); closed near $164.28; XLV Trend; Biotech M&A wave $140-160B deal volume forecast 2026 [Blockonomi, Jul 10]
-  - 2026-07-10: TipRanks aggregate analyst consensus $214.59 (12-mo, 146 analysts on components) [tipranks.com/etf/xbi, Jul 10] — first cited target > $189 (2:1 floor from $165.80 with 7% stop = $189.02)
+  - 2026-07-13: XBI $159.03 (pulled back 4.0% from 52w high $165.71); failed breakout context
+  - 2026-07-13: 2026 YTD biotech M&A: $106B / 201 transactions; full-year $140-160B forecast [WebSearch, Jul 13]
+  - 2026-07-10: New 52w high $165.71 (intraday); closed near $164.28; XLV Trend; Biotech M&A wave [Blockonomi, Jul 10]
+  - 2026-07-10: TipRanks aggregate analyst consensus $214.59 (12-mo, 146 analysts on components) [tipranks.com/etf/xbi, Jul 10]
   - 2026-07-08: New 52w high $164.35; XLV Trend regime confirmed
   <!-- archive: 2026-07-07: Broke above 52w-high ($161.56→$163.93) on broad risk-on (ISM Services 54.0, benign) -->
 - Open thesis questions:
-  - **Target resolution (B3 contradiction):** $174 (2021 ATH near-term) gives R:R 0.71:1; TipRanks $214.59 gives 4.20:1 but is 12-month ETF aggregate. For R:R to pass with defensible target, need cited near-term level ≥ $189 (minimum for 2:1 from $165.80, 7% stop). Is there a specific biotech M&A or biotech sector price target that implies $189+ for XBI?
-  - **CPI risk (Jul 14):** Hot CPI often triggers XLV selloff (−2–4%). If XBI holds above $165 post-CPI, confirms breakout strength and may attract fresh analyst coverage with higher targets.
-  - **Breakout confirmation:** If XBI sustains above $165.71 through CPI, re-evaluate with measured-move target from exact base structure.
+  - **Target resolution (B3 contradiction — ONGOING):** $174 (2021 ATH) gives 1.34:1; $214.59 (TipRanks, 12-mo aggregate) gives 4.99:1 but unusable. Minimum cited near-term target ≥ $178.30 needed for 2:1 from $159.03 + 7% stop. CPI watch: if benign → XBI may re-approach $165 → recheck breakout thesis. If hot → XBI drops further; wait for reset.
+  - **Post-CPI re-entry criteria (Jul 15):** XBI closes above $165.71 Jul 14 + benign CPI + institutional analyst PT ≥ $189 found → re-evaluate as BREAKOUT setup.
+  - **Note on base case:** rockflow.ai $160-180 base case target is a low-confidence source; not usable for R:R.
 - Trade history: (none — demoted pre-synthesis on R:R; not entered)
-- Position-aware notes: ETF aggregate target ($214.59) noted as first >$189 data point but ambiguous for trading timeframe. Monitor for individual analyst note citing $200+ XBI target to resolve the B3 contradiction.
