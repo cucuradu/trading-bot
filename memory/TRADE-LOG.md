@@ -416,3 +416,34 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **Key takeaway:** 36th+ consecutive HOLD session since May 23 pre-market test. Watchlist management active; no new equity deployed. Account remains opportunistically positioned in cash with 1 trade slot available.
 
+---
+
+## 2026-07-14 — Market-open (CPI released; zero candidates)
+
+**Account status:** $100,472.45 equity, 100% cash (no open positions).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Tue):** 0 / 3.
+
+**Market conditions:** CPI released 8:30 ET: 3.5% YoY vs 3.8% consensus (COOL surprise; -10% gasoline on Iran ceasefire). Core CPI held 2.9%. Bank earnings wave (JPM/WFC beat; GS/BAC/C also reported). VIX 17.16 pre-CPI, post-CPI volatility absorbed. S&P 500 futures -0.2% pre-print, post-CPI stabilized. 30Y yield ~5.11% (+5bp vs Jul 13). WTI $79.56 (+2%, Iran-US interim ceasefire uncertainty). SPX near year-highs; Nasdaq modestly positive. Regime Neutral (rule_fallback; ML stale 825.1h, slots: 1). Sector: XLV +5.57% 1mo (Choppy regime screener), XLF +4.69% (Trend), XLK -5.48% (Bear).
+
+**Pre-market plan:** HOLD — zero candidates cleared hard gates.
+- UNP: R:R 2.02:1 only at street-high $330 (MS/Jefferies). Consensus $291.73 implies 0.13:1 — merger premium already priced. XLI Choppy, late-cycle sector. 1-slot constraint too scarce for borderline 2.02:1. DEMOTED. If post-CPI rally pushes through 52w high $290.41, PULLBACK limit at $289 unlikely to fill.
+- AMD: Watchlist carry, gap guard fires ($534.39 vs $515 plan, +3.77% above 3% threshold). 3 days remaining on watchlist. AI Summit Jul 22-23 catalyst intact; Cantor $700 PT intact. Stand down; re-evaluate Jul 15.
+
+**STEP 3 Pre-flight check:**
+- Positions: 0 (all checks clear for zero entries)
+- Daytrade count: 0/3 (sufficient buffer)
+- Weekly trades: 0/3 (sufficient buffer)
+- Risk gates: entries_blocked=false, tighten_trails=false, lock_file=not_present
+- ML insights: stale_degrade active (slots degraded 2→1); pre-macro cap resolved (CPI benign, no further slot reduction)
+
+**Decision:** **HOLD — no orders placed.** Pre-market research identified zero candidates meeting the non-negotiable 2.0 R:R floor. UNP thesis analyzed; consensus PT already prices in merger premium. Single available trade slot reserved for higher-conviction setups. AMD watchlist remains active on pullback trigger.
+
+**Primary monitoring trigger for next session (Jul 15):**
+- AMD: Any pullback to ≤$538 (2:1 R:R threshold with $700 target) → re-evaluate; AI Summit Jul 22-23 15 days away.
+- UNP: If closes below $285 on Jul 14 (CPI relief fades) → PULLBACK setup with $330 target → re-evaluate Jul 15.
+
+**No WhatsApp alert needed.** Routine executed, no orders fired.
+
+**Key takeaway:** 37th+ consecutive HOLD session. Watchlist management active; account remains opportunistically positioned in cash with 1 trade slot. CPI benign outcome supports existing "REDUCE_ONLY, ceiling 38%" exposure guidance.
+
