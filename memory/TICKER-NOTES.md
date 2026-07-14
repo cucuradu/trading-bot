@@ -324,12 +324,16 @@ Conventions:
 - Position-aware notes: 0% XLV exposure; standing disqualifier blocks entry regardless of sector-cap availability.
 
 ## UNP (XLI)
-- Thesis (2026-06-04): XLI Trend regime; Q1 FY2026 EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%); Norfolk Southern integration potential PT uplift; consensus PT $273.36 (26 analysts), Barclays outlier $315 (Apr 24, 2026); current $262.13. DEMOTED — R:R 0.96:1 with year-high $279.70 as target fails 2.0 floor; entry only viable if price retraces to ~$245–250.
+- Thesis (2026-07-14): At 52w high ($289.13 vs year-high $290.41); NSC merger STB application accepted May 28, 2026 — transcontinental rail catalyst; consensus PT $291.73 (23 analysts, essentially inline with price); street-high $330 (Morgan Stanley + Jefferies) gives R:R 2.02:1 — barely passes but thin; XLI Choppy regime; earnings Jul 23. DEMOTED — too thin on street-high only; re-entry viable if pulls back below $285 (R:R improves to 2.25:1 at $330).
 - Recent catalysts:
-  - 2026-Q1: EPS $2.87, revenue $6.22B (+3.2%); analyst PT wave higher
-  - 2026-04-24: Barclays raises PT to $315 [MarketBeat via WebSearch]
+  - 2026-Q1: EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%)
+  - 2026-05-28: STB accepted amended UNP-NSC merger application [Wikipedia/SEC]
+  - 2026-07-09: Citigroup raises PT to $326 [Benzinga]
+  - 2026-07-14: CPI cool (3.5% vs 3.8%) — macro tailwind for long-duration infrastructure
+  - <!-- archive: 2026-04-24: Barclays raises PT to $315 [MarketBeat] -->
 - Open thesis questions:
-  - Norfolk Southern deal progress — updates at Q2 earnings Jul 23?
+  - STB hearing timeline: will any concession language emerge Q3 2026?
+  - Q2 earnings Jul 23: EPS trend continuation or freight volume softening?
   - Freight volume sensitivity to US-China tariff regime?
 
 ## V (XLF)

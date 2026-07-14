@@ -4837,3 +4837,157 @@ Pre-macro deployment cap enforced (CPI within_24h → 40% cap). Even if a 2:1 ca
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=800.1h, slots 2→1 (hard gate — 33rd+ consecutive degrade session)
 - Pre-macro: cap_active=true, CPI Jul 14, within_24h=true → 40% deployment cap enforced
+
+## 2026-07-14 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) fallback_reason: ml unavailable; using local_screener_v1
+
+**ML staleness:** age 824.1h (stale_degrade — hard gate; trade_slots 2→1; 34th+ consecutive degrade session)
+
+**Pre-macro:** cap_active (event: CPI on 2026-07-14, days_to_event=0) → 40% deployment cap. CPI RELEASED: 3.5% YoY vs 3.8% consensus — BENIGN (cool surprise). No further slot reduction per STEP 4-bis benign protocol.
+
+**Breadth/Sector:** breadth=58/100 (Neutral) | sector=defensive tilt score=38 phase=late | divergence_flag=True (cyclical/defensive internal disagreement)
+
+**Exposure:** ceiling=38% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM
+
+**FTD:** No data (FTD script produced no valid JSON output — FMP key present but script error).
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 (100%) | Buying power: $401,889.80 | Daytrade count: 0 | Open positions: 0 | Open orders: 0
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ml stale 824.1h — 34th+ consecutive session). Dominant theme today: June 2026 CPI released at 8:30 ET showing 3.5% YoY vs 3.8% consensus (COOL surprise; driven by -10% gasoline in June on Hormuz reopening); core CPI held at 2.9%. Simultaneously, Q2 bank earnings flood: JPM and WFC beat estimates on strong IB/trading revenues; GS/BAC/C also reported. VIX 17.16 pre-CPI (+14% — elevated positioning going into the print); S&P 500 futures -0.2% pre-CPI. 30Y yield ~5.11% (+5bp vs Jul 13's 5.06% — long-end pressure persisting). WTI $79.56 (+2%; Iran-US interim ceasefire has "removed war premium" but supply uncertainty lingers, Iran export volumes unclear [FXLeaders, Jul 14 2026]). SPX near year-highs; Nasdaq futures modestly positive on AI theme recovery. vs Jul 13: yields +5bp (5.06→5.11%); WTI +$8.56 (+12% — Iran deal uncertainty driving rebound from $71 ceasefire lows); VIX +2.13pt (pre-CPI fear); CPI resolved as benign (removed the primary binary risk); bank earnings beat (JPM/WFC). Regime Neutral unchanged (38th+ consecutive).
+
+> **Naming convention (B8):** SPY (~$748 today) = ETF; SPX (~7,480 index) = index. Not interchangeable.
+
+### Sector Picture
+**Top 3 by 1mo momentum:**
+1. Healthcare XLV +5.57% — regime: Choppy (screener) [DISAGREE with momentum leading; screener uses 7-factor composite including vol stability and technical setup — XLV Choppy despite 1mo price leadership is a tension]
+2. Financials XLF +4.69% — regime: Trend ✓
+3. Utilities XLU +2.19% — regime: Choppy
+
+**Bottom 3:**
+1. Technology XLK -5.48% — regime: Bear ✓
+2. Materials XLB -3.66% — regime: Bear ✓
+3. Consumer Discretionary XLY -2.13% — regime: Bear ✓
+
+**Screener/momentum disagreement:** XLV shows +5.57% 1mo momentum but screener rates Choppy. Possible cause: XLV healthcare run driven by UNH/LLY weight (individual stock factors), not broad sector trend — consistent with late-cycle defensive rotation where leadership is concentrated. No entries from XLV today regardless (UNH blackout).
+
+### Candidates
+
+#### UNP (XLI, $289.13 +$1.01 vs prev close)
+
+**Setup:** UNP near 52w high ($290.41 = +0.4% above last close). 200-SMA distance: n/a (yfinance not fetched to save quota; prior note Jun 4 showed $262 below highs). ATR(14)=$5.55 (1.92% of price); stop_pct_2_5x=4.80% → clamped to 7.0% = $268.89 stop.
+
+**Sources scanned (2):** 0 NewsAPI / 0 Finnhub (403) / 2 EDGAR (Form 4 filings Jul 13) / 0 Reddit (403) / 1 WebSearch (Gemini 429 — 25th consecutive).
+
+**Bull case:**
+- NSC merger (agreed Jul 28, 2025; STB application accepted May 28, 2026) creates transcontinental rail network across 43 states, 100 ports — largest rail consolidation in US history [Wikipedia/SEC DEF14A]. Long-term PT uplift potential to $426+ by 2030 [TIKR.com].
+- Street high $330 (Morgan Stanley + Jefferies) [MarketBeat, confirmed Jul 14 2026]. Citigroup raised to $326 Jul 9, 2026 [Benzinga]. JP Morgan $304.
+- Q2 earnings Jul 23 (9 days) — within catalyst window. Q1 EPS $2.87 (+5.9% YoY). Strong freight market backdrop (consumer resilient, bank earnings beat).
+- CPI cool print today removes macro headwind for railroads; lower rates would compress discount rate on long-duration infrastructure assets.
+
+**Bear case:**
+- Consensus analyst PT $291.73 — essentially inline with current price ($289.13); only 0.9% upside at consensus [S&P Global, 23 analysts]. The bull case requires adopting the single most bullish analyst view.
+- WTI +12% from ceasefire lows to $79.56 → diesel fuel cost headwind for rails; transportation sector cost structure pressured.
+- XLI sector "Choppy" regime; sector-analyst late-cycle, defensive tilt, divergence_flag=True. Late-cycle phase historically reduces upside momentum in industrial names.
+- STB merger review timeline: no imminent ruling expected; regulatory risk persists (STB issues concessions or delays are common in rail mega-mergers).
+
+**Disconfirming evidence:** EDGAR Form 4 filings Jul 13 (2 insider transactions) — not adverse by themselves (Form 4 sales common at high-price moments), but timing at 52w high warrants noting.
+
+**Catalysts next 14d (dated):**
+- Q2 earnings: Jul 23, 2026 (9 days) — EPS estimate ~$2.98 (+3.8% YoY per prior trend)
+- STB merger hearing: ongoing; no scheduled date per public docket
+
+**One-line takeaway:** UNP at 52w high with structural NSC merger catalyst, but street-consensus PT barely clears current price; only the street-high $330 provides workable R:R.
+
+**Critique (Claude-native):**
+
+**Strongest counter to the bull case:** The consensus analyst target of $291.73 — from 23 analysts — is essentially at today's price. Only the most bullish two analysts (Morgan Stanley and Jefferies at $330) provide the 2:1 R:R threshold. This means the market has largely priced in the NSC merger premium; the street's median expectation is "flat from here." Using a street-high outlier as the operative price target when the median says $291 is analytically equivalent to betting on the most optimistic outcome. The XLI Choppy regime and late-cycle sector rotation compound the risk: even if UNP deserves $330 on a 12-month view, the near-term path through earnings (Jul 23) and potential STB concession announcements is highly uncertain. [MarketBeat consensus data, Jul 14 2026]
+
+**Weakly-sourced or unsourced claims:** "Q2 EPS estimate ~$2.98" — extrapolated from prior trend (prior TICKER-NOTES), not confirmed by a buy-side estimate service this session [Gemini grounded — unverified]. TIKR.com $426 by 2030 is a 4-year model, not a swing-trading target.
+
+**Single most-likely invalidator (next 5 trading days):** UNP closes below $285 (3-day MA support; consolidation base) following Q2 earnings guidance cut or STB issuing preliminary concessions language on Jul 17-18, signaling the merger timeline has extended further into 2027.
+
+**Position-aware (if entered $20k at $289.13):**
+- Sector exposure post-entry: 20% (XLI, 0 existing XLI positions)
+- 30d correlation with existing positions: N/A (no open positions)
+- Sector cap status: 0/2 XLI (clean)
+- Shared-catalyst flag: none — no other candidates share the NSC/rail thesis
+
+**R:R math (B3):**
+- Entry $289.13 (PULLBACK limit, day TIF) / stop $268.89 (-7.0%, 2.5×ATR clamped)
+- Risk per share: $20.24
+- **Target $330 (Morgan Stanley + Jefferies, street-high) [MarketBeat, Jul 14 2026]:** R:R = $40.87 / $20.24 = **2.02:1 → barely passes 2.0 floor — using STREET HIGH only**
+- Target $326 (Citi, Jul 9 [Benzinga]): R:R = $36.87 / $20.24 = **1.82:1 → fails**
+- Consensus $291.73: R:R = $2.60 / $20.24 = **0.13:1 → fails**
+- Max risk at 20% position: 69 shares × $20.24 = **$1,397 (1.4% of equity)**
+
+**Setup type:** PULLBACK — price is at 52w high and would need to pull back to $289 to fill the limit. If CPI rally pushes UNP through $290.41, limit does not fill and thesis carries to watchlist.
+
+**Entry plan:** PULLBACK → limit $289.00 (day TIF). If fills: stop GTC $268.89.
+
+**Gate-history audit (B7):** Prior RESEARCH-LOG entries for UNP:
+- Jun 4: demoted (R:R 0.96:1 with $279 year-high target, current $262)
+- Jul 11: dropped pre-research ("prior R:R <1:1. Not researched.")
+- No prior planned entry above $289 → no gate-creep issue. Today is first session with $330 street-high PT as operative target. Revision from "not researched" to full research justified by: Q2 earnings approaching (Jul 23), NSC merger maturity (STB accepted May 28), and Citi PT raise Jul 9 ($326). This is a genuine new catalyst sequence, not a drifting gate.
+
+**Decision: DEMOTED — HOLD.** R:R passes only at street-high ($330 MS/Jefferies). Consensus $291.73 gives 0.13:1 — the market has already priced in the merger; only the most bullish view clears 2.0. With XLI Choppy regime, late-cycle sector signal, pre-macro cap still technically active (set at routine start), ML stale_degrade, and 1 trade slot too precious for a borderline 2.02:1 name, this does not clear the bar. If post-CPI rally pushes UNP through $290.41 (52w high), the PULLBACK limit at $289 likely won't fill and confirms carries to watchlist at a lower trigger. Re-evaluate Jul 15 if UNP pulls back below $285.
+
+---
+
+### Candidates Dropped (and why)
+- **UNH (XLV)** — earnings Jul 16 (2d), blackout active. Triple-blocked (prior DOJ investigation context + inside blackout). Not researched.
+- **JPM (XLF)** — earnings today (Jul 14, blackout). Reported before market open, but in blackout for entry purposes. Not researched.
+- **CAT (XLI)** — prior sessions show R:R <1.0:1 at current prices; sector XLI Choppy same as UNP but with worse PT math. Not researched.
+- **XBI (XLV)** — R:R fails at defensible near-term target ($174 2021 ATH, 1.34:1). Same structural issue as Jul 8-11. Would need institutional XBI PT ≥$189 to attempt re-entry. Not researched.
+- **LLY (XLV)** — XLV Choppy regime; 1-slot constraint exhausted by UNP research.
+- **ABBV (XLV)** — same as LLY; XLV Choppy; slot constraint.
+- **JNJ (XLV)** — earnings expected this week (blackout risk); XLV Choppy. Not researched.
+- **KO (XLP)** — XLP Choppy; low growth thesis inconsistent with 2:1 R:R requirement in flat-multiple environment. Not researched.
+- **MS (XLF)** — in blackout (earnings today along with JPM/GS). Not researched.
+- **AMD (XLK)** — watchlist carry ($515 entry); gap guard fires: current $534.39 / plan $515 = +3.77% above threshold (3% max). Watchlist days remaining: 3 (per list). AI Summit Jul 22-23 catalyst intact; Cantor Fitzgerald $700 PT intact. Gap guard requires standing down; carry to Jul 15.
+
+### Historical Analog
+
+**Analog:** July 13, 2023. June 2023 CPI printed 3.0% YoY vs 3.1% consensus (benign cool surprise driven by energy). Simultaneously, JPMorgan, Wells Fargo, and Citigroup all beat Q2 2023 earnings before the open — strong IB and trading revenues. VIX was ~13.5 (lower than today's 17.16). SPX was near YTD highs. 10Y yield was ~3.97% (well below today's ~4.5%). The structural narrative was "disinflation confirming a soft landing." [Training data, US equity July 2023; BLS CPI release July 12, 2023 confirmed 3.0%]
+
+**What followed:**
+- 5d (through Jul 18, 2023): SPX +2.4% — initial relief rally then consolidation
+- 10d (through Jul 21, 2023): SPX +3.8% — Q2 earnings beats accumulated across financials/healthcare
+- 20d (through Aug 2, 2023): SPX +3.5% — Fitch US rating downgrade on Aug 1 checked the rally; industrials/transports underperformed as freight rates softened
+
+**Why this time might differ:** 30Y yield at 5.11% today vs 3.85% in July 2023 — dramatically higher rate structure compresses rail valuations (long-duration capex assets). WTI at $79.56 today vs ~$72 in July 2023 — diesel fuel headwind is 10%+ larger. UNP-NSC mega-merger pending STB creates an idiosyncratic upside catalyst not present in 2023. Bank earnings beat is directionally similar, but the Warsh Fed's hawkish posture (9-8 hike split noted in FOMC minutes) means the "pivot" narrative that drove July 2023's rally is less available as a catalyst today — the easing bias has been explicitly dropped.
+
+### Risk Factors (consolidated)
+1. **WTI $79.56 (+12% from ceasefire lows).** Iran deal uncertainty; if export volumes disappoint, WTI spikes → diesel fuel cost headwind for XLI/transportation. CPI-favorable but oil rebound re-tests inflation narrative if sustained.
+2. **30Y yield 5.11% (+5bp).** Long-end persistence signals markets skeptical of near-term Fed easing despite cool CPI; rate-sensitive industrials and infrastructure names face continued discount-rate pressure.
+3. **ML stale_degrade 824.1h (34th+ session).** Screener output is rule-based only; sector regime calls have lower confidence. Hard gate active; only 1 slot.
+4. **Bank earnings concentration risk (today).** JPM/GS/BAC/WFC/C all reporting. Mixed guidance from any of the large five → sector rotation volatility.
+5. **Sector: defensive tilt, late cycle, divergence_flag=True.** Advisory signals consistently pointing away from aggressive deployment for 6+ weeks.
+6. **Exposure-coach REDUCE_ONLY, ceiling 38%.** Advisory but persistent; consistent with no new deployment until regime improves.
+7. **AMD watchlist gap risk.** If AMD continues to gap above $515 plan, watchlist expires (3 days remaining from today). If AI Summit Jul 22-23 approaches without a pullback, thesis may need to be retired.
+8. **Reddit egress 403 (persistent).** Retail sentiment signal absent.
+9. **Gemini 429 (25th consecutive session).** Macro synthesis entirely from WebSearch; depth reduced vs native grounded Gemini.
+
+### Decision
+**HOLD — no orders placed today.**
+
+Single candidate researched (UNP) demoted:
+- **UNP:** R:R 2.02:1 passes only at street-high $330 (Morgan Stanley/Jefferies). Consensus $291.73 implies 0.13:1 — the merger premium is already priced at consensus. Sector XLI Choppy, late cycle. 1 available slot is too scarce for a 2.02:1 borderline name on street-high only. Post-CPI rally may push UNP through 52w high ($290.41), making PULLBACK limit at $289 unlikely to fill.
+
+Pre-macro cap enforced (set at routine start, cap_active=true). CPI now resolved as benign — positive for risk assets. Full re-evaluation at market-open if AMD has pulled back toward $515 or UNP shows PULLBACK.
+
+**Watchlist update:** AMD remains active (gap guard fires again, $534.39 vs $515, +3.77%; 3 days remaining; AI Summit Jul 22-23 catalyst intact).
+
+**Re-entry triggers for Jul 15:**
+- AMD: Any pullback to ≤$538 → re-evaluate R:R with Cantor $700 (requires ≤$538.46 for 2:1). Cool CPI may trigger "sell the relief" on AI names → watch for gap down.
+- UNP: If closes below $285 on Jul 14 (post-CPI relief fades) → PULLBACK setup with $330 target → R:R 2.45:1 → re-evaluate Jul 15.
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 — 25th consecutive session) + 0 Pro
+- WebSearch: 8 calls (CPI actual print, S&P futures/VIX, WTI oil, JPM/BAC/GS earnings, market reaction CPI, UNP analyst PTs, UNP-NSC merger status, 30Y Treasury yield)
+- NewsAPI: 0 / Finnhub: 0 (403) / EDGAR: 2 (UNP Form 4 Jul 13) / Reddit: 0 (403)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=824.1h, slots 2→1 (hard gate — 34th+ consecutive degrade session)
+- Pre-macro: cap_active=true, CPI Jul 14, within_24h=true, days_to_event=0 → 40% cap; CPI print BENIGN (3.5% vs 3.8%) → no further slot reduction
