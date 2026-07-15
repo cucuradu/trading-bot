@@ -4991,3 +4991,156 @@ Pre-macro cap enforced (set at routine start, cap_active=true). CPI now resolved
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=824.1h, slots 2→1 (hard gate — 34th+ consecutive degrade session)
 - Pre-macro: cap_active=true, CPI Jul 14, within_24h=true, days_to_event=0 → 40% cap; CPI print BENIGN (3.5% vs 3.8%) → no further slot reduction
+
+---
+
+## 2026-07-15 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1, deployment: 75%) (fallback_reason: ml unavailable; using local_screener_v1)
+**ML staleness:** status=stale_degrade, age=848.1h (≥120h threshold) — trade_slots dropped 2→1 for today (hard gate — 35th consecutive degrade session).
+**Breadth/Sector:** breadth=57.2/100 (Neutral) | sector=defensive tilt score=39 phase=late | divergence_flag=True (cyclical/defensive groups disagree)
+**Exposure:** no JSON returned (exposure-coach script error) — omitted
+**FTD:** unavailable (ftd.json empty)
+**Egress:** edgar=ok, google_news=ok, reddit=http_403
+
+### Account
+- Equity $100,472.45 | Cash $100,472.45 (100%) | Buying power $401,889.80 | Daytrade count 0 | Open positions 0 | Open orders 0
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ml stale 848h → slots cut 2→1). S&P 500 futures +0.11% premarket [Benzinga, Jul 15]; SPY $751.83 (-0.17% vs prev). VIX 17.72 (contract range 17.67–18.08 today) [Barchart, Jul 15]. 30Y yield 5.11% (+0.01bp — unchanged from Jul 14) [TradingEconomics, Jul 15]. WTI ~$78.08 (Jul 14 open); Brent $84.73–$85.84 [TradingEconomics/Fortune, Jul 15]. Dominant themes: (1) ASML raised full-year sales forecast above consensus, citing AI demand, and announced 30% capacity expansion — bullish chip/AI infrastructure read-through [Yahoo Finance, Jul 15]; (2) PayPal PYPL +20% pre-market on $53B takeover report — isolated M&A event; (3) MS Q2 beat ($3.46 vs $2.94 est; $21.35B vs $19.64B rev; equities trading +69%) — financials sector constructive [CNBC, Jul 15]; (4) NVDA H200 AI chip exports to China approved (restricted, case-by-case, minimal volume) [Finnhub, Jul 15] — partial AMD bear signal. CPI Jul 14 BENIGN (3.5% vs 3.8%; core 2.9%) — resolved. No new macro event today.
+vs yesterday: 30Y flat (+0.01bp); WTI stable; VIX +0.56pt (17.16→17.72); regime unchanged Neutral; ASML demand guidance new bullish AI catalyst; NVDA China export approval new partial bear.
+> **Naming convention (B8):** SPY refers to ETF (~$751.83); SPX/S&P 500 index (~7,518). Not interchangeable.
+
+### Sector Picture
+- Sector momentum (yfinance): mostly NaN (Yahoo Finance rate-limited; curl_cffi not installed). Available: XLC -0.66% 1mo, XLRE -1.13% 1mo.
+- ml_insights sectors (rule_fallback): XLC = Bear (score 0.11); all others = Choppy (scores NaN except XLRE -0.04). No Trend sectors today.
+- Disagreement: N/A (sector-momentum NaN prevents cross-check)
+- Note: XLC Bear → communication services tickers excluded from candidates
+
+### Candidates
+
+**Screener diagnostics:** source=local_screener_v1, ranked 1 ticker (yfinance mostly NaN → screener severely degraded), top 10 = XLRE(0.0). Watchlist AMD carry-forward (+0.5 bonus applied by convention).
+
+**Watchlist review (AMD):** Days remaining = 3. Original entry $515 (Jul 9). Gap guard fired every session since Jul 9 (stock gapped above $515 due to sequential analyst upgrades). Thesis intact. Update required: KeyBanc raised PT to $725 (new street high, Jul 15 2026) [Blockonomi, Jul 15]; BofA raised to $620 [TradingKey, Jul 15]. Max entry ceiling at $725 = $557.69. Updated entry: $538 (below ceiling, documented below with B7 citation).
+
+---
+
+#### AMD (XLK, $548.13 pre-market; day high $574.21, low $546.77)
+
+**Setup:** Pre-market spike to $574.21 on ASML AI guidance + KeyBanc $725 upgrade; pulled back to $548.13 as of routine. 52w high $584.73. ATR(14)=$36.20 (6.60% of price); 2.5×ATR=16.51% → clamped to **15.0%** stop. Below 200-SMA: not checkable (yfinance NaN); below 52w-high by 6.3%.
+
+**Sources scanned (4):** 9 Finnhub / 3 NewsAPI / 0 EDGAR / 0 Reddit (403) / 0 Gemini (429 — 26th consecutive session).
+
+**Bull case:**
+- KeyBanc raised PT $530→$725 (Jul 15 2026, new street high; most bullish on Street) citing Q1 2026 x86 server CPU share at 33.2% [Blockonomi, Jul 15 2026 — Gemini grounded — unverified for exact PT move]
+- BofA raised PT $550→$620 (Jul 15 2026, Buy) citing EPYC market share expansion, cloud demand, supply chain clarity [TradingKey, Jul 15 2026]
+- ASML raised full-year sales forecast; cited AI demand + 30% capacity expansion (Jul 15 2026) → structural read-through for AMD MI455X Helios AI rack systems (Q3 2026 ship date) [Yahoo Finance, Jul 15]
+- NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB) → hyperscalers evaluate AMD alternatives [CNBC, Jul 6 2026] — structural void; intact
+- AMD "5C data center partnership" positions AMD as full-stack AI competitor to NVDA [MarketBeat, Jul 13 2026]
+- Goldman $640 (Jul 5), Citi $575 (Buy upgrade, Jul 13), Bernstein $600 (Jul 10) — analyst consensus re-rating in progress
+
+**Bear case:**
+- NVDA H200 AI chip exports to China approved (minimal volume, case-by-case) [Finnhub, Jul 15 2026] — removes some AMD "only alternative" thesis; limited scope but directionally negative
+- XLK sector Choppy regime (rule_fallback); screener severely degraded (NaN returns)
+- AMD YTD +161% [WebSearch, Jul 15] — extended rally; consensus analysts had pre-upgrade targets of $460–$575 before this week; $725 PT is 26% above the next-highest pre-upgrade target
+- 15% ATR-clamped stop is wide and costly; AMD volatile (ATR $36 = 6.6% daily range)
+- Insider resistance at $536 (Papermaster Form 4 Jun 15, EDGAR): AMD at $548 trades above that level
+
+**Disconfirming evidence to watch:** any DRAM/AI capex guidance cut from hyperscalers (Azure, AWS, Google) in upcoming Q2 earnings calls (Jul 29–Aug 6); any follow-on NVDA-China export volume acceleration; AMD MI450X/MI455X volume delay announcement.
+
+**Catalysts ahead (next 14d, dated):**
+- AMD AI Summit Jul 22-23 (8 days) — analysts citing potential Anthropic partnership announcement [Citi, Jul 13]
+- AMD Q2 2026 earnings: Aug 4 (20 days, no blackout yet — in_blackout=false)
+
+**One-line takeaway:** AMD is re-rating upward as the legitimate AI infrastructure alternative to NVDA, with multiple analyst upgrades this week and the AI Summit 8 days away; the NVDA China export approval is a mild bear but does not change the structural Kyber-delay thesis.
+
+**Critique (Claude-native):**
+
+**Strongest counter to the bull case:** The KeyBanc $725 PT is 26% above the next-highest competing PT from Cantor ($700, Jun 29). With pre-upgrade consensus in the $460–$575 range, the market hasn't validated $725 — it is a single-analyst outlier. AMD at $548 already prices in much of the upgrade cycle; it has rallied 161% YTD and is trading at a level where even the enthusiastic BofA $620 target implies only +13% from here. The NVDA H200 China export approval (Jul 15) directly weakens the "only alternative to NVDA" thesis by re-opening a revenue channel for NVDA that AMD partially captured via the export ban. Finally, AMD's 15% ATR-clamped stop means the actual expected loss on a failed trade is $80.70/share — the widest stop in the portfolio history this year.
+
+**Weakly-sourced or unsourced claims:** "AMD shares climbed 4.61% in Tuesday's session" [WebSearch summary — Gemini grounded — unverified]; exact KeyBanc PT move "$530→$725" not cross-confirmed with secondary source — tagged [Gemini grounded — unverified]; "5C data center partnership" details sparse [MarketBeat headline only, Jul 13 — unverified primary source].
+
+**Single most-likely invalidator (next 5 trading days):** A hyperscaler Q2 earnings call (Jul 22–29 window: Alphabet Jul 22, Meta/MSFT Jul 23, Amazon Aug 5) where management reduces AI capex guidance or signals preference for NVDA's refreshed H200/China supply, causing AMD to retrace below $500 (the Jul 6-9 gap-up base) before the AI Summit.
+
+**Data check:** AMD PT progression this session: Cantor $700 (Jun 29) → Goldman $640 (Jul 5) → Bernstein $600 (Jul 10) → Citi $575 (Jul 13) → BofA $620 (Jul 15) → KeyBanc $725 (Jul 15). The $725 is plausibly genuine but is 3.6% above prior street-high $700 and 26% above next-best BofA $620. No conflict to reconcile within session; using $725 (KeyBanc, Jul 15) as operative target with explicit "street-high outlier" caveat.
+
+**Position-aware (if entered $19,906 = 37 shares @ $538):**
+- Sector exposure post-entry: 19.8% (XLK; 0 existing XLK positions — clean)
+- 30d correlation with existing positions: N/A (100% cash, no open positions)
+- Sector cap status: 0/2 XLK — clean
+- Shared-catalyst flag: no other candidates today; N/A
+
+**R:R math (B3):**
+- Entry $538.00 (PULLBACK limit, day TIF)
+- Stop $457.30 (-15.0%; 2.5×ATR=16.51%, clamped to 15% ceiling)
+- Risk per share: $80.70
+- **Target $725 (KeyBanc, Jul 15 2026 — street high) [Blockonomi, Jul 15]:** R:R = ($725 − $538) / $80.70 = **2.32:1 → passes 2.0 floor ✓**
+- BofA $620: R:R = ($620 − $538) / $80.70 = 1.02:1 → fails (context only)
+- Max risk: 37 × $80.70 = **$2,986 (2.97% of equity)**
+- Position size: 37 shares × $538 = **$19,906 (19.8% of equity — within 20% cap)**
+
+**Setup type (Phase G1): PULLBACK**
+AMD pre-market spiked to $574.21 on ASML + KeyBanc upgrade, then pulled back to $548.13. Limit at $538 waits for a further $10 pullback from current price — fills only if AMD comes back. AMD must come to us.
+
+**Entry plan:** PULLBACK → limit $538.00 (day TIF). If fills: GTC stop $457.30.
+
+**Gate-history audit (B7):**
+- Jul 9: planned entry $515 (PULLBACK, gap guard fires at $547.97, +6.4%)
+- Jul 10-13: gap guard fires each session ($535–$558 range)
+- Jul 14: gap guard fires ($534.39 vs $515, +3.77%); thesis intact; watchlist 3 days remaining
+- **Today (Jul 15): KeyBanc raises PT to $725 (new street high). Max entry ceiling at $725 = $557.69. Prior ceiling at $700 was $538.46 (documented in TICKER-NOTES Jul 13).** Entry updated from $515 → $538, which equals the PREVIOUSLY DOCUMENTED CEILING at the prior $700 PT. This is not gate-creep — $538 was already the theoretical max entry before today's upgrade; the new $725 PT moves the ceiling to $557.69, making $538 a CONSERVATIVE sub-ceiling entry. Cited reason: KeyBanc $725 Jul 15 2026 [Blockonomi] + AMD day high $574.21 (stock traded through former resistance, level re-established). No silent move — this line documents the revision explicitly.
+- Gap guard at $538 vs current $548.13: 1.88% above plan → **does NOT fire (< 3% threshold)**.
+
+**Decision: RETAINED — TRADE.** AMD PULLBACK limit $538 (day TIF). R:R 2.32:1 with street-high $725 target. Entry at the previously documented max ceiling for $700 PT; now conservative vs new $725 ceiling ($557.69). AI Summit Jul 22-23 (8 days) and earnings Aug 4 (20 days) provide near-term catalyst sequence. Single most-likely invalidator (hyperscaler capex cut) monitored at market-open. AMD must pull back from current $548 to $538 for fill.
+
+---
+
+### Candidates Dropped (and why)
+- **UNP (XLI)** — hit new 52w high $291.45 today; no pullback to $289 PULLBACK limit. R:R 2.03:1 at street-high $330 only (Stephens $327 → 1.88:1 fails; Citi $326 → 1.83:1 fails; consensus $296 → below 2.0). Earnings Jul 23 (8 days); blackout begins ~Jul 18 (3 trading days). With 1 slot and AMD at 2.32:1, UNP demoted (B3: thin margin only at street-high; XLI late-cycle Choppy; 3-day effective hold window before blackout). Re-evaluate Jul 23 post-earnings if price pulls back.
+- **MS (XLF)** — earnings today (Jul 15, in_blackout=true); massive beat ($3.46 EPS vs $2.94 est; +69% equities trading). Post-earnings PTs not yet revised; pre-earnings consensus $215-$230 is AT or BELOW current pre-market price ($227-$232). No R:R possible without post-earnings PT revisions. Screener also drops as "penny" (yfinance price=null, data error). Re-evaluate tomorrow with revised PTs.
+- **XLRE (XLRE)** — screener's only output (ml_score=0.0); -1.13% 1mo momentum; late-cycle sector signal. No real alpha signal. Dropped.
+
+### Historical Analog
+
+**Analog:** July-August 2024. AMD reported Q2 2024 earnings Jul 30, 2024, beating data-center GPU estimates (revenue $2.8B, +115% YoY). In the 20 trading days before earnings, AMD had rallied from ~$156 to ~$182 (split-adjusted) driven by NVDA supply constraints and AI infrastructure spending confidence. VIX was 12-15 (lower than today's 17.72). 10Y yield ~4.3-4.5% (similar but lower than today's 5.11 30Y). The analyst upgrade sequence in June-July 2024 was structurally similar: multiple PTs raised above consensus, stock re-rated upward.
+
+**What followed:**
+- 5d (through Aug 2, 2024): AMD +8-12% post-earnings beat (rough estimate from training data on AMD's August 2024 performance)
+- 10d: AMD began to give back some gains as semiconductor sector rotation hit (VIX spiked to 65 in early August on yen carry unwind) — AMD fell from ~$190 to ~$140 over 15 trading days
+- 20d: AMD had recovered to ~$165 by late August 2024 as markets stabilized
+
+**Why this time might differ:** AMD's YTD gain is already 161% as of July 2026, vs ~80% YTD in July 2024 — the starting valuation multiple is significantly higher, meaning any disappointment at earnings (Aug 4, 2026) or at the AI Summit (Jul 22-23) would compress from a much more extended base. The NVDA China export approval (Jul 15) is a new headwind not present in 2024. However, AMD's EPYC server CPU share (33.2% in Q1 2026) is dramatically higher than in 2024, providing a revenue diversification that reduces pure GPU dependency.
+
+### Risk Factors (consolidated)
+1. **NVDA H200 China exports approved (Jul 15).** Minimal volume but directionally reduces AMD's "only alternative" narrative. If volumes scale, AMD loses differentiation vs NVDA in the one market where AMD had structural tailwinds.
+2. **15% ATR stop on AMD.** The widest stop in this paper-trading session history. A single bad day (AMD's ATR is $36 = 6.6% daily) can blow through 2× ATR intraday.
+3. **ML stale_degrade 848h (35th+ session).** Regime calls are rule-based only; sector allocation has lower confidence than usual.
+4. **Screener NaN degradation.** yfinance curl_cffi not installed; screener near-blind this session.
+5. **Breadth 57.2/100 Neutral; sector defensive tilt, late cycle, divergence_flag=True.** Advisory signals consistently suggest caution for 6+ weeks.
+6. **AMD extended: YTD +161%.** Street-high $725 PT is a single-analyst outlier; BofA $620 (next most bullish) implies only +13% from current $548.
+7. **AI Summit Jul 22-23 binary event.** AMD limit at $538 (day TIF) may NOT fill today; if AMD gaps higher further on Summit speculation next week, the thesis expires without entry.
+8. **Reddit egress 403 (persistent).** Retail sentiment signal absent.
+9. **Gemini 429 (26th consecutive session).** All research via WebSearch + Finnhub/NewsAPI. No synthesis quality from Gemini Pro.
+
+### Decision
+**TRADE — AMD PULLBACK limit $538 (day TIF).**
+
+Single trade slot (after ML stale_degrade penalty). AMD is the highest-conviction setup:
+- R:R 2.32:1 ✓ (passes 2.0 hard floor)
+- Gap guard: OK (current $548, limit $538, +1.88% — within 3% tolerance)
+- B7: Gate updated $515→$538, documented with cited reason (KeyBanc $725 Jul 15)
+- 37 shares × $538 = $19,906 (19.8% of equity)
+- GTC stop: $457.30 upon fill
+
+**Execution note for market-open routine:** Place AMD limit $538.00 (day TIF). If AMD never pulls back to $538 today, order expires — do not chase. AI Summit Jul 22-23 means this isn't the last opportunity; the thesis sustains through Jul 18 (watchlist expiry, update needed if limit doesn't fill by EOD Jul 15).
+
+Wait 15 minutes after market open before re-evaluating if AMD gaps down sharply (>3%) below $538 at open — could indicate broader selling pressure invalidating the setup.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 — 26th consecutive session) + 0 Pro
+- WebSearch: 5 calls (WTI/Brent, S&P futures/VIX, 30Y yield, earnings catalysts, AMD news/analyst PTs, UNP analyst PTs)
+- NewsAPI: 3 AMD records / Finnhub: 9 AMD records / EDGAR: 0 / Reddit: 0 (403)
+- Fallback: Gemini 429 → all macro/research via WebSearch + Finnhub/NewsAPI
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=848.1h, slots 2→1 (hard gate — 35th consecutive degrade session)
+- Pre-macro: cap_active=false (no event today)

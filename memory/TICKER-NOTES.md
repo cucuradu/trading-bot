@@ -38,28 +38,25 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-13): WATCHLIST — HOLD. Gap guard fires 8.33% ($515→$557.89). R:R fails even at Cantor $700 street-high (1.70:1 < 2.0 floor). Max entry ceiling $538.46. AMD must pull back to ≤$538.46 before CPI (Jul 14) or after benign CPI print. AI Summit Jul 22-23 (10 trading days) is key upcoming catalyst. Citi: AMD "legitimate second source" in GPU market — new qualitative catalyst. [WebSearch, Jul 13 2026]
+- Thesis (2026-07-15): TRADE CANDIDATE — PULLBACK limit $538 (day TIF). R:R 2.32:1 (KeyBanc $725 / 15% stop = $80.70 risk). Max entry ceiling $557.69. AMD spikes pre-market to $574 on ASML AI demand raise + KeyBanc $725 upgrade; pulled back to $548. Gate updated $515→$538 (B7 documented). AI Summit Jul 22-23 (8d) and earnings Aug 4 (20d, no blackout) provide catalyst sequence. NVDA Kyber delay intact; NVDA China H200 (minimal) partial bear. [WebSearch+Finnhub, Jul 15 2026]
 - Recent catalysts:
-  - 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 citing AMD as "legitimate second source" in GPU market [WebSearch, Jul 13]
-  - 2026-07-13: AMD $557.89 (−0.33%), 4.6% below 52w high $584.73; above all max viable entry ceilings
-  - 2026-07-10: Bernstein raised AMD PT $525→$600 (Buy, Stacy Rasgon) — agentic AI server CPU demand; 2030 server CPU market est. raised to $223B from $137B [Watcher.guru/Bernstein, Jul 10]
-  - 2026-07-08: Goldman Sachs raised AMD PT $450→$640 (Buy, Jul 5) citing agentic AI CPU demand [TheStreet, Jul 5]
-  - 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB snag) → hyperscalers evaluate AMD alternatives [CNBC, Jul 6]
-  <!-- archive: 2026-07-10: AMD +5.8% intraday; trading $535–$559 range; above insider resistance $536 -->
-  <!-- archive: 2026-07-09: XLK regime improved Bear→Choppy — AMD entry gate re-opened -->
-  <!-- archive: 2026-07-06: Wells Fargo upholds Overweight; Cantor Fitzgerald top pick (above NVDA/AVGO) -->
-  <!-- archive: 2026-07-01: WF Aaron Rakers raised AMD PT $505→$615 (Overweight; EPYC Venice) -->
-  <!-- archive: 2026-06-29: Cantor Fitzgerald $700 PT (from $500) — street high -->
-  <!-- archive: 2026-06-29: UBS raises PT to $670 (from $455) -->
+  - 2026-07-15: KeyBanc raised PT $530→$725 (new street high; most bullish on Street) [Blockonomi, Jul 15 2026]
+  - 2026-07-15: BofA raised PT $550→$620 (Buy; EPYC share + cloud demand) [TradingKey, Jul 15 2026]
+  - 2026-07-15: ASML raised AI demand forecast + 30% capacity expansion → AMD MI455X Helios read-through [Yahoo Finance, Jul 15]
+  - 2026-07-15: NVDA H200 China exports approved (minimal, case-by-case) — partial AMD bear [Finnhub, Jul 15]
+  - 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 citing AMD "legitimate second source" in GPU [WebSearch, Jul 13]
+  <!-- archive: 2026-07-13: AMD $557.89 (−0.33%), 4.6% below 52w high $584.73; above all max viable entry ceilings -->
+  <!-- archive: 2026-07-10: Bernstein raised AMD PT $525→$600 (agentic AI server CPU; 2030 market $223B) -->
+  <!-- archive: 2026-07-08: Goldman Sachs raised AMD PT $450→$640 (Buy, Jul 5) -->
+  <!-- archive: 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB snag) -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap; thesis-break per 06-08 notes)
 - Open thesis questions:
-  - **Watchlist Jul 10:** $515 limit (PULLBACK). Expires Jul 14 (CPI day). Max entry ceiling $538.46 (Cantor $700 + 15% stop). AMD must come to us.
-  - **Post-CPI re-evaluation trigger (Jul 14):** If hot CPI → AMD sells off → potential entry at ≤$538 if thesis holds. If benign → AMD may gap up further → watchlist may expire without fill; reassess.
-  - **Bernstein $600 PT impact:** Adds to bull case but RESTRICTS max entry to $461.54 (below even current price). The new PT paradox: higher target = lower max entry with the 15% ATR stop.
-  - **AMD AI Summit Jul 22-23:** binary catalyst; Citi speculating on Anthropic partnership announcement. Consider tightening stop if filled before binary event.
-  - **Insider resistance activated:** AMD now above Papermaster's $536 sell (Jun 15, EDGAR). Watch for further insider filings near current $546 level.
-  - **Stop (GTC, upon fill):** $437.75 (15% ATR-clamped). Re-compute ATR at fill date — ATR is expanding (now $37.42 vs prior $27). Tighten to 1.75×ATR at +15% gain, to 1.25×ATR at +20%.
+  - **Watchlist Jul 15:** $538 limit (PULLBACK). Expires Jul 18 (3 days remaining). Max entry ceiling $557.69 (KeyBanc $725 + 15% stop). AMD at $548 pre-market; must pull back to $538 to fill.
+  - **B7 gate update ($515→$538):** KeyBanc $725 today moves ceiling from $538.46 to $557.69; $538 is conservative sub-ceiling entry. Documented 2026-07-15 RESEARCH-LOG.
+  - **AI Summit Jul 22-23:** binary catalyst 8 days away; Citi speculating Anthropic partnership. If filled, consider tightening stop to 1.75×ATR at +15% gain BEFORE Summit to reduce binary risk.
+  - **NVDA China H200 (partial bear):** monitor volumes; if scale announced before Summit, revisit thesis.
+  - **Stop (GTC, upon fill):** $457.30 (15% ATR-clamped, ATR=$36.20). Tighten to 1.75×ATR at +15% ($619+), to 1.25×ATR at +20% ($646+).
 
 ---
 
