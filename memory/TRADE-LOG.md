@@ -447,3 +447,29 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **Key takeaway:** 37th+ consecutive HOLD session. Watchlist management active; account remains opportunistically positioned in cash with 1 trade slot. CPI benign outcome supports existing "REDUCE_ONLY, ceiling 38%" exposure guidance.
 
+---
+
+## 2026-07-15 — Market-open (gap guard skip, watchlist carry)
+
+**Account status:** $100,472.45 equity, 100% cash (no open positions).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Tue):** 0 / 3.
+
+**Market conditions:** Pre-market AMD $548.13 (day high $574.21 on ASML + KeyBanc $725 upgrade). At market-open (9:37 AM ET) AMD ask $557.96. VIX 17.72. S&P 500 futures +0.11%. Regime Neutral (rule_fallback; ML stale 848.1h, slots: 1). Single trade slot available.
+
+**Pre-market plan:** TRADE — AMD PULLBACK limit $538 (day TIF), 37 shares, R:R 2.32:1 (target $725).
+
+**STEP 3 Gap Guard (Phase G3):**
+- Planned entry: $538
+- Current ask (9:37 AM ET): $557.96
+- Gap: $557.96 / $538 = 1.0372 = **3.72% above plan** ✗
+- **SKIPPED.** Reason: gap_above_plan.
+
+**Carry-forward action:** Thesis intact (ASML demand forecast bullish, KeyBanc $725 PT, NVDA Kyber 12mo delay confirmed, AI Summit Jul 22-23 in 8 days). Added to watchlist with PULLBACK setup $538 entry, $457.30 stop, 3 days remaining per protocol (B4).
+
+- SKIPPED 2026-07-15: AMD reason=gap_above_plan current=$557.96 planned=$538 watchlist_active=true days_remaining=3
+
+**Decision:** **HOLD — no orders placed.** Gap guard blocked AMD. Thesis and watchlist active through Jul 18 (3 days). Re-entry triggers: (a) AMD pulls back to $538 today (fills PULLBACK limit); (b) if limit expires, watchlist carries to Jul 16-18.
+
+**Key takeaway:** 38th+ consecutive HOLD session. Watchlist management active; account remains opportunistically positioned in cash with 1 trade slot. AMD re-rated upward by multiple analysts this week; awaiting pullback.
+
