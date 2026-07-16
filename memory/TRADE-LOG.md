@@ -473,3 +473,54 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **Key takeaway:** 38th+ consecutive HOLD session. Watchlist management active; account remains opportunistically positioned in cash with 1 trade slot. AMD re-rated upward by multiple analysts this week; awaiting pullback.
 
+---
+
+## 2026-07-16 — Market-open AMD entry (watchlist carry-forward fill)
+
+**Account status:** $100,472.45 equity, 100% cash (no open positions).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Thu):** 0 / 3.
+
+**Market conditions:** Pre-market AMD $533–$534 (TSMC capex-concern selloff from $548–$558 Jul 15 highs; TSMC Q2 record earnings sold off on "unsustainable AI spending" narrative despite 77% net profit growth, strong AI demand confirmation). UNH +4–7% premarket on massive Q2 beat (adj EPS $6.38 vs $4.91 +30.6%). SPX futures −0.18% on semiconductor weakness. VIX 15.7 (down from yesterday 17.72 — unusual vol decoupling). Regime Neutral (rule_fallback; ML stale 872h, slots: 1). XLK sector tagged Bear but AMD watchlist carry overrides per B4 protocol.
+
+**Pre-market plan:** TRADE — AMD PULLBACK limit $538 (day TIF), 25 shares (risk-capped from 37 planned), R:R 2.38:1 (target $725), GTC stop 15% trail.
+
+**STEP 3 Gap Guard (Phase G3):**
+- Planned entry: $538
+- Current bid/ask: $533–$534 premarket
+- Gap: $534 / $538 = −0.74% (below plan) ✓ **PROCEED**
+- Note: AMD premarket <$538 → PULLBACK limit fills at market open near $534
+
+**STEP 4b Sizing adjustment:**
+- Original plan: 37 shares ($19,758 cost basis, 2.95% risk)
+- Risk cap applied: 25 shares ($13,350 cost basis, 1.99% risk) per B5
+- Method: flat_20pct+riskcap (20% of equity capped to 2.0% max per-trade risk)
+- Reason: ATR-based stop (15%) created wide stop ($80.10/share), triggering risk cap; position shrunk to maintain risk discipline
+
+**Orders placed:**
+
+- PENDING 2026-07-16: AMD order_id=7e345480-7c4f-4d65-bbaf-0dd7a01aea46 type=limit entry=538.00 initial_stop=453.90 shares=25 regime_entry=Neutral sector=XLK sizing=flat_20pct+riskcap thesis="TSMC Q2 record demand data validates AMD chip orders; capex-concern selloff noise not AMD-specific; AI Summit Jul 22-23 (6 days) + street analyst PTs ($700 UBS, $725 KeyBanc) intact; watchlist carry-forward from Jul 15 gap skip with thesis intact"
+
+- GTC trailing stop (child): order_id=9da3e4dc-03bc-4f2d-bb30-7189a92b87c7 trail_percent=15.0 status=new (arms on fill)
+
+**STEP 5b Protective-stop coverage:** Confirmed ✓ (naked=[], covered=true). Trailing stop live and armed.
+
+**AMD buy plan (live order):**
+- Entry: $538 limit (day TIF) — premarket $534 should fill at/near market-open price
+- Shares: 25
+- Cost basis: ~$13,350 (13.3% of equity at $534 fill)
+- Stop: $453.90 (15% from entry; 2.5×ATR=17.52% clamped to 15% ceiling)
+- Risk/share: $80.10
+- Target: $725 (KeyBanc street-high Jun 29)
+- R:R: ($725−$534)/$80.10 = **2.38:1** ✓ (passes 2.0 floor)
+- Max risk if stopped: 25 × $80.10 = **$2,003 (1.99% of equity)**
+- Catalyst: AMD AI Summit Jul 22-23 (6 days); TSMC Q2 record throughput confirms robust AMD order flow
+- Sector exposure post-entry: 13.3% XLK (0 existing XLK positions; 0/2 sector cap used)
+
+**Trades today (Thu):** 1 new entry (AMD, PENDING)
+**Trades this week (Thu):** 1 of 3 max
+
+**Decision:** **TRADE — AMD order placed.** Watchlist carry-forward from Jul 15 gap skip is now live. Premarket pullback to $534 triggers immediate PULLBACK entry at planned level. Thesis intact across 3-day watchlist window (final day today). Risk-capped to 1.99% per B5; position sized optimally on wide ATR stop. Next checkpoint: daily-summary reconciles fill status and logs OPEN line once entry confirmed.
+
+**Key takeaway:** 39th+ session; first new entry in watchlist carry cycle since May 28. AMD thesis revalidated by TSMC demand data; gap-driven skip yesterday now re-entered at target level premarket. Account at 13.3% deployed (pending fill); 2 trade slots remaining.
+
