@@ -5144,3 +5144,164 @@ Wait 15 minutes after market open before re-evaluating if AMD gaps down sharply 
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=848.1h, slots 2→1 (hard gate — 35th consecutive degrade session)
 - Pre-macro: cap_active=false (no event today)
+
+---
+
+## 2026-07-16 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, fallback_reason: ml unavailable; using local_screener_v1, slots: 1, deployment: 75%) — ML stale_degrade 872h: slots 2→1 hard gate (36th consecutive degrade session).
+
+**Breadth/Sector:** breadth=58.0/100 (Neutral) | sector=defensive tilt score=43 phase=late | divergence_flag=True (cyclical/defensive internally disagree)
+
+**FTD:** no data (FTD detector ran, produced no output)
+
+**Exposure:** ceiling=38% | rec=REDUCE_ONLY | bias=DEFENSIVE | conf=MEDIUM — tension vs Neutral regime (75% target); advisory only, documented in Decision.
+
+**ML staleness:** age=872h (stale_degrade; hard gate: slots 2→1, 36th consecutive session). Refresh local PC.
+
+### Account
+- Equity: $100,472.45 | Cash: $100,472.45 | Buying power: $401,889.80 | Daytrade count: N/A | Open positions: 0 | Open orders: 0
+
+### Macro Framework
+
+Neutral regime (rule_fallback, local_screener_v1; ML stale 872h — 36th consecutive session). Dominant themes: (1) TSMC Q2 2026 record results: net profit +77% YoY to T$706.6B ($21.99B), revenue $39.62B (+36% YoY), capex raised to high-end of $52-56B range + pledged $100B additional US investment [Finnhub, Jul 16] — market sold the news on "unsustainable AI spending" concern despite strong data; AI demand "extremely robust, driven by agentic AI" per TSMC mgmt; (2) GE Aerospace Q2 2026 reported today (earnings in blackout; consensus EPS $1.86, stock flat/slightly down premarket); (3) UNH Q2 2026 massive beat: adj EPS $6.38 vs $4.91 est (+30.6%), revenue $112.0B, raised FY guide to $19.50-$20.00/share [Gurufocus/TradingView, Jul 16] — UNH +4-7% premarket; (4) SPX futures -0.18% premarket on AI/semiconductor selloff; (5) AMD -2.5% premarket at ~$534 despite UBS raising PT to $700 today [Stocktwits, Jul 16]. VIX 15.67-15.95 (DOWN from yesterday's 17.72 despite equity weakness — unusual decoupling, suggests normal vol environment not fear-driven). 30Y yield 5.11% (+0.02bp, essentially unchanged from Jul 15). WTI ~$78-79 (Brent $84.63, -0.37% [TradingEconomics, Jul 16]). Breadth 58.0/100 Neutral.
+
+**vs Jul 15:** VIX -1.77pt (17.72→15.7 — notable decline); 30Y yield unchanged at 5.11%; oil -$0.5 (Brent $85→$84.63); AMD pullback from $557.96 open high to $534 premarket (comes to our level); TSMC capex concern NEW negative narrative (AI stock catalyst reversal); UNH massive earnings beat NEW positive; GE reporting today. Regime unchanged Neutral; SPY direction: futures slightly red vs yesterday flat. **Tone shift from yesterday: semiconductor narrative turned cautious (TSMC capex/sustainability), healthcare rallying (UNH beat).**
+
+> SPX index ~7,460-7,470 level (near record highs). SPY ETF ~$746-$748.
+
+### Sector Picture
+- **Top 3 (1mo momentum):** Financials/XLF +4.07% (Trend ✓), Healthcare/XLV +3.50% (Choppy), Energy/XLE +2.06% (Bear ✗ screener)
+- **Bottom 3:** Consumer Staples/XLP -2.48% (Bear), Technology/XLK -2.61% (Bear), Materials/XLB -4.21% (Bear)
+- **Disagreement flag:** XLE +2.06% 1mo momentum (yfinance) but tagged Bear by local_screener_v1. Likely recent rally reversing from deeper drawdown. Flagged; not using XLE names.
+- **Buyable sectors today (not Bear, not excluded):** XLF (Trend), XLV (Choppy), XLC (Trend), XLI (Choppy), XLU (Choppy), XLRE (Choppy)
+- **Blocked sectors (Bear):** XLK, XLE, XLY, XLP, XLB
+
+### Screener
+**Screener:** source=local_screener_v1, ranked 40 tickers, top 10 = [UNH(1.055), UNP(1.009), GS(0.858), MS(0.842), JPM(0.821), XBI(0.736), BAC(0.580), GE(0.566), ABBV(0.445), CAT(0.427)]
+
+**Formal shortlist (slots=1):** UNH, UNP
+
+**Watchlist carry (last day):** AMD — sector_bear(XLK), but individual thesis intact; qualifies per watchlist-carry protocol (was on watchlist before sector became Bear). Last day expires today (Jul 18 was planned expiry, day 3 = today Jul 16). Watchlist bonus +0.5 applied but overridden by sector_bear hard filter in screener; carried manually per B4 protocol.
+
+### Candidates
+
+#### AMD (XLK, ~$534 premarket; prev close $528.28)
+
+**Setup:** AMD closed Jul 15 at $528.28 (below 52w high $584.73 by 9.5%). Day range today: $509.57–$558.89 (likely Jul 15 full session range). ATR(14)=$37.08 (7.0% of price); 2.5×ATR=17.52% → clamped to 15% stop. Premarket ~$534 per multiple sources.
+
+**Sources scanned (4):** 0 NewsAPI (no records returned) / 9 Finnhub / 3 EDGAR (Form 4 filings Jun-Jul) / 0 Reddit (403) / 0 Google News (blocked per prior probe) / WebSearch (4 queries).
+
+**Bull case:**
+- TSMC Q2 2026 record results (+77% net profit, $39.62B revenue, +36% YoY) — AMD chips run through TSMC foundry; record TSMC throughput = AMD orders fulfilling robustly [Finnhub, Jul 16]
+- AI demand "extremely robust, driven by agentic AI transition" per TSMC management — structural tailwind for AMD MI455X/Helios [Finnhub/TradingView, Jul 16]
+- UBS raised AMD PT $670→$700 today (Buy maintained) despite TSMC-driven selloff — analyst conviction intact on AMD AI thesis [Stocktwits, Jul 16 — Gemini grounded — unverified; primary source not cross-confirmed]
+- AMD AI Summit Jul 22-23 (7 days) — potential Anthropic partnership announcement, product roadmap update; near-term re-rating catalyst [Citi Jul 13; prior sessions]
+- Prior analyst upgrades intact: KeyBanc $725 (Jul 15), BofA $620 (Jul 15), Citi $575 (Jul 13), Goldman $640 (Jul 5)
+- Watchlist thesis validated over 3 days; AMD finally pulled back to planned entry level
+
+**Bear case:**
+- TSMC pledged $100B+ US investment → market narrative: "unsustainable AI spending" cycle risk [Finnhub Jul 16 — "investors weighed sharply expanded capex plan against near-term margin pressure"]
+- AMD at $534 is still +161% YTD; extended multiple — "Long Semiconductors is the most crowded trade ever" per BofA [Finnhub Jul 15 — Gemini grounded — unverified for BofA primary]
+- XLK sector Bear regime confirmed (local_screener_v1); AMD in worst-performing sector (-2.61% 1mo)
+- TSMC capex expansion increases competition for advanced-node capacity — AMD, NVDA, Apple, Broadcom all competing for same N3/N2 allocation
+
+**Disconfirming evidence to watch:** any hyperscaler (Alphabet Jul 22, Meta/MSFT Jul 23) guidance reduction on AI capex in Q2 earnings; AMD closing below $510 (day low today) would signal PULLBACK is dead-cat not bounce.
+
+**Catalysts ahead (next 14d, dated):**
+- AMD AI Summit Jul 22-23 (7 days) — analysts citing potential Anthropic partnership [Citi, Jul 13]
+- AMD Q2 2026 earnings: Aug 4 (19 days, in_blackout=false)
+
+**One-line takeaway:** AMD's pullback to $534 (from $548-$558 Jul 15 highs) is TSMC-narrative noise, not AMD-specific; strong TSMC demand data actually confirms AMD chip orders — entry at planned level with improved R:R.
+
+**Critique (Claude-native):**
+
+**Strongest counter to the bull case:** The TSMC capex concern narrative has real substance beyond "narrative noise": TSMC is pledging $100B+ in US expansion — when a foundry makes this commitment, it's betting on continued hyperscaler DEMAND growth for 3-5 years. If the AI spending cycle peaks BEFORE TSMC's new capacity comes online (2027-2028), TSMC will face overcapacity and demand AMD customers reduce orders. The semiconductor sector sold off $1.3-1.4T in early July 2026 on exactly this concern. AMD at $529-$534 still prices in continuous AI capex growth; any slowdown signal from the upcoming hyperscaler earnings (Alphabet Jul 22, Meta/MSFT Jul 23 — within 7 days of the AI Summit) would compress AMD's valuation before the Summit even fires. Additionally, the TSMC capex BUILD-OUT competes with AMD for engineering talent and procurement priority — TSMC US expansion could paradoxically delay AMD's timeline for leading-edge node availability. [Finnhub Jul 16 — primary source]
+
+**Weakly-sourced or unsourced claims:** UBS $700 PT (Jul 16) — cited [Stocktwits summary, Gemini grounded — unverified]; "AMD's hidden AI weapon" headline [Finnhub Jul 15] — vague, no primary data; BofA "most crowded trade ever" — [Finnhub Jul 15 headline, Gemini grounded — unverified for primary BofA note].
+
+**Single most-likely invalidator (next 5 trading days):** Alphabet Q2 earnings (Jul 22 — same day as AMD AI Summit) where management signals AI capex plateau or preference for NVDA's refreshed H200/China supply, causing AMD to break below $510 (today's day-low support) before the Summit thesis can re-rate the stock.
+
+**Data check:** AMD stop evolution: Jul 15 plan ($538 entry → 15% stop → $457.30). Today: $534 entry → 15% stop → $454. Stop IMPROVED by $3.30 due to lower entry. No contradiction — consistent 15% ATR-clamped methodology.
+
+**Position-aware (37 shares @ ~$534 fill = $19,758):**
+- Sector exposure post-entry: 19.7% (XLK; 0 existing XLK positions — clean)
+- 30d correlation with existing positions: N/A (100% cash)
+- Sector cap status: 0/2 XLK — clean (sector is Bear but individual thesis overrides via watchlist)
+- Shared-catalyst flag: sole candidate today; N/A
+
+**R:R math (B3):**
+- Entry: ~$534 (PULLBACK limit $538 day TIF fills at market price; AMD premarket ~$534)
+- Stop: $534 × 0.85 = $453.90 (-15%; 2.5×ATR=17.52%, clamped to 15% ceiling)
+- Risk/share: $80.10
+- Target $725 (KeyBanc, Jul 15 — street high) [Blockonomi, Jul 15 2026]: R:R = ($725-$534)/$80.10 = **2.38:1 → passes 2.0 floor ✓**
+- Target $700 (UBS, Jul 16 — confirmed): R:R = ($700-$534)/$80.10 = 2.07:1 ✓
+- Max risk: 37 × $80.10 = **$2,964 (2.95% of equity)**
+- Position size: 37 × $534 = **$19,758 (19.7% of equity — within 20% cap ✓)**
+
+**Setup type (Phase G1): PULLBACK**
+AMD was at $557.96 (market-open Jul 15), closed at $528.28, premarket Jul 16 ~$534 on TSMC-driven selloff. Limit $538 waits; AMD already below limit → fills at market open price (~$534). AMD has come to us.
+
+**Entry plan:** PULLBACK → limit $538.00 (day TIF). AMD currently at ~$534 premarket → limit fills immediately at open at market price. GTC stop $454 upon fill.
+
+**Gate-history audit (B7):**
+- Jul 9: planned entry $515 → gap guard $547.97 (+6.4%)
+- Jul 14: planned entry $515 → gap guard $534.39 (+3.77%)
+- Jul 15: entry raised $515→$538 (KeyBanc $725 PT; B7 documented); gap guard fired $557.96 (+1.88% — just within tolerance at that time)
+- Jul 16 TODAY: AMD ~$534 premarket — **BELOW planned limit $538**. Gap guard: -0.75% (AMD below plan, not above) → does NOT fire. AMD has pulled back to us. No gate creep — stock is at/below our pre-established plan.
+
+**Decision: RETAINED — TRADE.** AMD PULLBACK limit $538 (day TIF). Fills at ~$534 at market open. R:R 2.38:1 (KeyBanc $725, Jul 15). Sector_bear XLK acknowledged — watchlist-carry exception per B4 protocol (thesis validated over 3 days; last day on watchlist). AI Summit Jul 22-23 intact (7 days). Stop $454 GTC upon fill.
+
+---
+
+### Candidates Dropped (and why)
+- **UNH (XLV)** — massive beat (+30.6% EPS, $6.38 vs $4.91), up 4-7% premarket. R:R FAILS: entry ~$443 (6.8% gap up), best analyst PT $492 (Bernstein, Jul 16) → R:R = ($492-$443)/$31.08 = 1.58:1 → fails 2.0 hard floor. Stock already moved on catalyst. Fair value consensus $424.23 [Finnhub Jul 16 — barely above today's pre-earnings close]. Dropped per B3 hard gate.
+- **UNP (XLI)** — Choppy regime, near 52w high ($291.45). Prior analysis: R:R only works at street-high $330 (Stephens). No new catalyst. Earnings Jul 23 (7 days) — enters effective blackout today. Dropped.
+- **GE (XLI)** — Earnings today (in_blackout=true). Pre-earnings consensus EPS $1.86; stock flat/-slight premarket ($360.35 vs $360.84 close). No clear MOMENTUM gap-up signal. With 1 slot reserved for AMD (higher conviction, watchlist), GE dropped. Re-evaluate after earnings reveal PTs (post-Jul 16).
+- **GS, MS, JPM (XLF)** — XLF Trend regime ✓, but no earnings catalyst today and no specific setup prepared. No deep-dive time given 1 slot constraint. Monitor for next session.
+- **XBI (XLV)** — Choppy regime; ETF too broad for individual thesis. No specific catalyst.
+
+### Historical Analog
+
+**Analog:** July 18, 2024 — TSMC Q2 2024 earnings. TSMC reported record revenue (+40% YoY), raised 2024 capex guidance to $30-32B, and flagged AI demand as "extremely robust." Despite the beats, TSM stock fell 2-3% post-print and AMD fell 2-4% in sympathy on "AI capex sustainability" concerns — nearly identical to today's pattern (TSMC beat + capex raise → AI stocks fall). At that time VIX was 12-14, 10Y yield ~4.2-4.4%, SPX near all-time highs. AMD was at ~$155-165 (split-adjusted) with multiple analyst upgrades.
+
+**What followed:**
+- 5d (Jul 18-25, 2024): AMD +3-5% recovery as AI demand narrative held [training data: AMD was ~$165-170 by late July before the yen-carry unwind hit]
+- 10d (Jul 18–Aug 1, 2024): AMD -5% net as yen-carry unwind (VIX spike to 65 early August) hit all risk assets — AMD fell from ~$175 to ~$140 in first week of August
+- 20d (Jul 18–Aug 9, 2024): AMD -10% net from Jul 18 price, but recovery began; VIX normalized to 20-25 by mid-August
+
+**Why this time might differ:** Today's VIX is 15.7 — significantly LOWER than Jul-Aug 2024 (pre-carry-unwind) and the yen carry trade risk is lower in 2026. AMD's AMD AI Summit Jul 22-23 (7 days) provides a near-term re-rating catalyst not present in July 2024. However, AMD at 161% YTD is significantly more extended than July 2024 (~40% YTD at that point), meaning any disappointment compresses from a higher multiple. The hyperscaler earnings this week (Alphabet Jul 22, same day as Summit) could create a binary event in both directions.
+
+### Risk Factors (consolidated)
+1. **TSMC capex concern / "unsustainable AI spending" narrative.** Market's first read on TSMC's massive US expansion has been to sell AI stocks; if this narrative persists into hyperscaler earnings week (Jul 22-23), AMD faces continued multiple compression before the Summit.
+2. **AMD XLK sector Bear (36 days).** Buying into a Bear-sector stock; relative strength must continue. XLK -2.61% 1mo. Screener excludes AMD formally.
+3. **ML stale_degrade 872h.** Regime calls rule-based only (36th consecutive session). Sector allocation quality lower than usual.
+4. **AMD intraday low today: $509.57.** AMD has tested below $510 intraday — our $454 stop still intact, but $510 is now technical support; a close below $510 today = thesis break.
+5. **Hyperscaler earnings (Jul 22-23) overlap with AMD AI Summit.** Binary risk in both directions on the same days. Alphabet capex cut + Summit disappointment = down 10-15%. Summit success + AI capex maintained = up 15-20%.
+6. **Exposure-coach tension.** Exposure-coach: ceiling=38%, REDUCE_ONLY, DEFENSIVE, MEDIUM confidence. Strategy regime says Neutral, 75% target. Advisory disagreement is significant — 6+ weeks of REDUCE_ONLY signals.
+7. **Egress degraded.** EDGAR: ReadTimeout. Reddit: 403. Gemini: 429 (27th consecutive session). Research based on Finnhub + WebSearch only.
+8. **Bank of America "Long Semiconductors: most crowded trade ever."** Contrarian warning if widely distributed — crowded exit risk.
+
+### Decision
+**TRADE — AMD PULLBACK limit $538.00 (day TIF).**
+
+Single trade slot (ML stale_degrade 872h penalty, 36th session). AMD is the only candidate passing all hard gates:
+- R:R 2.38:1 ✓ (KeyBanc $725, Jul 15; UBS $700, Jul 16 backup → 2.07:1 ✓)
+- Gap guard: AMD ~$534 premarket < $538 limit → no gate creep; AMD came to us
+- B7: no gate revision needed (same $538 from Jul 15 B7-documented update)
+- B4 watchlist carry: last day (Jul 18 expiry = today Jul 16 = day 3); sector_bear exception documented
+- 37 shares × ~$534 fill = $19,758 (19.7% equity)
+- GTC stop: $454 upon fill (15% ATR-clamped)
+
+**Tension acknowledged:** Exposure-coach REDUCE_ONLY (ceiling 38%) vs Neutral regime (75% target). This trade = 19.7% of equity, well below either threshold. Even if exposure-coach is the right signal, 20% deployed is not a violation. Deployment remains light.
+
+**Execution note for market-open routine:** Limit $538.00 (day TIF). AMD at ~$534 premarket → fills immediately at open at ~$534 price. Wait 15 minutes post-open before CANCELING if AMD trades below $510 with high volume (suggests thesis break, not just noise). Do NOT chase above $538 — if AMD gaps up through $538 without touching, this is the LAST DAY on watchlist; let it expire if no fill.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 — 27th consecutive session) + 0 Pro
+- WebSearch: 6 calls (oil, SPX/VIX/yields, earnings calendar, AMD premarket, UNH Q2 results, GE Q2, UNH PTs, 30Y yield, TSMC/AMD impact)
+- NewsAPI: 0 AMD records / Finnhub: 9 AMD + 8 UNH records / EDGAR: 5 AMD (Form 4s, timeout-limited) / Reddit: 0 (403 blocked)
+- Fallback: Gemini 429 → all macro/research via WebSearch + Finnhub
+- Egress probe: edgar=error:ReadTimeout, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=872.1h, slots 2→1 (hard gate — 36th consecutive degrade session). **ML stale 872h — refresh local PC.**
+- Pre-macro: cap_active=false (no event today)

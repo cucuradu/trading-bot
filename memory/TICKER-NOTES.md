@@ -38,25 +38,26 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-15): TRADE CANDIDATE — PULLBACK limit $538 (day TIF). R:R 2.32:1 (KeyBanc $725 / 15% stop = $80.70 risk). Max entry ceiling $557.69. AMD spikes pre-market to $574 on ASML AI demand raise + KeyBanc $725 upgrade; pulled back to $548. Gate updated $515→$538 (B7 documented). AI Summit Jul 22-23 (8d) and earnings Aug 4 (20d, no blackout) provide catalyst sequence. NVDA Kyber delay intact; NVDA China H200 (minimal) partial bear. [WebSearch+Finnhub, Jul 15 2026]
+- Thesis (2026-07-16): TRADE CANDIDATE — PULLBACK limit $538 (day TIF); AMD premarket ~$534 (below limit). R:R 2.38:1 (KeyBanc $725, Jul 15 / 15% stop at $534 entry = $80.10 risk). TSMC Q2 2026 record earnings (+77% YoY) confirm robust AI demand; AMD selloff (-2.5% premarket) = TSMC capex-concern narrative, not AMD-specific bear. UBS raised PT $670→$700 today. AI Summit Jul 22-23 (7d). Last day on watchlist (expires Jul 16-18). [Finnhub/WebSearch, Jul 16 2026]
 - Recent catalysts:
-  - 2026-07-15: KeyBanc raised PT $530→$725 (new street high; most bullish on Street) [Blockonomi, Jul 15 2026]
-  - 2026-07-15: BofA raised PT $550→$620 (Buy; EPYC share + cloud demand) [TradingKey, Jul 15 2026]
-  - 2026-07-15: ASML raised AI demand forecast + 30% capacity expansion → AMD MI455X Helios read-through [Yahoo Finance, Jul 15]
-  - 2026-07-15: NVDA H200 China exports approved (minimal, case-by-case) — partial AMD bear [Finnhub, Jul 15]
-  - 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 citing AMD "legitimate second source" in GPU [WebSearch, Jul 13]
-  <!-- archive: 2026-07-13: AMD $557.89 (−0.33%), 4.6% below 52w high $584.73; above all max viable entry ceilings -->
-  <!-- archive: 2026-07-10: Bernstein raised AMD PT $525→$600 (agentic AI server CPU; 2030 market $223B) -->
-  <!-- archive: 2026-07-08: Goldman Sachs raised AMD PT $450→$640 (Buy, Jul 5) -->
-  <!-- archive: 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 (78-layer PCB snag) -->
+  - 2026-07-16: UBS raised AMD PT $670→$700 (Buy; maintained amid TSMC-driven selloff) [Stocktwits, Jul 16 — Gemini grounded — unverified]
+  - 2026-07-16: TSMC Q2 2026 record: +77% net profit, $39.62B revenue (+36% YoY), capex raised to high-end $52-56B → confirms AMD chip demand robust [Finnhub, Jul 16]
+  - 2026-07-15: KeyBanc raised PT $530→$725 (new street high) [Blockonomi, Jul 15 2026]
+  - 2026-07-15: BofA raised PT $550→$620 (Buy) [TradingKey, Jul 15 2026]
+  - 2026-07-15: ASML raised AI demand forecast + 30% capacity expansion [Yahoo Finance, Jul 15]
+  <!-- archive: 2026-07-15: NVDA H200 China exports approved (minimal) — partial AMD bear [Finnhub, Jul 15] -->
+  <!-- archive: 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 [WebSearch, Jul 13] -->
+  <!-- archive: 2026-07-10: Bernstein raised AMD PT $525→$600 [prior session] -->
+  <!-- archive: 2026-07-08: Goldman Sachs raised AMD PT $450→$640 [prior session] -->
+  <!-- archive: 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 [prior session] -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap; thesis-break per 06-08 notes)
+  - Watchlist: added Jul 15, expires Jul 18 (last day Jul 16). PULLBACK $538, stop $454 (15% ATR-clamped)
 - Open thesis questions:
-  - **Watchlist Jul 15:** $538 limit (PULLBACK). Expires Jul 18 (3 days remaining). Max entry ceiling $557.69 (KeyBanc $725 + 15% stop). AMD at $548 pre-market; must pull back to $538 to fill.
-  - **B7 gate update ($515→$538):** KeyBanc $725 today moves ceiling from $538.46 to $557.69; $538 is conservative sub-ceiling entry. Documented 2026-07-15 RESEARCH-LOG.
-  - **AI Summit Jul 22-23:** binary catalyst 8 days away; Citi speculating Anthropic partnership. If filled, consider tightening stop to 1.75×ATR at +15% gain BEFORE Summit to reduce binary risk.
-  - **NVDA China H200 (partial bear):** monitor volumes; if scale announced before Summit, revisit thesis.
-  - **Stop (GTC, upon fill):** $457.30 (15% ATR-clamped, ATR=$36.20). Tighten to 1.75×ATR at +15% ($619+), to 1.25×ATR at +20% ($646+).
+  - **Fill risk Jul 16:** AMD ~$534 premarket; limit $538 fills at open. If AMD gaps further down below $510 (day low), cancel — thesis break signal.
+  - **AI Summit Jul 22-23 binary risk (7 days):** also Alphabet earnings same day. Tighten stop to 1.75×ATR at +15% ($614+), to 1.25×ATR at +20% ($641+) BEFORE Summit.
+  - **Sector_bear XLK override:** XLK Bear for 36+ sessions; individual alpha thesis required to maintain. Monitor XLK for regime improvement.
+  - **Stop (GTC, upon fill):** $454 (15% ATR-clamped at $534 entry). Higher than Jul 15 plan ($457.30 at $538) due to lower entry — tighter in absolute dollar terms.
 
 ---
 
