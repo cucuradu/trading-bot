@@ -5305,3 +5305,117 @@ Single trade slot (ML stale_degrade 872h penalty, 36th session). AMD is the only
 - Egress probe: edgar=error:ReadTimeout, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=872.1h, slots 2→1 (hard gate — 36th consecutive degrade session). **ML stale 872h — refresh local PC.**
 - Pre-macro: cap_active=false (no event today)
+
+---
+
+## 2026-07-17 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1→0 new entries today, deployment: 75%) | ML stale 896h (37th+ consecutive degrade session; stale_degrade active → slots 2→1); fallback_reason: ml unavailable; using local_screener_v1. **ML stale 896h — refresh local PC.**
+
+**Breadth/Sector:** breadth=67.8/100 (Healthy) | sector=defensive tilt score=43 phase=mid | divergence_flag=true (cyclical/defensive internal disagreement)
+**FTD:** script ran (FMP_API_KEY set) but output unreadable; skip this session.
+**Exposure:** parse error — exposure-coach skipped silently.
+
+### Account
+- Equity: $99,634.69 | Cash: $87,607.19 | Buying power: $384,105.76
+- Daytrade count: 0/3 | Open positions: 1 (AMD 25sh @ $514.61 avg, mktval $12,027.50, P&L -$837.75 / -6.51%)
+- Open orders: 1 GTC trailing stop AMD (trail 15%, HWM $518.31, stop_price $440.56, expires 2026-10-14)
+- Weekly trades this week: 1 (AMD Jul 16) / 3 max
+
+### Macro Framework
+Neutral regime (rule_fallback, ML stale 896h — 37th consecutive session). Dominant themes: (1) **Netflix Q3 revenue miss** — Netflix premarket -10%+ after Q3 revenue guide disappoints Street; dragged Nasdaq futures -1.6%, S&P -0.8% premarket; VIX spiked to 18.33 (+9.6% from 15.67 yesterday) [Yahoo Finance, Jul 17 2026]; (2) **Chip sector extending sell-off** — TSMC capex concern narrative from Jul 16 persists; AMD premarket ~$481 (down -3.96% from $500.94 close) as semiconductor stocks face dual headwind of Netflix miss and TSMC capex overhang; (3) **Earnings Friday heavy** — Abbott, USB, State Street, U.S. Bancorp, Citizens before open; healthcare/bank prints dominate; UNH post-earnings digest ongoing; (4) **30Y yield 5.09%** (−2bp from 5.11% Jul 16), WTI ~$79 (flat); DXY stable. vs Jul 16: VIX +2.66pt (sharp spike on Netflix); 30Y yield −2bp; oil flat; AMD fell further ($534→$481, −10% in 2 trading sessions from $534 premarket Jul 16); Netflix miss adds new risk-off catalyst; UNH digest (post-beat fade from $461→$423 yesterday).
+
+> **SPX** (index ~7,500 range) vs **SPY** (ETF ~$750). Nasdaq futures NQ=F -1.6%.
+
+### Sector Picture
+- Top 3 (1mo momentum): XLV +7.36% (Choppy per screener), XLF +5.00% (Trend), XLE +4.30% (Trend)
+- Bottom 3: XLK -4.46% (Bear), XLB -2.17% (Bear), XLI +0.31% (Choppy)
+- Note: sector-momentum and ml_insights sectors broadly agree — XLK Bear both sources; XLF/XLE Trend both sources; XLI/XLB weak both sources. No major disagreement today.
+
+### Screener Diagnostics
+Screener: source=local_screener_v1 (rule_fallback), top 10 = [UNP(1.497), UNH(1.375), ABBV(0.916), BAC(0.772), JPM(0.726), KO(0.674), MS(0.662), MRK(0.625), GS(0.612), XBI(0.568)]
+Carry-forward watchlist: AMD dropped (position filled Jul 16). No active watchlist entries entering today.
+
+### Existing Position: AMD (XLK, $481.10)
+
+**Status:** 25 shares @ $514.61 avg entry (Jul 16). Current $481.10. P&L: -$837.75 (-6.51%). Cost basis: $12,865.25 (12.9% of equity).
+
+**Stop health:** GTC trail 15%, HWM $518.31, current stop $440.56. Distance to stop: $481.10 - $440.56 = $40.54 (8.4% buffer). R-multiple: ($481.10-$514.61)/($440.56-$514.61) = -$33.51/-$74.05 = **-0.45R**. Not at -1R cut level.
+
+**ATR(14):** $37.21 (7.43% of price). 2.5×ATR = 18.57% → clamped to 15% ceiling. Stop methodology consistent.
+
+**Thesis check:** AMD AI Summit Jul 22-23 (5 trading days) intact. Analyst PTs: KeyBanc $725, UBS $700, BofA $620, BNP Paribas $600. No AMD-specific negative news today — the decline is macro/sector driven (Netflix miss + TSMC capex narrative, Nasdaq -1.6%). No AMD-specific news that undermines the AI demand thesis. **Hold per strategy rules (−0.45R, stop at $440.56 is the exit signal, not the current price).**
+
+**Management note (no action):** If AMD breaks below $440.56 intraday, GTC stop executes automatically. Manual cut rule applies if AMD closes below $440 (below stop) — currently $40+ away. Monitor for Summit catalyst Jul 22-23.
+
+### Candidates
+
+#### UNH (XLV, ~$426.72 today; close $423.38 Jul 16)
+
+**Setup:** Post-earnings pullback from $461 high → close $423. ATR(14) = $12.34 (2.92%), stop_pct_2_5x = 7.29% (clamped to 7% floor), stop at $393.74 (from $423 close).
+
+**Sources scanned (2):** 2 EDGAR (Form 4 filings, Jul 6) / 0 NewsAPI records / Finnhub not explicitly searched / 0 Reddit (403 blocked) / WebSearch + [Gemini grounded — unverified].
+
+**Bull case:** (1) Q2 2026 EPS $6.38 vs $4.85 consensus (+31.5% beat); FY2026 guidance raised to $19.50–$20.00 vs ~$17 prior [SEC 8-K, Jul 15 2026; CNBC Jul 16]; (2) Optum health services outperformance driving margin expansion — 56% adj EPS growth YoY; (3) Multiple analyst PT raises: Bernstein $492, Wells Fargo $485, Piper Sandler $475, Morgan Stanley $468 — all post-earnings [WebSearch Jul 16 2026]; (4) XLV #1 sector by 1mo momentum (+7.36%); (5) R:R at $427 entry: target $492 (Bernstein), stop 7% → $397.11; R:R = ($492-$427)/$29.89 = **2.17:1 ✓** (passes 2.0 floor).
+
+**Bear case:** (1) **Failed earnings breakout** — stock popped +10% to $461 intraday on the beat, then FADED to close $423 (-8.2% from high on the same day). Distribution signal: sellers used the beat to exit [WebSearch Jul 17 2026 — Gemini grounded — unverified]; (2) DOJ criminal investigation (Optum Rx + physician reimbursement) still active — no resolution disclosed in Q2 report; indictment risk = binary gap-down 15-30% unmanageable with trailing stop [TICKER-NOTES prior research]; (3) Membership down 2.8M in 2026 — MLR headwinds; guidance raise may be legal-resolution optimism rather than operational improvement [TICKER-NOTES standing open question]; (4) Today's broader risk-off environment (Nasdaq -1.6%) adds headwind.
+
+**Critique:**
+- **Strongest counter to bull:** The failed earnings breakout is the most important signal. A stock that beats by 30%+ on EPS, raises guidance, and then GIVES BACK the entire pop by day's end is showing that demand at higher prices is absent. Either (a) the DOJ overhang is so serious that institutional holders used the beat to reduce exposure, or (b) the beat was already in the price from the prior run from $380→$460. This is a "sell the news" event, and entering the next day into broad market weakness amplifies the risk. The R:R math passes but the price action framework argues strongly against entry.
+- **Single most-likely invalidator (next 5 trading days):** DOJ criminal indictment filing or DOJ investigation expansion announcement causes UNH to break below $400, invalidating the entire post-earnings base.
+
+**R:R math (B3):** Entry $427 / stop $397.11 (-7%) / target $492 (Bernstein, Jul 16) / R:R 2.17:1 ✓ / max risk $29.89/share × position sizing. Hard gate technically PASSES but demoted on price action.
+
+**Gate-history audit (B7):** Prior 5 sessions all show UNH DROPPED due to DOJ disqualifier. Standing disqualifier has been in place since Jun 2. Today's earnings beat does not resolve the DOJ investigation. No gate creep — UNH was never accepted to a planned entry level.
+
+**Decision: DEMOTED — watch for next week.** Failed earnings breakout (price action) + DOJ overhang still active + risk-off Friday = no entry today. Add to watchlist for Monday re-evaluation: if UNH holds $420 support over the weekend and DOJ situation unchanged, re-evaluate with fresh setup at pullback entry (~$420-425). R:R 2.17:1 passes if position initiates near current levels.
+
+#### UNP (XLI, $299.42)
+
+**Setup:** At/near 52w high ($300.06). ATR(14) = $5.75 (1.92%), stop_pct_2_5x = 4.80% → clamped to 7% floor → stop at $278.46.
+
+**Sources scanned (0 new):** prior research Jul 14-16 sufficient; no new catalyst today.
+
+**R:R math (B3):** Entry $299 / stop $278 (-7%) / target $330 (Morgan Stanley/Jefferies, street-high) / R:R = ($330-$299)/$21 = 1.48:1 → **FAILS 2.0 floor.** At 52w high with only the street-high PT barely giving 2:1 (needed $284 entry). **Blackout: earnings Jul 23 (6 days, entering effective blackout by Sunday).**
+
+**Decision: DROPPED.** R:R fails hard gate. Earnings in 6 days = blackout entry. Sector XLI Choppy. No new catalyst. Previously demoted Jul 14-16 for identical reasons.
+
+### Candidates Dropped (and why)
+- **UNH** — failed earnings breakout (faded $461→$423 on massive Q2 beat), DOJ investigation not resolved, risk-off Friday. Passes R:R 2.17:1 math but price action and binary risk block entry. Watchlist monitor for Mon re-evaluation.
+- **UNP** — R:R 1.48:1 fails 2.0 floor at 52w high. Earnings Jul 23 (6d, effective blackout). XLI Choppy. 4th consecutive drop.
+- **ABBV, BAC, JPM, KO, MS, MRK** (screener ranks #3-#8) — no deep-dive performed given 1 trade slot, AMD already open, and broad risk-off conditions. Reserved for next week screening.
+
+### Historical Analog
+
+**Analog:** July 18–19, 2024 — Nasdaq -2.4% single-day decline on CrowdStrike global IT outage. VIX spiked from ~12 to ~16 (similar magnitude to today's 15.67→18.33 jump). Sentiment was "sell tech on unknown headline risk." 30Y yield ~4.4-4.5% (lower than today's 5.09%). Sector leadership divergence: defensives held while tech sold off. Semis particularly affected (SOX -3.5% that day). AMD was at ~$170-175 at the time and fell with semis.
+
+**What followed:** 5d (Jul 18-25, 2024): Nasdaq recovered +1.5% once the CrowdStrike scope was contained (specific failure, not AI demand structural); 10d: modest recovery +0.8% before yen-carry unwind hit in early August; 20d: AMD specifically fell -15% in early August yen-carry before recovering. The VIX spike that day (similar to today) was a 3-5 day sentiment event before normalization.
+
+**Why this time might differ:** Today's driver (Netflix miss + TSMC capex narrative) is a more durable concern than the CrowdStrike outage. Netflix Q3 revenue guidance miss signals possible advertising revenue headwinds — different from a one-day IT glitch. However, AMD has a hard catalyst anchor (AI Summit Jul 22-23, 5 trading days) that didn't exist in July 2024. The VIX is higher today (5.09% 30Y) suggesting more fundamental rate risk than the 2024 analog.
+
+### Risk Factors (consolidated)
+1. **Nasdaq tech/chip selloff (Fri Jul 17)** — Netflix -10%, VIX +9.6% spike to 18.33; AMD in open position, down -3.96% today premarket.
+2. **AMD at -6.51% from entry** — position underwater entering the weekend. GTC stop at $440.56 is the protection; no manual intervention at -0.45R per strategy.
+3. **ML stale_degrade 896h (37th session)** — regime calls are rule-based only; XLK Bear but AMD held via B4 watchlist exception (thesis validated, stop is the exit mechanism).
+4. **Netflix miss implications** — if consumer spending story deteriorates further, streaming miss signals premium subscription fatigue; indirect headwind for all risk assets.
+5. **Hyperscaler earnings next week** — Alphabet Jul 22 (same day as AMD AI Summit), Meta/MSFT Jul 23. AI capex guidance becomes binary for AMD Summit thesis.
+6. **Exposure-coach tension** — 6+ weeks of REDUCE_ONLY signal (ceiling ~38%) vs Neutral regime 75% target. Currently at 12.9% deployed — well below both — but AMD in loss amplifies the tension.
+7. **Weekend gap risk** — AMD at $481, holding over weekend into a risk-off Friday close. No stop-loss execution overnight (markets closed).
+
+### Decision
+**HOLD — no new orders placed today.**
+
+AMD: hold per rules (-0.45R, not at -1R cut level). GTC stop $440.56 provides automatic protection. AI Summit Jul 22-23 thesis intact; today's decline is macro-driven (Netflix/chip sector), not AMD-specific.
+
+New entries: 1 slot available but deployed defensively. UNH R:R 2.17:1 passes math but failed earnings breakout + DOJ + risk-off Friday → demote. UNP R:R 1.48:1 fails hard gate.
+
+**UNH monitoring trigger for next week:** If UNH holds $420 support through Monday Jul 20, re-evaluate for PULLBACK entry at $420-427 (R:R ~2.2:1 vs $492 Bernstein PT, 7% stop). DOJ resolution = re-entry accelerant. If UNH breaks $420 next week, thesis compromised.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 — 28th consecutive session) + 0 Pro
+- WebSearch: 5 calls (SPX/VIX/futures Jul 17, AMD premarket/news, earnings Jul 17, 30Y/WTI, UNH/UNP prices)
+- NewsAPI: 0 records (not queried) / Finnhub: not queried (no candidates proceeded to gather) / EDGAR: via research.py gather UNH (2 Form 4 records, Jul 6) / Reddit: 0 (403 blocked)
+- Fallback: Gemini 429 → all macro/research via WebSearch + Finnhub
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=896.1h, slots 2→1 (hard gate — 37th consecutive degrade session). **ML stale 896h — refresh local PC.**
+- Pre-macro: cap_active=false

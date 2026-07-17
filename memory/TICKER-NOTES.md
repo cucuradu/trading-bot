@@ -306,20 +306,22 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## UNH (XLV)
-- Thesis (2026-07-08): Demoted — at $428.19 the stock is AT the consensus median PT ($428), yielding 0% implied return (auto-demoted by B3). DOJ criminal investigation confirmed expanded to Optum Rx and physician reimbursement [fiercehealthcare.com Jul 2026], still active, no charges, no timeline. Earnings Jul 16 (8d). Three independent disqualifiers in force simultaneously.
+- Thesis (2026-07-17): Post-earnings pullback monitor. Q2 2026 beat massive (+31.5% EPS: $6.38 vs $4.85); FY guide raised to $19.50-$20.00; multiple PT raises (Bernstein $492, WF $485, Piper $475, MS $468). BUT: failed earnings breakout — stock popped to $461 intraday Jul 16, closed $423 (-8.2% from high on beat day). DOJ investigation still active (no resolution in Q2 report). R:R 2.17:1 at $427 entry (7% stop, $492 target) — passes math, blocked by price action + DOJ. Monitor: if holds $420 support week of Jul 20, re-evaluate PULLBACK entry.
 - Recent catalysts:
-  - 2026-07-08: DOJ probe confirmed expanded to Optum Rx + physician reimbursement [fiercehealthcare.com Jul 2026]; stock at $428 = consensus median PT; earnings Jul 16
-  - 2026-07-16: Q2 2026 earnings (upcoming — key catalyst; if DOJ resolved by then, re-evaluate)
-  - 2026-06-23: Bernstein $492 PT (dated 2026-05-27) confirmed; DOJ still blocking entry despite R:R 3.00:1 math at $406
-  - 2026-06-08: BofA "Buy" upgrade + 5% dividend raise; stock +40% from lows [Barchart/TIKR WebSearch Jun 8]
-  <!-- archive: 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; DOJ criminal + civil opened into Medicare Advantage/Optum Rx/physician-reimbursement billing [healthcaredive.com] -->
-  <!-- archive: 2026-05: Truist PT raised to $440; median consensus PT $400.50 -->
+  - 2026-07-16: Q2 2026 massive beat — adj EPS $6.38 vs $4.85 (+31.5%); FY2026 guide $19.50-$20.00; PT raises: Bernstein $492, WF $485, Piper $475, MS $468 [SEC 8-K Jul 15; CNBC Jul 16]. Failed breakout: $461 high → $423 close.
+  - 2026-07-17: Monitor at $426.72. Failed earnings breakout pattern. DOJ not resolved. DEMOTED (risk-off Friday + price action).
+  - 2026-07-08: DOJ probe confirmed expanded to Optum Rx + physician reimbursement [fiercehealthcare.com Jul 2026]
+  - <!-- archive: 2026-06-23: Bernstein $492 PT (dated 2026-05-27) confirmed; DOJ still blocking entry despite R:R 3.00:1 math at $406 -->
+  - <!-- archive: 2026-06-08: BofA "Buy" upgrade + 5% dividend raise; stock +40% from lows -->
+  - <!-- archive: 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; DOJ criminal + civil opened [healthcaredive.com] -->
+  - <!-- archive: 2026-05: Truist PT raised to $440; median consensus PT $400.50 -->
 - Open thesis questions:
-  - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop. Now that R:R has actually cleared 2:1 for the first time (3.00:1), does the bot's framework need a formal codified rule for this override, or does it stay a daily re-litigation? (flagged for weekly review, 06-22 and again today)
-  - At what point does an 8-session string of identical DOJ-based drops warrant a strategy-level rule (e.g., a standing "no entry while active criminal probe" filter) vs. re-litigating it daily?
-  - MLR still elevated; membership down 2.8M in 2026 — does the rally reflect real operational improvement or short-covering/legal-resolution optimism getting ahead of facts?
+  - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop. Post-earnings beat, the DOJ was NOT resolved in the Q2 filing. Entry remains blocked until DOJ resolution or clear monitoring trigger.
+  - Failed earnings breakout: why did the stock fade from $461→$423 on a massive beat? Was it DOJ-related distribution, or market-wide chip/tech selloff overhang? Resolution of this question determines whether $423 is a support base or a distribution floor.
+  - Re-entry trigger: UNH holding $420 support Mon-Tue (Jul 20-21) + no new DOJ news → PULLBACK entry candidate with R:R 2.17:1 ($492 target).
+  - When does the DOJ case resolve? No timeline disclosed. Standing open question since Jun 2.
 - Trade history: (none yet)
-- Position-aware notes: 0% XLV exposure; standing disqualifier blocks entry regardless of sector-cap availability.
+- Position-aware notes: 0% XLV exposure. DOJ disqualifier still active but R:R now clearly passes math (2.17:1). Next week: monitor $420 support.
 
 ## UNP (XLI)
 - Thesis (2026-07-14): At 52w high ($289.13 vs year-high $290.41); NSC merger STB application accepted May 28, 2026 — transcontinental rail catalyst; consensus PT $291.73 (23 analysts, essentially inline with price); street-high $330 (Morgan Stanley + Jefferies) gives R:R 2.02:1 — barely passes but thin; XLI Choppy regime; earnings Jul 23. DEMOTED — too thin on street-high only; re-entry viable if pulls back below $285 (R:R improves to 2.25:1 at $330).
