@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-20 12:37:12",
+    "api_calls": {
+      "cache_entries": 2,
+      "api_calls_made": 6,
+      "rate_limit_reached": false
+    },
+    "index_prices": {
+      "sp500": 7457.69,
+      "qqq": null
+    }
+  },
+  "market_state": {
+    "combined_state": "RALLY_FAILED",
+    "dual_confirmation": false,
+    "ftd_index": null
+  },
+  "sp500": {
+    "state": "RALLY_FAILED",
+    "current_price": 7457.69,
+    "lookback_high": 7609.77,
+    "correction_depth_pct": -2.0,
+    "swing_low": {
+      "date": "2026-06-26",
+      "price": 7354.03,
+      "decline_pct": -3.36,
+      "down_days": 11,
+      "recent_high_date": "2026-06-02",
+      "recent_high_price": 7609.77
+    },
+    "rally_attempt": {
+      "day1_date": "2026-06-29",
+      "current_day_count": 14,
+      "invalidated": false,
+      "invalidation_reason": null
+    },
+    "ftd": {
+      "ftd_detected": false,
+      "ftd_date": null,
+      "ftd_day_number": null,
+      "ftd_low": null,
+      "gain_pct": null,
+      "gain_tier": null,
+      "volume_above_avg": null
+    }
+  },
+  "nasdaq": {
+    "state": "NO_SIGNAL",
+    "current_price": null,
+    "lookback_high": null,
+    "correction_depth_pct": null
+  },
+  "quality_score": {
+    "total_score": 0,
+    "breakdown": {},
+    "signal": "No FTD",
+    "guidance": "No Follow-Through Day detected. Stay defensive.",
+    "exposure_range": "0-25%"
+  },
+  "post_ftd_distribution": {},
+  "ftd_invalidation": {},
+  "power_trend": {
+    "power_trend": false,
+    "conditions_met": 2,
+    "ema_21": 7490.98,
+    "sma_50": 7464.88,
+    "current_price": 7457.69,
+    "ema_above_sma": true,
+    "sma_50_rising": true,
+    "price_above_21ema": false
+  }
+}
