@@ -5419,3 +5419,153 @@ New entries: 1 slot available but deployed defensively. UNH R:R 2.17:1 passes ma
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=896.1h, slots 2→1 (hard gate — 37th consecutive degrade session). **ML stale 896h — refresh local PC.**
 - Pre-macro: cap_active=false
+
+---
+
+## 2026-07-20 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback / local_screener_v1, slots: 1, deployment: 75%) — ML stale_degrade 968.1h → trade_slots reduced 2→1 (hard gate, 38th consecutive degrade session). **ML stale 968h — refresh local PC.**
+
+**Breadth/Sector:** breadth=67.8/100 (Healthy) | sector=defensive tilt score=39 phase=late | divergence_flag=True (cyclical/defensive disagree internally)
+
+**FTD:** state=RALLY_FAILED [signal_date=n/a — no confirmed FTD; correction depth -2.0% from 52w high]
+
+**Exposure:** ceiling=42% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+
+### Account
+- Equity: $100,482.19 / Cash: $87,607.19 / Buying power: $386,478.76
+- Daytrade count: 0/3 | Open positions: 1 (AMD) | Open orders: 1 (AMD GTC trail 15%)
+- Weekly trades this week: 0 new (AMD entered Jul 16) / 3 max
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ML stale 968h — 38th consecutive session). Dominant themes: (1) **AMD AI Summit prelaunch rally** — AMD +3.88% today to $515 as Meta + Oracle hyperscaler wins confirmed ahead of Advancing AI 2026 event Jul 22-23 San Francisco [Benzinga Jul 20, TradingKey Jul 20]; (2) **US-Iran strikes continuing** — WTI $82.35 (−0.17%), Brent $88.54 (+0.50% after briefly above $90); US conducting new airstrikes against Iran; market distinguishing between elevated geopolitical risk and systemic shock; stock futures edged higher despite oil volatility [Bloomberg Jul 19, Semafor Jul 13]; (3) **Earnings acceleration week** — Alphabet Jul 22 (same day as AMD Summit), Meta Jul 23, MSFT Jul 23; Q2 S&P earnings tracking +23% YoY per FactSet; 42 names reporting today (before open: AGNC, CCK, DPZ +7.2%, STLD +10%, RYAAY, WRB, ZION); (4) **30Y yield 5.09%** (flat, +0.01bp vs Jul 17), WTI $82.35, DXY ~100.91 (stable/easing). vs Jul 17: AMD +$19.24 (+3.88%, recovering from -6.51% drawdown); VIX 18.83 (slight uptick from 18.33, Iran risk); oil mixed (WTI −17¢, Brent +43¢); Nasdaq futures climbing (AI Summit anticipation + Meta/Oracle AMD partnership confirms).
+
+> **SPX** (index ~7,458 per FTD data) vs **SPY** (ETF ~$750.72). Nasdaq futures NQ climbing on AMD/chip recovery.
+
+### Sector Picture
+- Top 3 (1mo momentum): XLV +7.82% (Choppy per screener), XLE +7.27% (Trend), XLF +5.02% (Choppy)
+- Bottom 3: XLK −8.28% (Bear), XLB −2.47% (Bear), XLY −1.47% (Bear)
+- Note: sector-momentum and ml_insights broadly agree — XLK Bear both sources; XLE Trend both sources; XLV/XLF Choppy; XLB/XLY Bear both. No material disagreement. XLC also Bear per screener (score −0.03).
+- Sector rotation advisory: defensive tilt (score 39/100), late-cycle phase, divergence between cyclical and defensive (divergence_flag=True).
+
+### Screener Diagnostics
+Screener: source=local_screener_v1 (rule_fallback), top 10 = [UNP(1.54), UNH(1.21), ABBV(0.84), BAC(0.70), LLY(0.65), JPM(0.61), MRK(0.61), GE(0.56), XBI(0.53), XLE(0.42)]
+Carry-forward watchlist: empty. No active watchlist entries entering today.
+
+### Existing Position: AMD (XLK, $515.00 today)
+
+**Status:** 25 shares @ $514.61 avg entry (Jul 16). Current $515.00. P&L: +$9.75 (+0.08%). Today's session recovery: $495.76 → $515 (+$19.24, +3.88%). Cost basis: $12,865.25 (12.8% of equity).
+
+**Stop health:** GTC trail 15%, HWM $518.31, current stop $440.56. Distance to stop: $515 − $440.56 = $74.44 (14.5% buffer). R-multiple: ($515−$514.61)/($440.56−$514.61) = +$0.39/−$74.05 = **+0.005R** (essentially flat, recovering from −0.45R at Jul 17).
+
+**ATR(14) AMD:** $37.70 (7.6% of $495.76 last close). 2.5×ATR = 19.01% → clamped to 15% ceiling. Stop methodology consistent.
+
+**Catalyst update (B6 — thesis revalidation):** AMD AI Summit Advancing AI 2026 (Jul 22-23, San Francisco) — major pre-event confirmations:
+- **Meta** confirmed purchase of AMD MI450 5th-gen GPUs + 6th-gen EPYC CPUs starting H2 2026 [TradingKey Jul 20]
+- **Oracle** first hyperscaler to launch publicly available AI supercluster using 50,000 AMD MI450 GPUs, Q3 2026 [TradingKey Jul 20]
+- **Zen 6 Venice CPU** ships at Summit (1.7× performance vs prior gen) [TradingKey Jul 20]
+- **Analyst PTs intact**: KeyBanc $725 (street-high), UBS $700, Citi expects major new customer win announcement, MS PT upgrade pending
+- Q2 earnings Aug 4 (15 days from today — no earnings blackout risk)
+
+**Stop tighten check:** Not triggered. First threshold at +15% = $514.61 × 1.15 = $591.80. Current $515 = +0.08%. No action.
+
+**AMD management decision:** HOLD — do not touch stop. Trail at 15% is appropriate. Summit Jul 22 could push AMD toward $550-580 range (analysts citing $584 as near-term target post-event [TradingKey]). Let GTC trail auto-update HWM as price rises.
+
+### Candidates
+
+#### UNH (XLV, $426.09 close Jul 17 / current ~$426)
+
+**Setup:** Post-earnings base. ATR(14)=$12.39 (2.91% of price); stop_pct_2_5x=7.27% → stop at $395.12 (not clamped; 7.27% > 7% floor). Distance above 200-SMA/52w: price $426 vs 52w range $234.60–$461.62 — mid-range, recovering from post-Q2 fade.
+
+**Setup type:** PULLBACK — price came back to $420-427 support after failed earnings breakout from $461 high.
+
+**Sources scanned (4):** 2 EDGAR (Form 4, Jul 6) / 0 NewsAPI / 0 Finnhub (403 blocked) / 0 Reddit (403 blocked) / 2 WebSearch [Gemini grounded — unverified].
+
+**Bull case:**
+- Q2 EPS $6.38 vs $4.85 consensus (+31.5% beat); FY2026 guidance raised $19.50–$20.00 [SEC 8-K Jul 15, CNBC Jul 16]
+- Post-earnings analyst PT raises: MS $529, BofA $512, Goldman $490, Truist $500, Wells Fargo $485 [WebSearch Jul 20 — Gemini grounded — unverified]
+- XLV sector #1 by 1mo momentum (+7.82%); Choppy regime — not Bear
+- Held $420 support through weekend (Jul 17 close $426.09, Jul 17 trigger met)
+- Correlation with AMD: −0.26 (excellent diversification — negatively correlated 30d)
+
+**Bear case:**
+- **DOJ probe EXPANDED**: Claritev antitrust probe now includes new civil investigative demands + collusion allegations with major insurers — broader than previously disclosed matters [Yahoo Finance Jul 2026, SimplyWallSt Jul 2026 — Gemini grounded — unverified]
+- Multiple simultaneous active investigations: (1) criminal probe into Medicare billing, (2) Optum Rx + physician reimbursement, (3) Claritev antitrust [FierceHealthcare, MedicalEconomics — Gemini grounded — unverified]
+- **Failed earnings breakout**: stock popped +10% to $461 intraday on Q2 beat, faded to $423 close (−8.2% from high on same day). Distribution signal [WebSearch Jul 16-17]
+- Jul 29: executives expected to address investigations on next call — binary event risk
+- Membership down 2.8M in 2026; MLR headwinds; guidance raise may reflect legal-resolution optimism
+
+**Critique:**
+**Strongest counter to bull case:** The DOJ probe expansion to Claritev (antitrust, civil investigative demands) is a qualitative escalation, not a static background risk. The company now faces at minimum 3 simultaneous active federal probes. Institutional holders who did NOT sell into the Q2 beat (the $461 high that faded) have continued to show no confidence in the stock — $426 is barely above the pre-beat closing price of ~$420. The market is effectively pricing in zero multiple expansion until legal clarity arrives. The July 29 executive call where they will "address" the investigations is a near-term binary event. Entering a 7% hard-stop position into an unresolved criminal + antitrust investigation means the actual risk at exit (gap-down on indictment) could be 20-30%, not 7%.
+
+**Weakly-sourced claims:** All post-earnings PT figures (MS $529, BofA $512, Goldman $490) are tagged [Gemini grounded — unverified] — gathered via WebSearch, not confirmed via Finnhub analyst feed (Finnhub 403 blocked today). No EDGAR new filings confirming DOJ expansion details.
+
+**Single most-likely invalidator (next 5 trading days):** DOJ files formal criminal charges or expands indictment to Claritev entity, causing UNH to gap down 20-30% intraday, blowing through the 7% trail stop and producing 20-30% realized loss per share.
+
+**Data check (B2):** Prior R:R logged Jul 14-17 as ~2.17:1 using Bernstein $492 PT + $427 entry. Today: Goldman $490 PT + $426 entry → R:R = ($490-$426)/$30.88 = 2.07:1. Consistent with prior; no contradiction. PT range from research: $287–$529 (wide consensus vs narrow post-earnings upgrades). Using conservative Goldman $490 (post-earnings, Jul 2026).
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 13.3% XLV (currently 0%; AMD is XLK)
+- 30d correlation with AMD: −0.26 (below 0.70 gate ✓)
+- Sector cap: 0/2 XLV (cap not triggered)
+- Shared-catalyst flag: No — UNH (healthcare/insurance) vs AMD (AI hardware) are uncorrelated theses
+
+**R:R math (B3):** Entry $426 / stop $395.12 (−7.27% from 2.5×ATR, not clamped) / target $490 (Goldman post-earnings raise, Jul 2026 [Gemini grounded — unverified]) / R:R 2.07:1 ✓ passes 2.0 floor. Max risk = ($426−$395.12) × ~47 shares ($20k size) = $1,450. HOWEVER: binary DOJ gap risk renders the stop theoretical, not effective. Actual worst-case loss on indictment = $426 × 0.70 × 47 shares = ~$14k.
+
+**Gate-history audit (B7):** UNH dropped every session since Jun 2 due to DOJ disqualifier (standing per prior logs). Jul 17 established a re-evaluation trigger: "if UNH holds $420 through Monday Jul 20, re-evaluate." Today: trigger met ($426 > $420 ✓). However, DOJ situation is WORSE today (expanded to Claritev antitrust, new civil investigative demands). This is not a gate-creep issue — prior entries were "monitoring/watch" not accepted planned entries. Re-evaluation completed; conclusion: demoted again due to escalated DOJ risk.
+
+**Decision: DEMOTED** — DOJ expanded (Claritev antitrust) is a new negative since last assessment. Binary indictment risk cannot be managed by a trailing stop. R:R 2.07:1 passes math but theoretical risk at DOJ event = 20-30% loss, not 7%. With 1 available trade slot and AMD Summit in 2 days (high-priority existing position catalyst), capital better held in cash for higher-conviction setups.
+
+#### UNP (XLI, ~$299)
+
+**Setup:** Earnings blackout — UNP earnings Jul 23 (3 days, in_blackout=true per screener). Hard disqualifier per strategy.
+
+**R:R math:** Not computed. Earnings blackout = no entry permitted.
+
+**Decision: DROPPED** — Earnings blackout Jul 23. 5th consecutive session dropped for identical reasons (R:R fails + blackout).
+
+### Candidates Dropped (and why)
+- **UNH** — DOJ probe expanded to Claritev antitrust (new civil investigative demands, broader than prior disclosures). Binary indictment risk unmanageable with trailing stop. R:R 2.07:1 passes math but binary risk profile = 20-30% downside on DOJ event vs 7% stop assumption. Third consecutive week of demotion. Watchlist NOT added — DOJ resolution needed before re-entry.
+- **UNP** — Earnings blackout (Jul 23, 3 days). R:R also fails (1.48:1 at current price). 5th consecutive drop.
+- **ABBV, BAC, LLY, JPM, MRK, GE, XBI, XLE** (screener ranks #3-#10) — not deep-dived; 1 trade slot and AMD in position; no additional capacity for new entries.
+
+### Historical Analog
+
+**Analog:** December 2023 — AMD's first major Advancing AI product reveal (MI300X launch event, San Jose, Dec 6 2023). AMD entered the event at ~$122-130/share after a strong bull run from $60 lows. At the time: VIX ~12-13 (lower than today's 18.83), 10Y yield ~4.2% (lower than 5.09% 30Y today), NVDA dominance narrative unbroken. AMD revealed MI300X with competitive AI benchmark data and announced first hyperscaler design wins. Sector backdrop: AI infrastructure capex in acceleration phase, semiconductor stocks in multi-month uptrend.
+
+**What followed:** 5d post-event: AMD rallied from ~$130 to ~$148 (+14%); 10d: maintained +10-12%; 20d: AMD extended to $168-175 (+30% from the event). The pattern: confirmed customer announcements at a product event → institutional accumulation → sustained 20-30% move over 30-60 days. Today's setup is different — AMD has CONFIRMED hyperscaler wins (Meta, Oracle) AHEAD of the Summit, suggesting the announcements are already partially known.
+
+**Why this time might differ:** (1) VIX 18.83 today vs 12-13 in Dec 2023 — higher macro uncertainty compresses multiple expansion; (2) AMD is down 17% from June highs vs trend-up in Dec 2023; (3) Alphabet + Meta + MSFT earnings Jul 22-23 (same days as Summit) create binary cross-current — if hyperscalers signal AI capex slowdown in calls, that could offset the Summit; (4) 30Y at 5.09% creates a discount-rate headwind not present in Dec 2023. Net: the thesis is intact but the macro friction is meaningfully higher.
+
+### Risk Factors (consolidated)
+1. **AMD position at ~breakeven** — position recovering from -6.51% drawdown (Jul 17); Summit Jul 22 is the key catalyst; Alphabet/Meta/MSFT earnings same days create cross-risk.
+2. **Hyperscaler AI capex narrative** — if any of Alphabet/Meta/MSFT signals AI spend slowdown in Jul 22-23 earnings calls, AMD Summit rally could be sold into. Microsoft/MSFT is the largest Nvidia partner; AMD partnership confirmation scope matters.
+3. **US-Iran escalation** — US conducting new airstrikes; oil at $82-88; geopolitical risk elevated. If Iran retaliates against US assets, VIX spike could pressure all risk assets.
+4. **VIX elevated 18.83** — not extreme but above 18.33 Jul 17 close; premium suggests uncertainty about earnings week + Iran.
+5. **ML stale_degrade 968h (38th session)** — regime calls rule-based; XLK Bear limits new entries in tech; AMD held as existing position.
+6. **Exposure-coach tension** — REDUCE_ONLY ceiling 42% vs Neutral regime 75% target. Currently 12.8% deployed (AMD only) — well below both signals. Tension: exposure coach says even 42% is too high in current macro; regime says 75%.
+7. **UNH DOJ escalation** — if UNH takes a large gap-down from DOJ action before re-evaluation, the missed-opportunity risk on UNH's upside confirms the correct decision to stay out.
+
+### Decision
+**HOLD — no new orders placed today.**
+
+AMD (existing): Hold through AI Summit Jul 22-23. Confirmed hyperscaler wins (Meta + Oracle) strengthen thesis; Q2 earnings Aug 4 is the next major binary event (outside 14-day blackout today). GTC trail 15% provides automatic protection at $440.56. Do not chase tightening — +15% threshold ($591.80) not reached.
+
+New entries: 0. UNH DOJ escalation makes the theoretical stop unreliable (binary risk = 20-30%, not 7%). UNP in earnings blackout. Single available trade slot held in reserve for post-Summit higher-conviction opportunity. Exposure-coach REDUCE_ONLY signal (advisory) aligns with conservative posture.
+
+**Monitoring triggers for next session (Jul 21 pre-market):**
+- AMD: Any Summit pre-announcement gap above $530 → evaluate stop tighten at $530+ (first level at +15% = $591.80 — still far away). If AMD gaps up 10%+ on Summit day → re-evaluate trailing stop.
+- UNH: Hold for post-DOJ clarity. If Claritev indictment filed, reassess UNH entirely.
+- Alphabet, Meta, MSFT earnings (Jul 22-23): AI capex guidance read-through for AMD thesis.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429/quota — 29th consecutive session) + 0 Pro (404)
+- WebSearch: 8 calls (VIX/futures, WTI/yields, catalysts/earnings, UNH price, AMD Summit, DOJ UNH, UNH analyst PTs, Iran/oil/market)
+- NewsAPI: gathered for UNH+UNP (records returned in gather output — counts from research.py gather)
+- EDGAR: 4 Form 4 records for UNP (Jul 13); 2 Form 4 records for UNH (Jul 6) — used in gather only
+- Finnhub: 403 blocked (analyst upgrades not available)
+- Reddit: 0 records (403 blocked, egress probe confirmed)
+- Fallback: Gemini 429/404 → all macro/research via WebSearch
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=968.1h, slots 2→1 (hard gate — 38th consecutive degrade session). **ML stale 968h — refresh local PC.**
+- Pre-macro: cap_active=false

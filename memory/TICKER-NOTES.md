@@ -38,26 +38,26 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-16): TRADE CANDIDATE — PULLBACK limit $538 (day TIF); AMD premarket ~$534 (below limit). R:R 2.38:1 (KeyBanc $725, Jul 15 / 15% stop at $534 entry = $80.10 risk). TSMC Q2 2026 record earnings (+77% YoY) confirm robust AI demand; AMD selloff (-2.5% premarket) = TSMC capex-concern narrative, not AMD-specific bear. UBS raised PT $670→$700 today. AI Summit Jul 22-23 (7d). Last day on watchlist (expires Jul 16-18). [Finnhub/WebSearch, Jul 16 2026]
+- Thesis (2026-07-20): OPEN POSITION — 25 shares @ $514.61 avg entry (Jul 16). Current $515 (+0.08% from entry). GTC trail 15%, HWM $518.31, stop $440.56. AI Summit Advancing AI 2026 Jul 22-23 (2 days). Pre-event hyperscaler wins confirmed: Meta (MI450 GPUs + EPYC CPUs H2 2026) + Oracle (50K GPU AI supercluster Q3 2026). Q2 earnings Aug 4 (no blackout). Sector XLK Bear but position held (thesis-based; B4 exception). [TradingKey/Benzinga Jul 20 2026]
 - Recent catalysts:
+  - 2026-07-20: Meta confirmed MI450 GPU + 6th-gen EPYC CPU purchase for H2 2026 [TradingKey Jul 20 — Gemini grounded — unverified]
+  - 2026-07-20: Oracle first hyperscaler to launch AI supercluster with 50,000 AMD MI450 GPUs, Q3 2026 [TradingKey Jul 20 — Gemini grounded — unverified]
+  - 2026-07-20: AMD +3.88% to $515 (recovery from Jul 17 -6.51% drawdown); Citi expects major new customer announcement at Summit [Seekingalpha Jul 20]
   - 2026-07-16: UBS raised AMD PT $670→$700 (Buy; maintained amid TSMC-driven selloff) [Stocktwits, Jul 16 — Gemini grounded — unverified]
-  - 2026-07-16: TSMC Q2 2026 record: +77% net profit, $39.62B revenue (+36% YoY), capex raised to high-end $52-56B → confirms AMD chip demand robust [Finnhub, Jul 16]
   - 2026-07-15: KeyBanc raised PT $530→$725 (new street high) [Blockonomi, Jul 15 2026]
-  - 2026-07-15: BofA raised PT $550→$620 (Buy) [TradingKey, Jul 15 2026]
-  - 2026-07-15: ASML raised AI demand forecast + 30% capacity expansion [Yahoo Finance, Jul 15]
-  <!-- archive: 2026-07-15: NVDA H200 China exports approved (minimal) — partial AMD bear [Finnhub, Jul 15] -->
+  <!-- archive: 2026-07-16: TSMC Q2 2026 record: +77% net profit → confirms AMD chip demand robust [Finnhub, Jul 16] -->
+  <!-- archive: 2026-07-15: BofA raised PT $550→$620 (Buy) [TradingKey, Jul 15 2026] -->
+  <!-- archive: 2026-07-15: ASML raised AI demand forecast + 30% capacity expansion [Yahoo Finance, Jul 15] -->
   <!-- archive: 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 [WebSearch, Jul 13] -->
-  <!-- archive: 2026-07-10: Bernstein raised AMD PT $525→$600 [prior session] -->
   <!-- archive: 2026-07-08: Goldman Sachs raised AMD PT $450→$640 [prior session] -->
-  <!-- archive: 2026-07-06: NVDA Kyber NVL144 delayed >12mo to 2028 [prior session] -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap; thesis-break per 06-08 notes)
-  - Watchlist: added Jul 15, expires Jul 18 (last day Jul 16). PULLBACK $538, stop $454 (15% ATR-clamped)
+  - 2026-07-16: OPEN — 25 shares @ $514.61 avg entry (filled ~$514-515 premarket pullback). GTC trail 15% armed.
 - Open thesis questions:
-  - **Fill risk Jul 16:** AMD ~$534 premarket; limit $538 fills at open. If AMD gaps further down below $510 (day low), cancel — thesis break signal.
-  - **AI Summit Jul 22-23 binary risk (7 days):** also Alphabet earnings same day. Tighten stop to 1.75×ATR at +15% ($614+), to 1.25×ATR at +20% ($641+) BEFORE Summit.
-  - **Sector_bear XLK override:** XLK Bear for 36+ sessions; individual alpha thesis required to maintain. Monitor XLK for regime improvement.
-  - **Stop (GTC, upon fill):** $454 (15% ATR-clamped at $534 entry). Higher than Jul 15 plan ($457.30 at $538) due to lower entry — tighter in absolute dollar terms.
+  - **Summit binary risk (Jul 22-23):** Alphabet + Meta + MSFT report same days — if hyperscalers signal AI capex slowdown, Summit rally sold into. Key metric: hyperscaler inference GPU orders for H2 2026.
+  - **Stop tighten thresholds:** +15% = $591.80 (tighten to 1.75×ATR); +20% = $617.53 (tighten to 1.25×ATR). Neither triggered at $515.
+  - **Q2 earnings Aug 4:** next binary event. Thesis: strong AI demand visibility from Summit customer wins should provide upside guide.
+  - **Sector_bear XLK override:** XLK Bear for 38+ sessions. Position held on thesis strength (hyperscaler wins, hard Summit catalyst). Monitor XLK for regime improvement signal.
 
 ---
 
@@ -306,22 +306,23 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## UNH (XLV)
-- Thesis (2026-07-17): Post-earnings pullback monitor. Q2 2026 beat massive (+31.5% EPS: $6.38 vs $4.85); FY guide raised to $19.50-$20.00; multiple PT raises (Bernstein $492, WF $485, Piper $475, MS $468). BUT: failed earnings breakout — stock popped to $461 intraday Jul 16, closed $423 (-8.2% from high on beat day). DOJ investigation still active (no resolution in Q2 report). R:R 2.17:1 at $427 entry (7% stop, $492 target) — passes math, blocked by price action + DOJ. Monitor: if holds $420 support week of Jul 20, re-evaluate PULLBACK entry.
+- Thesis (2026-07-20): DOJ EXPANDED — Claritev antitrust probe now includes new civil investigative demands + collusion allegations with major insurers (broader than prior disclosures). Multiple simultaneous active probes: (1) Medicare billing criminal, (2) Optum Rx + physician reimbursement, (3) Claritev antitrust. Failed earnings breakout intact ($461 high → $423 close on Q2 beat). R:R 2.07:1 at $426 entry (Goldman $490 target, 7.27% stop) passes math BUT binary DOJ gap risk (20-30% gap-down on indictment) makes stop theoretical. DEMOTED — 3rd consecutive week. Do NOT add to watchlist; requires DOJ resolution. [Yahoo Finance, SimplyWallSt Jul 2026 — Gemini grounded — unverified]
 - Recent catalysts:
-  - 2026-07-16: Q2 2026 massive beat — adj EPS $6.38 vs $4.85 (+31.5%); FY2026 guide $19.50-$20.00; PT raises: Bernstein $492, WF $485, Piper $475, MS $468 [SEC 8-K Jul 15; CNBC Jul 16]. Failed breakout: $461 high → $423 close.
-  - 2026-07-17: Monitor at $426.72. Failed earnings breakout pattern. DOJ not resolved. DEMOTED (risk-off Friday + price action).
+  - 2026-07-20: DOJ probe EXPANDED to Claritev antitrust — new civil investigative demands, collusion allegations with major insurers [Yahoo Finance Jul 2026, SimplyWallSt Jul 2026 — Gemini grounded — unverified]
+  - 2026-07-20: Post-earnings analyst raises: MS $529, BofA $512, Goldman $490, Truist $500, WF $485 [WebSearch Jul 20 — Gemini grounded — unverified]
+  - 2026-07-16: Q2 2026 massive beat — adj EPS $6.38 vs $4.85 (+31.5%); FY2026 guide $19.50-$20.00 [SEC 8-K Jul 15; CNBC Jul 16]. Failed breakout: $461 high → $423 close.
+  - 2026-07-17: Monitor at $426.72. DOJ not resolved. DEMOTED (risk-off Friday + price action).
   - 2026-07-08: DOJ probe confirmed expanded to Optum Rx + physician reimbursement [fiercehealthcare.com Jul 2026]
-  - <!-- archive: 2026-06-23: Bernstein $492 PT (dated 2026-05-27) confirmed; DOJ still blocking entry despite R:R 3.00:1 math at $406 -->
-  - <!-- archive: 2026-06-08: BofA "Buy" upgrade + 5% dividend raise; stock +40% from lows -->
-  - <!-- archive: 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; DOJ criminal + civil opened [healthcaredive.com] -->
-  - <!-- archive: 2026-05: Truist PT raised to $440; median consensus PT $400.50 -->
+  <!-- archive: 2026-06-23: Bernstein $492 PT confirmed; DOJ still blocking entry despite R:R 3.00:1 math at $406 -->
+  <!-- archive: 2026-06-08: BofA "Buy" upgrade + 5% dividend raise; stock +40% from lows -->
+  <!-- archive: 2026-Q1: Adj EPS $7.23 beat; FY2026 guidance raised >$18.25; DOJ criminal + civil opened -->
 - Open thesis questions:
-  - DOJ criminal investigation: indictment risk → gap-down 15-30%; unmanageable with trailing stop. Post-earnings beat, the DOJ was NOT resolved in the Q2 filing. Entry remains blocked until DOJ resolution or clear monitoring trigger.
-  - Failed earnings breakout: why did the stock fade from $461→$423 on a massive beat? Was it DOJ-related distribution, or market-wide chip/tech selloff overhang? Resolution of this question determines whether $423 is a support base or a distribution floor.
-  - Re-entry trigger: UNH holding $420 support Mon-Tue (Jul 20-21) + no new DOJ news → PULLBACK entry candidate with R:R 2.17:1 ($492 target).
-  - When does the DOJ case resolve? No timeline disclosed. Standing open question since Jun 2.
+  - **DOJ escalation scope:** Claritev antitrust now added to criminal Medicare billing + Optum Rx criminal probes. 3 simultaneous active probes. Executives to address on Jul 29 call — this is a near-term binary event, not a background risk.
+  - **Binary gap risk:** indictment or probe expansion → gap-down 20-30%; no trailing stop captures this. Until resolution, entry requires a position size so small that it's not worth the slot.
+  - **Failed breakout confirmation:** stock at $426 (Jul 20) vs $423 close Jul 16 = essentially no recovery despite massive Q2 beat. Institutional distribution signal = real.
+  - **Re-entry trigger (deferred):** DOJ resolution (favorable settlement or dropped charges) OR price breaks above $461 (reclaims all post-earnings losses) on high volume. Neither expected in near term.
 - Trade history: (none yet)
-- Position-aware notes: 0% XLV exposure. DOJ disqualifier still active but R:R now clearly passes math (2.17:1). Next week: monitor $420 support.
+- Position-aware notes: 0% XLV exposure. DOJ disqualifier escalated Jul 20. Entry blocked until DOJ resolution.
 
 ## UNP (XLI)
 - Thesis (2026-07-14): At 52w high ($289.13 vs year-high $290.41); NSC merger STB application accepted May 28, 2026 — transcontinental rail catalyst; consensus PT $291.73 (23 analysts, essentially inline with price); street-high $330 (Morgan Stanley + Jefferies) gives R:R 2.02:1 — barely passes but thin; XLI Choppy regime; earnings Jul 23. DEMOTED — too thin on street-high only; re-entry viable if pulls back below $285 (R:R improves to 2.25:1 at $330).
