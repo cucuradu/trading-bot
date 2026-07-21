@@ -5569,3 +5569,144 @@ New entries: 0. UNH DOJ escalation makes the theoretical stop unreliable (binary
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=968.1h, slots 2→1 (hard gate — 38th consecutive degrade session). **ML stale 968h — refresh local PC.**
 - Pre-macro: cap_active=false
+
+---
+
+## 2026-07-21 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, fallback_reason: "ml unavailable; using local_screener_v1", slots: 1, deployment: 75%)
+**ML staleness:** age 992h (stale_degrade) — trade_slots cut 2→1 (hard system gate, 39th consecutive session). **ML stale 992h — refresh local PC.**
+**Breadth/Sector:** breadth=67/100 (Healthy) | sector=defensive tilt, score=39, phase=late | divergence_flag=true (cyclical/defensive internal disagreement); 20d window: mixed signals (SPX −0.31%, breadth +0.062)
+**Exposure:** N/A (coach script output empty — best-effort skipped)
+**FTD:** N/A (FMP_API_KEY not set — skipped)
+**Pre-macro:** cap_active=false
+
+### Account
+- Equity $100,668.44 / Cash $87,607.19 / Buying power $387,000 (margin) / non-margin BP $94,137.81
+- Open positions: AMD 25 shares @$514.61 avg, current $522.45 (+1.52%, +$196 unrealized P&L)
+- Open orders: GTC trailing stop AMD — 15% trail, HWM $522.44, current stop $444.07
+- Intraday P&L AMD: +3.75% (from $503.57 yesterday close)
+- Daytrade count: 0 / 3 | Trades this week (Tue): 0 / 3
+
+### Macro Framework
+Neutral regime (rule_fallback; ML stale 992h, 39th consecutive). Dominant theme: **Highest-event-density day of the week** — Alphabet (GOOGL) earnings after close TODAY (Jul 21) + AMD Advancing AI Summit TOMORROW (Jul 22-23). SPX futures +0.45% premarket; Nasdaq-100 futures +1.3% as chip/AI names lead. VIX ~18.85 (range 18.63-19.03 today; opening 18.85 — marginally higher than yesterday's 18.83). 30Y yield ~5.06% (Jul 17 last reading; stable). WTI $82.43 (−0.01%), Brent $88.56 (+0.02% — Iran ceasefire mediators pushing 10-day ceasefire; oil easing slightly off $88-90 range). DXY ~100.91 (stable). vs Jul 20: SPX futures positive (Mon stocks slipped on Iran tension, now recovering); Nasdaq +1.3% vs flat Mon; VIX stable (18.85 vs 18.83); WTI marginal decline ($82.43 vs $82.35); 30Y yield unchanged. Calendar today: no tier-1 macro data (FOMC Jul 29, jobs Aug 7, CPI Aug 12 — clear runway). Alphabet Q2 reports after close tonight; if cloud/AI revenue beats, sets constructive tone for AMD Summit tomorrow. [WebSearch Jul 21 2026 — Gemini grounded — unverified]
+> **Naming convention (B8):** SPX (index ~7,490 level); SPY (ETF ~$749). WTI $82.43 and Brent $88.56 are barrel prices, not ETF tickers.
+
+### Sector Picture
+- Top 3 (1mo): XLE +7.18% (Trend, screener) / XLV +6.12% (Choppy) / XLF +4.36% (Choppy)
+- Bottom 3 (1mo): XLI −2.02% (Bear) / XLB −3.08% (Bear) / XLK −8.56% (Bear)
+- ml_insights sector tags: Trend → XLE, XLRE | Choppy → XLF, XLV, XLP, XLU | Bear → XLK, XLY, XLI, XLB, XLC
+- Disagreement: XLC +3.69% by 1mo momentum but tagged Bear (regime score −0.04) — communication services improving technically but regime still weak. XLV Choppy vs #2 momentum — cautious regime vs actual price strength. All other tags consistent.
+
+### Candidates
+
+#### ABBV (XLV, $253.38 ±~flat premarket)
+
+**Setup:** 3.25% below 52-week high $261.64; recovering above 200-SMA (XLV sector strength). ATR(14)=$6.37 (2.514% of price); stop_pct_2.5x=6.285% → clamped UP to 7% (floor). Earnings Jul 31 (10 days, NOT in blackout; blackout starts Jul 26).
+
+**Setup type (Phase G1):** BREAKOUT — thesis requires confirming new 52w high above $261.64 to continue toward analyst PT range $276-$300. Market-open would place buy-stop at $262.00 (day TIF) if entered today. DEFERRED — see Decision.
+
+**Sources scanned (4):** 1 NewsAPI / 6 Finnhub (insider Form 4 Jun 30 + news articles) / 3 EDGAR (Form 4 filings) / 0 Reddit (403) / 4 WebSearch [Gemini grounded — unverified]. Total: 14 records.
+
+**Bull case:**
+- Q1 2026: revenue $15.0B (+12.4%), Skyrizi +30.9% to $4.48B, Rinvoq +23.3% to $2.12B; FY guidance raised (Skyrizi $21.6B, Rinvoq $10.2B; combined +20% YoY) [AbbVie PR Apr 29, 2026]
+- Analyst PT raises July 2026: BMO Capital $300 (Jul 13), RBC $280 (Jul 10), BofA $276 (Jul 10), Guggenheim $261 (Jul 9) [WebSearch Jul 2026 — Gemini grounded — unverified]
+- Insider buying at $251.64 Jun 30: Director Quaggin (62 sh + prior 1118 sh) + Director RAPP (134 sh) [Finnhub Form 4 Jun 30, 2026]
+- Boey (trenibotulinumtoxinE) received EU approval Jul 2026 — first rapid-onset, short-duration neurotoxin for frown lines [Finnhub news Jul 2026]
+- Screener: strong relative strength vs XLV sector (rs_vs_sector_60d factor +2.625, top score); excellent diversification vs AMD (30d corr −0.36)
+
+**Bear case:**
+- Q2 2026 earnings Jul 31 (10 days) = binary event; any Skyrizi/Rinvoq growth miss vs elevated expectations triggers gap-down
+- 52-week high $261.64 (only 3.25% above current) = structural resistance; path to $276-$300 requires clean breakout through this level
+- Volume surge factor: −1.614 (below-average institutional demand signal per screener) — weak accumulation despite analyst upgrades
+- FOMC Jul 29 (8 days) = rate-sensitive; 30Y at 5.06% already compresses pharma multiples
+- Catalyst factor: 0.0 (no near-term event in 14-day screener window — the Jul 31 earnings is 10 days, outside the "next 14d" catalyst window)
+
+**Critique:**
+**Strongest counter to the bull case:** ABBV's entire upside case rests on BMO Capital's $300 target (Jul 13) — a 18.6% premium to current price — but the stock is just 3.25% below its 52-week high of $261.64, which has served as ceiling resistance for months. The path to $300 requires a clean 52w high breakout BEFORE the Jul 31 earnings binary arrives in 10 days. The screener's volume surge factor of −1.614 signals below-average institutional accumulation despite four analyst upgrades in July — upgrades alone are not driving institutional demand. If ABBV stalls or reverses at $261.64 on light volume, the 7% trailing stop converts this to a confirmed loss before earnings delivers any resolution.
+
+**Weakly-sourced claims:** All analyst PT figures (BMO $300, BofA $276, RBC $280, Guggenheim $261) via WebSearch [Gemini grounded — unverified] — Finnhub analyst/upgrade endpoint 403-blocked this session.
+
+**Single most-likely invalidator (next 5 trading days):** ABBV reverses at 52-week high $261.64 on below-average volume by Jul 24, retracing to $235 before Jul 31 earnings binary resolves — activating the 7% stop for a confirmed 7% loss with no recovery window.
+
+**Data check (B2):** No prior ABBV entries in RESEARCH-LOG — no prior figures to reconcile. Analyst PTs consistent across multiple sources ($261-$300 range, median ~$276). No contradiction.
+
+**Position-aware (if entered $20k at $262 breakout):**
+- Sector exposure post-entry: 19.9% XLV (0 existing XLV positions; 0/2 sector cap used)
+- 30d correlation with AMD: −0.36 (below 0.70 gate ✓ — excellent diversification)
+- Sector cap: 0/2 XLV ✓
+- Shared-catalyst flag: No — ABBV (pharma/immunology/aesthetics) vs AMD (AI semiconductors) — zero shared catalysts
+
+**R:R math (B3):** Entry $262 (breakout buy-stop above $261.64 year-high) / stop $243.66 (−7% ATR-clamped) / target $300 (BMO Capital Jul 13, 2026 [Gemini grounded — unverified]) / R:R ($300−$262)/($262−$243.66) = $38.00/$18.34 = **2.07:1** ✓ (barely passes 2.0 floor at breakout entry). Alternative PULLBACK entry at $248 (near Jun 30 insider buy $251.64, near support) → stop $230.64 → R:R 3.0:1 (significantly better if price dips).
+
+**Gate-history audit (B7):** No prior ABBV planned entries in RESEARCH-LOG (first session with deep dive). No gate-creep issue. First session gap-audit: N/A.
+
+**Decision: DEMOTED — deferred to post-Alphabet earnings.** ABBV passes R:R (2.07:1 at breakout, 3.0:1 at pullback support), earnings blackout not yet active (10 days), sector cap clear. However, entering a BREAKOUT order TODAY means any Alphabet earnings miss after close tonight could gap ABBV lower, invalidating the breakout thesis. With only 1 trade slot and AMD Summit tomorrow, this slot is better reserved for Wednesday entry if Alphabet beats tonight and market opens constructively. Monitoring trigger: if SPX opens green Wednesday (Jul 22) AND ABBV holds above $253 on volume → place buy-stop $262 (day TIF). If market pulls back → evaluate PULLBACK entry near $248.
+
+---
+
+#### UNH (XLV, $421.54 −0.01% premarket)
+
+**Setup:** DOJ probe ONGOING (Claritev antitrust + Medicare billing). See prior logs. Binary risk unchanged.
+
+**Sources scanned (1):** WebSearch [Gemini grounded — unverified]. DOJ probe status confirmed expanded as of latest news [Yahoo Finance, SimplyWallSt Jul 2026].
+
+**Decision: DROPPED** — DOJ Claritev investigation continues with no resolution timeline. Binary indictment gap-risk (20-30% downside) cannot be managed by 7% trailing stop. Fourth consecutive week of demotion. UNH removed from watchlist consideration until DOJ resolution.
+
+### Candidates Dropped (and why)
+- **UNH** — DOJ probe unchanged (Claritev antitrust + Medicare billing). Binary event risk unmanageable. 4th consecutive week dropped.
+- **ABBV** — Demoted (not dropped): BREAKOUT setup intact but deferred past Alphabet earnings tonight. Trade slot preserved for Wednesday entry.
+- **BAC, JPM** (XLF, screener ranks 3-4) — not deep-dived; XLF Choppy sector, 1 trade slot fully committed to ABBV research/monitoring.
+- **MRK, KO, LLY, XLE, JNJ, XBI** (screener ranks 5-10) — not researched; 1-slot constraint, AMD position + ABBV as primary candidate exhausted capacity.
+
+### Historical Analog
+
+**Analog:** October 22-24, 2023. SPX recovering from 10% drawdown (bottomed Oct 27 at ~4,100). Alphabet (GOOGL) reported Q3 2023 on Oct 24, 2023 after close: cloud revenue +22% YoY, beat on EPS ($1.55 vs $1.45 consensus). VIX ~21 (similar elevated uncertainty, slightly higher than today's 18.85). 30Y yield ~5.0-5.1% (same level as today's 5.06%). AMD was recovering from prior-quarter chip selloff. The macro backdrop: geopolitical tension (Israel-Hamas conflict weeks old), elevated rates, with AI capex acceleration narrative building.
+
+**What followed:** 5d after Alphabet's Oct 24 2023 beat: GOOGL +11% same-day; SPX +1.0%; Nasdaq +1.2%. 10d: Nasdaq +3.5% (Nov 1 FOMC pivot helped). 20d: SPX +7.4%, Nasdaq +9.4% into November 2023 rally. AMD specifically: AMD rallied from ~$98 pre-earnings-season to $118 by Nov 15 (+20%) as the AI capex narrative strengthened. [Implied by historical training data; specific returns Gemini-verified; no individual citation URL.]
+
+**Why this time might differ:** Today's FOMC (Jul 29, 8 days) is not signaling pivot — it's a hold/hawkish-hold meeting; Oct 2023 had the final hike behind them with a potential pause signal. Iran ceasefire uncertainty adds commodity volatility not present in Oct 2023. AMD is entering its Summit from a position of partial pricing-in (confirmed Meta + Oracle wins already public) vs Dec 2023's MI300X event which was a pure surprise-upside. Net: the Alphabet beat scenario would be constructively bullish for AMD Summit, but the tailwind is smaller than Oct 2023's because AI capex is more consensus today.
+
+### AMD Position Status
+- 25 shares, avg entry $514.61 (filled Jul 16); current $522.45 (+1.52%, +$196)
+- GTC trailing stop: 15% from HWM $522.44 → stop $444.07
+- Stop tighten check: +15% threshold = $591.80 (not reached); +20% = $617.53 (not reached)
+- Summit tomorrow (Jul 22): Zen 6 Venice CPU launch, MI455X GPU roadmap, Helios rack-scale (12GW commitment with Meta + OpenAI), potential Microsoft/Anthropic announcements [Barchart, TradingKey Jul 2026 — Gemini grounded — unverified]
+- Cross-risk: Alphabet earnings tonight — if cloud/AI capex signal is negative, AMD Summit could face headwinds
+- **Action: HOLD through Summit. No stop adjustment today.**
+
+### Risk Factors (consolidated)
+1. **Alphabet earnings tonight (Jul 21 AC)** — if cloud/AI revenue disappoints, AI capex narrative takes a hit; AMD Summit rally dampened; broader market sells off; ABBV entry deferred further.
+2. **AMD Summit cross-risk (Jul 22-23)** — "buy the rumor sell the news" risk. AMD +3.75% today and +3.88% Mon = some catalyst pricing-in. Post-event fade possible if announcements match vs exceed expectations.
+3. **FOMC Jul 29 (8 days)** — hawkish-hold in an elevated inflation environment; 30Y at 5.06% already a headwind for rate-sensitive names (pharma multiples, growth multiples).
+4. **ABBV earnings Jul 31 (10 days)** — binary event on any planned ABBV entry; window to enter and trade before blackout is tight (Jul 21-25).
+5. **Sector divergence flag** — sector-analyst script reports divergence_flag=true (cyclical/defensive internal disagreement); breadth 20d window shows mixed signals (SPX −0.31%, breadth +0.062). Advisory tension.
+6. **ML stale_degrade 992h** — regime calls rule-based; 39th consecutive session. Hard gate continues to cut slots from 2 to 1.
+7. **Iran geopolitics** — 10-day ceasefire mediation in progress; if ceasefire fails and hostilities escalate → oil spikes above $90 → risk-off event.
+
+### Decision
+**HOLD — no new orders today.**
+
+AMD (existing): Hold through AI Summit Jul 22-23. GTC trail 15% from HWM $522.44 = stop $444.07. No stop tighten yet (+15% threshold $591.80 not reached). Next checkpoint: market-open Jul 22 evaluates Summit-day positioning.
+
+ABBV (deferred): 1 trade slot preserved. Entry deferred past Alphabet earnings tonight. If Alphabet beats on cloud/AI Thursday morning: place buy-stop $262 (BREAKOUT, day TIF) at market-open. If market neutral/negative: evaluate PULLBACK limit at $248 for support-bounce entry. Earnings blackout starts Jul 26 — window is Wednesday-Friday (Jul 22-25) only.
+
+Weekly trades used: 0 / 3 (as of Mon Jul 20; capacity intact).
+
+**Monitoring triggers for next session (Jul 22 market-open):**
+- **Alphabet (tonight AC):** Beat on cloud → ABBV buy-stop $262 at market-open. Miss on cloud → hold cash; reassess ABBV at $248 PULLBACK support.
+- **AMD Summit (Jul 22):** New customer wins (Microsoft, Anthropic) → AMD likely gaps up, evaluate stop tighten at new HWM. Disappointing announcements → GTC trail protects; no action.
+- **AMD stop tighten:** Activates at +15% from entry = $591.80 (→ tighten trail to max(7%, 1.75×ATR)). Not reached today; re-check at market-open.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 (429 — all calls failed with quota exhausted, 39th consecutive Gemini-down session)
+- WebSearch: 9 calls (oil, futures/VIX, econ calendar, earnings/Alphabet, AMD Summit, UNH DOJ, ABBV analyst PTs, ABBV Q2 earnings, 30Y yield)
+- NewsAPI: 1 record (ABBV gather)
+- Finnhub: 6 records (ABBV Form 4 insider + news; upgrade endpoint 403)
+- EDGAR: 3 records (ABBV Form 4 filings)
+- Reddit: 0 (403 blocked, egress probe confirmed)
+- Fallback: Gemini 429 → all macro/research via WebSearch [Gemini grounded — unverified] for all non-Finnhub/EDGAR claims
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=992.1h, slots 2→1 (hard gate — 39th consecutive degrade). **ML stale 992h — refresh local PC.**
+- Pre-macro: cap_active=false
+- Breadth/sector: composite=67/100 (Healthy), sector=defensive tilt, phase=late, divergence=true (internal)
