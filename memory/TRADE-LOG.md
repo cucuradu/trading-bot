@@ -524,3 +524,43 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **Key takeaway:** 39th+ session; first new entry in watchlist carry cycle since May 28. AMD thesis revalidated by TSMC demand data; gap-driven skip yesterday now re-entered at target level premarket. Account at 13.3% deployed (pending fill); 2 trade slots remaining.
 
+---
+
+## 2026-07-22 — Market-open Session (HOLD)
+
+**Account status:** $101,276.94 equity, $87,607.19 cash, 13.4% deployed (1 position: AMD).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Tue):** 0 / 3 (week reset Mon Jul 20).
+**Risk gates:** entries_blocked=false, tighten_trails=false, lock_file=false.
+**Market regime:** Neutral (rule_fallback; ML stale 1016h, 40th session). Trade slots: 2→1 (hard gate).
+
+**Market conditions:** AMD pre-market $546–$548 (Summit Day 1 delivered; Zen 6 Venice, MI455X, Helios rack, Azure/Meta/OpenAI wins — sell-the-news −3% from $548 high to current $546 intraday). SPX futures −0.2% (risk-off on Iran Strait escalation + Alphabet/Tesla earnings tonight). VIX 17.64 (+3.45%, elevated). WTI $82 (Strait premium back after ceasefire collapse). DXY 101.1 (safe-haven demand). 30Y yield ~5.06% (stable).
+
+**Research-Log decision (Jul 21 pre-market → Jul 22 market-open):** **HOLD — no new orders today.**
+- AMD (open, 25 sh, avg $514.61, current $546.57): Hold through Summit Day 2 + Alphabet earnings night. GTC trail 15% active, verified covered. No stop tighten needed (+15% threshold $591.80 not reached; current $546.57).
+- ABBV (deferred): Entry decision recurs Jul 23 after Alphabet results. Trigger: if Alphabet cloud beats → BREAKOUT buy-stop $262 (day TIF). If neutral/miss → PULLBACK pullback limit $248. Blackout starts Jul 26; final entry window Jul 23-25.
+
+**STEP 2 Account Verification:**
+- Equity: $101,276.94 (↑ $804.49 from Jul 21 close $100,472.45)
+- Cash: $87,607.19 (unchanged)
+- Positions: AMD 25 sh, market value $13,664.25, unrealized +$799 (+6.21%)
+- Buying power: $388,704.06
+- Orders: 1 active (AMD GTC trailing stop, trail_percent=15, status=new, qty=25)
+
+**STEP 3 Rules Check (pre-entry, N/A for HOLD session):** N/A — no new entries planned.
+
+**STEP 4 ATR Stop Recompute:** Not needed (existing position, trail active).
+
+**STEP 5 Order Placement:** None placed.
+
+**STEP 5b Protective-Stop Coverage Check:**
+- Result: covered=true, naked=[], all_positions_protected=true
+- AMD: 25 shares covered by GTC trailing stop (15% trail, status=new, created 2026-07-16 13:38 UTC)
+- Conclusion: ✓ All positions have active protective sells
+
+**STEP 6 Trade Log Append:** N/A (HOLD session, no orders).
+
+**Session Decision:** **HOLD — no trades placed.** AMD trail remains active. ABBV entry window preserved for Jul 23 post-Alphabet results. Weekly trade slots: 0/3 intact. Daytrade count: 0/3 intact.
+
+**Next checkpoint:** Daily-summary (EOD Jul 22) will reconcile AMD P&L and confirm GTC status. Market-open Jul 23 will execute ABBV entry decision based on Alphabet earnings outcome.
+
