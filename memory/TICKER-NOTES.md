@@ -38,44 +38,43 @@ Conventions:
   - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
 
 ## AMD (XLK)
-- Thesis (2026-07-21): OPEN POSITION — 25 shares @ $514.61 avg entry (Jul 16). Current $522.45 (+1.52%). GTC trail 15%, HWM $522.44, stop $444.07. AI Summit Advancing AI 2026 TOMORROW Jul 22-23 (San Francisco). Expected: Zen 6 Venice CPU launch, MI455X GPU roadmap, Helios rack-scale (12GW). Potential customer announcements: Microsoft, Anthropic. Cross-risk: Alphabet earnings tonight (AC) — beat would confirm AI capex thesis; miss would dampen Summit narrative. Q2 earnings Aug 4. [Barchart/TradingKey Jul 2026 — Gemini grounded — unverified]
+- Thesis (2026-07-22): OPEN POSITION — 25 shares @ $514.61 avg entry (Jul 16). Current ~$528.23 (−2.97% today, +2.6% vs entry). GTC trail 15%, HWM ~$548.14, stop ~$465.92. Advancing AI Summit DELIVERED: Zen 6 Venice (2nm TSMC, 256 cores, 1.7x perf gen-on-gen), MI455X GPU, Helios rack (31TB HBM4); Azure (Helios deployment), Meta (H2 2026), OpenAI (multi-gen Instinct contract) committed. Sell-the-news −3% on day of event. Alphabet + Tesla report tonight (Jul 22 AC) — next binary. Q2 earnings Aug 4. [TechTimes Jul 22 2026; SeekingAlpha/Jefferies Jul 2026]
 - Recent catalysts:
-  - 2026-07-21: AMD +3.75% to $522.45 (Summit pre-event pricing-in; Nasdaq-100 +1.3% premarket on chip names)
-  - 2026-07-20: Meta confirmed MI450 GPU + 6th-gen EPYC CPU purchase for H2 2026 [TradingKey Jul 20 — Gemini grounded — unverified]
-  - 2026-07-20: Oracle first hyperscaler to launch AI supercluster with 50,000 AMD MI450 GPUs, Q3 2026 [TradingKey Jul 20 — Gemini grounded — unverified]
-  - 2026-07-16: UBS raised AMD PT $670→$700 (Buy; maintained amid TSMC-driven selloff) [Stocktwits, Jul 16 — Gemini grounded — unverified]
-  - 2026-07-15: KeyBanc raised PT $530→$725 (new street high) [Blockonomi, Jul 15 2026]
-  <!-- archive: 2026-07-16: TSMC Q2 2026 record: +77% net profit → confirms AMD chip demand robust [Finnhub, Jul 16] -->
-  <!-- archive: 2026-07-15: BofA raised PT $550→$620 (Buy) [TradingKey, Jul 15 2026] -->
-  <!-- archive: 2026-07-15: ASML raised AI demand forecast + 30% capacity expansion [Yahoo Finance, Jul 15] -->
-  <!-- archive: 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 [WebSearch, Jul 13] -->
-  <!-- archive: 2026-07-08: Goldman Sachs raised AMD PT $450→$640 [prior session] -->
+  - 2026-07-22: AMD Advancing AI Summit — Zen 6 Venice (2nm, 1.7x perf), MI455X, Helios; Azure+Meta+OpenAI all committed. AMD −2.97% sell-the-news. [TechTimes Jul 22 — WebSearch]
+  - 2026-07-21: AMD +3.75% to $522.45 (Summit pre-event pricing-in; Nasdaq-100 +1.3% premarket)
+  - 2026-07-20: Meta MI450 GPU + 6th-gen EPYC H2 2026; Oracle 50k MI450 supercluster Q3 2026 [TradingKey Jul 20 — Gemini grounded — unverified]
+  - 2026-07-16: UBS raised AMD PT $670→$700; KeyBanc $530→$725 (street high) [Jul 15-16 — various]
+  <!-- archive: 2026-07-21: Nasdaq-100 +1.3% pre-event; AMD +3.75% pricing-in Summit -->
+  <!-- archive: 2026-07-16: TSMC Q2 2026 record: +77% net profit → confirms AMD chip demand -->
+  <!-- archive: 2026-07-15: BofA raised PT $550→$620; ASML raised AI demand forecast -->
+  <!-- archive: 2026-07-13: Citigroup upgraded Neutral→Buy, PT $460→$575 -->
 - Trade history:
   - Position exited 06-09/06-10 (TRADE-LOG gap; thesis-break per 06-08 notes)
   - 2026-07-16: OPEN — 25 shares @ $514.61 avg entry (filled ~$514-515 premarket pullback). GTC trail 15% armed.
 - Open thesis questions:
-  - **Summit binary risk (Jul 22-23):** Alphabet + Meta + MSFT report same days — if hyperscalers signal AI capex slowdown, Summit rally sold into. Key metric: hyperscaler inference GPU orders for H2 2026.
-  - **Stop tighten thresholds:** +15% = $591.80 (tighten to 1.75×ATR); +20% = $617.53 (tighten to 1.25×ATR). Neither triggered at $522.45.
-  - **Q2 earnings Aug 4:** next binary event. Thesis: strong AI demand visibility from Summit customer wins should provide upside guide.
-  - **Sector_bear XLK override:** XLK Bear for 39+ sessions. Position held on thesis strength (hyperscaler wins, hard Summit catalyst). Monitor XLK for regime improvement signal.
-  - **Alphabet cross-risk:** GOOGL reports tonight (Jul 21 AC). If cloud/AI capex signal negative → Summit rally dampened. Key metric: Google Cloud revenue growth rate and AI infrastructure CapEx commentary.
+  - **Alphabet + Tesla tonight (Jul 22 AC):** If Alphabet cloud misses, AI capex narrative weakens; AMD Summit narrative dampened. Key metric: Google Cloud YoY growth and AI CapEx guidance.
+  - **Stop tighten thresholds:** +15% = $591.80 (tighten to 1.75×ATR); +20% = $617.53 (tighten to 1.25×ATR). Not reached (today's high ~$548).
+  - **Q2 earnings Aug 4:** next binary. Summit customer wins (Azure/Meta/OpenAI) should provide upside guide if AI capex remains robust.
+  - **Sell-the-news resolved?** Summit delivered everything expected; question is whether Alphabet beat tonight + Day 2 tomorrow reverts AMD upward or sell-off continues into FOMC (Jul 29).
 
 ---
 
 ## ABBV (XLV)
-- Thesis (2026-07-21): BREAKOUT setup monitoring — near 52w high $261.64 (3.25% above current $253.38). Skyrizi+Rinvoq revenue ramp driving 12%+ top-line growth; analyst PTs $261-$300 (BMO $300 Jul 13, BofA $276 Jul 10). Entry deferred past Alphabet earnings tonight; window to enter Jul 22-25 before Jul 26 earnings blackout (ABBV reports Jul 31). Buy-stop $262 (BREAKOUT) or limit $248 (PULLBACK support) depending on market reaction.
+- Thesis (2026-07-22): BREAKOUT monitoring — 52w high $261.64 (2.1% above current $256.10). Skyrizi+Rinvoq driving >20% growth; Q2 guidance $16.7B/$3.74-3.78 EPS (slight beat implied). Analyst PTs $261-$300. Entry deferred past Alphabet tonight; window Jul 23-25 before Jul 26 blackout (reports Jul 31). Iran risk-off + VIX 17.64 makes BREAKOUT entry today inadvisable. Buy-stop $262 (2.07:1) if Alphabet cloud beats; or pullback limit $248 (3.0:1) if market weakens.
 - Recent catalysts:
-  - 2026-07-21: Demoted/deferred — awaiting Alphabet earnings (tonight AC) before entry. Trade slot preserved.
-  - 2026-07-13: BMO Capital raised PT to $300 (from prior lower target) [WebSearch Jul 2026 — Gemini grounded — unverified]
-  - 2026-07-10: RBC Capital raised PT to $280; BofA raised PT to $276 [WebSearch Jul 2026 — Gemini grounded — unverified]
-  - 2026-07-09: Guggenheim raised PT to $261 [WebSearch Jul 2026 — Gemini grounded — unverified]
-  - 2026-06-30: Insider BUY — Director Quaggin (62 sh) + Director RAPP (134 sh) at $251.64 [Finnhub Form 4 Jun 30, 2026]
-  <!-- archive: 2026-04-29: Q1 2026 beat: revenue $15.0B (+12.4%), Skyrizi +30.9%, Rinvoq +23.3%; FY guidance raised [AbbVie PR Apr 29, 2026] -->
+  - 2026-07-22: Deferred (Alphabet + Tesla report tonight; Iran risk-off). Entry plan: buy-stop $262 Jul 23 if Alphabet beats cloud.
+  - 2026-07-21: Deferred — awaiting Alphabet AC earnings. Trade slot preserved.
+  - 2026-07-13: BMO Capital raised PT to $300 [WebSearch Jul 2026 — Gemini grounded — unverified]
+  - 2026-07-10: RBC $280; BofA $276 [WebSearch Jul 2026 — Gemini grounded — unverified]
+  - 2026-06-30: Insider BUY — Director Quaggin (62 sh) + Director RAPP (134 sh) at $251.64 [Finnhub Form 4]
+  <!-- archive: 2026-07-09: Guggenheim raised PT to $261 -->
+  <!-- archive: 2026-04-29: Q1 2026 beat: revenue $15.0B (+12.4%), Skyrizi +30.9%, Rinvoq +23.3%; FY guidance raised -->
 - Open thesis questions:
-  - **52w high resistance at $261.64:** must break cleanly on volume to confirm breakout toward $276-$300. Volume surge factor currently -1.614 (below average).
-  - **ABBV earnings Jul 31 (10 days):** binary event. Any Skyrizi/Rinvoq miss vs elevated expectations → gap-down. Window to enter = Jul 22-25 only.
-  - **FOMC Jul 29 (8 days):** hawkish-hold compresses pharma multiples (30Y 5.06%).
-  - **Catalyst factor 0.0:** no near-term events in 14-day window per screener; purely technical/fundamental setup.
+  - **Alphabet result tonight:** if cloud beats → buy-stop $262 tomorrow; if miss → pullback $248 or drop.
+  - **52w high resistance $261.64:** volume surge factor −1.309 (below avg); must break on volume for conviction.
+  - **Earnings blackout Jul 26 (4 days):** hard entry deadline. Miss window → skip until post-Jul 31 earnings.
+  - **FOMC Jul 29 (7 days):** hawkish-hold compresses pharma multiples; entry at $262 leaves only 4-day window before FOMC.
+  - **Iran/DXY headwind:** DXY 101.1, risk-off; may delay institutional buying pressure that would push ABBV through $261.64.
 - Trade history: (none — first deep-dive Jul 21 2026)
 
 ---

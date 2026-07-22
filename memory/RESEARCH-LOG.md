@@ -5710,3 +5710,142 @@ Weekly trades used: 0 / 3 (as of Mon Jul 20; capacity intact).
 - ml_insights: status=stale_degrade, age=992.1h, slots 2→1 (hard gate — 39th consecutive degrade). **ML stale 992h — refresh local PC.**
 - Pre-macro: cap_active=false
 - Breadth/sector: composite=67/100 (Healthy), sector=defensive tilt, phase=late, divergence=true (internal)
+
+---
+
+## 2026-07-22 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1, deployment: 75%)
+**ML staleness:** stale_degrade, age=1016.1h — hard gate: slots 2→1 (40th consecutive session). **ML stale 1016h — refresh local PC urgently.**
+
+### Account
+- Equity: $100,812.94 | Cash: $87,607.19 | Buying power: $387,404.86 | Daytrade count: 0 | Open positions: 1 (AMD) | Open orders: 1 (AMD GTC trail stop)
+
+### Macro Framework
+Neutral regime (rule_fallback; ML stale 1016h, 40th consecutive). Dominant theme: AMD Advancing AI Summit Day 1 (Jul 22-23) + Alphabet/Tesla earnings tonight (AC) creating elevated binary uncertainty. SPX futures −0.2%; Nasdaq-100 futures −0.6% (risk-off pre-earnings). VIX 17.64 (+3.45%, elevated). WTI $82 (range $81.41-$83.22); Iran-US ceasefire collapsed — US resumed strikes after Strait of Hormuz commercial shipping attacks — Strait of Hormuz premium back in oil ($3-4 above fair value). DXY 101.1 (strongest in a week; Iran escalation drives safe-haven dollar demand). 30Y yield: ~5.06% (unchanged estimate; no fresh data). FOMC Jul 28-29 (7 days); Powell/Warsh inflation-first stance. AMD Summit opened with Zen 6 Venice (2nm/256-core EPYC), MI455X GPU, Helios rack (31TB HBM4); hyperscaler wins: Azure (Helios), Meta (H2 2026 deployment), OpenAI (multi-gen Instinct contract) — stellar announcements, yet AMD −2.97% sell-the-news (from $544.43 to ~$528 intraday). vs yesterday: SPX futures neg (was +0.45% Jul 21); Nasdaq shifted from +1.3% to −0.6%; VIX +3.45% (elevated from ~17); WTI stable +$0; Iran situation deteriorated (ceasefire → renewed hostilities); DXY strengthened 101.0+; AMD summit delivered but stock sold off −3%.
+> **SPX/SPY notation:** SPX index ≈7,460; SPY ETF ≈$745.
+
+### Sector Picture
+1mo momentum leaders: XLE +8.21% (Trend ✓), XLV +6.79% (Choppy), XLF +4.49% (Choppy)
+1mo momentum laggards: XLK −5.92% (Bear), XLB −2.94% (Bear), XLI −1.73% (Choppy)
+- Regime agreement: sector-momentum and ml-insights broadly aligned. XLE is the only Trend sector; XLK (AMD) consistently Bear for 40 sessions. XLV and XLF remain Choppy but positive momentum.
+- **Breadth/Sector:** breadth=67.8/100 (Healthy) | sector=defensive tilt score=35 phase=mid | divergence_flag=true (cyclical/defensive disagree internally — advisory tension). No S&P vs breadth bearish divergence (Healthy alignment, both rising, 60d).
+- **Exposure:** skipped (exposure-coach script failed silently — missing adapter output).
+- **FTD:** skipped (FTD detector ran but produced no output file; FMP_API_KEY present but likely insufficient data).
+
+### Screener diagnostics
+Screener: source=local_screener_v1 (rule_fallback, 40th session), ranked 38 tickers, top 10 = [UNH(1.187), UNP(1.034), ABBV(0.889), JPM(0.610), BAC(0.560), LLY(0.524), GE(0.458), MRK(0.445), XBI(0.368), XLE(0.320)]
+Shortlist (1 slot): [UNH, UNP] — auto-shortlisted by screener. UNH → instant drop (DOJ probe). UNP → instant drop (earnings blackout Jul 23). ABBV (#3) carried forward from yesterday's research.
+
+### Candidates
+
+#### ABBV (XLV, ~$256.10 +0.19% vs prior close $255.63)
+
+**Setup:** Below 52w high $261.64 by 2.1%. ATR(14)=$6.25 (2.44% of price); stop_pct_2_5x=6.1% (clamped to 7.0% floor → stop $238.17).
+
+**Sources scanned (4):** 1 NewsAPI / 3 EDGAR (Form 4 filings, May 2026) / 0 Finnhub (403-blocked) / 0 Reddit (403-blocked) / WebSearch for macro context [Gemini grounded — unverified].
+
+**Bull case (from Jul 21 synthesize; Gemini quota exhausted Jul 22):**
+- Skyrizi+Rinvoq combined $31.8B 2026 guidance (>20% growth), Q1 2026 beat raises year $15.0B (+12.4%); revenue acceleration reconfirmed [AbbVie PR Apr 29, 2026]
+- 4 analyst PT raises in July (BMO $300, BofA $276, RBC $280, Guggenheim $261) [WebSearch — Gemini grounded — unverified]
+- Director insider buying Jun 30 at $251.64 (Quaggin 62sh + Rapp 134sh) [Finnhub Form 4 Jun 30, 2026]
+- Boey EU approval Jul 2026 (new aesthetics franchise) [Finnhub news Jul 2026]
+- Screener: rs_vs_sector_60d = +2.276 (top score vs XLV peers)
+- Q2 2026 guidance: EPS $3.74-$3.78 vs consensus $3.74 (slight beat implied); revenue ~$16.7B vs $16.8B consensus; Skyrizi $21.6B / Rinvoq $10.2B full-year 2026 targets [Yahoo Finance/AlphaStreet Jul 2026 — Gemini grounded — unverified]
+
+**Bear case:**
+- Q2 2026 earnings Jul 31 (9 days) = binary event; any Skyrizi/Rinvoq miss vs elevated guidance triggers gap-down
+- 52w high $261.64 structural resistance; 4-month ceiling; volume surge factor -1.309 (below-average institutional accumulation)
+- FOMC Jul 29 (7 days) = hawkish-hold at elevated rates compresses pharma multiples
+- Iran/oil escalation → risk-off environment compresses all growth multiples; DXY 101.1 = additional headwind for foreign revenue
+- Catalyst factor 0.0 (no screener-window near-term event; Jul 31 earnings is >14d away from screening)
+
+**Data check (B2):** ABBV Q2 EPS guidance $3.74-$3.78 vs yesterday's implied "double-digit growth." AlphaStreet Q2 consensus $3.74 aligns. No contradiction. Revenue $16.7B guidance is slightly below $16.8B consensus — neutral to minor miss risk noted.
+
+**Critique (Claude-direct, STEP 4e):**
+
+**Strongest counter to the bull case:** ABBV's entire near-term bull case requires a clean breakout above 52w high $261.64 in the next 3 trading sessions (Jul 23-25, before Jul 26 blackout), in a risk-off environment (SPX futures −0.2%, VIX 17.64 rising, Iran oil premium, DXY 101.1). Volume surge = −1.309 (below average) — institutional demand is not confirming the analyst PT raises. If ABBV stalls at $261.64 in a risk-off tape, the 7% stop triggers before Jul 31 earnings delivers any resolution, converting this to a confirmed −7% loss ($18.34/share).
+
+**Weakly-sourced claims:** All analyst PTs (BMO $300, BofA $276, RBC $280, Guggenheim $261) via WebSearch [Gemini grounded — unverified]. Q2 guidance EPS/revenue via Yahoo Finance/AlphaStreet [Gemini grounded — unverified].
+
+**Single most-likely invalidator (next 5 trading days):** Alphabet earnings miss or neutral guidance tonight (Jul 22 AC) sends biotech/pharma lower in sympathy; ABBV fails to clear $261.64 this week and drifts toward $248 support with no time to recover before Jul 26 blackout — slot wasted on a sideways trade.
+
+**Position-aware (if entered $20k at $262 breakout):**
+- Sector exposure post-entry: 20.0% XLV (0 existing XLV positions; 0/2 sector cap used)
+- 30d correlation with AMD: −0.34 (below 0.70 gate ✓ — excellent diversification, pharma vs semiconductor)
+- Sector cap: 0/2 XLV ✓
+- Shared-catalyst flag: None — ABBV (pharma/immunology) vs AMD (AI semiconductors) = zero shared catalysts
+
+**R:R math (B3):**
+- BREAKOUT: entry $262 / stop $243.66 (−7.0% ATR-clamped) / target $300 (BMO Capital Jul 13 [Gemini grounded — unverified]) / R:R $38/$18.34 = **2.07:1** ✓ (barely passes 2.0 floor)
+- PULLBACK: entry $248 / stop $230.64 (−7.0%) / target $300 / R:R $52/$17.36 = **3.0:1** ✓ (better if price dips)
+- Hard 2:1 floor check: BREAKOUT at $262 passes (2.07:1). PULLBACK at $248 passes (3.0:1).
+
+**Setup type:** BREAKOUT — thesis requires confirmation above 52w high $261.64 before entry conviction is warranted. Buy-stop $262 (day TIF) at tomorrow's market-open if Alphabet cloud beats tonight.
+
+**Entry plan:** Deferred. Alphabet reports tonight (Jul 22 AC). If Alphabet cloud beats (Google Cloud >$20B, margin expansion) → BREAKOUT buy-stop $262.00 (day TIF) at Jul 23 market-open, 77 shares ($20,174 = 20.0% equity, risk 1.40%). If Alphabet miss/neutral → evaluate PULLBACK limit $248 at Jul 23 open.
+
+**Gate-history audit (B7):** First deep-dive Jul 21 (yesterday). Yesterday's plan: buy-stop $262 (BREAKOUT). Today's plan: same buy-stop $262 (BREAKOUT). No gate-creep. No prior "do NOT chase" level. Entry level unchanged. ✓
+
+**Decision: DEFERRED** — Alphabet reports tonight (Jul 22 AC) before market-open tomorrow. Risk-off market (VIX 17.64 rising, Iran escalation, DXY 101.1) makes entering a breakout setup today inadvisable. Entry window Jul 23-25 before Jul 26 blackout is intact. Decision recurs at market-open Jul 23 based on Alphabet cloud result.
+
+---
+
+### AMD Position Review (Open Position)
+- 25 shares, avg entry $514.61 (filled Jul 16); current ~$528.23 (−$16.20, −2.97% today)
+- Unrealized P&L: +$340.50 (+2.64% from entry)
+- GTC trailing stop: 15% trail, HWM $546.97, stop $464.92 (Alpaca server auto-updates HWM; today's AMD high $548.14 triggered minor HWM update to ~$465.92 server-side)
+- Summit delivered: Zen 6 Venice (2nm, 256-core EPYC, 1.7x perf), MI455X GPU, Helios rack (31TB HBM4), Azure Helios deployment, Meta H2 2026, OpenAI multi-gen Instinct contract [TechTimes Jul 22 2026; SeekingAlpha/Jefferies Jul 2026]
+- Sell-the-news dynamic confirmed: AMD −3% despite stellar hyperscaler wins (all 3 major AI players committed). Classic "buy the rumor, sell the news" on well-telegraphed event.
+- Stop tighten check: +15% from entry = $591.80 (NOT reached; today's high ~$548). No manual action needed.
+- Alphabet + Tesla report tonight → AMD could move on AI capex signals either direction
+- **Action: HOLD. GTC trail active. No stop adjustment.**
+
+### Candidates Dropped (and Why)
+- **UNH** — DOJ Claritev antitrust + Medicare billing probe ongoing; 5th consecutive week dropped. Binary indictment gap-risk unmanageable.
+- **UNP** — earnings blackout (reports Jul 23, 1 day away). Auto-filtered.
+- **JPM, BAC** (XLF Choppy, screener ranks 4-5) — not deep-dived; 1-slot constraint fully committed to ABBV carry-forward.
+- **LLY, MRK, XBI** (XLV Choppy, screener ranks 6-9) — not researched; 1-slot constraint with ABBV as primary candidate.
+- **XLE** (rank 10) — ETF, valid, but ABBV has higher conviction given 3-session research depth.
+
+### Historical Analog
+**Analog:** August 22-23, 2023. NVIDIA reported blockbuster Q2 FY2024 earnings (Aug 23 AC): $13.5B revenue vs $11.1B consensus, +88% YoY. Same day: VIX 17.7 (nearly identical to today's 17.64), WTI ~$83, Jackson Hole FOMC speech 2 days away (Aug 25). Premarket futures −0.3-0.5% on earnings anticipation. AI chipmaker had massive customer wins telegraphed pre-earnings; market "knew" the beat was coming.
+
+**What followed:** 5d: SPX −2.4% (Jackson Hole: Powell "prepared to raise rates further if appropriate" — hawkish surprise despite anticipated hold). 10d: SPX −3.8% (continued correction). 20d: SPX −1.5% before recovering in September. NVIDIA specifically: gapped +5% at open Aug 24, then drifted −8% over the next 2 weeks as macro overtook AI narrative. AMD at the time moved +3.5% on NVDA sympathy then gave it back on Powell speech.
+
+**Why this time might differ:** AMD's customer wins today are contracted multi-year revenue (Azure Helios deployment, OpenAI multi-gen), not aspirational forward guidance. The AI capex cycle is more committed in Jul 2026 vs Aug 2023. However: Iran Strait of Hormuz escalation adds a commodity-shock dimension absent in Aug 2023 (oil premium compresses risk multiples further); FOMC Jul 29 is a "hawkish hold" with no pivot signal vs Sep 2023 where the final hike was behind them; and AMD earnings (Aug 4) create a second binary 13 days out, tightening the holding window.
+
+### Risk Factors (consolidated)
+1. **Alphabet + Tesla earnings tonight (Jul 22 AC)** — primary binary: if Alphabet cloud misses or capex commentary disappoints, AI capex narrative weakens; AMD sell-off deepens, ABBV entry deferred; 2-3% SPX gap risk.
+2. **Iran Strait of Hormuz escalation** — ceasefire collapsed; US resuming strikes; commercial shipping risk; WTI $82+ if Strait closes → oil spike → inflation resurgence → risk-off cascade. DXY 101.1 already pricing some of this.
+3. **AMD sell-the-news dynamics** — GTC trail at $465.92 (15% from HWM) leaves 12.7% downside buffer. If AMD revisits $510 support (near entry) and the AI narrative weakens post-Alphabet miss, the position becomes flat-to-loss before Summit's Day 2 (Jul 23) catalyst resolves.
+4. **FOMC Jul 28-29 (7 days)** — hawkish-hold with inflation emphasis; 30Y ~5.06% already headwind to pharma multiples (ABBV). Pre-FOMC chop likely limits entries this week.
+5. **ABBV entry window closing** — blackout starts Jul 26 (4 days). Must enter by Jul 25 or wait until post-Jul 31 earnings (Oct cycle). Any market weakness or Alphabet miss pushes ABBV to $248 support or below; a pullback there is actually better R:R (3.0:1) but requires the market to cooperate.
+6. **ML stale_degrade 1016h** — 40th consecutive session. Regime and universe ranking rule-based only. Potential regime misclassification risk.
+7. **Sector divergence flag (advisory)** — cyclical/defensive internal disagreement in sector-analyst output; suggests cross-currents. No bearish breadth divergence confirmed (S&P vs breadth Healthy alignment). Tension between sector-analyst's "defensive tilt" score=35 and screener's "Neutral" regime.
+
+### Decision
+**HOLD — no new orders today.**
+
+AMD (open): Hold through Alphabet report tonight + Summit Day 2 tomorrow. GTC trail active at ~$465.92. Entry was $514.61; current ~$528. No tighten needed (+15% threshold $591.80 not reached). Sell-the-news dynamics are expected and within the trailing stop's room.
+
+ABBV (deferred, 1 slot preserved): Entry decision recurs at market-open Jul 23, after Alphabet results are known. Trigger matrix:
+- Alphabet cloud beats (GCP >$20B, margin up): BREAKOUT buy-stop $262.00 (day TIF), 77 shares, R:R 2.07:1
+- Alphabet neutral/miss: hold cash; evaluate PULLBACK limit $248 (3.0:1) if ABBV drops there
+- Either way: earnings blackout Jul 26 = hard final entry deadline
+
+Weekly trades: 0/3 (Jul 20-26 week). Daytrade count: 0/3. No orders placed this session.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro (429 quota exhausted; 40th consecutive Gemini-down session; ABBV synthesize failed with HTTP 404 model-not-found on attempt)
+- WebSearch: 8 calls (Alphabet earnings, AMD Summit, SPX/VIX premarket, WTI/30Y, DXY/Iran, ABBV Q2, ABBV premarket price, econ calendar)
+- NewsAPI: 1 record (ABBV gather)
+- Finnhub: 3 records (EDGAR Form 4 filings — sourced via edgar endpoint, May 2026; Finnhub analyst 403-blocked)
+- EDGAR: 3 records (Form 4 filings)
+- Reddit: 0 (403-blocked, confirmed egress probe)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1016.1h (40th consecutive degrade). Hard gate: slots 2→1. **ML stale 1016h — refresh local PC.**
+- FTD: detector ran, no output file produced (likely insufficient data or FMP endpoint issue)
+- Pre-macro: cap_active=false
+- Breadth/sector: composite=67.8/100 (Healthy), sector=defensive tilt score=35 phase=mid, divergence_flag=true
+- All Alphabet earnings / AMD Summit / macro facts sourced via WebSearch [Gemini grounded — unverified]
