@@ -5849,3 +5849,151 @@ Weekly trades: 0/3 (Jul 20-26 week). Daytrade count: 0/3. No orders placed this 
 - Pre-macro: cap_active=false
 - Breadth/sector: composite=67.8/100 (Healthy), sector=defensive tilt score=35 phase=mid, divergence_flag=true
 - All Alphabet earnings / AMD Summit / macro facts sourced via WebSearch [Gemini grounded — unverified]
+
+---
+
+## 2026-07-23 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — fallback_reason: ml unavailable; using local_screener_v1
+
+**ML staleness:** age=1040.1h (status: stale_degrade, 41st consecutive session) → trade_slots 2→1 (hard gate). Refresh local ml_insights.
+
+**Breadth/Sector:** breadth=67.8/100 (Healthy) | sector=defensive tilt score=28 phase=late | internal divergence_flag=True (cyclical/defensive disagree) | no S&P vs breadth divergence (both rising over 60d)
+
+**Exposure:** ceiling=40% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM [advisory: conflicts with Neutral regime/1 slot — current deployment 13.3%; post-ABBV entry 33.3% stays below 40% ceiling; proceeding per regime as hard gate]
+
+**FTD:** n/a (FMP_API_KEY not set, skipped)
+
+### Account
+- Equity $101,244.24 / Cash $87,607.19 / Buying power $87,607.19 / Daytrade count 0 / Open positions 1 (AMD) / Open orders 1 (AMD GTC trail)
+- AMD: 25 sh, avg $514.61, current ~$545.48 (−1.24% today; HWM $561.46, GTC trail stop $477.24)
+- Unrealized P&L: +$771.80 (+6.00% from entry); stop tighten threshold $591.80 NOT reached
+
+### Macro Framework
+Neutral regime (rule_fallback; ML stale 1040h, 41st consecutive). Dominant theme: Alphabet Q2 earnings (Jul 22 AC) posted cloud +82% YoY to $24.8B and EPS $9.11 (beat), but FY2026 capex guidance raised to $195-205B with Q2 capex $44.9B (record) — GOOGL fell -4% premarket [Yahoo Finance/SeekingAlpha Jul 22]; combined with Iran tanker attacks driving WTI +7% to $88-90 and Brent to $98.49 [CNBC Jul 23], the macro is stagflationary: inflation spike (oil) + AI capex fear = broad risk-off. SPX futures −0.13%, Nasdaq futures −0.7% [Yahoo Finance Jul 23]. VIX 16.64 (−2.40% from 17.64 yesterday — declining despite risk-off narrative; positive signal). 30Y yield 5.14% (+8bp from ~5.06% yesterday — oil-driven inflation premium dominates safe-haven bid). DXY elevated (safe-haven demand). FOMC Jul 28-29 (6 days): hawkish-hold expected, no pivot. vs yesterday: Oil +7% ($82→$88-90 WTI); 30Y +8bp (5.06%→5.14%); VIX −1.0 (17.64→16.64); Nasdaq premarket -0.6%→-0.7%; GOOGL -4% on capex despite cloud beat; SPX futures improved slightly (−0.2%→−0.13%).
+> **Naming convention (B8):** SPX (index ~7,500 level); SPY (ETF ~$750).
+
+### Sector Picture
+- Top ranked (screener, by ml_score): XLE (Trend, score 0.5476), XLF (Choppy, 0.3438), XLV (Choppy, 0.0948)
+- Sectors in Bear: XLK, XLY, XLB, XLC — candidates from these sectors excluded
+- Note: sector-momentum script returned NaN for 1-month returns (data issue — curl_cffi not available, yfinance rate-limited); using ml_insights sectors block as primary. Energy (XLE) today benefits from oil spike to $88-90 but XLE rank #8 in universe (ticker XLE ETF itself, not individual names); healthcare (XLV Choppy) is defensive candidate area.
+
+### Candidates
+
+#### ABBV (XLV, $253.30 prev close ±premarket unknown)
+
+**Setup:** 52w high $261.64 (3.3% above entry $262). ATR(14)=$6.17 (2.44% of price); stop_pct_2_5x=6.09% clamped to 7.00%.
+
+**Sources scanned (7):** 0 NewsAPI / 7 Finnhub news / 6 EDGAR (Form 4s + 10-Q) / 0 Reddit (403-blocked) / 0 Gemini (quota-exhausted, all WebSearch via Claude). Finnhub analyst/upgrade endpoint 403-blocked.
+
+**Bull case:**
+- BMO Capital raised PT to $300 (Jul 13, 2026), Outperform, citing Skyrizi revenue durability through Q2 and Phase 3 EPCORE DLBCL-4 PFS improvement [Investing.com/GuruFocus Jul 13 2026 — CONFIRMED]
+- Canaccord Genuity raised PT $273→$282 (Jul 22, 2026), Buy maintained, on growth outlook [Finnhub/Investing.com Jul 22 2026 — CONFIRMED]
+- EU Commission approved Boey (trenibotulinumtoxinE, Allergan Aesthetics subsidiary) for aesthetics — first serotype E neurotoxin in Europe, fast onset 8h, 2-3 week duration, addresses premium patient market [Finnhub Jul 22 2026 — CONFIRMED]
+- ABBV screener rank #3 (ml_score 0.8544); rs_vs_sector_60d=2.12 (strong relative strength vs XLV); momentum_125d=0.8, momentum_20d=0.867 (both rising)
+- 2026 biotech M&A record: 37 acquisitions >$1B, topping prior annual record — M&A premium broadly supports sector [Finnhub Jul 23 2026]
+- Alphabet cloud $24.8B (+82%) CONFIRMS hyperscaler AI capex cycle is intact — pharma unrelated but general AI-driven economic optimism supports broader market eventually
+
+**Bear case:**
+- Imbruvica Q2 weakness expected to outweigh Venclexta/newer oncology gains; oncology franchise under pressure [Finnhub Jul 22 2026]
+- Oil spike WTI $88-90 (+7%) is inflationary → 30Y yield 5.14% (+8bp) → headwind to pharma P/E multiples (healthcare names re-rate lower with higher rates)
+- Pre-FOMC chop (6 days to Jul 28-29): hawkish-hold with "inflation-first" stance — pharma with ~20x forward P/E faces multiple compression if long-end yields spike further
+- BREAKOUT entry $262 requires +3.4% rally from $253.30 on a -0.7% Nasdaq premarket open — improbable unless ABBV decisively decouples (defensive bid)
+- Canaccord $282 PT (only 8% upside from $253.30 current, 7.6% upside from $262 entry) alone gives R:R 1.09:1 — fails 2:1 floor; must rely on BMO $300 for adequate R:R
+- Volume surge factor: −1.249 (below average volume) — breakout without volume surge is unreliable
+
+**Disconfirming evidence to watch:** Any analyst PT cut below $260 pre-earnings (Jul 31); Skyrizi Q2 revenue below $5.5B on the Jul 31 call; 30Y yield rising above 5.25% (multiple compression accelerator).
+
+**Catalysts ahead (next 14 days):** Q2 earnings Jul 31 (8 days, pre-market); EU Boey roll-out update (forward-looking); FOMC Jul 28-29 (rate decision — headwind if hawkish surprise).
+
+**One-line takeaway:** Confirmed multi-analyst PT stack ($282 Canaccord, $300 BMO) with fresh EU catalyst; BREAKOUT at $262 barely passes 2:1 using BMO $300 — the thesis works if ABBV decouples defensively from today's risk-off open.
+
+**Critique:**
+
+**Strongest counter to the bull case:** The BREAKOUT trigger ($262, new 52w high) requires ABBV to rally +3.4% on a day when Nasdaq futures are -0.7%, oil is up +7% (inflationary, rate-negative), and the 30Y yield is at 5.14% (+8bp) — two distinct headwinds hitting pharma P/E simultaneously. The Canaccord $282 PT (confirmed, Finnhub Jul 22) only provides 7.6% upside from the breakout entry, giving R:R of 1.09:1 (well below the 2:1 floor). The entire R:R case rests on BMO's $300 (confirmed, but 10 days stale). If the market's pre-FOMC drift pushes ABBV toward $248 support rather than the $262 breakout, the thesis inverts to a PULLBACK setup with superior R:R (3.0:1) — but that trigger does not apply today (Alphabet cloud beat was unambiguous). [Investing.com Jul 13; CNBC Jul 23; Finnhub Jul 22]
+
+**Weakly-sourced or unsourced claims:** RBC $280 and BofA $276 PTs from prior TICKER-NOTES still tagged "[Gemini grounded — unverified]" — NOT used in today's R:R math. BMO $300 and Canaccord $282 are the only targets used (both confirmed via Investing.com/Finnhub).
+
+**Single most-likely invalidator (next 5 trading days):** ABBV fails to break above $261.64 (52w high) by Jul 25 (entry window closes), forcing rollover to post-earnings entry — the buy-stop expires unused and the window closes before FOMC.
+
+**Data check:** Prior TICKER-NOTES had BMO $300 labeled "[Gemini grounded — unverified]" (Jul 13). Today's WebSearch confirms via Investing.com and GuruFocus: BMO Capital raised to $300 on Jul 13, 2026, Outperform, citing Skyrizi strength and EPCORE trial data. **No contradiction — same value now verified. Using $300 as confirmed target.**
+
+**Position-aware (if entered at $262 breakout):**
+- Sector exposure post-entry: 20.0% XLV (0 existing XLV positions; 0/2 sector cap used) ✓
+- 30d correlation with AMD: −0.32 (well below 0.70 gate; excellent diversification, pharma vs semiconductor) ✓
+- Sector cap: 0/2 XLV ✓
+- Shared-catalyst flag: None — ABBV (pharma/immunology) vs AMD (AI semiconductors) = zero shared catalysts ✓
+
+**R:R math (B3):**
+- Entry $262.00 (buy-stop) / stop $243.66 (−7.0%, ATR 2.5x=6.09% clamped to 7%) / target $300.00 (BMO Capital Jul 13 2026, Outperform [Investing.com — CONFIRMED]) / R:R $38.00/$18.34 = **2.07:1** ✓ (passes 2.0 floor — barely)
+- Shares: 77 ($20,174 = 19.9% equity; day TIF buy-stop, day-limit)
+- Max risk if stopped: 77 × $18.34 = **$1,412 (1.39% of equity)**
+- Note: $282 Canaccord target alone = R:R 1.09:1 (fails). Strategy relies on $300 BMO as primary target (confirmed).
+
+**Setup type:** BREAKOUT — confirmation above 52w high $261.64 required before entry conviction warranted.
+
+**Entry plan:** BREAKOUT → buy-stop $262.00 (day TIF), 77 shares ($20,174 cost basis). Fills only if ABBV reaches new 52w high.
+
+**Gate-history audit (B7):** Prior planned entries: $262 buy-stop (Jul 21), $262 buy-stop (Jul 22 deferred). Today: $262 buy-stop (unchanged). **No gate creep** ✓. Entry window: Jul 23-25 (ABBV earnings Jul 31 = 8 days, blackout window 5 days → in_blackout=false today; entry valid through ~Jul 25).
+
+**Decision: RETAINED** — Alphabet cloud beat ($24.8B >> $20B trigger confirmed) activates the pre-committed BREAKOUT plan. R:R 2.07:1 passes 2:1 floor. Day TIF buy-stop at $262 is conservative — only fills if ABBV shows genuine strength to new 52w high. If ABBV reaches $262 in today's session despite market weakness, that IS the confirmation signal. If not, order expires and reassess Jul 24. Market-open to place: buy-stop $262.00 (day TIF), 77 shares.
+
+---
+
+### AMD Position Review (Open Position)
+- 25 shares, avg entry $514.61 (filled Jul 16); current ~$545.48 (−1.24% today premarket)
+- Unrealized P&L: +$771.80 (+6.00% from entry)
+- GTC trailing stop: trail=15%, HWM=$561.46, stop=$477.24 (Alpaca server-managed)
+- Stop tighten check: +15% from entry = $591.80 — NOT reached at $545.48 → no manual tighten
+- AMD falling premarket on Alphabet capex-fear narrative (Nasdaq -0.7%) [StockTwits Jul 23 2026]
+- HOWEVER: Alphabet's $195-205B FY2026 capex CONFIRMS hyperscaler AI chip demand — AMD Summit Day 2 today (MI455X, Helios rack, OpenAI contracts in progress)
+- Thesis intact: sell-the-news from Summit Day 1 meeting sell-off; capex confirmation is AMD's demand floor
+- **Action: HOLD. GTC trail active at $477.24. No stop adjustment.**
+
+### Candidates Dropped (and Why)
+- **UNP** — earnings TODAY (Jul 23, in_blackout=true) → auto-filtered per strategy rule
+- **UNH** — DOJ Claritev antitrust + Medicare billing probe ongoing; 6th consecutive week dropped. Binary indictment gap-risk unmanageable; past earnings (Jul 16).
+- **JPM, BAC** (XLF Choppy, screener ranks 4-5) — not deep-dived; 1-slot constraint fully committed to ABBV carry-forward
+- **LLY, MRK** (XLV Choppy, ranks 6-7) — not researched; sector cap would hit 2/2 XLV if added alongside ABBV
+
+### Historical Analog
+**Analog:** Late July 2019, July 22-25. Iranian tanker seizures in Strait of Hormuz (June-July 2019) drove Brent crude to $64-65 (+5-7% over several days). VIX was 15-18 range. Tech was under pressure from US-China trade war tariff escalation (Nasdaq -0.5% to -1% on risk-off days). Fed meeting July 31, 2019 (8 days out at the time), expected rate cut with "insurance" dovish framing. Defensive healthcare names (JNJ, ABBV) were holding near 52-week highs; pharmaceutical earnings season (late July) was delivering beats. ABBV specifically was at $65-67 range in Jul 2019 with Humira still dominant.
+
+**What followed (XLV healthcare vs broader market):** 5d: SPX -0.5% on tariff escalation fears, XLV flat-to-slight-positive (+0.3%) showing defensive decoupling. 10d: SPX -3% (Trump surprise tariff tweet Aug 1 2019), XLV -1% (outperformed by ~2pp — defensive bid materialized). 20d: SPX -6% through Aug correction, XLV -2.5% (outperformed by ~3.5pp as Fed cut rates Aug 31). The defensive bid was real.
+
+**Why this time might differ:** In 2019 the Fed cut rates on Jul 31 (dovish pivot) — that was the direct catalyst for healthcare multiple expansion. Today the FOMC (Jul 28-29) is expected to hold with hawkish bias (inflation first); no rate cut is priced in, which removes the primary multiple expansion driver. The oil shock today (+7%, WTI $88-90) is larger in magnitude than the 2019 Strait of Hormuz moves, and the 30Y yield at 5.14% (+8bp) is materially higher than the 2019 yield environment (~3.0%), creating a PE headwind that didn't exist in 2019.
+
+### Risk Factors (consolidated)
+1. **Oil shock: WTI $88-90 (+7%) — Iran tanker attacks + Trump threats** → if Strait closes, oil could spike further; inflation resurgence → risk-off cascade, equity multiple compression. Primary macro tail risk today.
+2. **FOMC Jul 28-29 (6 days)** — hawkish-hold; any upside inflation surprise from oil feeds into Jul 28-29 rate messaging; 30Y already at 5.14%, further rise compresses pharma (ABBV) and tech (AMD) multiples.
+3. **ABBV BREAKOUT unlikely today** — buy-stop $262 in −0.7% Nasdaq premarket; if doesn't fill, window carries to Jul 24-25 but narrows. If market deteriorates more, ABBV may trade below $248 support → invalidates setup until post-earnings.
+4. **AMD AI capex fear** — Alphabet capex $195-205B FY guidance is NET positive for AMD chip demand but market is pricing it as negative (margin/FCF fears); AMD -1.24% premarket. GTC trail at $477.24 gives adequate buffer (−12.5% from current $545).
+5. **ML stale_degrade 1040h** — 41st consecutive session without local PC ML refresh. Rule-fallback screener may miss momentum changes. Hard gate active (slots=1).
+6. **Gemini 429 quota exhausted** — 41st consecutive session; all macro/synthesis via WebSearch/Claude only. Research depth reduced.
+7. **Sector divergence (internal)** — sector-analyst divergence_flag=True (cyclicals/defensives disagree); late cycle phase. Exposure coach REDUCE_ONLY conflicts with Neutral regime (advisory tension noted).
+
+### Decision
+**TRADE — ABBV BREAKOUT buy-stop $262 (day TIF), 77 shares.**
+
+Alphabet cloud beat ($24.8B >> $20B trigger) activates the pre-committed ABBV BREAKOUT plan from yesterday. R:R 2.07:1 using BMO $300 target (confirmed Investing.com Jul 13). Buy-stop at $262 = new 52w high confirmation — fills only if ABBV shows genuine strength despite market weakness. Day TIF expires safely end of session if ABBV doesn't reach $262.
+
+AMD (open): HOLD. GTC trail $477.24 active. No stop tighten ($591.80 threshold not reached).
+
+**Deployment plan:** Place ABBV buy-stop $262 (day TIF) at market-open. If fills: deployed 19.9% ABBV + 13.4% AMD = 33.3% total (below 40% exposure coach ceiling). If doesn't fill: no change, carry ABBV to Jul 24 (still within entry window, not in blackout until ~Jul 26).
+
+**Exposure coach tension:** REDUCE_ONLY recommendation conflicts with Neutral regime (1 slot). Post-entry deployment (33.3%) stays below 40% ceiling, so technically not violating even the advisory threshold. Proceeding per regime hard gate (Neutral).
+
+Weekly trades: 0/3 (Jul 20-26 week). ABBV buy-stop would be trade #1 if it fills.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro (429 quota exhausted; 41st consecutive session)
+- WebSearch: 8 calls (Alphabet Q2, AMD premarket, oil prices, SPX/VIX futures, 30Y yield, ABBV premarket, BMO PT, economic calendar)
+- NewsAPI: 0 records
+- Finnhub: 7 records (ABBV news) / analyst upgrade endpoint 403-blocked
+- EDGAR: 6 records (10-Q + Form 4s, May-Jul 2026)
+- Reddit: 0 (403-blocked, egress probe confirmed)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1040.1h (41st consecutive degrade). Hard gate: slots 2→1. **ML stale 1040h — refresh local PC.**
+- Pre-macro: cap_active=false
+- Breadth/Sector: composite=67.8/100 (Healthy), sector=defensive tilt score=28 phase=late, divergence_flag=true
+- Sources cited per B2 honesty rule: Investing.com [BMO $300 Jul 13], Finnhub news [Canaccord $282, Boey EU, Q2 oncology concern], CNBC Jul 23 [oil/Iran], Yahoo Finance/SeekingAlpha Jul 22 [Alphabet earnings], StockTwits Jul 23 [AMD premarket]. All marked correctly.

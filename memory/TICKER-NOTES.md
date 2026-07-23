@@ -60,22 +60,22 @@ Conventions:
 ---
 
 ## ABBV (XLV)
-- Thesis (2026-07-22): BREAKOUT monitoring — 52w high $261.64 (2.1% above current $256.10). Skyrizi+Rinvoq driving >20% growth; Q2 guidance $16.7B/$3.74-3.78 EPS (slight beat implied). Analyst PTs $261-$300. Entry deferred past Alphabet tonight; window Jul 23-25 before Jul 26 blackout (reports Jul 31). Iran risk-off + VIX 17.64 makes BREAKOUT entry today inadvisable. Buy-stop $262 (2.07:1) if Alphabet cloud beats; or pullback limit $248 (3.0:1) if market weakens.
+- Thesis (2026-07-23): BREAKOUT pending — Alphabet cloud $24.8B beat activates buy-stop $262 (day TIF). Confirmed: BMO $300 PT (Jul 13 [Investing.com/GuruFocus]), Canaccord $282 PT (Jul 22 [Finnhub/Investing.com]), EU Boey approval Jul 22 (new aesthetic product, first serotype E in Europe). Buy-stop only fills if ABBV reaches new 52w high $261.64+ → built-in confirmation. Entry window valid through Jul 25 (earnings Jul 31, in_blackout=false today). R:R 2.07:1 at $300 BMO target.
 - Recent catalysts:
-  - 2026-07-22: Deferred (Alphabet + Tesla report tonight; Iran risk-off). Entry plan: buy-stop $262 Jul 23 if Alphabet beats cloud.
-  - 2026-07-21: Deferred — awaiting Alphabet AC earnings. Trade slot preserved.
-  - 2026-07-13: BMO Capital raised PT to $300 [WebSearch Jul 2026 — Gemini grounded — unverified]
+  - 2026-07-23: Alphabet cloud $24.8B (+82%) beat triggers BREAKOUT plan. Buy-stop $262 (day TIF) queued for market-open. If not filled, carry to Jul 24.
+  - 2026-07-22: EU Commission approved Boey (Allergan, serotype E neurotoxin, aesthetics) [Finnhub]; Canaccord raised PT $273→$282 [Finnhub/Investing.com]
+  - 2026-07-13: BMO Capital raised PT $258→$300, Outperform — Skyrizi durability + EPCORE DLBCL-4 PFS improvement [Investing.com/GuruFocus — CONFIRMED]
   - 2026-07-10: RBC $280; BofA $276 [WebSearch Jul 2026 — Gemini grounded — unverified]
   - 2026-06-30: Insider BUY — Director Quaggin (62 sh) + Director RAPP (134 sh) at $251.64 [Finnhub Form 4]
-  <!-- archive: 2026-07-09: Guggenheim raised PT to $261 -->
-  <!-- archive: 2026-04-29: Q1 2026 beat: revenue $15.0B (+12.4%), Skyrizi +30.9%, Rinvoq +23.3%; FY guidance raised -->
+  <!-- archive: 2026-07-22: Deferred (Alphabet + Tesla AC); 2026-07-21: Deferred awaiting Alphabet; 2026-07-09: Guggenheim $261; 2026-04-29: Q1 2026 beat revenue $15.0B (+12.4%) -->
 - Open thesis questions:
-  - **Alphabet result tonight:** if cloud beats → buy-stop $262 tomorrow; if miss → pullback $248 or drop.
-  - **52w high resistance $261.64:** volume surge factor −1.309 (below avg); must break on volume for conviction.
-  - **Earnings blackout Jul 26 (4 days):** hard entry deadline. Miss window → skip until post-Jul 31 earnings.
-  - **FOMC Jul 29 (7 days):** hawkish-hold compresses pharma multiples; entry at $262 leaves only 4-day window before FOMC.
-  - **Iran/DXY headwind:** DXY 101.1, risk-off; may delay institutional buying pressure that would push ABBV through $261.64.
-- Trade history: (none — first deep-dive Jul 21 2026)
+  - **Buy-stop $262 fill today?** ABBV at $253.30; needs +3.4% in -0.7% Nasdaq premarket. If not filled, carries to Jul 24.
+  - **52w high resistance $261.64:** volume surge factor −1.249 (below avg); breakout on low volume less reliable.
+  - **Earnings Jul 31 (8 days):** in_blackout=false today; valid entry window through ~Jul 25. Final entry deadline Jul 25.
+  - **FOMC Jul 28-29 (6 days):** hawkish-hold; 30Y at 5.14% (+8bp). Rate headwind for pharma P/E.
+  - **Oil shock ($88-90, +7%):** inflationary → further yield pressure; stagflationary backdrop is new headwind.
+  - **Canaccord $282 alone = R:R 1.09:1 (fails floor):** entire R:R case depends on BMO $300 (confirmed but 10 days old).
+- Trade history: (none — first entry attempt Jul 23 2026; buy-stop day TIF pending fill)
 
 ---
 
