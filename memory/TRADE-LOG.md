@@ -564,3 +564,72 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **Next checkpoint:** Daily-summary (EOD Jul 22) will reconcile AMD P&L and confirm GTC status. Market-open Jul 23 will execute ABBV entry decision based on Alphabet earnings outcome.
 
+---
+
+## 2026-07-23 — Market-open ABBV entry (BREAKOUT)
+
+**Account status:** $101,388.82 equity, $87,607.19 cash, 13.5% deployed (1 position: AMD 25 sh).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Wed):** 0 / 3 (week reset Mon Jul 20).
+**Risk gates:** entries_blocked=false, tighten_trails=false, lock_file=false.
+**Market regime:** Neutral (rule_fallback; ML stale 1040h, 41st session). Trade slots: 2→1 (hard gate).
+
+**Market conditions:** Nasdaq futures −0.7% premarket (Alphabet capex guidance $195-205B triggered risk-off; AI infrastructure supply chain concerns). WTI +7% to $88-90 on Iran Strait tanker attacks; 30Y yield 5.14% (+8bp). ABBV premarket bid $255.49, ask $268.42; current ~$261.95 (midpoint). AMD premarket $545–$548 (sell-the-news from Summit Day 1; Summit Day 2 continues today).
+
+**Research-Log decision (Jul 22 pre-market → Jul 23 market-open):** **TRADE — ABBV BREAKOUT buy-stop $262 (day TIF), 77 shares.** Alphabet cloud beat ($24.8B >> $20B) activates pre-committed plan. R:R 2.07:1 using BMO $300 target (confirmed). Entry window Jul 23-25 before Jul 26 blackout.
+
+**STEP 2 Account Verification:**
+- Equity: $101,388.82
+- Cash: $87,607.19
+- Positions: 1 (AMD 25 sh, market value $13,782.75, unrealized +$917.50)
+- Buying power: $87,607.19
+- Orders: 1 active (AMD GTC trailing stop)
+
+**STEP 3 Rules Check:**
+- Symbol in universe: ABBV ✓ (XLV healthcare)
+- Not duplicate: 0 existing ABBV positions, 0 ABBV pending orders ✓
+- Total positions ≤ 6: 1 (AMD) + 1 (ABBV pending) = 2 ✓
+- Trades this week ≤ 3: 0/3 ✓
+- Position cost ≤ 20%: $20,174 / $101,388.82 = 19.9% ✓
+- Catalyst documented: Alphabet cloud beat, BREAKOUT setup ✓
+- Daytrade buffer: 0/3 ✓
+- entries_blocked: false ✓
+- Gap guard: planned $262 vs current ask $268.42 → current < planned × 1.03 ($269.86) ✓
+- Earnings blackout: in_blackout=false (earnings Jul 31, blackout ~Jul 26) ✓
+- Correlation cap: max_correlation(ABBV, AMD) = −0.3178 < 0.70 ✓
+- Sector cap: 0 existing XLV positions; cap = 2 ✓
+- R:R floor: 2.07:1 > 2.0 ✓
+
+**STEP 4 ATR Stop:**
+- stop_pct_2_5x: 5.954% clamped to 7.0%
+- Entry $262.00 × (1 − 7.0%) = $243.66 ✓
+
+**STEP 4b Sizing:**
+- Regime: Neutral
+- Method: flat_20pct (N=1 closed, Kelly disabled)
+- Size: 20% equity = $20,280.34
+- Shares: 77 (risk_cap_shares=110, binding constraint=size not risk)
+- Per-share risk: $262 − $243.66 = $18.34
+- Total risk if stopped: 77 × $18.34 = $1,412.18 (1.39% of equity)
+
+**STEP 5 Order Placement:**
+
+- PENDING 2026-07-23: ABBV order_id=fbbcc5aa-bca7-43c7-b805-a8600eb03aff type=stop entry=262.00 initial_stop=243.66 shares=77 regime_entry=Neutral sector=XLV sizing=flat_20pct thesis="Alphabet cloud beat ($24.8B YoY +82%) CONFIRMS hyperscaler AI capex cycle intact; ABBV BREAKOUT above 52w high $261.64 thesis activated. Multi-analyst PT stack: BMO $300 (Outperform, Jul 13), Canaccord $282 (Buy, Jul 22, citing growth outlook). EU Boey approval (aesthetics franchise, 8h onset). Relative strength vs XLV +2.12 (strong). Imbruvica Q2 headwind offset by oncology gains + aesthetics upside. Risk: oil spike $88-90 (+7%) drives 30Y yield 5.14% (+8bp) = pharma multiple compression headwind; FOMC Jul 28-29 hawkish-hold adds rate risk. BREAKOUT at $262 fills only if ABBV confirms new 52w high despite risk-off tape — that IS the confirmation signal. Day TIF; expires EOD if ABBV fails to reach $262."
+
+- Bracket child orders (armed on entry fill):
+  - Take profit: limit sell 77 shares at $300.00 (R:R target)
+  - Stop loss: stop sell 77 shares at $243.66 (initial_stop, 7.0% trail)
+
+**STEP 5b Protective-Stop Coverage Check:**
+- Result: covered=true (AMD 25 sh protected by GTC trailing stop)
+- ABBV: bracket child stop live and will arm on fill
+- Conclusion: ✓ All positions have protective sells or pending protective children
+
+**STEP 6 Trade Log Append:** ✓ ABBV PENDING line logged above.
+
+**STEP 7 Notification:** Will be sent after order placement confirmation.
+
+**Session Decision:** **TRADE — ABBV BREAKOUT order placed.** Bracket buy-stop $262 (day TIF) with child take_profit limit $300 and child stop_loss stop $243.66. Awaiting fill confirmation. If fills, deployment = 19.9% ABBV + 13.5% AMD = 33.4% (below 40% exposure coach ceiling). If doesn't fill by EOD, order expires and ABBV is re-evaluated Jul 24 (still within entry window, not in blackout until ~Jul 26).
+
+**Key takeaway:** First new entry this week. Alphabet catalyst (cloud beat) activates pre-researched BREAKOUT plan from Jul 21-22. R:R 2.07:1 using confirmed BMO $300 target. Weekly slots: 1/3 used (pending fill). Daytrade count: 0/3 intact.
+
