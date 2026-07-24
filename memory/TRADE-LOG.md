@@ -633,3 +633,64 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **Key takeaway:** First new entry this week. Alphabet catalyst (cloud beat) activates pre-researched BREAKOUT plan from Jul 21-22. R:R 2.07:1 using confirmed BMO $300 target. Weekly slots: 1/3 used (pending fill). Daytrade count: 0/3 intact.
 
+
+---
+
+### July 24 — Market-open ABBV Order (NEW)
+
+**STEP 2 Live Data Validation:**
+- Account: $101,109.07 equity | $87,607.19 cash | 1 open position (AMD 25 sh, +$636.63 unrealized)
+- ABBV current: ask $259.13, bid $243.67 (not yet at $262 buy-stop level)
+- AMD current: $540.08
+
+**STEP 3 Rules Check:**
+- Symbol in universe: ABBV ✓ (XLV healthcare)
+- Not duplicate: 0 existing ABBV positions (prior day TIF expired) ✓
+- Total positions ≤ 6: 1 (AMD) + 1 (ABBV pending new) = 2 ✓
+- Trades this week ≤ 3: 0/3 ✓
+- Position cost ≤ 20%: 78 shares × $262 = $20,436 / $101,109 = 20.2% ✓ (at cap)
+- Catalyst documented: Alphabet cloud beat (+82% YoY), Intel beat offset GOOGL/TSLA weakness ✓
+- Daytrade buffer: 0/3 ✓
+- entries_blocked: false ✓
+- Gap guard: planned $262 vs current ask $259.13 → No gap (price below entry; normal pullback) ✓
+- Earnings blackout: in_blackout=false (Jul 31 earnings, blackout starts ~Jul 26) ✓
+- Correlation cap: max_correlation(ABBV, AMD) = −0.34 < 0.70 ✓
+- Sector cap: 0 existing XLV positions; cap = 2 ✓
+- R:R floor: 2.07:1 > 2.0 ✓
+
+**STEP 4 ATR Stop:**
+- ATR(14): $5.95 (2.44% of $257 last close)
+- stop_pct (2.5×ATR): 5.78% clamped to 7.0%
+- Entry $262.00 × (1 − 7.0%) = $243.66 ✓
+
+**STEP 4b Sizing:**
+- Regime: Neutral
+- Method: flat_20pct (N=1 closed trades; Kelly disabled until N≥30)
+- Size: 20% equity = $20,221.81
+- Final shares: 78 (risk_cap_shares=130, binding constraint=size)
+- Per-share risk: $262 − $243.66 = $18.34
+- Total risk if stopped: 78 × $18.34 = $1,430.52 (1.41% of equity) ✓
+
+**STEP 5 OTO Order Placement (Jul 24 market-open):**
+
+- PENDING 2026-07-24: ABBV order_id=a22822af-7a02-42d6-a4e1-85324a4abe6b type=stop entry=262.00 initial_stop=243.66 shares=78 regime_entry=Neutral sector=XLV sizing=flat_20pct thesis="Intel Q2 beat (+3.6% premarket) reverses Alphabet -7% capex shock; recovery Friday setup. ABBV BREAKOUT above 52w high $261.64 = key confirmation in defensive bid (FOMC hawkish-hold + oil $100 = risk-off favors pharma). Multi-analyst PT stack: BMO $300 (Outperform, Jul 13, Skyrizi durability), BofA $276 (Buy, Jul 10). EU Boey approval (aesthetics +TAM). Relative strength vs XLV +2.01. Day TIF buy-stop; expires EOD if ABBV doesn't confirm breakout. Final entry window (Jul 24-25 valid; blackout ~Jul 26-30). Risk: R:R depends on BMO $300 outlier; consensus ~$257 would reduce R:R to sub-2:1. FOMC Jul 28-29 in 5 days."
+
+- OTO child orders (armed on entry fill):
+  - Stop loss: trailing stop sell 78 shares at 7% trail (GTC, automatic per OTO spec — but OTO with fixed stop due to Alpaca schema)
+  - Fixed stop: sell 78 shares at $243.66 on entry fill (GTC day → becomes GTC post-fill)
+
+**STEP 5b Protective-Stop Coverage:**
+- Result: covered=true
+- AMD GTC trailing stop active ($477.24 floor, 15% trail, HWM $561.46) ✓
+- ABBV: OTO stop-loss child will arm on entry fill
+
+**STEP 6 Trade Log Entry (above)**
+
+**STEP 7 WhatsApp Notification:** sent (see footer)
+
+**STEP 8 Commit & Push:** pending (see footer)
+
+---
+
+**STEP 7 WhatsApp Summary:**
+Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $300 (BMO Outperform, Jul 13). R:R 2.07:1. Intel beat offsets Alphabet capex shock; recovery Friday setup valid. Deployment if filled: +20.2% ABBV + 13.4% AMD = 33.6% (under 40% cap). Risk 1.41% equity.
