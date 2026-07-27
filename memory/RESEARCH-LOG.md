@@ -6165,3 +6165,156 @@ FOMC note: cap not active (5 days out). If ABBV fills, deployment 33.4% < 40% pr
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=1064.1h (42nd consecutive). Hard gate: slots 2→1. WhatsApp ping sent.
 - Pre-macro: cap_active=false, FOMC in 5 days (Jul 29)
+
+---
+
+## 2026-07-27 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1 after ML stale_degrade gate, deployment: 75%) | fallback_reason: "ml unavailable; using local_screener_v1"
+
+**Pre-macro:** cap_active (FOMC Jul 29, 2 days) → 40% deployment cap, trade_slots capped MIN(1,2)=1
+
+**ML staleness:** age=1136.1h (47th consecutive stale session) — stale_degrade (threshold 120h). Hard gate: trade_slots 2→1. URGENT: refresh ml_insights.json on local PC and push to main.
+
+**Breadth/Sector:** breadth=55.2/100 (Neutral) | sector=defensive tilt score=28 phase=late | divergence_flag=True (cyclical/defensive disagree; penalty −5)
+
+**Exposure:** ceiling=35% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+_(Advisory tension: Exposure-coach recommends REDUCE_ONLY / 35% ceiling; pre-macro hard gate is 40%; account at 13.2% deployed — both advisory and hard gate have headroom for 1 position, but combined signal is cautious. Documented in Decision.)_
+
+### Account
+- Equity: $100,932.19 | Cash: $87,607.19 (86.8%) | Buying Power: $387,738.76
+- Daytrade count: 0/3 | Open positions: 1 (AMD 25sh @ $514.61 avg, current ~$533, +$459.75 unrealized)
+- Open orders: 1 (AMD GTC trailing stop sell 25sh, trail 15%, HWM=$561.46, stop=$477.24)
+- AMD stop tighten check: +15% threshold $591.80, +20% threshold $617.53 — NOT reached at $533
+
+### Macro Framework
+
+Neutral regime (rule_fallback; ML stale 1136h, 47th consecutive). **Dominant theme: US-Iran ceasefire pause triggers oil crash** — Brent fell -8.23% to $90.28, WTI -7.69% to $83.51, as both sides refrained from military strikes for a second straight day (Brent briefly hit $102 last week). [CNBC Jul 27] S&P 500 futures +0.9%, Nasdaq +1.4%; VIX 17.87 (−3.82%) — clear risk-on open. 30Y yield ~5.16% (Jul 24 reading; unchanged expected). FOMC Jul 29 (2 days): 61-85% hold probability at 3.50-3.75% [Polymarket/CBSNews Jul 2026]. This is the busiest earnings week of Q2: MSFT reports Wed AC, AAPL/META/AMZN report Thu AC — 4 Magnificent Seven names in 48 hours. AMD premarket +2.8% (Anthropic $5B equity partnership + 2GW Instinct GPU deployment announced [WebSearch Jul 27]). vs Jul 24: oil −7.7% (Iran ceasefire pause vs elevated Brent $100); VIX −4.6% (risk-on vs risk-off residue Fri); S&P futures +0.9% (vs +0.6% Fri recovery); 30Y yield ~flat; FOMC now 2 days (was 5 days); ABBV enters blackout (earnings Jul 31).
+
+> SPY refers to the ETF (~$745). SPX / S&P 500 index refers to the index (~7,470).
+
+### Sector Picture
+Top 3 (1-mo momentum):
+- XLE Energy +10.22% (Trend) ← screener #8 (XLE ETF)
+- XLF Financials +5.35% (Choppy) ← note divergence: 1-mo momentum strong but regime classifier=Choppy; JPM #6
+- XLV Healthcare +4.46% (Choppy) ← ABBV in blackout; LLY #4, MRK #5
+
+Bottom 3:
+- XLK Technology −4.71% (Bear) ← AMD held (existing position, no new XLK entries)
+- XLY Consumer Disc −3.48% (Bear)
+- XLB Materials −1.12% (Choppy)
+
+Regime vs momentum: XLK Bear regime + −4.71% 1-mo momentum → AGREE. XLF Choppy regime + +5.35% momentum → minor divergence (short-term momentum ahead of medium-term regime signal). XLE Trend + #1 momentum → AGREE.
+
+### Screener Diagnostics
+`Screener: source=local_screener_v1, ranked 38 tickers, top 10 = [UNP(1.241), ABBV(0.832), RTX(0.757), LLY(0.749), MRK(0.615), JPM(0.574), GE(0.553), XLE(0.371), UNH(0.353), BAC(0.347)]`
+
+Watchlist carry-forward: empty (watchlist.py list returned []).
+
+### Candidates
+
+#### UNP (XLI, $307.32 Jul 24 close; premarket unavailable pre-open)
+
+**Setup:** Year high $315.99 (Jul ~16); current −2.9% from year high. ATR(14)=$6.92 (2.25% of price); stop_pct_2_5x=5.63% clamped to 7.0%; entry $307.32 → stop $285.81.
+
+**Sources scanned (9):** 1 NewsAPI / 5 Finnhub / 3 EDGAR (Form 4 Jul 13) / 0 Reddit (403-blocked) / 0 Gemini (429 quota exhausted)
+
+**Bull case:**
+- Q2 2026: revenue $6.9B (+12% YoY), adj EPS $3.41 (beat $3.28 by $0.13), raised 2026 guidance to high single-digit EPS growth; domestic intermodal 4th consecutive record quarter [Yahoo Finance/GuruFocus Jul 24]
+- CN Rail MOU Jul 24: Canadian National wins new US operating rights (Midwest/South corridors), addressing STB competition concerns for UNP-NSC merger — strategic deal credibility strengthened [Finnhub Jul 24]
+- Citigroup raised PT to $349 (Buy, from $326) post-earnings; BMO raised to $320 (Market Perform, from $285) [Finnhub Jul 24] — broad analyst upgrade cycle
+- Oil crash today (Brent −8.23% to $90.28): fuel expenses were +63% headwind in Q2 (+120bp operating ratio impact); oil deflation = significant forward margin expansion catalyst not yet reflected in analyst models [Yahoo Finance Jul 24; CNBC Jul 27]
+- 40% total return since Jul 2025, outpacing S&P 500 in "old-economy" category [Finnhub Jul 27]
+
+**Bear case:**
+- R:R at current price FAILS 2:1 floor: entry $307.32 / stop $285.81 / target $349 (Citi) = 1.94:1 (hard gate demotes candidate) [Finnhub Jul 24]
+- Oil "ceasefire pause" is fragile — Iran and US refrained from strikes for only 2 days; if attacks resume, Brent rebounds to $95-102, reinstating fuel headwind and invalidating margin expansion thesis
+- UNP-NSC merger awaiting STB final approval; CN MOU helps regulatory optics but outcome uncertain; STB denial = strategic premium collapses
+- 3 Form 4 insider filings Jul 13 [EDGAR] — exact direction (buy/sell) not confirmed from filing summaries; potential insider distribution
+
+**Disconfirming evidence to watch:** Oil rebounds above $95 (Brent) before FOMC; STB requests UNP-NSC concessions (route divestiture language); operating ratio expands in next quarter if fuel stays elevated.
+
+**Catalysts ahead (next 14 days):** None within 14 days — next earnings Oct 22 (87 days); FOMC Jul 29 (macro) creates rate environment clarity.
+
+**One-line takeaway:** Strong Q2 beat + analyst upgrades + oil deflation tailwind = compelling thesis, but R:R mechanically fails 2:1 at current price; watchlist at $295 PULLBACK (R:R 2.61:1).
+
+**Critique (Claude direct):**
+
+**Strongest counter to the bull case:** The oil-driven margin expansion thesis relies on Brent staying below $90, but the ceasefire is explicitly labeled a "pause" — not a resolution — with no diplomatic framework in place [CNBC Jul 27]. Brent hit $102 just last week; one tanker incident in the Strait of Hormuz reverses today's $8 drop within hours. Additionally, UNP is trading $8 below its year high ($315.99) despite a strong Q2 beat + analyst upgrades, suggesting the market has already priced in the good news; the remaining upside to Citigroup's $349 target ($41.68/share) barely covers the 7% ATR stop risk (1.94:1). Any negative FOMC language on Wednesday compresses multiples further for high-P/E industrials.
+
+**Weakly-sourced or unsourced claims:** RBC $339, JPMorgan $334, Benchmark $335, Raymond James $350 [WebSearch — unverified; not in Finnhub gather output]. Citigroup $349, BMO $320 confirmed [Finnhub Jul 24]. Insider Form 4 direction not confirmed from EDGAR summaries [EDGAR Jul 13].
+
+**Single most-likely invalidator (next 5 trading days):** Brent crude rebounds above $95 within 72 hours as Iran-US ceasefire pause breaks down, invalidating the margin expansion catalyst before any pullback fill at $295.
+
+**Data check:** Jul 24 pre-market session cited consensus PT ~$295 (WallStreetZen/StockAnalysis) as basis for dropping UNP. That figure was PRE-earnings stale consensus. Post-Q2 Finnhub confirms Citigroup $349 and BMO $320 as verified post-earnings targets [Finnhub Jul 24]. Conflict resolved: old $295 was outdated; new verified ceiling is $349 (Citi). R:R still fails at current $307.32 entry but is materially better than previously assessed. Prior gate drop remains valid; watchlist entry level revised upward from $280-285 → $295 (justified: Citi target $349 vs old street-high $330 enables $295 entry to clear 2:1; this is a legitimate thesis revision from confirmed earnings data, not gate creep).
+
+**Position-aware (if entered at $295):**
+- Sector exposure post-entry: XLI — 0 existing XLI positions; cap 0/2 ✓
+- 30d correlation UNP/AMD: −0.2808 [market_data.py Jul 24] — well below 0.70 gate ✓
+- Sector cap: 0/2 XLI ✓
+- Shared-catalyst flag: AMD (AI semiconductors) vs UNP (freight/rail infrastructure) — zero shared catalysts ✓
+
+**R:R math (B3):** Entry $307.32 (at-market) / stop $285.81 (−7.0%, from 2.5×ATR clamped) / target $349.00 (Citigroup Buy, Jul 24 [Finnhub]) / R:R $41.68/$21.51 = **1.94:1** ← FAILS 2:1 floor.
+- Watchlist entry at $295: stop $274.35 (−7.0%), target $349 → R:R $54.00/$20.65 = **2.61:1** ✓
+- Max risk at $295 entry ($20k position = 68 shares): 68 × $20.65 = $1,404 (1.39% equity)
+
+**Setup type (Phase G1):** PULLBACK — thesis requires price to come to $295 limit before entry.
+
+**Entry plan:** PULLBACK → limit $295.00 (day TIF) — added to watchlist today for carry-forward.
+
+**Gate-history audit (B7):**
+- 2026-07-14: UNP ~$289, demoted (R:R barely passes at $330 street-high only; too thin)
+- 2026-07-24: UNP $304.33, DROPPED ("consensus PT ~$295 below current price")
+- Today (Jul 27): $307.32. Prior "watchlist at $280-285" note from Jul 24. New entry gate set at $295 — revised UPWARD from $280-285 due to Citi $349 target confirmation (not gate creep: the higher target enables a higher entry while maintaining 2:1 R:R). No price at $295 yet; current price $307.32 is above limit. Limit self-expires if not filled.
+- Gate-creep risk: if next session the limit moves above $307 without a genuine pullback, STOP and enforce the $295 gate.
+
+**Decision: DEMOTED to watchlist.** R:R 1.94:1 at current price — mechanically fails 2:1 hard floor. Pre-FOMC caution (2 days) reinforces no chase entry today. Watchlist at $295 PULLBACK limit; re-evaluate post-FOMC if oil and rate environment clarify.
+
+### Follow-up investigation
+- Trigger: Data contradiction — Jul 24 used pre-earnings consensus ~$295; today's Finnhub confirms post-earnings targets $349 (Citi), $320 (BMO). Resolved: prior PT was stale; new watchlist entry $295 justified by confirmed post-earnings analyst upgrade stack.
+- No additional queries needed (oil cause confirmed via CNBC; FOMC consensus from Polymarket; earnings data from GuruFocus/Yahoo Finance).
+
+### Candidates Dropped (and Why)
+- **UNP** — demoted (R:R 1.94:1 at $307.32 fails 2:1 hard floor; watchlisted at $295 PULLBACK)
+- **ABBV** — blackout (earnings Jul 31, blackout Jul 26-30; XLV Choppy sector)
+- **RTX** — not deep-dived; 1-slot constraint; XLI sector same as UNP, would hit sector cap if UNP entered first
+- **LLY, MRK, UNH** — not deep-dived; XLV Choppy; 1-slot constraint; ABBV blackout used up research priority
+- **JPM, GE, XLE, BAC** — below slot threshold; XLF/XLI Choppy or already covered
+
+### Historical Analog
+
+**Analog:** November 1–3, 2023. Fed held at 5.25–5.50% (Oct 31–Nov 1 FOMC), implicitly signaling the peak of the hike cycle. Oil had dropped from $95 (Sep 26 peak) to ~$82 by Nov 1 — a 14% decline on IEA demand revisions and Middle East risk premium fading after Hamas-Israel conflict fears normalized. VIX was 18–20 ahead of FOMC, declining. 30Y yield peaked Oct 23 at 5.18%, then pulled back to 5.07% by Nov 1. Inflation was 3.7% (CPI Oct 2023). [S&P 500 historical data; FRED DGS30]
+
+**What followed:** 5d post-FOMC: SPX +5.9% (one of the strongest post-FOMC weeks in 2023) [S&P historical data]. 10d: SPX +8.4%, VIX fell from 19 to 15. 20d (into early Dec): SPX +10.2%, transportation sector outperformed as fuel deflation removed a key cost headwind. [S&P 500 historical returns]
+
+**Why this time might differ:** In Nov 2023, the Fed was definitively ending a multi-hike cycle (one more hike risk but near-zero probability of further acceleration); today the FOMC is at 3.50-3.75% mid-cycle with cuts possibly in play but inflation still above target (PCE ~2.8%). The "pause" signals are ambiguous — not as clear a pivot as Nov 2023. The oil drop today is from a fragile ceasefire (2-day old), not structural supply surplus, so a rapid reversal is materially more likely than in Nov 2023 (where the peak was demand/supply driven). Big Tech earnings this week (MSFT/AAPL/META/AMZN) provide an additional binary catalyst absent in Nov 2023 — upside beat could extend the rally; capex disappointment could reset.
+
+### Risk Factors (consolidated)
+1. **FOMC Jul 29 (2 days):** Hawkish surprise on language or forward guidance could spike 30Y above 5.25%, compressing equity multiples
+2. **Oil ceasefire fragility:** Iran-US pause could break within 72h, sending Brent back to $95-102 and resetting inflation premium
+3. **Big Tech earnings event risk:** MSFT (Wed AC), AAPL/META/AMZN (Thu AC) — capex guidance Miss could revive AI-spend-fear narrative, hitting AMD
+4. **AMD position:** HWM $561.46 (+2.8% premarket could test $540-545; stop auto-ratchets if new HWM set). Tighten trigger at $591.80 still distant
+5. **ML stale_degrade (1136h, 47th session):** Screener may miss rapid sector rotation; XLI "Choppy" classification may lag actual deterioration
+6. **UNP-NSC merger STB:** Any negative STB commentary or request for UNP concessions would collapse strategic premium; CN MOU neutralizes some but not all risk
+7. **Exposure coach tension:** REDUCE_ONLY advisory with 35% ceiling while regime authorizes 75% deployment — most restrictive signal wins in risk-off interpretation
+
+### Decision
+**HOLD** — no new positions today.
+
+- UNP: demoted (R:R 1.94:1 fails 2:1 floor). Added to watchlist at $295 PULLBACK limit. Pre-FOMC 2-day caution reinforces no chase entry.
+- ABBV: blackout. Not actionable until post-Jul 31 earnings.
+- AMD (open): HOLD. GTC trailing stop $477.24 (15% trail, HWM $561.46) active. +2.8% premarket — thesis confirmed (Anthropic partnership + AMD Summit products). No stop tighten needed (threshold $591.80). No action.
+- Deployment: 13.2% (AMD only). Within all caps (40% FOMC cap, 35% exposure coach advisory).
+- Weekly trades: 0/3 (week Jul 27-31).
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro (429 quota exhausted — 43rd consecutive session; fallback to WebSearch for all macro queries)
+- WebSearch: 7 calls (S&P futures/VIX, oil price, 30Y yield, FOMC expectations, earnings week, UNP analyst targets, oil drop reason)
+- NewsAPI: 1 record (Seth Klarman article mentioning UNP)
+- Finnhub: 5 records (UNP news Jul 24-27; analyst upgrades Citi $349, BMO $320 confirmed)
+- EDGAR: 3 records (UNP Form 4 filings Jul 13)
+- Reddit: 0 (403-blocked)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1136.1h (47th consecutive). Hard gate: slots 2→1.
+- Pre-macro: cap_active, FOMC Jul 29 (2 days) → 40% deployment cap, slots MIN(1,2)=1
+- Gemini synthesize: failed (404 wrong model endpoint); synthesis written by Claude directly

@@ -341,17 +341,23 @@ Conventions:
 - Position-aware notes: 0% XLV exposure. DOJ disqualifier escalated Jul 20. Entry blocked until DOJ resolution.
 
 ## UNP (XLI)
-- Thesis (2026-07-14): At 52w high ($289.13 vs year-high $290.41); NSC merger STB application accepted May 28, 2026 — transcontinental rail catalyst; consensus PT $291.73 (23 analysts, essentially inline with price); street-high $330 (Morgan Stanley + Jefferies) gives R:R 2.02:1 — barely passes but thin; XLI Choppy regime; earnings Jul 23. DEMOTED — too thin on street-high only; re-entry viable if pulls back below $285 (R:R improves to 2.25:1 at $330).
+- Thesis (2026-07-27): Q2 2026 beat (revenue $6.9B +12%, adj EPS $3.41 vs $3.28 est) + CN Rail MOU + Citigroup $349 (Buy) + BMO $320 — strong fundamental improvement; oil crash (-8% today) is margin tailwind. Watchlisted at $295 PULLBACK (R:R 2.61:1 with Citi $349 target); current $307.32 fails 2:1 floor (1.94:1). Pre-FOMC caution; re-evaluate post Jul 29 if oil stays low.
 - Recent catalysts:
-  - 2026-Q1: EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%)
-  - 2026-05-28: STB accepted amended UNP-NSC merger application [Wikipedia/SEC]
-  - 2026-07-09: Citigroup raises PT to $326 [Benzinga]
-  - 2026-07-14: CPI cool (3.5% vs 3.8%) — macro tailwind for long-duration infrastructure
+  - 2026-Q2 (Jul 23): EPS $3.41 beat $3.28 (+$0.13), revenue $6.9B (+12% YoY), raised guidance to high single-digit EPS; domestic intermodal 4th consecutive record quarter [Yahoo Finance Jul 24]
+  - 2026-07-24: CN Rail MOU — CN gets new US operating rights (Midwest/South corridors); STB competition concerns partially addressed [Finnhub Jul 24]
+  - 2026-07-24: Citigroup PT $326→$349 (Buy); BMO PT $285→$320 (Market Perform) [Finnhub Jul 24]
+  - 2026-07-27: Brent crude -8.23% to $90.28 on Iran-US ceasefire pause; fuel cost tailwind for Q3 margin expansion [CNBC Jul 27]
+  - <!-- archive: 2026-Q1: EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%) -->
+  - <!-- archive: 2026-05-28: STB accepted amended UNP-NSC merger application [Wikipedia/SEC] -->
+  - <!-- archive: 2026-07-09: Citigroup raises PT to $326 [Benzinga] -->
+  - <!-- archive: 2026-07-14: CPI cool (3.5% vs 3.8%) — macro tailwind for long-duration infrastructure -->
   - <!-- archive: 2026-04-24: Barclays raises PT to $315 [MarketBeat] -->
 - Open thesis questions:
-  - STB hearing timeline: will any concession language emerge Q3 2026?
-  - Q2 earnings Jul 23: EPS trend continuation or freight volume softening?
-  - Freight volume sensitivity to US-China tariff regime?
+  - STB final approval timeline for UNP-NSC merger (CN MOU helps; hard date unknown)
+  - Oil sustainability: will Brent stay below $90 or rebound if Iran ceasefire breaks?
+  - Does Q3 fuel deflation fully reverse Q2 +120bp operating ratio drag?
+  - Any STB concession language (route divestitures) that reduces strategic premium?
+- Watchlist: $295 limit (PULLBACK), stop $274.35 (7%), target $349 (Citi Jul 24), R:R 2.61:1
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
