@@ -341,23 +341,38 @@ Conventions:
 - Position-aware notes: 0% XLV exposure. DOJ disqualifier escalated Jul 20. Entry blocked until DOJ resolution.
 
 ## UNP (XLI)
-- Thesis (2026-07-27): Q2 2026 beat (revenue $6.9B +12%, adj EPS $3.41 vs $3.28 est) + CN Rail MOU + Citigroup $349 (Buy) + BMO $320 — strong fundamental improvement; oil crash (-8% today) is margin tailwind. Watchlisted at $295 PULLBACK (R:R 2.61:1 with Citi $349 target); current $307.32 fails 2:1 floor (1.94:1). Pre-FOMC caution; re-evaluate post Jul 29 if oil stays low.
+- Thesis (2026-07-28): Q2 beat + CN Rail MOU + Citi $349 PT + oil deflation tailwind (Brent $87-89, down from $102 peak). Watchlisted at $295 PULLBACK (R:R 2.61:1). Pulled to $296.98 intraday today but "post-FOMC" condition applies — re-submit $295 limit Jul 30 post-FOMC if hold confirmed and oil stays below $92.
 - Recent catalysts:
-  - 2026-Q2 (Jul 23): EPS $3.41 beat $3.28 (+$0.13), revenue $6.9B (+12% YoY), raised guidance to high single-digit EPS; domestic intermodal 4th consecutive record quarter [Yahoo Finance Jul 24]
-  - 2026-07-24: CN Rail MOU — CN gets new US operating rights (Midwest/South corridors); STB competition concerns partially addressed [Finnhub Jul 24]
+  - 2026-Q2 (Jul 23): EPS $3.41 beat $3.28 (+$0.13), revenue $6.9B (+12% YoY), raised guidance; domestic intermodal 4th record quarter [Yahoo Finance Jul 24]
+  - 2026-07-24: CN Rail MOU — CN gets US operating rights; STB competition concerns partially addressed [Finnhub Jul 24]
   - 2026-07-24: Citigroup PT $326→$349 (Buy); BMO PT $285→$320 (Market Perform) [Finnhub Jul 24]
-  - 2026-07-27: Brent crude -8.23% to $90.28 on Iran-US ceasefire pause; fuel cost tailwind for Q3 margin expansion [CNBC Jul 27]
+  - 2026-07-28: Price pulled back to $299.30 (day low $296.98); approaching $295 watchlist entry; "post-FOMC" condition defers entry to Jul 30
+  - <!-- archive: 2026-07-27: Brent crude -8.23% to $90.28 on Iran-US ceasefire pause; fuel cost tailwind for Q3 margin expansion [CNBC Jul 27] -->
   - <!-- archive: 2026-Q1: EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%) -->
   - <!-- archive: 2026-05-28: STB accepted amended UNP-NSC merger application [Wikipedia/SEC] -->
   - <!-- archive: 2026-07-09: Citigroup raises PT to $326 [Benzinga] -->
   - <!-- archive: 2026-07-14: CPI cool (3.5% vs 3.8%) — macro tailwind for long-duration infrastructure -->
-  - <!-- archive: 2026-04-24: Barclays raises PT to $315 [MarketBeat] -->
 - Open thesis questions:
   - STB final approval timeline for UNP-NSC merger (CN MOU helps; hard date unknown)
-  - Oil sustainability: will Brent stay below $90 or rebound if Iran ceasefire breaks?
+  - Oil sustainability: will Brent stay below $90 or rebound if Iran ceasefire breaks post-FOMC?
   - Does Q3 fuel deflation fully reverse Q2 +120bp operating ratio drag?
-  - Any STB concession language (route divestitures) that reduces strategic premium?
+  - Post-FOMC: does hawkish language reprice rail/infrastructure multiples lower?
 - Watchlist: $295 limit (PULLBACK), stop $274.35 (7%), target $349 (Citi Jul 24), R:R 2.61:1
+
+## RTX (XLI)
+- Thesis (2026-07-28): Q2 2026 beat-and-raise (EPS $1.89 +13.9% vs est; revenue $24.71B +14.5% YoY; FY EPS raised to $7.10-$7.25); record $289B backlog (+22%). Strong defense/aerospace demand; Patriot GEM-T domestic order. At 52w/all-time high pre-FOMC. Demoted today; re-evaluate post-FOMC Jul 30 as BREAKOUT above $220.50 if FOMC hold confirmed. R:R 2.07:1 with RBC $250 PT (barely passes with most-bull analyst).
+- Recent catalysts:
+  - 2026-07-23: Q2 EPS $1.89 beat $1.66 (+13.9%); revenue $24.71B (+14.5% YoY); FY2026 EPS raised $7.10-$7.25; $289B backlog [Finnhub Jul 23]
+  - 2026-07-24: RBC Capital raises PT to $250 (Outperform); Susquehanna $245 (Positive); TD Cowen $240 (Buy); Wells Fargo $230 Equal-Weight [Finnhub Jul 24]
+  - 2026-07-24: First domestic Patriot GEM-T production order in 30 years; $1.8B SPY-6 radar contract extension [Finnhub Jul 21-24]
+  - 2026-07-27: 4th straight day of gains on Wall Street upgrades; at 52w high [Finnhub Jul 27]
+  - 2026-07-28: All-time high $220.39 intraday; Rokos Capital boosted position [Google News Jul 28]; stock $218.42 pre-FOMC
+- Open thesis questions:
+  - Will FOMC hold (62%) or hike (38%) tomorrow? Hike compresses aerospace P/E.
+  - Iran ceasefire durability — peace resolution deflates defense demand narrative
+  - GTF engine supply chain: can repair-shop prioritization be reversed to new production in Q3?
+  - Does $250 RBC PT remain the bull case after FOMC, or does consensus ($240 TD Cowen) become the base?
+- Watchlist: conditional buy-stop $220.50 (post-FOMC Jul 30), stop $203.13 (−7%), target $250 (RBC), R:R 2.07:1
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.

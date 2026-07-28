@@ -6318,3 +6318,158 @@ Watchlist carry-forward: empty (watchlist.py list returned []).
 - ml_insights: status=stale_degrade, age=1136.1h (47th consecutive). Hard gate: slots 2→1.
 - Pre-macro: cap_active, FOMC Jul 29 (2 days) → 40% deployment cap, slots MIN(1,2)=1
 - Gemini synthesize: failed (404 wrong model endpoint); synthesis written by Claude directly
+
+---
+
+## 2026-07-28 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — ML unavailable (stale_degrade 1160.1h, 48th+ consecutive session; base 2 slots → −1 = 1 effective slot)
+
+**ML staleness:** age 1160h (stale_degrade; hard gate: slots 2→1). Refresh local PC.
+
+**Pre-macro:** cap_active (event: FOMC on 2026-07-29, within_24h=true) → 40% deployment cap, max MIN(1,2)=1 slot.
+
+**Breadth/Sector:** breadth=55.2/100 (Neutral) | sector=defensive tilt score=39 phase=mid | divergence_flag=True (cyclicals/defensives disagree internally)
+
+**Exposure:** ceiling=37% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM — advisory; hard gate remains ml_insights slots=1.
+
+**FTD:** no data (FMP key present but script returned empty output)
+
+### Account
+- Equity $99,536.99 | Cash $99,536.99 (all-cash — AMD GTC stop triggered Jul 27-28; ABBV day-TIF expired) | Buying power $398,147.96 | Daytrade count N/A | Open positions 0 | Open orders 0
+- AMD confirmed stopped out: $99,537 equity vs $100,472 yesterday (−$935 ≈ 25 sh × $477.24 stop price − estimated $513 avg entry; loss ~$893). Trailing stop worked as designed; AMD reversed from $561.46 HWM.
+- ABBV buy-stop (day TIF, $262 entry) expired without fill — price did not reach $262 during Jul 23-24 window.
+- Weekly trades: 0/3 used (week Jul 27-31).
+
+### Macro Framework
+Regime Neutral (rule_fallback). Key themes: (1) FOMC Jul 29 (tomorrow, 2pm ET) — 62% hold at 3.50-3.75%, 38% hike risk under hawkish Warsh; fifth consecutive hold expected but probability of hike elevated vs prior sessions [CME FedWatch / CBS News Jul 28]; (2) Oil ceasefire continues — Brent ~$86-89 (down ~1.5% today; down from $102 peak last week); Iran-US "pause" remains fragile, no diplomatic framework [CNBC Jul 27]; (3) Big Tech earnings: Boeing Q2 before open today (wider loss but beat on revenue; stock edging higher [TheStreet Jul 28]); AAPL and AMZN report July 30 after close; (4) 30Y yield 5.13% (−0.72% from prior close — slight easing); (5) VIX 19.4 (elevated; consistent with FOMC pre-event uncertainty); (6) SPX futures edging slightly higher pre-open [TheStreet Jul 28].
+
+vs yesterday (Jul 27): oil −1.5% (Brent $90.28→$86-89; ceasefire still holding); VIX +8.5% (17.87→19.4; FOMC day-before spike); 30Y −0.72% (easing, modest positive for equities); S&P futures slightly positive vs +0.9% yesterday; AMD stopped out (per trailing stop $477.24); deployment fell from 13.2% → 0%.
+
+> **Naming convention (B8):** SPY = the ETF (~$745). SPX / S&P 500 index = ~7,470 level.
+
+### Sector Picture
+- Top 3 (1-mo momentum): Energy XLE +8.92% [Trend], Financials XLF +5.88% [Choppy], Real Estate XLRE +1.87% [Trend]
+- Bottom 3: Technology XLK −5.99% [Bear], Consumer Discretionary XLY −5.36% [Bear], Utilities XLU −0.74% [Choppy]
+- XLC [Bear], XLI [Choppy], XLV [Choppy], XLB [Choppy], XLP [Choppy]
+- Agreement check: sector-momentum top = Energy/Financials, consistent with ml_insights XLE=Trend, XLF=Choppy. Both flag XLK/XLY as weak. **No material disagreement.**
+- Exposure coach tension: REDUCE_ONLY (37% ceiling) advisory while Neutral regime authorizes 75% deployment. No candidates today, so the tension is moot — both signals agree: HOLD cash.
+
+### Candidates
+
+#### RTX (XLI, $218.42 last close; day range $213.80-$220.39)
+
+**Setup:** Q2 2026 reported Jul 23 (stock +7.2% same day, now at new 52w/all-time high). 200-SMA distance: +44% (large; well extended above long-term MA). 50-SMA distance: estimated +12-15%. ATR(14)=$5.68 (2.60% of price); stop_pct_2_5x=6.50% clamped to [7, 15] → **7.0% stop**. Entry at current: $218.42 / stop: $203.13 (−$15.29/share).
+
+**Sources scanned (6):** 115 Finnhub / 4 NewsAPI / 10 Google News / 15 EDGAR / 0 Reddit (403-blocked) / 0 Gemini (429 quota — [Gemini grounded — unverified] tag applied to any non-Finnhub fact)
+
+**Bull case:**
+- Q2 2026: adj EPS $1.89 beat $1.66 consensus by 13.9%; revenue $24.71B (+14.5% YoY) beat $22.89B by 8.2% [Finnhub Jul 23]
+- Raised FY2026 EPS guidance $6.70-$6.90 → $7.10-$7.25 (vs $6.92 analyst estimate); revenue outlook $92.5-$93.5B → $95-$96B [Finnhub Jul 23]
+- Record $289B backlog (+22% YoY) — highest in company history; strong visibility [Finnhub Jul 23]
+- Domestic Patriot GEM-T production order (first US order in 30 years) — accelerating government defense spending amid Iran conflict [Finnhub Jul 24]
+- Analyst upgrade cascade post-earnings: RBC Capital $250 Outperform, Susquehanna $245 Positive, TD Cowen $240 Buy [Finnhub Jul 24, Jul 27]
+- Multiple director insider BUY filings at $176 (Apr 2026) [EDGAR]; stock now +24% above those insider buys
+- Rokos Capital boosted position [Google News Jul 28]; institutional accumulation
+
+**Bear case:**
+- Stock up 71% YTD; at all-time 52w high on day before FOMC — poor entry timing and minimal technical margin of safety [Finnhub Jul 23]
+- Iran ceasefire "pause" (no diplomatic framework) — peace resolution collapses defense demand narrative; Barron's specifically identified "2 Iran war headwinds" for RTX [Google News Jul 23]
+- FOMC tomorrow: 38% hike probability (Warsh Fed); rate hike compresses aerospace/industrial P/E multiples directly
+- GTF engine supply chain constraint — materials routed to repair shops over new production, limiting near-term delivery upside [Finnhub Jul 24]
+- Wells Fargo Equal-Weight $230 PT = only 5.3% upside from $218.42 [Finnhub Jul 24]
+
+**Disconfirming evidence to watch:** Iran ceasefire extends beyond 5 trading days (defense premium collapses); FOMC hikes 25bp tomorrow; Pratt engine production bottleneck worsens and margins miss Q3.
+
+**Catalysts ahead (next 14 days):** Boeing earnings read-through today (aerospace sector); FOMC Jul 29 (macro/rate); AAPL/AMZN earnings Jul 30 (Pratt/Collins supplier chain read); Q3 earnings ~Oct 2026.
+
+**Critique (Claude direct):**
+
+**Strongest counter to the bull case:** R:R at current price barely clears 2.07:1 and ONLY by using RBC's most-optimistic $250 PT. TD Cowen ($240) gives R:R 1.41:1; Susquehanna ($245) gives R:R 1.74:1 — both fail the 2:1 hard floor. The implication is that any reasonable analyst consensus (Wells Fargo $230, TD $240) would reject this entry. Buying at an all-time high the day before FOMC where 38% of the market prices in a hike creates a ~40% probability of an immediate drawdown through the 7% stop. Even if FOMC holds, the hawkish "hold for longer" language under Warsh ($3.50-$3.75% with hike risk remaining) would suppress multiple expansion for a 71%-YTD stock. [Finnhub Jul 24; CME FedWatch Jul 28]
+
+**Weakly-sourced or unsourced claims:** Director insider BUY sizes confirmed by [EDGAR Apr 2026] but individual $ amounts/positions from [Finnhub summary], not full Form 4 review. Rokos Capital position size not specified [Google News Jul 28 — Gemini grounded — unverified].
+
+**Single most-likely invalidator (next 5 trading days):** FOMC hikes 25bp Jul 29 (38% probability per CME FedWatch) → 30Y rises above 5.20% → aerospace/industrial P/E compression forces RTX below $210 within 2 trading days, triggering 7% stop at $203.13.
+
+**Position-aware (if entered at $218.42):**
+- Sector exposure post-entry: XLI — 0 existing XLI positions; cap 0/2 ✓
+- 30d correlation with existing: N/A (no open positions)
+- Sector cap: 0/2 XLI ✓
+- Shared-catalyst flag: N/A (no other candidates with defense/aerospace thesis)
+
+**R:R math (B3):** Entry $218.42 / stop $203.13 (−7.0%, from 2.5×ATR clamped to [7,15]) / target $250.00 (RBC Capital Outperform, raised post-Q2 [Finnhub Jul 24]) / R:R $31.58/$15.29 = **2.07:1** ← barely passes 2:1 floor (only with most-bull PT; consensus $240 gives 1.41:1, fails).
+- Max risk ($20k position = 91 sh): 91 × $15.29 = $1,391 (1.40% of equity)
+- Deployment if entered: 20.0% / 40% FOMC cap remaining → would leave 20% for one more position if opportunity arises post-FOMC
+
+**Setup type (Phase G1):** BREAKOUT — all-time-high break post-earnings; momentum continuation.
+
+**Entry plan:** buy-stop at $220.50 (above today's high $220.39) — NOT placed today. Contingent on post-FOMC confirmation Jul 30.
+
+**Gate-history audit (B7):** First session RTX is primary candidate (prior entries had it as "not deep-dived due to 1-slot constraint"). No prior gate level established. No gate-creep issue.
+
+**Decision: DEMOTED — no entry today. Post-FOMC re-evaluation Jul 30.** R:R 2.07:1 using most-optimistic analyst PT only. FOMC tomorrow introduces 38% hike-scenario binary risk inconsistent with "patience > activity" principle. Pre-macro FOMC cap active. Exposure coach REDUCE_ONLY. Wait for Jul 30: if FOMC is hawkish hold and RTX holds above $215, re-evaluate as BREAKOUT above $220.50 with same R:R thesis.
+
+---
+
+#### UNP (XLI, $299.30 last close; day range $296.98-$306.70)
+
+**Watchlist carry-forward from Jul 27.** Previously demoted: R:R 1.94:1 failed 2:1 floor at $307.32. Set at $295 PULLBACK limit with "re-evaluate POST-FOMC (Jul 29)" condition.
+
+**Setup:** Price pulled back to $299.30 today (day low $296.98 — close to $295 entry). ATR(14)=$7.13 (2.38%); stop_pct_2_5x=5.95% clamped to 7.0% → from $295 entry, stop=$274.35.
+
+**R:R from $295 entry:** ($349 Citi PT − $295) / ($295 − $274.35) = $54 / $20.65 = **2.61:1** ✓
+
+**Gate-history audit (B7):**
+- Jul 24: UNP $304.33 DROPPED (consensus PT ~$295 below current price — stale data)
+- Jul 27: UNP $307.32. Data check resolved old PT stale; new Citi $349 verified. Watchlisted at $295 PULLBACK. "Pre-FOMC 2-day caution; re-evaluate post-Jul-29."
+- Today Jul 28 (1 day before FOMC): $299.30. Prior condition "re-evaluate POST-FOMC Jul 29" explicitly set. FOMC not yet announced.
+- **Gate-creep check:** $295 limit UNCHANGED from Jul 27 (no upward drift). No gate-creep.
+- **Honor prior condition:** Entry deferred until post-FOMC. If price dips through $295 today as a fill, that's a FOMC-eve fill — FOMC risk is fully active and the condition was set for post-resolution clarity. Do NOT place limit order today.
+
+**Decision: WATCHLIST CARRY-FORWARD. No new order today.** Honor "re-evaluate post-FOMC" condition. Re-submit $295 PULLBACK limit order on Jul 30 (post-FOMC) if: (1) FOMC holds at 3.50-3.75%, (2) UNP is at or below $302, (3) oil stays below $92 Brent, (4) no adverse STB commentary on UNP-NSC merger.
+
+---
+
+### Candidates Dropped (and Why)
+- **RTX** — demoted (FOMC tomorrow; R:R 2.07:1 only with most-bull $250 PT; at 52w high; wait for post-FOMC Jul 30)
+- **UNP** — watchlist carry-forward (prior "post-FOMC" condition not yet met; no order placed today)
+- **GE** — not deep-dived; XLI same sector as RTX/UNP; 1-slot constraint consumed by RTX
+- **JPM** — XLF Choppy; screener rank 4; below slot threshold
+- **ABBV** — earnings blackout (Jul 31 earnings, blackout ~Jul 26-30); not actionable
+- **LLY, MRK, XLRE, BAC, DIA** — not deep-dived; below slot threshold; regime not favorable for ETF/broad entries
+
+### Historical Analog
+
+**Analog:** October 30-31, 2018. The Fed held rates at 2.25-2.50% at the Oct-Nov 2018 meeting but explicitly signaled further hikes. VIX was 20-25 (closely matching today's 19.4). 30Y yield peaked at 3.40% (today's 5.13% is structurally higher, but the relative dynamic — yield near cycle high with FOMC hold — is comparable). Defense stocks (then United Technologies, RTX predecessor) outperformed the broader selloff; UT held +2-3% while SPX fell 8% in October. Oil was $76-80 Brent in late October 2018 (similar to today's $87-89 decline from $100+ peak). [S&P 500 historical data; FRED DGS30]
+
+**What followed:** 5d: SPX recovered +2.1% immediately post-FOMC hold as the hawkish language was "as expected." 10d: SPX +1.3% (gains faded; Nov Fed tone still hawkish). 20d: SPX −6.8% as December hike fears resurfaced. Defense/industrials decoupled from SPX — UT flat-to-slight positive over 20d. Rail stocks (Union Pacific predecessor) +3.2% 5d post-FOMC on rate stability thesis.
+
+**Why this time might differ:** In Oct 2018, the Fed was at 2.25% in an unambiguous hiking cycle; today the Fed is at 3.50-3.75% with POTENTIAL for a hike (38%) but also potential cuts as the terminal horizon. The ceasefire oil decline (Brent $87 today vs $102 last week) is a genuine tail-risk reducer not present in Oct 2018. Big Tech earnings (AAPL/AMZN Jul 30) provide a second catalyst in the same window — absent in Oct 2018 — that could overwhelm rate dynamics. The 5-day defense/rail analog is cautiously constructive, but the 20-day analog warns against overstaying positions into December-analog territory.
+
+### Risk Factors (consolidated)
+1. **FOMC Jul 29 (tomorrow):** 38% probability of 25bp hike to 3.75-4.00% under Warsh; hawkish language alone (no hike) could spike VIX above 22 and 30Y above 5.20%
+2. **Oil ceasefire fragility:** Brent at $87-89; no diplomatic framework — one tanker incident in Strait reverts oil to $95-102 within hours; rebinds inflation premium + margin compression for UNP
+3. **All-cash exposure (0%):** AMD stopped out. Being 100% cash on FOMC day-before is both risk-off protection AND opportunity cost. Post-FOMC, redeployment is time-sensitive.
+4. **ML stale_degrade (1160h):** Screener signals are rule-based fallback only; may miss fast rotation. RTX top ranking may lag actual institutional flows (Rokos bought, Wells Fargo Equal-Weight).
+5. **AAPL/AMZN earnings Jul 30 (AC):** Binary event the day after FOMC — sector-wide read-through within 18 hours of FOMC resolution; entering RTX/UNP on Jul 30 morning faces BOTH resolved FOMC AND pending Mag-7 earnings.
+6. **Boeing earnings read-through today:** Boeing loss-but-revenue-beat suggests aerospace demand intact but margins remain under pressure — moderate read-through for RTX Collins Aerospace segment.
+7. **Exposure coach tension:** REDUCE_ONLY (37%) vs Neutral regime (75%) — advisory signal says stay cautious; current 0% deployment is already inside the 37% ceiling.
+
+### Decision
+**HOLD** — no new positions today.
+
+- **RTX:** demoted (R:R 2.07:1 using most-optimistic PT; at 52w high pre-FOMC; 38% hike risk; FOMC cap active). Re-evaluate Jul 30 post-FOMC: target buy-stop $220.50 if hold confirmed + stock maintains $215+.
+- **UNP:** watchlist carry-forward. "Post-FOMC" condition not met. $295 limit unchanged (no gate-creep). Re-submit post-Jul-29 if conditions met.
+- **All positions closed** (AMD stopped, ABBV expired). Deployment: 0%. Within all caps.
+- **Weekly trades:** 0/3 (week Jul 27-31). Week still has 3 trading days (Jul 28-31). AAPL/AMZN earnings Jul 30 + FOMC Jul 29 = wait for dust to settle.
+- **Priority post-FOMC (Jul 30 market-open):** (1) Check FOMC outcome; (2) if hold confirmed, evaluate RTX buy-stop $220.50 + UNP $295 limit; (3) both would be max $40k deployment (40% equity); (4) re-run gap_guard.py for UNP on Jul 30 before any entry.
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro (429 quota exhausted — 44th+ consecutive session; [Gemini grounded — unverified] applied to any facts not from Finnhub/EDGAR/NewsAPI gather)
+- WebSearch: 6 calls (oil price, S&P futures/VIX/30Y, earnings/catalysts, FOMC expectations, Apple/Amazon earnings, S&P premarket + Boeing)
+- Finnhub: 115 records (RTX); NewsAPI: 4 (RTX); EDGAR: 15 (RTX); Google News: 10 (RTX); Reddit: 0 (403-blocked)
+- UNP: no new gather run (carry-forward from Jul 27; thesis unchanged)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1160.1h (48th+ consecutive). Hard gate: slots 2→1.
+- Pre-macro: cap_active, FOMC Jul 29 (within_24h=true) → 40% deployment cap, slots=1
+- Screener: source=local_screener_v1, ranked 44 tickers, top 10 = [RTX(1.267), UNP(1.108), GE(0.856), JPM(0.728), LLY(0.699), ABBV(0.639), MRK(0.605), BAC(0.439), DE(0.361), XLE(0.355)]
