@@ -6674,3 +6674,166 @@ Neutral regime (rule_fallback; ML stale 1184h, 49th+ consecutive session). Domin
 - FOMC realized print: NOT AVAILABLE (decision at 2:00 PM ET, after this pre-market window)
 - Screener: source=local_screener_v1, ranked 44 tickers, top 10 = [RTX(1.29), UNH(0.97), UNP(0.97), GE(0.85), KO(0.65), ABBV(0.64), MRK(0.63), JPM(0.61), LLY(0.61), DE(0.39)]
 - Breadth/sector advisory: breadth 59.5/100 Neutral, sector defensive tilt score=44 mid-cycle divergence=True; exposure coach REDUCE_ONLY ceiling=39%
+
+---
+
+## 2026-07-30 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) fallback_reason: ml unavailable; using local_screener_v1
+
+**ML staleness:** age 1208.1h (stale_degrade — hard gate; trade_slots 2→1; 50th+ consecutive degrade session)
+
+**Pre-macro:** cap_active (event: Core PCE on 2026-07-31, days_to_event=1) → 40% deployment cap; slots min(1,2)=1
+
+**Breadth/Sector:** breadth=72.5/100 (Healthy) | sector=defensive tilt score=38 phase=late | divergence_flag=True (cyclical/defensive internal disagreement)
+
+**FTD:** script error (FMP key present but ftd_detector.py produced no valid JSON output — skip)
+
+**Exposure:** ceiling=N/A | rec=N/A | bias=N/A | conf=N/A (exposure-coach script failed to parse output — silently skipped)
+
+### Account
+- Equity: $99,536.99 | Cash: $99,536.99 (100%) | Buying power: $398,147.96 | Daytrade count: 0 | Open positions: 0 | Open orders: 0
+- Note: ABBV Jul 24 buy-stop day-TIF expired unfilled (blackout started Jul 26); AMD position was closed in a prior session. Account fully in cash.
+
+### Macro Framework
+Neutral regime (rule_fallback, local_screener_v1; ML stale 1208h — 50th+ consecutive session). **Dominant theme today: Post-FOMC resolution + MSFT/META earnings divergence, pre-Core-PCE positioning.** FOMC Jul 29: Fed held steady at 3.50-3.75% as expected, but with 3 dissenters wanting to hike and Warsh delivering hawkish press-conference language — "Long-Term Treasury Yields Jump After Warsh Starts Talking" [Finnhub Jul 30]. MSFT reported massive Q2 beat (AI cloud revenue acceleration, +8% stock reaction); META missed on Q2 EPS due to legal charges and AI capex concerns (-9%) [Finnhub Jul 30]. Net pre-market: futures rising (+MSFT offset - META), "Market Fear Index Drops Back Below Key Level" [Finnhub Jul 30]. 30Y yield: ~5.13-5.18% (estimate; jumped post-Warsh, from 5.13% prior session — no live yield quote available). WTI/Brent: ~$87-89 (Iran attack on US base yesterday pushed Brent +4% to ~$89.53 [per Jul 29 RESEARCH-LOG]; today stabilizing with MSFT-driven risk-on). VIX: est. ~16-17 (dropping from ~18 yesterday). AAPL + AMZN report tonight AC (Jul 30) — another two Mag-7 binaries before Core PCE tomorrow. KO (consumer staples) hit all-time high $90.92 Jul 29, continuing post-earnings momentum as "Money Rotates Out of AI" [Finnhub Jul 28]. vs Jul 29: FOMC resolved as hold (expected) with hawkish lean; MSFT +8% / META -9% (tech split); VIX dropping; 30Y jumped but futures positive; oil stabilizing from Iran spike; KO at all-time highs; narrative shift from "macro fear" to "AI earnings scrutiny."
+
+> **Naming convention (B8):** SPY (~$729 ETF per sector-momentum data) ≠ SPX index (~7,290 index). Not interchangeable.
+
+### Sector Picture
+**Top 3 by 1mo momentum (sector-momentum script):**
+1. Energy XLE +10.43% — regime: Trend ✓ (ml_insights agrees)
+2. Financials XLF +5.73% — regime: Choppy (ml_insights; mixed momentum reading)
+3. Consumer Staples XLP +5.16% — regime: Trend ✓ (ml_insights agrees)
+
+**Bottom 3:**
+1. Technology XLK -12.57% — regime: Bear ✓
+2. Consumer Discretionary XLY -4.83% — regime: Bear ✓
+3. Industrials XLI -4.63% — regime: Bear ✓
+
+**Sector disagreements:**
+- **XLC (Communication Services):** sector-momentum shows +2.22% (positive) but ml_insights rates Bear (-0.2459 score). Possible cause: sector-momentum uses 1-month price only; ml_insights 7-factor composite weights vol_stability/technical_setup lower for XLC despite recent META/GOOGL-driven price gains that reversed with earnings. Consistent with Bear designation — not an actionable entry sector today.
+- **XLI** flagged Bear: UNP and RTX (Jul 29 candidates) are both disqualified by this rule. Watchlist UNP entry dropped (see §Watchlist actions).
+
+### Watchlist Actions
+- **UNP: DROPPED** from watchlist. XLI sector regime flipped to Bear in today's screener (score -0.134). Rule: "Don't blindly re-add a watchlist symbol if its sector flipped to Bear." UNP had 3 days remaining at $295 PULLBACK. No new watchlist entry for UNP until XLI regime recovers.
+
+### Candidates
+
+#### KO (XLP, $89.08 close Jul 29 | year_high $90.92 all-time high Jul 29 | day_low $88.64)
+
+**Setup:** Above 200-SMA (stock at all-time highs following +5% earnings day Jul 28 — well above 200-SMA; exact distance not fetched to preserve quota). 50-SMA distance: not fetched. ATR(14)=$2.05 (2.30% of $89.08); stop_pct_2_5x=5.756% → clamped to 7.0%.
+
+**Sources scanned (4):** 10 Google News / 181 Finnhub / 3 NewsAPI / 15 EDGAR (Form 4 filings). Reddit: 403-blocked (egress-probe confirmed). Finnhub analyst upgrade endpoint: 403 Forbidden (separate Finnhub endpoint gate). Gemini: 429 quota exhausted (50th+ consecutive session) — all synthesis done with Claude directly from gathered sources.
+
+**Bull case:**
+- Q2 Adj. EPS $0.97 vs $0.93 estimate (+4.3% beat); revenue $13.40B vs $13.16B estimate [Finnhub Jul 28]
+- Best quarterly volume growth in 17 years driven by FIFA World Cup sponsorship activation; CEO: "We showed up at the World Cup" [Finnhub Jul 28]
+- FY2026 EPS guidance raised to $3.27-$3.30 vs $3.27 consensus; "best earnings day since 2009" [Finnhub Jul 28]
+- Multi-analyst PT cluster post-Q2: Jefferies Buy $104, TD Cowen Buy $100, JPM Overweight $96, RBC Outperform $96, Piper Sandler OW $95, Wells Fargo OW $95 [Finnhub Jul 29]
+- Defensive rotation theme: "Money Rotates Out of AI" → KO direct beneficiary as Nasdaq enters correction [Finnhub Jul 28-29]
+- Diet Coke premium mix: CFO "Diet Coke is having a moment" — higher-margin SKU driving mix improvement [Yahoo Finance / Finnhub Jul 28]
+- fairlife dairy unit cyberattack: "majority of production capacity restored" [Finnhub Jul 27]
+
+**Bear case:**
+- Valuation stretched: "KO Is More Expensive Than Nvidia" / "Higher P/E Than Most of the Magnificent 7" [Finnhub Jul 29] — dividend premium stock at high multiples exposed to 30Y yield spike
+- One analyst downgrade post-Q2: "The Numbers Improved, The Upside Didn't" [Finnhub Jul 29]; "Analyst Sees Limited Upside — Says PepsiCo Offers Better Value" [Finnhub Jul 29]
+- India market share loss: CFO admitted "We Have Lost Share In India In This Past Quarter" — a growth market impairment [Finnhub Jul 28]
+- 30Y yield jumped after Warsh hawkish press conference Jul 29 → consumer staple P/E compression headwind [Finnhub Jul 30]
+- fairlife cyberattack not 100% resolved: reputational/operational risk residual [Finnhub Jul 27]
+- June 2026 insider SELLING: MANN JENNIFER K sold ~$3.2M net in Jun 8-12 (multiple Form 4 transactions at ~$83.41-84/sh) [EDGAR/Finnhub Jun 8-12]
+
+**Disconfirming evidence to watch for:**
+- If Core PCE Jul 31 prints above 2.9% → yields spike → KO P/E contracts, rendering Jefferies $104 unreachable on a multi-quarter basis
+- If 30Y sustains above 5.20% for 5+ sessions → consumer staple dividend premium erodes systematically
+
+**Catalysts ahead (next 14d):**
+- Core PCE (Jun 2026) — tomorrow Jul 31 (hard binary for KO valuation)
+- AAPL/AMZN earnings AC today Jul 30 (affects overall market risk appetite)
+
+**One-line takeaway:** World Cup volume beat + FY guidance raise drove an all-time high, but R:R passes only on Jefferies's outlier $104 PT; yield spike post-Warsh is the primary valuation risk.
+
+**Critique (Claude direct):**
+
+**Strongest counter to the bull case:** KO is at an all-time high ($90.92) simultaneously with the 30Y yield jumping after Warsh's hawkish press conference. Consumer staples are mechanically rate-sensitive: the dividend premium that drives P/E expansion compresses fastest when long-end rates rise. The "AI rotation into defensive" theme is a 2-3 session narrative; if Core PCE tomorrow prints above 2.8-2.9%, Warsh has 3 dissenters ready to hike, and the narrative quickly becomes "more for longer" — KO's P/E, which is already higher than Nvidia's per multiple analyses [Finnhub Jul 29], becomes the first thing sold. The Jefferies $104 PT was issued on Jul 29 before the yield spike was fully absorbed; it does not embed a "3.50%+ rate hold through 2026" scenario explicitly. [Finnhub Jul 30 "Stocks Tank, Long-Term Treasury Yields Jump After Warsh Starts Talking"; Finnhub Jul 29 "Good Isn't Good Enough At This Valuation" — Gemini grounded unverified for rate/P/E mechanics]
+
+**Weakly-sourced or unsourced claims:** (none — all bull/bear items sourced from Finnhub Jul 28-30)
+
+**Single most-likely invalidator (next 5 trading days):** Core PCE Jun print tomorrow exceeds 3.0% YoY → 30Y yields spike above 5.25% → KO P/E contracts, stock pulls back to $84-86 (below the 7% stop from any $88-89 entry), triggering the stop within 2 trading days of entry.
+
+**Position-aware (if entered $19,907 at $88.50, 225 shares):**
+- Sector exposure post-entry: 20.0% (0 existing XLP positions; sector cap 0/2 ✓)
+- 30d correlation with existing positions: N/A (no existing positions)
+- Sector cap status: 0/2 XLP ✓
+- Shared-catalyst flag: No existing positions to share catalysts with.
+
+**R:R math (B3):**
+- Entry $88.50 (PULLBACK limit, day TIF) / stop $82.31 (−7.0%, 2.5×ATR clamped) / target $104 (Jefferies Buy, Finnhub Jul 29)
+- R:R = (104 − 88.50) / (88.50 − 82.31) = 15.50 / 6.19 = **2.50:1** ✓ (passes 2:1 floor)
+- Shares: $19,907 / $88.50 = 225 shares | max risk: 225 × $6.19 = **$1,393** (1.40% equity)
+- **Data check (B3 fragility):** TD Cowen $100 → R:R 1.86:1 (fails). JPM/RBC $96 → R:R 1.21:1 (fails). R:R passes ONLY using Jefferies $104 (highest PT). This is fragile — analogous to RTX/BNP situation Jul 29. Jefferies is a tier-1 bank and $104 is 4% above the second-highest ($100), so it is the high end of a cluster ($95-104), not an isolated outlier. Using it is defensible but disclosed.
+- **Gap guard:** planned $88.50 vs current $89.08 → ratio 1.007 (within 3% tolerance) → proceed ✓
+
+**Setup type (Phase G1):** PULLBACK — KO pulled back from the all-time high intraday (yesterday: high $90.92, low $88.64, close $89.08). Thesis: buy the consolidation after the earnings gap, on a dip back toward $88.50 (near yesterday's intraday low). A buy-limit at $88.50 captures any early weakness without chasing.
+
+**Entry plan:** PULLBACK → limit $88.50 (day TIF) on **Jul 31** (post-Core-PCE), NOT today Jul 30. See Decision.
+
+**Gate-history audit (B7):** No prior KO entries or planned entry levels in RESEARCH-LOG (first deep-dive). KO appeared as a dropped candidate (screener rank 5, score 0.65) in Jul 14 and Jul 29 logs — no planned entry level was ever set. No gate-creep possible. First entry plan established today: $88.50 PULLBACK. ✓
+
+**Decision: DEMOTED to watchlist — no entry today (Jul 30). Entry deferred to Jul 31 post-Core-PCE.** Core PCE tomorrow + AAPL/AMZN tonight = two more macro binaries before the Core PCE yields move. The 7% stop ($82.31) provides downside protection, but the R:R thesis rests on Jefferies $104 — a hot Core PCE could compress the PT quickly. Adding to watchlist at $88.50. If Core PCE is benign AND AAPL/AMZN neutral/positive: place PULLBACK limit $88.50 at Jul 31 open. If Core PCE is hot: re-evaluate — stock may pull back to $86-87 where TD Cowen $100 gives R:R 2.04:1 at the lower entry.
+
+---
+
+### Candidates Dropped (and Why)
+- **ABBV** — earnings blackout (Jul 31 earnings; in_blackout=true per market_data.py). Screener rank 1 (score 1.0085) but ineligible. Would be primary candidate if not in blackout.
+- **UNP** — XLI sector regime = Bear (score -0.134). Watchlist entry dropped per policy. Last planned entry $295 PULLBACK (Jul 27 watchlist add). No re-entry until XLI returns to Choppy/Trend.
+- **RTX** — XLI sector regime = Bear. Jul 29 secondary candidate (BREAKOUT $222, conditional on Jul 31). Now blocked by Bear XLI. Cannot be researched as buy candidate.
+- **UNH** — screener rank 3 (XLV, score 0.9461). Not deep-dived due to 1-slot constraint already consumed by KO. Note: prior sessions applied a standing DOJ-criminal-investigation disqualifier (applied 06-02 through 07-18). Status not re-verified today — UNH not researched given 1-slot constraint.
+- **LLY, MRK, AMGN** — screener ranks 4-6 (XLV, Trend). Not deep-dived due to 1-slot constraint and XLV sector already at 0/2 cap.
+
+### Historical Analog
+
+**Analog:** September-October 2023. The 30Y yield peaked at 5.02% on Oct 19, 2023 as the Fed signaled "higher for longer" after a summer of rate expectations. Consumer staples (XLP) had run defensively since July 2023 but then underperformed as the yield spike compressed dividend premium stocks. VIX was in the 17-20 range during the Sep-Oct 2023 period — comparable to today's 16-18 reading. KO specifically was at $57-58 in early Oct 2023, then fell to $52-53 (-9%) as the 30Y peaked.
+
+**What followed:** 5d post-Oct-19 yield peak: SPX -2.1% (risk-off from yield spike). 10d: SPX -3.5% (continued pressure). 20d: SPX +5.8% (reversal after peak yields led to relief rally). KO: -6% over 3 weeks from Oct 2023 yield peak, then +15% through Jan 2024 as rate expectations shifted toward cuts. The defensive/staple playbook worked best when rates STARTED falling, not while they were still elevated. [Training knowledge; no single-source citation for exact KO levels]
+
+**Why this time might differ:** In Oct 2023, the Fed was near the peak of the final hiking cycle (last hike was July 2023), and the "peak rate" narrative was clearly forming. Today, Warsh has 3 dissenters wanting to hike, Core PCE is still elevated, and the terminal rate trajectory is genuinely uncertain. The FIFA World Cup volume tailwind is a genuine fundamental not present in 2023. If Core PCE comes in hot tomorrow, the Oct 2023 analog suggests KO could see a 5-9% correction before recovering — the stop at $82.31 (7% from $88.50) would absorb that correction.
+
+### Risk Factors (consolidated)
+1. **Core PCE Jul 31 (tomorrow):** Hard macro binary. Hot print → 30Y spikes above 5.25% → consumer staple multiples compress → KO could give back the entire earnings gain. Pre-macro cap active for this reason.
+2. **AAPL/AMZN AC today (Jul 30):** Two Mag-7 names report tonight. AAPL miss could affect overall market sentiment and defensive bid. Amazon's "AI causing runaway spending" narrative [Finnhub Jul 30] echoes META's miss thesis.
+3. **30Y yield trajectory:** Already jumped after Warsh's hawkish conference. 3 dissenters signal next hike is closer than market priced. KO's valuation (P/E above Nvidia) most exposed to yield compression in this environment.
+4. **KO valuation stretch:** Multiple analysts note KO is "more expensive than most of the Magnificent 7" on a P/E basis [Finnhub Jul 29]. At all-time highs post-earnings, the risk-reward is skewed toward the downside without a yield catalyst to expand the multiple further.
+5. **India market share loss:** Structural concern in a key emerging market. CFO disclosed outright share loss [Finnhub Jul 28] — headwind to long-term volume growth thesis in highest-growth geographies.
+6. **ML stale_degrade (1208h):** 50th+ consecutive session. Rule-based screener signals only; institutional flows may diverge from screener rankings without ML context.
+7. **FOMC 3 dissenters:** Hawkish lean from the Fed creates tail risk for rate-sensitive names like KO if data (Core PCE, jobs) cooperates with the hike camp.
+
+### Decision
+**HOLD — no new positions today (Core PCE tomorrow + AAPL/AMZN tonight double binary).**
+
+- **KO:** Add to watchlist at $88.50 PULLBACK (day TIF). Entry deferred to Jul 31 post-Core-PCE.
+  - If Core PCE benign (< 2.7%) AND AAPL/AMZN AC neutral/positive → place PULLBACK limit $88.50 at Jul 31 open. Gap guard check required at Jul 31 open.
+  - If Core PCE hot (> 2.9%) → re-evaluate. KO may pull back to $86-87 range where TD Cowen $100 gives R:R 2.04:1 (marginally passes 2.0 floor). Only enter at that lower level if yield spike stabilizes.
+  - R:R $88.50 entry: 2.50:1 using Jefferies $104 ✓ (fragile — passes only on highest PT)
+- **Exposure:** 0% deployed → target 20% (single KO position) → 20% post-fill (inside 40% pre-macro cap ✓)
+- **Weekly trades (week Jul 27-31):** 0/3 used. KO would be trade 1/3 if filled Jul 31.
+- **Daytrade buffer:** 0 daytraded positions.
+
+**Priority sequence for Jul 31:**
+1. Check Core PCE print at 8:30 ET (pre-market)
+2. Check AAPL/AMZN AC results (tonight; read at open tomorrow)
+3. If PCE benign + sentiment neutral/positive: run gap_guard.py for KO → place $88.50 limit (day TIF)
+4. If PCE hot: lower KO entry target to $86-87 range; re-evaluate R:R
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash attempt (429 quota exhausted) + 0 Pro (GEMINI_SMART_MODEL=gemini-3-flash invalid 404)
+- NewsAPI: ~12 queries (various macro/KO research)
+- Finnhub: 181 records (KO) + ~20 records (MSFT/META/AMZN/AAPL/SPY news)
+- EDGAR: 15 records (KO Form 4 filings)
+- Reddit: 0 (403-blocked, confirmed egress-probe)
+- Google News: 10 records (KO post-earnings)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1208.1h (50th+ consecutive). Hard gate: slots 2→1.
+- Pre-macro: cap_active, Core PCE Jul 31 (days_to_event=1) → 40% deployment cap, effective slots=1
+- Screener: source=local_screener_v1, ranked 34+ tickers, top 10 = [ABBV(1.0085), KO(0.9999), UNH(0.9461), LLY(0.7024), MRK(0.6188), AMGN(0.5702), XLE(0.4364), XOM(0.4256), XLRE(0.4132), CVX(0.3409)]
+- Breadth/sector advisory: breadth=72.5/100 Healthy, sector=defensive tilt score=38 phase=late divergence=True; exposure-coach script failed to parse output

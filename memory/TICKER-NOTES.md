@@ -193,11 +193,20 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## KO (XLP)
-- Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
-- Recent catalysts: (none yet)
-- Open thesis questions: (none yet)
+- Thesis (2026-07-30): Post-FIFA-World-Cup Q2 beat (EPS $0.97 vs $0.93; best volume in 17y) drove ATH $90.92; analyst PT cluster $95-104. PULLBACK $88.50 planned post-Core-PCE Jul 31. R:R 2.50:1 (Jefferies $104, fragile on outlier). 30Y yield spike post-Warsh = primary risk. [Finnhub Jul 28-30]
+- Recent catalysts:
+  1. Q2 beat + FY guidance raise ($3.27-$3.30 EPS) + FIFA World Cup volume boost (2026-07-28) [Finnhub Jul 28]
+  2. Analyst PT cluster post-Q2: Jefferies Buy $104, TD Cowen Buy $100, JPM OW $96, RBC OP $96, Piper OW $95, WFC OW $95 (2026-07-29) [Finnhub Jul 29]
+  3. fairlife dairy unit: majority production restored after ransomware attack (2026-07-27) [Finnhub Jul 27]
+  4. "Money Rotates Out of AI" defensive bid; stock hit ATH on rotation (2026-07-28-29) [Finnhub Jul 28-29]
+  5. CFO admitted India market share loss in Q2 (2026-07-28) [Finnhub Jul 28]
+- Open thesis questions:
+  - Will 30Y stabilize below 5.20% (needed for P/E expansion to Jefferies $104)?
+  - Core PCE Jun 2026 (Jul 31) — hot print breaks setup; benign print validates PULLBACK entry
+  - Does India share loss worsen in Q3 or was it a one-quarter anomaly?
+  - Insider SELLING (MANN JENNIFER K, ~$3.2M net Jun 8-12) — routine diversification or conviction signal?
 - Trade history: (none yet)
-- Position-aware notes: (none yet)
+- Position-aware notes: Watchlist at $88.50 PULLBACK (day TIF, Jul 31 open). Stop $82.31 (7%). Target $104 (Jefferies). 225 shares (20% equity). Pre-macro cap OK (20% < 40% ceiling).
 
 ## LLY (XLV)
 - Thesis (2026-06-11): At 1.85% off the 52w high ($1,182.73) and 41.2x trailing/26.1x fwd P/E, GLP-1 leadership is fully priced in. Consensus PT median $1,251 (BofA 05-26) implies only +7.7%, vs a real 7.95% ATR stop → R:R 0.98:1, fails 2:1 floor (even Truist's $1,281 only reaches 1.30:1). Continued bullish flow (Citi "compelling" note, oral GLP-1 diabetes data beating Novo/AZ, fresh 52w high) but no valuation cushion. Demoted on math, not thesis. [Demoted: R:R 0.98:1. analyst_data.py + WebSearch Jun 11]
