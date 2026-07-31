@@ -694,3 +694,22 @@ memory [[stop-tighten-moves-stop-down-bug]].
 
 **STEP 7 WhatsApp Summary:**
 Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $300 (BMO Outperform, Jul 13). R:R 2.07:1. Intel beat offsets Alphabet capex shock; recovery Friday setup valid. Deployment if filled: +20.2% ABBV + 13.4% AMD = 33.6% (under 40% cap). Risk 1.41% equity.
+
+- PENDING 2026-07-31: KO order_id=48c9a172-9a9a-41c4-ac26-656b643eaa05 type=limit entry=88.50 initial_stop=82.30 shares=224 regime_entry=Neutral sector=XLP sizing=flat_20pct thesis="Core PCE Jun 2026 +3.3% YoY (benign, cool MoM surprise removes 30Y spike risk). AMZN +13% (AWS growth +36.7% YoY) lifts AI sentiment but defensive XLP bid intact. Consumer staples consolidation post-ATH $90.92. Fairlife plants restored, Q2 beat +FY guidance. Jefferies Buy $104 (Jul 29), consensus $96-100. Rate relief thesis + Q2 durability. Sector momentum #3 (XLP +2.89%), ahead of Tech (XLK −7.76%), supports defensive entry. Entry is PULLBACK (buy-limit $88.50) not chasing; stop-loss child armed OTO day TIF. R:R 2.50:1 (Jefferies PT). Risk per share $6.20; total risk $1,388 (1.40% equity). Placement note: waited 15 min post-open per rule; KO remained <$91.50, no gap-run. Entry thesis intact."
+
+**KO PULLBACK setup — 2026-07-31 market open:**
+- **Catalyst:** Core PCE (3.3% YoY benign) + AMZN earnings (+13%, AWS +36.7% YoY) + Q2 beat + Fairlife plants restored
+- **Setup type:** PULLBACK (buy-limit at $88.50, respects consolidation)
+- **Entry:** $88.50 limit (order placed 9:43 ET, pending fill)
+- **Stop:** $82.30 (−7.0% per 2.5×ATR, clamped from 5.78%), OTO child stop-loss (day TIF)
+- **Target:** $104 (Jefferies Buy, Jul 29; TD Cowen $100, JPM $96, consensus $96-100)
+- **R:R:** 2.50:1 (using Jefferies $104; fragile at consensus $100 → 1.86:1)
+- **Shares:** 224 (flat 20% sizing, $19,816 deployment = 19.92% equity)
+- **Risk:** $1,388 total (1.40% equity per-trade risk cap ✓)
+- **Thesis:** Yield relief post-benign PCE reduces rate ceiling for multiple compression. Defensive bid intact despite AMZN AI re-rating. XLP sector momentum #3, healthy. ATH pullback + Q2 analyst PTs create pullback entry opportunity. Entry defers to calm open, avoids chasing on AMZN surge (+13%).
+- **Bull case:** Rate relief (PCE benign, MoM +0.1% vs +0.2% consensus). Q2 earnings beat + FY guidance raise. Fairlife ransomware impact absorbed; production back online. Analyst PT stack (Jefferies $104 Buy, TD Cowen $100, JPM $96 OW, RBC $96, Piper $95, WFC $95 — all Buy-rated). XLP sector momentum healthy (#3 by 1mo, +2.89%). Defensive bid (FOMC hawkish-hold + XLP leading) benefits large-cap staples.
+- **Bear case:** AMZN +13% may pull capital from defensives back into growth/tech (rotation headwind). 30Y yield >5.2% (structural ceiling; 3 FOMC hawks still want hikes — benign PCE removes binary but doesn't solve structural). Fairlife data breach (Anubis leaked 1TB, Jul 28) — ongoing litigation/reputational risk. India structural share loss (CFO Q2 disclosure). R:R fragile (only 2.50:1 with Jefferies $104 outlier; consensus $96-100 → R:R sub-2:1).
+- **Disconfirming signals to watch:** 30Y stays >5.20% after PCE (rate relief thesis broken). AMZN rally accelerates and XLP underperforms (rotation headwind > defensive bid). KO closes below $87.21 (day low, stop triggered within 1-2 days of entry).
+- **Stop coverage:** OTO child stop-loss verified armed (stop_coverage check passed; held status). Will execute automatically on entry fill if KO doesn't exceed R profit target first.
+- **Position allocation:** Single KO position (1/2 trade slot today; Core PCE cap). Deployment $19,816 is 19.92% of equity; under 40% pre-macro cap. No correlation conflict (0 existing positions). XLP sector cap 0/2 ✓. Daytrade buffer 0/3 ✓.
+
