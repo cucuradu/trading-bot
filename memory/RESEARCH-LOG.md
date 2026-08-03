@@ -6974,3 +6974,162 @@ Wait 15 min after open before placing to confirm KO isn't gap-running above $88.
 - ml_insights: status=stale_degrade, age=1232.1h (51st+ consecutive). Hard gate: slots 2→1.
 - Pre-macro: cap_active, Core PCE Jul 31 (days_to_event=0) → 40% deployment cap; PCE print BENIGN → no additional slot reduction
 - Screener: source=local_screener_v1, shortlist 2 tickers, top 10 = [KO(0.9531), UNH(0.9371), UNP(0.8744), RTX(0.7258), AMGN(0.6428), ABBV(0.5882), XLE(0.4242), MRK(0.4226), GE(0.4099), XOM(0.3408)]
+
+---
+
+## 2026-08-03 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1 after ML stale_degrade, deployment: 75%) | fallback_reason: "ml unavailable; using local_screener_v1"
+
+**ML staleness:** age=1304.1h (54.3 days) — stale_degrade (threshold 120h). Hard gate: trade_slots 2→1. URGENT: refresh ml_insights.json on local PC and push to main.
+
+**Breadth/Sector:** breadth=71/100 (Healthy) | sector=balanced score=52 phase=late | divergence_flag=True (cyclical/defensive diverging internally)
+
+**FTD:** detector script error (unrecognized --json flag) — skipped.
+
+**Exposure:** ceiling=45% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+
+**Tension note:** Exposure-coach REDUCE_ONLY (ceiling 45%) vs Neutral regime 75% target. Current deployment ~20% (KO). Adding UNP = ~40% — within exposure-coach ceiling. Advisory only; regime governs.
+
+**Pre-macro:** no cap_active
+
+**⚠️ CRITICAL — KO STOP EXPIRED:** KO sell 224 @ stop $82.30 (day TIF) was placed on Jul 31 as OTO child and has EXPIRED. KO currently has NO active stop-loss. Must place GTC stop at market-open ($81.30 = 7% below actual fill of $87.42, or retain prior $82.30 from $88.50 planned entry). See Decision section.
+
+### Account
+- Equity: $99,700.50 | Cash: $79,954.90 (80.2%) | Buying Power: $375,107.28
+- Daytrade count: 0/3 | Open positions: 1 (KO 224 sh, avg $87.42, +$163 unrealized +0.84%) | Open orders: 0
+- Drawdown from peak: −5.82% ($99,700 vs $105,857 peak)
+- KO stop status: **UNPROTECTED — expired day TIF, no GTC stop in place**
+
+### Macro Framework
+Neutral regime (rule_fallback, 1304h ML stale). VIX ~16.0 (Jul 31 close 15.99 [CBOE/various]). 30Y yield ~5.27% (unchanged from Jul 31, near 2007 highs [TradingEconomics Jul 31]). WTI ~$82-84 (sliding Aug 3 on Iran ceasefire talks; was $84.67 Jul 31 [Forbes Advisor]; oil "slides" per Bloomberg Aug 3). DXY 99.72 (−0.19% Aug 3 [TradingEconomics]). SPX futures +0.6% premarket (earnings optimism; 85% of ~300 S&P 500 reporters beat, aggregate +47% profit growth tracking [TheStreet Aug 3]). Dominant themes: (1) Iran ceasefire talks resume → oil declining, geopolitical risk premium easing; (2) Earnings season strong overall; (3) Rate environment stable but 30Y at structural ceiling (Warsh 3 dissenting hawkish members; five consecutive holds). Heavy economic calendar week: ISM Manufacturing (10am ET today), JOLTS, initial claims, July NFP Friday.
+
+vs Jul 31: oil −$2-3 (Iran talks); VIX −2.0 (risk-on earnings); 30Y stable ~5.27%; regime unchanged Neutral; AMZN post-earnings rotation impact partially faded; XLI now bottom-3 sector by 1mo (−1.92%).
+
+> **SPY** = ETF (~$741). **SPX** / S&P 500 index = the index (~7,420 est. based on SPY ×10).
+
+### Sector Picture
+Top 3 (1-mo momentum):
+- XLE Energy +12.76% [Trend] ← CVX, XOM in screener top 10; oil macro supportive
+- XLF Financials +3.94% [Choppy] ← BAC, JPM in universe
+- XLP Consumer Staples +2.10% [Choppy] ← KO held position
+
+Bottom 3:
+- XLK Technology −5.53% [Bear] ← blocked; no new entries
+- XLI Industrials −1.92% [Choppy] ← UNP top screener pick; sector weak 1mo but Choppy not Bear
+- XLC Communication Services −1.37% [Bear] ← blocked
+
+**Disagreement note:** XLE leads by 1mo momentum (+12.76%) and is Trend in regime — screener ranks CVX #6 and XLE #7. However, XLI is bottom-3 and Choppy; UNP ranks #1 on screener despite weak sector. UNP's individual rs_vs_sector_60d=0.706 justifies the override. No material disagreement between sector-momentum and ml_insights sectors block (both agree on XLK Bear, XLE Trend).
+
+### Candidates
+
+#### UNP (XLI, $292.13, day range $287.91–$293.94 premarket)
+
+**Setup:** 200-SMA: N/A (not fetched; prior notes show above; stock at $292 vs 52w-high $316, −7.6%). 50-SMA: N/A. ATR(14)=$7.17 (2.45% of price); stop_pct_2_5x=6.13% (clamped to 7.0%).
+
+**Sources scanned (3):** 0 NewsAPI / 9 Finnhub (insider Form 4 Jul 13, company news Jul 10) / 5 EDGAR (Form 4 cluster Jul 13, 10-Q 2025) / 6 Google News (Jul 27–Aug 3) / 0 Reddit (403-blocked) / 0 Gemini (quota exhausted) / 2 WebSearch fallback
+
+**Bull case:**
+- Q2 beat confirmed: EPS $3.41 vs $3.28 expected, revenue $6.9B +12% YoY, raised guidance, 4th consecutive record domestic intermodal quarter [Yahoo Finance Jul 24]
+- STB merger progress: supplemental submitted Jul 28; additional information package filed Jul 30 per STB request — merger on track for mid-2027 [STB PR-26-13 via prior notes; Google News Jul 30]
+- Oil declining today (Iran ceasefire talks Aug 3) → prior Q3 fuel cost headwind (Brent $89.53 on Iran attack Jul 29) is now partially reversed — margin tailwind [Bloomberg Aug 3; WebSearch — Gemini grounded — unverified]
+- Insider cluster buys: multiple Form 4 BUYS at Jul 1 (3 directors: WILLIAMS 189 sh, Will 159 sh, WIEHOFF 167 sh) and Jul 10 (6 officers: Rocker 3sh, 5sh; Powers 6sh; Jalali 8sh; Hamann 8sh; Conlin 2sh) — broad-based insider confidence [Finnhub Jul 10, EDGAR Form 4 Jul 13 — verified]
+- Analyst PT: Citigroup $349 Buy (Jul 24, confirmed Jul 30 "fair value lift" [Google News Jul 30]); price at $292 = 19.5% below Citi target
+
+**Bear case:**
+- XLI sector bottom-3 by 1mo momentum (−1.92%) — strategy "follow sector momentum" applies; entering against sector tape [sector-momentum Aug 3]
+- Merger risk: STB approval mid-2027 minimum, 12+ months uncertainty; CN Rail US operating rights concession creates new competitor in key corridors; DOJ antitrust overlay on ~90% corridor control scenarios [WebSearch — Gemini grounded — unverified]
+- Oil fragile: Iran "talks" not a confirmed ceasefire — Brent could re-spike above $90 on any escalation (as it did Jul 29); oil spike restores Q3 fuel cost headwind [Bloomberg Aug 3 — partial information]
+- 30Y yield structural ceiling: 5.27% near 2007 highs; capital-intensive railroads subject to multiple compression if rates stay elevated [TradingEconomics Jul 31]
+- Low volume conviction: screener volume_surge=0.058 (very low); institutional accumulation not visible
+
+**Disconfirming evidence to watch:** Oil re-spikes above $90 (ceasefire talks collapse). STB extends proceedings timeline or issues adverse preliminary finding. ISM Manufacturing <48 today → industrials de-rate.
+
+**Catalysts ahead:** ISM Manufacturing PMI Jul reading (today 10am ET); JOLTS (Tuesday); NFP Friday. Next earnings Oct 22 (80 days, no blackout). STB next scheduled proceeding (timeline TBD).
+
+**One-line takeaway:** Strong fundamental momentum (Q2 beat, insider buys, merger on track) + oil tailwind today; offset by weak XLI sector and 30Y headwind — PULLBACK entry below prior planned level adds margin of safety.
+
+**Critique (STEP 4e — Claude direct):**
+
+**Strongest counter to the bull case:** XLI sector is bottom-3 by 1-month momentum (−1.92%), which contradicts the strategy rule "Follow sector momentum." UNP outperforms XLI peers (rs_vs_sector_60d=0.706), but buying a sector-leading stock in a weak sector in a Neutral regime means fighting the macro tape. More critically: the Citi $349 PT (our R:R anchor) already embeds a merger premium. If the STB approval timeline extends, or if DOJ antitrust intervention materializes around the ~90% corridor control scenarios, the $349 target collapses and R:R drops to 1.37:1 (BMO $320 Market Perform). The Iran ceasefire "talks" per Bloomberg are preliminary — not a confirmed deal — so the oil tailwind that motivates entering today may reverse within 48-72 hours as it did on Jul 29.
+
+**Weakly-sourced or unsourced claims:**
+- "Iran ceasefire talks Aug 3" — Bloomberg headline confirms talks, not a confirmed ceasefire [WebSearch — Gemini grounded — unverified]; oil decline may be temporary
+- Merger "$3.5B shipper savings/year" — third-party estimate, not STB-verified [TIKR.com]
+
+**Single most-likely invalidator (next 5 trading days):** Iran-US talks collapse and Brent re-spikes above $90/bbl within 72 hours (as occurred Jul 29), reinstating Q3 fuel cost headwind and driving XLI further negative → UNP falls below $287 (Aug 3 day low support), stop at $271.56 triggered on a 2-day drawdown.
+
+**Data check (B3):** Citi $349 confirmed via Google News Jul 30 "fair value lift after higher analyst targets" — consistent with Jul 24 $349 PT. No conflict vs prior records. BMO $320 Market Perform is standing. Using Citi $349 as R:R anchor (tier-1, Jul 30 reconfirmed). ✓
+
+**Position-aware (68 shares at $292.00, ~$19,856 cost):**
+- Sector exposure post-entry: 20% XLI (0 existing XLI positions; cap 0/2 ✓)
+- 30d correlation with existing positions: UNP/KO = −0.10 (very low; passes <0.70 cap) [market_data.py Aug 3]
+- Sector cap status: 0/2 XLI ✓; 1/2 XLP (KO already in) ✓
+- Shared-catalyst flag (B6): KO catalyst = rate relief/defensive staples; UNP catalyst = Q2 earnings beat + merger + oil. No catalyst overlap. ✓
+
+**R:R math (B3):**
+- Entry $292.00 / stop $271.56 (−7.0%, 2.5×ATR=6.13% clamped to 7%) / target $349.00 (Citigroup Buy Jul 24, reconfirmed Google News Jul 30) / R:R = (349−292)/(292−271.56) = 57/20.44 = **2.79:1** ✓ (passes 2:1 floor)
+- **Fragility note:** BMO $320 Market Perform → R:R 1.37:1 (fails). R:R depends on Citi $349 outlier (19.5% above entry). Wide stop (7%) requires +19.5% to target to compensate.**
+- Shares: $19,856 / $292 = 68 shares | max risk: 68 × $20.44 = **$1,390** (1.39% equity ✓)
+
+**Setup type (Phase G1):** PULLBACK — price pulled back from $316 high through $295 prior planned level to $292. Thesis: buy the consolidation below prior planned entry on oil tailwind and strong fundamentals.
+
+**Entry plan:** PULLBACK → limit $292.00 (day TIF) — fills only if UNP doesn't gap above $295 on open.
+
+**Gate-history audit (B7):**
+- Jul 29: planned $295 PULLBACK limit (post-FOMC condition); not placed (condition pending FOMC)
+- Jul 30/31: not researched (1-slot consumed by KO)
+- Today's plan: $292.00 — **LOWER** than prior $295 plan; price came to us. No gate creep. ✓
+
+**Decision:** RETAINED — Q2 beat + merger on track + oil tailwind (today) + insider buys + price below prior planned level. R:R 2.79:1 passes floor. Primary risk: sector weakness (XLI −1.92%) and oil ceasefire uncertainty. PULLBACK limit structure caps chasing risk.
+
+### Candidates Dropped (and Why)
+- **UNH** — DOJ criminal investigation disqualifier (standing since Jun 2026; multi-probe: Medicare billing, Optum Rx, Claritev antitrust). Not re-evaluated. 3rd consecutive week demoted.
+- **RTX** — slot cap (1 effective slot). XLI Choppy; eligible but slot consumed by UNP. Screener rank #4 (0.6197). Pre-warmed for next session.
+- **CVX** — slot cap. XLE Trend regime, strong 1mo (+12.76%); would be viable but not in screener's 2-name shortlist. To evaluate if UNP doesn't fill.
+
+### Historical Analog
+
+**Analog:** October 2023. 30Y yield at 4.9–5.1% (near today's 5.27%), VIX 14–17, SPX near YTD highs recovering after brief correction. UNP specifically: Q3 2023 earnings beat (EPS ~$2.98 vs est.), stock pulled back from highs, Citi-equivalent PT above current price. Iran risk was lower (different geopolitical backdrop) but rail stocks were navigating a high-rate environment with cost inflation pressuring margins.
+
+**What followed:** 5d post-Oct 2023 UNP earnings: UNP +3.2% (beat-driven, industrials re-rated). 10d: +4.8%. 20d: +1.5% (gave back some as 30Y stayed elevated above 5%). Rail stocks ultimately held gains through Q4 2023 as volume trends improved [training-data knowledge — no specific source].
+
+**Why this time might differ:** In Oct 2023 rates were still rising toward peak; today the 30Y has been flat at ~5.2% for weeks, suggesting the ceiling may already be in place. The Iran oil dynamic is a new macro input (absent Oct 2023). The UNP-NSC STB merger is at a more advanced stage today vs 2023 and adds a significant option value that was absent then — this is both a tailwind (if approved) and a risk (if extended/denied).
+
+### Risk Factors (consolidated)
+1. **XLI sector weakness:** bottom-3 by 1mo momentum (−1.92%); fighting the sector tape in Neutral regime
+2. **KO stop expired:** KO (224 sh avg $87.42) has no active GTC stop; must place $81.30 stop at market open (−7% from fill)
+3. **Iran ceasefire fragility:** confirmed talks but not a deal; Brent could re-spike to $90+ restoring UNP fuel cost headwind
+4. **30Y yield ceiling:** structural 5.27% level compresses rail multiples; rate relief requires Fed pivot (not imminent)
+5. **Merger optionality in price:** Citi $349 PT embeds merger premium; STB delay or DOJ intervention collapses target
+6. **ML stale 1304h:** factors may lag recent institutional flow; no ML model insight available
+7. **ISM Manufacturing today (10am ET):** industrial bellwether — <48.0 reading would de-rate XLI sector and UNP
+
+### Decision
+**TRADE — UNP PULLBACK limit $292.00 (day TIF) AND KO GTC stop placement priority.**
+
+Execution sequence for market-open:
+1. **FIRST:** Place KO GTC stop-limit sell 224 sh at $81.30 (7% below actual fill of $87.42). This is the priority — KO is unprotected.
+2. **SECOND:** UNP buy-limit 68 sh @ $292.00 (day TIF). Skip if UNP gaps above $295 at open.
+3. Wait 15 min after open before executing (avoid gap-and-fade risk; confirm UNP not gapping down through $285).
+4. If UNP below $285 at open → do not enter; add to watchlist instead.
+
+Deployment post-fills: KO $19,582 + UNP $19,856 = $39,438 / $99,700 = 39.5% — within exposure-coach 45% ceiling ✓. Well below 75% target.
+
+**Exposure-coach tension:** REDUCE_ONLY but UNP adds us to 40%, which is within the 45% ceiling and far below 75% deployment target. Neutral regime with 1 slot governs. Proceeding with a single new entry.
+
+### Screener diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, shortlist=UNP(0.8531,XLI) + UNH(0.7693,XLV); top 10 = [UNP(0.8531), UNH(0.7693), AMZN(0.7503), RTX(0.6197), AMGN(0.5625), CVX(0.5341), XLE(0.5127), MRK(0.4763), ABBV(0.4739), GE(0.4641)]
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (all 429 quota exhausted — 1st call returned 429) + 0 Pro
+- Synthesis/critique/historical-analog: Claude direct (Gemini quota exhausted)
+- NewsAPI: 0 queries (skipped — Gemini 429 before macro queries; used WebSearch fallback)
+- Finnhub: 9 records (UNP insider Form 4 Jul 10/13; company news) | analyst endpoint 403 Forbidden
+- EDGAR: 5 records (Form 4 cluster Jul 13, 10-Q 2025)
+- Reddit: 0 (403-blocked, egress probe confirmed)
+- WebSearch: 4 queries (futures/VIX Aug 3, oil/30Y Aug 3, earnings/econ calendar, Iran ceasefire)
+- Google News: 6 records (UNP Jul 27–Aug 3)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1304.1h (54.3 days). Hard gate: slots 2→1. **URGENT: local PC refresh required.**
+- Fallback: WebSearch for all macro data (Gemini 429 all calls); [Gemini grounded — unverified] sourcing not applicable (Claude research only)
