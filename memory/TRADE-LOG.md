@@ -713,3 +713,39 @@ Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $3
 - **Stop coverage:** OTO child stop-loss verified armed (stop_coverage check passed; held status). Will execute automatically on entry fill if KO doesn't exceed R profit target first.
 - **Position allocation:** Single KO position (1/2 trade slot today; Core PCE cap). Deployment $19,816 is 19.92% of equity; under 40% pre-macro cap. No correlation conflict (0 existing positions). XLP sector cap 0/2 ✓. Daytrade buffer 0/3 ✓.
 
+
+---
+
+## 2026-08-03 — Market-open Orders
+
+### KO Stop Coverage
+**ALERT:** KO (224 sh @ ~$87.88) had no active protective stop (day TIF from Jul 31 expired). Placed GTC stop-sell 224 sh @ $81.30 (7% from fill). Order ID: `80097d5a-7342-41f6-b057-7f46beda6187`. GTC expires Oct 30, 2026.
+
+**Stop is NOW ACTIVE** (verified via `stop_coverage.py check` — covered: true, no naked positions). Original thesis intact: rate relief + defensive bid (XLP sector momentum #3). KO up +0.5% from entry.
+
+---
+
+### UNP PULLBACK Setup — 2026-08-03 Market-open
+
+**Catalyst:** Q2 beat ($3.41 vs $3.28 est.), insider cluster buys (Jul 1, Jul 10), STB merger on track (supplemental filed Jul 28-30), oil tailwind (Iran ceasefire talks Aug 3, Brent down $2-3 from Jul 29). ISM Manufacturing today (10am ET) is key near-term datapoint.
+
+**Setup type:** PULLBACK (buy-limit at $292.00, day TIF). Price pulled back from $316 high through $295 (prior planned level) to $292. Thesis: buy consolidation on fundamentals + oil tailwind.
+
+- **Planned entry:** $292.00 (limit, day TIF)
+- **Initial stop:** $271.56 (−7.0% from planned entry, per 2.5×ATR clamped [7,15])
+- **Target:** $349 (Citigroup Buy Jul 24, reconfirmed Jul 30)
+- **R:R:** 2.79:1 ✓ (passes 2:1 floor; fragile at BMO $320 → 1.37:1)
+- **Shares:** 68 (flat 20% sizing, $19,856 cost = 19.92% equity)
+- **Risk:** 68 × $20.44 = $1,390 (1.39% equity per-trade risk ✓)
+
+**Bull case:** Strong Q2 momentum + insider buys + merger de-risking + oil relief today. Citi $349 PT (19.5% above current). No earnings blackout (Oct 22, 80+ days).
+
+**Bear case:** XLI sector weak (−1.92% 1mo momentum, bottom-3), which contradicts "follow sector momentum" rule. Citi target embeds merger premium; STB delays / DOJ antitrust risk invalidates target. Iran ceasefire fragile (talks, not confirmed deal); Brent could re-spike >$90 within 72h as Jul 29, restoring Q3 fuel headwind.
+
+**Gate checks:** Correlation UNP/KO = −0.10 (passes <0.70 cap). Sector cap: 0/2 XLI ✓. Daytrade buffer: 0/3 ✓. Entries not blocked ✓. Gap guard: current ask $292.25 vs plan $292.00 = +0.09% (passes, no 3% gap) ✓. Deployment post-fills: KO $19,686 + UNP $19,856 = $39,542 / $99,637 = 39.7% (within exposure ceiling 45% ✓).
+
+**Execution note:** Waited ~7 min post-open (9:30→9:37 ET) before placing UNP order. UNP oscillated $291.07–$292.25 (tight intraday range, no gap-down into $285 liquidation zone per research doc concern). Placed OTO buy-limit + fixed stop child.
+
+---
+
+- PENDING 2026-08-03: UNP order_id=10b6aeb8-9ebd-4815-ae84-e11ab0e7b7d5 type=limit entry=292.00 initial_stop=271.56 shares=68 regime_entry=Neutral sector=XLI sizing=flat_20pct thesis="Q2 beat ($3.41 vs $3.28 est.), insider buys Jul 1/10, STB merger on track (supplemental filed Jul 28-30), oil tailwind (Iran talks Aug 3, Brent −$2-3 YTD). Citi $349 Buy (Jul 24, reconfirmed Jul 30). Pullback consolidation entry below $295 prior level. Risk: XLI sector weak (−1.92% 1mo), Citi target embeds merger premium (BMO $320 MP if delayed), Iran ceasefire fragile (Brent could re-spike >$90 within 72h). ISM Mfg bellwether today (10am ET); reading <48 de-rates XLI. Stop coverage verified live."
