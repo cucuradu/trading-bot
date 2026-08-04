@@ -85,12 +85,11 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## AMZN (XLY)
-- Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
-- Recent catalysts: (none yet)
-- Open thesis questions: (none yet)
-- Trade history: (none yet)
-- Position-aware notes: (none yet)
-
+- Thesis (2026-08-04): Post-Q2 AWS re-acceleration (37%, 18-quarter high); consensus PT 22; enter only on pullback to 65-270 for 2:1 R:R with 8.72% ATR stop (current 84 at 52w-high fails R:R floor).
+- Recent catalysts: Q2 2026 AWS +37% YoY (fastest 18 quarters); Jefferies Buy 20 (raised post-Q2); consensus 22.64 (62 analysts, Strong Buy); Needham Buy 00
+- Open thesis questions: Will AMZN consolidate below 87 52w-high and offer pullback entry? Does JOLTS/NFP compress growth PEs?
+- Trade history: Not entered (demoted 2026-08-04 — R:R 1.45:1 at 84 fails 2:1 floor with 8.72% ATR stop)
+- Position-aware notes: 30d correlation with KO=-0.11, UNP=+0.10 (low); XLY sector cap 0/2
 ## AVGO (XLK)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
 - Recent catalysts: (none yet)

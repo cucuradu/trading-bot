@@ -7133,3 +7133,148 @@ Screener: source=local_screener_v1, shortlist=UNP(0.8531,XLI) + UNH(0.7693,XLV);
 - Egress probe: edgar=ok, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=1304.1h (54.3 days). Hard gate: slots 2→1. **URGENT: local PC refresh required.**
 - Fallback: WebSearch for all macro data (Gemini 429 all calls); [Gemini grounded — unverified] sourcing not applicable (Claude research only)
+
+---
+
+## 2026-08-04 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1 [2→1 after stale_degrade gate], deployment: 75%) | fallback_reason: "ml unavailable; using local_screener_v1"
+
+**ML staleness:** age=1328.1h (55th+ consecutive stale session) — stale_degrade (threshold 120h). Hard gate: trade_slots 2→1. **URGENT: refresh ml_insights.json on local PC and push to main.**
+
+**Breadth/Sector:** breadth=71/100 (Healthy) | sector=balanced score=67 phase=early | divergence_flag=True (cyclical/defensive disagree internally)
+
+**Exposure:** ceiling=48% | rec=REDUCE_ONLY | bias=VALUE | conf=MEDIUM
+_(Advisory: Exposure-coach REDUCE_ONLY conflicts with Neutral regime. Current deployment ~39.4%; new 20% position → 59.4% exceeds 48% ceiling. Documented in Decision.)_
+
+**FTD:** N/A (FMP_API_KEY not set)
+
+### Account
+- Equity: $99,268.98 | Cash: $60,136.29 | Buying Power: $350,116.69
+- Daytrade count: 0/3 | Open positions: 2 (KO 224sh avg $87.42, UNP 68sh avg $291.45)
+- Open orders: 1 (KO GTC stop-sell 224sh @ $81.30, expires Oct 30 2026)
+- Stop coverage: KO ✓ (GTC $81.30), UNP ✓ (GTC $271.56 from Aug 3 OTO fill)
+- Unrealized P&L: KO -$253 (-1.29%), UNP -$15 (-0.08%). Total deployed: $39,132 / $99,269 = 39.4%
+
+### Macro Framework
+
+Neutral regime (rule_fallback; ML stale 1328h, 55th consecutive session). **Dominant theme: Oil reversal + cautious tone ahead of JOLTS/NFP.** Brent $89.81 (+$2.43 day, oil REVERSING higher — Iran tension resurfacing after ceasefire talk optimism yesterday), WTI $81.08. SPX futures +0.21%, Nasdaq-100 +0.9%; Dow futures up (CAT+MCD earnings before open). VIX 18.03 (elevated, rising from 15.99 close Jul 31 — fear increasing). 30Y yield ~5.27% (near 2007 highs, flat from Jul 31; no specific Aug 4 data available [WebSearch — unverified]). DXY ~100.91 (Jul 14 most recent, softening dollar). Pre-market earnings catalyst: CAT (before open), MCD (before open); AMGN and SpaceX after close. Economic calendar: JOLTS Job Openings at 10am ET today; NFP Friday Aug 7. vs yesterday: oil +$2.43 (Brent reversing — Iran ceasefire optimism fading); VIX +2 (fear rising from 16→18); SPX futures +0.21% (slight green despite oil headwind); 30Y yield flat; regime unchanged Neutral; UNP filled at $291.45; KO -1.3% from entry ($87.42→$86.29 current).
+
+> **SPY** = the ETF (~$748). **SPX** / S&P 500 index refers to the index (~7,480). Never conflate.
+
+### Sector Picture
+Top 3 (1-mo momentum):
+- XLE Energy +10.65% (Choppy per ml_insights — **divergence: momentum leader but regime=Choppy**)
+- XLF Financials +2.21% (Trend ✓ — momentum and regime agree)
+- XLRE Real Estate +2.01% (Choppy per ml_insights)
+
+Bottom 3 (1-mo momentum):
+- XLK Technology -3.01% (Bear per ml_insights ✓)
+- XLU Utilities -2.08% (Bear per ml_insights ✓)
+- XLB Materials -1.87% (Bear per ml_insights ✓)
+
+**XLI divergence:** XLI 1-mo momentum -1.29% (8th of 11 sectors) but ml_insights assigns Trend regime (score 0.2665). Contradictory: sector-momentum yfinance says bottom-half; rule-fallback screener sees Trend on 125d/20d factors. UNP position is in XLI — flag for monitoring.
+
+**XLE divergence:** Energy leads 1mo (+10.65%) but regime=Choppy. Strong price action hasn't translated to regime confirmation.
+
+### Candidates
+
+#### AMZN (XLY, $284.02 +1.58% premarket)
+
+**Setup:** Near 52w high ($287.20, today's intraday high). Post-earnings run: pre-Jul 31 ~$244 → $284 today (+16.4% in 4 days). ATR(14)=$9.91 (3.49% of price); stop_pct_2_5x=8.72% (within [7,15] range, no clamping). Price well above any SMA (screener score momentum_125d=0.957, momentum_20d=2.259).
+
+**Sources scanned (2):** 0 NewsAPI / 1 Finnhub company news / 0 EDGAR (timeout/blocked) / 0 Reddit (403) / 0 Gemini (404 model not found) / WebSearch 1 query (analyst PTs).
+
+**Bull case:** Q2 AWS growth reaccelerated to 37% (fastest in 18 quarters) [WebSearch — unverified via 247wallst.com Aug 3]; Wall Street raised targets post-Q2. Consensus $322.64 (62 analysts, S&P Global, post-Q2 revision) [WebSearch — unverified]. Jefferies Buy $320 (Brent Thill); Needham Buy $300. Volume surge score=3.0 (highest possible in screener). Sector XLY = Trend regime.
+
+**Bear case:** Entering at 52w high after a +16% post-earnings surge — classic chase risk; no consolidation after Q2 move. ATR-based stop is 8.72% wide ($24.77 per share), requiring ~17.4% move to reach 2:1 R:R target ($333.54). No tier-1 PT supports $333+. JOLTS at 10am ET today — weak labor data would compress growth multiples (AMZN tech-adjacent re-rates). Exposure-coach ceiling 48% → adding 20% position pushes to 59.4%.
+
+**Disconfirming evidence to watch:** AMZN closes back below $279.60 (yesterday's close) on any volume — signals post-earnings exhaustion. JOLTS job openings > consensus (keeps yields elevated, compresses growth PEs).
+
+**Catalysts ahead (next 14d):** None — earnings just passed. Next catalyst is Q3 earnings in late Oct.
+
+**One-line takeaway:** AMZN screener top-ranked on momentum but entry at 52w high after +16% run fails R:R requirement.
+
+**Critique:**
+
+**Strongest counter to the bull case:** AMZN at $284 is chasing a stock that already made its entire post-earnings move. The 8.72% ATR stop at this volatility level is not optional — it's the required stop per strategy rules — and with Jefferies $320 as the most bullish tier-1 PT, R:R = ($320-$284)/($284-$259.23) = $36/$24.77 = 1.45:1, well below the 2:1 hard floor. The consensus $322 still only yields 1.53:1. There is no credible cited PT that would justify entry today.
+
+**Weakly-sourced or unsourced claims:** All analyst PTs are [WebSearch — unverified]; Gemini synthesis failed (404 model not found). Finnhub analyst endpoint returned 403 Forbidden. No EDGAR or Finnhub confirmation. Bull case relies entirely on WebSearch-sourced PT claims.
+
+**Single most-likely invalidator (next 5 trading days):** JOLTS job openings today at 10am ET prints above consensus (> 8.0M) → rates-higher narrative strengthens → growth multiple compression → AMZN retreats below $279.60 post-earnings-exhaustion level within 1-2 sessions.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: 20% XLY (0 existing XLY positions; cap 0/2 ✓)
+- 30d correlation with existing positions: AMZN/KO = -0.11 (very low, passes <0.70 cap)
+- Sector cap status: 0/2 XLY ✓
+- Shared-catalyst flag (B6): AMZN primary catalyst = AWS AI compute growth. KO = rate relief/defensive. UNP = Q2 earnings + merger. No direct catalyst overlap ✓
+
+**R:R math (B3):**
+- Entry ~$284.02 / stop $259.23 (-8.72% per 2.5×ATR, no clamping needed) / target $320.00 (Jefferies Buy Aug 3, post-Q2 raise [WebSearch — unverified]) / R:R = (320-284)/(284-259.23) = 36/24.77 = **1.45:1 ✗ FAILS 2:1 floor**
+- Target $333.54 needed for 2:1 R:R — no tier-1 analyst PT supports this level
+- **DEMOTED: R:R below mandatory 2:1 floor at any tier-1 cited PT**
+
+**Setup type (Phase G1):** MOMENTUM / BREAKOUT — post-earnings at 52w high; would require buy-stop above $287.20 to confirm breakout. But R:R failure prevents entry regardless.
+
+**Entry plan:** N/A — demoted due to R:R failure.
+
+**Gate-history audit (B7):** AMZN was not shortlisted or researched in the last 5 trading days (slots consumed by KO and UNP). No prior planned entry level. No gate-creep issue.
+
+**Decision:** DEMOTED — R:R 1.45:1 fails the 2:1 mandatory floor (B3) with 8.72% ATR stop and any tier-1 analyst PT. Additionally, exposure-coach ceiling 48% would be exceeded by adding 20% position (→59.4%). No entry today.
+
+---
+
+### Candidates Dropped (and Why)
+- **AMZN** — R:R 1.45:1 < 2.0:1 mandatory floor (Jefferies $320 PT, 8.72% ATR stop); 52w-high entry after +16% post-earnings run
+- **UNH** — standing DOJ criminal investigation disqualifier (Medicare billing, Optum Rx, Claritev antitrust; standing since Jun 2026, 4th consecutive week demoted)
+
+### Historical Analog
+
+**Analog:** Early August 2023. VIX 14→18 (Fitch downgrade Aug 1, 2023 triggered spike), 30Y yield at 4.3→4.9% (rising toward cycle peak), SPX near YTD highs after strong earnings season (Q2 2023 beat rate >80%), WTI oil ~$80-83 (elevated but stable). Dominant concern: yields "higher for longer" compressing growth multiples. Neutral regime equivalent (S&P near highs but breadth narrowing).
+
+**What followed:** 5d post-Aug 1 2023: SPX -2.1% (Fitch/yield shock). 10d: -3.4% (continued yield pressure, VIX peak ~17-19). 20d: -4.1% before finding support and recovering into Oct/Nov [training-data knowledge — no specific source URL].
+
+**Why this time might differ:** In Aug 2023 the yield spike was new information (Fitch downgrade + BOJ surprise); today the 30Y at 5.27% has been structural for several weeks — the "shock" is already priced. The Brent reversal (+$2.43 today) is a new wrinkle (oil re-risk) not present in Aug 2023. Breadth at 71/100 (Healthy) is stronger than Aug 2023 equivalent, suggesting more market resilience.
+
+### Risk Factors (consolidated)
+1. **Oil re-spiking (Brent $89.81, +$2.43):** Iran ceasefire optimism fading; UNP fuel cost headwind re-emerges; XLE sector over-extended; macro inflation risk re-opens
+2. **VIX elevated at 18.03:** Rising from 15.99 close Jul 31 — fear signal in a week with JOLTS (today) + NFP (Fri)
+3. **KO at -1.3% from entry ($86.29 vs $87.42):** Weak; stop at $81.30 provides 5.7% buffer; monitor for close below $85 (would signal further deterioration)
+4. **UNP stop at $271.56 (-7%):** Adequate, but XLI sector 1mo momentum still -1.29%; oil rising today is UNP headwind; XLI/momentum divergence continues
+5. **ML stale 1328h (55 sessions):** Screener running blind on stale factors; rule_fallback is less predictive in regime transitions
+6. **NFP Friday Aug 7 (3 days):** Pre-macro sensitivity increasing all week; JOLTS today is the first read
+7. **AMZN at 52w high:** If Nasdaq reversal starts here (VIX 18), risk-off could pull back the leading momentum name aggressively
+
+### Decision
+
+**HOLD** — 0 new entries today.
+
+**Reasoning:**
+- Only 1 effective trade slot (ML stale_degrade gate)
+- AMZN demoted (R:R 1.45:1 fails mandatory 2:1 floor)
+- UNH standing disqualifier
+- Exposure-coach REDUCE_ONLY advisory (adding position → 59.4% > 48% advisory ceiling)
+- VIX rising (18.03), oil rising (Brent +$2.43), pre-NFP sensitivity
+- Current positions (KO, UNP) have adequate stop coverage; no tightening warranted (KO -1.3%, UNP -0.1% — neither at +15% trigger)
+
+**Existing position monitoring:**
+- KO GTC stop $81.30 ✓ active — No action needed unless KO closes below $85 (watch)
+- UNP GTC stop $271.56 ✓ — Brent oil spike today (+$2.43) is a near-term headwind; if Brent breaks above $92, reconsider thesis
+
+**Tension note:** Exposure-coach (REDUCE_ONLY, 48% ceiling) and Neutral regime (75% deployment target) disagree. Current 39.4% deployment is below BOTH the advisory ceiling AND the strategy target — this is an unusual position. Not adding today due to R:R failures and rising VIX, but not reducing either. Documenting disagreement per B2 guidance.
+
+### Screener diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, shortlist=AMZN(1.0592,XLY) + UNH(0.8531,XLV); top 10 = [AMZN(1.06), UNH(0.85), UNP(0.84, held), RTX(0.62), XLRE(0.55), GE(0.55), CVX(0.53), XLE(0.53), AMGN(0.49), SPY(0.48)]
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash attempt (429 quota exhausted) + 0 Pro; synthesize failed (404 model not found — `gemini-3-flash` not valid; fallback to Claude direct)
+- Synthesis/critique/historical-analog: Claude direct (Gemini 429 + model not found)
+- NewsAPI: 0 queries
+- Finnhub: 0 records (analyst endpoint 403 Forbidden; company news: 0 for AMZN in window)
+- EDGAR: 0 records (ReadTimeout — blocked)
+- Reddit: 0 (403-blocked, egress probe confirmed)
+- WebSearch: 5 queries (oil Aug 4, SPX/VIX Aug 4, earnings/catalysts Aug 4, econ calendar Aug 4, AMZN analyst PTs; KO/UNP news Aug 4; UNP-CN MOU)
+- Google News: n/a (not queried directly today)
+- Egress probe: edgar=error:ReadTimeout, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1328.1h (55.3 days). Hard gate: slots 2→1. **URGENT: local PC refresh required.**
+- Fallback: WebSearch for all macro data (Gemini 429 all calls); all sourcing [WebSearch — unverified]
