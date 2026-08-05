@@ -192,22 +192,22 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## KO (XLP)
-- Thesis (2026-08-03): FILLED Jul 31 at avg $87.42 (224 sh, better than $88.50 limit). Stop EXPIRED (day TIF, $82.30). KO currently UNPROTECTED — GTC stop must be placed at market open Aug 3 at $81.30 (7% from fill of $87.42). Current price $87.59, unrealized +$163.52 (+0.84%). Rate relief + Q2 beat + FIFA volume tailwind intact. Risk: XLP sector weakening vs oil/financials lead.
+- Thesis (2026-08-05): OPEN — 224sh avg $87.42, stop GTC $81.30 (order 80097d5a). Q2 beat + FY guidance raised (EPS 9-10% growth) + FIFA volume + analyst PT cluster ($93-$104). Analyst consensus lifted to $94.70 (Barclays $93, TD Cowen $100, RBC $96, UBS $104). Target: $104 (UBS + Jefferies dual confirmation). R:R 2.5:1 from entry, stop $81.30. Thesis intact; stock consolidating near entry post-earnings.
 - Recent catalysts:
-  1. Core PCE Jun 2026 BENIGN: +3.3% YoY/+0.1% MoM vs +0.2% consensus — confirms entry window (2026-07-31) [Advisor Perspectives Jul 30]
-  2. Q2 beat + FY guidance raise ($3.27-$3.30 EPS) + FIFA World Cup volume boost (2026-07-28) [Finnhub Jul 28]
-  3. Analyst PT cluster post-Q2: Jefferies Buy $104, TD Cowen Buy $100, JPM OW $96, RBC OP $96, Piper OW $95, WFC OW $95 (2026-07-29) [Finnhub Jul 29]
-  4. Fairlife ransomware (Anubis): plants back online, 1TB data leaked after KO refused ransom (2026-07-28) [SecurityWeek/WebSearch Jul 31]
-  5. CFO admitted India market share loss in Q2 (2026-07-28) [Finnhub Jul 28]
-  <!-- archive: "Money Rotates Out of AI" defensive bid; stock hit ATH $90.92 on rotation (2026-07-28-29) [Finnhub Jul 28-29] -->
+  1. 2026-08-05: Analyst fair value lifted $88.22→$94.70 post-Q2; UBS $104 PT (new) [Finnhub Aug 5; simplywall.st Jul 28]
+  2. 2026-08-05: Convenience store competitors (7-Eleven, etc.) challenging KO/PEP — incremental competition risk [Finnhub Aug 5]
+  3. 2026-07-28: Q2 EPS 97¢ beat 93¢ est; revenue $13.38B (+7% YoY), 5% volume growth, FIFA World Cup tailwind; FY guidance raised [CNBC Jul 28]
+  4. 2026-07-31: Core PCE Jun 2026 BENIGN: +3.3% YoY/+0.1% MoM — rate relief thesis supported [Advisor Perspectives Jul 30]
+  5. 2026-07-28: Fairlife ransomware (Anubis) resolved — plants back online, 1TB leaked, legal risk ongoing [SecurityWeek Jul 31]
+  <!-- archive: "Money Rotates Out of AI" defensive bid; stock hit ATH $90.92 (2026-07-28-29) [Finnhub] -->
+  <!-- archive: 2026-08-03: GTC stop placed $81.30 (day TIF expired Jul 31); coverage restored -->
 - Open thesis questions:
-  - Will 30Y pull back below 5.15% after benign PCE (structural rate relief needed for Jefferies $104 realization)?
-  - Does AMZN +13% risk-on rotation exit XLP/KO today → does limit fill or does price lift?
-  - Does India share loss worsen in Q3 or was it a one-quarter anomaly?
-  - Ongoing Fairlife data liability: litigation/regulatory risk from 1TB breach?
-  - Insider SELLING (MANN JENNIFER K, ~$3.2M net Jun 8-12) — routine diversification or conviction signal?
-- Trade history: PULLBACK limit $88.50 placed Jul 31 open (day TIF). Stop $82.31 (−7%). Target $104 (Jefferies). 225 shares ($19,907, 20% equity). Pre-macro cap OK (20% < 40% ✓).
-- Position-aware notes: If filled, deployment 20%; if KO gaps above ~$91.50 on open (>3% gap), skip today — thesis becomes chasing.
+  - NFP Aug 7 (consensus 80k, prior 57k): hot print spikes 30Y → rate pressure on defensive multiples
+  - India market share loss Q2 — one-quarter anomaly or structural?
+  - Fairlife breach litigation risk (1TB data; KO refused ransom)
+  - Consensus PT $94.70 gives R:R 1.20:1 (below 2:1 floor) — full 2.5:1 requires UBS/Jefferies $104 realization
+- Trade history: PULLBACK fill Jul 31 @ avg $87.42 (224sh, $19,582 cost basis). GTC stop $81.30. Target $104.
+- Position-aware notes: Stop active (order 80097d5a, GTC, expires Oct 30). Tighten at +15% ($100.53) to 1.75×ATR; +20% ($104.90) to 1.25×ATR.
 
 ## LLY (XLV)
 - Thesis (2026-06-11): At 1.85% off the 52w high ($1,182.73) and 41.2x trailing/26.1x fwd P/E, GLP-1 leadership is fully priced in. Consensus PT median $1,251 (BofA 05-26) implies only +7.7%, vs a real 7.95% ATR stop → R:R 0.98:1, fails 2:1 floor (even Truist's $1,281 only reaches 1.30:1). Continued bullish flow (Citi "compelling" note, oral GLP-1 diabetes data beating Novo/AZ, fresh 52w high) but no valuation cushion. Demoted on math, not thesis. [Demoted: R:R 0.98:1. analyst_data.py + WebSearch Jun 11]
@@ -351,27 +351,24 @@ Conventions:
 - Position-aware notes: 0% XLV exposure. DOJ disqualifier escalated Jul 20. Entry blocked until DOJ resolution.
 
 ## UNP (XLI)
-- Thesis (2026-08-03): Q2 beat + STB merger on track (additional info filed Jul 30) + Citi $349 PT + oil tailwind (Iran ceasefire talks Aug 3 pushing oil down from $89). Pullback to $292 (below prior $295 plan) = favorable entry. R:R 2.79:1. PULLBACK limit $292.00 day TIF proposed today.
+- Thesis (2026-08-05): OPEN — 68sh avg $291.45, stop GTC $271.56 (order 650b19c2 — placed Aug 5, was naked). Q2 beat ($3.41 EPS), STB merger advancing, Citi $349 PT (Buy). Iran deal → oil declining (direct fuel cost tailwind for rail margins). PT cluster: Benchmark $335, Baird $344, Citi $349, Citizens/others $340-363. R:R 2.89:1 (entry $291.45, stop $271.56, target $349).
 - Recent catalysts:
-  - 2026-08-03: Iran ceasefire talks resume → oil declining (WTI ~$82-84); fuel cost headwind for UNP partially reversed [Bloomberg Aug 3]
-  - 2026-07-30: STB additional information package submitted per STB request — merger process advancing [Google News Jul 30]
-  - 2026-07-29: Oil +4% to $89.53 (Iran attack on US base — ceasefire collapsed); fuel cost headwind for Q3 [Bloomberg Jul 29]
-  - 2026-07-27: Price at $299.30 (day low $296.98); approaching $295 watchlist level [Finnhub Jul 27]
-  - 2026-Q2 (Jul 23): EPS $3.41 beat $3.28, revenue $6.9B +12% YoY, raised guidance; 4th record domestic intermodal quarter [Yahoo Finance Jul 24]
-  - 2026-07-24: Citigroup PT $326→$349 (Buy); BMO PT $285→$320 (Market Perform) [Finnhub Jul 24]
-  - <!-- archive: 2026-07-24: CN Rail MOU — CN gets US operating rights; STB competition concerns partially addressed -->
-  - <!-- archive: 2026-07-27: Brent crude -8.23% to $90.28 on Iran-US ceasefire pause; fuel cost tailwind for Q3 -->
-  - <!-- archive: 2026-Q1: EPS $2.87 (+5.9% YoY), revenue $6.22B (+3.2%) -->
-  - <!-- archive: 2026-05-28: STB accepted amended UNP-NSC merger application -->
-  - <!-- archive: 2026-07-09: Citigroup raises PT to $326 -->
+  - 2026-08-05: Iran-US Strait of Hormuz deal hopes → oil dropping → rail fuel cost tailwind [WebSearch Aug 5]
+  - 2026-08-04: PT raised to $331.30 (+11.7% from prior) [Finnhub Aug 4]; CSX Q2 record revenue $3.94B on intermodal strength — rail sector tailwind [Finnhub Aug 4]
+  - 2026-08-03: Iran ceasefire talks resumed → oil declining; PULLBACK entry $291.45 filled [Bloomberg Aug 3]
+  - 2026-07-30: STB additional information package submitted — merger process advancing [Google News Jul 30]
+  - 2026-Q2 (Jul 23): EPS $3.41 beat $3.28, revenue $6.9B +12% YoY, 4th record domestic intermodal quarter [Yahoo Finance Jul 24]
+  <!-- archive: 2026-07-24: Citigroup PT $326→$349 Buy; BMO $285→$320 MP [Finnhub Jul 24] -->
+  <!-- archive: 2026-07-24: CN Rail MOU — CN gets US operating rights -->
+  <!-- archive: 2026-07-29: Oil +4% to $89.53 (Iran attack on US base); fuel cost headwind Q3 -->
+  <!-- archive: 2026-07-30: STB additional info package filed -->
 - Open thesis questions:
-  - STB final approval timeline: supplemental + additional info both filed; STB to schedule proceedings — when?
-  - Iran ceasefire talks Aug 3: confirmed deal or fragile truce? Oil direction over next 5 sessions critical.
-  - ISM Manufacturing today (Aug 3 10am ET): <48 → XLI de-rates, undermines UNP entry thesis.
-  - XLI sector bottom-3 by 1mo (−1.92%): when does sector momentum improve, allowing UNP to confirm leadership break?
-  - XLI sector cap: will add 1 position (UNP) = 1/2 cap; CAT/RTX eligible if slot opens.
-- Trade history: (none yet)
-- Position-aware notes: 0/2 XLI sector cap (no open positions). Entry proposed Aug 3 PULLBACK $292.00.
+  - NFP Aug 7: hot print → 30Y spike → XLI de-rates; cold print → recession fear
+  - STB final approval timeline — supplemental + additional info filed; proceedings TBD
+  - Iran deal durability: confirmed treaty vs fragile ceasefire; Brent >$92 = fuel cost thesis reversal trigger
+  - XLI momentum still bottom-tier (1mo +0.45%); needs sector rotation improvement
+- Trade history: PULLBACK limit $292.00 placed Aug 3; filled $291.45 avg (68sh, $19,818 cost basis). GTC stop $271.56 (placed Aug 5 — was naked). Target $349.
+- Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
 - Thesis (2026-07-29): Iran attack on US base → defense demand narrative STRONGLY reinforced; RTX hit new 52w high $221.34 premarket. BNP Paribas raised PT to $265 (Outperform, from $220 [MarketScreener Jul 28]) — now highest analyst PT; avg analyst $229.82. Secondary candidate for Jul 31 (post-FOMC + post-MSFT/META + post-AAPL/AMZN). R:R 2.77:1 using BNP $265 target (fragile — consensus $240 gives 1.16:1). Buy-stop $222.00 above today's premarket high.
