@@ -7374,3 +7374,96 @@ Shortlist (--slots 1): AMD, AMZN — both excluded today per pre-macro deploymen
 - Egress probe: edgar=error:ReadTimeout, google_news=ok, reddit=http_403
 - ml_insights: status=stale_degrade, age=1352.1h (56.3 days). Hard gate: slots 2→1. **URGENT: local PC refresh required — 56th consecutive session on rule_fallback.**
 - Fallback events: Gemini 429 all calls → WebSearch used for all macro data; citations marked [WebSearch — unverified] or [Finnhub]
+
+---
+
+## 2026-08-06 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1→0-viable, deployment: 75%) ML unavailable; using local_screener_v1
+**ML staleness:** age 1376.1h (stale_degrade — >120h); hard gate slots 2→1. **URGENT: local PC refresh required — 57th consecutive session on rule_fallback.**
+**Pre-macro:** cap_active (event: NFP on 2026-08-07) → 40% deployment cap; trade_slots MIN(1,2)=1, but $557 headroom precludes any ~$20k position; effective slots = 0.
+**Breadth/Sector:** breadth=74.2/100 (Healthy) | sector=risk-on score=86 phase=early | divergence_flag=true (commodity internal — commodity overbought)
+**Exposure:** ceiling=52% | rec=NEW_ENTRY_ALLOWED | bias=VALUE | conf=MEDIUM
+  *Note: pre-macro hard gate overrides exposure-coach ceiling to 40%; no tension (exposure-coach would allow entries, pre-macro blocks them).*
+
+### Account
+- Equity: $99,894.88 | Cash: $60,136.29 | Buying power: $351,869.21
+- Open positions: 2 (KO, UNP) | Open orders: 2 (KO GTC stop $81.30; UNP GTC stop $271.56)
+- Deployed cost basis: $19,582 (KO) + $19,818 (UNP) = $39,400 = 39.4% equity
+- Pre-macro 40% cap headroom: $39,958 − $39,400 = **$558** (effectively zero room for new $20k positions)
+
+### Macro Framework
+Neutral regime (rule_fallback; ML stale 1376h, 57th consecutive session). Pre-NFP positioning dominates — markets in "wait and see" ahead of Aug 7 NFP (consensus 80k vs prior 57k). VIX ~17.58 (↑ from 16.52 yesterday; hedging activity accelerating pre-NFP). 30Y yield ~5.16-5.17% (−3-4bp from 5.20%; minor relief, no structural change). WTI ~$75.69 (flat; Iran deal hope stabilizing oil). SPX futures flat/mixed: SPY +0.22%, QQQ −0.30% (tech lag = sector rotation hesitation). Breadth 74.2/100 (Healthy, no bearish divergence). Dominant theme: NFP binary risk. Hot print (>100k + firm wages) → 30Y spike → multiple compression; cold print (<50k, back-to-back labor weakness) → recession fear. Consensus 80k = soft landing intact → mild relief rally expected. vs yesterday: VIX +1.06 (rising on NFP hedge); 30Y −3bp (easing); SPX was at record 7,736 yesterday; WTI flat; regime unchanged Neutral.
+> SPY ~$771 (ETF); SPX 7,736 (index). Not the same.
+
+### Sector Picture
+- **Top 3 (1mo momentum):** Energy XLE +7.87% (Choppy per ML), Financials XLF +3.31% (Trend), Real Estate XLRE +2.05% (Choppy)
+- **Bottom 3:** Utilities XLU −3.62% (**Bear** — avoid), Industrials XLI +0.43%, Consumer Discretionary XLY +0.53%
+- **Ml-insights vs momentum:** XLI bottom-tier momentum (+0.43%) but ML says "Trend" (multi-factor 125d+20d scoring diverges from 1mo). XLE strong 1mo but ML says "Choppy" (mean-reversion at overbought level). No material contradiction — expected divergence for trend-reversing sectors. XLU Bear confirmed both methods.
+- **Note:** UNP is XLI sector (bottom 2 by 1mo momentum). Thesis depends on fundamentals (Q2 beat, STB merger, Iran oil tailwind) rather than sector momentum.
+
+### Candidates
+
+**Effective trade slots today: 0 new entries** (1 slot post-gates; only $558 headroom under 40% pre-macro cap vs ~$20k minimum position — structurally no room).
+
+#### Screener Diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked ~64 tickers, top 10 = [RTX(0.84,XLI), MSFT(0.81,XLK), AMZN(0.73,XLY), AMGN(0.69,XLV), GE(0.68,XLI), XLK(0.65,ETF), UNH(0.58,XLV), UNP(0.56,held), HON(0.55,XLI), SBUX(0.48,XLY)]
+Shortlist (--slots 1): RTX, MSFT — both excluded by pre-macro deployment cap.
+
+#### Pre-warmed candidates (post-NFP Aug 7 consideration)
+
+**RTX** (XLI, score 0.84) — New top screener pick. Defense/aerospace. Not in earnings blackout (earnings Jul 2026 past; next Oct). XLI sector Trend per ML. Not researched in-depth today — pre-NFP cap blocks entry. Pre-warm for next week.
+
+**MSFT** (XLK, score 0.81) — Tech (XLK Trend). Q2 beat cycle (Azure, Copilot AI). Not in blackout (next Oct). Would need gate-history audit and R:R check post-NFP.
+
+### Existing Position Review
+
+#### KO (XLP, $87.78 premarket)
+- Long 224sh @ $87.42 avg | Unrealized: +$79.79 (+0.41%) | Market value: $19,661.87
+- Stop: GTC $81.30 (order 80097d5a, exp Oct 30) ✓ active | Stop distance: −7.4% from current — adequate ✓
+- ATR(14): $1.92 (2.21% of price) | stop_pct 2.5×ATR: 5.52% → clamped 7.0%
+- Tighten at +15% from entry: $100.53 (not reached) | Tighten at +20%: $104.90 (not reached)
+- **Today's news [WebSearch Aug 6]:** KO up 24% YTD in 2026, trading near record highs ($90.92 52w-high). Multiple analyst PT raises post-Q2: UBS $104 (from $98), JPM $96 (from $90), RBC $96 (from $87). Q2 narrative: 7% net revenue growth, 9% operating income growth, FIFA volume. [Motley Fool Aug 6 — Gemini grounded unverified]
+- **Data check:** Prior thesis used UBS/Jefferies $104 as target (R:R 2.5:1). Today's RBC $96 raise confirms mid-range; UBS $104 reconfirmed (from $98 → $104 raise = independent confirmation). No contradiction. Target $104 intact.
+- **Action:** No adjustment. Thesis intact. Monitor: KO must hold above $85.00 (approaching stop buffer); NFP hot print = defensive rotation risk → watch for close <$86.50 as early warning.
+
+#### UNP (XLI, $295.54 current)
+- Long 68sh @ $291.45 avg | Unrealized: +$278.12 (+1.40%) | Market value: $20,096.72
+- Stop: GTC $271.56 (order 650b19c2) ✓ active | Stop distance: −8.1% from current — adequate ✓
+- ATR(14): $6.90 (2.34% of price) | stop_pct 2.5×ATR: 5.84% → clamped 7.0%
+- Tighten at +15% from entry: $335.17 (not reached) | Tighten at +20%: $349.74 (not reached)
+- **Today's news [WebSearch Aug 6]:** UNP-Norfolk Southern merger update: Jul 27, 2026 — UNP/NS enhanced merger application with "unprecedented customer protections"; proceedings held in abeyance per STB May 28, 2026 decision. Expected completion mid-2027. This IS the STB merger referenced in the prior thesis. [UP.com press release Jul 29; STB website — Gemini grounded unverified]
+- Q2 EPS $3.41 (beat confirmed; diluted up ~7% YoY per stockanalysis.com). Analyst cluster: BofA $334 (raised from $301, Buy) + prior Citi $349 PT intact.
+- **Data check:** BofA $334 is a new data point (lower than Citi $349 — still confirms bullish direction). Prior Citi $349 our target. UNP entry $291.45, stop $271.56, target $349: R:R = ($349-$291.45)/($291.45-$271.56) = $57.55/$19.89 = 2.89:1 ✓ No contradiction. Merger thesis confirmed advancing on schedule.
+- **Action:** No adjustment. Thesis improving — merger de-risks via regulatory progress, BofA adds to PT cluster. Monitor: Iran deal fragility (oil re-spike >$92 Brent reverses fuel margin thesis); NFP cold print → XLI de-rates (recession fear = top freight volume risk).
+
+### Candidates dropped (and why)
+- RTX — Pre-macro deployment cap ($558 headroom vs ~$20k needed). Not researched in depth. Carry as pre-warmed candidate.
+- MSFT — Same pre-macro constraint. Carry as pre-warmed.
+- All other screener top-10 — same structural constraint; zero headroom.
+
+### Historical Analog
+**Analog:** September 5, 2024 (pre-NFP session). Matching conditions: VIX ~18-20 (elevated after August 5, 2024 carry-trade spike to 65, then retreating); SPX recovering toward highs (5,540 area) after the August correction; 30Y yield ~4.3-4.5% (lower than today's 5.17%, but meaningfully elevated for the cycle). Dominant risk: the August 2024 NFP (released Aug 2, 2024) had come in at 114k (vs 175k consensus), creating labor recession fear. September 5 markets were cautious ahead of the next NFP release on September 6, 2024. Sector leadership: Tech (AI/NVDA) + Financials, similar to today. [Training data — macrotrends.net, S&P 500 historical]
+
+**What followed:** September 6, 2024 NFP: 142k actual vs 160k consensus → read as "soft landing" (not recessionary recovery). SPX +0.5% day-of, then ground higher. Over 5 trading days: SPX +2.1%. Over 10d: +3.8%. Over 20d: +4.6%. The prior weak NFP (114k) + soft follow-up (142k) combination validated the "moderating but not collapsing" thesis, allowing risk-on rotation.
+
+**Why this time might differ:** Today's 30Y yield is ~5.17% vs ~4.4% in Sep 2024 (+77bp delta), making valuation multiples more compressed and a repeat +3-4% SPX move mathematically harder without rate relief. Critically, August 7, 2026 NFP is the second consecutive very-weak print (prior 57k vs prior Aug 2024 114k — today's starting labor conditions are weaker). Consensus 80k would technically be "improvement," but two sub-90k prints may start pricing a real slowdown rather than soft landing — the binary risk is wider than in Sep 2024.
+
+### Risk Factors
+1. **NFP Aug 7 (consensus 80k, prior 57k):** Hot print (>100k + wages +0.4% MoM) → 30Y spike → KO/UNP multiple compression. Cold print (<50k) → recession fear → XLI de-rating hits UNP directly.
+2. **XLI sector momentum still weak:** UNP in bottom-2 sector by 1mo momentum (+0.43%). Fundamental thesis requires sector rotation improvement that hasn't materialized yet.
+3. **Iran deal fragility:** Brent oil spike above $92 invalidates UNP fuel margin thesis. Deal is "talks," not a signed treaty.
+4. **ML model stale 1376h (57 days):** Screener quality degraded. RTX as #1 pick vs AMD/AMZN shift from yesterday warrants scrutiny — no ML validation possible.
+5. **KO stop buffer thinning:** KO at $87.78, stop $81.30. If NFP sparks defensive rotation reversal (risk-on shock), KO could gap toward stop range.
+6. **Gemini quota exhausted:** All macro sourcing via WebSearch today — lower reliability, all citations [WebSearch — unverified].
+
+### Decision
+**HOLD** — No new entries. Pre-macro NFP cap (40% ceiling, $558 headroom vs $20k minimum position) structurally forecloses new buys; 1 paper slot remains on the books but is physically unreachable today. Both positions (KO +0.41%, UNP +1.40%) have active GTC stops and intact theses. Post-NFP (Aug 7 print): if on-consensus or soft AND SPX holds record, consider RTX (new top screener pick, score 0.84) or revisit MSFT (score 0.81) in Friday/Monday session.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash (429 quota exhausted immediately) + 0 Pro — ALL FAILED
+- Research sourcing: WebSearch (primary — all macro, KO, UNP news); Finnhub/NewsAPI via prior day's data; EDGAR not queried today
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1376.1h (57.3 days). Hard gate: slots 2→1. URGENT: local PC refresh — 57th consecutive session on rule_fallback.
+- Fallback events: Gemini 429 all calls → WebSearch for all macro data; citations marked [WebSearch — unverified]
+- FTD: FMP key set, ftd.json produced but not parseable (empty or format error); skipping
