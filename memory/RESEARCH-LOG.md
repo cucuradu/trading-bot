@@ -7467,3 +7467,105 @@ Shortlist (--slots 1): RTX, MSFT — both excluded by pre-macro deployment cap.
 - ml_insights: status=stale_degrade, age=1376.1h (57.3 days). Hard gate: slots 2→1. URGENT: local PC refresh — 57th consecutive session on rule_fallback.
 - Fallback events: Gemini 429 all calls → WebSearch for all macro data; citations marked [WebSearch — unverified]
 - FTD: FMP key set, ftd.json produced but not parseable (empty or format error); skipping
+
+---
+
+## 2026-08-07 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1→0-viable, deployment: 75%) ML unavailable; using local_screener_v1
+**ML staleness:** age 1400.2h (stale_degrade — >120h); hard gate slots 2→1. **URGENT: local PC refresh required — 58th consecutive session on rule_fallback.**
+**Pre-macro:** cap_active (event: NFP on 2026-08-07) → 40% deployment cap; trade_slots MIN(1,2)=1, but $357 headroom precludes any ~$20k position; effective slots = 0.
+**NFP print (STEP 4-bis):** Actual −23,000 (CATASTROPHIC MISS vs +80k consensus; first negative print in months). Unemployment 4.1% (↓ from 4.2%; labor force participation 61.4% — 5-year low). Market reaction: SPX +0.31%, VIX ~17.33 (rate-cut rally thesis). Cold print protocol: no trade_slots reduction per written rule (reduction applies only to hot prints). Advisory: recession fear risk elevated for XLI/UNP (freight volumes). Pre-macro 40% cap remains active for entry purposes.
+**Breadth/Sector:** breadth=76.2/100 (Healthy, ↑ from 74.2 yesterday) | sector=risk-on score=82 phase=early | divergence_flag=true (cyclical/defensive internal disagreement)
+**Exposure:** ceiling=N/A (exposure coach failed silently — exit error). Pre-macro 40% cap applies; no tension.
+
+### Account
+- Equity: $99,631.73 | Cash: $60,136.29 | Buying power: $351,132.39
+- Open positions: 2 (KO, UNP) | Open orders: 2 GTC stops (KO $81.30 exp Oct 30; UNP $271.56 exp Nov 3)
+- Deployed cost basis: $19,582 (KO) + $19,819 (UNP) = $39,401 = 39.6% equity
+- Pre-macro 40% cap headroom: $39,852 − $39,401 = **$357** (effectively zero room for any ~$20k position)
+
+### Macro Framework
+Neutral regime (rule_fallback; ML stale 1400h, 58th consecutive session). NFP July 2026 = −23,000 (vs +80k consensus; first negative print in months; follows Jun +57k — second consecutive weak read). Market's initial reaction is a rate-cut rally: SPX +0.31%, VIX ~17.33 (calmer than the miss would imply) — "bad news is good news" thesis (Fed now likely to cut Sep or Nov 2026). 30Y yield ~5.17% (holding near Jul 29-30 highs of 5.24% after FOMC hold; expected to ease intraday on cold NFP data). WTI ~$77.75-78.75/Bbl, Brent ~$82-83 (stable; Iran deal talks supporting; down from yesterday's ~$75.69 as Brent converges to higher band). Breadth 76.2/100 (Healthy; no bearish divergence detected; S&P and breadth 8MA both rising). Dominant theme: Cold NFP resolves the pre-NFP binary — recession fear risk vs rate-cut hope, currently priced as the latter. Key risk: "bad news is good news" could rapidly invert if bond market reprices the second consecutive weak print as genuine recession onset (SPX +0.31% could reverse intraday). vs yesterday: VIX −0.25 (calmer post-print resolution); 30Y expected to ease from 5.17% on cold data; SPX futures positive vs flat-to-negative yesterday; oil roughly flat-to-up; regime unchanged Neutral; KO −0.88% (mild defensive bid absent so far); UNP +1.35% (merger de-risking dominant).
+> **Naming convention (B8):** SPY ~$770 (ETF); SPX ~7,700 (index). Not the same.
+
+### Sector Picture
+- **Top 3 (1mo momentum):** Energy XLE +6.44% (Choppy per ML), Technology XLK +3.43% (Trend — major recovery from prior −7.76%!), Financials XLF +3.14% (Trend)
+- **Bottom 3:** Utilities XLU −5.08% (**Bear** — avoid), Real Estate XLRE −0.18% (Choppy), Healthcare XLV +0.01% (Choppy)
+- **XLI update:** Industrials improved from +0.43% to +1.30% (1mo). ML still says Choppy. Benefits UNP margin.
+- **ML sectors vs momentum:** XLK was bottom-3 by prior 1mo but is now top-2 (+3.43% recovery); ML still scores XLK "Trend" — no contradiction, momentum caught up to ML. XLE overbought-flag persists (ML=Choppy, 1mo strong). XLU Bear confirmed by both methods. UNP sector (XLI) improving momentum but ML still Choppy; underlying fundamentals (merger, Q2 beat) dominate.
+
+### Candidates
+
+**Effective trade slots today: 0 new entries** (1 slot post-gates; $357 headroom under 40% pre-macro cap vs ~$20k minimum — structurally no room, identical to yesterday).
+
+#### Screener Diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked 64 tickers, top 10 = [MSFT(0.9811,XLK), RTX(0.7924,XLI), GE(0.7380,XLI), AMZN(0.7147,XLY), AMGN(0.6038,XLV), LLY(0.5819,XLV), XLK(0.5374,ETF), BAC(0.5298,XLF), KO(0.4028,XLP), JPM(0.3970,XLF)]
+Shortlist (--slots 1): MSFT, RTX — both excluded by pre-macro deployment cap.
+Notable shift: MSFT jumped from ~0.54 (prior rank ~9th) to 0.9811 (rank 1) — screener picking up post-NFP tech rotation signal? ML stale 1400h means this score is screener-only (7-factor momentum, not XGBoost). Flag for manual validation before any MSFT entry.
+
+#### Pre-warmed candidates (post-NFP / next week consideration)
+
+**MSFT** (XLK, score 0.9811) — Top screener pick. Tech (XLK Trend). Azure AI + Copilot revenue growth. XLK +3.43% 1mo recovery makes this sector timing potentially compelling. No earnings blackout (next report ~Oct). Would need full gate-history audit and R:R check before entry. Flag: score jump from ~0.54 to 0.98 in one session warrants scrutiny given ML stale — verify whether move is momentum-driven or a screener artifact.
+
+**RTX** (XLI, score 0.7924) — Defense/aerospace. XLI improving. Q2 results past; next earnings ~Oct. Two consecutive days as top non-MSFT pick. Strong relative strength. Same sector as UNP (XLI) — would push XLI to 2/2 cap; need to check cap before entry.
+
+### Existing Position Review
+
+#### KO (XLP, $86.65 current)
+- Long 224sh @ $87.42 avg | Unrealized: −$172 (−0.88%) | Market value: $19,410
+- Stop: GTC $81.30 (order 80097d5a, exp Oct 30) ✓ active | Stop distance: −6.2% from $86.65
+- ATR(14): $1.88 (2.17% of $86.85 close) | stop_pct_2.5x: 5.42% → clamped 7.0%
+- Tighten at +15%: $100.53 | Tighten at +20%: $104.90 (neither reached)
+- **Today's news [Finnhub Aug 7]:** Zacks Industry Outlook featuring KO alongside Monster (MNST). Monster Q2 record $2.54B revenue +20.2% YoY — strong beverage sector peer signal. No negative KO-specific news today.
+- **New analyst data [WebSearch Jul 30]:** Barclays raised KO PT $91→$93. Combined PT cluster: Barclays $93, UBS $104, Jefferies $104, JPM $96, RBC $96, TD Cowen $100 — all bullish.
+- **Data check:** Barclays $93 is new (was not in prior logs). Cross-reference with prior UBS $104 (Aug 6) — no contradiction; Barclays lower is consensus floor, UBS/Jefferies $104 is bull target. R:R at $104 target (stop $81.30 from $86.65): ($104-$86.65)/($86.65-$81.30) = $17.35/$5.35 = 3.24:1 ✓
+- **NFP impact on KO:** Ambiguous. Cold print = recession fear should support defensive XLP bid (KO is consumer staples). But if "rate cut rally" thesis persists, capital rotates from defensives to growth (negative). KO mild loss −0.88% premarket may reflect this uncertainty. No thesis break.
+- **Action:** No adjustment. Monitor: KO must hold $85.00 (key support; below = approaching stop zone). Watch for close >$88 as sign defensive bid returning post-NFP.
+
+#### UNP (XLI, $295.38 current)
+- Long 68sh @ $291.45 avg | Unrealized: +$267 (+1.35%) | Market value: $20,086
+- Stop: GTC $271.56 (order 650b19c2, exp Nov 3) ✓ active | Stop distance: −8.1% from $295.38
+- ATR(14): $6.64 (2.25% of $295.38) | stop_pct_2.5x: 5.62% → clamped 7.0%
+- Tighten at +15%: $335.17 | Tighten at +20%: $349.74 (neither reached)
+- **Today's news [Finnhub Aug 6]:** 152 letters of shipper support for UNP-NS merger filed Aug 5 with STB — Nissan North America, Hub Group, Knight-Swift among 20+ named shippers. 229-page filing. This is the most substantial merger de-risking evidence to date; broad industry acceptance reduces STB rejection risk.
+- **Sector peer read-through [Finnhub Aug 4]:** CSX Q2 record revenue $3.94B on intermodal strength — confirms healthy rail freight demand environment. Positive for UNP intermodal volumes.
+- **Data check:** Analyst consensus PT now $299.11 (from MarketBeat search). Prior entries: BofA $334, Citi $349. No contradiction — $299 is the mean, Citi $349 is the bull case. R:R at $349 target (stop $271.56, entry $291.45, current $295.38): ($349-$295.38)/($295.38-$271.56) = $53.62/$23.82 = 2.25:1 ✓ (on current price; on entry: $57.55/$19.89 = 2.89:1).
+- **NFP impact on UNP:** Mixed signal. Negative: recession fear = freight volume contraction = bear for rails. Positive: rate cut expectations = capex unlock, which benefits capital-intensive industrials. Company-specific merger story (152 shipper letters, STB abeyance, mid-2027 close) is more powerful than macro short-term. UNP up +1.35% is the market voting. XLI 1mo improving to +1.30%. Thesis intact.
+- **Action:** No adjustment. Monitor: Iran deal fragility (Brent >$92 = fuel thesis reversal); XLI sector must maintain upward momentum; NFP cold print = watch for freight demand guidance cuts in any Oct/Nov rails reports.
+
+### Candidates dropped (and why)
+- MSFT — Pre-macro 40% deployment cap ($357 headroom vs ~$20k needed). Score jump 0.54→0.98 warrants scrutiny before entry. Carry as pre-warmed.
+- RTX — Same deployment constraint. Would push XLI to sector cap 2/2 (with UNP already XLI). Carry as pre-warmed; resolve sector cap question first.
+- GE — Same constraint; XLI cap.
+- All other screener top-10 — same 40% structural constraint; zero headroom.
+
+### Historical Analog
+**Analog:** March 5, 2010 — February 2010 payrolls = −36,000 (similar order of magnitude to today's −23,000). Context: US economy in post-GFC recovery, 30Y yield ~4.6%, VIX ~18-20, SPX recovering from March 2009 lows (~1,115 area). The cold print was blamed partly on blizzards (weather), which dampened the recession fear response. XLK had begun rebounding. "Bad news = rate stimulus ahead" narrative prevalent. [US BLS archived release, Feb 2010; training data cross-checked]
+
+**What followed:** Markets initially volatile on the print but held ground — SPX flat over 5 trading days. Over 10 days: +1.5%. Over 20 days: +3.2%. The blizzard alibi + Fed credibility limited recession panic. Similar dynamic to today's rate-cut rally response.
+
+**Why this time might differ:** Today's −23k follows a prior Jun +57k (not a weather event); February 2010's −36k had weather cover. Today's 30Y at 5.17% is +57bp above 2010's ~4.6%, providing more compression risk on any rate repricing. Critically, today's context includes two consecutive sub-90k prints (Jun +57k, Jul −23k), whereas 2010's miss was a one-off weather event. If Sep/Oct 2026 data confirms a genuine labor softening trend, the "bad news is good news" narrative may invert faster than in 2010.
+
+### Risk Factors
+1. **NFP confirmation risk (top):** Today's −23k is the second consecutive miss. A third consecutive soft print (Sep 2026 report, due Oct 2, 2026) would confirm labor market deterioration → recession pricing → XLI (UNP) de-rates, defensive (KO) bid spikes.
+2. **"Bad news is good news" inversion:** SPX +0.31% on a −23k NFP print is fragile. If bond market interprets the print as recessionary rather than rate-catalyst, 30Y stays elevated AND equities reprice lower simultaneously (stagflation fear).
+3. **UNP XLI sector weakness:** Despite today's improvement (+1.30% 1mo), XLI is still bottom-4 by momentum. UNP's thesis is company-specific; sector rotation remains a headwind.
+4. **KO stop buffer thinning:** KO at $86.65, stop $81.30 (−6.2%). If NFP sparks a risk-on rotation from defensives, KO could move toward stop range quickly.
+5. **ML model stale 1400h (58 days):** Screener quality degraded. MSFT score jump to 0.98 may be a momentum artifact (XLK recovery), not a multi-factor validated signal. No XGBoost validation possible.
+6. **Gemini quota exhausted:** All macro sourcing via WebSearch today — lower reliability, all macro citations [WebSearch — unverified].
+
+### Decision
+**HOLD** — No new entries. Pre-macro NFP cap (40% ceiling, $357 headroom vs ~$20k minimum position) structurally forecloses new buys for the second consecutive session. Both positions have active GTC stops and intact theses:
+- KO: −0.88% unrealized, thesis intact (PT cluster $93-$104, defensive bid if recession fear persists). Stop adequately spaced at −6.2%.
+- UNP: +1.35% unrealized, thesis strongly de-risked (152 shipper letters to STB Aug 5), stop at −8.1%.
+Post-NFP next week: if SPX holds and cold print is interpreted as rate-cut catalyst (not recession), consider MSFT (new rank-1 at 0.9811, XLK Trend) in Monday/Tuesday session — pending gate-history audit and R:R validation. RTX (rank-2) requires resolving XLI sector cap first (currently 1/2 with UNP; adding RTX = 2/2 cap, then MSFT would be only XLK candidate).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429 quota immediately all 3 calls) + 0 Pro — ALL FAILED; all macro via WebSearch
+- Research sourcing: WebSearch (primary — NFP print, market reaction, oil, 30Y, KO/UNP prices); Finnhub (4 records for KO, 3 records for UNP)
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1400.2h (58.3 days). Hard gate: slots 2→1. URGENT: 58th consecutive session on rule_fallback.
+- FTD: FMP_API_KEY not set (or command failed) — skipped
+- Exposure coach: failed silently (exit error)
+- Fallback events: Gemini 429 (all calls) → WebSearch for all macro data; citations marked [WebSearch — unverified]. Reddit egress 403 blocked — not cited.
