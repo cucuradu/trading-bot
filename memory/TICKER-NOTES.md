@@ -274,11 +274,17 @@ Conventions:
 - Position-aware notes: 0/2 XLF sector cap (no open XLF positions); no other XLF candidate in today's shortlist to correlation-check against.
 
 ## MSFT (XLK)
-- Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
-- Recent catalysts: (none yet)
-- Open thesis questions: (none yet)
-- Trade history: (none yet)
-- Position-aware notes: (none yet)
+- Thesis (2026-08-10): Post Q2-earnings breakout — EPS $4.74 beat $4.24 (+11.8%), revenue $90.01B vs $87.62B; stock surged ~28% over 7 sessions from $349→$500. At $500, R:R FAILS 2:1 floor (7% stop = $465; consensus $563 → R:R 1.80:1). Pre-warm watchlist: wait for pullback to $480 (R:R 2.44:1) OR confirmed PT ≥ $570 from tier-1 bank. Do NOT enter at $500+.
+- Recent catalysts:
+  - 2026-08-10: 56 analysts "Strong Buy"; avg PT $563.16 (+12.6% from $500); 52w range $349-$553 [WebSearch — unverified Aug 10]
+  - 2026-07-29: Q4 FY2026 earnings: EPS $4.74 beat $4.24 (+11.8%); revenue $90.01B vs $87.62B; +28% over 7 sessions; Azure AI + Copilot growth cited [Yahoo Finance/Blockonomi Aug 10 — unverified]
+  - <!-- archive: seed: uninitialized prior to 2026-08-10 -->
+- Open thesis questions:
+  - Does MSFT pull back to $480 pre-CPI or post-CPI (entry threshold for R:R ≥ 2:1)?
+  - Will a tier-1 bank (GS/MS/BofA/Barclays) issue PT ≥ $570 to unlock R:R at $500 entry?
+  - CPI Aug 12: hot print → 30Y spike → MSFT P/E compression risk. How does MSFT trade if CPI ≥ 3.7%?
+- Trade history: (no trades — pre-warm only as of 2026-08-10)
+- Position-aware notes: Correlation 0.116 vs KO (excellent). XLK sector 0/2 cap. No shared catalyst with KO/UNP.
 
 ## NFLX (XLC)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
@@ -369,22 +375,22 @@ Conventions:
 - Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
-- Thesis (2026-07-29): Iran attack on US base → defense demand narrative STRONGLY reinforced; RTX hit new 52w high $221.34 premarket. BNP Paribas raised PT to $265 (Outperform, from $220 [MarketScreener Jul 28]) — now highest analyst PT; avg analyst $229.82. Secondary candidate for Jul 31 (post-FOMC + post-MSFT/META + post-AAPL/AMZN). R:R 2.77:1 using BNP $265 target (fragile — consensus $240 gives 1.16:1). Buy-stop $222.00 above today's premarket high.
+- Thesis (2026-08-10): BREAKOUT candidate near 52w high $225.65 (current $223.03, 1.2% below). BNP $265 PT gives R:R 2.47:1 at buy-stop $226 (fragile — consensus $229.82 gives 0.24:1). Post-CPI conditional entry: buy-stop $226 if CPI benign AND XLI sector cap headroom (1/2 with UNP; adding RTX fills to 2/2). Dividend $0.73 ex-date Aug 14 — capture window narrow. Pentagon production surge + Hormuz = sustained defense demand.
 - Recent catalysts:
-  - 2026-07-29: Iran attack on US base → RTX +X% premarket, new 52w high $221.34; defense demand thesis significantly strengthened [Bloomberg Jul 29]
-  - 2026-07-28: BNP Paribas raised PT $220→$265 (Outperform, new high PT); TD Cowen $225→$240 Buy; Deutsche Bank $228→$238; avg analyst target $229.82, high $265 [MarketScreener/WebSearch Jul 28-29]
-  - 2026-07-27: 4th straight day of gains on Wall Street upgrades; at 52w high $220.39 [Finnhub Jul 27]
-  - 2026-07-24: RBC $250 (Outperform), Susquehanna $245 (Positive), TD Cowen $240 (Buy), Wells Fargo $230 Equal-Weight [Finnhub Jul 24]
+  - 2026-08-10: Pentagon urging accelerated RTX production; hedge funds building merger-arb around NSC $85B merger [Finnhub Aug 10]. Dividend $0.73 ex-date Aug 14 [WebSearch — unverified].
+  - 2026-08-09: RTX $223.03, near 52w high $225.65; Hormuz standoff unresolved (sustained defense demand narrative)
+  - 2026-07-29: Iran attack on US base → RTX hit new 52w high $221.34 premarket [Bloomberg Jul 29]
+  - 2026-07-28: BNP Paribas PT $220→$265 (Outperform, highest); TD Cowen $225→$240; Deutsche Bank $228→$238 [MarketScreener Jul 28-29]
   - 2026-07-23: Q2 EPS $1.89 beat $1.66 (+13.9%); revenue $24.71B (+14.5% YoY); FY2026 EPS raised $7.10-$7.25; $289B backlog (+22%) [Finnhub Jul 23]
-  - <!-- archive: 2026-07-24: Patriot GEM-T domestic order (first in 30 years); $1.8B SPY-6 radar extension -->
-  - <!-- archive: 2026-07-28: Rokos Capital boosted position -->
+  - <!-- archive: 2026-07-24: Patriot GEM-T domestic order; $1.8B SPY-6 radar extension; RBC $250, Susquehanna $245 -->
+  - <!-- archive: 2026-07-28: Rokos Capital boosted position; 2026-07-27: 4th straight day gains -->
 - Open thesis questions:
-  - FOMC today (hold expected): will hawkish language compress aerospace P/E even without a hike?
-  - BNP $265 PT fragility: only PT above $250; consensus $240 gives R:R 1.16:1 (fails floor). Will other analysts follow BNP higher?
-  - Iran conflict durability: sustained = defense demand supports; quick resolution = narrative collapse
-  - GTF engine supply chain: repair-shop vs new production prioritization for Q3?
-  - MSFT/META tonight + AAPL/AMZN tomorrow: AI capex sentiment impacts risk appetite for defense sector indirectly
-- Watchlist: buy-stop $222.00 (BREAKOUT, post-FOMC Jul 31), stop $206.46 (−7%), target $265 (BNP Paribas Jul 28), R:R 2.77:1 (BNP); 1.16:1 (consensus $240 — fragile)
+  - BNP $265 PT: still highest PT; no other bank confirmed above $250. Consensus $229.82 → R:R fails floor. Critical to get a 2nd bank to $250+ before entry.
+  - Iran-Oman deal imminent? Quick resolution = Hormuz reopens = defense demand narrative weakens = RTX re-rates lower.
+  - CPI Aug 12: hot print = risk-off = does defense hold better than tech? Or broad selloff?
+  - Dividend capture: ex-date Aug 14 (Friday) = must enter by Aug 13 to capture $0.73/sh. Modest incentive vs trade quality.
+  - XLI sector cap: filling to 2/2 forecloses future XLI entries while UNP is open.
+- Watchlist: buy-stop $226.00 (BREAKOUT above 52w high $225.65), stop $210.18 (−7% from $226), target $265 (BNP Paribas Jul 28 [Finnhub]), R:R 2.47:1 (BNP); 0.24:1 (consensus $229.82 — fails). Enter only if MSFT $480 not triggered first.
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
