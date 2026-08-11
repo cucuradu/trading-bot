@@ -749,3 +749,38 @@ Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $3
 ---
 
 - PENDING 2026-08-03: UNP order_id=10b6aeb8-9ebd-4815-ae84-e11ab0e7b7d5 type=limit entry=292.00 initial_stop=271.56 shares=68 regime_entry=Neutral sector=XLI sizing=flat_20pct thesis="Q2 beat ($3.41 vs $3.28 est.), insider buys Jul 1/10, STB merger on track (supplemental filed Jul 28-30), oil tailwind (Iran talks Aug 3, Brent −$2-3 YTD). Citi $349 Buy (Jul 24, reconfirmed Jul 30). Pullback consolidation entry below $295 prior level. Risk: XLI sector weak (−1.92% 1mo), Citi target embeds merger premium (BMO $320 MP if delayed), Iran ceasefire fragile (Brent could re-spike >$90 within 72h). ISM Mfg bellwether today (10am ET); reading <48 de-rates XLI. Stop coverage verified live."
+
+---
+
+## 2026-08-11 — Market-open Session (HOLD)
+
+**Account status:** $99,548.09 equity, $60,136.29 cash, 39.6% deployed (2 positions: KO, UNP).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week (Mon):** 0 / 3 (week reset).
+**Risk gates:** entries_blocked=false, tighten_trails=false, lock_file=false.
+**Market regime:** Bull (rule_fallback; ML stale 1496h, 62nd session). Effective trade slots: 2, but **pre-macro CPI cap (40% deployment) reduces headroom to $483**.
+
+**Market conditions:** S&P 500 futures +0.55% premarket (risk-on relief ahead of CPI). VIX 16.7–17.0 (elevated, awaiting print). 10Y yield 4.73% (↑ +8bp from Aug 10); 30Y 5.253% (↑ sharp from ~5.05% Aug 10). WTI $82/bbl (↑ +$2.70 from Aug 10 Hormuz premium). CPI print tomorrow Aug 12 (8:30 ET): consensus 3.4% YoY headline, 2.5% core, +0.2% MoM headline. Benign print = rate-cut path extended, tech multiple expansion; hot print (≥3.7%) = 30Y re-tests 5.24%, multiple compression.
+
+**Research-Log decision:** **HOLD — no new orders placed.** Pre-macro CPI deployment cap (40% of $99,548 = $39,819 headroom; current $39,401 deployed = $483 remaining) forecloses ALL new entries. Candidates MSFT, RTX, AMGN are pre-warmed; will re-enter priority queue Aug 12+ post-CPI once cap lifts.
+
+**STEP 2 Account Verification:**
+- Equity: $99,548.09
+- Cash: $60,136.29
+- Positions: KO 224 sh @ $86.77, UNP 68 sh @ $293.59 (market value $39,400.71)
+- Deployment: 39.6% (within cap)
+- Buying power: $350,898.20
+
+**STEP 3 Rules Check:** N/A — no new orders planned.
+
+**STEP 5b Protective-Stop Coverage Check:**
+- Result: covered=true, naked=[], all_positions_protected=true
+- KO: 224 shares covered by GTC stop $81.30 (7.0% trail, order 80097d5a, exp Oct 30) ✓
+- UNP: 68 shares covered by GTC stop $271.56 (7.0% trail, order 650b19c2, exp Nov 3) ✓
+- Conclusion: ✓ All positions have active protective sells
+
+**STEP 6 Trade Log Append:** N/A (HOLD session, no orders).
+
+**Session Decision:** **HOLD — no trades placed.** Existing positions (KO −0.81% unrealized, UNP +0.22% unrealized) remain intact with stops active. Deployment headroom exhausted by pre-macro CPI cap; new entries blocked until cap lifted (Aug 12+).
+
+**Next checkpoint:** Daily-summary (EOD Aug 11) will reconcile positions and GTC stops. Market-open Aug 12 (post-CPI) will execute priority queue: AMGN (screener #1, 0.7355), RTX (updated buy-stop $227.50, R:R 2.36:1), MSFT (demoted pending fresh analyst PT verification). Daytrade and weekly slots: 0/3 intact.
