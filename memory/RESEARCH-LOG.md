@@ -7759,3 +7759,139 @@ Screener: source=local_screener_v1, ranked 64 tickers (same universe as Aug 7), 
 - FTD: FMP_API_KEY not set — skipped
 - Exposure coach: ceiling=52%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM (pipeline errors on FTD/top_risk inputs)
 - Fallback events: Gemini 429 → WebSearch for ALL macro data; citations marked [WebSearch — unverified]
+
+---
+
+## 2026-08-11 — Pre-market
+
+**Regime:** Bull (source: rule_fallback, slots: 2, deployment: 85%) [regime FLIP from Neutral Aug 10; rule_fallback score change — ML stale 1496h, no XGBoost validation]
+**ML staleness:** age 1496h / 62.3 days (stale_degrade) — rule_fallback only. Hard gate: slots 3→2 (−1 for degrade).
+**Pre-macro:** cap_active (event: CPI on 2026-08-12, days_to_event=1) → 40% deployment cap. Effective slots reduced to MIN(2,2)=2. RESEARCH-LOG header MUST note: 40% cap binding with $483 headroom → zero new positions today.
+**Breadth/Sector:** breadth=76.2/100 (Healthy) | sector=risk-on score=70 phase=mid | divergence: cyclical/defensive disagree internally (divergence_flag=True)
+**Exposure:** ceiling=51% | rec=NEW_ENTRY_ALLOWED | bias=VALUE | conf=MEDIUM (pre-macro cap overrides: hard limit 40%)
+**FTD:** FMP_API_KEY not set — skipped
+
+### Account
+- Equity: $99,421.45 | Cash: $60,136.29 | Buying power: $350,543 (margin)
+- Deployed: KO $19,423 + UNP $19,862 = $39,285 (39.5% of equity)
+- Pre-macro cap headroom: 40% × $99,421 = $39,768 − $39,285 = **$483** → zero new positions
+- Daytrade count: 0/3 | Open positions: 2 (KO, UNP) | Open orders: 2 GTC stops (KO $81.30, UNP $271.56)
+
+### Macro Framework
+Bull regime (rule_fallback; ML stale 1496h — 62nd consecutive session; regime flipped from Neutral as screener momentum improved). VIX: ~16.7–17.0 (futures, ↑ from 15.46 close Aug 10) — slight risk-off ahead of CPI [WebSearch — unverified]. SPX futures (ESU26): +0.55% premarket [WebSearch — unverified]. 10Y yield: 4.73% (↑ +8bp from 4.65% Aug 10) [WebSearch — unverified]. 30Y yield: 5.253% (↑ sharp from ~5.05–5.10% Aug 10; approaching Jul high ~5.24%) [CNBC/WebSearch — unverified]. WTI: ~$82.00/bbl (↑ +$2.70 from $79.30 Aug 10); Brent: ~$87.90/bbl (↑ +$3.22 from $84.68 Aug 10) — Hormuz oil premium re-accelerating [Fortune/WebSearch — unverified]. Dominant theme: CPI tomorrow (Aug 12, 8:30 ET); consensus headline 3.4% YoY (from 3.5%), core 2.5% YoY (from 2.6%), MoM headline +0.2% (from −0.4%) [X/Markets Today, Aug 11 — unverified]. Benign print = rate-cut path extended, tech multiple expansion; hot print (≥3.7%) = 30Y re-tests 5.24% Jul high, multiple compression. vs Aug 10: 10Y +8bp; 30Y +15–20bp (sharp, CPI-eve supply); WTI +$2.70 (Hormuz premium re-building); VIX +1.25 (cautious); SPX futures better (+0.55% vs +0.13%); regime Neutral→Bull (screener score shift, not ML signal).
+
+> SPX index level ~7,490 pre-market; SPY ETF ~$748. These are separate instruments — not interchangeable labels.
+
+### Sector Picture
+- Top 3 by 1mo momentum: XLE +6.06% (Energy, Trend per ML ✓), XLB +5.14% (Materials, Trend per ML ✓), XLV +4.36% (Healthcare, Trend per ML ✓)
+- Bottom 3: XLC +0.22% (Comm Svcs, Trend per ML — disagree; ML says Trend but 1mo almost flat), XLRE −0.67% (Real Estate, Bear per ML ✓), XLU −5.66% (Utilities, Bear per ML ✓)
+- XLI: +2.35% 1mo (Choppy per ML; momentum improving; mild disagreement — momentum strengthening but ML says Choppy)
+- XLF, XLP: Choppy per ML; momentum moderate (+3.10%, +0.43%)
+- No entry into XLU or XLRE (Bear sectors)
+
+### Existing Position Review
+
+#### KO (XLP, $86.71 current / −$0.16 from yesterday)
+- Long 224sh @ $87.42 avg | Unrealized: −$159 (−0.81%) | Market value: $19,423
+- Stop: GTC $81.30 (order 80097d5a, exp Oct 30) ✓ active | Stop distance: −6.3% from $86.71
+- ATR(14): $1.7627 (2.03% of price as of Aug 10); stop_pct 2.5×: 5.07%, clamped → 7.0% initial (already placed)
+- **Today's news [Finnhub Aug 10-11]:** "Coca-Cola stock looks near fair value — 26× trailing earnings, DCF intrinsic value near current price" [Finnhub Aug 10]. "Retirees buying the dip in August" [247wallst Aug 9 — WebSearch]. "CEOs pushed White House to delay ultra-processed food definition" [Bloomberg/Finnhub Aug 10] — regulatory overhang delayed (mildly positive). "3 boring but brilliant stocks to buy" (KO featured) [Motley Fool via Finnhub Aug 10]. KO organic growth 6% volume-led (5% vol, 1% price/mix) — strong quality indicator [Finnhub Aug 10].
+- **Data check:** Prior logged analyst PTs: Barclays $93, UBS $104, JPM $96. WebSearch Aug 11 shows JPM raised to $96 (from $90), TD Cowen $100, UBS $104 — consistent with prior log. Finnhub "26× trailing" valuation check: prior session logged ~26× (consistent). No contradiction — confirm 26× near fair value.
+- **Valuation concern flag:** KO at 26× trailing is on the high end of its historical 22–26× range. DCF near current price ($87) means upside to consensus $94–$96 is modest (+8–11%). Full bull case requires UBS/Jefferies $104 PT realization (+20%). This risk was known at entry and is unchanged.
+- **R:R check (current price $86.71):** Stop $81.30 (−6.2% from current). At consensus $94.70: R:R = ($94.70−$86.71)/($86.71−$81.30) = $7.99/$5.41 = **1.48:1** (below 2:1). At $104 UBS/Jefferies: R:R = ($104−$86.71)/$5.41 = **3.19:1 ✓**. Thesis requires the $104 outlier — fragile but intact (same as entry assessment).
+- **Action:** HOLD. −0.81% unrealized. Valuation near fair value is a monitoring flag, not a cut signal. Stop well-spaced. Watch: KO < $84 = approaching danger zone; CPI hot print may drag defensives lower (offset by defensive bid in true risk-off).
+
+#### UNP (XLI, $292.09 current / −$0.15 from yesterday)
+- Long 68sh @ $291.45 avg | Unrealized: +$43 (0.22%) | Market value: $19,862
+- Stop: GTC $271.56 (order 650b19c2, exp Nov 3) ✓ active | Stop distance: −7.0% from $292.09
+- ATR(14): $6.3379 (2.17% of price as of Aug 10); stop_pct 2.5×: 5.42%, clamped → 7.0% initial (already placed)
+- **Today's news [Finnhub Aug 10 + WebSearch Aug 11]:** "3 Railroad Stocks to Buy From the Prospering Industry" [Finnhub/Zacks Aug 10] — sector tailwind confirmed. "Wall Street Says Hold but Hedge Funds Are Circling NSC's $85B Merger" [Finnhub Aug 10] — event-driven capital active in rail sector (adjacent; bullish for rail M&A de-risking broadly). UNP + CN signed binding MOU to strengthen North American rail service [WebSearch Aug 11 — unverified] — new strategic catalyst (not M&A, service expansion deal; strengthens the rail corridor thesis). Dividend ex-date Aug 31 ($1.42/sh × 68 = $96.56 income locked in if held through Aug 31).
+- **Data check:** Prior logged consensus PT "~$299" (MarketBeat Jul-Aug). Today's WebSearch shows MarketBeat consensus $321.11 (18 analysts, Aug 4). Difference: $22 (7.4%) — within normal post-Q2 upgrade cycle, no sign flip, no major contradiction. Keeping $321 as current consensus (was $299 pre-Q2 upgrades). BofA $334, Citi $349 unchanged.
+- **R:R check (current price $292.09):** Stop $271.56 (−7.0%). At Citi $349: R:R = ($349−$292.09)/($292.09−$271.56) = $56.91/$20.53 = **2.77:1 ✓**. At consensus $321: R:R = ($321−$292.09)/$20.53 = **1.41:1** (sub-2:1 at mean; bull case requires Citi $349).
+- **Action:** HOLD. +$43 unrealized. Dividend ex-date Aug 31 = incentive to hold. UNP+CN MOU is a minor incremental positive. Merger arb community active in rail sector. Monitor: Brent >$92 (reverses oil-tailwind thesis); XLI sector momentum must hold ≥+2% or improve.
+
+### Candidates (pre-warmed; not actionable today — $483 deployment headroom)
+
+#### MSFT (XLK, $506.06, +0.80 from prev close)
+**Screener rank: #2, score 0.5929.** Prior deep-dives: Aug 7, Aug 10. No change to thesis today.
+
+**Setup:** XLK Trend sector ✓. MSFT is −8.6% from 52w high $553.72; above 200-SMA (est.). ATR(14)=$15.77 (3.12% of price); stop_pct_2_5x=7.791%, clamped to 7.791%.
+
+**Gate-history audit (B7):** Prior planned entry $480 (pullback buy-limit). Today's low: $502.27 — $22 above the $480 planned level. **Gate: PASS.** No gate-creep ($480 is the same level from Aug 7 onward). MSFT never came close to $480 today; thesis unchanged.
+
+**R:R math (B3 — at planned entry $480):** Entry $480 / stop $442.60 ($480 × (1−7.791%)) / target needed for 2:1 = $480 + 2×$37.40 = $555 minimum. 52w high $553.72 ≈ barely meets 2:1 floor (R:R ~1.97:1 — fails strict 2:1). **Needs fresh analyst PT citation ≥$557 to confirm R:R ≥ 2:1. Demoted to watchlist pending CPI + PT verification post-Aug 12.** Cannot verify today (Gemini quota exhausted, 4th session).
+
+**Decision:** Pre-warmed — carry to Aug 12+ session. Only enter on (a) CPI benign AND (b) MSFT pulls back toward $480 AND (c) fresh analyst PT verified ≥$557. Do NOT chase above $500 (R:R < 1.5:1).
+
+#### RTX (XLI, $224.12, −0.38 from prev close)
+**Screener rank: #3, score 0.5738.** Prior deep-dives: Aug 7, Aug 10.
+
+**Setup:** XLI Choppy per ML (headwind; momentum +2.35% improving). ATR(14)=$5.0894 (2.27% of price); stop_pct_2_5x=5.677%, clamped to **7.0%**.
+
+**KEY EVENT TODAY:** RTX 52w high reached $226.88 intraday (new 52w high!) then pulled back to $224.12 close. Prior planned buy-stop was $226 (above prior 52w high $225.65). The buy-stop level was TRIGGERED intraday but we could not act (deployment cap). This is NOT a clean breakout hold — RTX closed below the prior resistance. **Updated buy-stop: $227.50** (above today's new 52w high $226.88 + 0.27% buffer). Prior level $226 is now stale (price traded through it and failed to hold).
+
+**R:R math (B3 — at updated entry $227.50):** Entry $227.50 / stop $211.58 ($227.50 × (1−7.0%)) / target $265 (BNP Paribas Jul 28 [Finnhub — VERIFIED]) / R:R = ($265−$227.50)/($227.50−$211.58) = $37.50/$15.92 = **2.36:1 ✓** (passes 2:1 floor with BNP $265 as primary).
+
+**Sector cap:** UNP is 1/2 XLI. Adding RTX = 2/2 XLI (sector full). **Acknowledged: two-position XLI cap filled if both entered. Different catalysts (rail merger vs defense); acceptable per strategy.**
+
+**Shared-catalyst flag:** RTX (defense/geopolitical) and UNP (rail/merger/freight) — DIFFERENT primary catalysts. No shared-catalyst concern.
+
+**Decision:** Conditional pre-warm — if CPI benign Aug 12, RTX buy-stop $227.50 (day TIF) is SECOND priority (MSFT first). XLI fills to 2/2. Sector headwind (Choppy ML) acknowledged; R:R 2.36:1 with BNP $265 confirmed. Exposure post-entry: KO $19k + UNP $19k + RTX $20k = $58k / $99k = 58% (exceeds 40% pre-macro cap — CANNOT enter until AFTER CPI resolves and cap lifts).
+
+#### AMGN (XLV, $417.20, +1.00 from prev close)
+**Screener rank: #1, score 0.7355** (promoted from #3 since Aug 10). Earnings Nov 3 (84d, not in blackout ✓). Max correlation with existing: 0.5984 (vs KO) — passes <0.70 cap ✓. XLV Trend ✓. ATR not computed today. Near 52w high $418.40.
+
+**No prior deep-dive.** Requires full STEP 4c–4f research before any order. Noting as a new screener leader for the Aug 12+ session.
+
+**Decision:** Research candidate for post-CPI. Do not enter without full synthesis + critique pass. R:R math pending (need ATR and analyst PT cluster).
+
+### Candidates dropped (and why)
+- LLY ($1,232, XLV, score 0.5514) — XLV sector cap: AMGN already occupies the first XLV candidate slot; adding LLY = 2/2 XLV before entry. Premature to fill sector with two candidates when no existing XLV positions yet. Watchlist for future rotation.
+- XBI (0.4898, XLV) — XLV sector cap risk same as LLY. ETF, lower conviction vs single-name catalysts.
+- NOW (0.4783, XLK) — XLK Trend but screener score lower than MSFT; would also create XLK concentration alongside MSFT thesis. Drop.
+- SPY, XLK, XLV ETFs — broad ETFs lower priority than single-name catalyst plays at equivalent sector exposure.
+
+### Historical Analog
+
+**Analog:** Nov 13, 2023 — day before the CPI Oct 2023 release (Nov 14, 2023). Conditions: SPX ~4,415, VIX ~15.8, 10Y ~4.63% (near today's 4.73%), CPI consensus 3.3% YoY. Markets drifting cautiously higher pre-print. Oil stable (no Hormuz equivalent). Regime: bull trend with VIX below 16.
+
+**What followed:** CPI Oct 2023 actual: 3.2% YoY (cool miss vs 3.3% consensus). SPX surged +1.91% on Nov 14 CPI day [training data]. Over 20 trading days: SPX continued +6% through year-end (Santa Claus rally). 10Y dropped from ~4.65% to ~4.20% over that window (rate-cut enthusiasm).
+
+**Why this time might differ:** Today's 30Y (5.253%) is ~25bp higher than Nov 2023's ~5.0%, so rate pain baseline is worse. Hormuz oil premium ($82+ WTI vs ~$80 in Nov 2023) adds supply-push inflation risk that wasn't present — a slightly hot CPI could be partially oil-driven, not demand-driven, creating ambiguity in Fed reaction function. Cold NFP (−23k) creates genuine recession fear absent in Nov 2023 (labor was still strong). Net: if CPI is benign (~3.4% or better), rally could be comparable to Nov 14, 2023 but with more durable rate-cut catalyst given cold NFP.
+
+### Risk Factors
+1. **CPI print Aug 12 (top risk):** Hot print (≥3.7% vs 3.4% consensus) would re-ignite rate-hike fears, 30Y retests 5.24% Jul highs. KO and UNP both resilient but not immune. Maintain stops; no new orders until CPI resolves.
+2. **30Y yield spike today (+15-20bp to 5.253%):** Sharp one-day yield rise ahead of CPI is itself a signal — bond market is selling ahead of the print (either positioning or fear). If this accelerates, MSFT/tech thesis faces headwind even on a benign CPI.
+3. **Oil re-escalation (Hormuz):** WTI +$2.70 today; Brent +$3.22. If Brent >$92 sustained, KO faces input cost pressure, consumer discretionary de-rates, UNP fuel thesis inverts. Watch CPI for energy component contribution.
+4. **RTX failed breakout today:** RTX printed new 52w high ($226.88) and pulled back to $224.12 — classic bull trap setup if CPI is hot. Monitor for whether RTX holds $222 support post-CPI.
+5. **ML stale 62 days:** Screener rule_fallback only; regime flip Neutral→Bull is driven by momentum scoring, not XGBoost validation. Lower confidence on regime call.
+6. **Gemini quota exhausted (4th consecutive session):** ALL macro data [WebSearch — unverified]. Reduced citation depth.
+
+### Decision
+**HOLD** — Effective slots = 2, but pre-macro CPI deployment cap ($483 headroom vs $20k minimum position) forecloses ALL new entries for the FOURTH consecutive session.
+
+**Existing positions: both HOLD.**
+- **KO:** −0.81% unrealized. Valuation near fair value (26× trailing) is a monitoring flag. Thesis intact (FIFA tailwind, analyst PT cluster $96–$104, Q2 beat). HOLD through CPI.
+- **UNP:** +0.22% unrealized. UNP+CN MOU positive catalyst. Dividend ex-date Aug 31 — incentive to hold. HOLD.
+
+**Post-CPI (Aug 12+ session) priority order:**
+1. **AMGN** — screener #1 (0.7355); requires full deep-dive first session post-CPI. 52w high $418.40; XLV Trend ✓.
+2. **RTX** — buy-stop $227.50 (updated, above today's new 52w high $226.88); R:R 2.36:1 on BNP $265. Conditional: CPI benign AND MSFT plan deferred.
+3. **MSFT** — demoted: R:R at $480 entry is ~1.97:1 with 52w high as target (fails 2:1 floor). Needs fresh analyst PT ≥$557 verification before re-qualifying. Monitor $480 pullback.
+
+Wait for CPI Aug 12; no new orders today.
+
+### Screener diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked universe top 10 = [AMGN(0.7355,XLV), MSFT(0.5929,XLK), RTX(0.5738,XLI), LLY(0.5514,XLV), XBI(0.4898,XLV), NOW(0.4783,XLK), XLK(0.4427,BROAD), XLV(0.3978,BROAD), HON(0.3756,XLI), SPY(0.362,BROAD)]. Regime flip Neutral→Bull: consistent with AMGN momentum surge (score 0.6206→0.7355) and XLV sector strength (+4.36% 1mo). MSFT score decline (0.7858→0.5929): momentum factor normalized post-earnings surge.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash + 0 Pro — ALL FAILED (exit 4, 429, 4th consecutive session). [degraded: Gemini quota]
+- Research sourcing: WebSearch (primary fallback), Finnhub (11 records: 9 KO-adjacent, 2 UNP-adjacent)
+- NewsAPI: 0 records (key set; API quota issue)
+- EDGAR: 0 records queried today
+- Reddit: egress http_403 blocked — not cited
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1496.2h (62.3 days). Hard gate: trade_slots 3→2. URGENT: 62nd consecutive session on rule_fallback.
+- FTD: FMP_API_KEY not set — skipped
+- Exposure coach: ceiling=51%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM; pre-macro hard cap overrides to 40%
+- Fallback events: Gemini 429 → WebSearch for ALL macro data; citations marked [WebSearch — unverified]. Research quality degraded for 4th consecutive session.

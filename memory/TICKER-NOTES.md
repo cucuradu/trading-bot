@@ -192,20 +192,20 @@ Conventions:
 - Position-aware notes: (none yet)
 
 ## KO (XLP)
-- Thesis (2026-08-07): OPEN — 224sh avg $87.42, stop GTC $81.30. Q2 beat + FY guidance raised + FIFA volume + analyst PT cluster ($93-$104). KO −0.88% intraday on NFP day (rate-cut rally = growth rotation headwind for defensives). Thesis intact — NFP cold print will eventually support defensive bid if recession fear materializes. Target $104 (UBS/Jefferies). R:R 2.5:1.
+- Thesis (2026-08-11): OPEN — 224sh avg $87.42, stop GTC $81.30. Q2 beat (6% volume-led organic growth, FIFA tailwind), analyst PT cluster ($93-$104). Valuation at 26× trailing = near fair value (DCF ≈ current price) — upside requires $104 UBS/Jefferies realization. −0.81% unrealized at $86.71. Thesis intact; defensive bid expected if CPI hot or recession fears materialize.
 - Recent catalysts:
-  1. 2026-08-07: Monster Beverage Q2 record $2.54B +20.2% YoY — strong beverage sector peer [Finnhub Aug 7]
-  2. 2026-08-07: Barclays PT raised $91→$93 (Jul 30) — adds to bull PT cluster [WebSearch — unverified]
-  3. 2026-08-06: UBS PT raised $98→$104; JPM $90→$96; RBC $87→$96 post-Q2 beat [WebSearch Aug 6 — unverified]
-  4. 2026-07-28: Q2 EPS 97¢ beat 93¢ est; revenue $13.38B (+7% YoY), 5% volume, FIFA tailwind; FY guidance raised [CNBC Jul 28]
-  5. 2026-07-31: Core PCE Jun 2026 +3.3% YoY/+0.1% MoM — rate relief thesis supported [Advisor Perspectives Jul 30]
-  <!-- archive: UBS $104 (Aug 5 Finnhub); simplywall $94.70 fair value (Aug 5); 7-Eleven competitor note (Aug 5) -->
-  <!-- archive: Fairlife ransomware (Anubis) resolved; ATH $90.92 (Jul 28-29) -->
+  1. 2026-08-11: Ultra-processed food regulation delayed by White House [Bloomberg/Finnhub Aug 10] — regulatory overhang reduced (mildly positive)
+  2. 2026-08-10: "26× trailing near fair value; DCF near current price" [Finnhub Aug 10] — valuation flag; not thesis-breaking
+  3. 2026-08-07: Monster Beverage Q2 record $2.54B +20.2% YoY — strong beverage sector peer [Finnhub Aug 7]
+  4. 2026-08-06: UBS $98→$104, JPM $90→$96, RBC $87→$96; consensus JPM raised to $96 per Q2 upgrade cycle [WebSearch — unverified]
+  5. 2026-07-28: Q2 EPS 97¢ beat 93¢; revenue $13.38B (+7% YoY), volume-led (5% vol, 1% price/mix); FIFA tailwind; FY guidance raised [CNBC Jul 28]
+  <!-- archive: Barclays $91→$93 (Jul 30); Berkshire Q2 strong; KO ATH $90.92 (Jul 29); Fairlife ransomware resolved -->
+  <!-- archive: Core PCE +3.3% YoY benign (Jul 31); Monster Beverage Q2 record; 7-Eleven competitor note -->
 - Open thesis questions:
-  - NFP −23k resolved binary: cold print may support defensive bid once rate-cut rally fades
+  - Valuation concern: 26× trailing near the high end of KO's historical range; sub-2:1 R:R at consensus $94.70
   - India market share loss Q2 — one-quarter anomaly or structural?
   - Fairlife breach litigation risk (1TB data; KO refused ransom) — ongoing
-  - Consensus PT $94.70 → R:R 1.20:1 (sub-2:1); full 2.5:1 requires UBS/Jefferies $104 realization
+  - CPI Aug 12: hot print may drag defensives (oil costs); benign = rate-relief supports multiple
 - Trade history: PULLBACK fill Jul 31 @ avg $87.42 (224sh, $19,582 cost basis). GTC stop $81.30. Target $104.
 - Position-aware notes: Stop active (order 80097d5a, GTC, expires Oct 30). Tighten at +15% ($100.53) to 1.75×ATR; +20% ($104.90) to 1.25×ATR.
 
@@ -357,35 +357,34 @@ Conventions:
 - Position-aware notes: 0% XLV exposure. DOJ disqualifier escalated Jul 20. Entry blocked until DOJ resolution.
 
 ## UNP (XLI)
-- Thesis (2026-08-07): OPEN — 68sh avg $291.45, stop GTC $271.56. Q2 beat ($3.41 EPS, +7% YoY). UNP-NS merger strongly de-risked: 152 shipper letters of support filed Aug 5 (Nissan, Hub Group, Knight-Swift among 20+ named). CSX Q2 record $3.94B intermodal (sector tailwind). NFP −23k = mixed (recession fear vs rate-cut). Thesis driven by company-specific merger story. BofA $334, Citi $349. R:R 2.89:1 on entry.
+- Thesis (2026-08-11): OPEN — 68sh avg $291.45, stop GTC $271.56. Q2 beat ($3.41 EPS, +7% YoY). UNP-NS merger strongly de-risked: 152 shipper letters of support filed (Nissan, Hub Group, Knight-Swift). UNP+CN MOU signed Aug 11 (strategic North American rail service deal). Consensus PT $321.11 (18 analysts, MarketBeat Aug 4; up from pre-Q2 $299). BofA $334, Citi $349. Dividend ex-date Aug 31 ($1.42/sh, $96.56 income on 68sh). +0.22% unrealized.
 - Recent catalysts:
-  - 2026-08-07: 152 shipper support letters filed Aug 5 with STB (229-page filing; Nissan, Hub Group, Knight-Swift) [Finnhub Aug 6 — VERIFIED]
-  - 2026-08-07: CSX Q2 record $3.94B revenue on intermodal strength — positive rail sector read-through [Finnhub Aug 4 — VERIFIED]
-  - 2026-08-06: BofA PT raised $301→$334 Buy [WebSearch Aug 6 — unverified]
-  - 2026-08-05: Iran-US Hormuz deal hopes → oil softening → rail fuel tailwind [WebSearch Aug 5]
+  - 2026-08-11: UNP + CN (Canadian National) signed binding MOU to strengthen North American rail service [WebSearch Aug 11 — unverified] — strategic expansion, incremental positive
+  - 2026-08-10: Rail sector bullish tone: "3 Railroad Stocks to Buy" [Zacks/Finnhub Aug 10]; NSC $85B merger arb = event-driven capital active in rail sector [Finnhub Aug 10]
+  - 2026-08-07: 152 shipper support letters filed Aug 5 with STB [Finnhub Aug 6 — VERIFIED]
   - 2026-08-04: Analyst PT $331.30 (+11.7%) [Finnhub Aug 4]; 4th record domestic intermodal quarter (Q2) [Yahoo Finance]
-  <!-- archive: STB proceedings in abeyance (May 28 decision); enhanced application Jul 27 with customer protections -->
-  <!-- archive: PULLBACK entry $291.45 filled Aug 3; GTC stop $271.56 placed Aug 5 (was naked 3 days) -->
+  <!-- archive: BofA PT $301→$334 (Aug 6); CSX Q2 record $3.94B (Aug 4); Iran ceasefire rail fuel tailwind (Aug 5) -->
+  <!-- archive: PULLBACK entry $291.45 filled Aug 3; GTC stop $271.56 placed Aug 5 (was naked) -->
 - Open thesis questions:
-  - NFP −23k resolved: recession fear = freight volume contraction risk (watch next freight data)
-  - STB DOJ antitrust risk remains; timeline mid-2027; shipper support now very strong
-  - Iran deal durability: Brent >$92 = fuel cost thesis reversal trigger
-  - XLI 1mo improved to +1.30% (from +0.43%); sector momentum now less of a headwind
-- Trade history: PULLBACK limit $292.00 placed Aug 3; filled $291.45 avg (68sh, $19,818 cost basis). GTC stop $271.56 (placed Aug 5 — was naked). Target $349.
+  - Consensus PT upgraded to $321.11 (from ~$299 pre-Q2); confirm R:R 2.77:1 on Citi $349; sub-2:1 at $321 consensus
+  - STB DOJ antitrust risk remains; timeline mid-2027; shipper support very strong
+  - Brent >$92 = fuel cost thesis reversal trigger (Brent $87.90 Aug 11, rising)
+  - Recession risk: NFP −23k could signal freight volume contraction within 2-3 quarters
+- Trade history: PULLBACK limit $292.00 placed Aug 3; filled $291.45 avg (68sh, $19,818 cost basis). GTC stop $271.56 (placed Aug 5). Target $349.
 - Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
-- Thesis (2026-08-10): BREAKOUT candidate near 52w high $225.65 (current $223.03, 1.2% below). BNP $265 PT gives R:R 2.47:1 at buy-stop $226 (fragile — consensus $229.82 gives 0.24:1). Post-CPI conditional entry: buy-stop $226 if CPI benign AND XLI sector cap headroom (1/2 with UNP; adding RTX fills to 2/2). Dividend $0.73 ex-date Aug 14 — capture window narrow. Pentagon production surge + Hormuz = sustained defense demand.
+- Thesis (2026-08-11): BREAKOUT candidate — new 52w high $226.88 set INTRADAY Aug 11 (failed to hold; close $224.12). Updated buy-stop: $227.50 (above new 52w high; prior $226 level stale). BNP $265 PT gives R:R 2.36:1 at $227.50 (fragile — consensus $229.82 gives sub-1:1). Post-CPI conditional entry. Dividend $0.73 ex-date Aug 14 — capture window closing (enter by Aug 13). XLI fills to 2/2 with UNP.
 - Recent catalysts:
-  - 2026-08-10: Pentagon urging accelerated RTX production; hedge funds building merger-arb around NSC $85B merger [Finnhub Aug 10]. Dividend $0.73 ex-date Aug 14 [WebSearch — unverified].
-  - 2026-08-09: RTX $223.03, near 52w high $225.65; Hormuz standoff unresolved (sustained defense demand narrative)
-  - 2026-07-29: Iran attack on US base → RTX hit new 52w high $221.34 premarket [Bloomberg Jul 29]
-  - 2026-07-28: BNP Paribas PT $220→$265 (Outperform, highest); TD Cowen $225→$240; Deutsche Bank $228→$238 [MarketScreener Jul 28-29]
+  - 2026-08-11: RTX set NEW 52w high intraday ($226.88, from $225.65); pulled back to $224.12 close — buy-stop updated to $227.50 [yfinance Aug 11]
+  - 2026-08-10: Pentagon urging accelerated RTX production; Hormuz = sustained defense demand [Finnhub Aug 10]
+  - 2026-07-28: BNP Paribas PT $220→$265 (Outperform, highest; VERIFIED Finnhub); TD Cowen $225→$240; Deutsche Bank $228→$238
   - 2026-07-23: Q2 EPS $1.89 beat $1.66 (+13.9%); revenue $24.71B (+14.5% YoY); FY2026 EPS raised $7.10-$7.25; $289B backlog (+22%) [Finnhub Jul 23]
-  - <!-- archive: 2026-07-24: Patriot GEM-T domestic order; $1.8B SPY-6 radar extension; RBC $250, Susquehanna $245 -->
-  - <!-- archive: 2026-07-28: Rokos Capital boosted position; 2026-07-27: 4th straight day gains -->
+  <!-- archive: Patriot GEM-T domestic order; $1.8B SPY-6 radar extension; RBC $250, Susquehanna $245; Rokos Capital -->
 - Open thesis questions:
-  - BNP $265 PT: still highest PT; no other bank confirmed above $250. Consensus $229.82 → R:R fails floor. Critical to get a 2nd bank to $250+ before entry.
+  - BNP $265 PT: still highest PT; no bank confirmed above $250. Consensus $229.82 → R:R fails floor without BNP $265.
+  - XLI sector Choppy per ML — momentum improving (+2.35%) but regime headwind persists
+  - Failed breakout Aug 11 (intraday $226.88, close $224.12): need CPI benign + clean hold above $227 for confirmation
   - Iran-Oman deal imminent? Quick resolution = Hormuz reopens = defense demand narrative weakens = RTX re-rates lower.
   - CPI Aug 12: hot print = risk-off = does defense hold better than tech? Or broad selloff?
   - Dividend capture: ex-date Aug 14 (Friday) = must enter by Aug 13 to capture $0.73/sh. Modest incentive vs trade quality.
