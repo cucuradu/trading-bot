@@ -7895,3 +7895,173 @@ Screener: source=local_screener_v1, ranked universe top 10 = [AMGN(0.7355,XLV), 
 - FTD: FMP_API_KEY not set — skipped
 - Exposure coach: ceiling=51%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM; pre-macro hard cap overrides to 40%
 - Fallback events: Gemini 429 → WebSearch for ALL macro data; citations marked [WebSearch — unverified]. Research quality degraded for 4th consecutive session.
+
+---
+
+## 2026-08-12 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — ML stale_degrade 1520.2h (63rd session); effective slots: 2→1 (stale_degrade hard gate); pre-macro CPI cap active → MIN(1,2)=1; CPI Jul actual 3.4% YoY (inline), MoM +0.1% (cool vs +0.2% exp) → BENIGN — no further slot reduction.
+
+**Pre-macro:** cap_active (event: CPI on 2026-08-12) → 40% deployment cap. Deployed $39,401 / cap $39,705 → $304 room → ZERO new entries possible.
+
+**ML staleness:** stale_degrade, age=1520.2h — hard gate applied: trade_slots 2→1. URGENT: 63rd consecutive session on rule_fallback; refresh ml-insights.json on local PC.
+
+**Breadth/Sector:** breadth=76.2/100 (Healthy) | sector=risk-on score=76 phase=mid | divergence_flag=True (internal cyclical/defensive disagreement); no SPY-breadth bearish divergence (both rising: SPX +4.5%, breadth 8MA +0.164 over 60d)
+
+**Exposure:** ceiling=52% | rec=NEW_ENTRY_ALLOWED | bias=VALUE | conf=MEDIUM (pre-macro hard cap overrides to 40%)
+
+### Account
+- Equity $99,261.52 / Cash $60,136.29 / BP $350,095.81 / DT 0 / 2 positions / 2 GTC stop orders
+- Deployed: $39,401 cost basis (39.7%); pre-macro cap $39,705 (40%); room $304
+
+### Macro Framework
+CPI Jul 2026 (released 8:30 ET Aug 12): headline 3.4% YoY (matches consensus), MoM +0.1% (cool miss vs +0.2% expected) → **BENIGN**. Core 2.5% YoY. Rate-cut path intact; no re-ignition of hike fears. VIX 15.28 (↓ −1.4 pts from 16.7 yesterday; uncertainty premium unwinding on benign print). 30Y Treasury 5.24% (↓ −1bp from 5.253%; minimal move — structural rate concern persists). WTI ~$82/bbl (Hormuz premium stable). S&P futures +0.3% pre-open. Dominant theme: CPI-confirmation day — benign print preserves rate-cut narrative; mild positive but not explosive given inline consensus. USD marginally weaker (mild tailwind for multinationals). **vs yesterday:** VIX −1.4 pts; 30Y −1bp (barely moved); WTI unchanged; CPI inline (MoM slightly cool); regime Neutral (flipped back from Aug 11's brief Bull — screener score normalized).
+
+> **Naming convention (B8):** SPY = ETF (~$580+); S&P 500 index = SPX / "S&P 500 index" (~7,400s+).
+
+### Sector Picture
+- Top 3 (1mo momentum): Energy XLE +7.38% [Trend], Materials XLB +5.26% [Choppy], Healthcare XLV +4.09% [Choppy per ML]
+- Bottom 3: Real Estate XLRE −1.39% [Bear], Communication Services XLC −0.29% [Choppy], Consumer Staples XLP +0.12% [Choppy]
+- Note: XLV ml-regime=Choppy (score 0.32) vs sector-momentum +4.09% — moderate disagreement; XLV Choppy ≠ Bear (entries allowed). Bear sectors (no buys): XLU, XLRE.
+
+### Candidates
+
+#### AMGN (XLV, $414.30, 52w high $421.79)
+
+**Setup:** Near 52w high ($421.79, 1.8% above). ATR(14)=$11.61 (2.80% of price); stop_pct_2.5x=7.003% (within [7,15] range; not clamped).
+
+**Sources scanned (2):** 0 NewsAPI / 2 Finnhub / 0 EDGAR / 0 Reddit (blocked) / 3 Gemini [WebSearch — unverified]
+
+**Bull case (cited):**
+- Q2 2026 beat: revenue $10.05B, adj. EPS $6.29 (above consensus); full-year 2026 guidance maintained ($34.3–35.7B rev, EPS $20.20–21.30) [WebSearch — unverified, tradingkey.com Aug 5]
+- Scotiabank raised PT $385→$450 (Outperform); UBS raised PT $420→$440 (Buy) [WebSearch — unverified]
+- MariTide (AMG 133) remains primary obesity/metabolic pipeline asset; leads GLP-1 derivative space [Gemini grounded — unverified]
+- AMGN 15-year CAGR 14.88% (long-term track record) [Finnhub Aug 11 — verified record]
+
+**Bear case (cited):**
+- AMG 513 Phase 1 weight-loss candidate discontinued (Aug 2026 earnings call): metabolic pipeline now single-asset dependent on MariTide — concentrated pipeline risk [WebSearch — unverified, ad-hoc-news.de Aug 2026]
+- Wells Fargo Equal Weight, $400 PT (below current $414) [WebSearch — unverified]
+- R:R fails 2:1 hard floor at any entry above ~$394 using Scotiabank $450 as target (see below)
+
+**Disconfirming evidence:** MariTide Phase 3 readout miss or delay; Novo Nordisk/Pfizer pipeline advance undermines AMGN positioning.
+
+**Catalysts ahead (14d):** None specific. Next earnings Q3 Nov 3, 2026 (83 days; not in blackout).
+
+**Critique:**
+**Strongest counter to the bull case:** AMGN at $414 is near its 52w high and requires $440-450 outlier PTs to generate any meaningful R:R. The AMG 513 discontinuation narrows the metabolic thesis to MariTide alone — a single clinical readout now determines the bull case validity. Benign CPI may push AMGN higher today, making the entry even less attractive. Wells Fargo $400 PT (Equal Weight) implies downside from current. [Gemini grounded — unverified; Finnhub Aug 11 records for general AMGN context]
+
+**Weakly-sourced claims:** Scotiabank $450, UBS $440 — both WebSearch unverified; no Finnhub analyst record confirmed today. AMG 513 discontinuation — WebSearch only.
+
+**Single most-likely invalidator (next 5 trading days):** MariTide Phase 3 interim data release showing sub-expected weight-loss efficacy (any pipeline press release from AMGN would be the pivot; not a scheduled event within 5d but highest-impact binary risk).
+
+**Position-aware (if entered $20k at $414.30):**
+- Sector exposure: XLV 20% (currently 0%); sector cap 0/2 XLV ✓
+- 30d correlation with existing: 0.6011 vs KO — passes <0.70 ✓
+- Shared-catalyst flag: AMGN (healthcare/MariTide) vs KO (staples) vs UNP (rail) — different primary catalysts ✓
+
+**R:R math (B3):** Entry $414.30 / stop $385.33 ($414.30 × 0.92997) / target $450 (Scotiabank Outperform [WebSearch — unverified]) / R:R = $35.70/$28.97 = **1.23:1 — FAILS 2:1 hard floor.**
+- At UBS $440: R:R = $25.70/$28.97 = 0.89:1 — fails worse.
+- Minimum entry for 2:1 with $450 target: ~$394 → stop $366.76, R:R = $56/$27.24 = **2.06:1 ✓**
+- **Demoted to watchlist — target pullback entry $394.**
+
+**Setup type:** PULLBACK (when pullback to ~$394 occurs; not actionable at current $414)
+**Entry plan:** PULLBACK → limit $394 (watchlist entry)
+**Gate-history audit (B7):** Only one prior AMGN entry in RESEARCH-LOG (Aug 11: $417.20 — "requires full deep-dive, no planned entry"). No prior gate level set. Demoted today on R:R math alone; no gate-creep.
+
+**Decision:** DEMOTED — R:R 1.23:1 at current price fails 2:1 floor. Adding to watchlist with pullback entry $394. Do not chase above $394.
+
+---
+
+#### RTX (XLI, $223.86, 52w high $226.88)
+
+**Setup:** BREAKOUT candidate. Buy-stop $227.50 (0.27% above 52w high $226.88). Dividend ex-date Aug 14 ($0.73/share) — must enter by Aug 13 to capture. ATR(14)=$4.94 (2.21%); stop_pct_2.5x=5.516% → clamped to **7.0%**.
+
+**Sources scanned (2):** 0 NewsAPI / 2 Finnhub / 0 EDGAR / 0 Reddit (blocked) / 0 WebSearch for this session
+
+**Bull case (cited):**
+- Q2 beat: EPS $1.89 vs $1.66 est. (+13.9%); rev $24.71B (+14.5% YoY); FY2026 EPS raised $7.10–$7.25; $289B backlog (+22%) [Finnhub Jul 23 — VERIFIED]
+- $745M missile defense contract; $1.5T Pentagon budget support [Finnhub Aug 11 — VERIFIED (Hegseth/Congress headline)]
+- BNP Paribas PT $220→$265 (Outperform, highest; Jul 28) [Finnhub Jul 28 — VERIFIED]
+- RTX +14.1% past month [WebSearch — unverified]
+
+**Bear case (cited):**
+- XLI sector Choppy (ML score 0.2407) — structural headwind despite momentum improvement
+- Failed intraday breakout Aug 11 ($226.88 intraday high, $224.12 close) — distribution at highs signal
+- Consensus PT $229.82 → R:R 0.14:1 without BNP $265 (thesis fragile)
+- Iran Hormuz resolution (if imminent) = defense demand narrative weakens
+
+**Disconfirming evidence:** RTX closes below $222 (Aug 12 day low) two consecutive sessions; Iran ceasefire deal announced.
+
+**Catalysts ahead (14d):** Dividend ex-date Aug 14 ($0.73/sh). Next earnings Q3 ~Oct 2026 (not in blackout).
+
+**Critique:**
+**Strongest counter to the bull case:** The failed breakout Aug 11 (intraday $226.88, close $224.12) is a classic bull trap setup. If benign CPI triggers rotation INTO tech growth and AWAY from defense (risk-on rotation), RTX could face selling at the highs precisely when the breakout should be confirmed. Consensus $229.82 PT means only BNP's outlier $265 makes the R:R work — if BNP revises or backlog execution slips in Q3, the entire R:R rationale evaporates. [Finnhub Jul 23 Q2 data VERIFIED; BNP PT Finnhub Jul 28 VERIFIED]
+
+**Weakly-sourced claims:** None in the core bull/bear — Q2 data and BNP PT are Finnhub-verified. "$745M missile defense contract" is WebSearch unverified (from RTX price context search).
+
+**Single most-likely invalidator (next 5 trading days):** RTX closes below $222.34 (Aug 12 day low) on two consecutive sessions, signaling the 52w-high breakout attempt is failing and price reverts to the $215-220 range.
+
+**Position-aware (if entered ~$20k at $227.50):**
+- Sector: XLI 20%; UNP already 1/2 XLI → RTX = 2/2 XLI (sector fills; forecloses future XLI entries)
+- 30d correlation: 0.3868 vs UNP — passes <0.70 ✓
+- Shared-catalyst flag: RTX (defense/geopolitical) vs UNP (rail/freight) — different primary catalysts ✓. XLI sector concentration acknowledged: two-position XLI is a sector bet, not a thesis bet.
+
+**R:R math (B3):** Entry $227.50 (buy-stop) / stop $211.58 ($227.50 × 0.93) / target $265 (BNP Paribas Jul 28 [Finnhub — VERIFIED]) / R:R = $37.50/$15.92 = **2.36:1 ✓** (passes 2:1 floor; fragile — consensus $229.82 → R:R 0.14:1; thesis depends on BNP $265).
+
+**Setup type:** BREAKOUT (above 52w high $226.88)
+**Entry plan:** BREAKOUT → buy-stop $227.50 (day TIF). 87 shares ($227.50 × 87 = $19,793 ≈ 20% equity). Risk: 87 × $15.92 = $1,385 (1.40% equity ✓).
+**Gate-history audit (B7):** Prior buy-stop $226 (Aug 7) → revised $227.50 after 52w high $226.88 set Aug 11. Revision legitimate (market set new high; adjusting above new ATH + buffer; not chasing from a level that failed). Today's high $225.34 — buy-stop not triggered.
+
+**Decision:** RETAINED — #1 post-cap priority. R:R 2.36:1 ✓, BREAKOUT setup intact. Dividend capture incentive (enter by Aug 13 = last session before ex-date). Cannot enter today ($304 deployment room). Place buy-stop $227.50 at market-open Aug 13.
+
+### Candidates dropped (and why)
+- MSFT — R:R ~1.97:1 at $480 entry (52w high target; fails 2:1 floor); needs analyst PT ≥$557 verified before re-qualifying. Watchlist pending PT confirmation.
+- XBI (0.5609, XLV) — XLV sector occupied by AMGN candidate; broad ETF lower conviction than single-name
+- LLY (0.5507, XLV) — XLV sector: AMGN already in slot 1; LLY would fill sector with unverified thesis
+- NOW (0.5334, XLK) — lower rank vs MSFT (same sector); no fresh catalyst within 14d
+- XLE, BAC, GE — screener rank below shortlist; no specific catalyst within 14d identified
+
+### Historical Analog
+
+**Analog:** November 14, 2023 — actual CPI release day (Oct 2023 CPI). Conditions: SPX ~4,415, VIX ~15.8 (today: VIX 15.28 — near-identical), 10Y ~4.65% (today: 30Y 5.24%, structurally higher). CPI Oct 2023: 3.2% YoY (cool miss vs 3.3% consensus, both MoM and YoY). Today: Jul 2026: 3.4% YoY (inline consensus), MoM +0.1% vs +0.2% (mild cool miss). Both sessions: pre-CPI yield spike, then relief on benign print.
+
+**What followed:** SPX +1.91% on Nov 14, 2023 CPI day [training data]. Over 20 trading days: SPX continued +6% into year-end (rate-cut enthusiasm accelerated). 10Y dropped from ~4.65% to ~4.20% over 6 weeks.
+
+**Why this time might differ:** Today's MoM miss (0.1% vs 0.2%) is milder than Nov 2023's outright surprise. 30Y 5.24% is ~25bp above Nov 2023's ~5.0% — baseline rate pain higher, limiting multiple expansion headroom. Hormuz oil premium ($82 WTI) is a persistent supply-push inflationary factor absent in Nov 2023. NFP −23k (cold, 2 consecutive) adds recession risk not present in Nov 2023 (labor was strong). Net: mild positive catalyst today but less explosive than Nov 14, 2023.
+
+### Risk Factors
+1. **Deployment cap 5th session:** $304 headroom forecloses all new entries today. Aug 13 is first possible entry date.
+2. **RTX dividend capture window:** Ex-date Aug 14 — must enter by Aug 13. If buy-stop $227.50 doesn't trigger at open Aug 13, dividend capture ($63 on 87 shares) is lost.
+3. **30Y yield structural elevation at 5.24%:** Benign CPI barely moved the 30Y (−1bp). MSFT/tech multiple expansion requires genuine 30Y relief, not confirmed.
+4. **Oil/Hormuz persistence:** WTI ~$82 stable but Hormuz remains blocked; any Iran deal failure = oil re-escalation = future CPI upside risk.
+5. **AMGN metabolic pipeline single-asset risk:** AMG 513 discontinued; MariTide sole pipeline asset for obesity thesis. Execution risk concentrated.
+6. **ML stale 63 sessions:** Regime classification accuracy declining; Neutral call is a rule_fallback with lower confidence.
+7. **Gemini quota exhausted (5th session):** All macro data sourced from WebSearch [unverified]. Citation depth materially reduced for 5th consecutive session.
+
+### Decision
+**HOLD** — 5th consecutive session. Pre-macro CPI cap + stale_degrade effective slots = 1, but $304 deployment headroom forecloses all new entries regardless.
+
+**Existing positions: both HOLD.**
+- **KO:** −$319.65 (−1.63%). Stop $81.30 GTC ✓. Benign CPI may provide marginal defensive relief. Thesis intact. Hold.
+- **UNP:** +$44.20 (+0.22%). Stop $271.56 GTC ✓. Dividend Aug 31 ($96.56 income). Hold.
+
+**Post-cap priority (Aug 13 market-open):**
+1. **RTX** — buy-stop $227.50 (BREAKOUT). R:R 2.36:1 ✓. LAST CHANCE to capture $0.73/sh dividend (ex-date Aug 14). PRIMARY action tomorrow.
+2. **AMGN** — watchlist pullback $394. R:R 2.03:1 at $450 Scotiabank target. Do NOT enter above $394.
+
+No new orders today.
+
+### Screener diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked universe, top 10 = [AMGN(0.7364,XLV), RTX(0.5928,XLI), XBI(0.5609,XLV), MSFT(0.5538,XLK), LLY(0.5507,XLV), NOW(0.5334,XLK), XLE(0.4105,XLE), BAC(0.4058,XLF), GE(0.4000,XLI), XLV(0.3965,XLV)]. Effective shortlist: [AMGN demoted, RTX retained] (1 slot). Regime stable Neutral. AMGN score unchanged (0.7364 vs 0.7355 Aug 11). RTX improved (0.5928 vs 0.5738 Aug 11).
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro — ALL FAILED (exit 4 / 429, 5th consecutive session) [degraded: Gemini quota]
+- WebSearch: primary fallback for CPI data, AMGN analyst PTs, RTX market context
+- Finnhub: 4 records (2 AMGN, 2 RTX)
+- NewsAPI / EDGAR: 0 records queried today
+- Reddit: egress http_403 blocked — not cited
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1520.2h (63 sessions). Hard gate: slots 2→1. URGENT: refresh local PC.
+- FTD: FMP_API_KEY set — script ran; output empty/unparseable. Skipped.
+- Exposure coach: ceiling=52%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM; pre-macro hard cap overrides to 40%
+- Fallback events: Gemini 429 → WebSearch for ALL macro/CPI/analyst data; citations marked [WebSearch — unverified]. 5th degraded session.

@@ -84,6 +84,22 @@ Conventions:
 - Trade history: (none yet)
 - Position-aware notes: (none yet)
 
+## AMGN (XLV)
+- Thesis (2026-08-12): Q2 beat (EPS $6.29, rev $10.05B); MariTide (AMG 133) sole remaining obesity/metabolic pipeline asset after AMG 513 discontinued. Scotiabank $450 Outperform (highest); UBS $440 Buy. R:R fails 2:1 at current $414 — demoted to watchlist pullback $394 (R:R 2.03:1 at $450 Scotiabank PT). Next earnings Nov 3, 2026 (83d; not in blackout).
+- Recent catalysts:
+  - 2026-08-12: AMG 513 Phase 1 weight-loss discontinued; MariTide sole metabolic pipeline asset [WebSearch — unverified]
+  - 2026-08-12: Scotiabank PT $385→$450 (Outperform); UBS PT $420→$440 (Buy) [WebSearch — unverified]
+  - 2026-08-05: Q2 2026 beat: EPS $6.29, rev $10.05B; FY2026 guidance maintained $34.3-35.7B [WebSearch — unverified, tradingkey.com]
+  - 2026-08-04: AMGN screener rank #1 (score 0.7355→0.7364 Aug 12); XLV Choppy (ML) vs +4.09% 1mo momentum (disagreement)
+  <!-- archive: 15-year CAGR 14.88%; Wells Fargo Equal Weight $400 PT -->
+- Open thesis questions:
+  - R:R at current $414 = 1.23:1 (fails floor). Need pullback to $394 for 2:1 with Scotiabank $450.
+  - AMG 513 discontinued: is MariTide Phase 3 on track? No scheduled readout within 14d.
+  - XLV sector Choppy (ML) vs momentum leader (+4.09%) — which signal dominates?
+  - Wells Fargo $400 PT: below current price ($414) — downside case credible if metabolic pipeline misses.
+- Trade history: Not entered (demoted 2026-08-12 — R:R 1.23:1 at $414 fails 2:1 floor)
+- Position-aware: 30d corr KO=0.6011, UNP (low); XLV sector cap 0/2 ✓
+
 ## AMZN (XLY)
 - Thesis (2026-08-04): Post-Q2 AWS re-acceleration (37%, 18-quarter high); consensus PT 22; enter only on pullback to 65-270 for 2:1 R:R with 8.72% ATR stop (current 84 at 52w-high fails R:R floor).
 - Recent catalysts: Q2 2026 AWS +37% YoY (fastest 18 quarters); Jefferies Buy 20 (raised post-Q2); consensus 22.64 (62 analysts, Strong Buy); Needham Buy 00
@@ -374,22 +390,22 @@ Conventions:
 - Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
-- Thesis (2026-08-11): BREAKOUT candidate — new 52w high $226.88 set INTRADAY Aug 11 (failed to hold; close $224.12). Updated buy-stop: $227.50 (above new 52w high; prior $226 level stale). BNP $265 PT gives R:R 2.36:1 at $227.50 (fragile — consensus $229.82 gives sub-1:1). Post-CPI conditional entry. Dividend $0.73 ex-date Aug 14 — capture window closing (enter by Aug 13). XLI fills to 2/2 with UNP.
+- Thesis (2026-08-12): BREAKOUT candidate — buy-stop $227.50 (above 52w high $226.88). BNP $265 PT → R:R 2.36:1 (fragile; consensus $229.82 = sub-1:1). CPI benign (Aug 12) — cap still blocks entry today. LAST chance: dividend $0.73 ex-date Aug 14 → must enter by Aug 13. XLI fills to 2/2 with UNP.
 - Recent catalysts:
+  - 2026-08-12: CPI Jul benign (3.4% YoY, +0.1% MoM) — rate-cut path intact; mild risk-on catalyst [WebSearch — unverified]
   - 2026-08-11: RTX set NEW 52w high intraday ($226.88, from $225.65); pulled back to $224.12 close — buy-stop updated to $227.50 [yfinance Aug 11]
-  - 2026-08-10: Pentagon urging accelerated RTX production; Hormuz = sustained defense demand [Finnhub Aug 10]
+  - 2026-08-11: $1.5T Pentagon budget support (Hegseth/Congress) [Finnhub Aug 11 — verified]; $745M missile defense contract [WebSearch — unverified]
   - 2026-07-28: BNP Paribas PT $220→$265 (Outperform, highest; VERIFIED Finnhub); TD Cowen $225→$240; Deutsche Bank $228→$238
   - 2026-07-23: Q2 EPS $1.89 beat $1.66 (+13.9%); revenue $24.71B (+14.5% YoY); FY2026 EPS raised $7.10-$7.25; $289B backlog (+22%) [Finnhub Jul 23]
-  <!-- archive: Patriot GEM-T domestic order; $1.8B SPY-6 radar extension; RBC $250, Susquehanna $245; Rokos Capital -->
+  <!-- archive: Patriot GEM-T domestic order; $1.8B SPY-6 radar extension; RBC $250, Susquehanna $245; Rokos Capital; Pentagon accelerated production Aug 10 -->
 - Open thesis questions:
   - BNP $265 PT: still highest PT; no bank confirmed above $250. Consensus $229.82 → R:R fails floor without BNP $265.
-  - XLI sector Choppy per ML — momentum improving (+2.35%) but regime headwind persists
-  - Failed breakout Aug 11 (intraday $226.88, close $224.12): need CPI benign + clean hold above $227 for confirmation
-  - Iran-Oman deal imminent? Quick resolution = Hormuz reopens = defense demand narrative weakens = RTX re-rates lower.
-  - CPI Aug 12: hot print = risk-off = does defense hold better than tech? Or broad selloff?
-  - Dividend capture: ex-date Aug 14 (Friday) = must enter by Aug 13 to capture $0.73/sh. Modest incentive vs trade quality.
-  - XLI sector cap: filling to 2/2 forecloses future XLI entries while UNP is open.
-- Watchlist: buy-stop $226.00 (BREAKOUT above 52w high $225.65), stop $210.18 (−7% from $226), target $265 (BNP Paribas Jul 28 [Finnhub]), R:R 2.47:1 (BNP); 0.24:1 (consensus $229.82 — fails). Enter only if MSFT $480 not triggered first.
+  - XLI sector Choppy per ML — momentum improving but regime headwind persists
+  - Failed breakout Aug 11 (intraday $226.88, close $224.12): benign CPI resolves uncertainty; need clean hold above $227 on Aug 13 open.
+  - Iran-Oman deal: Hormuz reopening = defense demand narrative weakens = RTX re-rates lower.
+  - Dividend capture: ex-date Aug 14 (Friday) = MUST enter by Aug 13. Buy-stop $227.50 is primary Aug 13 action.
+  - XLI sector cap: fills to 2/2 with UNP; forecloses future XLI entries while both open.
+- Watchlist: buy-stop $227.50 (BREAKOUT above 52w high $226.88), stop $211.58 (−7% from $227.50), target $265 (BNP Paribas Jul 28 [Finnhub — VERIFIED]), R:R 2.36:1. Primary Aug 13 market-open action.
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
