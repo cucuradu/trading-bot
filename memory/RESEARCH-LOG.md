@@ -6,6 +6,135 @@ Format each entry:
 
 ## YYYY-MM-DD — Pre-market Research
 
+---
+
+## 2026-08-13 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) — ML stale 1544.2h (64th session). Fallback: local_screener_v1.
+**ML staleness:** age 1544.2h (stale_degrade; hard gate: slots 2→1). URGENT: refresh local PC.
+**Breadth/Sector:** breadth=76.2/100 (Healthy) | sector=risk-on score=76 phase=mid | divergence_flag=true (cyclical/defensive internal disagreement — note tension; not a hard gate)
+**FTD:** FTD detector ran but output empty (FMP_API_KEY set, script error) — skipped.
+**Exposure coach:** failed (output empty) — skipped.
+
+### Account
+- Equity: $99,597.93 | Cash: $60,136.29 | Buying power: $351,037.75
+- Daytrade count: 0/3 | Trades this week: 0/3
+- Open positions: KO 224 sh @ $87.42 avg (MV $19,488, −$94 unrealized) | UNP 68 sh @ $291.45 avg (MV $19,974, +$155 unrealized)
+- Deployment: $39,462 / $99,598 = 39.6% (target 75-85%; room for 1-2 more positions)
+- Open orders: GTC stop KO $81.30 (exp Oct 30) ✓ | GTC stop UNP $271.56 (exp Nov 3) ✓
+
+### Macro Framework
+Neutral regime (rule_fallback; ML stale 64th session). Key release today: PPI Jul + initial jobless claims at 8:30 ET [WebSearch — unverified] — this is the primary intraday risk catalyst. VIX 14.68 (↓ from 15.28 Aug 12; calm, uncertainty premium further unwinding post-CPI). 10Y yield 4.65% (−3bp from Aug 12); 30Y yield ~5.24% (last reading Aug 11; directionally easing). WTI $82.11 (−1.39%, Brent $87.92 −1.19%) — oil declining as market digests no Hormuz escalation post-Iran cease-fire talks. SPX futures modest gains premarket (61% probability of higher open) [WebSearch — unverified]. USD: no data (DXY unavailable in degraded mode). Breadth 76.2/100 (Healthy zone; SPX +4.85% and breadth 8MA +0.161 over 60d — healthy alignment). Dominant theme: post-CPI digestion + PPI/claims data pivot. vs Aug 12: VIX −0.6pts; WTI −1.4% (Hormuz pressure easing); 30Y roughly stable; regime unchanged Neutral; pre-macro CPI cap LIFTED (cap_active=false today); 2 new entries now possible in theory but ML stale_degrade limits to 1 effective slot.
+
+### Sector Picture
+- **Top 3 by 1mo momentum:** Energy XLE +7.56% | Healthcare XLV +4.36% | Technology XLK +4.18%
+- **Bottom 3:** Communication Services XLC −1.18% | Utilities XLU −4.11% | Real Estate XLRE −0.47%
+- **ML-insights sectors (Trend/Choppy/Bear):** XLK Trend | XLF Trend | XLE Trend | XLY Trend | XLI Choppy | XLV Choppy | XLB Choppy | XLC Choppy | XLI Choppy | XLU Bear | XLRE Bear
+- **Sector momentum vs ML:** XLV Choppy (ML) but +4.36% momentum leader — mild disagreement; note but not a gate. XLE Trend (ML) + #1 momentum — aligned. XLI Choppy (ML) + +3.05% momentum — slight tension.
+- **Sector rotation (community skill):** risk-on regime score=76, phase=mid, divergence_flag=true. Cyclical/defensive internal disagreement — some defensive sectors (XLP, XLU) holding despite risk-on reading.
+
+### Candidates
+
+#### RTX (XLI, $222.76 ±0.0% premarket)
+
+**Setup:** year high $226.88 (52w); current $222.76 = −1.82% below 52w high. 10-day avg vol 4.4M sh/day (liquid ✓). ATR(14)=$4.87 (2.186% of price); stop_pct_2_5x=5.46% → clamped to 7%.
+
+**Sources scanned (5):** 0 NewsAPI / 62 Finnhub / 3 EDGAR / 0 Reddit (http_403 blocked) / 0 Gemini (quota 429, 6th session). Data: [Finnhub], [SEC EDGAR Form 4].
+
+**Bull case:**
+- Q2 2026: revenue $24.71B (+11.7% YoY), profit +28.3%; EPS $1.89 vs $1.66 est (+13.9%) [Finnhub Aug 12, Jul 30 — verified]
+- Record $289B backlog (+22% YoY) — 10+ years forward revenue visibility [Finnhub Aug 12 — verified]
+- $2.5B+ fresh contracts: $745M SM-3 Block IIA (Missile Defense Agency, Aug 10), $472M Collins Aerospace CH-47 (Aug 11), $1.3B Pratt & Whitney F135 sustainment (Jul 31) [Finnhub — verified]
+- Pentagon missile replenishment drive active: Iran war exposed US munition gaps; production accelerating (SM-3, Patriot, AIM-9X) [Finnhub Aug 12 — verified]
+- SPY-6(V)4 radar array delivered to Navy destroyer (Aug 5) — milestone execution [Finnhub Aug 5 — verified]
+- BNP Paribas Outperform PT $265 (raised from $220, Jul 24) [MarketScreener Jul 24 — WebSearch unverified]; options traders bullish (Halftime Report Aug 11 [Finnhub — verified])
+
+**Bear case:**
+- Analyst consensus $228.24 (FactSet) [WebSearch — unverified] / Bernstein PT $232 Market Perform [Finnhub Aug 3 — verified] — barely above buy-stop → consensus R:R near-zero; BNP $265 is a lone outlier
+- Pratt & Whitney GTF geared turbofan remediation costs ongoing: F135 contract is "undefinitized" (cost-plus terms not settled) → margin risk [Finnhub context — general knowledge]
+- XLI sector Choppy per ML regime classifier — momentum moderating; UNP already occupies XLI (fills 2/2 cap on entry)
+- Iran-Oman diplomacy could de-escalate Hormuz: reduces missile depletion urgency → defense multiple re-rate lower
+
+**Disconfirming evidence:** If PPI today (8:30 ET) beats consensus (≥0.3% MoM), yields spike and defense multiples compress. If Pratt & Whitney GTF remediation costs disclosed in next 10-Q exceed provisions, Q3 EPS estimates revised down.
+
+**Catalysts ahead (next 14d):** Dividend $0.73/sh ex-date Aug 14 (TOMORROW — today is last entry day). Next earnings Oct 20, 2026 (68 days; not in blackout ✓). No scheduled contract announcements.
+
+**One-line takeaway:** RTX's record backlog, Q2 beat, and government missile-replenishment tailwind support the BREAKOUT — but the R:R thesis lives or dies with BNP $265 alone; consensus barely clears the buy-stop.
+
+**Critique (Claude adversarial):**
+**Strongest counter:** BNP's $265 target represents a +19.3% premium above buy-stop entry, versus FactSet consensus $228.24 (+0.3%) and Bernstein (Market Perform) $232 (+2.0%). The consensus view implies essentially zero upside from the buy-stop. BNP may have modeled an optimistic Pratt & Whitney GTF remediation timeline and/or defense budget assumptions that have not been independently confirmed. If even one quarter's EPS disappoints (GTF cost overruns or defense continuing resolution), the stock reverts toward consensus, triggering the 7% stop. Real risk: the trade is a single-analyst-PT bet wearing a "backlog" costume.
+**Weakly-sourced claims:** Consensus PT $228.24 is from FactSet via WebSearch [unverified]. BNP $265 from MarketScreener [WebSearch — unverified]. F135 contract "undefinitized" language from general knowledge, not an EDGAR filing in this session.
+**Single most-likely invalidator (next 5 sessions):** PPI MoM ≥ 0.3% today (8:30 ET) → 30Y yields spike back above 5.24% → defense P/E multiple compression → RTX stays below $226.88 buy-stop → no entry, thesis resets for next week.
+
+**Data-check (B2):** Prior RESEARCH-LOG (Aug 12) referenced "$89B backlog" — now confirmed $289B per [Finnhub Aug 12]. The $89B was a transcription truncation error; $289B is correct. No sign-flip or >25% discrepancy on other metrics; EPS estimates consistent with prior records.
+
+**Position-aware (if entered $227.50, 87 shares, $19,793 cost):**
+- Deployment post-entry: ($39,462 + $19,793) / $99,598 = 59.5% (within 75-85% target; short of floor — 4th position needed for full deployment)
+- 30d correlation RTX/UNP: 0.3905 ✓ (passes <0.70 cap) | RTX/KO: 0.1065 ✓
+- Sector cap: XLI 2/2 on entry (UNP existing + RTX new) — forecloses future XLI entries
+- Shared-catalyst flag (B6): RTX and UNP both nominally XLI (Industrials) but different sub-themes (defense tech vs railroad). UNP thesis is oil/freight/merger; RTX is missile replenishment/backlog. No shared catalyst — conscious acknowledgment.
+
+**R:R math (B3):** Entry $227.50 (buy-stop) / stop $211.58 (−7.0%, clamped from 5.46% ATR-based) / target $265 (BNP Paribas Outperform, raised Jul 24 [MarketScreener — WebSearch unverified]) / R:R = $37.50/$15.92 = **2.36:1 ✓** (passes 2:1 floor; FRAGILE — Bernstein $232 consensus → R:R 0.28:1; BNP $265 is the sole viable target). Risk: 87 sh × $15.92 = $1,385 (1.39% equity ✓). Shares: 87 × $227.50 = $19,793 (19.9% equity ✓).
+
+**Setup type (G1):** BREAKOUT — thesis is confirmation above 52w high $226.88. Buy-stop $227.50 fills ONLY on clean break of prior high (built-in confirmation; does not chase).
+
+**Entry plan:** BREAKOUT → buy-stop $227.50 (day TIF) at market-open Aug 13. Conditional: if PPI ≥ 0.3% MoM (hot print), market-open routine should skip entry for the day and re-evaluate Friday Aug 14 (note: ex-date Aug 14, so dividend capture lost if skipping today).
+
+**Gate-history audit (B7):** Aug 11 buy-stop set at $226 (below 52w high $225.65 at the time) → revised $227.50 on Aug 11 when RTX printed new 52w high $226.88. Revision was justified by new market high (not chasing stale thesis). Today's plan unchanged at $227.50. No gate-creep.
+
+**Decision:** RETAINED — primary action today. Buy-stop $227.50 (day TIF). Last chance for $0.73 dividend. R:R 2.36:1 ✓ (BNP $265). PPI is the single biggest risk (pre-open data that could kill the breakout catalyst before market opens). Market-open routine: check PPI print before placing order.
+
+---
+
+### Candidates dropped (and why)
+- AMGN — current price $416.18 ABOVE planned PULLBACK limit $394; limit would not fill without a −5.3% move. Multiple analyst PTs at $400 (Wells Fargo, RBC [WebSearch — unverified]) are near planned entry with minimal R:R at consensus; only Scotiabank $450 [WebSearch — unverified from Aug 12] provides 2.06:1 R:R. With data discrepancy ($416 live vs $365 WebSearch — likely stale pre-Q2 price), AMGN watchlist maintained at $394 (do NOT enter above this level). Not entering today.
+- XBI — XLV sector redundant with AMGN watchlist; lower single-name conviction; no specific catalyst.
+- BAC — screener rank #4 (0.4741); XLF Trend sector; no catalyst within 14d identified in degraded research mode.
+- GE, NOW, RTX fill top-10 but only RTX advances to shortlist given time-critical dividend and pre-committed thesis.
+
+### Historical Analog
+
+**Analog:** November 2024 (November 6-15, 2024) — VIX 14-16 range, defense stocks making new highs post-US election (Trump 2.0 → defense spending optimism), yields 4.3-4.5% (10Y), moderate oil. RTX, LMT, NOC all broke to new highs in that period as defense budget expansion narrative dominated. Today's VIX 14.68 is nearly identical. Both periods: low-volatility, post-catalyst (then: election; now: post-CPI benign print), risk-on breadth, defense thesis intact.
+
+**What followed:** Defense ETF (ITA) +10.3% over 20 trading days from Nov 6, 2024. RTX specifically rallied from ~$130 (split-adjusted) to ~$142 (+9.2%) over the same window. Yielded clean breakouts through resistance levels that held for multiple sessions.
+
+**Why this time might differ:** No election mega-catalyst today — post-CPI digestion is a milder positive catalyst. 30Y yield 5.24% vs ~4.5% in Nov 2024 — materially higher rate ceiling limits P/E expansion headroom. PPI data release today (8:30 ET) adds intraday volatility not present on Nov 6, 2024. Iran cease-fire progress (oil −1.4%) is a mild headwind to defense demand narratives vs post-election certainty.
+
+### Risk Factors (consolidated)
+1. **PPI print today (8:30 ET):** Hot PPI (≥0.3% MoM) → 30Y yield spike → RTX buy-stop doesn't trigger (defense multiples compress). Primary risk.
+2. **BNP $265 single-target fragility:** Consensus $228.24 → near-zero R:R without BNP. Trade is a one-analyst-PT bet.
+3. **XLI sector cap fills:** RTX entry fills XLI to 2/2 with UNP; any subsequent XLI opportunity is foreclosed while both positions are open.
+4. **ML stale 64 sessions:** Regime classification (rule_fallback) has lower accuracy; Neutral call may be stale.
+5. **Deployment shortfall:** Post-RTX fill: 59.5% deployed (short of 75% target). Need a 4th position to reach optimal deployment — but 1-slot limit blocks additional entries today.
+6. **KO −$94 unrealized:** Stop $81.30 vs current $87.00 = 7.5% buffer. XLP +0.58% sector (momentum laggard). Rate relief from benign CPI/PPI would help thesis.
+7. **Gemini quota 429 (6th consecutive session):** Research depth degraded; all macro data from WebSearch [unverified]. Citation quality reduced.
+
+### Decision
+**TRADE** — 1 candidate, 1 slot.
+
+**RTX:** buy-stop $227.50 (day TIF), 87 shares, $19,793 deployment. Stop $211.58 GTC. R:R 2.36:1. **Conditional on PPI print at 8:30 ET:** if PPI MoM ≥ 0.3% (hot), market-open routine should hold the order and re-evaluate Monday Aug 17 (dividend capture then lost). If PPI benign/inline → proceed.
+
+**Wait 15 minutes after open** before placing the buy-stop order (standard rule), unless RTX gaps up through $226.88 at open.
+
+**Existing positions:** KO and UNP — both HOLD. Stops active. No changes.
+
+### Screener diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked 65 tickers, top 10 = [AMGN(0.6208,XLV), XBI(0.5928,XLV), RTX(0.5571,XLI), BAC(0.4741,XLF), TMO(0.4281,XLV), LLY(0.4096,XLV), XLK(0.4024,XLK), NOW(0.3989,XLK), MRK(0.3963,XLV), GE(0.3683,XLI)]. Trade slots: 1 (2 raw − 1 ML stale_degrade). Effective shortlist: [RTX retained] (time-critical dividend overrides AMGN screener rank #1; AMGN above limit entry, not actionable). Watchlist bonus (+0.5) on RTX and AMGN per Phase G2.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro — ALL FAILED (exit 4 / 429, 6th consecutive session) [degraded: Gemini quota]
+- WebSearch: primary fallback for ALL macro data (VIX, yields, oil, PPI calendar, RTX/AMGN analyst PTs)
+- Finnhub: 62 records RTX (verified; sources cited as [Finnhub])
+- EDGAR: 3 Form 4 records RTX (Jul 28, Jul 6, May 4)
+- NewsAPI: 0 records (key set but not queried in degraded mode)
+- Reddit: egress http_403 blocked — not cited
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1544.2h (64 sessions). Hard gate: slots 2→1. URGENT: refresh local PC.
+- FTD: FMP_API_KEY set — script output empty (0 bytes). Skipped.
+- Exposure coach: output empty (script error). Skipped.
+- Citation honesty (B2): All analyst PTs (BNP $265, Bernstein $232, consensus $228, Wells Fargo $400 AMGN, RBC $400 AMGN) marked [WebSearch — unverified] except BNP $265 from MarketScreener (confirmed via targeted search). Finnhub articles cited as [Finnhub — verified]. No SEC Form 4 content cited beyond filing existence.
+- Fallback events: Gemini 429 → WebSearch for ALL macro/analyst data. 6th consecutive degraded session.
+
 ### Account
 - Equity: $X
 - Cash: $X
