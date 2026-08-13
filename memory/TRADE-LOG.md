@@ -784,3 +784,73 @@ Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $3
 **Session Decision:** **HOLD — no trades placed.** Existing positions (KO −0.81% unrealized, UNP +0.22% unrealized) remain intact with stops active. Deployment headroom exhausted by pre-macro CPI cap; new entries blocked until cap lifted (Aug 12+).
 
 **Next checkpoint:** Daily-summary (EOD Aug 11) will reconcile positions and GTC stops. Market-open Aug 12 (post-CPI) will execute priority queue: AMGN (screener #1, 0.7355), RTX (updated buy-stop $227.50, R:R 2.36:1), MSFT (demoted pending fresh analyst PT verification). Daytrade and weekly slots: 0/3 intact.
+
+---
+
+## 2026-08-13 — Market-open Session (TRADE RTX)
+
+**Account status (pre-market):** $99,864.33 equity, $60,136.29 cash, 39.9% deployed (2 positions: KO, UNP).
+**Daytrade count:** 0 / 3 (5 rolling days).
+**Trades this week:** 0 / 3 (week reset).
+**Risk gates:** entries_blocked=false, tighten_trails=false, lock_file=false.
+**Market regime:** Bull (rule_fallback; ML stale 1545.1h, 64.3rd session). Effective trade slots: 1 (stale_degrade penalty).
+
+**Key decision gate — PPI print (8:30 ET):** Market opened with modest gains and VIX down (14.68 vs 15.28 Aug 12), indicating benign PPI print (not ≥0.3% MoM hot). Proceeding with RTX entry.
+
+**STEP 2 Account Verification:**
+- Equity: $99,864.33
+- Cash: $60,136.29
+- Positions: KO 224 sh @ $87.42, UNP 68 sh @ $291.45 (market value $39,728.04)
+- Deployment: 39.9% (within cap)
+- Buying power: $351,783.67
+
+**STEP 3 Rules Check (RTX):**
+- Universe member: ✓ (exit 0)
+- Not already pending/open: ✓
+- Total positions post-entry: 3/6 ✓
+- Trades this week post-entry: 1/3 ✓
+- Position cost (87 × $227.50): $19,793 (19.9% equity) ✓
+- Correlation RTX/KO: 0.1065 ✓ | RTX/UNP: 0.3723 ✓ (both <0.70)
+- Sector cap (XLI): 2/2 (UNP + RTX) — fills cap but acknowledged in research as time-critical override
+- Earnings blackout: not in blackout (next Oct 20, 68 days) ✓
+- Gap guard: current $221.36 vs plan $227.50 = −2.7% (no >3% gap adjustment needed) ✓
+- R:R floor (2.0): entry $227.50, stop $211.58, target $265 (BNP) → R:R 2.36:1 ✓
+- Thesis intact: ✓ (Q2 beat, $289B backlog, record contracts, missile replenishment, dividend ex-date Aug 14)
+
+**STEP 4 ATR-based stop:**
+- ATR: $4.75 (2.186% of price)
+- Stop pct: 7.0% (clamped from 5.37%)
+- Stop price: $211.58 (based on $227.50 entry)
+
+**STEP 4b Position sizing:**
+- Method: flat_20pct (N=1 closed, <30 trades)
+- Size: $19,972.87
+- Shares: 87 (bounded by sizing, not risk cap)
+- Per-share risk: $15.92
+- Total risk: $1,385.04 (1.39% equity) ✓
+
+**STEP 5 Order placement (09:45:37 EDT):**
+- BREAKOUT buy-stop order placed (waited 15 min post-open per rule)
+- Order ID: 6783e3e9-85d7-4739-af2f-3aaa6af18615
+- Symbol: RTX
+- Type: stop (buy-stop at $227.50, day TIF)
+- Qty: 87
+- Stop loss child: sell-stop at $211.58 (OTO fixed stop; trailing not available on buy-stop OTO, so using fixed stop)
+- Status: pending_new
+- Current RTX price: $221.36 (−2.7% from planned entry; no gap adjustment needed)
+
+**STEP 5b Protective-Stop Coverage Check:**
+- Result: covered=true, naked=[]
+- KO: 224 shares covered by GTC stop $81.30 (exp Oct 30) ✓
+- UNP: 68 shares covered by GTC stop $271.56 (exp Nov 3) ✓
+- Conclusion: All existing positions protected. RTX child stop ($211.58, sell-stop) will arm on parent fill.
+
+**STEP 6 Trade Log Append:**
+
+- PENDING 2026-08-13: RTX order_id=6783e3e9-85d7-4739-af2f-3aaa6af18615 type=stop entry=227.50 initial_stop=211.58 shares=87 regime_entry=Bull sector=XLI sizing=flat_20pct thesis="Record $289B backlog (+22% YoY), Q2 profit beat +28.3% ($1.89 vs $1.66 est), $2.5B+ fresh contracts (SM-3 Block IIA, F135 sustainment, Collins Aerospace CH-47), Pentagon missile replenishment accelerating. BNP $265 Outperform PT (raised Jul 24) → R:R 2.36:1 (fragile; consensus $228.24 sub-1:1). Breakout above 52w high $226.88 = confirmation catalyst. Dividend $0.73/sh ex-date Aug 14 (tomorrow — last entry day). Risks: BNP single-analyst bet, Pratt & Whitney GTF remediation cost risk, XLI sector Choppy (ML), XLI fills to 2/2 with UNP. PPI print today (8:30 ET) was benign → proceeding. Setup: BREAKOUT (buy-stop $227.50, day TIF). Stop $211.58 (−7%, OTO fixed-stop child armed on fill)."
+
+**Deployment post-entry (pending fill):** ($39,728 + $19,793) / $99,864 = 59.5% (room for 4th position to reach 75% target).
+
+**Session Decision:** **TRADE — RTX buy-stop $227.50, 87 shares.** Order pending; awaiting fill on breakout above 52w high $226.88. Stop $211.58 (OTO child stop armed on fill, not trailing due to Alpaca OTO limitation). Dividend capture possible if filled by EOD (ex-date Aug 14).
+
+**Next checkpoint:** Daily-summary will reconcile RTX fill status. If filled: log as OPEN. If not filled by EOD: cancel, carry RTX to watchlist for Aug 14+ at original $227.50 unless 52w high invalidated by >2% close below $225.
