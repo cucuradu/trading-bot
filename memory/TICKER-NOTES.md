@@ -17,25 +17,26 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-06-15): Demoted 6th consecutive session — at $981.61, R:R on Wolfe Research's brand-new $1,250 PT (06-11, +127% raise from $550) is 1.82:1 against the 15%-clamped ATR stop ($834.37) — closest MU has come to the 2:1 floor, but still 0.18 short. 40-analyst consensus median $846 (up from $637.50 on 06-12, reconciled — genuine new PT raises) still implies −13.8% from price, independently failing B3. Goldman's "high bar" caution into 06-24 earnings (9d) remains unaddressed. Do NOT chase. [Demoted: R:R 1.82:1. analyst_data.py + WebSearch (Wolfe PT confirmation) Jun 15]
+- Thesis (2026-08-14): RETAINED — screener #1 (ml_score 1.2544), pullback limit $960 (day TIF). Post-Q4 FY2026 earnings (est. ~Jun 24) consensus reset: median $846→$1,502 (46 analysts "Strong Buy") [WebSearch — unverified]. SNDK Investor Day Aug 13 reset NAND economics 2028-2030, drove memory sector re-rating (SNDK +15%). Alphabet+Amazon $420B AI infra spend; MU Ventures Paradigm Fund $250M. R:R 2.05:1 at $960/$816/$1,255 (barely passes floor; 15% stop clamped from 18.63% ATR). ATR data contradiction flagged (stop-for-entry 1.12% vs atr script 7.45% — using 7.45% conservative). [Finnhub 2026-08-14; WebSearch — unverified]
 - Recent catalysts:
-  - 2026-06-15: Iran-relief oil collapse (WTI −5.6%) lifts memory/chip names premarket; "MU leads memory chip rally, DRAM surges 6%" [Finnhub headline — unverified primary source]
-  - 2026-06-11: Wolfe Research raised PT $550→$1,250 (+127%, "Outperform") — DRAM pricing +200% CY26/+17.5% CY27, NAND +216%/+17%, 2027E rev $226.5B/EPS $135, bit-shipment capped by cleanroom space through 2027 [Investing.com/TipRanks/GuruFocus Jun 11]
-  - 2026-06-12: Goldman cautious into 06-24 earnings ("high bar"); memory stocks (MU/STX/WDC/SNDK) rallied on Iran peace-deal hopes + DRAM/NAND price-hike thesis [Finnhub Jun 12]
-  - 2026-06-09: small insider BUY (Bjorlin, 63sh, immaterial) [Finnhub Jun 12]
-  - 2026-06-24: Q4 FY2026 earnings report (next — 9d; key re-entry catalyst, "could go parabolic" per Motley Fool)
-  <!-- archive: 2026-06-08: +7.1% premarket on SK Hynix-NVDA HBM deal headline; still fails R:R at both chase and no-chase prices -->
-  <!-- archive: 2026-06-07: CEO Mehrotra sold ~40,000 sh (~$38M, pre-planned 10b5-1) -->
-  <!-- archive: 2026-06-05: Screener #1 (ml 1.36) but demoted — R:R 0.87:1; hot NFP +251K adds yield pressure -->
-  <!-- archive: 2026-06-03: Morgan Stanley raises MU PT to $1,050; Susquehanna to $1,750 (5/29) -->
-  <!-- archive: 2026-06-04: AVGO AH infra-software miss; MU trailing stop hit $986.18 at 13:59 ET -->
-  <!-- archive: 2026-06-02/05: COMPUTEX 2026 Taipei (Jensen Huang keynote HBM4 + Vera Rubin) -->
+  - 2026-08-14: SNDK Investor Day (Aug 13) reset NAND 2028-2030 economics; semiconductor sector rally; MU +5.6% Aug 13 [Finnhub 2026-08-14]
+  - 2026-08-14: Alphabet + Amazon $420B AI infrastructure spend — MU/NVDA primary beneficiaries cited [Finnhub 2026-08-14]
+  - 2026-08-13: Micron Ventures Paradigm Fund ($250M) launched — AI stack investment vehicle [Finnhub 2026-08-13]
+  - 2026-06-15: Demoted session — R:R 1.82:1 vs Wolfe $1,250 PT; "Do NOT chase at $981" [WebSearch — unverified]
+  - 2026-06-11: Wolfe Research raised PT $550→$1,250 (+127%, "Outperform") — DRAM/NAND pricing +200%/+216% CY26 [Investing.com/TipRanks/GuruFocus Jun 11]
+  <!-- archive: 2026-06-12: Goldman cautious into 06-24 earnings ("high bar"); memory rally on Iran peace-deal + DRAM/NAND thesis -->
+  <!-- archive: 2026-06-09: small insider BUY (Bjorlin, 63sh) -->
+  <!-- archive: 2026-06-08: +7.1% premarket on SK Hynix-NVDA HBM deal headline -->
+  <!-- archive: 2026-06-07: CEO Mehrotra sold ~40k sh ($38M, pre-planned 10b5-1) -->
+  <!-- archive: 2026-06-04: AVGO AH infra-software miss; MU trailing stop hit $986.18 -->
+  <!-- archive: 2026-06-03: Morgan Stanley $1,050; Susquehanna $1,750 -->
 - Trade history:
   - 2026-06-04: r=0.45, regime=Neutral, reason="trailing stop hit on AVGO software miss contagion; HBM thesis intact, catalyst-specific break; peak was +1.25R (HWM $1,088) but 9.47% trail left too much gap-down room"
 - Open thesis questions:
-  - Wolfe's unprecedented $1,250 PT (06-11) got MU to 1.82:1, closest yet to 2:1 — would a further consensus catch-up (median above $846, e.g. other banks following Wolfe) or a pullback toward ~$900 (R:R≈2.6:1 vs $1,250) be the trigger to clear the floor first?
-  - Does 06-24 earnings (Goldman "high bar") become the volatility event that either validates a pullback entry or confirms the bear case?
-  - Does the DRAM/NAND spot-pricing data (CY26 +200%/+216% per Wolfe) get independently confirmed before 06-24, or does it remain a single-analyst thesis?
+  - AMAT earnings Aug 14 AH: guide miss = AI capex deceleration signal → re-evaluate MU thesis Monday
+  - "Next AI winners not like Nvidia or Micron" narrative (Finnhub Aug 14) — rotation risk to software/orchestration layer?
+  - Retail sales -0.6% MoM (Aug 14): does consumer weakness cascade to enterprise IT/cloud capex slowdown?
+  - Vol_stability -3.0 (max negative screener): if semiconductor sector has another selloff, 15% stop may not be sufficient — monitor HWM trail tightening rules carefully once filled.
 
 ## AMD (XLK)
 - Thesis (2026-07-22): OPEN POSITION — 25 shares @ $514.61 avg entry (Jul 16). Current ~$528.23 (−2.97% today, +2.6% vs entry). GTC trail 15%, HWM ~$548.14, stop ~$465.92. Advancing AI Summit DELIVERED: Zen 6 Venice (2nm TSMC, 256 cores, 1.7x perf gen-on-gen), MI455X GPU, Helios rack (31TB HBM4); Azure (Helios deployment), Meta (H2 2026), OpenAI (multi-gen Instinct contract) committed. Sell-the-news −3% on day of event. Alphabet + Tesla report tonight (Jul 22 AC) — next binary. Q2 earnings Aug 4. [TechTimes Jul 22 2026; SeekingAlpha/Jefferies Jul 2026]

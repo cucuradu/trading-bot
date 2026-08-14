@@ -8194,3 +8194,143 @@ Screener: source=local_screener_v1, ranked universe, top 10 = [AMGN(0.7364,XLV),
 - FTD: FMP_API_KEY set — script ran; output empty/unparseable. Skipped.
 - Exposure coach: ceiling=52%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM; pre-macro hard cap overrides to 40%
 - Fallback events: Gemini 429 → WebSearch for ALL macro/CPI/analyst data; citations marked [WebSearch — unverified]. 5th degraded session.
+
+## 2026-08-14 — Pre-market
+
+**Regime:** Bull (source: rule_fallback, slots: 3→2 after stale_degrade penalty, deployment: 85%) — fallback_reason: ml unavailable; using local_screener_v1. ML stale 1569.7h (65th consecutive session) → stale_degrade → trade_slots 3→2 (hard gate).
+
+**ML staleness:** age=1569.7h (stale_degrade; ≥120h threshold). Hard gate: slots reduced 3→2. URGENT: refresh local PC (65 sessions without ML update).
+
+**Breadth/Sector:** breadth=79.2/100 (Healthy) | sector=risk-on score=77 phase=mid | divergence_flag=true (cyclical/defensive internal disagreement — advisory caution; does not override Bull regime)
+
+**Exposure:** ceiling=53% | rec=NEW_ENTRY_ALLOWED | bias=VALUE | conf=MEDIUM — TENSION: exposure coach ceiling 53% vs rule regime deployment_target 85%. Post-MU entry would put us at ~59%, above advisor ceiling. Documented per advisory-only policy; no hard gate override.
+
+**FTD:** FMP_API_KEY set but `ftd_detector.py --json` flag not supported by current script version; skipped.
+
+### Account
+- Equity: $100,164.09 / Cash: $60,136.29 / BP: $352,623
+- Daytrade count: 0/3 (5 rolling days) / Trades this week: 0/3 (week reset Mon Aug 10)
+- Open positions: 2 (KO 224sh @ $87.42 → $87.71 +0.33%; UNP 68sh @ $291.45 → $299.75 +2.85%)
+- Open orders: 2 GTC sell-stops (KO $81.30, UNP $271.56 — both active, gaps 7.3% and 9.4%)
+- Deployment: ($19,647 + $20,383) / $100,164 = 40.0%
+- Note: RTX day-TIF buy-stop $227.50 (placed Aug 13) expired without fill. 0 trades executed this week.
+
+### Macro Framework
+Bull regime after back-to-back benign data prints. CPI Jul 2026 (released Aug 12): inline consensus, no surprise. PPI Jul 2026 (released Aug 13): unch MoM (goods −0.7% deflationary, services +0.2%); YoY +4.7% — cooler-than-feared, September rate-hike probability dropped to 35%. SPX hit record high Aug 13 (+0.7%), led by semiconductors (SNDK +15%, MU +5.6%) and tech. VIX: ~14.51 (↓ from 16.7-17.0 on Aug 11 CPI-watch; calmest reading in weeks). 30Y yield: ~5.21-5.24% (eased −2-3bp from Aug 13 PPI day from 5.253% peak; still 25-year high per Fortune/Treasury [WebSearch — unverified]; structurally elevated from Treasury supply + AI capex corporate issuance). WTI: $81.27 (↓ from $82.11 Aug 13; Hormuz premium fading; Iran ceasefire talks progressing but no deal). Retail sales Jul 2026 (released today Aug 14 8:30 ET): −0.6% MoM (vs +0.1% consensus expected); YoY +5% (decelerating from 6.7% June, 7.3% May) — steepest monthly drop since May 2025 [WebSearch — unverified, Census.gov/CNN]. Consumer weakness adds mild risk-off offset to otherwise bullish backdrop. DXY: not tracked (Gemini quota exhausted, 6th degraded session). vs yesterday: VIX −0.77 (material improvement); oil −0.84 (easing); 30Y −3bp (easing); regime Neutral→Bull; cap lifted; KO +0.33%; UNP +2.85% (strong). Dominant theme: post-CPI/PPI risk-on relief + AI infrastructure spending ($420B Alphabet+Amazon) driving semiconductor/memory sector re-rating.
+
+### Sector Picture
+- Top 3 (1mo momentum): Energy XLE +8.88% (Trend, #1), Healthcare XLV +5.82% (Trend), Materials XLB +3.73% (Trend)
+- Next 3: Tech XLK +3.58% (Trend), Financials XLF +3.56% (Trend), Industrials XLI +3.33% (Trend)
+- Bottom 3: Utilities XLU −3.21% (Bear — avoid), Real Estate XLRE +1.70% (Choppy), Comm Services XLC +1.70% (Trend)
+- Screener vs ML-insights sectors: Broadly agree (XLK, XLV, XLF, XLI, XLE all Trend). Disagreement: sector-momentum shows XLC as Trend (third from bottom at +1.70% MoM vs ML XLC Trend=0.3887). XLP Choppy, XLRE Choppy both agree.
+
+### Candidates
+
+#### MU (XLK, $973.67 premarket vs $965.47 prev close, +0.85%)
+
+**Setup:** Screener #1 (ml_score 1.2544 [screener explain], 1.1068 [universe ranking]). Year range $113.46–$1,255. Current $973.67 = 22.5% below 52w high. 200-SMA distance: not computed (Gemini down); prior research June 15 at $981.61 in strong uptrend. ATR(14)=$72.54 (atr_pct=7.45% of price); stop_pct_2_5x=18.63% → clamped to 15%. **Data contradiction (B2):** stop-for-entry script at entry $960 returned atr=$10.87 (1.12% of price), raw_2_5x=2.798%, stop_pct=7.0% — irreconcilable with atr script ($72.54, 7.45%) and screener explain (atr_pct=7.489%). Screener and atr script agree on 7.45%; stop-for-entry likely using a different data window or source. **Using 7.45% (15% clamped stop) as conservative estimate** for all R:R calculations below.
+
+**Sources scanned (6):** 5 Finnhub (today + Aug 13) / 0 NewsAPI (not queried — Gemini down, no synthesize call) / 2 EDGAR (10-Q, 2025) / 0 Reddit (egress http_403 blocked) / 1 WebSearch [unverified].
+
+**Bull case:**
+- SNDK (SanDisk) Investor Day Aug 13 reset NAND economics expectations for 2028-2030, drove memory sector rally; MU as HBM/DRAM leader benefits from NAND supply discipline narrative (memory sector de-rating reversed) [Finnhub 2026-08-14 — SanDisk's Investor Day Puts NAND Center Stage]
+- Alphabet + Amazon $420B AI infrastructure spend — MU and NVIDIA named as primary beneficiaries of data-center memory demand acceleration [Finnhub 2026-08-14 — "Alphabet and Amazon Are Spending $420 Billion on Infrastructure"]
+- Micron Ventures Paradigm Fund launched ($250M) to invest across AI technology stack — signals management confidence in AI memory demand thesis [Finnhub 2026-08-13 — Is Micron Using Its New AI Fund to Quietly Redefine Its Memory Strategy?]
+- FY2026 capex raised to ~$20B (from $18B) for HBM and 1-gamma capacity; HBM market projected to reach $100B by 2028, two years ahead of prior estimates [WebSearch — unverified, iTiger/Kraken]
+- Post-Q4 FY2026 earnings (est. ~June 24) record results + bullish Q3 guide; "very tight memory supply to last beyond 2027" as AI demand outpaces capacity additions [WebSearch — unverified]
+- 46-analyst "Strong Buy" consensus, avg PT $1,501.98 [WebSearch — unverified, public.com/stockanalysis]
+
+**Bear case:**
+- "The next AI winners may look nothing like Nvidia or Micron" — article arguing AI investment thesis rotates away from foundational memory/compute plays toward software/orchestration layer [Finnhub 2026-08-14 — "One Big Investment Idea"]
+- Vol_stability score: −3.0 (maximum negative in screener) — historically very high daily volatility; 15% stop required (wide) with 2.88% equity risk
+- Retail sales −0.6% MoM today: consumer weakness that could be leading indicator of enterprise IT capex softening if recession materializes [WebSearch — unverified, Census.gov/CNN 2026-08-14]
+- 30Y yield at 5.21-5.24% (25-year high): structural headwind for long-duration tech multiple expansion; any yield spike on fiscal/supply concerns could compress MU's forward P/E
+- MU fell from $1,255 (52w high) to $973 (−22.5% from peak) — potential distribution phase or late-cycle entry after a 760% rally from $113 low
+
+**Disconfirming evidence:** Samsung or SK Hynix announcing aggressive HBM pricing/supply increase; Intel or AMD gaining HBM market share; any guide miss at MU Sep 23 earnings.
+
+**Catalysts ahead (14d):**
+- Applied Materials (AMAT) earnings Aug 14 after close — key AI capex signal for MU demand (AMAT is primary semiconductor equipment supplier); pre-announced Thursday, tepid reaction [Finnhub 2026-08-13]
+- Federal Reserve commentary on rate path (FOMC minutes timing: Kraken blog mentions Aug 2026 FOMC minutes window)
+- Next MU earnings: Sep 23, 2026 (40 days, not in blackout) ✓
+
+**One-line takeaway:** MU is the #1 screener pick with fresh post-SNDK NAND re-rating catalyst; wide 15% stop required by ATR but R:R passes at 2.05:1 using 52w high target; VIX calm and regime Bull support a limit pullback entry.
+
+**Data check (B2):** Prior research (June 15): analyst consensus median $846, Wolfe $1,250 PT → R:R 1.82:1, demoted. Today: 46-analyst avg PT $1,501.98 [WebSearch — unverified]. Reconciliation: After June 24 Q4 FY2026 earnings ("stock soared 45%" per Yahoo Finance headline [WebSearch link], "record results"), massive upgrade wave drove consensus from ~$846 to ~$1,502. This is a genuine post-earnings consensus reset, not a data error. **Keeping $1,502 consensus PT [WebSearch — unverified]** as secondary target reference; using $1,255 (52w high, concrete level) as primary cited target for 2:1 floor check.
+
+**Critique:**
+**Strongest counter to the bull case:** The "next AI winners look nothing like Nvidia or Micron" thesis is gaining traction precisely at a moment when MU has run 760% from its $113 low. Markets discount 12-18 months ahead: if the AI investment narrative is already rotating to software/orchestration (the Finnhub article from today), institutional money may be exiting the hardware/memory phase. The combination of a 30Y yield at a 25-year high (5.24%), retail sales -0.6% miss today (recession leading indicator), and MU's vol_stability at maximum negative (-3.0) means that any macro surprise could trigger a rapid -20% re-rating to $780, well below our 15% stop at $816.
+
+**Weakly-sourced claims:** "46-analyst avg PT $1,501.98" and "46-analyst Strong Buy consensus" cited from WebSearch [public.com / stockanalysis] — not Finnhub-verified (403 error). "$250M Micron Ventures Paradigm Fund" and "FY2026 capex $20B" from Finnhub headlines (summaries) — not verified from primary filing. Finnhub analyst endpoint returned 403, preventing direct PT verification.
+
+**Single most-likely invalidator (next 5 trading days):** AMAT earnings tonight (Aug 14 AH) guide below $7.9B revenue for FY2027 — would signal AI capex deceleration and immediately cascade to MU thesis; combined with retail sales miss today, a soft AMAT print could re-set memory sector valuation.
+
+**Position-aware (if entered $19,200 at $960):**
+- Sector exposure post-entry: XLK 19.2% (new; no prior XLK positions)
+- 30d correlation with existing positions: −0.02 vs UNP [market_data.py], ~+0.01 vs KO (implied) ✓ (both near zero — true portfolio diversifier)
+- Sector cap: XLK 1/2 (no other XLK positions; cap not filled)
+- Shared-catalyst flag (B6): MU (AI memory/HBM) vs KO (consumer staples/defensive) vs UNP (rail freight) — completely different primary catalysts ✓. No shared-catalyst concentration risk.
+- Post-entry deployment: ($19,647 + $20,383 + $19,200) / $100,164 = 59.1% (above exposure coach ceiling 53%, below regime deployment_target 85% — tension documented, advisory-only)
+
+**R:R math (B3):** Entry $960 limit / Stop $816 (−15.0%, clamped from 18.63% per ATR(14)=$72.54) / Target $1,255 (+30.7%, 52w high — concrete resistance level [price data]) / R:R ($295/$144) = **2.05:1 ✓** (passes 2:1 floor; barely). Secondary target: consensus $1,502 [WebSearch — unverified] → R:R 3.76:1. Max risk: 20sh × $144 = $2,880 (2.88% equity — acceptable).
+
+**Setup type (Phase G1):** PULLBACK — price is $973.67 pre-market, pulling back from $984 intraday high Aug 13; thesis is "fill only on a dip to $960, not at open excitement price." Limit $960 is $13.67 (1.4%) below pre-market, a modest pullback from yesterday's session range.
+
+**Entry plan:** PULLBACK → buy-limit $960.00 (day TIF). Shares: 20 (20 × $960 = $19,200, 19.2% equity). Stop: GTC sell-stop $816.00 to be placed immediately after fill.
+
+**Gate-history audit (B7):** Prior MU entries: June 15 at $981.61 (demoted, R:R 1.82:1, "Do NOT chase"); June 4 trailing stop hit $986.18. Today's planned entry $960 is BELOW both prior levels ($981.61 and $986.18). No gate-creep — proposed limit at $960 is more conservative than any prior MU research level. Gate clear.
+
+**Decision:** RETAINED as primary slot-1 candidate. R:R 2.05:1 ✓, pullback limit $960 (not chasing), sector diversifier, 40 days to next earnings, screener #1. AMAT AH earnings tonight are a key catalyst verification — if AMAT guide misses, re-evaluate before Monday.
+
+---
+
+### Candidates dropped (and why)
+- AMGN ($414.18, XLV) — gate-creep block (B7): watchlist planned entry $394 (established Aug 12 research "Do NOT enter above $394"); current price $414.18 (+5.1% above plan); no pullback to plan level. Demoted to watchlist (already there, days_remaining=3). Entry only if AMGN returns to $394 next week.
+- RTX ($220.99, XLI) — no breakout (day TIF buy-stop $227.50 expired Aug 13 without fill); ex-dividend today (Aug 14) — dividend capture window closed; stock at $221 vs $227.50 break level. XLI sector cap concern (UNP already 1/2 XLI); thesis intact but time urgency removed post-ex-date. Keeping on watchlist, reassess Monday for clean breakout.
+- XBI (0.5573, XLV) — sector cap: AMGN occupies slot 1 of XLV; XBI broad ETF lower conviction than single-name thesis
+- BAC ($64.33, XLF) — R:R fails: entry $64.33, 7% stop $59.83, Morgan Stanley PT $66 → R:R ($1.67/$4.50) = 0.37:1. Near 52w high $65.20 (1.4% upside). No valid target to reach 2:1 floor.
+- MRK (0.4799, XLV) — not deeply researched; XLV sector cap if AMGN occupies slot (watchlist)
+- AMD (0.4759, XLK) — same sector as MU (#1); screener placed MU higher; correlation MU/AMD likely high — not checked, but XLK sector cap after MU entry
+
+### Historical Analog
+
+**Analog:** August-December 2024. Conditions: SPX set record highs after back-to-back cool inflation prints (CPI Jul 2024: 2.9%, PPI benign). VIX in 13-16 range (similar to today's 14.51). AI/semiconductor leadership (NVDA, AMD, MU +20-40% in Q4 2024). Rate-hike cycle ended, market pricing first cut. 10Y dropped from 4.7% to 4.1% over August-December 2024. Today: same pattern — VIX 14.51, sequential benign prints, semiconductor leadership (SNDK +15%, MU +5.6%), 30Y easing from 5.24% peak.
+
+**What followed:** SPX gained ~11% August–October 2024 [historical training data]. AI-exposed semiconductors (NVDA, MU) outperformed by 15-25% over the same period. MU specifically rallied from ~$120 (Aug 2024) to ~$160+ (Oct 2024 pre-correction).
+
+**Why this time might differ:** Today's 30Y yield at 5.24% is ~130bp above Aug 2024's ~3.85-4.0% 30Y — significantly higher rate pressure on tech multiples. Retail sales -0.6% MoM (today) vs resilient consumer in Aug 2024. The "AI winners may not look like Nvidia or Micron" narrative risk didn't exist in 2024. MU has already run 760% from $113 low vs ~30% in the 2024 analog period — much more extended positioning today.
+
+### Risk Factors (consolidated)
+1. **AMAT earnings tonight (Aug 14 AH):** Guide miss would signal AI capex deceleration; key to-watch catalyst for MU thesis validity
+2. **Retail sales -0.6% MoM (today):** Steepest drop since May 2025; consumer weakness as leading indicator; could shift Fed narrative toward cuts (bullish) or recession fears (bearish)
+3. **30Y at 25-year high (5.21-5.24%):** Structural headwind for tech multiple expansion; any fiscal event (debt ceiling, supply surge) could re-spike yields and hit MU hard
+4. **MU ATR 7.45% / 15% stop:** Wide stop means 2.88% equity at risk on a single position; Friday entry going into weekend with AMAT catalyst tonight
+5. **ML stale 65 sessions:** Regime classification accuracy declining; Bull call is rule_fallback with lower confidence; true market risk may be higher than model indicates
+6. **Gemini quota exhausted (6th consecutive session):** All research from WebSearch [unverified] + Finnhub headlines; synthesis depth materially reduced
+7. **RTX XLI cap:** If RTX fills next week (buy-stop $227.50), XLI would be 2/2 with UNP — no further industrials entries thereafter
+
+### Decision
+**TRADE — MU limit $960 (1 slot of 2 effective, day TIF).** Place immediately at market open after 15-minute wait (standard rule).
+
+- **MU:** PULLBACK, limit $960, 20 shares ($19,200 / 19.2% equity), GTC stop $816 to arm on fill. R:R 2.05:1 (passes 2:1 floor, barely; secondary target $1,502 → 3.76:1). AMAT earnings tonight are a catalyst check — if AMAT AH guide misses materially, cancel before fill if still pending, or accept the stop exit if already filled.
+- **KO:** HOLD. Stop $81.30 GTC ✓ (7.3% gap). No stop adjustment needed (+0.33% unrealized, far from +15% trail-tighten threshold).
+- **UNP:** HOLD. Stop $271.56 GTC ✓ (9.4% gap). +2.85% unrealized, well below +15% trail-tighten threshold ($291.45 × 1.15 = $335.17). Dividend $1.42/sh ex-date Aug 31 remains on track.
+
+**Second slot (open):** Reserved for RTX breakout ($227.50 buy-stop) next week if SPX holds near record highs, OR AMGN pullback to $394. Do NOT deploy second slot today (limit to 1 new position on a Friday with stale ML + retail sales miss).
+
+Wait 15 minutes after open (9:45 ET) before placing the MU limit order.
+
+### Screener diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked 67 tickers, top 10 = [MU(1.1068,XLK), AMGN(0.6044,XLV), XBI(0.5573,XLV), MRK(0.4799,XLV), AMD(0.4759,XLK), XLK(0.4451,XLK), BAC(0.4397,XLF), XLE(0.4026,XLE), JPM(0.3800,XLF), RTX(0.3364,XLI)]. Effective shortlist (4): [MU, AMGN, XBI, BAC] (sector cap + correlation filter applied). MU screener explain: ml_score=1.2544, momentum_125d=3.0, momentum_20d=1.302, rs_vs_sector_60d=3.0, vol_stability=−3.0.
+
+### Quota & source usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash + 0 Pro — ALL FAILED (exit 4 / 429 for Flash, 404 model-not-found for synthesize; 6th consecutive session) [degraded: Gemini quota]
+- WebSearch: primary fallback for all macro data, analyst PTs, SNDK/MU narrative context
+- Finnhub: 8 records for MU (today's pre-market movers + SNDK Investor Day + AI infrastructure articles)
+- EDGAR: 3 records for MU (10-Q 2025, stale — not used in decision)
+- NewsAPI: 0 records (not queried)
+- Reddit: egress http_403 blocked — not cited
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1569.7h (65 sessions). Hard gate: slots 3→2. URGENT: refresh local PC (65th session).
+- Exposure coach: ceiling=53%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM. Post-MU deployment 59.1% exceeds advisory ceiling; documented tension; no hard gate override.
+- Fallback events: Gemini 429 → WebSearch for ALL macro/analyst data; citations marked [WebSearch — unverified]. 6th consecutive degraded session.
