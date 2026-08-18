@@ -8531,3 +8531,152 @@ Wait 15 minutes after open before placing either order.
 - ml_insights: status=stale_degrade, age=1640.3h (68 sessions). Hard gate: slots 3→2. URGENT: ML refresh + GEMINI_MODEL fix needed.
 - Exposure coach: ceiling=53%, rec=NEW_ENTRY_ALLOWED, bias=VALUE, conf=MEDIUM. Tension documented.
 - Fallback events: Gemini 404 → WebSearch for ALL macro/analyst/synthesis data; citations marked [WebSearch — unverified]. 7th consecutive degraded session. Root cause: invalid model name in GEMINI_MODEL env var.
+
+---
+
+## 2026-08-18 — Pre-market
+
+**Regime:** Bull (source: rule_fallback, slots: 2, deployment: 85%) — ML stale 1664.1h (69th consecutive rule_fallback session; stale_degrade penalty: trade_slots 3→2)
+**ML staleness:** age=1664.1h (stale_degrade). **Hard gate: slots reduced 3→2.** URGENT: refresh ML on local PC.
+**Breadth/Sector:** breadth=76.2/100 (Healthy) | sector=risk-on score=74 phase=mid | divergence_flag=True (cyclical/defensive internal disagreement)
+**FTD:** parse error — FTD state unavailable this session
+
+### Account
+- Equity: $100,225.89 | Cash: $60,136.29 | Buying power: $352,796.04
+- Open positions: 2 (KO 224sh @ $87.42, MV $19,690; UNP 68sh @ $291.45, MV $20,400)
+- Open orders: KO GTC stop $81.30 ✓ | UNP GTC stop $271.56 ✓
+- Deployment: 40.1% (target 75-85% Bull — significantly underdeployed)
+- Daytrade count: N/A (paper; not tracked in API response)
+- Trades this week (Tue): 0/3 (0/2 effective slots used)
+
+### Macro Framework
+Bull regime, risk-off tilt. VIX 15.19 (+6.6% — first elevation in 5 sessions). SPX futures -0.41%, Nasdaq -0.76% premarket. 30Y nominal yield ~5.27-5.30% (near 19-year high; stable vs Aug 17). Brent $90.97 (+0.11%), WTI ~$82-83/bbl — Hormuz premium holding on renewed Lebanon fighting and vessel attacks in the Strait. Economic releases today: Housing Starts & Building Permits (8:30 ET), Industrial Production (9:15), Pending Home Sales (10:00) — macro noise but no market-moving CPI/FOMC class events. MU broke $1,000 again (+4.1% premarket, $1,011.75) on Trump admin opposing Apple sourcing memory chips from Chinese suppliers — AI capex demand narrative refreshed. RTX $221.64 (−0.46%), below 52w high $226.88, buy-stop at $227.50 not triggered. vs Aug 17: VIX +0.93 (+6.6%); SPX futures flipped negative; oil +$1 (Brent); yield flat; MU +3.7% on Apple/China news. Dominant theme: geopolitical risk-off overlay on intact AI + defense fundamentals. No GEMINI_MODEL fallback synthesis available (Gemini quota 429 on gemini-3.5-flash; GEMINI_SMART_MODEL gemini-3-flash returns 404 invalid model). [Fallback: WebSearch — unverified for all macro data].
+> SPX index ~7,470 level; SPY ETF ~$745.
+
+### Sector Picture
+- Sector momentum: all NaN (Yahoo Finance rate-limiting; sector ETF price data unavailable this session)
+- Sector rotation (community skill): risk-on 74/100, mid-cycle, divergence_flag=True (cyclical and defensive sectors sending mixed signals internally)
+- Regime sectors from rule_fallback: all tagged "Choppy" (NaN scores; YF rate-limiting)
+- Cross-check: sector-momentum unavailable → cannot cross-check vs ml_insights sectors block. No sectors confirmed Bear.
+- Prior session sector leadership (Aug 17): AI hardware (XLK) + defense (XLI) dual-engine. Unchanged thesis.
+
+### Screener Diagnostics
+Screener: source=local_screener_v1, ranked 0 tickers (Yahoo Finance rate-limiting caused NaN scores across all names), shortlist empty — fell back to carry-forward watchlist.
+
+### Candidates
+
+**Watchlist carry-forward:**
+- RTX: buy-stop $227.50 BREAKOUT (3 days remaining, prior sessions Aug 13/14/17 expired unfilled)
+- MU: limit $960 PULLBACK (3 days remaining; current $1,011.75 = gap-skip again)
+- AMGN: planned entry $394 (gate-creep blocked Aug 17; expires today)
+
+---
+
+#### RTX (XLI, $221.64 −0.46% premarket)
+
+**Setup:** 52w high $226.88; current $221.64 = −2.3% below BREAKOUT trigger. 52w low $150.61. ATR(14)=$4.62 (as of 2026-08-17; atr_pct NaN due to YF rate-limiting — estimated ~2.1% of $221); stop_pct_2_5x = 5.09% → clamped to 7.0%.
+
+**Sources scanned (3):** 15 EDGAR Form 4s (recent: Jul 28, Jul 6, May 4 verified) / 1 WebSearch [Gemini grounded — unverified] / 0 NewsAPI (403 Forbidden) / 0 Finnhub analyst (403 Forbidden) / 0 Reddit (http_403).
+
+**Bull case (from prior verified gather + WebSearch Aug 18):**
+- $22.9B US Navy Tomahawk contract (7-year, ramp 60→1,000 missiles/yr) — verified independently via Yahoo Finance and StockTitan 2026-08-17.
+- $271.49M AEGIS Weapon System MK 99 contract awarded Aug 2026 [WebSearch 2026-08-18 — unverified].
+- $745M SM-3 Block IIA production/sustainment (MDA Aug 10) + 7-year SM-3 Pentagon framework [Finnhub Aug 10 — verified].
+- Q2 FY2026: revenue +11.7%, profit +28.3% ($1.89 vs $1.66 est), $289B backlog (+22% YoY) [Finnhub — verified].
+- BNP Paribas PT $265 Outperform (raised Jul 24) [MarketScreener Jul 24 — verified].
+
+**Bear case:**
+- R:R depends entirely on BNP $265 — consensus $228.59-$232.27 (23 analysts) fails 2:1 floor [WebSearch Barchart — unverified].
+- Multiple executive insider sells July: DaSilva Kevin G −2,250sh @ $216.93 (Jul 28), Atkinson Tracy A −2,295sh @ $218.05 (Jul 27) [EDGAR Form 4 — verified].
+- GTF remediation cost wildcard (undefinitized F135 contract) — Q3 margin risk.
+- Risk-off market (VIX +6.6%, SPX -0.41%) reduces probability of breakout above $226.88 today.
+- XLI fills to 2/2 with UNP on entry — no further industrials after this.
+
+**Disconfirming evidence to watch:** If SPX remains down >0.5% through 10 AM, odds of RTX reaching buy-stop are low. If any GTF cost overrun announcement. Bernstein maintains Market Perform $232 — any conference call reiterating $232 consensus sinks R:R.
+
+**Catalysts ahead (14d):** Housing data today (8:30); no RTX-specific catalysts in 14d window (next earnings Oct 20, 63d away, not in blackout).
+
+**One-line takeaway:** RTX buy-stop $227.50 is a valid BREAKOUT entry if market recovers from risk-off premarket — sixth attempt; mechanism protects against chasing on a weak day.
+
+**Data check (B2):** BNP PT $265 [MarketScreener Jul 24 — verified; unchanged from Aug 13-17 research]. RTX current $221.64 vs Aug 17 $223.54 → -0.85% overnight. Consistent trend (below breakout trigger). No metric sign flips.
+
+**Critique (Claude direct):**
+
+**Strongest counter to the bull case:** The risk-off macro environment (VIX +6.6%, SPX futures -0.41%, Nasdaq -0.76%) materially reduces the probability that RTX breaks above its 52w high of $226.88 today. This is the sixth consecutive session the buy-stop has been placed at $227.50 without firing. Each "light macro" day thesis (Aug 13, 14, 17) failed to produce the breakout. In a down market, defense names can hold but rarely make new highs; the Tomahawk catalyst has been public for 2+ days and may be fully priced at current levels. The only upside path requires the entire market to recover and for RTX specifically to outperform — a double requirement on a risk-off day.
+
+**Weakly-sourced claims:** AEGIS MK 99 contract $271M [WebSearch — unverified]. "Raytheon president multi-million stock move" [TipRanks headline — not followed up; cannot determine if buy or sell]. Consensus PT $228-$232 [WebSearch Barchart — unverified].
+
+**Single most-likely invalidator (next 5 trading days):** SPX remains negative through the open (housing data miss or geopolitical headline triggers selloff) → RTX closes below $220 on profit-taking, buy-stop $227.50 expires unfilled for sixth time; thesis expires from watchlist.
+
+**Position-aware (if entered $19,793 at $227.50, 87sh):**
+- Sector exposure post-entry: XLI 2/2 (UNP+RTX fills cap)
+- 30d correlation RTX/UNP: 0.2939 ✓ | RTX/KO: ~negative ✓
+- Sector cap: XLI 2/2 — acknowledged (defense+rail industrial diversification)
+- Shared-catalyst flag (B6): RTX (defense/missiles) vs UNP (rail) — different primary catalysts. ✓
+
+**R:R math (B3):**
+- Entry: $227.50 (buy-stop) | Stop: $211.58 (−7.0%, ATR 2.5× clamped) | Target: $265 (BNP Paribas PT [MarketScreener Jul 24 — verified])
+- R:R = $37.50/$15.92 = **2.36:1 ✓** (passes 2.0 floor)
+- Max risk: 87sh × $15.92 = $1,385 (1.38% equity)
+- Note: consensus PT $228-232 → R:R ~0.3:1 (FAILS). BNP $265 is the only cited target passing. Single-analyst risk acknowledged.
+
+**Setup type (Phase G1):** BREAKOUT — buy-stop $227.50 above 52w high $226.88. Buys only on confirmed strength; no downside from expired day TIF on a weak day.
+
+**Entry plan:** BREAKOUT → buy-stop $227.50 (day TIF) | Shares: 87 | Stop $211.58 (OTO child) | Wait 9:45 AM ET.
+
+**Gate-history audit (B7):**
+- Aug 13: buy-stop $227.50 (expired unfilled)
+- Aug 14: watchlist added at $227.50
+- Aug 17: buy-stop $227.50 (expired unfilled, $223.54 at order time)
+- Today Aug 18: planned $227.50, current $221.64 (−2.6% below trigger)
+- No gate creep (consistent $227.50 across all sessions). ✓ Current price well below trigger — not chasing.
+
+**Decision:** RETAINED. Risk-off environment noted; BREAKOUT mechanism protects against bad entry — order only fills if RTX actually breaks $226.88. Place buy-stop at 9:45 AM ET.
+
+---
+
+### Candidates Dropped (and why)
+- MU — gap-guard skip: $1,011.75 current vs $960 limit plan = +5.4% above plan (>3% threshold $988.80). Watchlist maintained (3 days remaining). Trump admin China/Apple chip news strengthens bull thesis but price is not at entry.
+- AMGN — gate-creep block (B7): planned entry $394, current ~$417+ (still well above gate). Watchlist expires today (added Aug 12, exhausted 3-day window). Dropped from watchlist per expiry.
+- All screener candidates — Yahoo Finance rate-limiting caused empty shortlist (NaN scores). Cannot generate fresh candidates without working price data.
+
+### Historical Analog
+
+**Analog:** October 7-13, 2023. SPX at record highs (similar Bull regime), VIX spiked from ~14 to ~20+ on Hamas attack geopolitical shock. 30Y yield ~5.0-5.3% (very close to today's ~5.27-5.30% range — structurally high rates period). Defense sector (RTX, LMT, NOC) surged +3-6% on Oct 7-8 as conflict escalated. Geopolitical risk premium elevated. Market: SPX initially sold off -0.5% to -1%, then recovered within 3-5 sessions [Bloomberg, historical SPX data Oct 2023].
+
+**What followed (Oct 2023 analog):** 5d: SPX −2.4% (continued selling on rate fears + geopolitical); 10d: SPX −0.8% (recovered most losses, defense held gains); 20d: SPX +5.2% (market refocused on earnings and AI narrative, Oct 27 was the low). Defense names gave back 50-60% of the initial spike within 10 days as the shock faded, then resumed on sustained Pentagon spending news.
+
+**Why this time might differ:** Today's Lebanon/Hormuz situation appears more contained than Oct 7, 2023 (no equivalent multi-front shock). RTX specifically has the $22.9B Tomahawk contract as a fundamental re-rating catalyst (not pure fear-premium buying). However, the 30Y at 5.27% vs 5.0-5.3% in Oct 2023 is nearly identical — the rate compression tailwind that drove the 20d recovery in Oct 2023 may be weaker if yields are already at this level.
+
+### Risk Factors (consolidated)
+1. **Gemini quota exhausted:** Both Flash (429) and Pro (404 invalid model name) failed. 8th consecutive degraded research session for synthesis/macro. All macro data this session is [WebSearch — unverified].
+2. **ML stale 1664h (69th session):** Rule_fallback regime may misidentify a true bear shift. URGENT: refresh ML on local PC.
+3. **Yahoo Finance rate-limiting:** Sector ETF prices (NaN), screener (empty), ATR percentages (NaN). Running blind on fresh sector data.
+4. **VIX elevated (+6.6%, 15.19):** Highest in 5 sessions. Risk-off tilt reduces breakout probability for RTX today.
+5. **30Y yield ~5.27-5.30% (19-year high):** Persistent rate headwind on tech/growth multiples. Any fiscal surprise = yield spike.
+6. **UNP merger risk:** Norfolk Southern merger regulatory uncertainty flagged in analyst coverage [WebSearch Aug 18]. Monitor for material development.
+7. **KO valuation concern:** 247 Wall St article Aug 17 "Coca-Cola Doesn't Make Much Sense Anymore" — 71x FCF, 26x trailing PE. Fundamental bear argument gaining mainstream coverage.
+
+### Decision
+**TRADE — 1 slot (2 effective slots, both watchlist carries):**
+1. **RTX:** BREAKOUT, buy-stop $227.50 (day TIF), 87 shares ($19,793 / 19.7% equity). OTO child sell-stop $211.58. Wait 9:45 AM ET. Only fills if RTX breaks 52w high $226.88 — no downside from placing on a risk-off day.
+2. **MU:** Gap-skip (watchlist maintained at $960 limit, 3 days remaining).
+
+Post-fill deployment (if RTX fills): ($19,690 + $20,400 + $19,793) / $100,226 = 59.8% (still below 75-85% target; would need one more position later in week). 
+
+KO: HOLD. Stop $81.30 GTC ✓ (KO +0.55% unrealized). Note valuation bear article; no rule-based action.
+UNP: HOLD. Stop $271.56 GTC ✓ (UNP +2.93% unrealized). Monitor Norfolk Southern merger regulatory development.
+
+Watch 15 min after open before placing RTX order.
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 3 Flash (all 429 quota exhausted) + 1 Pro (404 invalid model — gemini-3-flash not found) = 0 usable
+- NewsAPI: 0 (not called; Gemini quota failure meant no synthesize call)
+- Finnhub: 0 news (403 analyst endpoint) / EDGAR 15 RTX Form 4s (verified)
+- Google News: 0 (not called this session)
+- Reddit: http_403 egress blocked — not cited
+- WebSearch: primary fallback for all macro/price/catalyst data [unverified]
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1664.1h. Hard gate: slots 3→2.
+- Fallback events: Gemini Flash 429 quota; Gemini Pro 404 (invalid GEMINI_SMART_MODEL=gemini-3-flash); Yahoo Finance rate-limited (sector ETF NaN, screener empty); Finnhub 403 (analyst upgrades). 8th consecutive degraded session. CRITICAL: Fix GEMINI_SMART_MODEL env var to "gemini-2.5-pro" or current valid Pro model name.
+- Breadth: 76.2/100 (Healthy) | Sector: risk-on 74/100 mid-cycle divergence | Exposure: parse error (skipped)

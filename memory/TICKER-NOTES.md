@@ -388,7 +388,7 @@ Conventions:
 - Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
-- Thesis (2026-08-17): BREAKOUT slot 2 — buy-stop $227.50 (above 52w high $226.88). $22.9B Navy Tomahawk contract (7-year, 60→1,000 missiles/yr) announced today — major re-rating catalyst [Yahoo Finance, StockTitan 2026-08-17 — verified]. BNP $265 Outperform PT → R:R 2.36:1. Consensus $228-$232 (fails alone; BNP outlier). XLI fills to 2/2 with UNP on entry — acknowledged. Next earnings Oct 20, not in blackout.
+- Thesis (2026-08-18): BREAKOUT (6th attempt) buy-stop $227.50 valid — BREAKOUT mechanism protects against chasing in risk-off environment (VIX +6.6%, SPX -0.41%); only fills on confirmed 52w high break. $22.9B Tomahawk contract primary catalyst. BNP $265 PT → R:R 2.36:1. XLI fills 2/2 with UNP. Next earnings Oct 20, not in blackout.
 - Recent catalysts:
   - 2026-08-17: US Navy awards $22.9B, 7-year Tomahawk contract (Raytheon unit); output 60→1,000/yr [Yahoo Finance, StockTitan 2026-08-17 — verified multiple sources]
   - 2026-08-14: Pentagon SM-3 7-year framework (Boeing + RTX); Blue Canyon Technologies sale for $620M to MDA Space [Finnhub 2026-08-14 — verified; WebSearch — unverified]
