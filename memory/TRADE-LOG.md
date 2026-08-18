@@ -937,3 +937,95 @@ Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $3
 **Session Decision:** **TRADE — RTX buy-stop $227.50, 87 shares.** MU skipped (gap above plan). Breakout catalyst fresh ($22.9B contract); order pending fill on 52w high break. Stop $211.58 (OTO child armed on fill). Expect RTX fill decision in final ~3 hours of trading if breakout materializes.
 
 **Next checkpoint:** Daily-summary will reconcile RTX fill status. If filled: log as OPEN. If not filled by EOD: cancel, carry RTX to watchlist for Aug 14+ at original $227.50 unless 52w high invalidated by >2% close below $225.
+
+---
+
+### MARKET-OPEN EXECUTION 2026-08-18 (Tuesday)
+
+**STEP 0 System Gates:**
+- lock_file: false ✓
+- entries_blocked: false ✓
+- tighten_trails: false ✓
+- Regime: Bull (rule_fallback, slots 2 effective)
+
+**STEP 1 Research Plan:**
+- RTX BREAKOUT $227.50 (carry-forward watchlist from Aug 13-17)
+- MU gap-skip (current $1,011.75 >> $960 plan)
+
+**STEP 2 Account & Live Data:**
+- Equity: $100,390 | Cash: $60,136
+- Positions: KO 224sh ($88.13), UNP 68sh ($302.22)
+- Deployment: 40.1% (underdeployed; targeting 75-85%)
+- RTX current: $223.54 (−1.7% from plan, no gap adjustment)
+
+**STEP 3 Gate Checks RTX:**
+- Universe: ✓ (allowed)
+- Sector: XLI (fills to 2/2 with UNP; acknowledged)
+- Position count: 2/6 → 3/6 on fill ✓
+- Trades week: 0/3 ✓
+- Correlation RTX/UNP: 0.278 ✓
+- Gap guard: ✓ (−1.7% < 3% threshold)
+- R:R floor: 2.36:1 ✓ (entry $227.50, stop $211.58, target $265)
+- Earnings blackout: not in blackout ✓
+- Catalyst intact: $22.9B Tomahawk contract ✓
+
+**STEP 4 ATR-based Stop:**
+- ATR(14): $4.52 (2.02% of price)
+- stop_pct: 7.0% (clamped from 5.06%)
+- stop_price (at entry $227.50): $211.58
+
+**STEP 4b Sizing (flat_20pct, N=1 closed):**
+- Size: 20.0% × $100,390 = $20,078
+- Per-share risk: $15.92
+- Shares: 88 (bounded by size %, risk cap checked)
+- Actual risk: $1,401 (1.40% equity) ✓
+
+**STEP 5 Order Placement (13:39:36 EDT, ~9:39 AM ET):**
+- Order ID: 8a2e7963-1ab7-45a5-9bb1-56591a100bf5
+- Symbol: RTX
+- Type: stop (BREAKOUT)
+- Qty: 88
+- Stop price: $227.50
+- Time in force: day (expires 16:00 ET)
+- Order class: OTO (one-triggers-other)
+- Stop-loss child: sell-stop $211.58 (held, activates on parent fill)
+- Status: pending_new
+- Current RTX: $223.54 (awaiting breakout above 52w high $226.88)
+
+**STEP 5b Stop Coverage:**
+- Result: covered=true
+- KO: protected by GTC $81.30 ✓
+- UNP: protected by GTC $271.56 ✓
+- RTX (if filled): protected by OTO child $211.58 ✓
+
+**STEP 6 TRADE-LOG Append (PENDING):**
+- PENDING 2026-08-18: RTX order_id=8a2e7963-1ab7-45a5-9bb1-56591a100bf5 type=stop entry=227.50 initial_stop=211.58 shares=88 regime_entry=Bull sector=XLI sizing=flat_20pct thesis="Defense missile replenishment ($22.9B Tomahawk award Aug 17); record $289B backlog; Q2 EPS beat +28% YoY. BNP $265 PT (lone high-conviction target); consensus $228 barely clears buy-stop R:R 2.36:1. Risk-off premarket (VIX +6.6%, SPX -0.41%) noted; BREAKOUT mechanism protects against chasing on weakness."
+
+**Thesis & Analysis:**
+- **Bull case (verified):** $22.9B 7-year Tomahawk production ramp (60→1,000 missiles/yr); $745M SM-3 Pentagon framework; Q2 FY2026 EPS beat +13.9% vs est; $289B backlog (+22% YoY); multiple government contracts awarded Aug 2026.
+- **R:R target:** BNP Paribas $265 Outperform (raised Jul 24). Consensus $228-232 → R:R ~0.3:1 (fails 2.0 floor); BNP is sole viable target.
+- **Risks:** GTF remediation cost wildcard; insider sells (Jul 27-28); risk-off market (VIX elevated); XLI sector cap fills (no further industrials after UNP + RTX).
+- **Mechanism:** Buy-stop $227.50 only fills if RTX confirms breakout above 52w high $226.88. Day TIF protects against bad fills if market weakens. Sixth consecutive session; thesis intact.
+
+**Watchlist:**
+- MU: limit $960 (current $1,011.75, gap-skipped; 3-day remaining)
+- AMGN: expires today (3-day window exhausted; off watchlist)
+
+**Existing Holdings (NO CHANGES):**
+- KO: HOLD, stop $81.30 GTC (exp Oct 30) ✓
+- UNP: HOLD, stop $271.56 GTC (exp Nov 3) ✓
+
+**Macro Context:**
+- Bull regime confirmed (rule_fallback). ML stale 1664h (69th session).
+- Risk-off tilt: VIX 15.19 (+6.6%), SPX futures −0.41%, Nasdaq −0.76%.
+- Housing Starts (8:30), Industrial Production (9:15), Pending Home Sales (10:00) — macro noise.
+- Oil (Brent $90.97, +0.11%): Hormuz premium holding on Lebanon/vessel tension.
+- 30Y yield ~5.27-5.30% (near 19-year high, structurally constrained growth multiples).
+
+**Session Notes:**
+- Gemini quota exhausted (8th consecutive degraded session): Flash 429, Pro 404. All macro data [WebSearch — unverified].
+- Yahoo Finance rate-limiting: sector ETF prices NaN, screener empty, ATR pcts NaN.
+- Finnhub 403: analyst upgrade endpoint blocked.
+- CRITICAL: Refresh local ML PC (1664h stale = 69 sessions of rule_fallback).
+- FTD detector parse error — skipped.
+
