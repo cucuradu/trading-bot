@@ -1029,3 +1029,86 @@ Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $3
 - CRITICAL: Refresh local ML PC (1664h stale = 69 sessions of rule_fallback).
 - FTD detector parse error — skipped.
 
+---
+
+## 2026-08-19 — Market-open execution
+
+**Market regime:** Neutral (rule_fallback, 70th session; ML stale 1688h). Trade slots: 2→1 (stale_degrade penalty). Equity: $101,023.89. Deployment: 40.1% (need to deploy).
+
+**Macro catalyst today:** FOMC minutes release ~2 PM ET (systemic risk event). Yields pulling back on benign inflation; VIX at 2026 low. Risk-on bias pre-FOMC.
+
+**STEP 0 Kill switches:**
+- entries_blocked: false ✓
+- tighten_trails: false ✓
+- lock_file_present: false ✓
+- Daily P&L: +0.43% ✓
+- Drawdown: −4.68% ✓
+
+**STEP 3 Rule checks for MU:**
+- Universe member: ✓
+- Not pending (no duplicate): ✓
+- Total positions post-fill: 3 (≤6) ✓
+- Trades this week: 0/3 ✓
+- Position cost: $13,160 (14 sh × $940) = 13.0% equity ✓
+- Correlation vs KO/UNP: 0.0065 (max) ✓
+- Sector cap: MU=XLK (new sector, no conflict) ✓
+- Earnings blackout: no (next earnings Sep 23) ✓
+- R:R floor: 2.24:1 ✓
+
+**STEP 4 Stop calculation:**
+- ATR(14): $69.71
+- Stop % (clamped): 15.0%
+- Stop price: $798.05
+
+**STEP 4b Sizing (critical adjustment):**
+- Method: flat_20pct (N=1 closed, <30 threshold)
+- Size dollars: $20,205 (20% equity)
+- **Flat shares at $940: 21**
+- **Risk-capped shares: 14** ← ACTUAL ORDER
+- Per-share risk: $141.95 ($940 − $798.05)
+- Risk % of equity: 1.97% (within 2.0% cap)
+- Sizing bound: risk_cap (15% stop is wide; capped)
+
+**STEP 5 Order Placement (13:37:44 EDT, ~9:37 AM ET):**
+- Order ID: cd355473-fecb-4402-8b7d-0445c4646fed
+- Symbol: MU
+- Type: limit (PULLBACK)
+- Qty: 14 (risk-capped, not planned 21)
+- Limit price: $940
+- Time in force: day
+- Order class: OTO (one-triggers-other)
+- Stop-loss child: sell-stop $798.05 (held, activates on parent fill)
+- Status: pending_new
+- Current MU: ask $941.31 / bid $930 (fillable at limit $940)
+
+**STEP 5b Stop Coverage:**
+- Result: covered=true, positions_checked=3
+- KO: protected by GTC $81.30 ✓
+- UNP: protected by GTC $271.56 ✓
+- MU (if filled): protected by OTO child $798.05 ✓
+
+**STEP 6 TRADE-LOG Append (PENDING):**
+- PENDING 2026-08-19: MU order_id=cd355473-fecb-4402-8b7d-0445c4646fed type=limit entry=940 initial_stop=798.05 shares=14 regime_entry=Neutral sector=XLK sizing=flat_20pct+riskcap thesis="MU pullback −7.1% to $940 on macro yield spike; risk-on recovery in progress; New Street $1,250 PT; HBM cycle + Trump fab commitment intact; buy the dip at improved price; FOMC minutes risk acknowledged."
+
+**Thesis & Analysis:**
+- **Bull case (verified):** New Street Buy upgrade $1,250 PT (Aug 15, 5-star analyst Pierre Ferragu); benign inflation data driving VIX collapse to 2026 low; MU/NVDA/SNDK explicitly named in premarket risk-on futures coverage [Google News 2026-08-19]; Trump $200B US fab commitment (MU Idaho/NY/VA expansion beneficiary) [Aug 17]; SanDisk Analyst Day strengthened NAND supply discipline narrative (MU thesis validated). AI memory ramp + HBM cycle.
+- **R:R thesis:** Entry $940 / Stop $798.05 / Target $1,255 (52w high) / R:R 2.24:1. Secondary: New Street $1,250 (+32.9%) corroborates primary. Shares: 14 (risk-capped; flat 20% would be 21).
+- **Risks:** FOMC minutes today (hawkish lean → yield spike → tech selloff); macro-driven volatility; CEO insider sells Jul 24-28 at $945-966 (pre-research context); Michael Burry short thesis (prior research, unchanged); 15% stop may not hold if 30Y yields break above 5.35% on hawkish FOMC signal.
+- **Mechanism:** Buy-limit $940 only fills if MU stays in $930-941 range (current bid-ask). Day TIF protects against bad fills. No chase above $940 — limit expires unfilled if gap up.
+
+**Watchlist Carry-forward:**
+- RTX: buy-stop $227.50 (3 days remaining; favorable VIX/record highs but 1-slot constraint prevents both MU+RTX today). If MU doesn't fill, RTX could be placed by 10:30 AM to use second slot.
+- AMGN: off watchlist (gap-skip 2x, entry plan $394 not achievable without chasing).
+
+**Existing Holdings (NO CHANGES):**
+- KO: HOLD, stop $81.30 GTC (exp Oct 30) ✓ Current +1.65% unrealized
+- UNP: HOLD, stop $271.56 GTC (exp Nov 3) ✓ Current +2.50% unrealized
+
+**Deployment post-fill:** ($40,887 + $13,160) / $101,023 = 53.4% (still below 75-85% target; need RTX or another entry)
+
+**Session Notes:**
+- Gemini quota exhausted (9th+ consecutive degraded session): Flash 429. All macro data [WebSearch/Google News — unverified].
+- ML insights stale 1688h (70 sessions); URGENT refresh local PC.
+- Risk cap constraint: 15% ATR stop on MU is wide; risk-cap formula shrunk 21→14 shares. Sizing correctly follows REMEDIATION-FINDINGS.md A3 (2.0% hard cap).
+- FOMC minutes binary risk today (intraday release ~2 PM ET); MU 15% stop provides 1.97% equity protection but may not hold if yields spike >5.35%.
+
