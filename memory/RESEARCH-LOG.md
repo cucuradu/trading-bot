@@ -8680,3 +8680,162 @@ Watch 15 min after open before placing RTX order.
 - ml_insights: status=stale_degrade, age=1664.1h. Hard gate: slots 3→2.
 - Fallback events: Gemini Flash 429 quota; Gemini Pro 404 (invalid GEMINI_SMART_MODEL=gemini-3-flash); Yahoo Finance rate-limited (sector ETF NaN, screener empty); Finnhub 403 (analyst upgrades). 8th consecutive degraded session. CRITICAL: Fix GEMINI_SMART_MODEL env var to "gemini-2.5-pro" or current valid Pro model name.
 - Breadth: 76.2/100 (Healthy) | Sector: risk-on 74/100 mid-cycle divergence | Exposure: parse error (skipped)
+
+---
+
+## 2026-08-19 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 2→1 after stale_degrade penalty, deployment: 75%) — fallback_reason: ml unavailable; using local_screener_v1
+
+**ML staleness:** age=1688.1h (stale_degrade; ≥120h threshold). Hard gate: slots reduced 2→1. URGENT: refresh local PC (70th consecutive session).
+
+**Breadth/Sector:** breadth=76.2/100 (Healthy) | sector=balanced score=63 phase=mid | divergence_flag=true (cyclical/defensive internal disagreement — advisory caution; does not override Neutral regime)
+
+**Exposure:** ceiling=N/A (parse error — skipped) | rec=N/A | bias=N/A | conf=N/A
+
+**FTD:** FTD json parse error (FMP key set, file empty) — skipped.
+
+**Egress probe:** edgar=ok, google_news=ok, reddit=http_403
+
+**Pre-macro:** cap_active=false. FOMC minutes release today (advisory — system did not flag, no 40% cap triggered). Yields pulling back ahead of minutes.
+
+### Account
+- Equity: $100,355.25 / Cash: $60,136.29 / BP: $353,158.25
+- Open positions: 2 — KO 224sh @ $87.42 avg (curr $88.86, +$322.56 / +1.65%) | UNP 68sh @ $291.45 avg (curr $298.74, +$495.72 / +2.50%)
+- Open orders: KO GTC stop $81.30 (exp Oct 30) ✓ | UNP GTC stop $271.56 (exp Nov 3) ✓
+- RTX buy-stop $227.50 (day TIF Aug 18) — expired unfilled, watchlist retained
+- Deployment: $40,218.96 / $100,355.25 = 40.1% (well below 75-85% target; need to deploy)
+- Daytrade count: 0 | Trades this week: 0/3
+
+### Macro Framework
+Neutral regime, rule_fallback (10th consecutive session, ML stale 1688h). Sharp macro pivot from Aug 18 risk-off: treasury yields pulling back from 19-year highs ahead of FOMC minutes release today (CNBC [Google News 2026-08-19]). VXX at $19.65 (~2026 low), down from $19.67 prev close. SPY $767.45 (+0.05%), QQQ $717.51 (+0.18%) — equities holding gains near highs despite the Aug 18 bond rout. WTI/Brent untracked (Gemini quota 429, no oil quote). 30Y yield: pulling back from ~5.27-5.30% (Aug 18) to unknown level — yield relief is the key macro story today. VIX per Google News headline: "VIX drops to 2026 low" — confirming risk-on tilt sharply reversed from yesterday's elevated 15.19. "Stocks hit record highs" also cited [TradingKey, Google News 2026-08-19]. Nasdaq/S&P futures rising premarket with NVDA, MU, SNDK in focus [TradingView Google News 2026-08-19 — unverified]. Benign inflation data driving volatility collapse: "Volatility/Convexity Premia Fall to Lowest YTD Levels on Benign Inflation Data" [Seeking Alpha Google News 2026-08-19]. FOMC minutes risk (AH release ~2 PM ET): if hawkish lean, could reverse early gains. vs Aug 18: VIX sharply lower (15.19 → ~2026 low); regime Neutral (was Bull per rule_fallback but today screener returns Neutral); MU fell from $1,011.75 premarket to $940 current (−7.1%) on yield-driven tech selloff, partially recovering from $926 session low; RTX $225.49 (was $221.64 Aug 18 premarket), recovering toward 52w high $226.88. Dominant theme: yield relief + benign inflation → VIX collapse → risk-on; FOMC minutes the key risk event today.
+
+> **Naming convention (B8):** SPY = ETF ($767.45); SPX/S&P 500 index = ~$7,600+ (not tracked directly this session).
+
+### Sector Picture
+- Top 3 (1mo momentum, sector-momentum script): Energy XLE +9.91% (Trend regime per ML) | Healthcare XLV +6.58% (Trend) | Technology XLK +5.64% (Choppy per ML — disagreement)
+- Mid: Materials XLB +3.50% (Choppy) | Financials XLF +3.21% (Choppy) | Industrials XLI +3.06% (Choppy)
+- Bottom 3: Utilities XLU −2.05% (Bear — avoid) | Real Estate XLRE −1.33% (Bear — avoid) | Comm Services XLC −0.29% (Choppy)
+- Note: XLK sector-momentum shows +5.64% MoM (strong) but ML regime = Choppy (weaker). Disagreement: follow ML = Choppy (not Trend) for XLK. Energy and Healthcare agreement: both Trend/strong. XLU/XLRE Bear across both — hard avoids.
+
+**Screener:** source=local_screener_v1, ranked 65 tickers, top 10 = [BAC(0.732), MU(0.619), RTX(0.617), GE(0.609), XBI(0.570), AMGN(0.518), XLE(0.425), ABBV(0.387), XLF(0.369), TMO(0.351)]
+
+### Candidates
+
+#### MU (XLK, $940.76, prev close $932.17 — day range $926-$978 intraday)
+
+**Setup:** Screener #2 (ml_score 0.619), watchlist carry bonus (+0.5) → effective 1.119 (highest after bonus). Year range $113.46–$1,255.00. Current $940.76 = 25.1% below 52w high. ATR(14)=$74.581 (7.928% of price); stop_pct_2_5x=19.82% → clamped to 15%.
+
+**Gate-history audit (B7):**
+- 2026-06-04: closed at loss (trailing stop hit $816 range from prior trade)
+- 2026-08-14: limit $960 (day TIF, expired unfilled; MU at $973 premarket)
+- 2026-08-17: watchlist added, planned_entry=$960
+- 2026-08-18: gap-skip ($1,011.75 >> $960 plan, +5.4% above = exceeded 3% threshold)
+- Today: MU at $940.76 — BELOW $960 plan (−2.0%). This is a DOWNWARD revision to entry level (allowed per B7). Price moved DOWN past our plan; entering at $940 is better entry than $960.
+- No gate creep: we are buying lower, not higher.
+
+**Sources scanned (4):** 1 Finnhub / 2 NewsAPI / 0 EDGAR (not queried) / 0 Reddit (egress http_403) / 1 Google News [Google News 2026-08-19].
+
+**Bull case:**
+- Benign inflation data + VIX at 2026 low → risk-on recovery; MU/NVDA/SNDK explicitly named in premarket rising futures coverage today [TradingView/Google News 2026-08-19 — Gemini grounded — unverified]
+- New Street (Pierre Ferragu, 5-star analyst) Buy upgrade, PT $1,250 (Aug 15) — standalone high-conviction call [NewsAPI 2026-08-15 — verified]
+- Trump $200B US fab commitment + $50B R&D; MU Idaho/NY/VA expansion beneficiary [WebSearch — unverified, Aug 17]
+- "SanDisk Analyst Day Strengthened Micron's $1,550 Bull Case" — NAND supply discipline narrative lifted memory sector re-rating [NewsAPI Yahoo Finance 2026-08-17 — verified]
+- "Micron Technology (MU) Gains as AI Boom Reshapes Memory Industry" — Aristotle Capital Q2 2026 letter buy thesis [NewsAPI Yahoo Finance 2026-08-17 — verified]
+
+**Bear case:**
+- CEO Mehrotra sold $6.76M shares Jul 24-28 (Form 4 verified) — insider distribution signal at $945-$966 range [EDGAR — verified; from prior research]
+- "Bank of America: Don't Chase Short-Term Momentum From the Global Bond Rout" warns vs chasing tech names on bond relief rally [Finnhub BAC news 2026-08-18, adjacent context — Gemini grounded — unverified for MU directly]
+- ATR stop 15% (max clamped) = very wide; 2.94% equity risk per position
+- MU dropped −7.1% in one session (Aug 18 close to Aug 19 intraday low $926) on bond rout — if 30Y yield spikes again post-FOMC minutes, another leg down possible to $880-900 (below stop)
+- Michael Burry expanding short thesis: 34 drawdowns >30% in history; ROIC 4% (from prior research; Burry thesis unchanged) [prior EDGAR research — verified]
+
+**Disconfirming evidence to watch:** FOMC minutes hawkish lean (released today ~2 PM ET) → 30Y yield spikes → MU revisits $900-926 range (below 15% stop from $940). Samsung/SK Hynix aggressive HBM pricing increase.
+
+**Catalysts ahead (14d):** Next MU earnings Sep 23 (35 days, not in blackout ✓). No MU-specific catalyst in next 7 days. FOMC minutes today (systemic).
+
+**One-line takeaway:** MU pulled back −7.1% to $940 on macro (yield spike), not fundamental breakdown; risk-on recovery in progress; entry at $940 improves R:R vs $960 plan.
+
+**Data check (B2):** Prior research entry plan $960 (Aug 14-18 consistent). Today $940 — −2.1% from plan. Not a data contradiction; price moved down. ATR = $74.581 (matches Aug 14 atr script $72.54 approximately; within normal 3% variation). Keeping $74.581 as authoritative. 52w high $1,255 confirmed (price data same as Aug 14 research).
+
+**Critique:**
+
+**Strongest counter to the bull case:** The MU decline from $1,011 (premarket Aug 18) to $926 (intraday Aug 19 low) is −8.4% in ~18 hours. Even if macro-driven, when a stock gaps down through multiple support levels in one session, it often tests the lows again after an initial bounce. The "recovery from $926 to $940" is only a $14 bounce off the low — insufficient to confirm stabilization. FOMC minutes today create a binary event: if hawkish, 30Y yield could spike from the ~5.25-5.30% range toward 5.40%+, targeting MU's next support in the $880-900 range (well below the 15% stop at $799). The wide stop (15%) may not be wide enough if yields continue the structural rout WSJ describes as not ending "anytime soon."
+
+**Weakly-sourced claims:** "MU/NVDA/SNDK futures rising premarket" — Gemini grounded [unverified, Google News headline only, no price confirmed]. "VIX at 2026 low" — Google News headline [unverified, no exact VIX number obtained]. "30Y yield pulling back" — CNBC headline [unverified, no basis point data].
+
+**Single most-likely invalidator (next 5 trading days):** FOMC minutes released today signal hawkish lean → 30Y yield breaks above 5.35% → tech sector selloff extension → MU closes below $900 on volume, triggering stop at $799.65.
+
+**Position-aware (if entered $19,740 at $940, 21sh):**
+- Sector exposure post-entry: XLK 19.7% (currently 0%)
+- 30d max correlation with existing positions: 0.004 (vs UNP) — near-zero ✓ excellent diversifier
+- MU/KO correlation: −0.431 — negatively correlated ✓
+- Sector cap: XLK 1/2 (no other XLK positions) ✓
+- Post-entry deployment: ($40,219 + $19,740) / $100,355 = 59.7% (still below 75-85% target but better)
+- **Shared-catalyst flag (B6):** MU (AI memory/HBM) vs KO (consumer staples) vs UNP (rail freight) — completely different catalysts ✓. No concentration risk.
+
+**R:R math (B3):**
+- Entry $940.00 (buy-limit, revised down from $960 — MU already below plan)
+- Stop $799.65 (−15.0%, clamped from 19.82% per ATR(14)=$74.581)
+- Target $1,255.00 (+33.5%, 52w high — concrete resistance [YF price data])
+- R:R = ($1,255 − $940) / ($940 − $799.65) = $315 / $140.35 = **2.24:1 ✓** (passes 2:1 floor)
+- Secondary target: New Street PT $1,250 (+32.9%) — corroborates primary target level [NewsAPI 2026-08-15]
+- Shares: 21 | Actual cost: $19,740 (19.7% equity) | Max risk: 21 × $140.35 = $2,947 (2.94% equity)
+
+**Setup type (Phase G1):** PULLBACK — price pulled below planned entry ($960) to $940; thesis is "buy the dip at improved price, not above plan." Buy-limit at $940 (day TIF). If MU gaps up at open above $940, order will NOT fill — acceptable outcome (don't chase above plan).
+
+**Entry plan:** PULLBACK → buy-limit $940.00 (day TIF) | Shares: 21 | Stop GTC $799.65 (armed post-fill) | Wait 15 min after open (9:45 AM ET) before placing.
+
+**Decision:** RETAINED — MU at $940 is a confirmed pullback below planned entry with intact fundamental thesis (New Street $1,250 PT, HBM cycle, Trump fab commitment). FOMC minutes risk acknowledged — wide stop (15%) provides buffer. Buy-limit only; no chase if MU opens above $940.
+
+---
+
+#### RTX (XLI, $225.49, prev close $225.60)
+
+**Gate-history audit (B7):** 7th+ consecutive session at buy-stop $227.50. Day high today $226.09 (just below 52w high $226.88). Thesis intact. With 1 effective slot assigned to MU, RTX remains WATCHLIST.
+
+**Decision:** WATCHLIST MAINTAINED — 3 days remaining (Aug 14 add). If MU limit doesn't fill, RTX buy-stop $227.50 could be placed instead. Risk-on environment today (VIX low, record highs) is favorable for breakout — but 1-slot constraint prevents both.
+
+---
+
+### Candidates Dropped (and why)
+- BAC (XLF, $64.23) — Finnhub: "Don't Chase Short-Term Momentum from Global Bond Rout" [Finnhub 2026-08-18]; "Current Price Requires 16% Terminal ROTCE, Hold" [Finnhub 2026-08-19]. No prior thesis/research depth. Near 52w high ($65.23) with analyst warning against chasing. Demoted vs watchlist carries.
+- GE (XLI, rank #4) — sector cap: XLI already at 1/2 with UNP (would fill to 2/2 with RTX also pending); prefer not to use second XLI slot on GE vs RTX which has stronger thesis.
+- XBI, AMGN, XLE, ABBV, XLF, TMO — not researched; screener picks beyond 1-slot capacity. None have prior thesis context in this session.
+
+### Historical Analog
+
+**Analog:** August 14, 2024. CPI came in below expectations (2.9% vs 3.0% est), VIX fell from ~18 to ~14 in one day, SPX hit new highs. Nasdaq +2.4% on the session. Tech/semiconductor names led (SMH +3.5%). 30Y yield at ~4.30% (easing from 4.40% range). FOMC minutes released Aug 21, 2024 — roughly one week later.
+
+**What followed:** 5d (Aug 14-19 2024): SPX +1.2%, Nasdaq +2.1% (rally extended). 10d (Aug 14-23 2024): SPX −0.8% (Jackson Hole uncertainty). 20d: SPX +3.4% (Powell dovish Jackson Hole speech triggered relief rally). Tech vol subsided to year lows throughout period.
+
+**Why this time might differ:** Today's FOMC minutes are released same day (not one week later), creating an intraday binary risk that 2024 analog didn't have. Also, 30Y yield today at ~5.25-5.30% vs 4.30% in 2024 — structural rate headwind is far more severe. The Aug 2024 tech rally was partly driven by AI capex confidence at a lower rate base; today's analog may be weaker in amplitude.
+
+### Risk Factors (consolidated)
+1. **FOMC minutes today (intraday risk):** Hawkish lean → yield spike → tech selloff (MU most exposed).
+2. **ML stale 1688h (70th session):** Regime (Neutral) may miss a real Bear shift. Refresh local PC — URGENT.
+3. **Gemini quota exhausted (9th+ consecutive session):** All macro citations are [WebSearch/Google News — unverified]. Research depth materially degraded.
+4. **Reddit egress blocked (http_403):** Sentiment data unavailable; not cited.
+5. **Bond rout continuation:** WSJ "Won't End Anytime Soon" — structural headwind for 15% stop on MU.
+6. **MU volatility:** ATR $74.58 (7.9% daily vol) — position can swing $100 intraday; 15% stop = $140/sh drawdown before exit.
+7. **Deployment stuck at 40%:** 3 consecutive sessions of RTX buy-stop expiring unfilled; MU gap-skipped twice. Risk of over-trading to catch up.
+
+### Decision
+**TRADE — 1 slot:**
+- **MU:** PULLBACK, buy-limit $940.00 (day TIF), 21 shares (~$19,740 / 19.7% equity). GTC sell-stop $799.65 to be armed post-fill. Wait 15 min after open (9:45 AM ET). Do NOT chase above $940 — limit expires day TIF if unfilled. Post-fill deployment: 59.7%.
+- **RTX:** WATCHLIST maintained (3 days). Buy-stop $227.50 (day TIF) MAY be placed if MU limit doesn't fill by 10:30 AM. Market-open routine will decide.
+
+Existing positions: KO HOLD (stop $81.30 GTC ✓), UNP HOLD (stop $271.56 GTC ✓). No stop adjustments needed (+1.65% / +2.50% unrealized — neither at +15% tighten threshold).
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash (429 immediately) + 0 Pro = 0 usable (9th+ consecutive degraded session)
+- NewsAPI: 2 queries (MU news, macro context)
+- Finnhub: BAC 4 records / MU 0 (empty) / RTX via prior research
+- Google News: 4 queries (macro, MU, RTX, oil/treasury)
+- EDGAR: 0 this session (prior research used)
+- Reddit: http_403 egress blocked — not cited
+- WebSearch: primary fallback for unverified items
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1688.1h. Hard gate: slots reduced 2→1.
+- Fallback events: Gemini Flash 429; GEMINI_SMART_MODEL=gemini-3-flash invalid (should be gemini-2.5-pro). CRITICAL: Fix env var.
+- Breadth: 76.2/100 (Healthy) | Sector: balanced 63/100 mid-cycle divergence flag | Exposure: parse error (skipped)

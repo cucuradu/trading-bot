@@ -17,23 +17,23 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-08-17): RETAINED slot 1 — pullback limit $960 (day TIF). New Street (Pierre Ferragu) upgraded Buy, PT $1,250 [NewsAPI 2026-08-15 — verified]. Trump Administration $200B US expansion commitment [WebSearch — unverified]. R:R 2.05:1 at $960/$816/$1,255 (barely passes; 15% clamped ATR). Michael Burry expanding MU short — acknowledged. CEO Mehrotra sold $6.76M in July (Form 4 verified). AMAT Aug 14 AH benign (MU stable). ATR: $72.54 (atr script — authoritative).
+- Thesis (2026-08-19): PULLBACK buy-limit $940 (revised down from $960 — price pulled below plan). New Street (Pierre Ferragu) Buy, PT $1,250 [NewsAPI 2026-08-15 — verified]. R:R 2.24:1 at $940/$799.65/$1,255 (passes 2:1 floor). ATR $74.581 (15% clamped stop). Macro pullback (bond rout, yield spike) not fundamental breakdown. VIX at 2026 low + benign inflation support recovery.
 - Recent catalysts:
-  - 2026-08-17: New Street (5-star, Ferragu) Buy upgrade, PT $1,250; KOSPI rebound + analyst target hikes power MU +3.5% [NewsAPI 2026-08-15; Yahoo Finance Google News 2026-08-17]
-  - 2026-08-17: Trump Administration commitment: $200B US fab expansion (Idaho/NY/VA) + $50B R&D; MU donated $250M to Trump Accounts [WebSearch — unverified]
-  - 2026-08-14: SNDK Investor Day reset NAND 2028-2030 economics; semiconductor sector rally [Finnhub 2026-08-14]
-  - 2026-08-14: Alphabet + Amazon $420B AI infrastructure spend cited [Finnhub 2026-08-14]
-  - 2026-07-24: CEO Mehrotra Form 4 insider sells ~7,039 sh at $945-$966 (~$6.76M) [Finnhub EDGAR Form 4 — verified]
+  - 2026-08-19: MU fell $1,011→$926 intraday (−8.4%) on bond rout/yield spike; recovered to $940. Futures rising premarket; NVDA/MU/SNDK in focus [Google News 2026-08-19 — Gemini grounded — unverified]
+  - 2026-08-17: New Street (5-star, Ferragu) Buy upgrade, PT $1,250; KOSPI rebound [NewsAPI 2026-08-15; Yahoo Finance Google News 2026-08-17]
+  - 2026-08-17: Trump Administration $200B US fab expansion (Idaho/NY/VA) + $50B R&D [WebSearch — unverified]
+  - 2026-08-14: SNDK Investor Day reset NAND 2028-2030 economics; memory sector re-rating [Finnhub 2026-08-14]
+  - 2026-07-24: CEO Mehrotra Form 4 insider sells ~7,039 sh at $945-$966 (~$6.76M) [EDGAR Form 4 — verified]
+  <!-- archive: 2026-08-14: Alphabet + Amazon $420B AI infrastructure spend; AMAT AH Aug 14 benign -->
   <!-- archive: 2026-08-13: Micron Ventures Paradigm Fund $250M launched -->
   <!-- archive: 2026-06-15: Demoted R:R 1.82:1 vs Wolfe $1,250; "Do NOT chase at $981" -->
-  <!-- archive: 2026-06-11: Wolfe $550→$1,250 (+127%, Outperform) -->
 - Trade history:
-  - 2026-06-04: r=0.45, regime=Neutral, reason="trailing stop hit on AVGO software miss contagion; HBM thesis intact; 9.47% trail left too much gap-down room"
+  - 2026-06-04: r=0.45, regime=Neutral, reason="trailing stop hit on AVGO software miss contagion; HBM thesis intact"
 - Open thesis questions:
-  - Michael Burry expanding short (34 drawdowns >30% over 42 years, median ROIC 4%): is this a distribution phase?
-  - "Next AI winners not like Nvidia or Micron" rotation risk to software/orchestration layer
-  - If MU closes below $950 (prior Aug 14 intraday low $956) on volume — cancel limit, add to watchlist, re-evaluate
-  - Stop tighten at +15% ($960 entry → $1,104) and +20% ($960 → $1,152) once filled
+  - FOMC minutes today (Aug 19) — hawkish lean → yield spike → MU revisits $900-926 range
+  - Michael Burry expanding short (34 drawdowns >30%, median ROIC 4%): distribution phase?
+  - Stop tighten at +15% ($940 entry → $1,081) and +20% ($940 → $1,128) once filled
+  - Watch: if MU closes below $900 post-FOMC minutes → stop review needed
 
 ## AMD (XLK)
 - Thesis (2026-07-22): OPEN POSITION — 25 shares @ $514.61 avg entry (Jul 16). Current ~$528.23 (−2.97% today, +2.6% vs entry). GTC trail 15%, HWM ~$548.14, stop ~$465.92. Advancing AI Summit DELIVERED: Zen 6 Venice (2nm TSMC, 256 cores, 1.7x perf gen-on-gen), MI455X GPU, Helios rack (31TB HBM4); Azure (Helios deployment), Meta (H2 2026), OpenAI (multi-gen Instinct contract) committed. Sell-the-news −3% on day of event. Alphabet + Tesla report tonight (Jul 22 AC) — next binary. Q2 earnings Aug 4. [TechTimes Jul 22 2026; SeekingAlpha/Jefferies Jul 2026]
@@ -388,20 +388,18 @@ Conventions:
 - Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
-- Thesis (2026-08-18): BREAKOUT (6th attempt) buy-stop $227.50 valid — BREAKOUT mechanism protects against chasing in risk-off environment (VIX +6.6%, SPX -0.41%); only fills on confirmed 52w high break. $22.9B Tomahawk contract primary catalyst. BNP $265 PT → R:R 2.36:1. XLI fills 2/2 with UNP. Next earnings Oct 20, not in blackout.
+- Thesis (2026-08-19): WATCHLIST — buy-stop $227.50 (7th+ attempt; 1-slot constraint today assigned to MU). Risk-on environment (VIX 2026 low) improves breakout probability. $22.9B Tomahawk contract + new institutional buyers (Meeder Advisory, Great Lakes Advisors) [Google News 2026-08-19]. BNP $265 PT → R:R 2.36:1. XLI fills 2/2 with UNP.
 - Recent catalysts:
-  - 2026-08-17: US Navy awards $22.9B, 7-year Tomahawk contract (Raytheon unit); output 60→1,000/yr [Yahoo Finance, StockTitan 2026-08-17 — verified multiple sources]
-  - 2026-08-14: Pentagon SM-3 7-year framework (Boeing + RTX); Blue Canyon Technologies sale for $620M to MDA Space [Finnhub 2026-08-14 — verified; WebSearch — unverified]
-  - 2026-08-11: $472M Collins Aerospace CH-47; $745M SM-3 IIA (MDA Aug 10); options traders bullish (CNBC Aug 11) [Finnhub — verified]
-  - 2026-08-03: Bernstein maintains Market Perform, PT $232 [Finnhub Aug 3 — verified]
+  - 2026-08-19: Two new institutional buyers (Meeder Advisory, Great Lakes Advisors) took positions in RTX [MarketBeat Google News 2026-08-19 — verified]
+  - 2026-08-17: US Navy awards $22.9B, 7-year Tomahawk contract; output 60→1,000/yr [Yahoo Finance, StockTitan 2026-08-17 — verified]
+  - 2026-08-14: Pentagon SM-3 7-year framework; Blue Canyon Technologies sale $620M to MDA [Finnhub 2026-08-14 — verified]
   - 2026-07-28: BNP Paribas PT $265 Outperform (raised from $220) [MarketScreener Jul 24 — verified]
-  <!-- archive: Q2 EPS $1.89 beat; revenue +11.7%; $289B backlog +22%; Aug 13 buy-stop expired unfilled; Aug 14 dividend ex-date passed -->
+  <!-- archive: Aug 11-13 CH-47/SM-3 IIA contracts; buy-stop $227.50 placed Aug 13-18, unfilled -->
 - Open thesis questions:
-  - $22.9B Tomahawk contract may trigger PT revisions above $265 — monitor for consensus upgrades this week
   - Pratt & Whitney GTF remediation + F135 "undefinitized" = Q3 margin risk
-  - Buy-stop $227.50 vs sell-the-news risk: if RTX opens gap-up above $227.50, OTO child stop $211.58 arms immediately
-  - XLI fills to 2/2 with UNP — no further industrials entries while both are open
-- Watchlist: buy-stop $227.50 (BREAKOUT above 52w high $226.88), stop $211.58 (−7%), target $265 (BNP [MarketScreener Jul 24 — verified]), R:R 2.36:1. Days remaining: 3.
+  - 7+ consecutive sessions below $226.88 52w high — is the breakout thesis stalling?
+  - XLI fills to 2/2 with UNP — no further industrials entries
+- Watchlist: buy-stop $227.50 (BREAKOUT above 52w high $226.88), stop $211.58 (−7%), target $265 (BNP [MarketScreener Jul 24 — verified]), R:R 2.36:1. Days remaining: 3 (Aug 14 add).
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
