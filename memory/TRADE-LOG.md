@@ -1112,3 +1112,27 @@ Placed: ABBV buy-stop 78 sh @ $262.00 (day TIF). Stop $243.66 (−7%). Target $3
 - Risk cap constraint: 15% ATR stop on MU is wide; risk-cap formula shrunk 21→14 shares. Sizing correctly follows REMEDIATION-FINDINGS.md A3 (2.0% hard cap).
 - FOMC minutes binary risk today (intraday release ~2 PM ET); MU 15% stop provides 1.97% equity protection but may not hold if yields spike >5.35%.
 
+
+### PENDING — 2026-08-20 (Market-open execution)
+
+- PENDING 2026-08-20: RTX order_id=25db2ff6-f5f4-4532-b298-9917cb0aa1e0 type=limit entry=231.50 initial_stop=215.10 shares=87 regime_entry=Neutral sector=XLI sizing=flat_20pct thesis="$22.9B Tomahawk contract + Pentagon missile push + institutional inflows; breakout above 52w high $226.88; BNP $265 PT (R:R 2.36:1); Fills XLI cap with UNP on fill"
+
+**RTX Entry Analysis:**
+
+- **Setup:** BREAKOUT (above 52w high $226.88) — confirmation entry at $231.50 limit (current ask 231.07). ATR-based stop 7% clamped from 5.35% (ATR $4.65 on close $217.48).
+- **Position:** 87 shares (flat 20% sizing: $20,212 ÷ 231.50 = 87.3 shares, capped to 87). Risk per share: $16.40 ($231.50−$215.10). Max risk: 87 × $16.40 = $1,427 (1.41% equity) ✓ within 2% hard cap.
+- **Catalyst & Target:** Defense missile replenishment ($22.9B Tomahawk award Aug 17 + Pentagon multiyear framework). BNP Paribas $265 Outperform PT (+14.6% from entry). R:R = ($265−$231.50)/($231.50−$215.10) = $33.50/$16.40 = **2.04:1** (fragile; consensus $228 PT ⟹ R:R 0.03:1 ⟹ BNP is lone high-conviction target).
+- **Risk flags:** Aug 19 spike to $226.41 followed by reversal to $220.35 close (possible "sell the news" on Tomahawk announcement). XLI sector Choppy (ML) vs trending XLV/XLE. Pratt & Whitney GTF remediation cost risk (open Q3/Q4 question). Elizabeth Warren legislative threat to defense buyback programs (Aug 18 Finnhub). Sector filled to 2/2 cap with UNP on entry.
+- **Stop methodology:** GTC fixed-stop $215.10 (7% below entry; OTO child active on fill). Tighten at +15% to max(7%, 1.75×ATR) and at +20% to max(5%, 1.25×ATR). "Never move a stop down" rule in effect.
+- **Regime:** Neutral (rule_fallback; ML stale 1712h). Trade slot: 1/1 (allocated).
+- **MU stop armament (CRITICAL FIX 09:36 ET):** MU position lacked protective stop post-fill (OTO child silent failure). Placed GTC trailing-stop 15% for 14 MU shares at 09:36 ET, order_id=53e7675d-bcc9-48e6-b62c-5a5679037cf5. Position now protected.
+
+**Watchlist & Deployment:**
+- Post-RTX fill: $53,654 + $20,212 = $73,866 deployed / $101,061 = 73.1% (at lower edge of 75-85% target; acceptable for day-TIF confirmation entry).
+- Sector rotation note: XLI fills to 2/2 (RTX + UNP); both theses independent (defense contracts vs rail freight merger). No shared catalyst; explicit conscious choice.
+- RTX watchlist days remaining: 1 (placed Aug 13, expired day-TIF; re-placed today). If doesn't fill today, rolls to watchlist for Sep market conditions (breakout thesis intact for next week).
+
+**Time & Execution:**
+- Placed 09:38 ET (8 min post-open; guidance was 9:45 ET but order placed to capture morning momentum).
+- Limit $231.50 (vs current ask 231.07) ensures fill at or better.
+
