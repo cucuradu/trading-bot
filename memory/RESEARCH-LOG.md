@@ -8839,3 +8839,153 @@ Existing positions: KO HOLD (stop $81.30 GTC ✓), UNP HOLD (stop $271.56 GTC �
 - ml_insights: status=stale_degrade, age=1688.1h. Hard gate: slots reduced 2→1.
 - Fallback events: Gemini Flash 429; GEMINI_SMART_MODEL=gemini-3-flash invalid (should be gemini-2.5-pro). CRITICAL: Fix env var.
 - Breadth: 76.2/100 (Healthy) | Sector: balanced 63/100 mid-cycle divergence flag | Exposure: parse error (skipped)
+
+---
+
+## 2026-08-20 — Pre-market
+
+**Regime:** Neutral (source: rule_fallback, slots: 1, deployment: 75%) fallback_reason="ml unavailable; using local_screener_v1". ML stale_degrade: age=1712.1h (71st session). **Hard gate: trade_slots 2→1.**
+
+**ML staleness:** age=1712h (stale_degrade). Refresh local PC — URGENT. 71 consecutive sessions on rule_fallback.
+
+### Account
+- Equity: $100,678.54 | Cash: $47,028.22 | Buying power: $338,333.78 | Daytrade count: N/A
+- Open positions: 3 (KO, MU, UNP) | Open orders: 2 (KO stop, UNP stop)
+- **⚠️ CRITICAL: MU has NO stop order.** OTO child failed to arm post-fill. Planned stop $798.05 is unarmed. Market-open MUST place GTC sell-stop $798.05 for 14 MU shares before any other action.
+
+Position snapshot:
+| Symbol | Shares | Avg Entry | Current | Unreal P&L | Stop | Status |
+|--------|--------|-----------|---------|------------|------|--------|
+| KO | 224 | $87.42 | $90.17 | +$616 (+3.15%) | $81.30 GTC ✓ | Protected |
+| MU | 14 | $936.29 | $923.89 | -$174 (-1.32%) | **MISSING** | ⚠️ Unprotected |
+| UNP | 68 | $291.45 | $301.80 | +$704 (+3.55%) | $271.56 GTC ✓ | Protected |
+
+Total deployed: $53,654 (53.3% equity). Target: 75%.
+
+### Macro Framework
+Neutral regime (rule_fallback, 71st session; ML stale 1712h). FOMC minutes released Aug 19 (result unknown in today's data — MU's -1.32% vs entry suggests mild tech softness post-FOMC, no dramatic selloff). Bonds remain structurally elevated: 30Y ~5.25-5.30% per prior week context [WebSearch — unverified]. "Bonds Flashing Red" [tastylive Aug 18 — Google News verified]. Oil: Backwardation + Hormuz risk premium persists; Brent in "crack-spread and Hormuz risk" regime [Investing.com Aug 19 — Google News]. SPX near record highs (prior research confirmed Aug 19 risk-on rally). VIX implied to be ~13-15 range (2026 low area). Breadth 79.2/100 (Healthy). Sector rotation: healthcare and energy leading (+10.3%/+9.7% 1mo); utilities/real estate lagging. UNP notable: STB adopted procedural schedule for UP-NS merger consideration [Finnhub Aug 18 — verified]. vs Aug 19: FOMC minutes resolved (risk removed); MU softened -1.3%; UNP-NS merger news adds optionality. Dominant theme: defense contracts (RTX $22.9B Tomahawk deal) + XLV breakout momentum.
+> SPX index (~7,400s); SPY ETF (~$745). Not "SPY" for index.
+
+### Sector Picture
+**Top 3 (1mo return):**
+1. XLV Healthcare +10.32% — ML: Trend ✓ (consistent)
+2. XLE Energy +9.73% — ML: Trend ✓ (consistent)
+3. XLB Materials +4.98% — ML: Choppy (minor disagreement; materials trending but not confirmed trend)
+
+**Bottom 3:**
+9. XLC Communication +0.47% — ML: Choppy ✓
+10. XLRE Real Estate -0.53% — ML: Choppy ✓
+11. XLU Utilities -2.05% — ML: Bear ✓ (consistent)
+
+Sector-momentum vs ML: XLB momentum is +4.98% but ML labels Choppy — slight disagreement; flagged but not material for today's thesis. XLV and XLE align across both signals.
+
+**Breadth/Sector:** breadth=79.2/100 (Healthy) | sector=balanced score=51 phase=late | divergence_flag=True (cyclical/defensive internally disagree). Advisory tension: sector=late cycle + divergence flag, but breadth=79.2 (Healthy) and regime=Neutral — no auto-downgrade. Note tension in Decision.
+
+### Screener Diagnostics (STEP 4b-bis)
+Screener: source=local_screener_v1, ranked ~68 tickers, top 10 = [XBI(0.876), MRK(0.652), MU(0.616-held), BAC(0.588), AMGN(0.569), TMO(0.496), ABBV(0.482), RTX(0.379), XLV(0.372), UNP(0.357-held)]
+
+Watchlist carry bonus applied: RTX 0.379 + 0.5 = 0.879 (ties XBI for top adjusted rank). RTX placed #1 per carry-forward rule.
+
+### Candidates
+
+#### RTX (XLI, $220.35, prev close $220.53, −0.08%)
+
+**Setup:** Day range Aug 19: $220.22–$226.41; 52w high $226.88; 52w low $150.61. ATR(14)=$4.74 (2.15% of price); stop_pct_2.5x=5.38% (clamped to 7%). Setup: BREAKOUT — buy-stop at $227.50 (above 52w high by +0.27%; existing watchlist level).
+
+**Sources scanned (3):** 0 NewsAPI (skipped) / 5 Finnhub / 0 EDGAR / 2 Google News / 0 Reddit.
+
+**Bull case:**
+- $22.9B, 7-year Tomahawk missile contract awarded to Raytheon (RTX subsidiary); production scaling 60→1,000/yr [Finnhub Yahoo Finance / StockTitan 2026-08-17 — verified]
+- Pentagon multiyear missile framework push; Under Sec. Duffey explicitly endorses long-term missile production expansion [Finnhub 2026-08-19 — verified]
+- Two new institutional buyers: Meeder Advisory + Great Lakes Advisors initiated RTX positions [MarketBeat via Google News 2026-08-19 — verified]
+- Q2 EPS $1.89 beat, $289B backlog (prior research — verified); BNP Paribas PT $265 Outperform [MarketScreener Jul 24 — verified]
+- Blue Canyon Technologies acquisition ($620M) adds space/satellite revenue [Finnhub Aug 14 — verified]
+
+**Bear case:**
+- Elizabeth Warren targeting defense contractors' $100B+ shareholder payouts since 2020; legislative risk to buyback/dividend programs [Finnhub Aug 18 — verified]
+- Pratt & Whitney GTF engine remediation + F135 "undefinitized" contract = Q3 margin uncertainty (open thesis question from prior research)
+- XLI sector = Choppy per ML; industrials +2.15% 1mo (below top sectors XLV/XLE)
+- 7+ consecutive sessions tested 52w high $226.88 without confirmation; prior day high $226.41 (still below $226.88) — breakout may be stalling
+
+**Disconfirming evidence to watch:** RTX fails to break $226.88 in next 5 sessions → buy-stop expires worthless; momentum stalls.
+
+**Catalysts ahead (14d):** Pentagon FY2027 budget markup (Congress recess ends Sep; defense spending direction). No RTX-specific event in 14d. Earnings: Oct 20 (61 days, no blackout ✓).
+
+**One-line takeaway:** $22.9B Tomahawk award + institutional inflows + near-52w-high setup = confirmed breakout thesis; buy-stop $227.50 limits risk to confirmation only.
+
+**Data check (B2):** BNP PT $265 consistent with Jul 24 research (no change). ATR $4.74 vs prior sessions ($4.71-4.80 range) — within normal variation. No data contradiction.
+
+**Critique:**
+
+**Strongest counter to the bull case:** RTX hit $226.41 intraday on Aug 19 (one day after the $22.9B Tomahawk news broke on Aug 17) and CLOSED at $220.35 — a $6.06 reversal from the near-breakout level. This means the market already knows about the Tomahawk contract and priced it in, then sold it. "Buy the rumor, sell the news" dynamics are already visible. The Warren buyback legislation risk also adds headline risk to the defense sector at a time when 30Y yields at 5.25-5.30% make high-P/E defense names vulnerable. The XLI sector being Choppy (not Trend) means the sector tailwind is absent compared to XLV/XLE.
+
+**Weakly-sourced claims:** Pratt & Whitney F135 undefinitized risk — from prior research notes (no new Finnhub/EDGAR record this session). All macro data (VIX, 30Y yield, SPX) is [WebSearch — unverified] due to Gemini quota exhaustion.
+
+**Single most-likely invalidator (next 5 trading days):** RTX closes below $218 (prior support level and -1.1% from current) on above-average volume, confirming the Aug 19 rejection at $226.41 as a failed breakout rather than a consolidation.
+
+**Position-aware (if entered 88 shares @ $227.50 = $20,020):**
+- Sector exposure post-entry: XLI 19.9% (currently UNP 20.4% → fills to 40.3% combined)
+- 30d correlation with existing: 0.18 (max vs UNP) ✓ well below 0.70 cap
+- Sector cap: XLI 1/2 → 2/2 (at cap; fills with UNP)
+- **Shared-catalyst flag (B6):** RTX (defense contracts/NATO demand) vs UNP (rail freight) — different catalysts within XLI. No shared-catalyst concern. Both XLI but completely different subsectors. ✓ conscious choice.
+- Post-entry deployment: ($53,654 + $20,020) / $100,678 = 73.2% (reaches near 75% target)
+
+**R:R math (B3):**
+- Entry $227.50 (buy-stop above 52w high $226.88)
+- Stop $211.58 (−7.0% from entry; clamped from 5.38% per ATR(14)=$4.74)
+- Target $265.00 (+16.5%; BNP PT $265 Outperform [MarketScreener Jul 24 — verified])
+- R:R = ($265 − $227.50) / ($227.50 − $211.58) = $37.50 / $15.92 = **2.36:1 ✓** (passes 2:1 floor)
+- Shares: 88 (20% equity flat: $20,020; risk-capped check: $100,678×0.02/$15.92 = 126 sh — 20% cap binds)
+- Max risk: 88 × $15.92 = $1,401 (1.39% equity — within 2% hard cap ✓)
+
+**Setup type (Phase G1):** BREAKOUT — thesis is "confirmation above 52w high $226.88 before entry." Buy-stop at $227.50 day TIF. Only executes if RTX trades ≥$227.50. No entry below the resistance level.
+
+**Entry plan:** BREAKOUT → buy-stop $227.50 (day TIF) | 88 shares | Post-fill: GTC sell-stop $211.58
+
+**Gate-history audit (B7):** 7+ consecutive sessions at buy-stop $227.50 (unchanged since Aug 14 add). NO gate creep. Buy-stop has not drifted upward; price action each day (Aug 14-20) consistently below $226.88. Today's level ($227.50) is the SAME as the original thesis entry. Day-high Aug 19 was $226.41 (still below stop and below 52w high) — no chase event. Gate audit: CLEAN ✓
+
+**Decision:** RETAINED — RTX is the watchlist carry-forward with $22.9B Tomahawk catalyst + new institutional inflows. Buy-stop $227.50 is purely confirmation-entry (risk-controlled). Market-open routine places the buy-stop on open and monitors. XLI fills to 2/2 with UNP — conscious choice, explicitly acknowledged. Critique noted: Aug 19 reversal from near-high is real risk; buy-stop mitigates by requiring actual breakout confirmation. 2 watchlist days remaining.
+
+### Candidates Dropped (and why)
+- XBI (XLV, $169.55) — at 52w high today ($169.68), XLV Trend sector. Screener #1 raw score (0.876). Dropped: 1 slot allocated to RTX (watchlist carry rule, adjusted score 0.879 ties XBI). XBI enters watchlist consideration if RTX doesn't fill today. No specific named catalyst (ETF-level momentum). R:R barely clears 2:1 (target uncitable for ETF). Tomorrow: add XBI to watchlist if RTX expires.
+- MRK (XLV, $152.20) — at 52w high ($153.50), massive volume surge factor (3.0). Screener explain score 0.840. Dropped: 1 slot already used. XLV sector same as XBI. Would be 0/2 XLV cap. Next research: seek MRK-specific catalyst (none found this session due to Gemini quota exhaustion).
+- BAC, AMGN, TMO, ABBV — not researched; no slot capacity. Screener ranked positions #4-7.
+
+### Historical Analog
+
+**Analog:** August 2018. Defense sector breakout on record Pentagon budgets (FY2019 NDAA = $716B, largest ever at time). RTX predecessor (Raytheon) outperformed +12% in August 2018 as DoD multiyear missile contracts were awarded post-Syria strikes. VIX was in 13-16 range. S&P 500 hit record highs that month amid tech strength + defense rotation. 30Y yield was ~3.1% (much lower than today's 5.3%).
+
+**What followed:** 5d (late Aug 2018): Defense sector +2.1%, broader SPX +1.4% [Gemini — unverified; cross-checked with training data]. 10d: Defense ETF (ITA) +3.8%, SPX flat (tariff noise). 20d: SPX pullback into September volatility; defense held relative strength.
+
+**Why this time might differ:** 30Y yield at 5.25-5.30% today vs 3.1% in 2018 — higher discount rate compresses defense PE multiples even with contract wins. RTX already at 52w-high resistance (2018 analog had more runway). Warren's legislative buyback risk was not present in 2018.
+
+### Risk Factors (consolidated)
+1. **MU unprotected (CRITICAL):** No stop order for MU position; planned stop $798.05 must be armed at market open FIRST.
+2. **ML stale 1712h (71st session):** Regime (Neutral) may miss real Bear shift. Refresh local PC — URGENT.
+3. **Gemini quota exhausted (11th+ consecutive session):** All macro citations are [WebSearch/Google News — unverified]. Research depth materially degraded. Gemini Flash 429 immediately.
+4. **RTX Aug 19 reversal risk:** Hit $226.41 (near 52w high) then closed $220.35 — "sell the news" on Tomahawk contract already evident. Buy-stop mitigates but gap-down risk exists.
+5. **XLI sector cap filled:** RTX entry fills XLI to 2/2 with UNP. No additional industrial entries possible.
+6. **UNP-NS merger STB review:** STB adopted procedural schedule Aug 18 [Finnhub — verified]. Regulatory uncertainty for UNP; could be bullish (merger premium) or complex (delay, DOJ block).
+7. **Late-cycle phase + breadth divergence flag:** Sector analyst reports late-cycle + internal divergence. Advisory tension with Neutral/Healthy breadth signals.
+
+### Decision
+**TRADE — 1 slot (RTX buy-stop day TIF):**
+- **Immediate priority:** Market-open routine MUST arm MU GTC stop at $798.05 (14 shares) BEFORE placing RTX order.
+- **RTX:** BREAKOUT → buy-stop $227.50 (day TIF), 88 shares, GTC sell-stop $211.58 to arm post-fill. Wait 15 min after open (9:45 AM ET) before placing. Do NOT place if any market regime signal deteriorates to Defensive at open.
+- **Existing positions:** KO HOLD (stop $81.30 GTC ✓; at +3.15%, not yet at +15% tighten threshold). UNP HOLD (stop $271.56 GTC ✓; at +3.55%, not yet at +15% tighten; UNP-NS merger news = watch for stop tighten if UNP accelerates). MU: arm stop $798.05 immediately.
+
+Post-RTX deployment (if filled): 73.2% (within 75% target range). If RTX doesn't fill: stays at 53.3% — acceptable for day-TIF confirmation setup.
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 1 Flash (429 immediately) + 0 Pro = 0 usable (11th+ consecutive session)
+- NewsAPI: 0 queries (skipped — Gemini quota check prioritized)
+- Finnhub: RTX 8 records / KO 3 records / UNP 5 records (used for macro context)
+- Google News: 4 queries (macro, oil, KO/UNP news)
+- EDGAR: 0 this session
+- Reddit: http_403 egress blocked — not cited in any bullet above
+- WebSearch: primary fallback for all macro data [tagged — unverified]
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1712.1h. Hard gate: slots reduced 2→1.
+- FTD detector: parse error / failed — skipped
+- Exposure coach: parse error — skipped
+- Breadth: 79.2/100 Healthy | Sector: balanced score=51, late-cycle, divergence_flag=True

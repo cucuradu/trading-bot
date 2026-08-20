@@ -17,7 +17,7 @@ Conventions:
 ---
 
 ## MU (XLK)
-- Thesis (2026-08-19): PULLBACK buy-limit $940 (revised down from $960 — price pulled below plan). New Street (Pierre Ferragu) Buy, PT $1,250 [NewsAPI 2026-08-15 — verified]. R:R 2.24:1 at $940/$799.65/$1,255 (passes 2:1 floor). ATR $74.581 (15% clamped stop). Macro pullback (bond rout, yield spike) not fundamental breakdown. VIX at 2026 low + benign inflation support recovery.
+- Thesis (2026-08-20): OPEN POSITION — 14 shares @ $936.29 avg (filled Aug 19, OTO limit). Current $923.89 (-1.32%). **CRITICAL: Stop $798.05 GTC unarmed (OTO child failed). Market-open MUST arm stop immediately.** New Street PT $1,250 [NewsAPI 2026-08-15 — verified]. R:R 2.24:1. FOMC minutes (Aug 19) resolved; mild tech softness (-1.3% MU). Next: monitor if $923 holds; stop tighten at $1,076 (+15% from $936.29 entry).
 - Recent catalysts:
   - 2026-08-19: MU fell $1,011→$926 intraday (−8.4%) on bond rout/yield spike; recovered to $940. Futures rising premarket; NVDA/MU/SNDK in focus [Google News 2026-08-19 — Gemini grounded — unverified]
   - 2026-08-17: New Street (5-star, Ferragu) Buy upgrade, PT $1,250; KOSPI rebound [NewsAPI 2026-08-15; Yahoo Finance Google News 2026-08-17]
@@ -388,18 +388,19 @@ Conventions:
 - Position-aware notes: Stop active (order 650b19c2, GTC, expires Nov 3). Tighten at +15% ($335.17) to 1.75×ATR; +20% ($349.74) to 1.25×ATR.
 
 ## RTX (XLI)
-- Thesis (2026-08-19): WATCHLIST — buy-stop $227.50 (7th+ attempt; 1-slot constraint today assigned to MU). Risk-on environment (VIX 2026 low) improves breakout probability. $22.9B Tomahawk contract + new institutional buyers (Meeder Advisory, Great Lakes Advisors) [Google News 2026-08-19]. BNP $265 PT → R:R 2.36:1. XLI fills 2/2 with UNP.
+- Thesis (2026-08-20): WATCHLIST — buy-stop $227.50 (8th+ attempt; primary slot today). $22.9B Tomahawk + Pentagon multiyear push + new institutional buyers. Aug 19: hit $226.41 (near 52w high $226.88) then closed $220.35 — "sell-the-news" on Tomahawk contract. Breakout pending. BNP $265 PT → R:R 2.36:1. XLI fills 2/2 with UNP.
 - Recent catalysts:
-  - 2026-08-19: Two new institutional buyers (Meeder Advisory, Great Lakes Advisors) took positions in RTX [MarketBeat Google News 2026-08-19 — verified]
+  - 2026-08-20: Aug 19 RTX hit $226.41 (near 52w high), closed $220.35 — "sell-the-news" reversal risk noted [yfinance — verified]
+  - 2026-08-19: Pentagon Under Sec. Duffey endorses multiyear missile production expansion [Finnhub 2026-08-19 — verified]
+  - 2026-08-19: Two new institutional buyers: Meeder Advisory + Great Lakes Advisors [MarketBeat Google News 2026-08-19 — verified]
   - 2026-08-17: US Navy awards $22.9B, 7-year Tomahawk contract; output 60→1,000/yr [Yahoo Finance, StockTitan 2026-08-17 — verified]
-  - 2026-08-14: Pentagon SM-3 7-year framework; Blue Canyon Technologies sale $620M to MDA [Finnhub 2026-08-14 — verified]
-  - 2026-07-28: BNP Paribas PT $265 Outperform (raised from $220) [MarketScreener Jul 24 — verified]
-  <!-- archive: Aug 11-13 CH-47/SM-3 IIA contracts; buy-stop $227.50 placed Aug 13-18, unfilled -->
+  <!-- archive: Aug 14: Pentagon SM-3 7-yr framework; Blue Canyon $620M; Aug 11-13 CH-47 contracts -->
 - Open thesis questions:
+  - Aug 19 reversal from $226.41 → $220.35 — "sell-the-news"? Or consolidation before breakout?
   - Pratt & Whitney GTF remediation + F135 "undefinitized" = Q3 margin risk
-  - 7+ consecutive sessions below $226.88 52w high — is the breakout thesis stalling?
   - XLI fills to 2/2 with UNP — no further industrials entries
-- Watchlist: buy-stop $227.50 (BREAKOUT above 52w high $226.88), stop $211.58 (−7%), target $265 (BNP [MarketScreener Jul 24 — verified]), R:R 2.36:1. Days remaining: 3 (Aug 14 add).
+  - Warren legislative risk to defense buyback programs
+- Watchlist: buy-stop $227.50 (BREAKOUT above 52w high $226.88), stop $211.58 (−7%), target $265 (BNP [MarketScreener Jul 24 — verified]), R:R 2.36:1. Days remaining: 2 (Aug 14 add).
 
 ## V (XLF)
 - Thesis (uninitialized): seed entry; pre-market will rewrite on first run.
