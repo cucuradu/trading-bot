@@ -506,16 +506,31 @@ Conventions:
 ## XBI — SPDR S&P Biotech ETF
 
 - Sector: XLV (Healthcare)
-- Thesis (2026-07-13): Screener #2 (ml_score 0.76) XLV Trend; pulled back from 52w high $165.71 to $159.03 (−4.0%). R:R with $174 2021 ATH target = 1.34:1 → fails. Base case $180 = 1.88:1 → fails. TipRanks $214.59 (12-mo aggregate) not usable for swing timeframe. Fourth consecutive demotion; R:R structurally broken. Key: post-CPI (Jul 14), if benign AND XBI reclaims $165.71, fresh BREAKOUT setup warrants re-evaluation with higher cited target. [WebSearch, Jul 13 2026]
+- Thesis (2026-08-21): Screener #1 XLV Trend (score 0.66); at $163.38, down 3.7% from 52w high $169.68. R:R structurally broken at current price: 52w high target gives 0.55:1 (fails 2:1). Watchlist at $155 pullback for re-evaluation. Needs named-bank PT ≥ $186 or major biotech catalyst to justify entry at current levels. [screener/WebSearch Aug 21 2026]
 - Recent catalysts:
+  - 2026-08-21: XBI $163.38 (-3.7% from 52w high $169.68 Aug 20); R:R 0.55:1 fails; watchlist $155 added
+  - 2026-08-20: New 52w high $169.68 (intraday); closed near $163.79; XLV Trend; RTX watchlist carried slot
   - 2026-07-13: XBI $159.03 (pulled back 4.0% from 52w high $165.71); failed breakout context
   - 2026-07-13: 2026 YTD biotech M&A: $106B / 201 transactions; full-year $140-160B forecast [WebSearch, Jul 13]
-  - 2026-07-10: New 52w high $165.71 (intraday); closed near $164.28; XLV Trend; Biotech M&A wave [Blockonomi, Jul 10]
-  - 2026-07-10: TipRanks aggregate analyst consensus $214.59 (12-mo, 146 analysts on components) [tipranks.com/etf/xbi, Jul 10]
-  - 2026-07-08: New 52w high $164.35; XLV Trend regime confirmed
-  <!-- archive: 2026-07-07: Broke above 52w-high ($161.56→$163.93) on broad risk-on (ISM Services 54.0, benign) -->
+  - 2026-07-10: New 52w high $165.71 (intraday); XLV Trend; Biotech M&A wave [Blockonomi, Jul 10]
+  <!-- archive: 2026-07-10: TipRanks aggregate analyst consensus $214.59 (12-mo, 146 analysts on components) -->
 - Open thesis questions:
-  - **Target resolution (B3 contradiction — ONGOING):** $174 (2021 ATH) gives 1.34:1; $214.59 (TipRanks, 12-mo aggregate) gives 4.99:1 but unusable. Minimum cited near-term target ≥ $178.30 needed for 2:1 from $159.03 + 7% stop. CPI watch: if benign → XBI may re-approach $165 → recheck breakout thesis. If hot → XBI drops further; wait for reset.
-  - **Post-CPI re-entry criteria (Jul 15):** XBI closes above $165.71 Jul 14 + benign CPI + institutional analyst PT ≥ $189 found → re-evaluate as BREAKOUT setup.
-  - **Note on base case:** rockflow.ai $160-180 base case target is a low-confidence source; not usable for R:R.
-- Trade history: (none — demoted pre-synthesis on R:R; not entered)
+  - **Target resolution (B3 — ONGOING):** No named-bank PT found Aug 21. Algorithmic models ($141-$154) below current. Minimum cited near-term target ≥ $186 needed for 2:1 from $163 + 7% stop. Entry feasible only at $155 pullback (then 52w high $169 gives 1.35:1 — still marginal) or with new catalyst.
+  - **Watchlist trigger:** Enter pullback limit at $155 (5 days, exp ~Aug 27). If XBI rallies without pullback: re-evaluate after new 52w high breakout with citeable target.
+  - **Note on algorithmic PTs:** WalletInvestor/StockInvest $141-$154 range is below current price — model is lagging; not usable.
+- Trade history: (none — demoted on R:R; not entered)
+
+---
+
+## TMO — Thermo Fisher Scientific
+
+- Sector: XLV (Healthcare)
+- Thesis (2026-08-21): Screener #2 XLV Trend (score 0.73); at $627.55, −2.5% below 52w high $643.99. Strong RS vs sector 60d (factor 2.271). R:R 1.42:1 with JPM $690 target — fails 2:1 floor. No fresh catalyst within 14d. Watch for pullback to ~$580 (improves R:R to ~2.5:1 with JPM target) or new PT ≥ $720. [WebSearch Aug 21 2026]
+- Recent catalysts:
+  - 2026-08-21: TMO $627.55; JPMorgan PT $690 Overweight (raised Jul 29); Stifel PT $650; consensus avg ~$625-635 [TipRanks/StreetInsider via WebSearch — unverified]
+  - 2026-08-21: R:R 1.42:1 at current price; fails 2:1 floor; not entered
+- Open thesis questions:
+  - **R:R improvement path:** Entry at ~$580 gives ($690-$580)/($580-$539.40) = $110/$40.60 = 2.71:1 ✓. Wait for pullback OR new analyst PT ≥ $720 (enables 2:1 from current $627.55).
+  - **Catalyst needed:** GLP-1 bioproduction contract win, Q3 2026 earnings beat (typically October), or new institutional upgrade above $700.
+  - **Consensus vs JPM tension:** consensus avg $625-635 implies near-zero upside; JPM $690 is lone high-conviction target. Monitor for consensus upgrades.
+- Trade history: (none — first research session; R:R fails at current price)

@@ -8989,3 +8989,196 @@ Post-RTX deployment (if filled): 73.2% (within 75% target range). If RTX doesn't
 - FTD detector: parse error / failed — skipped
 - Exposure coach: parse error — skipped
 - Breadth: 79.2/100 Healthy | Sector: balanced score=51, late-cycle, divergence_flag=True
+
+---
+
+## 2026-08-21 — Pre-market
+
+**Regime:** Bull (source: rule_fallback, slots: 2, deployment: 85%) — ML stale 1736h (stale_degrade; hard gate: slots 3→2). Fallback: local_screener_v1. Urgent: refresh local PC.
+**ML staleness:** age 1736h (stale_degrade; hard gate applied). ML stale 1736h — refresh local PC.
+**Breadth/Sector:** breadth=79.2/100 (Healthy) | sector=balanced score=47 phase=late | divergence_flag=true (cyclical/defensive internal disagreement — tension noted; not a hard gate)
+**FTD:** parse error — skipped.
+**Exposure coach:** parse error — skipped.
+
+### Account
+- Equity: $101,553 | Cash: $46,834 | Buying power: $340,550
+- Daytrade count: 0 | Open positions: 3 (KO, MU, UNP) | Open orders: 3 GTC stops
+- KO: 224 sh @ $87.42 avg → MV $20,256 (+3.44% unrealized) | GTC stop $81.30 (exp Oct 30) ✓
+- MU: 14 sh @ $936.29 avg → MV $13,800 (+5.28% unrealized) | Trailing stop 15% (stop $830.69, HWM $977.28) ✓
+- UNP: 68 sh @ $291.45 avg → MV $20,670 (+4.30% unrealized) | GTC stop $271.56 (exp Nov 3) ✓
+- RTX: day-TIF limit $231.50 expired Aug 20 — did NOT fill. Removed from watchlist (XLI = Bear sector).
+- Deployed: $54,726 / $101,553 = 53.9% (target 75-85%; below band — seek 1-2 positions)
+
+### Macro Framework
+Bull regime (rule_fallback; ML stale 72nd session). SPX futures +0.25% premarket, Nasdaq 100 looking to snap 5-day losing streak [Bloomberg Aug 21 — WebSearch]. VIX ~15.8-16.0 (Aug 21 range 15.77-15.88, prev close 16.01) [StrongBuyAnalytics — WebSearch]. 30Y Treasury ~5.25% (easing from 5.33% 19-year high hit Aug 18 2026) [CNBC Aug 18 — WebSearch]; 10Y ~4.71% [ts2.tech Aug 21 — WebSearch]. WTI crude ~$86.31 (Aug 20 close $86.16, +2.09%) [Forbes/Barchart — WebSearch]. Weekly jobless claims (released Aug 20): 206K vs 210K consensus — better than expected, tight labor market [DOL/TradingEconomics — WebSearch]. Energy +8.97% / Healthcare +7.58% / Materials +4.63% lead 1mo sector momentum. XLI Bear (-0.19 score), XLU Bear. Dominant theme: Tech Nasdaq correcting (5-day losing streak), defensive/late-cycle rotation into Energy/Healthcare. vs Aug 20: 30Y yields off peak (5.33→5.25); WTI +2.1% (energy bid); tech continues 5-day pullback; labor market tight; regime stable Bull; deployed 53.9% (below 75% target — need new entries but R:R floor prevents execution today).
+> Note: SPX futures premarket — SPY ETF ~$762 (from breadth data SPX proxy). SPX index level not independently confirmed.
+
+### Sector Picture
+- **Top 3 by 1mo momentum:** Energy XLE +8.97% | Healthcare XLV +7.58% | Materials XLB +4.63%
+- **Bottom 3:** Utilities XLU -2.56% | Real Estate XLRE -0.27% | Communication Services XLC +0.59%
+- **ML-insights sectors:** XLV Trend | XLE Trend | XLI Bear | XLU Bear | XLK Choppy | XLF Choppy | XLY Choppy | XLB Choppy | XLC Choppy | XLP Choppy | XLRE Choppy
+- **Sector rotation (community skill):** balanced, score=47, late-cycle phase, divergence_flag=true. Evidence: Energy/Healthcare/Basic Materials leading; Consumer Cyclical/Industrials lagging → classic late-cycle pattern.
+- **vs ML-insights:** XLV Trend (ML) + #2 momentum leader → aligned. XLE Trend (ML) + #1 momentum → aligned. XLI Bear (ML) + weak +0.62% momentum → broadly aligned. XLB: community-skill leading but ML says Choppy → tension flagged.
+
+### Candidates
+
+#### XBI (XLV, $163.38 ±−0.25% day-change)
+
+**Setup:** 52w high $169.68 (Aug 20), current $163.38 = −3.7% below 52w high. Screener score 0.66 (#1 raw). ATR(14)=$4.484 (2.75%); stop_pct_2_5x=6.86% → clamped to **7.0%**. Volume surge factor 1.267 (above-average). Catalyst factor: 0.0 (ETF, no specific catalyst).
+
+**Setup type (Phase G1):** PULLBACK — pulled back 3.7% from 52w high; thesis would be bounce from support level or re-test of highs. Day-limit order if entered.
+
+**Sources scanned (0):** 0 NewsAPI / 0 Finnhub news (symbol returned 0 records) / 0 EDGAR (ETF, not applicable) / 0 Reddit (http_403 blocked) / 0 Gemini (429, 12th consecutive session). All analysis from screener factors and prior research. Egress: edgar=ok, google_news=ok, reddit=http_403.
+
+**Bull case:**
+- Screener #1 raw score (0.66); volume surge 1.267 [local_screener_v1 — verified today]; XLV Trend sector, +7.58% 1mo [yfinance — verified]
+- Biotech ETF benefiting from Healthcare sector leadership (top 2 in 1mo); broad-based participation [breadth data — verified]
+- Strong technical setup score (1.011 of max 3.0) — above 52w high as of Aug 20 [local_screener_v1 — verified]
+
+**Bear case:**
+- ETF-level momentum, no specific near-term catalyst (catalyst factor = 0.0) [local_screener_v1 — verified]
+- Algorithmic model 3-month range $137.98-$153.95 (XBI trading above this range at $163) [StockInvest/WalletInvestor — WebSearch, algorithmic model, no named-bank PT]
+- No named analyst PT found; WalletInvestor/Tickeron model puts $141 — below current price [WebSearch — unverified algorithmic]
+- Nasdaq 5-day losing streak suggests risk-off in growth assets; biotech correlated with Nasdaq [Bloomberg Aug 21 — WebSearch]
+
+**Disconfirming evidence:** If tech selloff continues (Nasdaq correction deepens), biotech ETF likely follows despite Healthcare sector strength. No specific company-level catalysts in XBI to decouple from macro.
+
+**Catalysts ahead (next 14d):** No specific biotech earnings within 14d for major XBI holdings (ETF-level; no single catalyst). PDUFA dates and trial readouts are constituent-level, not tracked.
+
+**One-line takeaway:** XBI is the screener's top name in a leading sector but fails the 2:1 R:R floor at current prices — no citeable target above $186; ETF momentum trade only, demoted to watchlist.
+
+**Critique:**
+**Strongest counter to the bull case:** XBI has no named analyst price target above $170; the algorithmic models that do produce targets ($141-$154) place fair value BELOW the current $163 — meaning the stock may already be pricing in the Healthcare sector rally. The 52w high at $169.68 is only 4% away; a 7% stop requires $186+ target for 2:1. No single-name catalyst exists to justify targeting $186. The setup is momentum-only with deteriorating entry economics.
+
+**Weakly-sourced or unsourced claims:** WalletInvestor/StockInvest model PTs are algorithmic, not named-bank. All "algorithmic model range $137-$154" is tagged WebSearch — unverified. No Gemini-grounded synthesis available. No Finnhub or EDGAR records this session.
+
+**Single most-likely invalidator (next 5 trading days):** Nasdaq 100 extends losing streak to 8+ sessions, dragging risk assets including biotech — XBI reverses through $155 support before any entry can execute.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: XLV 19.7% (currently 0% — no XLV position)
+- 30d correlation with existing: max 0.39 (vs MU) ✓ (well below 0.70 gate)
+- Sector cap status: XLV 0/2 (entry would be 1/2)
+- Shared-catalyst flag (B6): XBI's catalyst is generic Healthcare sector momentum. No overlap with KO (staples), MU (memory chips), UNP (rails). Clean.
+
+**R:R math (B3):**
+- Entry $163.38 (day-limit, PULLBACK setup)
+- Stop $151.94 (−7.0% clamped from 6.86% ATR)
+- Best citeable target: 52w high $169.68 (no named analyst PT available this session)
+- R:R = ($169.68 − $163.38) / ($163.38 − $151.94) = $6.30 / $11.44 = **0.55:1 ← FAILS 2:1 floor**
+- To achieve 2:1: target must be $163.38 + 2×$11.44 = **$186.26** (+14.0%). No citeable basis for this target at this time.
+- **Decision: DEMOTED — hard R:R floor not met. No entry today.**
+
+**Entry plan:** DEMOTED. Watchlist added at $155.00 entry plan (5 days).
+
+**Gate-history audit (B7):** XBI has been in screener top-10 for 7+ sessions. Prior entries consistently dropped for: slot constraints (RTX watchlist carry) or R:R concerns. Aug 20 note explicitly: "R:R barely clears 2:1 (target uncitable for ETF)." Current price $163.38 is BELOW Aug 20 price $169.55 — no gate-creep. Audit: CLEAN (price moved against us, not a chase situation). Still fails 2:1 at current level.
+
+**Decision:** DEMOTED — R:R 0.55:1 (hard fail). Added to watchlist at $155 pullback target.
+
+---
+
+#### TMO (XLV, $627.55 ±−0.07% day-change)
+
+**Setup:** 52w high $643.99, current $627.55 = −2.5% below 52w high. Screener score 0.73 (explains above XBI when normalized). ATR(14)=$16.558 (2.64%); stop_pct_2_5x=6.60% → clamped to **7.0%**. Strong RS vs sector 60d (factor 2.271 — #1 factor driver).
+
+**Setup type (Phase G1):** PULLBACK — 2.5% below 52w high; thesis = pullback near resistance levels, with XLV Trend sector tailwind. Alternatively BREAKOUT if entry above $643.99.
+
+**Sources scanned (1):** 0 NewsAPI / 0 Finnhub news (0 records in 14d) / 0 EDGAR (timed out) / 0 Reddit (http_403 blocked) / 0 Gemini (429) / 1 WebSearch (analyst PTs). Gemini degraded session 12.
+
+**Bull case:**
+- Screener factor: RS vs sector 60d = 2.271 (highest factor; TMO outperforming XLV peers strongly) [local_screener_v1 — verified]
+- JPMorgan PT raised to $690 (Overweight; raised from $600; Jul 29 2026) [TipRanks via WebSearch — WebSearch unverified, but plausible institutional source]
+- Stifel PT $650 (Outperform) [StreetInsider via WebSearch — WebSearch unverified]
+- Strong Buy consensus across 36 analysts, avg ~$625-635 [MarketBeat via WebSearch — WebSearch unverified]
+- Life sciences tools recovery: GLP-1/bioproduction, AI drug discovery CRO demand [training knowledge — no cited source this session]
+
+**Bear case:**
+- Consensus PT $625-635 implies only 0-1% upside from current $627.55 — consensus says HOLD, not buy [MarketBeat/TIKR via WebSearch — unverified]
+- R:R fails: JPMorgan's $690 PT gives only 1.42:1 from current price with 7% stop (see R:R math below)
+- No fresh Finnhub news in 14d (0 records) — no near-term catalyst found by data sources
+- Q2 2026 earnings already reported (typically July) — results already priced in
+- Late-cycle market phase (sector analyst) + late-cycle sector capital rotation risk
+
+**Disconfirming evidence:** If consensus ($625-635) represents fair value, stock has no edge from current level. Any macro yield spike (30Y back above 5.33%) compresses life-science tools multiples.
+
+**Catalysts ahead (next 14d):** No specific TMO catalyst identified (Q2 earnings past, no PDUFA, no conference in 14d confirmed). Industry conference season (JPMorgan Healthcare Conference — January; not applicable). Risk: **no actionable catalyst** within 14d.
+
+**One-line takeaway:** TMO has strong sector momentum (RS factor) and a JPM upgrade, but the R:R math fails at current prices — JPM's $690 target gives 1.42:1, well below the 2:1 floor.
+
+**Critique:**
+**Strongest counter to the bull case:** The analyst consensus price target is $625-635, essentially at current market price. The $690 JPMorgan target (the only one materially above current) was set in late July — since then, if TMO has been range-bound near its 52w high, the market is sending a message that the $690+ thesis has not achieved buy-in. Moreover, with 30Y yields near 19-year highs (5.25-5.33%) and Nasdaq in a 5-day losing streak, life-science tools multiples face compression. A sector-level tailwind alone is insufficient when the stock is already fully valued by the consensus.
+
+**Weakly-sourced or unsourced claims:** All analyst PTs (JPM $690, Stifel $650, consensus $625-635) are from WebSearch — unverified (TipRanks/StreetInsider/MarketBeat not directly accessed; attributed to these sources but not confirmed via direct API). GLP-1/AI drug discovery thesis is training knowledge, not a cited source this session.
+
+**Single most-likely invalidator (next 5 trading days):** 30Y Treasury yields re-spike above 5.33% historical high → life-science tools multiples re-rated lower → TMO fails to break 52w high $643.99 → thesis stalls.
+
+**Position-aware (if entered $20k):**
+- Sector exposure post-entry: XLV 19.7% (currently 0%)
+- 30d correlation with existing: max 0.39 (vs UNP) ✓
+- Sector cap status: XLV 0/2 (entry would be 1/2)
+- Shared-catalyst flag (B6): No overlap with KO/MU/UNP. Clean.
+
+**R:R math (B3):**
+- Entry $627.55 (PULLBACK, day-limit)
+- Stop $583.62 (−7.0%)
+- Risk per share: $43.93
+- Best citeable target: JPMorgan $690 (Overweight, Jul 29 2026) [WebSearch — unverified]
+- R:R = ($690 − $627.55) / ($627.55 − $583.62) = $62.45 / $43.93 = **1.42:1 ← FAILS 2:1 floor**
+- To achieve 2:1: target = $627.55 + 2×$43.93 = **$715.41** (+14%). No citeable basis for $715.
+- If using high-end estimate $704: R:R = $76.45/$43.93 = 1.74:1 — still fails.
+- **Decision: DEMOTED — hard R:R floor not met. No entry today.**
+- Data check (B2): JPM PT $690 raised Jul 29 vs no prior TMO PT in RESEARCH-LOG → no conflict, first appearance. Treating $690 as unverified [WebSearch].
+
+**Entry plan:** DEMOTED. Watch for: (a) analyst PT above $720 (citeable), or (b) pullback to ~$580 improving stop economics.
+
+**Gate-history audit (B7):** TMO first formally researched today. No prior entry plans or gates in RESEARCH-LOG. Audit: N/A (no prior gate). Decision is R:R-driven, not gate-history driven.
+
+**Decision:** DEMOTED — R:R 1.42:1 (hard fail with JPM target). Watchlist considered but entry plan ($580 level) too far from current price; not adding to watchlist today.
+
+### Candidates Dropped (and why)
+- RTX — XLI sector = Bear; watchlist DROPPED (sector Bear rule overrides carry-forward)
+- MU — already held as open position (14 sh); watchlist DROPPED
+- NOW (ServiceNow, XLK) — XLK sector Choppy; underwent 5-for-1 stock split Dec 2025 [SEC Form 8-K — WebSearch]; at $129.75 vs 52w high $194.73 = 33% below high; wide ATR stop 12.51%; no citeable PT found; R:R unclear without Gemini. Not researched.
+- BAC (XLF) — XLF Choppy; at $61.86 vs 52w high $65.23 = only 5.4% upside; 7% stop requires $70.73 target for 2:1; consensus likely below $70 without Gemini verification. Not researched in depth.
+- MRK, DHR, AMGN, ABBV — XLV sector; all below screener threshold for 2-slot session; no slot capacity given XBI/TMO fully analyzed.
+
+### Historical Analog
+
+**Analog:** August 2023 — Bull regime in Healthcare/Energy leadership, Nasdaq tech correction 5+ sessions (August 2023 saw S&P 500 lose ~3-4% amid rising long-term yields; 10Y at 4.3% then, now 30Y at 5.25% is structurally higher). VIX in 15-17 range. Healthcare (XLV) was a defensive leader while tech consolidated. Life-science tools stocks (TMO, DHR) outperformed in that rotation period.
+
+**What followed:** 5d (Sep 1 2023): SPX recovered +2.5% as yields stabilized [training knowledge — cross-check suggested]. 10d: Healthcare sector held while tech rebounded; XLV +1.5% over the 2-week window. 20d: Rate-spike concern receded temporarily; markets resumed uptrend. XBI performed in line with broad market (+3-4% over 20d from the August 2023 low).
+
+**Why this time might differ:** 30Y yields are 5.25-5.33% today — 120bp higher than August 2023's 10Y level. The yield structural headwind is materially worse. The Nasdaq's 5-day correction may be deeper if bond yields re-spike above 5.33% (no such catalyst was present in Aug 2023). Also, sector rotation evidence (late-cycle phase per sector analyst) suggests the Bull market may be in a later innings than Aug 2023's mid-cycle posture.
+
+### Risk Factors (consolidated)
+1. **Research degraded — 12th consecutive Gemini 429 session:** No Gemini synthesis, no Pro critique, no historical analog research. All macro data [WebSearch — unverified]. Material depth reduction.
+2. **ML insights stale 1736h (72nd session):** Regime classifier running on rule_fallback; may miss real Bear shift. Urgent: refresh local PC.
+3. **30Y yields near 19-year high (5.25-5.33%):** Structural headwind for growth/tech multiples. Re-spike above 5.33% is primary macro risk.
+4. **Nasdaq 5-day losing streak:** Tech correction ongoing; XLK Choppy. Risk-off in growth assets.
+5. **Deployment 53.9%:** Materially below 75-85% target for 4th+ consecutive day. R:R floors preventing new entries — not a rules violation, but opportunity cost if Bull regime continues.
+6. **Late-cycle sector rotation:** Sector analyst confirms late-cycle phase + divergence_flag. Energy/Healthcare leading; Consumer/Industrials lagging. Defensive rotation emerging.
+7. **UNP-NS merger STB review ongoing:** STB procedural schedule adopted Aug 18; regulatory risk for UNP position.
+
+### Decision
+**HOLD — 0 new orders today.**
+- XBI: DEMOTED — R:R 0.55:1 (52w high $169.68 target; fails 2:1 hard floor). Added to watchlist at $155 pullback.
+- TMO: DEMOTED — R:R 1.42:1 (JPM $690 target; fails 2:1 hard floor). Watch for pullback to ~$580 or citeable PT ≥ $720.
+- Existing positions (KO/MU/UNP): HOLD. All stops armed and confirmed. None at +15% or +20% tighten thresholds. MU trailing stop active at $830.69 (HWM $977.28).
+- Watchlist: XBI added at $155 (5 days). RTX and MU dropped.
+- No orders placed this session.
+
+Deployment: 53.9% — below 75% band. Acceptable if no 2:1-clearing candidates exist. Will re-evaluate Monday Aug 24.
+
+### Quota & Source Usage (footer)
+- Gemini calls: 0 Flash-Lite + 0 Flash (429, 12th consecutive session) + 0 Pro = 0 usable
+- NewsAPI: 0 records (XBI 0, TMO 0, NOW 10-unrelated, BAC 1-unrelated)
+- Finnhub: 0 records for XBI/TMO (Finnhub upgrade-downgrade endpoint 403 Forbidden)
+- EDGAR: 0 records (timeouts on XBI/TMO)
+- Reddit: http_403 egress blocked — not cited in any bullet
+- WebSearch: primary fallback for all macro data + analyst PTs [all tagged — unverified]
+- Screener: source=local_screener_v1, ranked ~60 tickers, top 10 = [XBI(0.66,XLV), TMO(0.58,XLV), MRK(0.53,XLV), MU(0.49,XLK-held), NOW(0.46,XLK), BAC(0.45,XLF), DHR(0.44,XLV), AMGN(0.43,XLV), ABBV(0.40,XLV), XLE(0.36,XLE)]
+- Screener diagnostics: XBI explain score 0.55 (live vs 0.66 shortlist; discrepancy = runtime vs cached); TMO explain score 0.73. Both pass screener gates.
+- Egress probe: edgar=ok, google_news=ok, reddit=http_403
+- ml_insights: status=stale_degrade, age=1736.1h. Hard gate: slots 3→2.
+- FTD detector: script ran but /tmp/ftd.json parse error — skipped.
+- Exposure coach: script ran but /tmp/exposure.json parse error — skipped.
+- Breadth: 79.2/100 Healthy | Sector: balanced score=47, late-cycle, divergence_flag=True | No divergence vs breadth (both rising, score 70/100)
